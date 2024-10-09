@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> API specification details. </summary>
+    /// <summary> The ApiCenterApiSpecification. </summary>
     public partial class ApiCenterApiSpecification
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ApiCenterApiSpecification"/>. </summary>
-        /// <param name="name"> Specification name. </param>
-        /// <param name="version"> Specification version. </param>
+        /// <param name="name"></param>
+        /// <param name="version"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ApiCenterApiSpecification(string name, string version, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specification name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Specification version. </summary>
+        /// <summary> Gets the version. </summary>
         public string Version { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> The type of AI model. </summary>
+    /// <summary> The ModelType. </summary>
     public readonly partial struct ModelType : IEquatable<ModelType>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.AI.Inference
         private const string AudioGenerationValue = "audio_generation";
         private const string ChatValue = "chat";
 
-        /// <summary> Embeddings. </summary>
+        /// <summary> embeddings. </summary>
         public static ModelType Embeddings { get; } = new ModelType(EmbeddingsValue);
-        /// <summary> Image generation. </summary>
+        /// <summary> image_generation. </summary>
         public static ModelType ImageGeneration { get; } = new ModelType(ImageGenerationValue);
-        /// <summary> Text generation. </summary>
+        /// <summary> text_generation. </summary>
         public static ModelType TextGeneration { get; } = new ModelType(TextGenerationValue);
-        /// <summary> Image embeddings. </summary>
+        /// <summary> image_embeddings. </summary>
         public static ModelType ImageEmbeddings { get; } = new ModelType(ImageEmbeddingsValue);
-        /// <summary> Audio generation. </summary>
+        /// <summary> audio_generation. </summary>
         public static ModelType AudioGeneration { get; } = new ModelType(AudioGenerationValue);
-        /// <summary> Chat completions. </summary>
+        /// <summary> chat. </summary>
         public static ModelType Chat { get; } = new ModelType(ChatValue);
         /// <summary> Determines if two <see cref="ModelType"/> values are the same. </summary>
         public static bool operator ==(ModelType left, ModelType right) => left.Equals(right);

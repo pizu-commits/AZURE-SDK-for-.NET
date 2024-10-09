@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Resources.ResourceDeleteSuccess event. This is raised when a resource delete operation succeeds. </summary>
+    /// <summary> The ResourceDeleteSuccessEventData. </summary>
     public partial class ResourceDeleteSuccessEventData
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceDeleteSuccessEventData"/>. </summary>
-        /// <param name="authorization"> The requested authorization for the operation. </param>
-        /// <param name="claims"> The properties of the claims. </param>
-        /// <param name="httpRequest"> The details of the operation. </param>
+        /// <param name="authorization"></param>
+        /// <param name="claims"></param>
+        /// <param name="httpRequest"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="authorization"/>, <paramref name="claims"/> or <paramref name="httpRequest"/> is null. </exception>
         internal ResourceDeleteSuccessEventData(ResourceAuthorization authorization, IReadOnlyDictionary<string, string> claims, ResourceHttpRequest httpRequest)
         {
@@ -62,17 +62,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceDeleteSuccessEventData"/>. </summary>
-        /// <param name="tenantId"> The tenant ID of the resource. </param>
-        /// <param name="subscriptionId"> The subscription ID of the resource. </param>
-        /// <param name="resourceGroup"> The resource group of the resource. </param>
-        /// <param name="resourceProvider"> The resource provider performing the operation. </param>
-        /// <param name="resourceUri"> The URI of the resource in the operation. </param>
-        /// <param name="operationName"> The operation that was performed. </param>
-        /// <param name="status"> The status of the operation. </param>
-        /// <param name="authorization"> The requested authorization for the operation. </param>
-        /// <param name="claims"> The properties of the claims. </param>
-        /// <param name="correlationId"> An operation ID used for troubleshooting. </param>
-        /// <param name="httpRequest"> The details of the operation. </param>
+        /// <param name="tenantId"></param>
+        /// <param name="subscriptionId"></param>
+        /// <param name="resourceGroup"></param>
+        /// <param name="resourceProvider"></param>
+        /// <param name="resourceUri"></param>
+        /// <param name="operationName"></param>
+        /// <param name="status"></param>
+        /// <param name="authorization"></param>
+        /// <param name="claims"></param>
+        /// <param name="correlationId"></param>
+        /// <param name="httpRequest"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceDeleteSuccessEventData(string tenantId, string subscriptionId, string resourceGroup, string resourceProvider, string resourceUri, string operationName, string status, ResourceAuthorization authorization, IReadOnlyDictionary<string, string> claims, string correlationId, ResourceHttpRequest httpRequest, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -95,27 +95,27 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The tenant ID of the resource. </summary>
+        /// <summary> Gets the tenant id. </summary>
         public string TenantId { get; }
-        /// <summary> The subscription ID of the resource. </summary>
+        /// <summary> Gets the subscription id. </summary>
         public string SubscriptionId { get; }
-        /// <summary> The resource group of the resource. </summary>
+        /// <summary> Gets the resource group. </summary>
         public string ResourceGroup { get; }
-        /// <summary> The resource provider performing the operation. </summary>
+        /// <summary> Gets the resource provider. </summary>
         public string ResourceProvider { get; }
-        /// <summary> The URI of the resource in the operation. </summary>
+        /// <summary> Gets the resource uri. </summary>
         public string ResourceUri { get; }
-        /// <summary> The operation that was performed. </summary>
+        /// <summary> Gets the operation name. </summary>
         public string OperationName { get; }
-        /// <summary> The status of the operation. </summary>
+        /// <summary> Gets the status. </summary>
         public string Status { get; }
-        /// <summary> The requested authorization for the operation. </summary>
+        /// <summary> Gets the authorization. </summary>
         public ResourceAuthorization Authorization { get; }
-        /// <summary> The properties of the claims. </summary>
+        /// <summary> Gets the claims. </summary>
         public IReadOnlyDictionary<string, string> Claims { get; }
-        /// <summary> An operation ID used for troubleshooting. </summary>
+        /// <summary> Gets the correlation id. </summary>
         public string CorrelationId { get; }
-        /// <summary> The details of the operation. </summary>
+        /// <summary> Gets the http request. </summary>
         public ResourceHttpRequest HttpRequest { get; }
     }
 }

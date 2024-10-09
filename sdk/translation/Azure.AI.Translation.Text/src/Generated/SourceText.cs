@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Input text in the default script of the source language. </summary>
+    /// <summary> The SourceText. </summary>
     public partial class SourceText
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SourceText"/>. </summary>
-        /// <param name="text"> Input text in the default script of the source language. </param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         internal SourceText(string text)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SourceText"/>. </summary>
-        /// <param name="text"> Input text in the default script of the source language. </param>
+        /// <param name="text"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SourceText(string text, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> Input text in the default script of the source language. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

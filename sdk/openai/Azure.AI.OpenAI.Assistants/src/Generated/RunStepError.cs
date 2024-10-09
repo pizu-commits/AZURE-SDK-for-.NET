@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The error information associated with a failed run step. </summary>
+    /// <summary> The RunStepError. </summary>
     public partial class RunStepError
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RunStepError"/>. </summary>
-        /// <param name="code"> The error code for this error. </param>
-        /// <param name="message"> The human-readable text associated with this error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="message"/> is null. </exception>
         internal RunStepError(RunStepErrorCode code, string message)
         {
@@ -58,8 +58,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunStepError"/>. </summary>
-        /// <param name="code"> The error code for this error. </param>
-        /// <param name="message"> The human-readable text associated with this error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RunStepError(RunStepErrorCode code, string message, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The error code for this error. </summary>
+        /// <summary> Gets the code. </summary>
         public RunStepErrorCode Code { get; }
-        /// <summary> The human-readable text associated with this error. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
     }
 }

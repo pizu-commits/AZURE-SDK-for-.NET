@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains all the entity categories detected by entity recognition. </summary>
+    /// <summary> The EntityCategory. </summary>
     public readonly partial struct EntityCategory : IEquatable<EntityCategory>
     {
         private readonly string _value;
@@ -75,109 +75,109 @@ namespace Azure.AI.Language.Text
         private const string ComputingProductValue = "ComputingProduct";
         private const string SkillValue = "Skill";
 
-        /// <summary> Specific street-level mentions of locations: house/building numbers, streets, avenues, highways, intersections referenced by name. </summary>
+        /// <summary> Address. </summary>
         public static EntityCategory Address { get; } = new EntityCategory(AddressValue);
-        /// <summary> Numeric values, including digits and number words. </summary>
+        /// <summary> Numeric. </summary>
         public static EntityCategory Numeric { get; } = new EntityCategory(NumericValue);
-        /// <summary> Age-related values. </summary>
+        /// <summary> Age. </summary>
         public static EntityCategory Age { get; } = new EntityCategory(AgeValue);
-        /// <summary> Currency-related values. </summary>
+        /// <summary> Currency. </summary>
         public static EntityCategory Currency { get; } = new EntityCategory(CurrencyValue);
-        /// <summary> Numbers without a unit. </summary>
+        /// <summary> Number. </summary>
         public static EntityCategory Number { get; } = new EntityCategory(NumberValue);
-        /// <summary> Range of Numbers. </summary>
+        /// <summary> NumberRange. </summary>
         public static EntityCategory NumberRange { get; } = new EntityCategory(NumberRangeValue);
-        /// <summary> Percentage-related values. </summary>
+        /// <summary> Percentage. </summary>
         public static EntityCategory Percentage { get; } = new EntityCategory(PercentageValue);
-        /// <summary> Ordinal numbers. </summary>
+        /// <summary> Ordinal. </summary>
         public static EntityCategory Ordinal { get; } = new EntityCategory(OrdinalValue);
-        /// <summary> Temperature-related values. </summary>
+        /// <summary> Temperature. </summary>
         public static EntityCategory Temperature { get; } = new EntityCategory(TemperatureValue);
-        /// <summary> Dimension of measurements. </summary>
+        /// <summary> Dimension. </summary>
         public static EntityCategory Dimension { get; } = new EntityCategory(DimensionValue);
-        /// <summary> Length of an object. </summary>
+        /// <summary> Length. </summary>
         public static EntityCategory Length { get; } = new EntityCategory(LengthValue);
-        /// <summary> Weight of an object. </summary>
+        /// <summary> Weight. </summary>
         public static EntityCategory Weight { get; } = new EntityCategory(WeightValue);
-        /// <summary> Height of an object. </summary>
+        /// <summary> Height. </summary>
         public static EntityCategory Height { get; } = new EntityCategory(HeightValue);
-        /// <summary> Speed of an object. </summary>
+        /// <summary> Speed. </summary>
         public static EntityCategory Speed { get; } = new EntityCategory(SpeedValue);
-        /// <summary> Area of an object. </summary>
+        /// <summary> Area. </summary>
         public static EntityCategory Area { get; } = new EntityCategory(AreaValue);
-        /// <summary> Volume of an object. </summary>
+        /// <summary> Volume. </summary>
         public static EntityCategory Volume { get; } = new EntityCategory(VolumeValue);
-        /// <summary> Unit of measure for digital information. </summary>
+        /// <summary> Information. </summary>
         public static EntityCategory Information { get; } = new EntityCategory(InformationValue);
-        /// <summary> Items relating to time. </summary>
+        /// <summary> Temporal. </summary>
         public static EntityCategory Temporal { get; } = new EntityCategory(TemporalValue);
-        /// <summary> Calendar dates. </summary>
+        /// <summary> Date. </summary>
         public static EntityCategory Date { get; } = new EntityCategory(DateValue);
-        /// <summary> Times of day. </summary>
+        /// <summary> Time. </summary>
         public static EntityCategory Time { get; } = new EntityCategory(TimeValue);
-        /// <summary> Calendar dates with time. </summary>
+        /// <summary> DateTime. </summary>
         public static EntityCategory DateTime { get; } = new EntityCategory(DateTimeValue);
-        /// <summary> Range of dates. </summary>
+        /// <summary> DateRange. </summary>
         public static EntityCategory DateRange { get; } = new EntityCategory(DateRangeValue);
-        /// <summary> Range of times. </summary>
+        /// <summary> TimeRange. </summary>
         public static EntityCategory TimeRange { get; } = new EntityCategory(TimeRangeValue);
-        /// <summary> Range of date and time. </summary>
+        /// <summary> DateTimeRange. </summary>
         public static EntityCategory DateTimeRange { get; } = new EntityCategory(DateTimeRangeValue);
-        /// <summary> Duration of time. </summary>
+        /// <summary> Duration. </summary>
         public static EntityCategory Duration { get; } = new EntityCategory(DurationValue);
-        /// <summary> Set of time-related values. </summary>
+        /// <summary> SetTemporal. </summary>
         public static EntityCategory SetTemporal { get; } = new EntityCategory(SetTemporalValue);
-        /// <summary> Social, sports, business, political, educational, natural, historical, criminal, violent, legal, military events with a timed period. </summary>
+        /// <summary> Event. </summary>
         public static EntityCategory Event { get; } = new EntityCategory(EventValue);
-        /// <summary> Sports event-related values. </summary>
+        /// <summary> SportsEvent. </summary>
         public static EntityCategory SportsEvent { get; } = new EntityCategory(SportsEventValue);
-        /// <summary> Cultural event-related values. </summary>
+        /// <summary> CulturalEvent. </summary>
         public static EntityCategory CulturalEvent { get; } = new EntityCategory(CulturalEventValue);
-        /// <summary> Natural event-related values. </summary>
+        /// <summary> NaturalEvent. </summary>
         public static EntityCategory NaturalEvent { get; } = new EntityCategory(NaturalEventValue);
-        /// <summary> Particular point or place in physical space. </summary>
+        /// <summary> Location. </summary>
         public static EntityCategory Location { get; } = new EntityCategory(LocationValue);
-        /// <summary> Cities, countries/regions, states. </summary>
+        /// <summary> GPE. </summary>
         public static EntityCategory GeoPoliticalEntity { get; } = new EntityCategory(GeoPoliticalEntityValue);
-        /// <summary> City-related values. </summary>
+        /// <summary> City. </summary>
         public static EntityCategory City { get; } = new EntityCategory(CityValue);
-        /// <summary> State-related values. </summary>
+        /// <summary> State. </summary>
         public static EntityCategory State { get; } = new EntityCategory(StateValue);
-        /// <summary> Country or region-related values. </summary>
+        /// <summary> CountryRegion. </summary>
         public static EntityCategory CountryRegion { get; } = new EntityCategory(CountryRegionValue);
-        /// <summary> Continent-related values. </summary>
+        /// <summary> Continent. </summary>
         public static EntityCategory Continent { get; } = new EntityCategory(ContinentValue);
-        /// <summary> Manmade structures. </summary>
+        /// <summary> Structural. </summary>
         public static EntityCategory Structural { get; } = new EntityCategory(StructuralValue);
-        /// <summary> Airports. </summary>
+        /// <summary> Airport. </summary>
         public static EntityCategory Airport { get; } = new EntityCategory(AirportValue);
-        /// <summary> Geographic and natural features such as rivers, oceans, and deserts. </summary>
+        /// <summary> Geological. </summary>
         public static EntityCategory Geological { get; } = new EntityCategory(GeologicalValue);
-        /// <summary> Corporations, agencies, and other groups of people defined by some established organizational structure. These labels can include companies, political parties/movements, musical bands, sport clubs, government bodies, and public organizations. Nationalities or religions are not ORGANIZATION. </summary>
+        /// <summary> Organization. </summary>
         public static EntityCategory Organization { get; } = new EntityCategory(OrganizationValue);
-        /// <summary> Medical companies and groups. </summary>
+        /// <summary> OrganizationMedical. </summary>
         public static EntityCategory OrganizationMedical { get; } = new EntityCategory(OrganizationMedicalValue);
-        /// <summary> Stock exchange groups. </summary>
+        /// <summary> OrganizationStockExchange. </summary>
         public static EntityCategory OrganizationStockExchange { get; } = new EntityCategory(OrganizationStockExchangeValue);
-        /// <summary> Sports-related organizations. </summary>
+        /// <summary> OrganizationSports. </summary>
         public static EntityCategory OrganizationSports { get; } = new EntityCategory(OrganizationSportsValue);
-        /// <summary> First, last, and middle names, names of fictional characters, and aliases. Titles, such as 'Mr.' or 'President', are not considered part of the named entity. </summary>
+        /// <summary> Person. </summary>
         public static EntityCategory Person { get; } = new EntityCategory(PersonValue);
-        /// <summary> Human roles classified by a group membership. </summary>
+        /// <summary> PersonType. </summary>
         public static EntityCategory PersonType { get; } = new EntityCategory(PersonTypeValue);
-        /// <summary> Email addresses. </summary>
+        /// <summary> Email. </summary>
         public static EntityCategory Email { get; } = new EntityCategory(EmailValue);
-        /// <summary> URLs to websites. </summary>
+        /// <summary> URL. </summary>
         public static EntityCategory Uri { get; } = new EntityCategory(UriValue);
-        /// <summary> network IP addresses. </summary>
+        /// <summary> IP. </summary>
         public static EntityCategory IpAddress { get; } = new EntityCategory(IpAddressValue);
-        /// <summary> Phone numbers (US and EU phone numbers only). </summary>
+        /// <summary> PhoneNumber. </summary>
         public static EntityCategory PhoneNumber { get; } = new EntityCategory(PhoneNumberValue);
-        /// <summary> Single or group of commercial, consumable objects, electronics, vehicles, food groups. </summary>
+        /// <summary> Product. </summary>
         public static EntityCategory Product { get; } = new EntityCategory(ProductValue);
-        /// <summary> Computing products. </summary>
+        /// <summary> ComputingProduct. </summary>
         public static EntityCategory ComputingProduct { get; } = new EntityCategory(ComputingProductValue);
-        /// <summary> A capability, skill, or expertise. </summary>
+        /// <summary> Skill. </summary>
         public static EntityCategory Skill { get; } = new EntityCategory(SkillValue);
         /// <summary> Determines if two <see cref="EntityCategory"/> values are the same. </summary>
         public static bool operator ==(EntityCategory left, EntityCategory right) => left.Equals(right);

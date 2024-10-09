@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Medical Professional Type. </summary>
+    /// <summary> The MedicalProfessionalType. </summary>
     public readonly partial struct MedicalProfessionalType : IEquatable<MedicalProfessionalType>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string MidwifeValue = "midwife";
         private const string PhysicianAssistantValue = "physicianAssistant";
 
-        /// <summary> Unknown medical professional type. </summary>
+        /// <summary> unknown. </summary>
         public static MedicalProfessionalType Unknown { get; } = new MedicalProfessionalType(UnknownValue);
-        /// <summary> Doctor medical professional type. </summary>
+        /// <summary> doctor. </summary>
         public static MedicalProfessionalType Doctor { get; } = new MedicalProfessionalType(DoctorValue);
-        /// <summary> Nurse medical professional type. </summary>
+        /// <summary> nurse. </summary>
         public static MedicalProfessionalType Nurse { get; } = new MedicalProfessionalType(NurseValue);
-        /// <summary> Technician medical professional type. </summary>
+        /// <summary> midwife. </summary>
         public static MedicalProfessionalType Midwife { get; } = new MedicalProfessionalType(MidwifeValue);
-        /// <summary> Technician medical professional type. </summary>
+        /// <summary> physicianAssistant. </summary>
         public static MedicalProfessionalType PhysicianAssistant { get; } = new MedicalProfessionalType(PhysicianAssistantValue);
         /// <summary> Determines if two <see cref="MedicalProfessionalType"/> values are the same. </summary>
         public static bool operator ==(MedicalProfessionalType left, MedicalProfessionalType right) => left.Equals(right);

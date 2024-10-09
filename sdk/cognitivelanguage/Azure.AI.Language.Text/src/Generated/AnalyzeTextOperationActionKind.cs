@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The kind of the long running analyze text tasks supported. </summary>
+    /// <summary> The AnalyzeTextOperationActionKind. </summary>
     internal readonly partial struct AnalyzeTextOperationActionKind : IEquatable<AnalyzeTextOperationActionKind>
     {
         private readonly string _value;
@@ -37,33 +37,33 @@ namespace Azure.AI.Language.Text
         private const string CustomSentimentAnalysisValue = "CustomSentimentAnalysis";
         private const string CustomAbstractiveSummarizationValue = "CustomAbstractiveSummarization";
 
-        /// <summary> Sentiment analysis task. </summary>
+        /// <summary> SentimentAnalysis. </summary>
         public static AnalyzeTextOperationActionKind SentimentAnalysis { get; } = new AnalyzeTextOperationActionKind(SentimentAnalysisValue);
-        /// <summary> Entity recognition task. </summary>
+        /// <summary> EntityRecognition. </summary>
         public static AnalyzeTextOperationActionKind EntityRecognition { get; } = new AnalyzeTextOperationActionKind(EntityRecognitionValue);
-        /// <summary> PII entity recognition task. </summary>
+        /// <summary> PiiEntityRecognition. </summary>
         public static AnalyzeTextOperationActionKind PiiEntityRecognition { get; } = new AnalyzeTextOperationActionKind(PiiEntityRecognitionValue);
-        /// <summary> Key phrase extraction task. </summary>
+        /// <summary> KeyPhraseExtraction. </summary>
         public static AnalyzeTextOperationActionKind KeyPhraseExtraction { get; } = new AnalyzeTextOperationActionKind(KeyPhraseExtractionValue);
-        /// <summary> Entity linking task. </summary>
+        /// <summary> EntityLinking. </summary>
         public static AnalyzeTextOperationActionKind EntityLinking { get; } = new AnalyzeTextOperationActionKind(EntityLinkingValue);
-        /// <summary> Healthcare task. </summary>
+        /// <summary> Healthcare. </summary>
         public static AnalyzeTextOperationActionKind Healthcare { get; } = new AnalyzeTextOperationActionKind(HealthcareValue);
-        /// <summary> Custom entity recognition task. </summary>
+        /// <summary> CustomEntityRecognition. </summary>
         public static AnalyzeTextOperationActionKind CustomEntityRecognition { get; } = new AnalyzeTextOperationActionKind(CustomEntityRecognitionValue);
-        /// <summary> Custom single label classification task. </summary>
+        /// <summary> CustomSingleLabelClassification. </summary>
         public static AnalyzeTextOperationActionKind CustomSingleLabelClassification { get; } = new AnalyzeTextOperationActionKind(CustomSingleLabelClassificationValue);
-        /// <summary> Custom multi label classification task. </summary>
+        /// <summary> CustomMultiLabelClassification. </summary>
         public static AnalyzeTextOperationActionKind CustomMultiLabelClassification { get; } = new AnalyzeTextOperationActionKind(CustomMultiLabelClassificationValue);
-        /// <summary> Extractive summarization task. </summary>
+        /// <summary> ExtractiveSummarization. </summary>
         public static AnalyzeTextOperationActionKind ExtractiveSummarization { get; } = new AnalyzeTextOperationActionKind(ExtractiveSummarizationValue);
-        /// <summary> Abstractive summarization task. </summary>
+        /// <summary> AbstractiveSummarization. </summary>
         public static AnalyzeTextOperationActionKind AbstractiveSummarization { get; } = new AnalyzeTextOperationActionKind(AbstractiveSummarizationValue);
-        /// <summary> Custom healthcare task. </summary>
+        /// <summary> CustomHealthcare. </summary>
         public static AnalyzeTextOperationActionKind CustomHealthcare { get; } = new AnalyzeTextOperationActionKind(CustomHealthcareValue);
-        /// <summary> Custom sentiment analysis task. </summary>
+        /// <summary> CustomSentimentAnalysis. </summary>
         public static AnalyzeTextOperationActionKind CustomSentimentAnalysis { get; } = new AnalyzeTextOperationActionKind(CustomSentimentAnalysisValue);
-        /// <summary> Custom abstractive summarization task. </summary>
+        /// <summary> CustomAbstractiveSummarization. </summary>
         public static AnalyzeTextOperationActionKind CustomAbstractiveSummarization { get; } = new AnalyzeTextOperationActionKind(CustomAbstractiveSummarizationValue);
         /// <summary> Determines if two <see cref="AnalyzeTextOperationActionKind"/> values are the same. </summary>
         public static bool operator ==(AnalyzeTextOperationActionKind left, AnalyzeTextOperationActionKind right) => left.Equals(right);

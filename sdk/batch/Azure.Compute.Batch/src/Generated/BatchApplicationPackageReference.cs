@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> A reference to an Package to be deployed to Compute Nodes. </summary>
+    /// <summary> The BatchApplicationPackageReference. </summary>
     public partial class BatchApplicationPackageReference
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchApplicationPackageReference"/>. </summary>
-        /// <param name="applicationId"> The ID of the application to deploy. When creating a pool, the package's application ID must be fully qualified (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}). </param>
+        /// <param name="applicationId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         public BatchApplicationPackageReference(string applicationId)
         {
@@ -56,8 +56,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchApplicationPackageReference"/>. </summary>
-        /// <param name="applicationId"> The ID of the application to deploy. When creating a pool, the package's application ID must be fully qualified (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}). </param>
-        /// <param name="version"> The version of the application to deploy. If omitted, the default version is deployed. If this is omitted on a Pool, and no default version is specified for this application, the request fails with the error code InvalidApplicationPackageReferences and HTTP status code 409. If this is omitted on a Task, and no default version is specified for this application, the Task fails with a pre-processing error. </param>
+        /// <param name="applicationId"></param>
+        /// <param name="version"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchApplicationPackageReference(string applicationId, string version, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The ID of the application to deploy. When creating a pool, the package's application ID must be fully qualified (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}). </summary>
+        /// <summary> Gets or sets the application id. </summary>
         public string ApplicationId { get; set; }
-        /// <summary> The version of the application to deploy. If omitted, the default version is deployed. If this is omitted on a Pool, and no default version is specified for this application, the request fails with the error code InvalidApplicationPackageReferences and HTTP status code 409. If this is omitted on a Task, and no default version is specified for this application, the Task fails with a pre-processing error. </summary>
+        /// <summary> Gets or sets the version. </summary>
         public string Version { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> This is the request to get errors per vm operations. </summary>
+    /// <summary> The GetOperationErrorsContent. </summary>
     public partial class GetOperationErrorsContent
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="GetOperationErrorsContent"/>. </summary>
-        /// <param name="operationIds"> The list of operation ids to query errors of. </param>
+        /// <param name="operationIds"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationIds"/> is null. </exception>
         public GetOperationErrorsContent(IEnumerable<string> operationIds)
         {
@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="GetOperationErrorsContent"/>. </summary>
-        /// <param name="operationIds"> The list of operation ids to query errors of. </param>
+        /// <param name="operationIds"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal GetOperationErrorsContent(IList<string> operationIds, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> The list of operation ids to query errors of. </summary>
+        /// <summary> Gets the operation ids. </summary>
         public IList<string> OperationIds { get; }
     }
 }

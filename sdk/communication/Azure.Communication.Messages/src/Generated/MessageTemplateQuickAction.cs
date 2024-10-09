@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The message template's quick action value information. </summary>
+    /// <summary> The MessageTemplateQuickAction. </summary>
     public partial class MessageTemplateQuickAction : MessageTemplateValue
     {
         /// <summary> Initializes a new instance of <see cref="MessageTemplateQuickAction"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public MessageTemplateQuickAction(string name) : base(name)
         {
@@ -24,11 +24,11 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateQuickAction"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
-        /// <param name="kind"> The type discriminator describing a template parameter type. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="text"> The [Optional] quick action text. </param>
-        /// <param name="payload"> The [Optional] quick action payload. </param>
+        /// <param name="text"></param>
+        /// <param name="payload"></param>
         internal MessageTemplateQuickAction(string name, MessageTemplateValueKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, string text, string payload) : base(name, kind, serializedAdditionalRawData)
         {
             Text = text;
@@ -40,9 +40,9 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> The [Optional] quick action text. </summary>
+        /// <summary> Gets or sets the text. </summary>
         public string Text { get; set; }
-        /// <summary> The [Optional] quick action payload. </summary>
+        /// <summary> Gets or sets the payload. </summary>
         public string Payload { get; set; }
     }
 }

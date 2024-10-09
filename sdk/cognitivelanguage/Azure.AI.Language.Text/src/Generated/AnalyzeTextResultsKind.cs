@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The kind of the response object returned by the analyze-text task. </summary>
+    /// <summary> The AnalyzeTextResultsKind. </summary>
     internal readonly partial struct AnalyzeTextResultsKind : IEquatable<AnalyzeTextResultsKind>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.AI.Language.Text
         private const string EntityLinkingResultsValue = "EntityLinkingResults";
         private const string DynamicClassificationResultsValue = "DynamicClassificationResults";
 
-        /// <summary> Sentiment analysis results. </summary>
+        /// <summary> SentimentAnalysisResults. </summary>
         public static AnalyzeTextResultsKind SentimentAnalysisResults { get; } = new AnalyzeTextResultsKind(SentimentAnalysisResultsValue);
-        /// <summary> Entity recognition results. </summary>
+        /// <summary> EntityRecognitionResults. </summary>
         public static AnalyzeTextResultsKind EntityRecognitionResults { get; } = new AnalyzeTextResultsKind(EntityRecognitionResultsValue);
-        /// <summary> PII entity recognition results. </summary>
+        /// <summary> PiiEntityRecognitionResults. </summary>
         public static AnalyzeTextResultsKind PiiEntityRecognitionResults { get; } = new AnalyzeTextResultsKind(PiiEntityRecognitionResultsValue);
-        /// <summary> Key phrase extraction results. </summary>
+        /// <summary> KeyPhraseExtractionResults. </summary>
         public static AnalyzeTextResultsKind KeyPhraseExtractionResults { get; } = new AnalyzeTextResultsKind(KeyPhraseExtractionResultsValue);
-        /// <summary> Language detection results. </summary>
+        /// <summary> LanguageDetectionResults. </summary>
         public static AnalyzeTextResultsKind LanguageDetectionResults { get; } = new AnalyzeTextResultsKind(LanguageDetectionResultsValue);
-        /// <summary> Entity linking results. </summary>
+        /// <summary> EntityLinkingResults. </summary>
         public static AnalyzeTextResultsKind EntityLinkingResults { get; } = new AnalyzeTextResultsKind(EntityLinkingResultsValue);
-        /// <summary> Dynamic classification results. </summary>
+        /// <summary> DynamicClassificationResults. </summary>
         public static AnalyzeTextResultsKind DynamicClassificationResults { get; } = new AnalyzeTextResultsKind(DynamicClassificationResultsValue);
         /// <summary> Determines if two <see cref="AnalyzeTextResultsKind"/> values are the same. </summary>
         public static bool operator ==(AnalyzeTextResultsKind left, AnalyzeTextResultsKind right) => left.Equals(right);

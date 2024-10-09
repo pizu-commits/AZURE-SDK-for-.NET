@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> Represents a generic policy for how a chat completions tool may be selected. </summary>
+    /// <summary> The ChatCompletionsToolSelectionPreset. </summary>
     public readonly partial struct ChatCompletionsToolSelectionPreset : IEquatable<ChatCompletionsToolSelectionPreset>
     {
         private readonly string _value;
@@ -26,17 +26,11 @@ namespace Azure.AI.Inference
         private const string NoneValue = "none";
         private const string RequiredValue = "required";
 
-        /// <summary>
-        /// Specifies that the model may either use any of the tools provided in this chat completions request or
-        /// instead return a standard chat completions response as if no tools were provided.
-        /// </summary>
+        /// <summary> auto. </summary>
         public static ChatCompletionsToolSelectionPreset Auto { get; } = new ChatCompletionsToolSelectionPreset(AutoValue);
-        /// <summary>
-        /// Specifies that the model should not respond with a tool call and should instead provide a standard chat
-        /// completions response. Response content may still be influenced by the provided tool definitions.
-        /// </summary>
+        /// <summary> none. </summary>
         public static ChatCompletionsToolSelectionPreset None { get; } = new ChatCompletionsToolSelectionPreset(NoneValue);
-        /// <summary> Specifies that the model should respond with a call to one or more tools. </summary>
+        /// <summary> required. </summary>
         public static ChatCompletionsToolSelectionPreset Required { get; } = new ChatCompletionsToolSelectionPreset(RequiredValue);
         /// <summary> Determines if two <see cref="ChatCompletionsToolSelectionPreset"/> values are the same. </summary>
         public static bool operator ==(ChatCompletionsToolSelectionPreset left, ChatCompletionsToolSelectionPreset right) => left.Equals(right);

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Text
 {
     /// <summary>
-    /// The abstract base class for entity OverlapPolicy.
+    /// The EntityOverlapPolicy.
     /// Please note <see cref="EntityOverlapPolicy"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="AllowOverlapEntityPolicyType"/> and <see cref="MatchLongestEntityPolicyType"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityOverlapPolicy"/>. </summary>
-        /// <param name="policyKind"> The entity OverlapPolicy object kind. </param>
+        /// <param name="policyKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityOverlapPolicy(PolicyKind policyKind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The entity OverlapPolicy object kind. </summary>
+        /// <summary> Gets or sets the policy kind. </summary>
         internal PolicyKind PolicyKind { get; set; }
     }
 }

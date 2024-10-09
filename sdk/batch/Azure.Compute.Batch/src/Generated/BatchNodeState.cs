@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchNodeState enums. </summary>
+    /// <summary> The BatchNodeState. </summary>
     public readonly partial struct BatchNodeState : IEquatable<BatchNodeState>
     {
         private readonly string _value;
@@ -37,33 +37,33 @@ namespace Azure.Compute.Batch
         private const string PreemptedValue = "preempted";
         private const string UpgradingOSValue = "upgradingos";
 
-        /// <summary> The Compute Node is not currently running a Task. </summary>
+        /// <summary> idle. </summary>
         public static BatchNodeState Idle { get; } = new BatchNodeState(IdleValue);
-        /// <summary> The Compute Node is rebooting. </summary>
+        /// <summary> rebooting. </summary>
         public static BatchNodeState Rebooting { get; } = new BatchNodeState(RebootingValue);
-        /// <summary> The Compute Node is reimaging. </summary>
+        /// <summary> reimaging. </summary>
         public static BatchNodeState Reimaging { get; } = new BatchNodeState(ReimagingValue);
-        /// <summary> The Compute Node is running one or more Tasks (other than a StartTask). </summary>
+        /// <summary> running. </summary>
         public static BatchNodeState Running { get; } = new BatchNodeState(RunningValue);
-        /// <summary> The Compute Node cannot be used for Task execution due to errors. </summary>
+        /// <summary> unusable. </summary>
         public static BatchNodeState Unusable { get; } = new BatchNodeState(UnusableValue);
-        /// <summary> The Batch service has obtained the underlying virtual machine from Azure Compute, but it has not yet started to join the Pool. </summary>
+        /// <summary> creating. </summary>
         public static BatchNodeState Creating { get; } = new BatchNodeState(CreatingValue);
-        /// <summary> The Batch service is starting on the underlying virtual machine. </summary>
+        /// <summary> starting. </summary>
         public static BatchNodeState Starting { get; } = new BatchNodeState(StartingValue);
-        /// <summary> The StartTask has started running on the Compute Node, but waitForSuccess is set and the StartTask has not yet completed. </summary>
+        /// <summary> waitingforstarttask. </summary>
         public static BatchNodeState WaitingForStartTask { get; } = new BatchNodeState(WaitingForStartTaskValue);
-        /// <summary> The StartTask has failed on the Compute Node (and exhausted all retries), and waitForSuccess is set. The Compute Node is not usable for running Tasks. </summary>
+        /// <summary> starttaskfailed. </summary>
         public static BatchNodeState StartTaskFailed { get; } = new BatchNodeState(StartTaskFailedValue);
-        /// <summary> The Batch service has lost contact with the Compute Node, and does not know its true state. </summary>
+        /// <summary> unknown. </summary>
         public static BatchNodeState Unknown { get; } = new BatchNodeState(UnknownValue);
-        /// <summary> The Compute Node is leaving the Pool, either because the user explicitly removed it or because the Pool is resizing or autoscaling down. </summary>
+        /// <summary> leavingpool. </summary>
         public static BatchNodeState LeavingPool { get; } = new BatchNodeState(LeavingPoolValue);
-        /// <summary> The Compute Node is not currently running a Task, and scheduling of new Tasks to the Compute Node is disabled. </summary>
+        /// <summary> offline. </summary>
         public static BatchNodeState Offline { get; } = new BatchNodeState(OfflineValue);
-        /// <summary> The Spot/Low-priority Compute Node has been preempted. Tasks which were running on the Compute Node when it was preempted will be rescheduled when another Compute Node becomes available. </summary>
+        /// <summary> preempted. </summary>
         public static BatchNodeState Preempted { get; } = new BatchNodeState(PreemptedValue);
-        /// <summary> The Compute Node is undergoing an OS upgrade operation. </summary>
+        /// <summary> upgradingos. </summary>
         public static BatchNodeState UpgradingOS { get; } = new BatchNodeState(UpgradingOSValue);
         /// <summary> Determines if two <see cref="BatchNodeState"/> values are the same. </summary>
         public static bool operator ==(BatchNodeState left, BatchNodeState right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Document filter. </summary>
+    /// <summary> The DocumentFilter. </summary>
     internal partial class DocumentFilter
     {
         /// <summary>
@@ -51,17 +51,8 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentFilter"/>. </summary>
-        /// <param name="prefix">
-        /// A case-sensitive prefix string to filter documents in the source path for
-        /// translation.
-        /// For example, when using a Azure storage blob Uri, use the prefix
-        /// to restrict sub folders for translation.
-        /// </param>
-        /// <param name="suffix">
-        /// A case-sensitive suffix string to filter documents in the source path for
-        /// translation.
-        /// This is most often use for file extensions
-        /// </param>
+        /// <param name="prefix"></param>
+        /// <param name="suffix"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentFilter(string prefix, string suffix, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,18 +61,9 @@ namespace Azure.AI.Translation.Document
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// A case-sensitive prefix string to filter documents in the source path for
-        /// translation.
-        /// For example, when using a Azure storage blob Uri, use the prefix
-        /// to restrict sub folders for translation.
-        /// </summary>
+        /// <summary> Gets or sets the prefix. </summary>
         public string Prefix { get; set; }
-        /// <summary>
-        /// A case-sensitive suffix string to filter documents in the source path for
-        /// translation.
-        /// This is most often use for file extensions
-        /// </summary>
+        /// <summary> Gets or sets the suffix. </summary>
         public string Suffix { get; set; }
     }
 }

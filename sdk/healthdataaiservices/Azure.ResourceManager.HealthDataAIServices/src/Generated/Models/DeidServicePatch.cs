@@ -11,7 +11,7 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.HealthDataAIServices.Models
 {
-    /// <summary> Patch request body for DeidService. </summary>
+    /// <summary> The DeidServicePatch. </summary>
     public partial class DeidServicePatch
     {
         /// <summary>
@@ -53,9 +53,9 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DeidServicePatch"/>. </summary>
-        /// <param name="tags"> Resource tags. </param>
-        /// <param name="identity"> Updatable managed service identity. </param>
-        /// <param name="properties"> RP-specific properties. </param>
+        /// <param name="tags"></param>
+        /// <param name="identity"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeidServicePatch(IDictionary<string, string> tags, ManagedServiceIdentity identity, DeidPropertiesUpdate properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,11 +65,11 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Resource tags. </summary>
+        /// <summary> Gets the tags. </summary>
         public IDictionary<string, string> Tags { get; }
-        /// <summary> RP-specific properties. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         internal DeidPropertiesUpdate Properties { get; set; }
-        /// <summary> Gets or sets allow or disallow public network access to resource. </summary>
+        /// <summary> Gets or sets the deid properties update public network access. </summary>
         public HealthDataAIServicesPublicNetworkAccess? DeidPropertiesUpdatePublicNetworkAccess
         {
             get => Properties is null ? default : Properties.PublicNetworkAccess;

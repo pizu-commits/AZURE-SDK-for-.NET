@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. </summary>
+    /// <summary> The AcceptedAgeRange. </summary>
     public partial class AcceptedAgeRange
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="AcceptedAgeRange"/>. </summary>
-        /// <param name="minimumAge"> A person's age, given as a number (value) and a unit (e.g. years, months). </param>
-        /// <param name="maximumAge"> A person's age, given as a number (value) and a unit (e.g. years, months). </param>
+        /// <param name="minimumAge"></param>
+        /// <param name="maximumAge"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcceptedAgeRange(AcceptedAge minimumAge, AcceptedAge maximumAge, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Health.Insights.ClinicalMatching
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A person's age, given as a number (value) and a unit (e.g. years, months). </summary>
+        /// <summary> Gets or sets the minimum age. </summary>
         public AcceptedAge MinimumAge { get; set; }
-        /// <summary> A person's age, given as a number (value) and a unit (e.g. years, months). </summary>
+        /// <summary> Gets or sets the maximum age. </summary>
         public AcceptedAge MaximumAge { get; set; }
     }
 }

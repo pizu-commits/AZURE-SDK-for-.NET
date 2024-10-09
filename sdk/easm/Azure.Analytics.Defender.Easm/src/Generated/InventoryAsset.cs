@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A inventory base model created for swagger documentation purpose. </summary>
+    /// <summary> The InventoryAsset. </summary>
     public partial class InventoryAsset
     {
         /// <summary>

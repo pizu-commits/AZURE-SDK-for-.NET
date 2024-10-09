@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> The template for adding optional properties. </summary>
+    /// <summary> The InformaticaOrganizationPatch. </summary>
     public partial class InformaticaOrganizationPatch
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaOrganizationPatch"/>. </summary>
-        /// <param name="tags"> Resource tags. </param>
-        /// <param name="properties"> Patchable PropertieInformaticaOrganizationPropertiesUpdates of the Organization observability resource. </param>
+        /// <param name="tags"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaOrganizationPatch(IDictionary<string, string> tags, InformaticaOrganizationPropertiesUpdate properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Resource tags. </summary>
+        /// <summary> Gets the tags. </summary>
         public IDictionary<string, string> Tags { get; }
-        /// <summary> Patchable PropertieInformaticaOrganizationPropertiesUpdates of the Organization observability resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public InformaticaOrganizationPropertiesUpdate Properties { get; set; }
     }
 }

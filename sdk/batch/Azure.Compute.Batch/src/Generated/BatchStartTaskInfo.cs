@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information about a StartTask running on a Compute Node. </summary>
+    /// <summary> The BatchStartTaskInfo. </summary>
     public partial class BatchStartTaskInfo
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchStartTaskInfo"/>. </summary>
-        /// <param name="state"> The state of the StartTask on the Compute Node. </param>
-        /// <param name="startTime"> The time at which the StartTask started running. This value is reset every time the Task is restarted or retried (that is, this is the most recent time at which the StartTask started running). </param>
-        /// <param name="retryCount"> The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. </param>
+        /// <param name="state"></param>
+        /// <param name="startTime"></param>
+        /// <param name="retryCount"></param>
         internal BatchStartTaskInfo(BatchStartTaskState state, DateTimeOffset startTime, int retryCount)
         {
             State = state;
@@ -57,15 +57,15 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchStartTaskInfo"/>. </summary>
-        /// <param name="state"> The state of the StartTask on the Compute Node. </param>
-        /// <param name="startTime"> The time at which the StartTask started running. This value is reset every time the Task is restarted or retried (that is, this is the most recent time at which the StartTask started running). </param>
-        /// <param name="endTime"> The time at which the StartTask stopped running. This is the end time of the most recent run of the StartTask, if that run has completed (even if that run failed and a retry is pending). This element is not present if the StartTask is currently running. </param>
-        /// <param name="exitCode"> The exit code of the program specified on the StartTask command line. This property is set only if the StartTask is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the StartTask (due to timeout, or user termination via the API) you may see an operating system-defined exit code. </param>
-        /// <param name="containerInfo"> Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. </param>
-        /// <param name="failureInfo"> Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. </param>
-        /// <param name="retryCount"> The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. </param>
-        /// <param name="lastRetryTime"> The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. </param>
-        /// <param name="result"> The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. </param>
+        /// <param name="state"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="exitCode"></param>
+        /// <param name="containerInfo"></param>
+        /// <param name="failureInfo"></param>
+        /// <param name="retryCount"></param>
+        /// <param name="lastRetryTime"></param>
+        /// <param name="result"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchStartTaskInfo(BatchStartTaskState state, DateTimeOffset startTime, DateTimeOffset? endTime, int? exitCode, BatchTaskContainerExecutionInfo containerInfo, BatchTaskFailureInfo failureInfo, int retryCount, DateTimeOffset? lastRetryTime, BatchTaskExecutionResult? result, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,23 +86,23 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The state of the StartTask on the Compute Node. </summary>
+        /// <summary> Gets the state. </summary>
         public BatchStartTaskState State { get; }
-        /// <summary> The time at which the StartTask started running. This value is reset every time the Task is restarted or retried (that is, this is the most recent time at which the StartTask started running). </summary>
+        /// <summary> Gets the start time. </summary>
         public DateTimeOffset StartTime { get; }
-        /// <summary> The time at which the StartTask stopped running. This is the end time of the most recent run of the StartTask, if that run has completed (even if that run failed and a retry is pending). This element is not present if the StartTask is currently running. </summary>
+        /// <summary> Gets the end time. </summary>
         public DateTimeOffset? EndTime { get; }
-        /// <summary> The exit code of the program specified on the StartTask command line. This property is set only if the StartTask is in the completed state. In general, the exit code for a process reflects the specific convention implemented by the application developer for that process. If you use the exit code value to make decisions in your code, be sure that you know the exit code convention used by the application process. However, if the Batch service terminates the StartTask (due to timeout, or user termination via the API) you may see an operating system-defined exit code. </summary>
+        /// <summary> Gets the exit code. </summary>
         public int? ExitCode { get; }
-        /// <summary> Information about the container under which the Task is executing. This property is set only if the Task runs in a container context. </summary>
+        /// <summary> Gets the container info. </summary>
         public BatchTaskContainerExecutionInfo ContainerInfo { get; }
-        /// <summary> Information describing the Task failure, if any. This property is set only if the Task is in the completed state and encountered a failure. </summary>
+        /// <summary> Gets the failure info. </summary>
         public BatchTaskFailureInfo FailureInfo { get; }
-        /// <summary> The number of times the Task has been retried by the Batch service. Task application failures (non-zero exit code) are retried, pre-processing errors (the Task could not be run) and file upload errors are not retried. The Batch service will retry the Task up to the limit specified by the constraints. </summary>
+        /// <summary> Gets the retry count. </summary>
         public int RetryCount { get; }
-        /// <summary> The most recent time at which a retry of the Task started running. This element is present only if the Task was retried (i.e. retryCount is nonzero). If present, this is typically the same as startTime, but may be different if the Task has been restarted for reasons other than retry; for example, if the Compute Node was rebooted during a retry, then the startTime is updated but the lastRetryTime is not. </summary>
+        /// <summary> Gets the last retry time. </summary>
         public DateTimeOffset? LastRetryTime { get; }
-        /// <summary> The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. </summary>
+        /// <summary> Gets the result. </summary>
         public BatchTaskExecutionResult? Result { get; }
     }
 }

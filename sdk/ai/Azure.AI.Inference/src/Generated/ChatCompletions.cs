@@ -11,11 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Inference
 {
-    /// <summary>
-    /// Representation of the response data from a chat completions request.
-    /// Completions support a wide variety of tasks and generate text that continues from or "completes"
-    /// provided prompt data.
-    /// </summary>
+    /// <summary> The ChatCompletions. </summary>
     public partial class ChatCompletions
     {
         /// <summary>
@@ -51,18 +47,11 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletions"/>. </summary>
-        /// <param name="id"> A unique identifier associated with this chat completions response. </param>
-        /// <param name="created">
-        /// The first timestamp associated with generation activity for this completions response,
-        /// represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
-        /// </param>
-        /// <param name="model"> The model used for the chat completion. </param>
-        /// <param name="usage"> Usage information for tokens processed and generated as part of this completions operation. </param>
-        /// <param name="choices">
-        /// The collection of completions choices associated with this completions response.
-        /// Generally, `n` choices are generated per provided prompt with a default value of 1.
-        /// Token limits and other settings may limit the number of choices generated.
-        /// </param>
+        /// <param name="id"></param>
+        /// <param name="created"></param>
+        /// <param name="model"></param>
+        /// <param name="usage"></param>
+        /// <param name="choices"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="model"/>, <paramref name="usage"/> or <paramref name="choices"/> is null. </exception>
         internal ChatCompletions(string id, DateTimeOffset created, string model, CompletionsUsage usage, IEnumerable<ChatChoice> choices)
         {
@@ -79,18 +68,11 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletions"/>. </summary>
-        /// <param name="id"> A unique identifier associated with this chat completions response. </param>
-        /// <param name="created">
-        /// The first timestamp associated with generation activity for this completions response,
-        /// represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
-        /// </param>
-        /// <param name="model"> The model used for the chat completion. </param>
-        /// <param name="usage"> Usage information for tokens processed and generated as part of this completions operation. </param>
-        /// <param name="choices">
-        /// The collection of completions choices associated with this completions response.
-        /// Generally, `n` choices are generated per provided prompt with a default value of 1.
-        /// Token limits and other settings may limit the number of choices generated.
-        /// </param>
+        /// <param name="id"></param>
+        /// <param name="created"></param>
+        /// <param name="model"></param>
+        /// <param name="usage"></param>
+        /// <param name="choices"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatCompletions(string id, DateTimeOffset created, string model, CompletionsUsage usage, IReadOnlyList<ChatChoice> choices, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -107,22 +89,15 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> A unique identifier associated with this chat completions response. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary>
-        /// The first timestamp associated with generation activity for this completions response,
-        /// represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
-        /// </summary>
+        /// <summary> Gets the created. </summary>
         public DateTimeOffset Created { get; }
-        /// <summary> The model used for the chat completion. </summary>
+        /// <summary> Gets the model. </summary>
         public string Model { get; }
-        /// <summary> Usage information for tokens processed and generated as part of this completions operation. </summary>
+        /// <summary> Gets the usage. </summary>
         public CompletionsUsage Usage { get; }
-        /// <summary>
-        /// The collection of completions choices associated with this completions response.
-        /// Generally, `n` choices are generated per provided prompt with a default value of 1.
-        /// Token limits and other settings may limit the number of choices generated.
-        /// </summary>
+        /// <summary> Gets the choices. </summary>
         public IReadOnlyList<ChatChoice> Choices { get; }
     }
 }

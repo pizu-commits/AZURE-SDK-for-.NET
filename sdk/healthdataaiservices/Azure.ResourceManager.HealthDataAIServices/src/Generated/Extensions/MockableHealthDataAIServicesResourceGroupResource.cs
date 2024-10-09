@@ -49,7 +49,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>DeidServices_Get</description>
+        /// <description>DeidService_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -61,7 +61,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="deidServiceName"> The name of the deid service. </param>
+        /// <param name="deidServiceName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deidServiceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="deidServiceName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -80,7 +80,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>DeidServices_Get</description>
+        /// <description>DeidService_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -92,7 +92,7 @@ namespace Azure.ResourceManager.HealthDataAIServices.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="deidServiceName"> The name of the deid service. </param>
+        /// <param name="deidServiceName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="deidServiceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="deidServiceName"/> is an empty string, and was expected to be non-empty. </exception>

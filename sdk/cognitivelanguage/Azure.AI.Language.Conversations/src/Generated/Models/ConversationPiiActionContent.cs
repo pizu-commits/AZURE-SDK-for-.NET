@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Supported parameters for a conversational pii task. </summary>
+    /// <summary> The ConversationPiiActionContent. </summary>
     public partial class ConversationPiiActionContent
     {
         /// <summary>
@@ -53,13 +53,13 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationPiiActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="piiCategories"> Array of ConversationPIICategories. </param>
-        /// <param name="redactAudioTiming"> Flag to indicate if response should include audio stream offset and duration for any detected entities to be redacted. By default, audio timing of redacted entities are not included. </param>
-        /// <param name="redactionSource"> For transcript conversations, this parameter provides information regarding which content type (ITN, Text, Lexical, Masked ITN) should be used for entity detection. The details of the entities detected - like the offset, length and the text itself - will correspond to the text type selected here. </param>
-        /// <param name="redactionCharacter"> Optional parameter to use a Custom Character to be used for redaction in PII responses. Default character will be * as before. We allow specific ascii characters for redaction. </param>
-        /// <param name="excludePiiCategories"> List of categories that need to be excluded instead of included. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="piiCategories"></param>
+        /// <param name="redactAudioTiming"></param>
+        /// <param name="redactionSource"></param>
+        /// <param name="redactionCharacter"></param>
+        /// <param name="excludePiiCategories"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationPiiActionContent(bool? loggingOptOut, string modelVersion, IList<ConversationPiiCategories> piiCategories, bool? redactAudioTiming, TranscriptContentType? redactionSource, RedactionCharacter? redactionCharacter, IList<ConversationPiiCategoryExclusions> excludePiiCategories, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,19 +73,19 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> Array of ConversationPIICategories. </summary>
+        /// <summary> Gets the pii categories. </summary>
         public IList<ConversationPiiCategories> PiiCategories { get; }
-        /// <summary> Flag to indicate if response should include audio stream offset and duration for any detected entities to be redacted. By default, audio timing of redacted entities are not included. </summary>
+        /// <summary> Gets or sets the redact audio timing. </summary>
         public bool? RedactAudioTiming { get; set; }
-        /// <summary> For transcript conversations, this parameter provides information regarding which content type (ITN, Text, Lexical, Masked ITN) should be used for entity detection. The details of the entities detected - like the offset, length and the text itself - will correspond to the text type selected here. </summary>
+        /// <summary> Gets or sets the redaction source. </summary>
         public TranscriptContentType? RedactionSource { get; set; }
-        /// <summary> Optional parameter to use a Custom Character to be used for redaction in PII responses. Default character will be * as before. We allow specific ascii characters for redaction. </summary>
+        /// <summary> Gets or sets the redaction character. </summary>
         public RedactionCharacter? RedactionCharacter { get; set; }
-        /// <summary> List of categories that need to be excluded instead of included. </summary>
+        /// <summary> Gets the exclude pii categories. </summary>
         public IList<ConversationPiiCategoryExclusions> ExcludePiiCategories { get; }
     }
 }

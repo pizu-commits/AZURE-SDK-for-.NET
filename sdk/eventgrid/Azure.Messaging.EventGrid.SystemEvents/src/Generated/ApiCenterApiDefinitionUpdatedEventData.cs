@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the data property of an EventGridEvent for a Microsoft.ApiCenter.ApiDefinitionUpdated event. </summary>
+    /// <summary> The ApiCenterApiDefinitionUpdatedEventData. </summary>
     public partial class ApiCenterApiDefinitionUpdatedEventData
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ApiCenterApiDefinitionUpdatedEventData"/>. </summary>
-        /// <param name="specification"> API definition specification. </param>
+        /// <param name="specification"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="specification"/> is null. </exception>
         internal ApiCenterApiDefinitionUpdatedEventData(ApiCenterApiSpecification specification)
         {
@@ -56,9 +56,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ApiCenterApiDefinitionUpdatedEventData"/>. </summary>
-        /// <param name="title"> API definition title. </param>
-        /// <param name="description"> API definition description. </param>
-        /// <param name="specification"> API definition specification. </param>
+        /// <param name="title"></param>
+        /// <param name="description"></param>
+        /// <param name="specification"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ApiCenterApiDefinitionUpdatedEventData(string title, string description, ApiCenterApiSpecification specification, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> API definition title. </summary>
+        /// <summary> Gets the title. </summary>
         public string Title { get; }
-        /// <summary> API definition description. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> API definition specification. </summary>
+        /// <summary> Gets the specification. </summary>
         public ApiCenterApiSpecification Specification { get; }
     }
 }

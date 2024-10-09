@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> AccessScope enums. </summary>
+    /// <summary> The AccessScope. </summary>
     public readonly partial struct AccessScope : IEquatable<AccessScope>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Compute.Batch
 
         private const string JobValue = "job";
 
-        /// <summary> Grants access to perform all operations on the Job containing the Task. </summary>
+        /// <summary> job. </summary>
         public static AccessScope Job { get; } = new AccessScope(JobValue);
         /// <summary> Determines if two <see cref="AccessScope"/> values are the same. </summary>
         public static bool operator ==(AccessScope left, AccessScope right) => left.Equals(right);

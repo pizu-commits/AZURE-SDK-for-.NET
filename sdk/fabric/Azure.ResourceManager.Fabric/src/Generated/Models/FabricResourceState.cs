@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The state of the Fabric capacity resource. </summary>
+    /// <summary> The FabricResourceState. </summary>
     public readonly partial struct FabricResourceState : IEquatable<FabricResourceState>
     {
         private readonly string _value;
@@ -35,29 +35,29 @@ namespace Azure.ResourceManager.Fabric.Models
         private const string ScalingValue = "Scaling";
         private const string PreparingValue = "Preparing";
 
-        /// <summary> Resource is active. </summary>
+        /// <summary> Active. </summary>
         public static FabricResourceState Active { get; } = new FabricResourceState(ActiveValue);
-        /// <summary> Resource is provisioning. </summary>
+        /// <summary> Provisioning. </summary>
         public static FabricResourceState Provisioning { get; } = new FabricResourceState(ProvisioningValue);
-        /// <summary> Resource is failed. </summary>
+        /// <summary> Failed. </summary>
         public static FabricResourceState Failed { get; } = new FabricResourceState(FailedValue);
-        /// <summary> Resource is updating. </summary>
+        /// <summary> Updating. </summary>
         public static FabricResourceState Updating { get; } = new FabricResourceState(UpdatingValue);
-        /// <summary> Resource is deleting. </summary>
+        /// <summary> Deleting. </summary>
         public static FabricResourceState Deleting { get; } = new FabricResourceState(DeletingValue);
-        /// <summary> Resource is suspending. </summary>
+        /// <summary> Suspending. </summary>
         public static FabricResourceState Suspending { get; } = new FabricResourceState(SuspendingValue);
-        /// <summary> Resource is suspended. </summary>
+        /// <summary> Suspended. </summary>
         public static FabricResourceState Suspended { get; } = new FabricResourceState(SuspendedValue);
-        /// <summary> Resource is pausing. </summary>
+        /// <summary> Pausing. </summary>
         public static FabricResourceState Pausing { get; } = new FabricResourceState(PausingValue);
-        /// <summary> Resource is paused. </summary>
+        /// <summary> Paused. </summary>
         public static FabricResourceState Paused { get; } = new FabricResourceState(PausedValue);
-        /// <summary> Resource is resuming. </summary>
+        /// <summary> Resuming. </summary>
         public static FabricResourceState Resuming { get; } = new FabricResourceState(ResumingValue);
-        /// <summary> Resource is scaling. </summary>
+        /// <summary> Scaling. </summary>
         public static FabricResourceState Scaling { get; } = new FabricResourceState(ScalingValue);
-        /// <summary> Resource is preparing. </summary>
+        /// <summary> Preparing. </summary>
         public static FabricResourceState Preparing { get; } = new FabricResourceState(PreparingValue);
         /// <summary> Determines if two <see cref="FabricResourceState"/> values are the same. </summary>
         public static bool operator ==(FabricResourceState left, FabricResourceState right) => left.Equals(right);

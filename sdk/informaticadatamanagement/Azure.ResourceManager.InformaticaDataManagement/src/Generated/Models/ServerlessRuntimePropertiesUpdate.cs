@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Patchable Properties of the Informatica Serverless Runtime resource. </summary>
+    /// <summary> The ServerlessRuntimePropertiesUpdate. </summary>
     public partial class ServerlessRuntimePropertiesUpdate
     {
         /// <summary>
@@ -53,18 +53,18 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimePropertiesUpdate"/>. </summary>
-        /// <param name="description"> description of the serverless runtime. </param>
-        /// <param name="platform"> Platform type of the Serverless Runtime. </param>
-        /// <param name="applicationType"> Application type of the Serverless Runtime environment. </param>
-        /// <param name="computeUnits"> Compute units of the serverless runtime. </param>
-        /// <param name="executionTimeout"> Serverless Execution timeout. </param>
-        /// <param name="serverlessAccountLocation"> Serverless account creation location. </param>
-        /// <param name="serverlessRuntimeNetworkProfile"> Informatica Serverless Network profile properties. </param>
-        /// <param name="advancedCustomProperties"> String KV pairs indicating Advanced custom properties. </param>
-        /// <param name="supplementaryFileLocation"> Supplementary file location. </param>
-        /// <param name="serverlessRuntimeConfig"> Serverless config properties. </param>
-        /// <param name="serverlessRuntimeTags"> Serverless Runtime Tags. </param>
-        /// <param name="serverlessRuntimeUserContextProperties"> Serverless runtime user context properties. </param>
+        /// <param name="description"></param>
+        /// <param name="platform"></param>
+        /// <param name="applicationType"></param>
+        /// <param name="computeUnits"></param>
+        /// <param name="executionTimeout"></param>
+        /// <param name="serverlessAccountLocation"></param>
+        /// <param name="serverlessRuntimeNetworkProfile"></param>
+        /// <param name="advancedCustomProperties"></param>
+        /// <param name="supplementaryFileLocation"></param>
+        /// <param name="serverlessRuntimeConfig"></param>
+        /// <param name="serverlessRuntimeTags"></param>
+        /// <param name="serverlessRuntimeUserContextProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimePropertiesUpdate(string description, InformaticaPlatformType? platform, InformaticaApplicationType? applicationType, string computeUnits, string executionTimeout, string serverlessAccountLocation, ServerlessRuntimeNetworkProfileUpdate serverlessRuntimeNetworkProfile, IList<AdvancedCustomProperties> advancedCustomProperties, string supplementaryFileLocation, ServerlessRuntimeConfigPropertiesUpdate serverlessRuntimeConfig, IList<ServerlessRuntimeTag> serverlessRuntimeTags, ServerlessRuntimeUserContextPropertiesUpdate serverlessRuntimeUserContextProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,38 +83,38 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> description of the serverless runtime. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> Platform type of the Serverless Runtime. </summary>
+        /// <summary> Gets or sets the platform. </summary>
         public InformaticaPlatformType? Platform { get; set; }
-        /// <summary> Application type of the Serverless Runtime environment. </summary>
+        /// <summary> Gets or sets the application type. </summary>
         public InformaticaApplicationType? ApplicationType { get; set; }
-        /// <summary> Compute units of the serverless runtime. </summary>
+        /// <summary> Gets or sets the compute units. </summary>
         public string ComputeUnits { get; set; }
-        /// <summary> Serverless Execution timeout. </summary>
+        /// <summary> Gets or sets the execution timeout. </summary>
         public string ExecutionTimeout { get; set; }
-        /// <summary> Serverless account creation location. </summary>
+        /// <summary> Gets or sets the serverless account location. </summary>
         public string ServerlessAccountLocation { get; set; }
-        /// <summary> Informatica Serverless Network profile properties. </summary>
+        /// <summary> Gets or sets the serverless runtime network profile. </summary>
         internal ServerlessRuntimeNetworkProfileUpdate ServerlessRuntimeNetworkProfile { get; set; }
-        /// <summary> Network Interface Configuration Profile Update. </summary>
+        /// <summary> Gets or sets the network interface configuration. </summary>
         public InformaticaNetworkInterfaceConfigurationUpdate NetworkInterfaceConfiguration
         {
             get => ServerlessRuntimeNetworkProfile is null ? default : ServerlessRuntimeNetworkProfile.NetworkInterfaceConfiguration;
             set => ServerlessRuntimeNetworkProfile = new ServerlessRuntimeNetworkProfileUpdate(value);
         }
 
-        /// <summary> String KV pairs indicating Advanced custom properties. </summary>
+        /// <summary> Gets the advanced custom properties. </summary>
         public IList<AdvancedCustomProperties> AdvancedCustomProperties { get; }
-        /// <summary> Supplementary file location. </summary>
+        /// <summary> Gets or sets the supplementary file location. </summary>
         public string SupplementaryFileLocation { get; set; }
-        /// <summary> Serverless config properties. </summary>
+        /// <summary> Gets or sets the serverless runtime config. </summary>
         public ServerlessRuntimeConfigPropertiesUpdate ServerlessRuntimeConfig { get; set; }
-        /// <summary> Serverless Runtime Tags. </summary>
+        /// <summary> Gets the serverless runtime tags. </summary>
         public IList<ServerlessRuntimeTag> ServerlessRuntimeTags { get; }
-        /// <summary> Serverless runtime user context properties. </summary>
+        /// <summary> Gets or sets the serverless runtime user context properties. </summary>
         internal ServerlessRuntimeUserContextPropertiesUpdate ServerlessRuntimeUserContextProperties { get; set; }
-        /// <summary> User context token for OBO flow. </summary>
+        /// <summary> Gets or sets the user context token. </summary>
         public string UserContextToken
         {
             get => ServerlessRuntimeUserContextProperties is null ? default : ServerlessRuntimeUserContextProperties.UserContextToken;

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Error information that the API returned. </summary>
+    /// <summary> The ErrorResponse. </summary>
     public partial class ErrorResponse
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.AnomalyDetector
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ErrorResponse"/>. </summary>
-        /// <param name="code"> Error code. </param>
-        /// <param name="message"> Message that explains the error that the service reported. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> or <paramref name="message"/> is null. </exception>
         internal ErrorResponse(string code, string message)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="ErrorResponse"/>. </summary>
-        /// <param name="code"> Error code. </param>
-        /// <param name="message"> Message that explains the error that the service reported. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ErrorResponse(string code, string message, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.AnomalyDetector
         {
         }
 
-        /// <summary> Error code. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> Message that explains the error that the service reported. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
     }
 }

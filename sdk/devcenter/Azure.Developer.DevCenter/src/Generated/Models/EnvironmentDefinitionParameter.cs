@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Properties of an Environment Definition parameter. </summary>
+    /// <summary> The EnvironmentDefinitionParameter. </summary>
     public partial class EnvironmentDefinitionParameter
     {
         /// <summary>
@@ -46,12 +46,9 @@ namespace Azure.Developer.DevCenter.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="EnvironmentDefinitionParameter"/>. </summary>
-        /// <param name="id"> Unique ID of the parameter. </param>
-        /// <param name="parameterType">
-        /// A string of one of the basic JSON types (number, integer, array, object,
-        /// boolean, string)
-        /// </param>
-        /// <param name="required"> Whether or not this parameter is required. </param>
+        /// <param name="id"></param>
+        /// <param name="parameterType"></param>
+        /// <param name="required"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         internal EnvironmentDefinitionParameter(string id, EnvironmentDefinitionParameterType parameterType, bool required)
         {
@@ -64,20 +61,14 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="EnvironmentDefinitionParameter"/>. </summary>
-        /// <param name="id"> Unique ID of the parameter. </param>
-        /// <param name="name"> Display name of the parameter. </param>
-        /// <param name="description"> Description of the parameter. </param>
-        /// <param name="defaultValue"> Default value of the parameter. </param>
-        /// <param name="parameterType">
-        /// A string of one of the basic JSON types (number, integer, array, object,
-        /// boolean, string)
-        /// </param>
-        /// <param name="readOnly">
-        /// Whether or not this parameter is read-only.  If true, default should have a
-        /// value.
-        /// </param>
-        /// <param name="required"> Whether or not this parameter is required. </param>
-        /// <param name="allowed"> An array of allowed values. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="defaultValue"></param>
+        /// <param name="parameterType"></param>
+        /// <param name="readOnly"></param>
+        /// <param name="required"></param>
+        /// <param name="allowed"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EnvironmentDefinitionParameter(string id, string name, string description, string defaultValue, EnvironmentDefinitionParameterType parameterType, bool? readOnly, bool required, IReadOnlyList<string> allowed, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -97,27 +88,21 @@ namespace Azure.Developer.DevCenter.Models
         {
         }
 
-        /// <summary> Unique ID of the parameter. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Display name of the parameter. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Description of the parameter. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> Default value of the parameter. </summary>
+        /// <summary> Gets the default value. </summary>
         public string DefaultValue { get; }
-        /// <summary>
-        /// A string of one of the basic JSON types (number, integer, array, object,
-        /// boolean, string)
-        /// </summary>
+        /// <summary> Gets the parameter type. </summary>
         public EnvironmentDefinitionParameterType ParameterType { get; }
-        /// <summary>
-        /// Whether or not this parameter is read-only.  If true, default should have a
-        /// value.
-        /// </summary>
+        /// <summary> Gets the read only. </summary>
         public bool? ReadOnly { get; }
-        /// <summary> Whether or not this parameter is required. </summary>
+        /// <summary> Gets the required. </summary>
         public bool Required { get; }
-        /// <summary> An array of allowed values. </summary>
+        /// <summary> Gets the allowed. </summary>
         public IReadOnlyList<string> Allowed { get; }
     }
 }

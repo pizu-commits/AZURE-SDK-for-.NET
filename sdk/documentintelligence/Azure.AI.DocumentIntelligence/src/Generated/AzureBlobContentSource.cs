@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Azure Blob Storage content. </summary>
+    /// <summary> The AzureBlobContentSource. </summary>
     public partial class AzureBlobContentSource
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AzureBlobContentSource"/>. </summary>
-        /// <param name="containerUrl"> Azure Blob Storage container URL. </param>
+        /// <param name="containerUrl"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="containerUrl"/> is null. </exception>
         public AzureBlobContentSource(Uri containerUrl)
         {
@@ -56,8 +56,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AzureBlobContentSource"/>. </summary>
-        /// <param name="containerUrl"> Azure Blob Storage container URL. </param>
-        /// <param name="prefix"> Blob name prefix. </param>
+        /// <param name="containerUrl"></param>
+        /// <param name="prefix"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AzureBlobContentSource(Uri containerUrl, string prefix, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Azure Blob Storage container URL. </summary>
+        /// <summary> Gets or sets the container url. </summary>
         public Uri ContainerUrl { get; set; }
-        /// <summary> Blob name prefix. </summary>
+        /// <summary> Gets or sets the prefix. </summary>
         public string Prefix { get; set; }
     }
 }

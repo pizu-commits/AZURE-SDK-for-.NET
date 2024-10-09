@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// A range of exit codes and how the Batch service should respond to exit codes
-    /// within that range.
-    /// </summary>
+    /// <summary> The ExitCodeRangeMapping. </summary>
     public partial class ExitCodeRangeMapping
     {
         /// <summary>
@@ -49,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ExitCodeRangeMapping"/>. </summary>
-        /// <param name="start"> The first exit code in the range. </param>
-        /// <param name="end"> The last exit code in the range. </param>
-        /// <param name="exitOptions"> How the Batch service should respond if the Task exits with an exit code in the range start to end (inclusive). </param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="exitOptions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="exitOptions"/> is null. </exception>
         public ExitCodeRangeMapping(int start, int end, ExitOptions exitOptions)
         {
@@ -63,9 +60,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="ExitCodeRangeMapping"/>. </summary>
-        /// <param name="start"> The first exit code in the range. </param>
-        /// <param name="end"> The last exit code in the range. </param>
-        /// <param name="exitOptions"> How the Batch service should respond if the Task exits with an exit code in the range start to end (inclusive). </param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="exitOptions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExitCodeRangeMapping(int start, int end, ExitOptions exitOptions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,11 +77,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The first exit code in the range. </summary>
+        /// <summary> Gets or sets the start. </summary>
         public int Start { get; set; }
-        /// <summary> The last exit code in the range. </summary>
+        /// <summary> Gets or sets the end. </summary>
         public int End { get; set; }
-        /// <summary> How the Batch service should respond if the Task exits with an exit code in the range start to end (inclusive). </summary>
+        /// <summary> Gets or sets the exit options. </summary>
         public ExitOptions ExitOptions { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Specifies the method used to interpret string offsets.  Defaults to Text Elements (Graphemes) according to Unicode v8.0.0. For additional information see https://aka.ms/text-analytics-offsets. </summary>
+    /// <summary> The StringIndexType. </summary>
     public readonly partial struct StringIndexType : IEquatable<StringIndexType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Text
         private const string UnicodeCodePointValue = "UnicodeCodePoint";
         private const string Utf16CodeUnitValue = "Utf16CodeUnit";
 
-        /// <summary> Returned offset and length values will correspond to TextElements (Graphemes and Grapheme clusters) confirming to the Unicode 8.0.0 standard. Use this option if your application is written in .Net Framework or .Net Core and you will be using StringInfo. </summary>
+        /// <summary> TextElements_v8. </summary>
         public static StringIndexType TextElementsV8 { get; } = new StringIndexType(TextElementsV8Value);
-        /// <summary> Returned offset and length values will correspond to Unicode code points. Use this option if your application is written in a language that support Unicode, for example Python. </summary>
+        /// <summary> UnicodeCodePoint. </summary>
         public static StringIndexType UnicodeCodePoint { get; } = new StringIndexType(UnicodeCodePointValue);
-        /// <summary> Returned offset and length values will correspond to UTF-16 code units. Use this option if your application is written in a language that support Unicode, for example Java, JavaScript. </summary>
+        /// <summary> Utf16CodeUnit. </summary>
         public static StringIndexType Utf16CodeUnit { get; } = new StringIndexType(Utf16CodeUnitValue);
         /// <summary> Determines if two <see cref="StringIndexType"/> values are the same. </summary>
         public static bool operator ==(StringIndexType left, StringIndexType right) => left.Equals(right);

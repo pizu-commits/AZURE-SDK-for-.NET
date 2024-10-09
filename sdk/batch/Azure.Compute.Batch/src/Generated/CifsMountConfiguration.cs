@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information used to connect to a CIFS file system. </summary>
+    /// <summary> The CifsMountConfiguration. </summary>
     public partial class CifsMountConfiguration
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CifsMountConfiguration"/>. </summary>
-        /// <param name="username"> The user to use for authentication against the CIFS file system. </param>
-        /// <param name="source"> The URI of the file system to mount. </param>
-        /// <param name="relativeMountPath"> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
-        /// <param name="password"> The password to use for authentication against the CIFS file system. </param>
+        /// <param name="username"></param>
+        /// <param name="source"></param>
+        /// <param name="relativeMountPath"></param>
+        /// <param name="password"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="username"/>, <paramref name="source"/>, <paramref name="relativeMountPath"/> or <paramref name="password"/> is null. </exception>
         public CifsMountConfiguration(string username, string source, string relativeMountPath, string password)
         {
@@ -65,11 +65,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="CifsMountConfiguration"/>. </summary>
-        /// <param name="username"> The user to use for authentication against the CIFS file system. </param>
-        /// <param name="source"> The URI of the file system to mount. </param>
-        /// <param name="relativeMountPath"> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
-        /// <param name="mountOptions"> Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. </param>
-        /// <param name="password"> The password to use for authentication against the CIFS file system. </param>
+        /// <param name="username"></param>
+        /// <param name="source"></param>
+        /// <param name="relativeMountPath"></param>
+        /// <param name="mountOptions"></param>
+        /// <param name="password"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CifsMountConfiguration(string username, string source, string relativeMountPath, string mountOptions, string password, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,15 +86,15 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The user to use for authentication against the CIFS file system. </summary>
+        /// <summary> Gets or sets the username. </summary>
         public string Username { get; set; }
-        /// <summary> The URI of the file system to mount. </summary>
+        /// <summary> Gets or sets the source. </summary>
         public string Source { get; set; }
-        /// <summary> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </summary>
+        /// <summary> Gets or sets the relative mount path. </summary>
         public string RelativeMountPath { get; set; }
-        /// <summary> Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. </summary>
+        /// <summary> Gets or sets the mount options. </summary>
         public string MountOptions { get; set; }
-        /// <summary> The password to use for authentication against the CIFS file system. </summary>
+        /// <summary> Gets or sets the password. </summary>
         public string Password { get; set; }
     }
 }

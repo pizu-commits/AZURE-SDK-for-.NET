@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// A reference to an Azure Virtual Machines Marketplace Image or a Azure Compute Gallery Image.
-    /// To get the list of all Azure Marketplace Image references verified by Azure Batch, see the
-    /// ' List Supported Images ' operation.
-    /// </summary>
+    /// <summary> The ImageReference. </summary>
     public partial class ImageReference
     {
         /// <summary>
@@ -55,12 +51,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="ImageReference"/>. </summary>
-        /// <param name="publisher"> The publisher of the Azure Virtual Machines Marketplace Image. For example, Canonical or MicrosoftWindowsServer. </param>
-        /// <param name="offer"> The offer type of the Azure Virtual Machines Marketplace Image. For example, UbuntuServer or WindowsServer. </param>
-        /// <param name="sku"> The SKU of the Azure Virtual Machines Marketplace Image. For example, 18.04-LTS or 2019-Datacenter. </param>
-        /// <param name="version"> The version of the Azure Virtual Machines Marketplace Image. A value of 'latest' can be specified to select the latest version of an Image. If omitted, the default is 'latest'. </param>
-        /// <param name="virtualMachineImageId"> The ARM resource identifier of the Azure Compute Gallery Image. Compute Nodes in the Pool will be created using this Image Id. This is of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName}/versions/{VersionId} or /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName} for always defaulting to the latest image version. This property is mutually exclusive with other ImageReference properties. The Azure Compute Gallery Image must have replicas in the same region and must be in the same subscription as the Azure Batch account. If the image version is not specified in the imageId, the latest version will be used. For information about the firewall settings for the Batch Compute Node agent to communicate with the Batch service see https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration. </param>
-        /// <param name="exactVersion"> The specific version of the platform image or marketplace image used to create the node. This read-only field differs from 'version' only if the value specified for 'version' when the pool was created was 'latest'. </param>
+        /// <param name="publisher"></param>
+        /// <param name="offer"></param>
+        /// <param name="sku"></param>
+        /// <param name="version"></param>
+        /// <param name="virtualMachineImageId"></param>
+        /// <param name="exactVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ImageReference(string publisher, string offer, string sku, string version, string virtualMachineImageId, string exactVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,17 +69,17 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The publisher of the Azure Virtual Machines Marketplace Image. For example, Canonical or MicrosoftWindowsServer. </summary>
+        /// <summary> Gets or sets the publisher. </summary>
         public string Publisher { get; set; }
-        /// <summary> The offer type of the Azure Virtual Machines Marketplace Image. For example, UbuntuServer or WindowsServer. </summary>
+        /// <summary> Gets or sets the offer. </summary>
         public string Offer { get; set; }
-        /// <summary> The SKU of the Azure Virtual Machines Marketplace Image. For example, 18.04-LTS or 2019-Datacenter. </summary>
+        /// <summary> Gets or sets the sku. </summary>
         public string Sku { get; set; }
-        /// <summary> The version of the Azure Virtual Machines Marketplace Image. A value of 'latest' can be specified to select the latest version of an Image. If omitted, the default is 'latest'. </summary>
+        /// <summary> Gets or sets the version. </summary>
         public string Version { get; set; }
-        /// <summary> The ARM resource identifier of the Azure Compute Gallery Image. Compute Nodes in the Pool will be created using this Image Id. This is of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName}/versions/{VersionId} or /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName} for always defaulting to the latest image version. This property is mutually exclusive with other ImageReference properties. The Azure Compute Gallery Image must have replicas in the same region and must be in the same subscription as the Azure Batch account. If the image version is not specified in the imageId, the latest version will be used. For information about the firewall settings for the Batch Compute Node agent to communicate with the Batch service see https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration. </summary>
+        /// <summary> Gets or sets the virtual machine image id. </summary>
         public string VirtualMachineImageId { get; set; }
-        /// <summary> The specific version of the platform image or marketplace image used to create the node. This read-only field differs from 'version' only if the value specified for 'version' when the pool was created was 'latest'. </summary>
+        /// <summary> Gets the exact version. </summary>
         public string ExactVersion { get; }
     }
 }

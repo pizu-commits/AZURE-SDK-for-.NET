@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> Controls what happens if extra parameters, undefined by the REST API, are passed in the JSON request payload. </summary>
+    /// <summary> The ExtraParameters. </summary>
     public readonly partial struct ExtraParameters : IEquatable<ExtraParameters>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Inference
         private const string DropValue = "drop";
         private const string PassThroughValue = "pass-through";
 
-        /// <summary> The service will error if it detected extra parameters in the request payload. This is the service default. </summary>
+        /// <summary> error. </summary>
         public static ExtraParameters Error { get; } = new ExtraParameters(ErrorValue);
-        /// <summary> The service will ignore (drop) extra parameters in the request payload. It will only pass the known parameters to the back-end AI model. </summary>
+        /// <summary> drop. </summary>
         public static ExtraParameters Drop { get; } = new ExtraParameters(DropValue);
-        /// <summary> The service will pass extra parameters to the back-end AI model. </summary>
+        /// <summary> pass-through. </summary>
         public static ExtraParameters PassThrough { get; } = new ExtraParameters(PassThroughValue);
         /// <summary> Determines if two <see cref="ExtraParameters"/> values are the same. </summary>
         public static bool operator ==(ExtraParameters left, ExtraParameters right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The basic information for term categorization. </summary>
+    /// <summary> The AtlasTermCategorizationHeader. </summary>
     public partial class AtlasTermCategorizationHeader
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasTermCategorizationHeader"/>. </summary>
-        /// <param name="categoryGuid"> The GUID of the category. </param>
-        /// <param name="description"> The description of the record. </param>
-        /// <param name="displayText"> The display text. </param>
-        /// <param name="relationGuid"> The GUID of the relationship. </param>
-        /// <param name="status"> The status of term relationship. </param>
+        /// <param name="categoryGuid"></param>
+        /// <param name="description"></param>
+        /// <param name="displayText"></param>
+        /// <param name="relationGuid"></param>
+        /// <param name="status"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasTermCategorizationHeader(Guid? categoryGuid, string description, string displayText, Guid? relationGuid, AtlasTermRelationshipStatus? status, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the category. </summary>
+        /// <summary> Gets or sets the category guid. </summary>
         public Guid? CategoryGuid { get; set; }
-        /// <summary> The description of the record. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary> The GUID of the relationship. </summary>
+        /// <summary> Gets or sets the relation guid. </summary>
         public Guid? RelationGuid { get; set; }
-        /// <summary> The status of term relationship. </summary>
+        /// <summary> Gets or sets the status. </summary>
         public AtlasTermRelationshipStatus? Status { get; set; }
     }
 }

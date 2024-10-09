@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Request body to authorize document classifier copy. </summary>
+    /// <summary> The AuthorizeClassifierCopyContent. </summary>
     public partial class AuthorizeClassifierCopyContent
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AuthorizeClassifierCopyContent"/>. </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> is null. </exception>
         public AuthorizeClassifierCopyContent(string classifierId)
         {
@@ -57,9 +57,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AuthorizeClassifierCopyContent"/>. </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
-        /// <param name="description"> Document classifier description. </param>
-        /// <param name="tags"> List of key-value tag attributes associated with the document classifier. </param>
+        /// <param name="classifierId"></param>
+        /// <param name="description"></param>
+        /// <param name="tags"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AuthorizeClassifierCopyContent(string classifierId, string description, IDictionary<string, string> tags, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Unique document classifier name. </summary>
+        /// <summary> Gets the classifier id. </summary>
         public string ClassifierId { get; }
-        /// <summary> Document classifier description. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> List of key-value tag attributes associated with the document classifier. </summary>
+        /// <summary> Gets the tags. </summary>
         public IDictionary<string, string> Tags { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies the ephemeral disk option for operating system disk. </summary>
+    /// <summary> The ComputeFleetDiffDiskOptions. </summary>
     public readonly partial struct ComputeFleetDiffDiskOption : IEquatable<ComputeFleetDiffDiskOption>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
 
         private const string LocalValue = "Local";
 
-        /// <summary> Local Option. </summary>
+        /// <summary> Local. </summary>
         public static ComputeFleetDiffDiskOption Local { get; } = new ComputeFleetDiffDiskOption(LocalValue);
         /// <summary> Determines if two <see cref="ComputeFleetDiffDiskOption"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetDiffDiskOption left, ComputeFleetDiffDiskOption right) => left.Equals(right);

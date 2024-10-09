@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A list of asset types to cascade the updates to. </summary>
+    /// <summary> The AssetUpdateTransfers. </summary>
     public readonly partial struct AssetUpdateTransfers : IEquatable<AssetUpdateTransfers>
     {
         private readonly string _value;

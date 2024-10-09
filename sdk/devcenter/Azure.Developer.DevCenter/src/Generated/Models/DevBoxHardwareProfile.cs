@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Hardware specifications for the Dev Box. </summary>
+    /// <summary> The DevBoxHardwareProfile. </summary>
     public partial class DevBoxHardwareProfile
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DevBoxHardwareProfile"/>. </summary>
-        /// <param name="skuName"> The name of the SKU. </param>
-        /// <param name="vcpUs"> The number of vCPUs available for the Dev Box. </param>
-        /// <param name="memoryGB"> The amount of memory available for the Dev Box. </param>
+        /// <param name="skuName"></param>
+        /// <param name="vcpUs"></param>
+        /// <param name="memoryGB"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevBoxHardwareProfile(SkuName? skuName, int? vcpUs, int? memoryGB, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Developer.DevCenter.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the SKU. </summary>
+        /// <summary> Gets the sku name. </summary>
         public SkuName? SkuName { get; }
-        /// <summary> The number of vCPUs available for the Dev Box. </summary>
+        /// <summary> Gets the vcp us. </summary>
         public int? VCPUs { get; }
-        /// <summary> The amount of memory available for the Dev Box. </summary>
+        /// <summary> Gets the memory gb. </summary>
         public int? MemoryGB { get; }
     }
 }

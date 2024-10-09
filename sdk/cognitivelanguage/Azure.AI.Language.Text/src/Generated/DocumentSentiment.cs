@@ -7,16 +7,16 @@
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Predicted sentiment for document (Negative, Neutral, Positive, or Mixed). </summary>
+    /// <summary> The DocumentSentiment. </summary>
     public enum DocumentSentiment
     {
-        /// <summary> Positive statement. </summary>
+        /// <summary> positive. </summary>
         Positive,
-        /// <summary> Neutral statement. </summary>
+        /// <summary> neutral. </summary>
         Neutral,
-        /// <summary> Negative statement. </summary>
+        /// <summary> negative. </summary>
         Negative,
-        /// <summary> Mixed statement. </summary>
+        /// <summary> mixed. </summary>
         Mixed
     }
 }

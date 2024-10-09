@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the warnings object with warnings encountered for the processed document. </summary>
+    /// <summary> The DocumentWarning. </summary>
     public partial class DocumentWarning
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentWarning"/>. </summary>
-        /// <param name="code"> Warning code. </param>
-        /// <param name="message"> Warning message. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="message"/> is null. </exception>
         internal DocumentWarning(WarningCode code, string message)
         {
@@ -58,9 +58,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentWarning"/>. </summary>
-        /// <param name="code"> Warning code. </param>
-        /// <param name="message"> Warning message. </param>
-        /// <param name="targetRef"> A JSON pointer reference indicating the target object. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="targetRef"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentWarning(WarningCode code, string message, string targetRef, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,11 +75,11 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Warning code. </summary>
+        /// <summary> Gets the code. </summary>
         public WarningCode Code { get; }
-        /// <summary> Warning message. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> A JSON pointer reference indicating the target object. </summary>
+        /// <summary> Gets the target ref. </summary>
         public string TargetRef { get; }
     }
 }

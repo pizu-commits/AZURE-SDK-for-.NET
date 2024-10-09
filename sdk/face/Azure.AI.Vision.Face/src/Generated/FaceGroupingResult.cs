@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Response body for group face operation. </summary>
+    /// <summary> The FaceGroupingResult. </summary>
     public partial class FaceGroupingResult
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FaceGroupingResult"/>. </summary>
-        /// <param name="groups"> A partition of the original faces based on face similarity. Groups are ranked by number of faces. </param>
-        /// <param name="messyGroup"> Face ids array of faces that cannot find any similar faces from original faces. </param>
+        /// <param name="groups"></param>
+        /// <param name="messyGroup"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="groups"/> or <paramref name="messyGroup"/> is null. </exception>
         internal FaceGroupingResult(IEnumerable<IList<Guid>> groups, IEnumerable<Guid> messyGroup)
         {
@@ -60,8 +60,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="FaceGroupingResult"/>. </summary>
-        /// <param name="groups"> A partition of the original faces based on face similarity. Groups are ranked by number of faces. </param>
-        /// <param name="messyGroup"> Face ids array of faces that cannot find any similar faces from original faces. </param>
+        /// <param name="groups"></param>
+        /// <param name="messyGroup"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FaceGroupingResult(IReadOnlyList<IList<Guid>> groups, IReadOnlyList<Guid> messyGroup, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> A partition of the original faces based on face similarity. Groups are ranked by number of faces. </summary>
+        /// <summary> Gets the groups. </summary>
         public IReadOnlyList<IList<Guid>> Groups { get; }
-        /// <summary> Face ids array of faces that cannot find any similar faces from original faces. </summary>
+        /// <summary> Gets the messy group. </summary>
         public IReadOnlyList<Guid> MessyGroup { get; }
     }
 }

@@ -13,10 +13,7 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.ComputeFleet
 {
-    /// <summary>
-    /// A class representing the ComputeFleet data model.
-    /// An Compute Fleet resource
-    /// </summary>
+    /// <summary> A class representing the ComputeFleet data model. </summary>
     public partial class ComputeFleetData : TrackedResourceData
     {
         /// <summary>
@@ -65,10 +62,10 @@ namespace Azure.ResourceManager.ComputeFleet
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
-        /// <param name="zones"> Zones in which the Compute Fleet is available. </param>
-        /// <param name="identity"> The managed service identities assigned to this resource. </param>
-        /// <param name="plan"> Details of the resource plan. </param>
+        /// <param name="properties"></param>
+        /// <param name="zones"></param>
+        /// <param name="identity"></param>
+        /// <param name="plan"> Gets or sets the plan. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, ComputeFleetProperties properties, IList<string> zones, ManagedServiceIdentity identity, ArmPlan plan, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
         {
@@ -84,13 +81,13 @@ namespace Azure.ResourceManager.ComputeFleet
         {
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public ComputeFleetProperties Properties { get; set; }
-        /// <summary> Zones in which the Compute Fleet is available. </summary>
+        /// <summary> Gets the zones. </summary>
         public IList<string> Zones { get; }
-        /// <summary> The managed service identities assigned to this resource. </summary>
+        /// <summary> Gets or sets the identity. </summary>
         public ManagedServiceIdentity Identity { get; set; }
-        /// <summary> Details of the resource plan. </summary>
+        /// <summary> Gets or sets the plan. </summary>
         public ArmPlan Plan { get; set; }
     }
 }

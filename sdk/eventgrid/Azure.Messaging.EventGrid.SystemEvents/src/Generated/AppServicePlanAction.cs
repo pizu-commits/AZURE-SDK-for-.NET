@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Type of action on the app service plan. </summary>
+    /// <summary> The AppServicePlanAction. </summary>
     public readonly partial struct AppServicePlanAction : IEquatable<AppServicePlanAction>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
 
         private const string UpdatedValue = "Updated";
 
-        /// <summary> App Service plan is being updated. </summary>
+        /// <summary> Updated. </summary>
         public static AppServicePlanAction Updated { get; } = new AppServicePlanAction(UpdatedValue);
         /// <summary> Determines if two <see cref="AppServicePlanAction"/> values are the same. </summary>
         public static bool operator ==(AppServicePlanAction left, AppServicePlanAction right) => left.Equals(right);

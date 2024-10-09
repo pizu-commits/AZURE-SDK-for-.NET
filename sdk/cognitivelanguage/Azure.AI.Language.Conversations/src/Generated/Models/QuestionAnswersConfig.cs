@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Parameters to query a knowledge base. </summary>
+    /// <summary> The QuestionAnswersConfig. </summary>
     public partial class QuestionAnswersConfig
     {
         /// <summary>
@@ -51,16 +51,16 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="QuestionAnswersConfig"/>. </summary>
-        /// <param name="qnaId"> Exact QnA ID to fetch from the knowledge base, this field takes priority over question. </param>
-        /// <param name="question"> User question to query against the knowledge base. </param>
-        /// <param name="top"> Max number of answers to be returned for the question. </param>
-        /// <param name="userId"> Unique identifier for the user. </param>
-        /// <param name="confidenceThreshold"> Minimum threshold score for answers, value ranges from 0 to 1. </param>
-        /// <param name="answerContext"> Context object with previous QnA's information. </param>
-        /// <param name="rankerKind"> Type of ranker to be used. </param>
-        /// <param name="filters"> Filter QnAs based on given metadata list and knowledge base sources. </param>
-        /// <param name="shortAnswerOptions"> To configure Answer span prediction feature. </param>
-        /// <param name="includeUnstructuredSources"> (Optional) Flag to enable Query over Unstructured Sources. </param>
+        /// <param name="qnaId"></param>
+        /// <param name="question"></param>
+        /// <param name="top"></param>
+        /// <param name="userId"></param>
+        /// <param name="confidenceThreshold"></param>
+        /// <param name="answerContext"></param>
+        /// <param name="rankerKind"></param>
+        /// <param name="filters"></param>
+        /// <param name="shortAnswerOptions"></param>
+        /// <param name="includeUnstructuredSources"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal QuestionAnswersConfig(int? qnaId, string question, int? top, string userId, double? confidenceThreshold, KnowledgeBaseAnswerContext answerContext, RankerKind? rankerKind, QueryFilters filters, ShortAnswerConfig shortAnswerOptions, bool? includeUnstructuredSources, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,25 +77,25 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Exact QnA ID to fetch from the knowledge base, this field takes priority over question. </summary>
+        /// <summary> Gets or sets the qna id. </summary>
         public int? QnaId { get; set; }
-        /// <summary> User question to query against the knowledge base. </summary>
+        /// <summary> Gets or sets the question. </summary>
         public string Question { get; set; }
-        /// <summary> Max number of answers to be returned for the question. </summary>
+        /// <summary> Gets or sets the top. </summary>
         public int? Top { get; set; }
-        /// <summary> Unique identifier for the user. </summary>
+        /// <summary> Gets or sets the user id. </summary>
         public string UserId { get; set; }
-        /// <summary> Minimum threshold score for answers, value ranges from 0 to 1. </summary>
+        /// <summary> Gets or sets the confidence threshold. </summary>
         public double? ConfidenceThreshold { get; set; }
-        /// <summary> Context object with previous QnA's information. </summary>
+        /// <summary> Gets or sets the answer context. </summary>
         public KnowledgeBaseAnswerContext AnswerContext { get; set; }
-        /// <summary> Type of ranker to be used. </summary>
+        /// <summary> Gets or sets the ranker kind. </summary>
         public RankerKind? RankerKind { get; set; }
-        /// <summary> Filter QnAs based on given metadata list and knowledge base sources. </summary>
+        /// <summary> Gets or sets the filters. </summary>
         public QueryFilters Filters { get; set; }
-        /// <summary> To configure Answer span prediction feature. </summary>
+        /// <summary> Gets or sets the short answer options. </summary>
         public ShortAnswerConfig ShortAnswerOptions { get; set; }
-        /// <summary> (Optional) Flag to enable Query over Unstructured Sources. </summary>
+        /// <summary> Gets or sets the include unstructured sources. </summary>
         public bool? IncludeUnstructuredSources { get; set; }
     }
 }

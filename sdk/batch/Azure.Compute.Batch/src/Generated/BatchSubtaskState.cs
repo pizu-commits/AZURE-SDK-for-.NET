@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchSubtaskState enums. </summary>
+    /// <summary> The BatchSubtaskState. </summary>
     public readonly partial struct BatchSubtaskState : IEquatable<BatchSubtaskState>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string RunningValue = "running";
         private const string CompletedValue = "completed";
 
-        /// <summary> The Task has been assigned to a Compute Node, but is waiting for a required Job Preparation Task to complete on the Compute Node. If the Job Preparation Task succeeds, the Task will move to running. If the Job Preparation Task fails, the Task will return to active and will be eligible to be assigned to a different Compute Node. </summary>
+        /// <summary> preparing. </summary>
         public static BatchSubtaskState Preparing { get; } = new BatchSubtaskState(PreparingValue);
-        /// <summary> The Task is running on a Compute Node. This includes task-level preparation such as downloading resource files or deploying Packages specified on the Task - it does not necessarily mean that the Task command line has started executing. </summary>
+        /// <summary> running. </summary>
         public static BatchSubtaskState Running { get; } = new BatchSubtaskState(RunningValue);
-        /// <summary> The Task is no longer eligible to run, usually because the Task has finished successfully, or the Task has finished unsuccessfully and has exhausted its retry limit. A Task is also marked as completed if an error occurred launching the Task, or when the Task has been terminated. </summary>
+        /// <summary> completed. </summary>
         public static BatchSubtaskState Completed { get; } = new BatchSubtaskState(CompletedValue);
         /// <summary> Determines if two <see cref="BatchSubtaskState"/> values are the same. </summary>
         public static bool operator ==(BatchSubtaskState left, BatchSubtaskState right) => left.Equals(right);

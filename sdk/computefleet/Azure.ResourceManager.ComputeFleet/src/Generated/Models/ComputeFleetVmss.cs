@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> An AzureFleet's virtualMachineScaleSet. </summary>
+    /// <summary> The ComputeFleetVmss. </summary>
     public partial class ComputeFleetVmss
     {
         /// <summary>
@@ -46,11 +46,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmss"/>. </summary>
-        /// <param name="id">
-        /// The compute RP resource id of the virtualMachineScaleSet
-        /// "subscriptions/{subId}/resourceGroups/{rgName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}"
-        /// </param>
-        /// <param name="operationStatus"> This represents the operationStatus of the VMSS in response to the last operation that was performed on it by Azure Fleet resource. </param>
+        /// <param name="id"></param>
+        /// <param name="operationStatus"></param>
         internal ComputeFleetVmss(string id, ComputeFleetProvisioningState operationStatus)
         {
             Id = id;
@@ -58,13 +55,10 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmss"/>. </summary>
-        /// <param name="id">
-        /// The compute RP resource id of the virtualMachineScaleSet
-        /// "subscriptions/{subId}/resourceGroups/{rgName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}"
-        /// </param>
-        /// <param name="type"> Type of the virtualMachineScaleSet. </param>
-        /// <param name="operationStatus"> This represents the operationStatus of the VMSS in response to the last operation that was performed on it by Azure Fleet resource. </param>
-        /// <param name="error"> Error Information when `operationStatus` is `Failed`. </param>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        /// <param name="operationStatus"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmss(string id, string type, ComputeFleetProvisioningState operationStatus, ComputeFleetApiError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,16 +74,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary>
-        /// The compute RP resource id of the virtualMachineScaleSet
-        /// "subscriptions/{subId}/resourceGroups/{rgName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}"
-        /// </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Type of the virtualMachineScaleSet. </summary>
+        /// <summary> Gets the type. </summary>
         public string Type { get; }
-        /// <summary> This represents the operationStatus of the VMSS in response to the last operation that was performed on it by Azure Fleet resource. </summary>
+        /// <summary> Gets the operation status. </summary>
         public ComputeFleetProvisioningState OperationStatus { get; }
-        /// <summary> Error Information when `operationStatus` is `Failed`. </summary>
+        /// <summary> Gets the error. </summary>
         public ComputeFleetApiError Error { get; }
     }
 }

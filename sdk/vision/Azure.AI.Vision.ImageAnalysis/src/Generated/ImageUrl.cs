@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> An object holding the publicly reachable URL of an image to analyze. </summary>
+    /// <summary> The ImageUrl. </summary>
     internal partial class ImageUrl
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ImageUrl"/>. </summary>
-        /// <param name="url"> Publicly reachable URL of an image to analyze. </param>
+        /// <param name="url"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="url"/> is null. </exception>
         public ImageUrl(Uri url)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="ImageUrl"/>. </summary>
-        /// <param name="url"> Publicly reachable URL of an image to analyze. </param>
+        /// <param name="url"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ImageUrl(Uri url, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> Publicly reachable URL of an image to analyze. </summary>
+        /// <summary> Gets the url. </summary>
         public Uri Url { get; }
     }
 }

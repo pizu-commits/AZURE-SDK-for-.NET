@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of DataBox Stage Name enumeration. </summary>
+    /// <summary> The DataBoxStageName. </summary>
     public readonly partial struct DataBoxStageName : IEquatable<DataBoxStageName>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string CopyCompletedValue = "CopyCompleted";
         private const string OrderCompletedValue = "OrderCompleted";
 
-        /// <summary> Copy has started. </summary>
+        /// <summary> CopyStarted. </summary>
         public static DataBoxStageName CopyStarted { get; } = new DataBoxStageName(CopyStartedValue);
-        /// <summary> Copy has completed. </summary>
+        /// <summary> CopyCompleted. </summary>
         public static DataBoxStageName CopyCompleted { get; } = new DataBoxStageName(CopyCompletedValue);
-        /// <summary> Order has been completed. </summary>
+        /// <summary> OrderCompleted. </summary>
         public static DataBoxStageName OrderCompleted { get; } = new DataBoxStageName(OrderCompletedValue);
         /// <summary> Determines if two <see cref="DataBoxStageName"/> values are the same. </summary>
         public static bool operator ==(DataBoxStageName left, DataBoxStageName right) => left.Equals(right);

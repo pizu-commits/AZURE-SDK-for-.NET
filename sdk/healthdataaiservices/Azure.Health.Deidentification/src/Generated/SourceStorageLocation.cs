@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> Storage location. </summary>
+    /// <summary> The SourceStorageLocation. </summary>
     public partial class SourceStorageLocation
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Deidentification
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SourceStorageLocation"/>. </summary>
-        /// <param name="location"> URL to storage location. </param>
-        /// <param name="prefix"> Prefix to filter path by. </param>
+        /// <param name="location"></param>
+        /// <param name="prefix"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="location"/> or <paramref name="prefix"/> is null. </exception>
         public SourceStorageLocation(Uri location, string prefix)
         {
@@ -60,9 +60,9 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="SourceStorageLocation"/>. </summary>
-        /// <param name="location"> URL to storage location. </param>
-        /// <param name="prefix"> Prefix to filter path by. </param>
-        /// <param name="extensions"> List of extensions to filter path by. </param>
+        /// <param name="location"></param>
+        /// <param name="prefix"></param>
+        /// <param name="extensions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SourceStorageLocation(Uri location, string prefix, IList<string> extensions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.Health.Deidentification
         {
         }
 
-        /// <summary> URL to storage location. </summary>
+        /// <summary> Gets or sets the location. </summary>
         public Uri Location { get; set; }
-        /// <summary> Prefix to filter path by. </summary>
+        /// <summary> Gets or sets the prefix. </summary>
         public string Prefix { get; set; }
-        /// <summary> List of extensions to filter path by. </summary>
+        /// <summary> Gets the extensions. </summary>
         public IList<string> Extensions { get; }
     }
 }

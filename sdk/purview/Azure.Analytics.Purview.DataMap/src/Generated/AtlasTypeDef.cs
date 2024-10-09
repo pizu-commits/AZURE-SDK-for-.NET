@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The definitions of type. </summary>
+    /// <summary> The AtlasTypeDef. </summary>
     public partial class AtlasTypeDef
     {
         /// <summary>
@@ -58,75 +58,31 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasTypeDef"/>. </summary>
-        /// <param name="category"> The enum of type category. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="dateFormatter"> The date format. </param>
-        /// <param name="description"> The description of the type definition. </param>
-        /// <param name="guid"> The GUID of the type definition. </param>
-        /// <param name="name"> The name of the type definition. </param>
-        /// <param name="options"> The options for the type definition. </param>
-        /// <param name="serviceType"> The service type. </param>
-        /// <param name="typeVersion"> The version of the type. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="version"> The version of the record. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="entityTypes">
-        /// Specifying a list of entityType names in the classificationDef, ensures that
-        /// classifications can
-        /// only be applied to those entityTypes.
-        ///
-        /// Any subtypes of the entity types inherit the restriction.
-        ///
-        /// Any classificationDef subtypes inherit the parents entityTypes restrictions.
-        ///
-        /// Any classificationDef subtypes can further restrict the parents entityTypes
-        /// restrictions by specifying a subset of the entityTypes.
-        ///
-        /// An empty entityTypes list when there are no parent restrictions means there are no
-        /// restrictions.
-        ///
-        /// An empty entityTypes list when there are parent
-        /// restrictions means that the subtype picks up the parents
-        /// restrictions.
-        ///
-        /// If a list of entityTypes are supplied, where one inherits
-        /// from another, this will be rejected. This should encourage cleaner
-        /// classificationsDefs.
-        ///
-        /// </param>
-        /// <param name="subTypes"> An array of sub types. </param>
-        /// <param name="superTypes"> An array of super types. </param>
-        /// <param name="relationshipAttributeDefs"> An array of relationship attributes. </param>
-        /// <param name="defaultValue"> The default value. </param>
-        /// <param name="elementDefs"> An array of enum element definitions. </param>
-        /// <param name="endDef1">
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </param>
-        /// <param name="endDef2">
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </param>
-        /// <param name="relationshipCategory">
-        /// The Relationship category determines the style of relationship around
-        /// containment and lifecycle.
-        /// UML terminology is used for the values.
-        ///
-        /// ASSOCIATION is a relationship with no containment.
-        /// COMPOSITION and AGGREGATION are containment relationships.
-        ///
-        /// The difference being in the lifecycles of the container and its children.
-        /// In the COMPOSITION case, the children cannot exist without the container.
-        /// For AGGREGATION, the life cycles of the container and children are totally independent.
-        /// </param>
-        /// <param name="relationshipLabel"> The label of the relationship. </param>
-        /// <param name="attributeDefs"> An array of attribute definitions. </param>
+        /// <param name="category"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="dateFormatter"></param>
+        /// <param name="description"></param>
+        /// <param name="guid"></param>
+        /// <param name="name"></param>
+        /// <param name="options"></param>
+        /// <param name="serviceType"></param>
+        /// <param name="typeVersion"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="version"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="entityTypes"></param>
+        /// <param name="subTypes"></param>
+        /// <param name="superTypes"></param>
+        /// <param name="relationshipAttributeDefs"></param>
+        /// <param name="defaultValue"></param>
+        /// <param name="elementDefs"></param>
+        /// <param name="endDef1"></param>
+        /// <param name="endDef2"></param>
+        /// <param name="relationshipCategory"></param>
+        /// <param name="relationshipLabel"></param>
+        /// <param name="attributeDefs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasTypeDef(TypeCategory? category, long? createTime, string createdBy, AtlasDateFormat dateFormatter, string description, string guid, string name, IReadOnlyDictionary<string, string> options, string serviceType, string typeVersion, long? updateTime, string updatedBy, long? version, string lastModifiedTS, IReadOnlyList<string> entityTypes, IReadOnlyList<string> subTypes, IReadOnlyList<string> superTypes, IReadOnlyList<AtlasRelationshipAttributeDef> relationshipAttributeDefs, string defaultValue, IReadOnlyList<AtlasEnumElementDef> elementDefs, AtlasRelationshipEndDef endDef1, AtlasRelationshipEndDef endDef2, RelationshipCategory? relationshipCategory, string relationshipLabel, IReadOnlyList<AtlasAttributeDef> attributeDefs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -158,99 +114,55 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The enum of type category. </summary>
+        /// <summary> Gets the category. </summary>
         public TypeCategory? Category { get; }
-        /// <summary> The created time of the record. </summary>
+        /// <summary> Gets the create time. </summary>
         public long? CreateTime { get; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets the created by. </summary>
         public string CreatedBy { get; }
-        /// <summary> The date format. </summary>
+        /// <summary> Gets the date formatter. </summary>
         public AtlasDateFormat DateFormatter { get; }
-        /// <summary> The description of the type definition. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> The GUID of the type definition. </summary>
+        /// <summary> Gets the guid. </summary>
         public string Guid { get; }
-        /// <summary> The name of the type definition. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The options for the type definition. </summary>
+        /// <summary> Gets the options. </summary>
         public IReadOnlyDictionary<string, string> Options { get; }
-        /// <summary> The service type. </summary>
+        /// <summary> Gets the service type. </summary>
         public string ServiceType { get; }
-        /// <summary> The version of the type. </summary>
+        /// <summary> Gets the type version. </summary>
         public string TypeVersion { get; }
-        /// <summary> The update time of the record. </summary>
+        /// <summary> Gets the update time. </summary>
         public long? UpdateTime { get; }
-        /// <summary> The user who updated the record. </summary>
+        /// <summary> Gets the updated by. </summary>
         public string UpdatedBy { get; }
-        /// <summary> The version of the record. </summary>
+        /// <summary> Gets the version. </summary>
         public long? Version { get; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets the last modified ts. </summary>
         public string LastModifiedTS { get; }
-        /// <summary>
-        /// Specifying a list of entityType names in the classificationDef, ensures that
-        /// classifications can
-        /// only be applied to those entityTypes.
-        ///
-        /// Any subtypes of the entity types inherit the restriction.
-        ///
-        /// Any classificationDef subtypes inherit the parents entityTypes restrictions.
-        ///
-        /// Any classificationDef subtypes can further restrict the parents entityTypes
-        /// restrictions by specifying a subset of the entityTypes.
-        ///
-        /// An empty entityTypes list when there are no parent restrictions means there are no
-        /// restrictions.
-        ///
-        /// An empty entityTypes list when there are parent
-        /// restrictions means that the subtype picks up the parents
-        /// restrictions.
-        ///
-        /// If a list of entityTypes are supplied, where one inherits
-        /// from another, this will be rejected. This should encourage cleaner
-        /// classificationsDefs.
-        ///
-        /// </summary>
+        /// <summary> Gets the entity types. </summary>
         public IReadOnlyList<string> EntityTypes { get; }
-        /// <summary> An array of sub types. </summary>
+        /// <summary> Gets the sub types. </summary>
         public IReadOnlyList<string> SubTypes { get; }
-        /// <summary> An array of super types. </summary>
+        /// <summary> Gets the super types. </summary>
         public IReadOnlyList<string> SuperTypes { get; }
-        /// <summary> An array of relationship attributes. </summary>
+        /// <summary> Gets the relationship attribute defs. </summary>
         public IReadOnlyList<AtlasRelationshipAttributeDef> RelationshipAttributeDefs { get; }
-        /// <summary> The default value. </summary>
+        /// <summary> Gets the default value. </summary>
         public string DefaultValue { get; }
-        /// <summary> An array of enum element definitions. </summary>
+        /// <summary> Gets the element defs. </summary>
         public IReadOnlyList<AtlasEnumElementDef> ElementDefs { get; }
-        /// <summary>
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </summary>
+        /// <summary> Gets the end def 1. </summary>
         public AtlasRelationshipEndDef EndDef1 { get; }
-        /// <summary>
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </summary>
+        /// <summary> Gets the end def 2. </summary>
         public AtlasRelationshipEndDef EndDef2 { get; }
-        /// <summary>
-        /// The Relationship category determines the style of relationship around
-        /// containment and lifecycle.
-        /// UML terminology is used for the values.
-        ///
-        /// ASSOCIATION is a relationship with no containment.
-        /// COMPOSITION and AGGREGATION are containment relationships.
-        ///
-        /// The difference being in the lifecycles of the container and its children.
-        /// In the COMPOSITION case, the children cannot exist without the container.
-        /// For AGGREGATION, the life cycles of the container and children are totally independent.
-        /// </summary>
+        /// <summary> Gets the relationship category. </summary>
         public RelationshipCategory? RelationshipCategory { get; }
-        /// <summary> The label of the relationship. </summary>
+        /// <summary> Gets the relationship label. </summary>
         public string RelationshipLabel { get; }
-        /// <summary> An array of attribute definitions. </summary>
+        /// <summary> Gets the attribute defs. </summary>
         public IReadOnlyList<AtlasAttributeDef> AttributeDefs { get; }
     }
 }

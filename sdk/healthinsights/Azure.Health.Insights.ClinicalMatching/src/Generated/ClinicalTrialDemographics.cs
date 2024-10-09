@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> Demographic criteria for a clinical trial. </summary>
+    /// <summary> The ClinicalTrialDemographics. </summary>
     public partial class ClinicalTrialDemographics
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialDemographics"/>. </summary>
-        /// <param name="acceptedSex"> Indication of the sex of people who may participate in the clinical trial. </param>
-        /// <param name="acceptedAgeRange"> A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. </param>
+        /// <param name="acceptedSex"></param>
+        /// <param name="acceptedAgeRange"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalTrialDemographics(ClinicalTrialAcceptedSex? acceptedSex, AcceptedAgeRange acceptedAgeRange, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Health.Insights.ClinicalMatching
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Indication of the sex of people who may participate in the clinical trial. </summary>
+        /// <summary> Gets or sets the accepted sex. </summary>
         public ClinicalTrialAcceptedSex? AcceptedSex { get; set; }
-        /// <summary> A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. </summary>
+        /// <summary> Gets or sets the accepted age range. </summary>
         public AcceptedAgeRange AcceptedAgeRange { get; set; }
     }
 }

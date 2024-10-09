@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The provisioning state of the environment. </summary>
+    /// <summary> The EnvironmentProvisioningState. </summary>
     public readonly partial struct EnvironmentProvisioningState : IEquatable<EnvironmentProvisioningState>
     {
         private readonly string _value;
@@ -36,31 +36,31 @@ namespace Azure.Developer.DevCenter.Models
         private const string TransientFailureValue = "TransientFailure";
         private const string StorageProvisioningFailedValue = "StorageProvisioningFailed";
 
-        /// <summary> The environment was successfully provisioned. </summary>
+        /// <summary> Succeeded. </summary>
         public static EnvironmentProvisioningState Succeeded { get; } = new EnvironmentProvisioningState(SucceededValue);
-        /// <summary> The environment failed to provision. </summary>
+        /// <summary> Failed. </summary>
         public static EnvironmentProvisioningState Failed { get; } = new EnvironmentProvisioningState(FailedValue);
-        /// <summary> The environment provisioning was canceled. </summary>
+        /// <summary> Canceled. </summary>
         public static EnvironmentProvisioningState Canceled { get; } = new EnvironmentProvisioningState(CanceledValue);
-        /// <summary> The environment is creating. </summary>
+        /// <summary> Creating. </summary>
         public static EnvironmentProvisioningState Creating { get; } = new EnvironmentProvisioningState(CreatingValue);
-        /// <summary> The environment was accepted. </summary>
+        /// <summary> Accepted. </summary>
         public static EnvironmentProvisioningState Accepted { get; } = new EnvironmentProvisioningState(AcceptedValue);
-        /// <summary> The environment is deleting. </summary>
+        /// <summary> Deleting. </summary>
         public static EnvironmentProvisioningState Deleting { get; } = new EnvironmentProvisioningState(DeletingValue);
-        /// <summary> The environment is updating. </summary>
+        /// <summary> Updating. </summary>
         public static EnvironmentProvisioningState Updating { get; } = new EnvironmentProvisioningState(UpdatingValue);
-        /// <summary> The environment is preparing. </summary>
+        /// <summary> Preparing. </summary>
         public static EnvironmentProvisioningState Preparing { get; } = new EnvironmentProvisioningState(PreparingValue);
-        /// <summary> The environment is running. </summary>
+        /// <summary> Running. </summary>
         public static EnvironmentProvisioningState Running { get; } = new EnvironmentProvisioningState(RunningValue);
-        /// <summary> The environment is Syncing. </summary>
+        /// <summary> Syncing. </summary>
         public static EnvironmentProvisioningState Syncing { get; } = new EnvironmentProvisioningState(SyncingValue);
-        /// <summary> The environment is moving resources. </summary>
+        /// <summary> MovingResources. </summary>
         public static EnvironmentProvisioningState MovingResources { get; } = new EnvironmentProvisioningState(MovingResourcesValue);
-        /// <summary> The environment has a transient failure. </summary>
+        /// <summary> TransientFailure. </summary>
         public static EnvironmentProvisioningState TransientFailure { get; } = new EnvironmentProvisioningState(TransientFailureValue);
-        /// <summary> The environment storage provisioning failed. </summary>
+        /// <summary> StorageProvisioningFailed. </summary>
         public static EnvironmentProvisioningState StorageProvisioningFailed { get; } = new EnvironmentProvisioningState(StorageProvisioningFailedValue);
         /// <summary> Determines if two <see cref="EnvironmentProvisioningState"/> values are the same. </summary>
         public static bool operator ==(EnvironmentProvisioningState left, EnvironmentProvisioningState right) => left.Equals(right);

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> This is the response from a cancel operations request. </summary>
+    /// <summary> The CancelOperationsResult. </summary>
     public partial class CancelOperationsResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CancelOperationsResult"/>. </summary>
-        /// <param name="results"> An array of resource operations that were successfully cancelled. </param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal CancelOperationsResult(IEnumerable<ResourceOperationResult> results)
         {
@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CancelOperationsResult"/>. </summary>
-        /// <param name="results"> An array of resource operations that were successfully cancelled. </param>
+        /// <param name="results"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CancelOperationsResult(IReadOnlyList<ResourceOperationResult> results, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> An array of resource operations that were successfully cancelled. </summary>
+        /// <summary> Gets the results. </summary>
         public IReadOnlyList<ResourceOperationResult> Results { get; }
     }
 }

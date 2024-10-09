@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> DisableBatchJobOption enums. </summary>
+    /// <summary> The DisableBatchJobOption. </summary>
     public readonly partial struct DisableBatchJobOption : IEquatable<DisableBatchJobOption>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string TerminateValue = "terminate";
         private const string WaitValue = "wait";
 
-        /// <summary> Terminate running Tasks and requeue them. The Tasks will run again when the Job is enabled. </summary>
+        /// <summary> requeue. </summary>
         public static DisableBatchJobOption Requeue { get; } = new DisableBatchJobOption(RequeueValue);
-        /// <summary> Terminate running Tasks. The Tasks will be completed with failureInfo indicating that they were terminated, and will not run again. </summary>
+        /// <summary> terminate. </summary>
         public static DisableBatchJobOption Terminate { get; } = new DisableBatchJobOption(TerminateValue);
-        /// <summary> Allow currently running Tasks to complete. </summary>
+        /// <summary> wait. </summary>
         public static DisableBatchJobOption Wait { get; } = new DisableBatchJobOption(WaitValue);
         /// <summary> Determines if two <see cref="DisableBatchJobOption"/> values are the same. </summary>
         public static bool operator ==(DisableBatchJobOption left, DisableBatchJobOption right) => left.Equals(right);

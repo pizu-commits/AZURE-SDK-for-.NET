@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary>
-    /// The clinical trials that the patient(s) should be matched to.
-    /// The trial selection can be given as a list of custom clinical trials and/or a list of filters to known clinical trial registries.
-    /// In case both are given, the resulting trial set is a union of the two sets.
-    /// </summary>
+    /// <summary> The ClinicalTrials. </summary>
     public partial class ClinicalTrials
     {
         /// <summary>
@@ -57,11 +53,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrials"/>. </summary>
-        /// <param name="customTrials"> A list of clinical trials. </param>
-        /// <param name="registryFilters">
-        /// A list of filters, each one creating a selection of trials from a given
-        /// clinical trial registry.
-        /// </param>
+        /// <param name="customTrials"></param>
+        /// <param name="registryFilters"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalTrials(IList<ClinicalTrialDetails> customTrials, IList<ClinicalTrialRegistryFilter> registryFilters, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,12 +63,9 @@ namespace Azure.Health.Insights.ClinicalMatching
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A list of clinical trials. </summary>
+        /// <summary> Gets the custom trials. </summary>
         public IList<ClinicalTrialDetails> CustomTrials { get; }
-        /// <summary>
-        /// A list of filters, each one creating a selection of trials from a given
-        /// clinical trial registry.
-        /// </summary>
+        /// <summary> Gets the registry filters. </summary>
         public IList<ClinicalTrialRegistryFilter> RegistryFilters { get; }
     }
 }

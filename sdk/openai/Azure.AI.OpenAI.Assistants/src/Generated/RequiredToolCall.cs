@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.OpenAI.Assistants
 {
     /// <summary>
-    /// An abstract representation a a tool invocation needed by the model to continue a run.
+    /// The RequiredToolCall.
     /// Please note <see cref="RequiredToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="RequiredFunctionToolCall"/>.
     /// </summary>
@@ -50,7 +50,7 @@ namespace Azure.AI.OpenAI.Assistants
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RequiredToolCall"/>. </summary>
-        /// <param name="id"> The ID of the tool call. This ID must be referenced when submitting tool outputs. </param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         protected RequiredToolCall(string id)
         {
@@ -60,8 +60,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RequiredToolCall"/>. </summary>
-        /// <param name="type"> The object type for the required tool call. </param>
-        /// <param name="id"> The ID of the tool call. This ID must be referenced when submitting tool outputs. </param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RequiredToolCall(string type, string id, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The object type for the required tool call. </summary>
+        /// <summary> Gets or sets the type. </summary>
         internal string Type { get; set; }
-        /// <summary> The ID of the tool call. This ID must be referenced when submitting tool outputs. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
     }
 }

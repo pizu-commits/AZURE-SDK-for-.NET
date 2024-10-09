@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> A metadata for numeric entity instances. </summary>
+    /// <summary> The NumberMetadata. </summary>
     public partial class NumberMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="NumberMetadata"/>. </summary>
-        /// <param name="numberKind"> Kind of the number type. </param>
-        /// <param name="value"> A numeric representation of what the extracted text denotes. </param>
+        /// <param name="numberKind"></param>
+        /// <param name="value"></param>
         internal NumberMetadata(NumberKind numberKind, double value)
         {
             MetadataKind = MetadataKind.NumberMetadata;
@@ -24,10 +24,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="NumberMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="numberKind"> Kind of the number type. </param>
-        /// <param name="value"> A numeric representation of what the extracted text denotes. </param>
+        /// <param name="numberKind"></param>
+        /// <param name="value"></param>
         internal NumberMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, NumberKind numberKind, double value) : base(metadataKind, serializedAdditionalRawData)
         {
             NumberKind = numberKind;
@@ -39,9 +39,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Kind of the number type. </summary>
+        /// <summary> Gets the number kind. </summary>
         public NumberKind NumberKind { get; }
-        /// <summary> A numeric representation of what the extracted text denotes. </summary>
+        /// <summary> Gets the value. </summary>
         public double Value { get; }
     }
 }

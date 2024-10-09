@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Batch document analysis result. </summary>
+    /// <summary> The AnalyzeBatchResult. </summary>
     public partial class AnalyzeBatchResult
     {
         /// <summary>
@@ -47,10 +47,10 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeBatchResult"/>. </summary>
-        /// <param name="succeededCount"> Number of documents that completed with status succeeded. </param>
-        /// <param name="failedCount"> Number of documents that completed with status failed. </param>
-        /// <param name="skippedCount"> Number of documents that completed with status skipped. </param>
-        /// <param name="details"> Operation detail for each document in the batch. </param>
+        /// <param name="succeededCount"></param>
+        /// <param name="failedCount"></param>
+        /// <param name="skippedCount"></param>
+        /// <param name="details"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="details"/> is null. </exception>
         internal AnalyzeBatchResult(int succeededCount, int failedCount, int skippedCount, IEnumerable<AnalyzeBatchOperationDetail> details)
         {
@@ -63,10 +63,10 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeBatchResult"/>. </summary>
-        /// <param name="succeededCount"> Number of documents that completed with status succeeded. </param>
-        /// <param name="failedCount"> Number of documents that completed with status failed. </param>
-        /// <param name="skippedCount"> Number of documents that completed with status skipped. </param>
-        /// <param name="details"> Operation detail for each document in the batch. </param>
+        /// <param name="succeededCount"></param>
+        /// <param name="failedCount"></param>
+        /// <param name="skippedCount"></param>
+        /// <param name="details"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeBatchResult(int succeededCount, int failedCount, int skippedCount, IReadOnlyList<AnalyzeBatchOperationDetail> details, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Number of documents that completed with status succeeded. </summary>
+        /// <summary> Gets the succeeded count. </summary>
         public int SucceededCount { get; }
-        /// <summary> Number of documents that completed with status failed. </summary>
+        /// <summary> Gets the failed count. </summary>
         public int FailedCount { get; }
-        /// <summary> Number of documents that completed with status skipped. </summary>
+        /// <summary> Gets the skipped count. </summary>
         public int SkippedCount { get; }
-        /// <summary> Operation detail for each document in the batch. </summary>
+        /// <summary> Gets the details. </summary>
         public IReadOnlyList<AnalyzeBatchOperationDetail> Details { get; }
     }
 }

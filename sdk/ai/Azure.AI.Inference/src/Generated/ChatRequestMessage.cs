@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Inference
 {
     /// <summary>
-    /// An abstract representation of a chat message as provided in a request.
+    /// The ChatRequestMessage.
     /// Please note <see cref="ChatRequestMessage"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ChatRequestAssistantMessage"/>, <see cref="ChatRequestSystemMessage"/>, <see cref="ChatRequestToolMessage"/> and <see cref="ChatRequestUserMessage"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatRequestMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with this message. </param>
+        /// <param name="role"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatRequestMessage(ChatRole role, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Inference
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The chat role associated with this message. </summary>
+        /// <summary> Gets or sets the role. </summary>
         internal ChatRole Role { get; set; }
     }
 }

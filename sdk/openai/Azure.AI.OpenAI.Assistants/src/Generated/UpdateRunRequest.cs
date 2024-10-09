@@ -52,7 +52,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="UpdateRunRequest"/>. </summary>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UpdateRunRequest(IReadOnlyDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.AI.OpenAI.Assistants
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
     }
 }

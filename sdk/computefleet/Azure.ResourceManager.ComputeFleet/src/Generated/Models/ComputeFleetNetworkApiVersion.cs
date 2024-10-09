@@ -10,11 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// specifies the Microsoft.Network API version used when creating networking
-    /// resources in the Network Interface Configurations for Virtual Machine Scale Set
-    /// with orchestration mode 'Flexible'
-    /// </summary>
+    /// <summary> The ComputeFleetNetworkApiVersion. </summary>
     public readonly partial struct ComputeFleetNetworkApiVersion : IEquatable<ComputeFleetNetworkApiVersion>
     {
         private readonly string _value;
@@ -28,7 +24,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
 
         private const string V20201101Value = "2020-11-01";
 
-        /// <summary> Initial version supported. Later versions are supported as well. </summary>
+        /// <summary> 2020-11-01. </summary>
         public static ComputeFleetNetworkApiVersion V20201101 { get; } = new ComputeFleetNetworkApiVersion(V20201101Value);
         /// <summary> Determines if two <see cref="ComputeFleetNetworkApiVersion"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetNetworkApiVersion left, ComputeFleetNetworkApiVersion right) => left.Equals(right);

@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// The settings for an authentication token that the Task can use to perform Batch
-    /// service operations.
-    /// </summary>
+    /// <summary> The AuthenticationTokenSettings. </summary>
     public partial class AuthenticationTokenSettings
     {
         /// <summary>
@@ -55,7 +52,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="AuthenticationTokenSettings"/>. </summary>
-        /// <param name="access"> The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. </param>
+        /// <param name="access"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AuthenticationTokenSettings(IList<AccessScope> access, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +60,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. </summary>
+        /// <summary> Gets the access. </summary>
         public IList<AccessScope> Access { get; }
     }
 }

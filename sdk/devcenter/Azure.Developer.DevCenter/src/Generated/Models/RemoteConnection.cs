@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Provides remote connection information for a Dev Box. </summary>
+    /// <summary> The RemoteConnection. </summary>
     public partial class RemoteConnection
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="RemoteConnection"/>. </summary>
-        /// <param name="webUri"> URL to open a browser based RDP session. </param>
-        /// <param name="rdpConnectionUri"> Link to open a Remote Desktop session. </param>
+        /// <param name="webUri"></param>
+        /// <param name="rdpConnectionUri"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RemoteConnection(Uri webUri, Uri rdpConnectionUri, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Developer.DevCenter.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> URL to open a browser based RDP session. </summary>
+        /// <summary> Gets the web uri. </summary>
         public Uri WebUri { get; }
-        /// <summary> Link to open a Remote Desktop session. </summary>
+        /// <summary> Gets the rdp connection uri. </summary>
         public Uri RdpConnectionUri { get; }
     }
 }

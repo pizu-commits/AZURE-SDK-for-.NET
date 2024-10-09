@@ -49,7 +49,7 @@ namespace Azure.ResourceManager.Fabric.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -61,7 +61,7 @@ namespace Azure.ResourceManager.Fabric.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="capacityName"> The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. </param>
+        /// <param name="capacityName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="capacityName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="capacityName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -80,7 +80,7 @@ namespace Azure.ResourceManager.Fabric.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -92,7 +92,7 @@ namespace Azure.ResourceManager.Fabric.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="capacityName"> The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. </param>
+        /// <param name="capacityName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="capacityName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="capacityName"/> is an empty string, and was expected to be non-empty. </exception>

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Captures time-boundary details. </summary>
+    /// <summary> The TimeBoundary. </summary>
     public partial class TimeBoundary
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="TimeBoundary"/>. </summary>
-        /// <param name="endTime"> The end of the time boundary. </param>
-        /// <param name="startTime"> The start of the time boundary. </param>
-        /// <param name="timeZone"> The timezone of the time boundary. </param>
+        /// <param name="endTime"></param>
+        /// <param name="startTime"></param>
+        /// <param name="timeZone"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TimeBoundary(string endTime, string startTime, string timeZone, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The end of the time boundary. </summary>
+        /// <summary> Gets or sets the end time. </summary>
         public string EndTime { get; set; }
-        /// <summary> The start of the time boundary. </summary>
+        /// <summary> Gets or sets the start time. </summary>
         public string StartTime { get; set; }
-        /// <summary> The timezone of the time boundary. </summary>
+        /// <summary> Gets or sets the time zone. </summary>
         public string TimeZone { get; set; }
     }
 }

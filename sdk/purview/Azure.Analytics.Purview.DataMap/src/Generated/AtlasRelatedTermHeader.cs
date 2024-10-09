@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The header of the related term. </summary>
+    /// <summary> The AtlasRelatedTermHeader. </summary>
     public partial class AtlasRelatedTermHeader
     {
         /// <summary>
@@ -51,13 +51,13 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasRelatedTermHeader"/>. </summary>
-        /// <param name="description"> The description of the related term. </param>
-        /// <param name="displayText"> The display text. </param>
-        /// <param name="expression"> The expression of the term. </param>
-        /// <param name="relationGuid"> The GUID of the relationship. </param>
-        /// <param name="status"> The status of term relationship. </param>
-        /// <param name="steward"> The steward of the term. </param>
-        /// <param name="termGuid"> The GUID of the term. </param>
+        /// <param name="description"></param>
+        /// <param name="displayText"></param>
+        /// <param name="expression"></param>
+        /// <param name="relationGuid"></param>
+        /// <param name="status"></param>
+        /// <param name="steward"></param>
+        /// <param name="termGuid"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasRelatedTermHeader(string description, string displayText, string expression, string relationGuid, AtlasTermRelationshipStatus? status, string steward, string termGuid, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,19 +71,19 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The description of the related term. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary> The expression of the term. </summary>
+        /// <summary> Gets or sets the expression. </summary>
         public string Expression { get; set; }
-        /// <summary> The GUID of the relationship. </summary>
+        /// <summary> Gets or sets the relation guid. </summary>
         public string RelationGuid { get; set; }
-        /// <summary> The status of term relationship. </summary>
+        /// <summary> Gets or sets the status. </summary>
         public AtlasTermRelationshipStatus? Status { get; set; }
-        /// <summary> The steward of the term. </summary>
+        /// <summary> Gets or sets the steward. </summary>
         public string Steward { get; set; }
-        /// <summary> The GUID of the term. </summary>
+        /// <summary> Gets or sets the term guid. </summary>
         public string TermGuid { get; set; }
     }
 }

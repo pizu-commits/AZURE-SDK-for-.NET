@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Response for detect API. </summary>
+    /// <summary> The FaceDetectionResult. </summary>
     public partial class FaceDetectionResult
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FaceDetectionResult"/>. </summary>
-        /// <param name="faceRectangle"> A rectangle area for the face location on image. </param>
+        /// <param name="faceRectangle"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceRectangle"/> is null. </exception>
         internal FaceDetectionResult(FaceRectangle faceRectangle)
         {
@@ -56,11 +56,11 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="FaceDetectionResult"/>. </summary>
-        /// <param name="faceId"> Unique faceId of the detected face, created by detection API and it will expire 24 hours after the detection call. To return this, it requires 'returnFaceId' parameter to be true. </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with this faceId. This is only returned when 'returnRecognitionModel' is explicitly set as true. </param>
-        /// <param name="faceRectangle"> A rectangle area for the face location on image. </param>
-        /// <param name="faceLandmarks"> An array of 27-point face landmarks pointing to the important positions of face components. To return this, it requires 'returnFaceLandmarks' parameter to be true. </param>
-        /// <param name="faceAttributes"> Face attributes for detected face. </param>
+        /// <param name="faceId"></param>
+        /// <param name="recognitionModel"></param>
+        /// <param name="faceRectangle"></param>
+        /// <param name="faceLandmarks"></param>
+        /// <param name="faceAttributes"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FaceDetectionResult(Guid? faceId, FaceRecognitionModel? recognitionModel, FaceRectangle faceRectangle, FaceLandmarks faceLandmarks, FaceAttributes faceAttributes, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,15 +77,15 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> Unique faceId of the detected face, created by detection API and it will expire 24 hours after the detection call. To return this, it requires 'returnFaceId' parameter to be true. </summary>
+        /// <summary> Gets the face id. </summary>
         public Guid? FaceId { get; }
-        /// <summary> The 'recognitionModel' associated with this faceId. This is only returned when 'returnRecognitionModel' is explicitly set as true. </summary>
+        /// <summary> Gets the recognition model. </summary>
         public FaceRecognitionModel? RecognitionModel { get; }
-        /// <summary> A rectangle area for the face location on image. </summary>
+        /// <summary> Gets the face rectangle. </summary>
         public FaceRectangle FaceRectangle { get; }
-        /// <summary> An array of 27-point face landmarks pointing to the important positions of face components. To return this, it requires 'returnFaceLandmarks' parameter to be true. </summary>
+        /// <summary> Gets the face landmarks. </summary>
         public FaceLandmarks FaceLandmarks { get; }
-        /// <summary> Face attributes for detected face. </summary>
+        /// <summary> Gets the face attributes. </summary>
         public FaceAttributes FaceAttributes { get; }
     }
 }

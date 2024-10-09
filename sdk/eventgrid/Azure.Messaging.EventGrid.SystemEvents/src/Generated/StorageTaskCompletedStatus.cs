@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The status for a storage task. </summary>
+    /// <summary> The StorageTaskCompletedStatus. </summary>
     public readonly partial struct StorageTaskCompletedStatus : IEquatable<StorageTaskCompletedStatus>
     {
         private readonly string _value;

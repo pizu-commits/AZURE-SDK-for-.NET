@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Batch document analysis parameters. </summary>
+    /// <summary> The AnalyzeBatchDocumentsContent. </summary>
     public partial class AnalyzeBatchDocumentsContent
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeBatchDocumentsContent"/>. </summary>
-        /// <param name="resultContainerUrl"> Azure Blob Storage container URL where analyze result files will be stored. </param>
+        /// <param name="resultContainerUrl"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resultContainerUrl"/> is null. </exception>
         public AnalyzeBatchDocumentsContent(Uri resultContainerUrl)
         {
@@ -56,17 +56,11 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeBatchDocumentsContent"/>. </summary>
-        /// <param name="azureBlobSource">
-        /// Azure Blob Storage location containing the batch documents.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </param>
-        /// <param name="azureBlobFileListSource">
-        /// Azure Blob Storage file list specifying the batch documents.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </param>
-        /// <param name="resultContainerUrl"> Azure Blob Storage container URL where analyze result files will be stored. </param>
-        /// <param name="resultPrefix"> Blob name prefix of result files. </param>
-        /// <param name="overwriteExisting"> Overwrite existing analyze result files?. </param>
+        /// <param name="azureBlobSource"></param>
+        /// <param name="azureBlobFileListSource"></param>
+        /// <param name="resultContainerUrl"></param>
+        /// <param name="resultPrefix"></param>
+        /// <param name="overwriteExisting"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeBatchDocumentsContent(AzureBlobContentSource azureBlobSource, AzureBlobFileListContentSource azureBlobFileListSource, Uri resultContainerUrl, string resultPrefix, bool? overwriteExisting, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,21 +77,15 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary>
-        /// Azure Blob Storage location containing the batch documents.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </summary>
+        /// <summary> Gets or sets the azure blob source. </summary>
         public AzureBlobContentSource AzureBlobSource { get; set; }
-        /// <summary>
-        /// Azure Blob Storage file list specifying the batch documents.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </summary>
+        /// <summary> Gets or sets the azure blob file list source. </summary>
         public AzureBlobFileListContentSource AzureBlobFileListSource { get; set; }
-        /// <summary> Azure Blob Storage container URL where analyze result files will be stored. </summary>
+        /// <summary> Gets the result container url. </summary>
         public Uri ResultContainerUrl { get; }
-        /// <summary> Blob name prefix of result files. </summary>
+        /// <summary> Gets or sets the result prefix. </summary>
         public string ResultPrefix { get; set; }
-        /// <summary> Overwrite existing analyze result files?. </summary>
+        /// <summary> Gets or sets the overwrite existing. </summary>
         public bool? OverwriteExisting { get; set; }
     }
 }

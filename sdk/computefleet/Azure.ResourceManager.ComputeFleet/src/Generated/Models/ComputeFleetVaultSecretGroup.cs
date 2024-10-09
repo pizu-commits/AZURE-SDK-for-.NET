@@ -12,7 +12,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a set of certificates which are all in the same Key Vault. </summary>
+    /// <summary> The ComputeFleetVaultSecretGroup. </summary>
     public partial class ComputeFleetVaultSecretGroup
     {
         /// <summary>
@@ -54,11 +54,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVaultSecretGroup"/>. </summary>
-        /// <param name="sourceVault">
-        /// The relative URL of the Key Vault containing all of the certificates in
-        /// VaultCertificates.
-        /// </param>
-        /// <param name="vaultCertificates"> The list of key vault references in SourceVault which contain certificates. </param>
+        /// <param name="sourceVault"> Gets or sets the source vault. </param>
+        /// <param name="vaultCertificates"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVaultSecretGroup(WritableSubResource sourceVault, IList<ComputeFleetVaultCertificate> vaultCertificates, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,10 +64,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// The relative URL of the Key Vault containing all of the certificates in
-        /// VaultCertificates.
-        /// </summary>
+        /// <summary> Gets or sets the source vault. </summary>
         internal WritableSubResource SourceVault { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier SourceVaultId
@@ -84,7 +78,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary> The list of key vault references in SourceVault which contain certificates. </summary>
+        /// <summary> Gets the vault certificates. </summary>
         public IList<ComputeFleetVaultCertificate> VaultCertificates { get; }
     }
 }

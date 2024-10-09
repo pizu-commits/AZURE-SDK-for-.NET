@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The concrete entity Subtype model of extra information. </summary>
+    /// <summary> The EntitySubtype. </summary>
     public partial class EntitySubtype : ConversationEntityExtraInformation
     {
         /// <summary> Initializes a new instance of <see cref="EntitySubtype"/>. </summary>
@@ -21,19 +21,19 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="EntitySubtype"/>. </summary>
-        /// <param name="extraInformationKind"> The extra information object kind. </param>
+        /// <param name="extraInformationKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> The Subtype of an extracted entity type. </param>
-        /// <param name="tags"> List of entity tags. Tags express similarities between entity categories for the extracted entity type. </param>
+        /// <param name="value"></param>
+        /// <param name="tags"></param>
         internal EntitySubtype(ExtraInformationKind extraInformationKind, IDictionary<string, BinaryData> serializedAdditionalRawData, string value, IReadOnlyList<EntityTag> tags) : base(extraInformationKind, serializedAdditionalRawData)
         {
             Value = value;
             Tags = tags;
         }
 
-        /// <summary> The Subtype of an extracted entity type. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
-        /// <summary> List of entity tags. Tags express similarities between entity categories for the extracted entity type. </summary>
+        /// <summary> Gets the tags. </summary>
         public IReadOnlyList<EntityTag> Tags { get; }
     }
 }

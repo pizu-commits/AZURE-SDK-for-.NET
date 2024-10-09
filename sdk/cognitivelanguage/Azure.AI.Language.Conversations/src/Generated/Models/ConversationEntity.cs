@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The entity extraction result of a Conversation project. </summary>
+    /// <summary> The ConversationEntity. </summary>
     public partial class ConversationEntity
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationEntity"/>. </summary>
-        /// <param name="category"> The entity category. </param>
-        /// <param name="text"> The predicted entity text. </param>
-        /// <param name="offset"> The starting index of this entity in the query. </param>
-        /// <param name="length"> The length of the text. </param>
-        /// <param name="confidence"> The entity confidence score. </param>
+        /// <param name="category"></param>
+        /// <param name="text"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="category"/> or <paramref name="text"/> is null. </exception>
         internal ConversationEntity(string category, string text, int offset, int length, float confidence)
         {
@@ -67,18 +67,16 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationEntity"/>. </summary>
-        /// <param name="category"> The entity category. </param>
-        /// <param name="text"> The predicted entity text. </param>
-        /// <param name="offset"> The starting index of this entity in the query. </param>
-        /// <param name="length"> The length of the text. </param>
-        /// <param name="confidence"> The entity confidence score. </param>
+        /// <param name="category"></param>
+        /// <param name="text"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="confidence"></param>
         /// <param name="resolutions">
-        /// The collection of entity resolution objects.
         /// Please note <see cref="ResolutionBase"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AgeResolution"/>, <see cref="AreaResolution"/>, <see cref="BooleanResolution"/>, <see cref="CurrencyResolution"/>, <see cref="DateTimeResolution"/>, <see cref="InformationResolution"/>, <see cref="LengthResolution"/>, <see cref="NumberResolution"/>, <see cref="NumericRangeResolution"/>, <see cref="OrdinalResolution"/>, <see cref="SpeedResolution"/>, <see cref="TemperatureResolution"/>, <see cref="TemporalSpanResolution"/>, <see cref="VolumeResolution"/> and <see cref="WeightResolution"/>.
         /// </param>
         /// <param name="extraInformation">
-        /// The collection of entity extra information objects.
         /// Please note <see cref="ConversationEntityExtraInformation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="EntitySubtype"/>, <see cref="ListKey"/> and <see cref="RegexKey"/>.
         /// </param>
@@ -100,24 +98,24 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The entity category. </summary>
+        /// <summary> Gets the category. </summary>
         public string Category { get; }
-        /// <summary> The predicted entity text. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The starting index of this entity in the query. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> The length of the text. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
-        /// <summary> The entity confidence score. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
         /// <summary>
-        /// The collection of entity resolution objects.
+        /// Gets the resolutions
         /// Please note <see cref="ResolutionBase"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AgeResolution"/>, <see cref="AreaResolution"/>, <see cref="BooleanResolution"/>, <see cref="CurrencyResolution"/>, <see cref="DateTimeResolution"/>, <see cref="InformationResolution"/>, <see cref="LengthResolution"/>, <see cref="NumberResolution"/>, <see cref="NumericRangeResolution"/>, <see cref="OrdinalResolution"/>, <see cref="SpeedResolution"/>, <see cref="TemperatureResolution"/>, <see cref="TemporalSpanResolution"/>, <see cref="VolumeResolution"/> and <see cref="WeightResolution"/>.
         /// </summary>
         public IReadOnlyList<ResolutionBase> Resolutions { get; }
         /// <summary>
-        /// The collection of entity extra information objects.
+        /// Gets the extra information
         /// Please note <see cref="ConversationEntityExtraInformation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="EntitySubtype"/>, <see cref="ListKey"/> and <see cref="RegexKey"/>.
         /// </summary>

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The managed disk parameters. </summary>
+    /// <summary> The ManagedDisk. </summary>
     public partial class ManagedDisk
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ManagedDisk"/>. </summary>
-        /// <param name="storageAccountType"> The storage account type for managed disk. </param>
+        /// <param name="storageAccountType"></param>
         public ManagedDisk(StorageAccountType storageAccountType)
         {
             StorageAccountType = storageAccountType;
         }
 
         /// <summary> Initializes a new instance of <see cref="ManagedDisk"/>. </summary>
-        /// <param name="storageAccountType"> The storage account type for managed disk. </param>
+        /// <param name="storageAccountType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ManagedDisk(StorageAccountType storageAccountType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The storage account type for managed disk. </summary>
+        /// <summary> Gets or sets the storage account type. </summary>
         public StorageAccountType StorageAccountType { get; set; }
     }
 }

@@ -10,14 +10,14 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A rule providing inline expression rules. </summary>
+    /// <summary> The ExpressionRouterRule. </summary>
     public partial class ExpressionRouterRule : RouterRule
     {
         /// <summary> Initializes a new instance of <see cref="ExpressionRouterRule"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of RouterRule. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="language"> The expression language to compile to and execute. </param>
-        /// <param name="expression"> An expression to evaluate. Should contain return statement with calculated values. </param>
+        /// <param name="language"></param>
+        /// <param name="expression"></param>
         internal ExpressionRouterRule(RouterRuleKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, string language, string expression) : base(kind, serializedAdditionalRawData)
         {
             Language = language;
@@ -28,7 +28,7 @@ namespace Azure.Communication.JobRouter
         internal ExpressionRouterRule()
         {
         }
-        /// <summary> An expression to evaluate. Should contain return statement with calculated values. </summary>
+        /// <summary> Gets the expression. </summary>
         public string Expression { get; }
     }
 }

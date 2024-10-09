@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Contains information about an application in an Azure Batch Account. </summary>
+    /// <summary> The BatchApplication. </summary>
     public partial class BatchApplication
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchApplication"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the application within the Account. </param>
-        /// <param name="displayName"> The display name for the application. </param>
-        /// <param name="versions"> The list of available versions of the application. </param>
+        /// <param name="id"></param>
+        /// <param name="displayName"></param>
+        /// <param name="versions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="displayName"/> or <paramref name="versions"/> is null. </exception>
         internal BatchApplication(string id, string displayName, IEnumerable<string> versions)
         {
@@ -63,9 +63,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchApplication"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the application within the Account. </param>
-        /// <param name="displayName"> The display name for the application. </param>
-        /// <param name="versions"> The list of available versions of the application. </param>
+        /// <param name="id"></param>
+        /// <param name="displayName"></param>
+        /// <param name="versions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchApplication(string id, string displayName, IReadOnlyList<string> versions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,11 +80,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A string that uniquely identifies the application within the Account. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The display name for the application. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The list of available versions of the application. </summary>
+        /// <summary> Gets the versions. </summary>
         public IReadOnlyList<string> Versions { get; }
     }
 }

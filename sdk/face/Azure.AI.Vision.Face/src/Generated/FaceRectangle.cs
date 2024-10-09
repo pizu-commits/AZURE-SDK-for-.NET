@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> A rectangle within which a face can be found. </summary>
+    /// <summary> The FaceRectangle. </summary>
     public partial class FaceRectangle
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FaceRectangle"/>. </summary>
-        /// <param name="top"> The distance from the top edge if the image to the top edge of the rectangle, in pixels. </param>
-        /// <param name="left"> The distance from the left edge if the image to the left edge of the rectangle, in pixels. </param>
-        /// <param name="width"> The width of the rectangle, in pixels. </param>
-        /// <param name="height"> The height of the rectangle, in pixels. </param>
+        /// <param name="top"></param>
+        /// <param name="left"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         internal FaceRectangle(int top, int left, int width, int height)
         {
             Top = top;
@@ -59,10 +59,10 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="FaceRectangle"/>. </summary>
-        /// <param name="top"> The distance from the top edge if the image to the top edge of the rectangle, in pixels. </param>
-        /// <param name="left"> The distance from the left edge if the image to the left edge of the rectangle, in pixels. </param>
-        /// <param name="width"> The width of the rectangle, in pixels. </param>
-        /// <param name="height"> The height of the rectangle, in pixels. </param>
+        /// <param name="top"></param>
+        /// <param name="left"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FaceRectangle(int top, int left, int width, int height, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The distance from the top edge if the image to the top edge of the rectangle, in pixels. </summary>
+        /// <summary> Gets the top. </summary>
         public int Top { get; }
-        /// <summary> The distance from the left edge if the image to the left edge of the rectangle, in pixels. </summary>
+        /// <summary> Gets the left. </summary>
         public int Left { get; }
-        /// <summary> The width of the rectangle, in pixels. </summary>
+        /// <summary> Gets the width. </summary>
         public int Width { get; }
-        /// <summary> The height of the rectangle, in pixels. </summary>
+        /// <summary> Gets the height. </summary>
         public int Height { get; }
     }
 }

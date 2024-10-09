@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Results of the model's work for a single patient. </summary>
+    /// <summary> The RadiologyInsightsPatientResult. </summary>
     public partial class RadiologyInsightsPatientResult
     {
         /// <summary>
@@ -47,9 +47,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsPatientResult"/>. </summary>
-        /// <param name="patientId"> Identifier given for the patient in the request. </param>
+        /// <param name="patientId"></param>
         /// <param name="inferences">
-        /// The model's inferences for the given patient.
         /// Please note <see cref="RadiologyInsightsInference"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AgeMismatchInference"/>, <see cref="CompleteOrderDiscrepancyInference"/>, <see cref="CriticalResultInference"/>, <see cref="FindingInference"/>, <see cref="FollowupCommunicationInference"/>, <see cref="FollowupRecommendationInference"/>, <see cref="LateralityDiscrepancyInference"/>, <see cref="LimitedOrderDiscrepancyInference"/>, <see cref="RadiologyProcedureInference"/> and <see cref="SexMismatchInference"/>.
         /// </param>
@@ -64,9 +63,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsPatientResult"/>. </summary>
-        /// <param name="patientId"> Identifier given for the patient in the request. </param>
+        /// <param name="patientId"></param>
         /// <param name="inferences">
-        /// The model's inferences for the given patient.
         /// Please note <see cref="RadiologyInsightsInference"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AgeMismatchInference"/>, <see cref="CompleteOrderDiscrepancyInference"/>, <see cref="CriticalResultInference"/>, <see cref="FindingInference"/>, <see cref="FollowupCommunicationInference"/>, <see cref="FollowupRecommendationInference"/>, <see cref="LateralityDiscrepancyInference"/>, <see cref="LimitedOrderDiscrepancyInference"/>, <see cref="RadiologyProcedureInference"/> and <see cref="SexMismatchInference"/>.
         /// </param>
@@ -83,10 +81,10 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Identifier given for the patient in the request. </summary>
+        /// <summary> Gets the patient id. </summary>
         public string PatientId { get; }
         /// <summary>
-        /// The model's inferences for the given patient.
+        /// Gets the inferences
         /// Please note <see cref="RadiologyInsightsInference"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AgeMismatchInference"/>, <see cref="CompleteOrderDiscrepancyInference"/>, <see cref="CriticalResultInference"/>, <see cref="FindingInference"/>, <see cref="FollowupCommunicationInference"/>, <see cref="FollowupRecommendationInference"/>, <see cref="LateralityDiscrepancyInference"/>, <see cref="LimitedOrderDiscrepancyInference"/>, <see cref="RadiologyProcedureInference"/> and <see cref="SexMismatchInference"/>.
         /// </summary>

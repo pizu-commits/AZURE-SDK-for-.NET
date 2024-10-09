@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Analytics.Defender.Easm
 {
     /// <summary>
-    /// The items in the current page of results.
+    /// The AssetResource.
     /// Please note <see cref="AssetResource"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="AsAssetResource"/>, <see cref="ContactAssetResource"/>, <see cref="DomainAssetResource"/>, <see cref="HostAssetResource"/>, <see cref="IpAddressAssetResource"/>, <see cref="IpBlockAssetResource"/>, <see cref="PageAssetResource"/> and <see cref="SslCertAssetResource"/>.
     /// </summary>
@@ -57,19 +57,19 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="AssetResource"/>. </summary>
-        /// <param name="kind"> Discriminator property for AssetResource. </param>
-        /// <param name="id"> The system generated unique id for the resource. </param>
-        /// <param name="name"> The caller provided unique name for the resource. </param>
-        /// <param name="displayName"> The name that can be used for display purposes. </param>
-        /// <param name="uuid"> Global UUID for the asset. </param>
-        /// <param name="createdDate"> The date this asset was first added to this workspace. </param>
-        /// <param name="updatedDate"> The date this asset was last updated for this workspace. </param>
+        /// <param name="kind"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
+        /// <param name="uuid"></param>
+        /// <param name="createdDate"></param>
+        /// <param name="updatedDate"></param>
         /// <param name="state"></param>
-        /// <param name="externalId"> An optional customer provided identifier for this asset. </param>
-        /// <param name="labels"> Customer labels assigned to this asset. </param>
-        /// <param name="wildcard"> An indicator of whether this asset represents a wildcard rollup of assets on this domain. </param>
-        /// <param name="discoGroupName"> The name of the DiscoGroup that brought added this asset to the workspace. </param>
-        /// <param name="auditTrail"> The history of how this asset was pulled into the workspace through the discovery process. </param>
+        /// <param name="externalId"></param>
+        /// <param name="labels"></param>
+        /// <param name="wildcard"></param>
+        /// <param name="discoGroupName"></param>
+        /// <param name="auditTrail"></param>
         /// <param name="reason"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AssetResource(string kind, string id, string name, string displayName, Guid? uuid, DateTimeOffset? createdDate, DateTimeOffset? updatedDate, AssetState? state, string externalId, IReadOnlyList<string> labels, bool? wildcard, string discoGroupName, IReadOnlyList<AuditTrailItem> auditTrail, string reason, IDictionary<string, BinaryData> serializedAdditionalRawData)
@@ -91,31 +91,31 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Discriminator property for AssetResource. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal string Kind { get; set; }
-        /// <summary> The system generated unique id for the resource. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The caller provided unique name for the resource. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The name that can be used for display purposes. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> Global UUID for the asset. </summary>
+        /// <summary> Gets the uuid. </summary>
         public Guid? Uuid { get; }
-        /// <summary> The date this asset was first added to this workspace. </summary>
+        /// <summary> Gets the created date. </summary>
         public DateTimeOffset? CreatedDate { get; }
-        /// <summary> The date this asset was last updated for this workspace. </summary>
+        /// <summary> Gets the updated date. </summary>
         public DateTimeOffset? UpdatedDate { get; }
         /// <summary> Gets the state. </summary>
         public AssetState? State { get; }
-        /// <summary> An optional customer provided identifier for this asset. </summary>
+        /// <summary> Gets the external id. </summary>
         public string ExternalId { get; }
-        /// <summary> Customer labels assigned to this asset. </summary>
+        /// <summary> Gets the labels. </summary>
         public IReadOnlyList<string> Labels { get; }
-        /// <summary> An indicator of whether this asset represents a wildcard rollup of assets on this domain. </summary>
+        /// <summary> Gets the wildcard. </summary>
         public bool? Wildcard { get; }
-        /// <summary> The name of the DiscoGroup that brought added this asset to the workspace. </summary>
+        /// <summary> Gets the disco group name. </summary>
         public string DiscoGroupName { get; }
-        /// <summary> The history of how this asset was pulled into the workspace through the discovery process. </summary>
+        /// <summary> Gets the audit trail. </summary>
         public IReadOnlyList<AuditTrailItem> AuditTrail { get; }
         /// <summary> Gets the reason. </summary>
         public string Reason { get; }

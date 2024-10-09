@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A person's age, given as a number (value) and a unit (e.g. years, months). </summary>
+    /// <summary> The AcceptedAge. </summary>
     public partial class AcceptedAge
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcceptedAge"/>. </summary>
-        /// <param name="unit"> Possible units for a person's age. </param>
-        /// <param name="value"> The number of years/months/days that represents the person's age. </param>
+        /// <param name="unit"></param>
+        /// <param name="value"></param>
         public AcceptedAge(AgeUnit unit, float value)
         {
             Unit = unit;
@@ -55,8 +55,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="AcceptedAge"/>. </summary>
-        /// <param name="unit"> Possible units for a person's age. </param>
-        /// <param name="value"> The number of years/months/days that represents the person's age. </param>
+        /// <param name="unit"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcceptedAge(AgeUnit unit, float value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> Possible units for a person's age. </summary>
+        /// <summary> Gets the unit. </summary>
         public AgeUnit Unit { get; }
-        /// <summary> The number of years/months/days that represents the person's age. </summary>
+        /// <summary> Gets the value. </summary>
         public float Value { get; }
     }
 }

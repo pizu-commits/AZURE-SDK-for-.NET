@@ -11,12 +11,12 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.SMSDeliveryReportReceived event. </summary>
+    /// <summary> The AcsSmsDeliveryReportReceivedEventData. </summary>
     public partial class AcsSmsDeliveryReportReceivedEventData : AcsSmsEventBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsSmsDeliveryReportReceivedEventData"/>. </summary>
-        /// <param name="deliveryAttempts"> List of details of delivery attempts made. </param>
-        /// <param name="receivedTimestamp"> The time at which the SMS delivery report was received. </param>
+        /// <param name="deliveryAttempts"></param>
+        /// <param name="receivedTimestamp"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="deliveryAttempts"/> is null. </exception>
         internal AcsSmsDeliveryReportReceivedEventData(IEnumerable<AcsSmsDeliveryAttemptProperties> deliveryAttempts, DateTimeOffset receivedTimestamp)
         {
@@ -27,15 +27,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsSmsDeliveryReportReceivedEventData"/>. </summary>
-        /// <param name="messageId"> The identity of the SMS message. </param>
-        /// <param name="from"> The identity of SMS message sender. </param>
-        /// <param name="to"> The identity of SMS message receiver. </param>
+        /// <param name="messageId"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="deliveryStatus"> Status of Delivery. </param>
-        /// <param name="deliveryStatusDetails"> Details about Delivery Status. </param>
-        /// <param name="deliveryAttempts"> List of details of delivery attempts made. </param>
-        /// <param name="receivedTimestamp"> The time at which the SMS delivery report was received. </param>
-        /// <param name="tag"> Customer Content. </param>
+        /// <param name="deliveryStatus"></param>
+        /// <param name="deliveryStatusDetails"></param>
+        /// <param name="deliveryAttempts"></param>
+        /// <param name="receivedTimestamp"></param>
+        /// <param name="tag"></param>
         internal AcsSmsDeliveryReportReceivedEventData(string messageId, string @from, string to, IDictionary<string, BinaryData> serializedAdditionalRawData, string deliveryStatus, string deliveryStatusDetails, IReadOnlyList<AcsSmsDeliveryAttemptProperties> deliveryAttempts, DateTimeOffset receivedTimestamp, string tag) : base(messageId, @from, to, serializedAdditionalRawData)
         {
             DeliveryStatus = deliveryStatus;
@@ -50,15 +50,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Status of Delivery. </summary>
+        /// <summary> Gets the delivery status. </summary>
         public string DeliveryStatus { get; }
-        /// <summary> Details about Delivery Status. </summary>
+        /// <summary> Gets the delivery status details. </summary>
         public string DeliveryStatusDetails { get; }
-        /// <summary> List of details of delivery attempts made. </summary>
+        /// <summary> Gets the delivery attempts. </summary>
         public IReadOnlyList<AcsSmsDeliveryAttemptProperties> DeliveryAttempts { get; }
-        /// <summary> The time at which the SMS delivery report was received. </summary>
+        /// <summary> Gets the received timestamp. </summary>
         public DateTimeOffset ReceivedTimestamp { get; }
-        /// <summary> Customer Content. </summary>
+        /// <summary> Gets the tag. </summary>
         public string Tag { get; }
     }
 }

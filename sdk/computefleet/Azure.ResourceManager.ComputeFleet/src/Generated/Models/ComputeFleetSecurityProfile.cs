@@ -11,10 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the Security profile settings for the virtual machine or virtual
-    /// machine scale set.
-    /// </summary>
+    /// <summary> The ComputeFleetSecurityProfile. </summary>
     public partial class ComputeFleetSecurityProfile
     {
         /// <summary>
@@ -55,30 +52,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetSecurityProfile"/>. </summary>
-        /// <param name="uefiSettings">
-        /// Specifies the security settings like secure boot and vTPM used while creating
-        /// the virtual machine. Minimum api-version: 2020-12-01.
-        /// </param>
-        /// <param name="isEncryptionAtHostEnabled">
-        /// This property can be used by user in the request to enable or disable the Host
-        /// Encryption for the virtual machine or virtual machine scale set. This will
-        /// enable the encryption for all the disks including Resource/Temp disk at host
-        /// itself. The default behavior is: The Encryption at host will be disabled unless
-        /// this property is set to true for the resource.
-        /// </param>
-        /// <param name="securityType">
-        /// Specifies the SecurityType of the virtual machine. It has to be set to any
-        /// specified value to enable UefiSettings. The default behavior is: UefiSettings
-        /// will not be enabled unless this property is set.
-        /// </param>
-        /// <param name="encryptionIdentity">
-        /// Specifies the Managed Identity used by ADE to get access token for keyvault
-        /// operations.
-        /// </param>
-        /// <param name="proxyAgentSettings">
-        /// Specifies ProxyAgent settings while creating the virtual machine. Minimum
-        /// api-version: 2023-09-01.
-        /// </param>
+        /// <param name="uefiSettings"></param>
+        /// <param name="isEncryptionAtHostEnabled"></param>
+        /// <param name="securityType"></param>
+        /// <param name="encryptionIdentity"></param>
+        /// <param name="proxyAgentSettings"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetSecurityProfile(ComputeFleetUefiSettings uefiSettings, bool? isEncryptionAtHostEnabled, ComputeFleetSecurityType? securityType, ComputeFleetEncryptionIdentity encryptionIdentity, ComputeFleetProxyAgentSettings proxyAgentSettings, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,31 +68,15 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies the security settings like secure boot and vTPM used while creating
-        /// the virtual machine. Minimum api-version: 2020-12-01.
-        /// </summary>
+        /// <summary> Gets or sets the uefi settings. </summary>
         public ComputeFleetUefiSettings UefiSettings { get; set; }
-        /// <summary>
-        /// This property can be used by user in the request to enable or disable the Host
-        /// Encryption for the virtual machine or virtual machine scale set. This will
-        /// enable the encryption for all the disks including Resource/Temp disk at host
-        /// itself. The default behavior is: The Encryption at host will be disabled unless
-        /// this property is set to true for the resource.
-        /// </summary>
+        /// <summary> Gets or sets the is encryption at host enabled. </summary>
         public bool? IsEncryptionAtHostEnabled { get; set; }
-        /// <summary>
-        /// Specifies the SecurityType of the virtual machine. It has to be set to any
-        /// specified value to enable UefiSettings. The default behavior is: UefiSettings
-        /// will not be enabled unless this property is set.
-        /// </summary>
+        /// <summary> Gets or sets the security type. </summary>
         public ComputeFleetSecurityType? SecurityType { get; set; }
-        /// <summary>
-        /// Specifies the Managed Identity used by ADE to get access token for keyvault
-        /// operations.
-        /// </summary>
+        /// <summary> Gets or sets the encryption identity. </summary>
         internal ComputeFleetEncryptionIdentity EncryptionIdentity { get; set; }
-        /// <summary> Specifies ARM Resource ID of one of the user identities associated with the VM. </summary>
+        /// <summary> Gets or sets the user assigned identity resource id. </summary>
         public ResourceIdentifier UserAssignedIdentityResourceId
         {
             get => EncryptionIdentity is null ? default : EncryptionIdentity.UserAssignedIdentityResourceId;
@@ -126,10 +88,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary>
-        /// Specifies ProxyAgent settings while creating the virtual machine. Minimum
-        /// api-version: 2023-09-01.
-        /// </summary>
+        /// <summary> Gets or sets the proxy agent settings. </summary>
         public ComputeFleetProxyAgentSettings ProxyAgentSettings { get; set; }
     }
 }

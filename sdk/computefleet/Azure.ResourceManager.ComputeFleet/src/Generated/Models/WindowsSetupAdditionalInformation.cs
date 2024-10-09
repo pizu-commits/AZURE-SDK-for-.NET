@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies additional XML formatted information that can be included in the
-    /// Unattend.xml file, which is used by Windows Setup. Contents are defined by
-    /// setting name, component name, and the pass in which the content is applied.
-    /// </summary>
+    /// <summary> The WindowsSetupAdditionalInformation. </summary>
     public partial class WindowsSetupAdditionalInformation
     {
         /// <summary>
@@ -55,20 +51,10 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="WindowsSetupAdditionalInformation"/>. </summary>
-        /// <param name="passName"> The pass name. Currently, the only allowable value is OobeSystem. </param>
-        /// <param name="componentName">
-        /// The component name. Currently, the only allowable value is
-        /// Microsoft-Windows-Shell-Setup.
-        /// </param>
-        /// <param name="settingName">
-        /// Specifies the name of the setting to which the content applies. Possible values
-        /// are: FirstLogonCommands and AutoLogon.
-        /// </param>
-        /// <param name="content">
-        /// Specifies the XML formatted content that is added to the unattend.xml file for
-        /// the specified path and component. The XML must be less than 4KB and must
-        /// include the root element for the setting or feature that is being inserted.
-        /// </param>
+        /// <param name="passName"></param>
+        /// <param name="componentName"></param>
+        /// <param name="settingName"></param>
+        /// <param name="content"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WindowsSetupAdditionalInformation(WindowsSetupAdditionalInformationPassName? passName, WindowsSetupAdditionalInformationComponentName? componentName, AdditionalInformationSettingName? settingName, string content, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,23 +65,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The pass name. Currently, the only allowable value is OobeSystem. </summary>
+        /// <summary> Gets or sets the pass name. </summary>
         public WindowsSetupAdditionalInformationPassName? PassName { get; set; }
-        /// <summary>
-        /// The component name. Currently, the only allowable value is
-        /// Microsoft-Windows-Shell-Setup.
-        /// </summary>
+        /// <summary> Gets or sets the component name. </summary>
         public WindowsSetupAdditionalInformationComponentName? ComponentName { get; set; }
-        /// <summary>
-        /// Specifies the name of the setting to which the content applies. Possible values
-        /// are: FirstLogonCommands and AutoLogon.
-        /// </summary>
+        /// <summary> Gets or sets the setting name. </summary>
         public AdditionalInformationSettingName? SettingName { get; set; }
-        /// <summary>
-        /// Specifies the XML formatted content that is added to the unattend.xml file for
-        /// the specified path and component. The XML must be less than 4KB and must
-        /// include the root element for the setting or feature that is being inserted.
-        /// </summary>
+        /// <summary> Gets or sets the content. </summary>
         public string Content { get; set; }
     }
 }

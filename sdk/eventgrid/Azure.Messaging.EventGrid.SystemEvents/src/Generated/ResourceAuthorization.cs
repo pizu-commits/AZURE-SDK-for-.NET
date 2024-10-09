@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The details of the authorization for the resource. </summary>
+    /// <summary> The ResourceAuthorization. </summary>
     public partial class ResourceAuthorization
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceAuthorization"/>. </summary>
-        /// <param name="evidence"> The evidence for the authorization. </param>
+        /// <param name="evidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="evidence"/> is null. </exception>
         internal ResourceAuthorization(IReadOnlyDictionary<string, string> evidence)
         {
@@ -56,9 +56,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceAuthorization"/>. </summary>
-        /// <param name="scope"> The scope of the authorization. </param>
-        /// <param name="action"> The action being requested. </param>
-        /// <param name="evidence"> The evidence for the authorization. </param>
+        /// <param name="scope"></param>
+        /// <param name="action"></param>
+        /// <param name="evidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceAuthorization(string scope, string action, IReadOnlyDictionary<string, string> evidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The scope of the authorization. </summary>
+        /// <summary> Gets the scope. </summary>
         public string Scope { get; }
-        /// <summary> The action being requested. </summary>
+        /// <summary> Gets the action. </summary>
         public string Action { get; }
-        /// <summary> The evidence for the authorization. </summary>
+        /// <summary> Gets the evidence. </summary>
         public IReadOnlyDictionary<string, string> Evidence { get; }
     }
 }

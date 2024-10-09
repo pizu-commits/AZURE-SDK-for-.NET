@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> File Format. </summary>
+    /// <summary> The FileFormat. </summary>
     public partial class DocumentTranslationFileFormat
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentTranslationFileFormat"/>. </summary>
-        /// <param name="format"> Name of the format. </param>
-        /// <param name="fileExtensions"> Supported file extension for this format. </param>
-        /// <param name="contentTypes"> Supported Content-Types for this format. </param>
+        /// <param name="format"></param>
+        /// <param name="fileExtensions"></param>
+        /// <param name="contentTypes"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="format"/>, <paramref name="fileExtensions"/> or <paramref name="contentTypes"/> is null. </exception>
         internal DocumentTranslationFileFormat(string format, IEnumerable<string> fileExtensions, IEnumerable<string> contentTypes)
         {
@@ -64,12 +64,12 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentTranslationFileFormat"/>. </summary>
-        /// <param name="format"> Name of the format. </param>
-        /// <param name="fileExtensions"> Supported file extension for this format. </param>
-        /// <param name="contentTypes"> Supported Content-Types for this format. </param>
-        /// <param name="defaultFormatVersion"> Default version if none is specified. </param>
-        /// <param name="formatVersions"> Supported Version. </param>
-        /// <param name="type"> Supported Type for this format. </param>
+        /// <param name="format"></param>
+        /// <param name="fileExtensions"></param>
+        /// <param name="contentTypes"></param>
+        /// <param name="defaultFormatVersion"></param>
+        /// <param name="formatVersions"></param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentTranslationFileFormat(string format, IReadOnlyList<string> fileExtensions, IReadOnlyList<string> contentTypes, string defaultFormatVersion, IReadOnlyList<string> formatVersions, string type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,13 +87,13 @@ namespace Azure.AI.Translation.Document
         {
         }
 
-        /// <summary> Name of the format. </summary>
+        /// <summary> Gets the format. </summary>
         public string Format { get; }
-        /// <summary> Supported file extension for this format. </summary>
+        /// <summary> Gets the file extensions. </summary>
         public IReadOnlyList<string> FileExtensions { get; }
-        /// <summary> Supported Content-Types for this format. </summary>
+        /// <summary> Gets the content types. </summary>
         public IReadOnlyList<string> ContentTypes { get; }
-        /// <summary> Supported Type for this format. </summary>
+        /// <summary> Gets the type. </summary>
         public string Type { get; }
     }
 }

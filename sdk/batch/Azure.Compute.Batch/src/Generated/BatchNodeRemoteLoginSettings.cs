@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The remote login settings for a Compute Node. </summary>
+    /// <summary> The BatchNodeRemoteLoginSettings. </summary>
     public partial class BatchNodeRemoteLoginSettings
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeRemoteLoginSettings"/>. </summary>
-        /// <param name="remoteLoginIpAddress"> The IP address used for remote login to the Compute Node. </param>
-        /// <param name="remoteLoginPort"> The port used for remote login to the Compute Node. </param>
+        /// <param name="remoteLoginIpAddress"></param>
+        /// <param name="remoteLoginPort"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="remoteLoginIpAddress"/> is null. </exception>
         internal BatchNodeRemoteLoginSettings(string remoteLoginIpAddress, int remoteLoginPort)
         {
@@ -58,8 +58,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeRemoteLoginSettings"/>. </summary>
-        /// <param name="remoteLoginIpAddress"> The IP address used for remote login to the Compute Node. </param>
-        /// <param name="remoteLoginPort"> The port used for remote login to the Compute Node. </param>
+        /// <param name="remoteLoginIpAddress"></param>
+        /// <param name="remoteLoginPort"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeRemoteLoginSettings(string remoteLoginIpAddress, int remoteLoginPort, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The IP address used for remote login to the Compute Node. </summary>
+        /// <summary> Gets the remote login ip address. </summary>
         public string RemoteLoginIpAddress { get; }
-        /// <summary> The port used for remote login to the Compute Node. </summary>
+        /// <summary> Gets the remote login port. </summary>
         public int RemoteLoginPort { get; }
     }
 }

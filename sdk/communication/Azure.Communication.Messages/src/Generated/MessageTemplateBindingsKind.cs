@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The type of the message template. </summary>
+    /// <summary> The MessageTemplateBindingsKind. </summary>
     internal readonly partial struct MessageTemplateBindingsKind : IEquatable<MessageTemplateBindingsKind>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Communication.Messages
 
         private const string WhatsAppValue = "whatsApp";
 
-        /// <summary> The WhatsApp template type. </summary>
+        /// <summary> whatsApp. </summary>
         public static MessageTemplateBindingsKind WhatsApp { get; } = new MessageTemplateBindingsKind(WhatsAppValue);
         /// <summary> Determines if two <see cref="MessageTemplateBindingsKind"/> values are the same. </summary>
         public static bool operator ==(MessageTemplateBindingsKind left, MessageTemplateBindingsKind right) => left.Equals(right);

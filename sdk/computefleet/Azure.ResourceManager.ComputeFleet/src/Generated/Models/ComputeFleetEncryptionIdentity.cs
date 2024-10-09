@@ -11,10 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the Managed Identity used by ADE to get access token for keyvault
-    /// operations.
-    /// </summary>
+    /// <summary> The ComputeFleetEncryptionIdentity. </summary>
     internal partial class ComputeFleetEncryptionIdentity
     {
         /// <summary>
@@ -55,7 +52,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetEncryptionIdentity"/>. </summary>
-        /// <param name="userAssignedIdentityResourceId"> Specifies ARM Resource ID of one of the user identities associated with the VM. </param>
+        /// <param name="userAssignedIdentityResourceId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetEncryptionIdentity(ResourceIdentifier userAssignedIdentityResourceId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +60,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specifies ARM Resource ID of one of the user identities associated with the VM. </summary>
+        /// <summary> Gets or sets the user assigned identity resource id. </summary>
         public ResourceIdentifier UserAssignedIdentityResourceId { get; set; }
     }
 }

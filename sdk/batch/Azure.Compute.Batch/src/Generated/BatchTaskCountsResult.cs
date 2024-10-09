@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The Task and TaskSlot counts for a Job. </summary>
+    /// <summary> The BatchTaskCountsResult. </summary>
     public partial class BatchTaskCountsResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskCountsResult"/>. </summary>
-        /// <param name="taskCounts"> The number of Tasks per state. </param>
-        /// <param name="taskSlotCounts"> The number of TaskSlots required by Tasks per state. </param>
+        /// <param name="taskCounts"></param>
+        /// <param name="taskSlotCounts"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskCounts"/> or <paramref name="taskSlotCounts"/> is null. </exception>
         internal BatchTaskCountsResult(BatchTaskCounts taskCounts, BatchTaskSlotCounts taskSlotCounts)
         {
@@ -59,8 +59,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskCountsResult"/>. </summary>
-        /// <param name="taskCounts"> The number of Tasks per state. </param>
-        /// <param name="taskSlotCounts"> The number of TaskSlots required by Tasks per state. </param>
+        /// <param name="taskCounts"></param>
+        /// <param name="taskSlotCounts"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskCountsResult(BatchTaskCounts taskCounts, BatchTaskSlotCounts taskSlotCounts, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The number of Tasks per state. </summary>
+        /// <summary> Gets the task counts. </summary>
         public BatchTaskCounts TaskCounts { get; }
-        /// <summary> The number of TaskSlots required by Tasks per state. </summary>
+        /// <summary> Gets the task slot counts. </summary>
         public BatchTaskSlotCounts TaskSlotCounts { get; }
     }
 }

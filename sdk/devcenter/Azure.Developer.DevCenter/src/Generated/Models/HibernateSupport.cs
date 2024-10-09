@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Indicates whether hibernate is supported and enabled, disabled, or unsupported by the operating system. Unknown hibernate support is represented as null. </summary>
+    /// <summary> The HibernateSupport. </summary>
     public readonly partial struct HibernateSupport : IEquatable<HibernateSupport>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Developer.DevCenter.Models
         private const string DisabledValue = "Disabled";
         private const string OsUnsupportedValue = "OsUnsupported";
 
-        /// <summary> Hibernate is enabled. </summary>
+        /// <summary> Enabled. </summary>
         public static HibernateSupport Enabled { get; } = new HibernateSupport(EnabledValue);
-        /// <summary> Hibernate is not enabled. </summary>
+        /// <summary> Disabled. </summary>
         public static HibernateSupport Disabled { get; } = new HibernateSupport(DisabledValue);
-        /// <summary> Hibernate is not supported by the operating system. </summary>
+        /// <summary> OsUnsupported. </summary>
         public static HibernateSupport OsUnsupported { get; } = new HibernateSupport(OsUnsupportedValue);
         /// <summary> Determines if two <see cref="HibernateSupport"/> values are the same. </summary>
         public static bool operator ==(HibernateSupport left, HibernateSupport right) => left.Equals(right);

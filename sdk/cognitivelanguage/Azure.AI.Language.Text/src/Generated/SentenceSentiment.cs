@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> A document's sentence sentiment. </summary>
+    /// <summary> The SentenceSentiment. </summary>
     public partial class SentenceSentiment
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SentenceSentiment"/>. </summary>
-        /// <param name="text"> The sentence text. </param>
-        /// <param name="sentiment"> The predicted Sentiment for the sentence. </param>
-        /// <param name="confidenceScores"> The sentiment confidence score between 0 and 1 for the sentence for all classes. </param>
-        /// <param name="offset"> The target offset from the start of the sentence. </param>
-        /// <param name="length"> The length of the target. </param>
+        /// <param name="text"></param>
+        /// <param name="sentiment"></param>
+        /// <param name="confidenceScores"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> or <paramref name="confidenceScores"/> is null. </exception>
         internal SentenceSentiment(string text, SentenceSentimentValue sentiment, SentimentConfidenceScores confidenceScores, int offset, int length)
         {
@@ -67,13 +67,13 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SentenceSentiment"/>. </summary>
-        /// <param name="text"> The sentence text. </param>
-        /// <param name="sentiment"> The predicted Sentiment for the sentence. </param>
-        /// <param name="confidenceScores"> The sentiment confidence score between 0 and 1 for the sentence for all classes. </param>
-        /// <param name="offset"> The target offset from the start of the sentence. </param>
-        /// <param name="length"> The length of the target. </param>
-        /// <param name="targets"> The array of sentence targets for the sentence. </param>
-        /// <param name="assessments"> The array of assessments for the sentence. </param>
+        /// <param name="text"></param>
+        /// <param name="sentiment"></param>
+        /// <param name="confidenceScores"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="targets"></param>
+        /// <param name="assessments"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SentenceSentiment(string text, SentenceSentimentValue sentiment, SentimentConfidenceScores confidenceScores, int offset, int length, IReadOnlyList<SentenceTarget> targets, IReadOnlyList<SentenceAssessment> assessments, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -92,19 +92,19 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The sentence text. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The predicted Sentiment for the sentence. </summary>
+        /// <summary> Gets the sentiment. </summary>
         public SentenceSentimentValue Sentiment { get; }
-        /// <summary> The sentiment confidence score between 0 and 1 for the sentence for all classes. </summary>
+        /// <summary> Gets the confidence scores. </summary>
         public SentimentConfidenceScores ConfidenceScores { get; }
-        /// <summary> The target offset from the start of the sentence. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> The length of the target. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
-        /// <summary> The array of sentence targets for the sentence. </summary>
+        /// <summary> Gets the targets. </summary>
         public IReadOnlyList<SentenceTarget> Targets { get; }
-        /// <summary> The array of assessments for the sentence. </summary>
+        /// <summary> Gets the assessments. </summary>
         public IReadOnlyList<SentenceAssessment> Assessments { get; }
     }
 }

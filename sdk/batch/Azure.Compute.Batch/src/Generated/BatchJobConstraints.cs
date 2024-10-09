@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The execution constraints for a Job. </summary>
+    /// <summary> The BatchJobConstraints. </summary>
     public partial class BatchJobConstraints
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobConstraints"/>. </summary>
-        /// <param name="maxWallClockTime"> The maximum elapsed time that the Job may run, measured from the time the Job is created. If the Job does not complete within the time limit, the Batch service terminates it and any Tasks that are still running. In this case, the termination reason will be MaxWallClockTimeExpiry. If this property is not specified, there is no time limit on how long the Job may run. </param>
-        /// <param name="maxTaskRetryCount"> The maximum number of times each Task may be retried. The Batch service retries a Task if its exit code is nonzero. Note that this value specifically controls the number of retries. The Batch service will try each Task once, and may then retry up to this limit. For example, if the maximum retry count is 3, Batch tries a Task up to 4 times (one initial try and 3 retries). If the maximum retry count is 0, the Batch service does not retry Tasks. If the maximum retry count is -1, the Batch service retries Tasks without limit. The default value is 0 (no retries). </param>
+        /// <param name="maxWallClockTime"></param>
+        /// <param name="maxTaskRetryCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobConstraints(TimeSpan? maxWallClockTime, int? maxTaskRetryCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The maximum elapsed time that the Job may run, measured from the time the Job is created. If the Job does not complete within the time limit, the Batch service terminates it and any Tasks that are still running. In this case, the termination reason will be MaxWallClockTimeExpiry. If this property is not specified, there is no time limit on how long the Job may run. </summary>
+        /// <summary> Gets or sets the max wall clock time. </summary>
         public TimeSpan? MaxWallClockTime { get; set; }
-        /// <summary> The maximum number of times each Task may be retried. The Batch service retries a Task if its exit code is nonzero. Note that this value specifically controls the number of retries. The Batch service will try each Task once, and may then retry up to this limit. For example, if the maximum retry count is 3, Batch tries a Task up to 4 times (one initial try and 3 retries). If the maximum retry count is 0, the Batch service does not retry Tasks. If the maximum retry count is -1, the Batch service retries Tasks without limit. The default value is 0 (no retries). </summary>
+        /// <summary> Gets or sets the max task retry count. </summary>
         public int? MaxTaskRetryCount { get; set; }
     }
 }

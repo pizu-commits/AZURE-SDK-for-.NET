@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The content of a search facet result item. </summary>
+    /// <summary> The SearchFacetItem. </summary>
     public partial class SearchFacetItem
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchFacetItem"/>. </summary>
-        /// <param name="count"> The count of the facet item. </param>
-        /// <param name="facet"> The name of the facet item. </param>
-        /// <param name="sort"> Define the sorting criteria for items. </param>
+        /// <param name="count"></param>
+        /// <param name="facet"></param>
+        /// <param name="sort"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SearchFacetItem(int? count, string facet, SearchFacetSort sort, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The count of the facet item. </summary>
+        /// <summary> Gets or sets the count. </summary>
         public int? Count { get; set; }
-        /// <summary> The name of the facet item. </summary>
+        /// <summary> Gets or sets the facet. </summary>
         public string Facet { get; set; }
-        /// <summary> Define the sorting criteria for items. </summary>
+        /// <summary> Gets or sets the sort. </summary>
         public SearchFacetSort Sort { get; set; }
     }
 }

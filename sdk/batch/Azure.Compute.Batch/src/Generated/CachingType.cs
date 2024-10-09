@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> CachingType enums. </summary>
+    /// <summary> The CachingType. </summary>
     public readonly partial struct CachingType : IEquatable<CachingType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string ReadOnlyValue = "readonly";
         private const string ReadWriteValue = "readwrite";
 
-        /// <summary> The caching mode for the disk is not enabled. </summary>
+        /// <summary> none. </summary>
         public static CachingType None { get; } = new CachingType(NoneValue);
-        /// <summary> The caching mode for the disk is read only. </summary>
+        /// <summary> readonly. </summary>
         public static CachingType ReadOnly { get; } = new CachingType(ReadOnlyValue);
-        /// <summary> The caching mode for the disk is read and write. </summary>
+        /// <summary> readwrite. </summary>
         public static CachingType ReadWrite { get; } = new CachingType(ReadWriteValue);
         /// <summary> Determines if two <see cref="CachingType"/> values are the same. </summary>
         public static bool operator ==(CachingType left, CachingType right) => left.Equals(right);

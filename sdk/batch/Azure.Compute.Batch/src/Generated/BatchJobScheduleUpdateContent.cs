@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for updating an Azure Batch Job Schedule. </summary>
+    /// <summary> The BatchJobScheduleUpdateContent. </summary>
     public partial class BatchJobScheduleUpdateContent
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobScheduleUpdateContent"/>. </summary>
-        /// <param name="schedule"> The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. If you do not specify this element, the existing schedule is left unchanged. </param>
-        /// <param name="jobSpecification"> The details of the Jobs to be created on this schedule. Updates affect only Jobs that are started after the update has taken place. Any currently active Job continues with the older specification. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Job Schedule as metadata. If you do not specify this element, existing metadata is left unchanged. </param>
+        /// <param name="schedule"></param>
+        /// <param name="jobSpecification"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobScheduleUpdateContent(BatchJobScheduleConfiguration schedule, BatchJobSpecification jobSpecification, IList<MetadataItem> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The schedule according to which Jobs will be created. All times are fixed respective to UTC and are not impacted by daylight saving time. If you do not specify this element, the existing schedule is left unchanged. </summary>
+        /// <summary> Gets or sets the schedule. </summary>
         public BatchJobScheduleConfiguration Schedule { get; set; }
-        /// <summary> The details of the Jobs to be created on this schedule. Updates affect only Jobs that are started after the update has taken place. Any currently active Job continues with the older specification. </summary>
+        /// <summary> Gets or sets the job specification. </summary>
         public BatchJobSpecification JobSpecification { get; set; }
-        /// <summary> A list of name-value pairs associated with the Job Schedule as metadata. If you do not specify this element, existing metadata is left unchanged. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataItem> Metadata { get; }
     }
 }

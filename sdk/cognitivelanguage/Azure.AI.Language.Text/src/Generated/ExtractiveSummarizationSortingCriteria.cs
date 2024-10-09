@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The sorting criteria to use for the results of Extractive Summarization. </summary>
+    /// <summary> The ExtractiveSummarizationSortingCriteria. </summary>
     public readonly partial struct ExtractiveSummarizationSortingCriteria : IEquatable<ExtractiveSummarizationSortingCriteria>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         private const string OffsetValue = "Offset";
         private const string RankValue = "Rank";
 
-        /// <summary> Indicates that results should be sorted in order of appearance in the text. </summary>
+        /// <summary> Offset. </summary>
         public static ExtractiveSummarizationSortingCriteria Offset { get; } = new ExtractiveSummarizationSortingCriteria(OffsetValue);
-        /// <summary> Indicates that results should be sorted in order of importance (i.e. rank score) according to the model. </summary>
+        /// <summary> Rank. </summary>
         public static ExtractiveSummarizationSortingCriteria Rank { get; } = new ExtractiveSummarizationSortingCriteria(RankValue);
         /// <summary> Determines if two <see cref="ExtractiveSummarizationSortingCriteria"/> values are the same. </summary>
         public static bool operator ==(ExtractiveSummarizationSortingCriteria left, ExtractiveSummarizationSortingCriteria right) => left.Equals(right);

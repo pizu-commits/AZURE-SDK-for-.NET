@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> ImportInfo. </summary>
+    /// <summary> The ImportInfo. </summary>
     public partial class ImportInfo
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="ImportInfo"/>. </summary>
-        /// <param name="childObjectName"> childObjectName. </param>
-        /// <param name="importStatus"> importStatus. </param>
-        /// <param name="parentObjectName"> parentObjectName. </param>
-        /// <param name="remarks"> remarks. </param>
+        /// <param name="childObjectName"></param>
+        /// <param name="importStatus"></param>
+        /// <param name="parentObjectName"></param>
+        /// <param name="remarks"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ImportInfo(string childObjectName, ImportStatus? importStatus, string parentObjectName, string remarks, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> childObjectName. </summary>
+        /// <summary> Gets the child object name. </summary>
         public string ChildObjectName { get; }
-        /// <summary> importStatus. </summary>
+        /// <summary> Gets the import status. </summary>
         public ImportStatus? ImportStatus { get; }
-        /// <summary> parentObjectName. </summary>
+        /// <summary> Gets the parent object name. </summary>
         public string ParentObjectName { get; }
-        /// <summary> remarks. </summary>
+        /// <summary> Gets the remarks. </summary>
         public string Remarks { get; }
     }
 }

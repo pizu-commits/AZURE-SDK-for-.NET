@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the analyze text Entity linking LRO task. </summary>
+    /// <summary> The EntityLinkingOperationAction. </summary>
     public partial class EntityLinkingOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="EntityLinkingOperationAction"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityLinkingOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> Task parameters. </param>
+        /// <param name="actionContent"></param>
         internal EntityLinkingOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, EntityLinkingActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
         }
 
-        /// <summary> Task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public EntityLinkingActionContent ActionContent { get; set; }
     }
 }

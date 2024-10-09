@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Dictionary Example. </summary>
+    /// <summary> The DictionaryExample. </summary>
     public partial class DictionaryExample
     {
         /// <summary>
@@ -46,24 +46,12 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DictionaryExample"/>. </summary>
-        /// <param name="sourcePrefix">
-        /// The string to concatenate before the value of sourceTerm to form a complete example.
-        /// Do not add a space character, since it is already there when it should be.
-        /// This value may be an empty string.
-        /// </param>
-        /// <param name="sourceTerm">
-        /// A string equal to the actual term looked up. The string is added with sourcePrefix
-        /// and sourceSuffix to form the complete example. Its value is separated so it can be
-        /// marked in a user interface, e.g., by bolding it.
-        /// </param>
-        /// <param name="sourceSuffix">
-        /// The string to concatenate after the value of sourceTerm to form a complete example.
-        /// Do not add a space character, since it is already there when it should be.
-        /// This value may be an empty string.
-        /// </param>
-        /// <param name="targetPrefix"> A string similar to sourcePrefix but for the target. </param>
-        /// <param name="targetTerm"> A string similar to sourceTerm but for the target. </param>
-        /// <param name="targetSuffix"> A string similar to sourceSuffix but for the target. </param>
+        /// <param name="sourcePrefix"></param>
+        /// <param name="sourceTerm"></param>
+        /// <param name="sourceSuffix"></param>
+        /// <param name="targetPrefix"></param>
+        /// <param name="targetTerm"></param>
+        /// <param name="targetSuffix"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sourcePrefix"/>, <paramref name="sourceTerm"/>, <paramref name="sourceSuffix"/>, <paramref name="targetPrefix"/>, <paramref name="targetTerm"/> or <paramref name="targetSuffix"/> is null. </exception>
         internal DictionaryExample(string sourcePrefix, string sourceTerm, string sourceSuffix, string targetPrefix, string targetTerm, string targetSuffix)
         {
@@ -83,24 +71,12 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DictionaryExample"/>. </summary>
-        /// <param name="sourcePrefix">
-        /// The string to concatenate before the value of sourceTerm to form a complete example.
-        /// Do not add a space character, since it is already there when it should be.
-        /// This value may be an empty string.
-        /// </param>
-        /// <param name="sourceTerm">
-        /// A string equal to the actual term looked up. The string is added with sourcePrefix
-        /// and sourceSuffix to form the complete example. Its value is separated so it can be
-        /// marked in a user interface, e.g., by bolding it.
-        /// </param>
-        /// <param name="sourceSuffix">
-        /// The string to concatenate after the value of sourceTerm to form a complete example.
-        /// Do not add a space character, since it is already there when it should be.
-        /// This value may be an empty string.
-        /// </param>
-        /// <param name="targetPrefix"> A string similar to sourcePrefix but for the target. </param>
-        /// <param name="targetTerm"> A string similar to sourceTerm but for the target. </param>
-        /// <param name="targetSuffix"> A string similar to sourceSuffix but for the target. </param>
+        /// <param name="sourcePrefix"></param>
+        /// <param name="sourceTerm"></param>
+        /// <param name="sourceSuffix"></param>
+        /// <param name="targetPrefix"></param>
+        /// <param name="targetTerm"></param>
+        /// <param name="targetSuffix"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DictionaryExample(string sourcePrefix, string sourceTerm, string sourceSuffix, string targetPrefix, string targetTerm, string targetSuffix, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -118,29 +94,17 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary>
-        /// The string to concatenate before the value of sourceTerm to form a complete example.
-        /// Do not add a space character, since it is already there when it should be.
-        /// This value may be an empty string.
-        /// </summary>
+        /// <summary> Gets the source prefix. </summary>
         public string SourcePrefix { get; }
-        /// <summary>
-        /// A string equal to the actual term looked up. The string is added with sourcePrefix
-        /// and sourceSuffix to form the complete example. Its value is separated so it can be
-        /// marked in a user interface, e.g., by bolding it.
-        /// </summary>
+        /// <summary> Gets the source term. </summary>
         public string SourceTerm { get; }
-        /// <summary>
-        /// The string to concatenate after the value of sourceTerm to form a complete example.
-        /// Do not add a space character, since it is already there when it should be.
-        /// This value may be an empty string.
-        /// </summary>
+        /// <summary> Gets the source suffix. </summary>
         public string SourceSuffix { get; }
-        /// <summary> A string similar to sourcePrefix but for the target. </summary>
+        /// <summary> Gets the target prefix. </summary>
         public string TargetPrefix { get; }
-        /// <summary> A string similar to sourceTerm but for the target. </summary>
+        /// <summary> Gets the target term. </summary>
         public string TargetTerm { get; }
-        /// <summary> A string similar to sourceSuffix but for the target. </summary>
+        /// <summary> Gets the target suffix. </summary>
         public string TargetSuffix { get; }
     }
 }

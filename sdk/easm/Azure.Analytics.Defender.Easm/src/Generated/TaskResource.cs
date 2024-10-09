@@ -52,14 +52,14 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="TaskResource"/>. </summary>
-        /// <param name="id"> The unique identifier of the task. </param>
-        /// <param name="startedAt"> The time the task started. </param>
-        /// <param name="completedAt"> The time the task completed. </param>
-        /// <param name="lastPolledAt"> The last time the status of the task was updated. </param>
-        /// <param name="state"> The state the task is in. </param>
-        /// <param name="phase"> The phase the task is in. </param>
-        /// <param name="reason"> The reason the task was moved into its current state, if the task wasn't completed. </param>
-        /// <param name="metadata"> Attributes unique to the task.  This differs by task type. </param>
+        /// <param name="id"></param>
+        /// <param name="startedAt"></param>
+        /// <param name="completedAt"></param>
+        /// <param name="lastPolledAt"></param>
+        /// <param name="state"></param>
+        /// <param name="phase"></param>
+        /// <param name="reason"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TaskResource(string id, DateTimeOffset? startedAt, DateTimeOffset? completedAt, DateTimeOffset? lastPolledAt, TaskResourceState? state, TaskResourcePhase? phase, string reason, IReadOnlyDictionary<string, BinaryData> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,22 +74,22 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The unique identifier of the task. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The time the task started. </summary>
+        /// <summary> Gets the started at. </summary>
         public DateTimeOffset? StartedAt { get; }
-        /// <summary> The time the task completed. </summary>
+        /// <summary> Gets the completed at. </summary>
         public DateTimeOffset? CompletedAt { get; }
-        /// <summary> The last time the status of the task was updated. </summary>
+        /// <summary> Gets the last polled at. </summary>
         public DateTimeOffset? LastPolledAt { get; }
-        /// <summary> The state the task is in. </summary>
+        /// <summary> Gets the state. </summary>
         public TaskResourceState? State { get; }
-        /// <summary> The phase the task is in. </summary>
+        /// <summary> Gets the phase. </summary>
         public TaskResourcePhase? Phase { get; }
-        /// <summary> The reason the task was moved into its current state, if the task wasn't completed. </summary>
+        /// <summary> Gets the reason. </summary>
         public string Reason { get; }
         /// <summary>
-        /// Attributes unique to the task.  This differs by task type.
+        /// Gets the metadata
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

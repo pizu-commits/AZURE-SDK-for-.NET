@@ -46,7 +46,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResearchStudyObjective"/>. </summary>
-        /// <param name="name"> Label for the objective. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         internal ResearchStudyObjective(string name)
         {
@@ -56,8 +56,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="ResearchStudyObjective"/>. </summary>
-        /// <param name="name"> Label for the objective. </param>
-        /// <param name="type"> primary | secondary | exploratory. </param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResearchStudyObjective(string name, FhirR4CodeableConcept type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Label for the objective. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> primary | secondary | exploratory. </summary>
+        /// <summary> Gets the type. </summary>
         public FhirR4CodeableConcept Type { get; }
     }
 }

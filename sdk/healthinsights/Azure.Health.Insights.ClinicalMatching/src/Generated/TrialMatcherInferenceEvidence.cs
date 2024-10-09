@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A piece of evidence corresponding to a Trial Matcher inference. </summary>
+    /// <summary> The TrialMatcherInferenceEvidence. </summary>
     public partial class TrialMatcherInferenceEvidence
     {
         /// <summary>
@@ -51,13 +51,10 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherInferenceEvidence"/>. </summary>
-        /// <param name="eligibilityCriteriaEvidence"> A piece of evidence from the eligibility criteria text of a clinical trial. </param>
-        /// <param name="patientDataEvidence"> A piece of evidence from a clinical note (text document). </param>
-        /// <param name="patientInfoEvidence">
-        /// A piece of clinical information, expressed as a code in a clinical coding
-        /// system.
-        /// </param>
-        /// <param name="importance"> A value indicating how important this piece of evidence is for the inference. </param>
+        /// <param name="eligibilityCriteriaEvidence"></param>
+        /// <param name="patientDataEvidence"></param>
+        /// <param name="patientInfoEvidence"></param>
+        /// <param name="importance"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TrialMatcherInferenceEvidence(string eligibilityCriteriaEvidence, ClinicalNoteEvidence patientDataEvidence, ClinicalCodedElement patientInfoEvidence, float? importance, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,16 +65,13 @@ namespace Azure.Health.Insights.ClinicalMatching
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A piece of evidence from the eligibility criteria text of a clinical trial. </summary>
+        /// <summary> Gets the eligibility criteria evidence. </summary>
         public string EligibilityCriteriaEvidence { get; }
-        /// <summary> A piece of evidence from a clinical note (text document). </summary>
+        /// <summary> Gets the patient data evidence. </summary>
         public ClinicalNoteEvidence PatientDataEvidence { get; }
-        /// <summary>
-        /// A piece of clinical information, expressed as a code in a clinical coding
-        /// system.
-        /// </summary>
+        /// <summary> Gets the patient info evidence. </summary>
         public ClinicalCodedElement PatientInfoEvidence { get; }
-        /// <summary> A value indicating how important this piece of evidence is for the inference. </summary>
+        /// <summary> Gets the importance. </summary>
         public float? Importance { get; }
     }
 }

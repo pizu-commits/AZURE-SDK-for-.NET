@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// A facet list that consists of index fields assetType ,classification,
-    /// contactId, and label. When the facet is specified in the request, the value of
-    /// the facet is returned as an element of @search.facets.
-    /// </summary>
+    /// <summary> The SearchFacetResultValue. </summary>
     public partial class SearchFacetResultValue
     {
         /// <summary>
@@ -65,16 +61,16 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchFacetResultValue"/>. </summary>
-        /// <param name="entityType"> Entity type. </param>
-        /// <param name="assetType"> Asset type. </param>
-        /// <param name="classification"> Classification. </param>
-        /// <param name="term"> Term. </param>
-        /// <param name="contactId"> Contact id. </param>
-        /// <param name="contactType"> Contact type. </param>
-        /// <param name="label"> Label. </param>
-        /// <param name="glossaryType"> Glossary type. </param>
-        /// <param name="termStatus"> Term status. </param>
-        /// <param name="termTemplate"> Term template. </param>
+        /// <param name="entityType"></param>
+        /// <param name="assetType"></param>
+        /// <param name="classification"></param>
+        /// <param name="term"></param>
+        /// <param name="contactId"></param>
+        /// <param name="contactType"></param>
+        /// <param name="label"></param>
+        /// <param name="glossaryType"></param>
+        /// <param name="termStatus"></param>
+        /// <param name="termTemplate"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SearchFacetResultValue(IReadOnlyList<SearchFacetItemValue> entityType, IReadOnlyList<SearchFacetItemValue> assetType, IReadOnlyList<SearchFacetItemValue> classification, IReadOnlyList<SearchFacetItemValue> term, IReadOnlyList<SearchFacetItemValue> contactId, IReadOnlyList<SearchFacetItemValue> contactType, IReadOnlyList<SearchFacetItemValue> label, IReadOnlyList<SearchFacetItemValue> glossaryType, IReadOnlyList<SearchFacetItemValue> termStatus, IReadOnlyList<SearchFacetItemValue> termTemplate, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -91,25 +87,25 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Entity type. </summary>
+        /// <summary> Gets the entity type. </summary>
         public IReadOnlyList<SearchFacetItemValue> EntityType { get; }
-        /// <summary> Asset type. </summary>
+        /// <summary> Gets the asset type. </summary>
         public IReadOnlyList<SearchFacetItemValue> AssetType { get; }
-        /// <summary> Classification. </summary>
+        /// <summary> Gets the classification. </summary>
         public IReadOnlyList<SearchFacetItemValue> Classification { get; }
-        /// <summary> Term. </summary>
+        /// <summary> Gets the term. </summary>
         public IReadOnlyList<SearchFacetItemValue> Term { get; }
-        /// <summary> Contact id. </summary>
+        /// <summary> Gets the contact id. </summary>
         public IReadOnlyList<SearchFacetItemValue> ContactId { get; }
-        /// <summary> Contact type. </summary>
+        /// <summary> Gets the contact type. </summary>
         public IReadOnlyList<SearchFacetItemValue> ContactType { get; }
-        /// <summary> Label. </summary>
+        /// <summary> Gets the label. </summary>
         public IReadOnlyList<SearchFacetItemValue> Label { get; }
-        /// <summary> Glossary type. </summary>
+        /// <summary> Gets the glossary type. </summary>
         public IReadOnlyList<SearchFacetItemValue> GlossaryType { get; }
-        /// <summary> Term status. </summary>
+        /// <summary> Gets the term status. </summary>
         public IReadOnlyList<SearchFacetItemValue> TermStatus { get; }
-        /// <summary> Term template. </summary>
+        /// <summary> Gets the term template. </summary>
         public IReadOnlyList<SearchFacetItemValue> TermTemplate { get; }
     }
 }

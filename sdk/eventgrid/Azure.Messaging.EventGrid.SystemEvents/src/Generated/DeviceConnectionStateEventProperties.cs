@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a device connection state event (DeviceConnected, DeviceDisconnected). </summary>
+    /// <summary> The DeviceConnectionStateEventProperties. </summary>
     public partial class DeviceConnectionStateEventProperties
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeviceConnectionStateEventProperties"/>. </summary>
-        /// <param name="deviceConnectionStateEventInfo"> Information about the device connection state event. </param>
+        /// <param name="deviceConnectionStateEventInfo"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="deviceConnectionStateEventInfo"/> is null. </exception>
         internal DeviceConnectionStateEventProperties(DeviceConnectionStateEventInfo deviceConnectionStateEventInfo)
         {
@@ -56,10 +56,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceConnectionStateEventProperties"/>. </summary>
-        /// <param name="deviceId"> The unique identifier of the device. This case-sensitive string can be up to 128 characters long, and supports ASCII 7-bit alphanumeric characters plus the following special characters: - : . + % _ &amp;#35; * ? ! ( ) , = `@` ; $ '. </param>
-        /// <param name="moduleId"> The unique identifier of the module. This case-sensitive string can be up to 128 characters long, and supports ASCII 7-bit alphanumeric characters plus the following special characters: - : . + % _ &amp;#35; * ? ! ( ) , = `@` ; $ '. </param>
-        /// <param name="hubName"> Name of the IoT Hub where the device was created or deleted. </param>
-        /// <param name="deviceConnectionStateEventInfo"> Information about the device connection state event. </param>
+        /// <param name="deviceId"></param>
+        /// <param name="moduleId"></param>
+        /// <param name="hubName"></param>
+        /// <param name="deviceConnectionStateEventInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceConnectionStateEventProperties(string deviceId, string moduleId, string hubName, DeviceConnectionStateEventInfo deviceConnectionStateEventInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,13 +75,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The unique identifier of the device. This case-sensitive string can be up to 128 characters long, and supports ASCII 7-bit alphanumeric characters plus the following special characters: - : . + % _ &amp;#35; * ? ! ( ) , = `@` ; $ '. </summary>
+        /// <summary> Gets the device id. </summary>
         public string DeviceId { get; }
-        /// <summary> The unique identifier of the module. This case-sensitive string can be up to 128 characters long, and supports ASCII 7-bit alphanumeric characters plus the following special characters: - : . + % _ &amp;#35; * ? ! ( ) , = `@` ; $ '. </summary>
+        /// <summary> Gets the module id. </summary>
         public string ModuleId { get; }
-        /// <summary> Name of the IoT Hub where the device was created or deleted. </summary>
+        /// <summary> Gets the hub name. </summary>
         public string HubName { get; }
-        /// <summary> Information about the device connection state event. </summary>
+        /// <summary> Gets the device connection state event info. </summary>
         public DeviceConnectionStateEventInfo DeviceConnectionStateEventInfo { get; }
     }
 }

@@ -26,7 +26,7 @@ namespace Azure.ResourceManager.ComputeSchedule
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="applicationId"> The application id to use for user agent. </param>
         /// <param name="endpoint"> The <see cref="Uri"/> to use. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="pipeline"/> or <paramref name="apiVersion"/> is null. </exception>
         public ScheduledActionsRestOperations(HttpPipeline pipeline, string applicationId, Uri endpoint = null, string apiVersion = default)
         {
@@ -73,9 +73,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesSubmitDeallocate: submitDeallocate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -102,9 +102,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesSubmitDeallocate: submitDeallocate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -167,9 +167,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesSubmitHibernate: submitHibernate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -196,9 +196,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesSubmitHibernate: submitHibernate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -261,9 +261,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesSubmitStart: submitStart for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -290,9 +290,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesSubmitStart: submitStart for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -355,9 +355,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesExecuteDeallocate: executeDeallocate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -384,9 +384,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesExecuteDeallocate: executeDeallocate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -449,9 +449,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesExecuteHibernate: executeHibernate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -478,9 +478,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesExecuteHibernate: executeHibernate for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -543,9 +543,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesExecuteStart: executeStart for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -572,9 +572,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesExecuteStart: executeStart for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -637,9 +637,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesGetOperationStatus: getOperationStatus for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationStatusContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -666,9 +666,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesGetOperationStatus: getOperationStatus for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationStatusContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -731,9 +731,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesCancelOperations: cancelOperations for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="CancelOperationsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -760,9 +760,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesCancelOperations: cancelOperations for a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="CancelOperationsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -825,9 +825,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesGetOperationErrors: getOperationErrors associated with an operation on a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationErrorsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
@@ -854,9 +854,9 @@ namespace Azure.ResourceManager.ComputeSchedule
         }
 
         /// <summary> virtualMachinesGetOperationErrors: getOperationErrors associated with an operation on a virtual machine. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationErrorsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> or <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>

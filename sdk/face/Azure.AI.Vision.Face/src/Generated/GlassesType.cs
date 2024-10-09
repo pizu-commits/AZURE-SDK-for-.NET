@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Glasses type of the face. </summary>
+    /// <summary> The GlassesType. </summary>
     public readonly partial struct GlassesType : IEquatable<GlassesType>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.Vision.Face
         private const string SunglassesValue = "sunglasses";
         private const string SwimmingGogglesValue = "swimmingGoggles";
 
-        /// <summary> No glasses on the face. </summary>
+        /// <summary> noGlasses. </summary>
         public static GlassesType NoGlasses { get; } = new GlassesType(NoGlassesValue);
-        /// <summary> Normal glasses on the face. </summary>
+        /// <summary> readingGlasses. </summary>
         public static GlassesType ReadingGlasses { get; } = new GlassesType(ReadingGlassesValue);
-        /// <summary> Sunglasses on the face. </summary>
+        /// <summary> sunglasses. </summary>
         public static GlassesType Sunglasses { get; } = new GlassesType(SunglassesValue);
-        /// <summary> Swimming goggles on the face. </summary>
+        /// <summary> swimmingGoggles. </summary>
         public static GlassesType SwimmingGoggles { get; } = new GlassesType(SwimmingGogglesValue);
         /// <summary> Determines if two <see cref="GlassesType"/> values are the same. </summary>
         public static bool operator ==(GlassesType left, GlassesType right) => left.Equals(right);

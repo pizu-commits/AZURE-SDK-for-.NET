@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> Text analysis result. </summary>
+    /// <summary> The TextCategoriesAnalysis. </summary>
     public partial class TextCategoriesAnalysis
     {
         /// <summary>
@@ -46,15 +46,15 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TextCategoriesAnalysis"/>. </summary>
-        /// <param name="category"> The text analysis category. </param>
+        /// <param name="category"></param>
         internal TextCategoriesAnalysis(TextCategory category)
         {
             Category = category;
         }
 
         /// <summary> Initializes a new instance of <see cref="TextCategoriesAnalysis"/>. </summary>
-        /// <param name="category"> The text analysis category. </param>
-        /// <param name="severity"> The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’ or ‘EightSeverity Levels’, and the output value can be 0, 2, 4, 6 or 0, 1, 2, 3, 4, 5, 6, or 7. </param>
+        /// <param name="category"></param>
+        /// <param name="severity"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TextCategoriesAnalysis(TextCategory category, int? severity, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,9 +68,9 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> The text analysis category. </summary>
+        /// <summary> Gets the category. </summary>
         public TextCategory Category { get; }
-        /// <summary> The value increases with the severity of the input content. The value of this field is determined by the output type specified in the request. The output type could be ‘FourSeverityLevels’ or ‘EightSeverity Levels’, and the output value can be 0, 2, 4, 6 or 0, 1, 2, 3, 4, 5, 6, or 7. </summary>
+        /// <summary> Gets the severity. </summary>
         public int? Severity { get; }
     }
 }

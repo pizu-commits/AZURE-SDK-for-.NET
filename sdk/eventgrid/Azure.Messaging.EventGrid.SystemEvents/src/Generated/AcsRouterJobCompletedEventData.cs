@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterJobCompleted event. </summary>
+    /// <summary> The AcsRouterJobCompletedEventData. </summary>
     public partial class AcsRouterJobCompletedEventData : AcsRouterJobEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobCompletedEventData"/>. </summary>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="labels"/> or <paramref name="tags"/> is null. </exception>
         internal AcsRouterJobCompletedEventData(IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags) : base(labels, tags)
         {
@@ -24,15 +24,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobCompletedEventData"/>. </summary>
-        /// <param name="jobId"> Router Event Job ID. </param>
-        /// <param name="channelReference"> Router Event Channel Reference. </param>
-        /// <param name="channelId"> Router Event Channel ID. </param>
+        /// <param name="jobId"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="channelId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="queueId"> Router Job events Queue Id. </param>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
-        /// <param name="assignmentId"> Router Job Completed Assignment Id. </param>
-        /// <param name="workerId"> Router Job Completed Worker Id. </param>
+        /// <param name="queueId"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="assignmentId"></param>
+        /// <param name="workerId"></param>
         internal AcsRouterJobCompletedEventData(string jobId, string channelReference, string channelId, IDictionary<string, BinaryData> serializedAdditionalRawData, string queueId, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, string assignmentId, string workerId) : base(jobId, channelReference, channelId, serializedAdditionalRawData, queueId, labels, tags)
         {
             AssignmentId = assignmentId;
@@ -44,9 +44,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Job Completed Assignment Id. </summary>
+        /// <summary> Gets the assignment id. </summary>
         public string AssignmentId { get; }
-        /// <summary> Router Job Completed Worker Id. </summary>
+        /// <summary> Gets the worker id. </summary>
         public string WorkerId { get; }
     }
 }

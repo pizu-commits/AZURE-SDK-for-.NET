@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> An inference made by the Trial Matcher model regarding a patient. </summary>
+    /// <summary> The TrialMatcherInference. </summary>
     public partial class TrialMatcherInference
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherInference"/>. </summary>
-        /// <param name="type"> The type of the Trial Matcher inference. </param>
-        /// <param name="value"> The value of the inference, as relevant for the given inference type. </param>
+        /// <param name="type"></param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal TrialMatcherInference(TrialMatcherInferenceType type, string value)
         {
@@ -59,14 +59,14 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherInference"/>. </summary>
-        /// <param name="type"> The type of the Trial Matcher inference. </param>
-        /// <param name="value"> The value of the inference, as relevant for the given inference type. </param>
-        /// <param name="description"> The description corresponding to the inference value. </param>
-        /// <param name="confidenceScore"> Confidence score for this inference. </param>
-        /// <param name="evidence"> The evidence corresponding to the inference value. </param>
-        /// <param name="id"> The identifier of the clinical trial. </param>
-        /// <param name="source"> Possible sources of a clinical trial. </param>
-        /// <param name="metadata"> Trial data which is of interest to the potential participant. </param>
+        /// <param name="type"></param>
+        /// <param name="value"></param>
+        /// <param name="description"></param>
+        /// <param name="confidenceScore"></param>
+        /// <param name="evidence"></param>
+        /// <param name="id"></param>
+        /// <param name="source"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TrialMatcherInference(TrialMatcherInferenceType type, string value, string description, float? confidenceScore, IReadOnlyList<TrialMatcherInferenceEvidence> evidence, string id, ClinicalTrialSource? source, ClinicalTrialMetadata metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,21 +86,21 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> The type of the Trial Matcher inference. </summary>
+        /// <summary> Gets the type. </summary>
         public TrialMatcherInferenceType Type { get; }
-        /// <summary> The value of the inference, as relevant for the given inference type. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
-        /// <summary> The description corresponding to the inference value. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> Confidence score for this inference. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public float? ConfidenceScore { get; }
-        /// <summary> The evidence corresponding to the inference value. </summary>
+        /// <summary> Gets the evidence. </summary>
         public IReadOnlyList<TrialMatcherInferenceEvidence> Evidence { get; }
-        /// <summary> The identifier of the clinical trial. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Possible sources of a clinical trial. </summary>
+        /// <summary> Gets the source. </summary>
         public ClinicalTrialSource? Source { get; }
-        /// <summary> Trial data which is of interest to the potential participant. </summary>
+        /// <summary> Gets the metadata. </summary>
         public ClinicalTrialMetadata Metadata { get; }
     }
 }

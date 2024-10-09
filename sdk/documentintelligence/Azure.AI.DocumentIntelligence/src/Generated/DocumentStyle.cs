@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> An object representing observed text styles. </summary>
+    /// <summary> The DocumentStyle. </summary>
     public partial class DocumentStyle
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentStyle"/>. </summary>
-        /// <param name="spans"> Location of the text elements in the concatenated content the style applies to. </param>
-        /// <param name="confidence"> Confidence of correctly identifying the style. </param>
+        /// <param name="spans"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="spans"/> is null. </exception>
         internal DocumentStyle(IEnumerable<DocumentSpan> spans, float confidence)
         {
@@ -59,17 +59,14 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentStyle"/>. </summary>
-        /// <param name="isHandwritten"> Is content handwritten?. </param>
-        /// <param name="similarFontFamily">
-        /// Visually most similar font from among the set of supported font families, with
-        /// fallback fonts following CSS convention (ex. 'Arial, sans-serif').
-        /// </param>
-        /// <param name="fontStyle"> Font style. </param>
-        /// <param name="fontWeight"> Font weight. </param>
-        /// <param name="color"> Foreground color in #rrggbb hexadecimal format. </param>
-        /// <param name="backgroundColor"> Background color in #rrggbb hexadecimal format.. </param>
-        /// <param name="spans"> Location of the text elements in the concatenated content the style applies to. </param>
-        /// <param name="confidence"> Confidence of correctly identifying the style. </param>
+        /// <param name="isHandwritten"></param>
+        /// <param name="similarFontFamily"></param>
+        /// <param name="fontStyle"></param>
+        /// <param name="fontWeight"></param>
+        /// <param name="color"></param>
+        /// <param name="backgroundColor"></param>
+        /// <param name="spans"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentStyle(bool? isHandwritten, string similarFontFamily, DocumentFontStyle? fontStyle, DocumentFontWeight? fontWeight, string color, string backgroundColor, IReadOnlyList<DocumentSpan> spans, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -89,24 +86,21 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Is content handwritten?. </summary>
+        /// <summary> Gets the is handwritten. </summary>
         public bool? IsHandwritten { get; }
-        /// <summary>
-        /// Visually most similar font from among the set of supported font families, with
-        /// fallback fonts following CSS convention (ex. 'Arial, sans-serif').
-        /// </summary>
+        /// <summary> Gets the similar font family. </summary>
         public string SimilarFontFamily { get; }
-        /// <summary> Font style. </summary>
+        /// <summary> Gets the font style. </summary>
         public DocumentFontStyle? FontStyle { get; }
-        /// <summary> Font weight. </summary>
+        /// <summary> Gets the font weight. </summary>
         public DocumentFontWeight? FontWeight { get; }
-        /// <summary> Foreground color in #rrggbb hexadecimal format. </summary>
+        /// <summary> Gets the color. </summary>
         public string Color { get; }
-        /// <summary> Background color in #rrggbb hexadecimal format.. </summary>
+        /// <summary> Gets the background color. </summary>
         public string BackgroundColor { get; }
-        /// <summary> Location of the text elements in the concatenated content the style applies to. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
-        /// <summary> Confidence of correctly identifying the style. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

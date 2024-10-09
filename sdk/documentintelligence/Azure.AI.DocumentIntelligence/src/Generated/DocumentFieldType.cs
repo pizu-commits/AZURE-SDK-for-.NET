@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Semantic data type of the field value. </summary>
+    /// <summary> The DocumentFieldType. </summary>
     public readonly partial struct DocumentFieldType : IEquatable<DocumentFieldType>
     {
         private readonly string _value;
@@ -38,35 +38,35 @@ namespace Azure.AI.DocumentIntelligence
         private const string BooleanValue = "boolean";
         private const string SelectionGroupValue = "selectionGroup";
 
-        /// <summary> Plain text. </summary>
+        /// <summary> string. </summary>
         public static DocumentFieldType String { get; } = new DocumentFieldType(StringValue);
-        /// <summary> Date, normalized to ISO 8601 (YYYY-MM-DD) format. </summary>
+        /// <summary> date. </summary>
         public static DocumentFieldType Date { get; } = new DocumentFieldType(DateValue);
-        /// <summary> Time, normalized to ISO 8601 (hh:mm:ss) format. </summary>
+        /// <summary> time. </summary>
         public static DocumentFieldType Time { get; } = new DocumentFieldType(TimeValue);
-        /// <summary> Phone number, normalized to E.164 (+{CountryCode}{SubscriberNumber}) format. </summary>
+        /// <summary> phoneNumber. </summary>
         public static DocumentFieldType PhoneNumber { get; } = new DocumentFieldType(PhoneNumberValue);
-        /// <summary> Floating point number, normalized to double precision floating point. </summary>
+        /// <summary> number. </summary>
         public static DocumentFieldType Double { get; } = new DocumentFieldType(DoubleValue);
-        /// <summary> Integer number, normalized to 64-bit signed integer. </summary>
+        /// <summary> integer. </summary>
         public static DocumentFieldType Long { get; } = new DocumentFieldType(LongValue);
-        /// <summary> Is field selected?. </summary>
+        /// <summary> selectionMark. </summary>
         public static DocumentFieldType SelectionMark { get; } = new DocumentFieldType(SelectionMarkValue);
-        /// <summary> Country/region, normalized to ISO 3166-1 alpha-3 format (ex. USA). </summary>
+        /// <summary> countryRegion. </summary>
         public static DocumentFieldType CountryRegion { get; } = new DocumentFieldType(CountryRegionValue);
-        /// <summary> Is signature present?. </summary>
+        /// <summary> signature. </summary>
         public static DocumentFieldType Signature { get; } = new DocumentFieldType(SignatureValue);
-        /// <summary> List of subfields of the same type. </summary>
+        /// <summary> array. </summary>
         public static DocumentFieldType List { get; } = new DocumentFieldType(ListValue);
-        /// <summary> Named list of subfields of potentially different types. </summary>
+        /// <summary> object. </summary>
         public static DocumentFieldType Dictionary { get; } = new DocumentFieldType(DictionaryValue);
-        /// <summary> Currency amount with optional currency symbol and unit. </summary>
+        /// <summary> currency. </summary>
         public static DocumentFieldType Currency { get; } = new DocumentFieldType(CurrencyValue);
-        /// <summary> Parsed address. </summary>
+        /// <summary> address. </summary>
         public static DocumentFieldType Address { get; } = new DocumentFieldType(AddressValue);
-        /// <summary> Boolean value, normalized to true or false. </summary>
+        /// <summary> boolean. </summary>
         public static DocumentFieldType Boolean { get; } = new DocumentFieldType(BooleanValue);
-        /// <summary> Array of selected string values. </summary>
+        /// <summary> selectionGroup. </summary>
         public static DocumentFieldType SelectionGroup { get; } = new DocumentFieldType(SelectionGroupValue);
         /// <summary> Determines if two <see cref="DocumentFieldType"/> values are the same. </summary>
         public static bool operator ==(DocumentFieldType left, DocumentFieldType right) => left.Equals(right);

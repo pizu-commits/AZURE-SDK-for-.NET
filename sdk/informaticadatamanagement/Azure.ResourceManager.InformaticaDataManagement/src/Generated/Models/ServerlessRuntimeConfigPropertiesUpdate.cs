@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> The template for adding optional properties. </summary>
+    /// <summary> The ServerlessRuntimeConfigPropertiesUpdate. </summary>
     public partial class ServerlessRuntimeConfigPropertiesUpdate
     {
         /// <summary>
@@ -53,8 +53,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeConfigPropertiesUpdate"/>. </summary>
-        /// <param name="cdiConfigProps"> The List of Informatica Serverless Runtime CDI Config Properties. </param>
-        /// <param name="cdieConfigProps"> The List of Informatica Serverless Runtime CDIE Config Properties. </param>
+        /// <param name="cdiConfigProps"></param>
+        /// <param name="cdieConfigProps"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimeConfigPropertiesUpdate(IList<CdiConfigProperties> cdiConfigProps, IList<CdiConfigProperties> cdieConfigProps, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,9 +63,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The List of Informatica Serverless Runtime CDI Config Properties. </summary>
+        /// <summary> Gets the cdi config props. </summary>
         public IList<CdiConfigProperties> CdiConfigProps { get; }
-        /// <summary> The List of Informatica Serverless Runtime CDIE Config Properties. </summary>
+        /// <summary> Gets the cdie config props. </summary>
         public IList<CdiConfigProperties> CdieConfigProps { get; }
     }
 }

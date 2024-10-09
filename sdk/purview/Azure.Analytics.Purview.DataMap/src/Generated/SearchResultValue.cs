@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The value item of the search result. </summary>
+    /// <summary> The SearchResultValue. </summary>
     public partial class SearchResultValue
     {
         /// <summary>
@@ -57,42 +57,28 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchResultValue"/>. </summary>
-        /// <param name="searchScore">
-        /// The search score calculated by the search engine. The results are ordered by
-        /// search score by default.
-        /// </param>
-        /// <param name="searchHighlights">
-        /// A highlight list that consists of index fields id ,qualifiedName, name,
-        /// description, entityType. When the keyword appears in those fields, the value of
-        /// the field, attached with emphasis mark, is returned as an element of
-        /// @search.highlights.
-        /// </param>
-        /// <param name="objectType">
-        /// The object type of the record. Object type is the top-level property to
-        /// distinguish whether a record is an asset or a term.
-        /// </param>
-        /// <param name="createTime"> The create time of the record. The Unix epoch format. </param>
-        /// <param name="updateTime"> The last update time of the record. The Unix epoch format. </param>
-        /// <param name="id"> The GUID of the record. </param>
-        /// <param name="name"> The name of the record. </param>
-        /// <param name="qualifiedName"> The qualified name of the record. </param>
-        /// <param name="entityType"> The type name of the asset. </param>
-        /// <param name="description"> The description of the asset. </param>
-        /// <param name="endorsement"> The endorsement of the asset. </param>
-        /// <param name="owner"> The owner of the record. </param>
-        /// <param name="classification"> The classifications of the record. </param>
-        /// <param name="label"> The labels of the asset. </param>
-        /// <param name="term"> The terms assigned to the asset. </param>
-        /// <param name="contact"> The contacts of the asset. </param>
-        /// <param name="assetType"> The asset types of the asset. </param>
-        /// <param name="glossaryType">
-        /// The type name of the term. Could be AtlasGlossary, AtlasGlossaryTerm or
-        /// AtlasGlossaryCategory.
-        /// </param>
-        /// <param name="glossary"> The glossary name of the term. </param>
-        /// <param name="termStatus"> The status of the term. </param>
-        /// <param name="termTemplate"> The term template names used by the term. </param>
-        /// <param name="longDescription"> The definition of the term. </param>
+        /// <param name="searchScore"></param>
+        /// <param name="searchHighlights"></param>
+        /// <param name="objectType"></param>
+        /// <param name="createTime"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="entityType"></param>
+        /// <param name="description"></param>
+        /// <param name="endorsement"></param>
+        /// <param name="owner"></param>
+        /// <param name="classification"></param>
+        /// <param name="label"></param>
+        /// <param name="term"></param>
+        /// <param name="contact"></param>
+        /// <param name="assetType"></param>
+        /// <param name="glossaryType"></param>
+        /// <param name="glossary"></param>
+        /// <param name="termStatus"></param>
+        /// <param name="termTemplate"></param>
+        /// <param name="longDescription"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SearchResultValue(float? searchScore, SearchHighlights searchHighlights, string objectType, long? createTime, long? updateTime, string id, string name, string qualifiedName, string entityType, string description, string endorsement, string owner, IReadOnlyList<string> classification, IReadOnlyList<string> label, IReadOnlyList<TermSearchResultValue> term, IReadOnlyList<ContactSearchResultValue> contact, IReadOnlyList<string> assetType, string glossaryType, string glossary, string termStatus, IReadOnlyList<string> termTemplate, string longDescription, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -121,63 +107,49 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// The search score calculated by the search engine. The results are ordered by
-        /// search score by default.
-        /// </summary>
+        /// <summary> Gets the search score. </summary>
         public float? SearchScore { get; }
-        /// <summary>
-        /// A highlight list that consists of index fields id ,qualifiedName, name,
-        /// description, entityType. When the keyword appears in those fields, the value of
-        /// the field, attached with emphasis mark, is returned as an element of
-        /// @search.highlights.
-        /// </summary>
+        /// <summary> Gets the search highlights. </summary>
         public SearchHighlights SearchHighlights { get; }
-        /// <summary>
-        /// The object type of the record. Object type is the top-level property to
-        /// distinguish whether a record is an asset or a term.
-        /// </summary>
+        /// <summary> Gets the object type. </summary>
         public string ObjectType { get; }
-        /// <summary> The create time of the record. The Unix epoch format. </summary>
+        /// <summary> Gets the create time. </summary>
         public long? CreateTime { get; }
-        /// <summary> The last update time of the record. The Unix epoch format. </summary>
+        /// <summary> Gets the update time. </summary>
         public long? UpdateTime { get; }
-        /// <summary> The GUID of the record. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The name of the record. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The qualified name of the record. </summary>
+        /// <summary> Gets the qualified name. </summary>
         public string QualifiedName { get; }
-        /// <summary> The type name of the asset. </summary>
+        /// <summary> Gets the entity type. </summary>
         public string EntityType { get; }
-        /// <summary> The description of the asset. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> The endorsement of the asset. </summary>
+        /// <summary> Gets the endorsement. </summary>
         public string Endorsement { get; }
-        /// <summary> The owner of the record. </summary>
+        /// <summary> Gets the owner. </summary>
         public string Owner { get; }
-        /// <summary> The classifications of the record. </summary>
+        /// <summary> Gets the classification. </summary>
         public IReadOnlyList<string> Classification { get; }
-        /// <summary> The labels of the asset. </summary>
+        /// <summary> Gets the label. </summary>
         public IReadOnlyList<string> Label { get; }
-        /// <summary> The terms assigned to the asset. </summary>
+        /// <summary> Gets the term. </summary>
         public IReadOnlyList<TermSearchResultValue> Term { get; }
-        /// <summary> The contacts of the asset. </summary>
+        /// <summary> Gets the contact. </summary>
         public IReadOnlyList<ContactSearchResultValue> Contact { get; }
-        /// <summary> The asset types of the asset. </summary>
+        /// <summary> Gets the asset type. </summary>
         public IReadOnlyList<string> AssetType { get; }
-        /// <summary>
-        /// The type name of the term. Could be AtlasGlossary, AtlasGlossaryTerm or
-        /// AtlasGlossaryCategory.
-        /// </summary>
+        /// <summary> Gets the glossary type. </summary>
         public string GlossaryType { get; }
-        /// <summary> The glossary name of the term. </summary>
+        /// <summary> Gets the glossary. </summary>
         public string Glossary { get; }
-        /// <summary> The status of the term. </summary>
+        /// <summary> Gets the term status. </summary>
         public string TermStatus { get; }
-        /// <summary> The term template names used by the term. </summary>
+        /// <summary> Gets the term template. </summary>
         public IReadOnlyList<string> TermTemplate { get; }
-        /// <summary> The definition of the term. </summary>
+        /// <summary> Gets the long description. </summary>
         public string LongDescription { get; }
     }
 }

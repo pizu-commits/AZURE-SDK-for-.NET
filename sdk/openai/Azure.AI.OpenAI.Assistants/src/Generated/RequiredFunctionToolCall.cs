@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> A representation of a requested call to a function tool, needed by the model to continue evaluation of a run. </summary>
+    /// <summary> The RequiredFunctionToolCall. </summary>
     public partial class RequiredFunctionToolCall : RequiredToolCall
     {
         /// <summary> Initializes a new instance of <see cref="RequiredFunctionToolCall"/>. </summary>
-        /// <param name="id"> The ID of the tool call. This ID must be referenced when submitting tool outputs. </param>
-        /// <param name="internalDetails"> Detailed information about the function to be executed by the tool that includes name and arguments. </param>
+        /// <param name="id"></param>
+        /// <param name="internalDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="internalDetails"/> is null. </exception>
         internal RequiredFunctionToolCall(string id, InternalRequiredFunctionToolCallDetails internalDetails) : base(id)
         {
@@ -27,10 +27,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RequiredFunctionToolCall"/>. </summary>
-        /// <param name="type"> The object type for the required tool call. </param>
-        /// <param name="id"> The ID of the tool call. This ID must be referenced when submitting tool outputs. </param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="internalDetails"> Detailed information about the function to be executed by the tool that includes name and arguments. </param>
+        /// <param name="internalDetails"></param>
         internal RequiredFunctionToolCall(string type, string id, IDictionary<string, BinaryData> serializedAdditionalRawData, InternalRequiredFunctionToolCallDetails internalDetails) : base(type, id, serializedAdditionalRawData)
         {
             InternalDetails = internalDetails;

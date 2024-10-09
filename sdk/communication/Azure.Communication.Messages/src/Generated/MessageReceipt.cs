@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> Receipt of the sending one message. </summary>
+    /// <summary> The MessageReceipt. </summary>
     public partial class MessageReceipt
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.Messages
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MessageReceipt"/>. </summary>
-        /// <param name="messageId"> The message id. </param>
-        /// <param name="to"> The native external platform user identifier of the recipient. </param>
+        /// <param name="messageId"></param>
+        /// <param name="to"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="messageId"/> or <paramref name="to"/> is null. </exception>
         internal MessageReceipt(string messageId, string to)
         {
@@ -59,8 +59,8 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageReceipt"/>. </summary>
-        /// <param name="messageId"> The message id. </param>
-        /// <param name="to"> The native external platform user identifier of the recipient. </param>
+        /// <param name="messageId"></param>
+        /// <param name="to"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MessageReceipt(string messageId, string to, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> The message id. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
-        /// <summary> The native external platform user identifier of the recipient. </summary>
+        /// <summary> Gets the to. </summary>
         public string To { get; }
     }
 }

@@ -10,14 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// A text note which also  contains information about who made the statement and when
-    /// Based on [FHIR Annotation](https://www.hl7.org/fhir/R4/datatypes.html#Annotation)
-    /// </summary>
+    /// <summary> The Fhir_R4_Annotation. </summary>
     public partial class FhirR4Annotation : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Annotation"/>. </summary>
-        /// <param name="text"> The annotation - text content (as markdown). </param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         internal FhirR4Annotation(string text)
         {
@@ -27,12 +24,12 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Annotation"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="authorString"> Individual responsible for the annotation. </param>
-        /// <param name="time"> When the annotation was made. </param>
-        /// <param name="text"> The annotation - text content (as markdown). </param>
+        /// <param name="authorString"></param>
+        /// <param name="time"></param>
+        /// <param name="text"></param>
         internal FhirR4Annotation(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, string authorString, string time, string text) : base(id, extension, serializedAdditionalRawData)
         {
             AuthorString = authorString;
@@ -45,11 +42,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Individual responsible for the annotation. </summary>
+        /// <summary> Gets the author string. </summary>
         public string AuthorString { get; }
-        /// <summary> When the annotation was made. </summary>
+        /// <summary> Gets the time. </summary>
         public string Time { get; }
-        /// <summary> The annotation - text content (as markdown). </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

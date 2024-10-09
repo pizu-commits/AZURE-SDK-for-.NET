@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// Reference to an object-instance of AtlasEntity type used in relationship
-    /// attribute values
-    /// </summary>
+    /// <summary> The AtlasRelatedObjectId. </summary>
     public partial class AtlasRelatedObjectId
     {
         /// <summary>
@@ -55,21 +52,15 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasRelatedObjectId"/>. </summary>
-        /// <param name="guid"> The GUID of the object. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="uniqueAttributes"> The unique attributes of the object. </param>
-        /// <param name="displayText"> The display text. </param>
-        /// <param name="entityStatus">
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </param>
-        /// <param name="relationshipType"> Relationship type. </param>
-        /// <param name="relationshipAttributes">
-        /// Captures details of struct contents. Not instantiated directly, used only via
-        /// AtlasEntity, AtlasClassification.
-        /// </param>
-        /// <param name="relationshipGuid"> The GUID of the relationship. </param>
-        /// <param name="relationshipStatus"> The enum of relationship status. </param>
+        /// <param name="guid"></param>
+        /// <param name="typeName"></param>
+        /// <param name="uniqueAttributes"></param>
+        /// <param name="displayText"></param>
+        /// <param name="entityStatus"></param>
+        /// <param name="relationshipType"></param>
+        /// <param name="relationshipAttributes"></param>
+        /// <param name="relationshipGuid"></param>
+        /// <param name="relationshipStatus"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasRelatedObjectId(string guid, string typeName, IDictionary<string, BinaryData> uniqueAttributes, string displayText, EntityStatus? entityStatus, string relationshipType, AtlasStruct relationshipAttributes, Guid? relationshipGuid, StatusAtlasRelationship? relationshipStatus, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,12 +76,12 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the object. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
         /// <summary>
-        /// The unique attributes of the object.
+        /// Gets the unique attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -120,23 +111,17 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> UniqueAttributes { get; }
-        /// <summary> The display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary>
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </summary>
+        /// <summary> Gets or sets the entity status. </summary>
         public EntityStatus? EntityStatus { get; set; }
-        /// <summary> Relationship type. </summary>
+        /// <summary> Gets or sets the relationship type. </summary>
         public string RelationshipType { get; set; }
-        /// <summary>
-        /// Captures details of struct contents. Not instantiated directly, used only via
-        /// AtlasEntity, AtlasClassification.
-        /// </summary>
+        /// <summary> Gets or sets the relationship attributes. </summary>
         public AtlasStruct RelationshipAttributes { get; set; }
-        /// <summary> The GUID of the relationship. </summary>
+        /// <summary> Gets or sets the relationship guid. </summary>
         public Guid? RelationshipGuid { get; set; }
-        /// <summary> The enum of relationship status. </summary>
+        /// <summary> Gets or sets the relationship status. </summary>
         public StatusAtlasRelationship? RelationshipStatus { get; set; }
     }
 }

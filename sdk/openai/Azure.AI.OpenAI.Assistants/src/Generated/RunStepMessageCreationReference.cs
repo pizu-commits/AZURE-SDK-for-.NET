@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The details of a message created as a part of a run step. </summary>
+    /// <summary> The RunStepMessageCreationReference. </summary>
     public partial class RunStepMessageCreationReference
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RunStepMessageCreationReference"/>. </summary>
-        /// <param name="messageId"> The ID of the message created by this run step. </param>
+        /// <param name="messageId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="messageId"/> is null. </exception>
         internal RunStepMessageCreationReference(string messageId)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunStepMessageCreationReference"/>. </summary>
-        /// <param name="messageId"> The ID of the message created by this run step. </param>
+        /// <param name="messageId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RunStepMessageCreationReference(string messageId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The ID of the message created by this run step. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The status of the task at the mentioned last update time. </summary>
+    /// <summary> The ConversationActionState. </summary>
     public readonly partial struct ConversationActionState : IEquatable<ConversationActionState>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.AI.Language.Conversations.Models
         private const string CancelledValue = "cancelled";
         private const string CancellingValue = "cancelling";
 
-        /// <summary> Not started state. </summary>
+        /// <summary> notStarted. </summary>
         public static ConversationActionState NotStarted { get; } = new ConversationActionState(NotStartedValue);
-        /// <summary> Running state. </summary>
+        /// <summary> running. </summary>
         public static ConversationActionState Running { get; } = new ConversationActionState(RunningValue);
-        /// <summary> Succeeded state. </summary>
+        /// <summary> succeeded. </summary>
         public static ConversationActionState Succeeded { get; } = new ConversationActionState(SucceededValue);
-        /// <summary> Partially completed state. </summary>
+        /// <summary> partiallyCompleted. </summary>
         public static ConversationActionState PartiallyCompleted { get; } = new ConversationActionState(PartiallyCompletedValue);
-        /// <summary> Failed state. </summary>
+        /// <summary> failed. </summary>
         public static ConversationActionState Failed { get; } = new ConversationActionState(FailedValue);
-        /// <summary> Cancelled state. </summary>
+        /// <summary> cancelled. </summary>
         public static ConversationActionState Cancelled { get; } = new ConversationActionState(CancelledValue);
-        /// <summary> Cancelling state. </summary>
+        /// <summary> cancelling. </summary>
         public static ConversationActionState Cancelling { get; } = new ConversationActionState(CancellingValue);
         /// <summary> Determines if two <see cref="ConversationActionState"/> values are the same. </summary>
         public static bool operator ==(ConversationActionState left, ConversationActionState right) => left.Equals(right);

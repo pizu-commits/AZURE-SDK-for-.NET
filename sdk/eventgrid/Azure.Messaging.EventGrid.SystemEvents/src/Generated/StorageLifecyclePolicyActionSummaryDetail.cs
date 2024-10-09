@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Execution statistics of a specific policy action in a Blob Management cycle. </summary>
+    /// <summary> The StorageLifecyclePolicyActionSummaryDetail. </summary>
     public partial class StorageLifecyclePolicyActionSummaryDetail
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="StorageLifecyclePolicyActionSummaryDetail"/>. </summary>
-        /// <param name="totalObjectsCount"> Total number of objects to be acted on by this action. </param>
-        /// <param name="successCount"> Number of success operations of this action. </param>
-        /// <param name="errorList"> Error messages of this action if any. </param>
+        /// <param name="totalObjectsCount"></param>
+        /// <param name="successCount"></param>
+        /// <param name="errorList"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StorageLifecyclePolicyActionSummaryDetail(long? totalObjectsCount, long? successCount, string errorList, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Total number of objects to be acted on by this action. </summary>
+        /// <summary> Gets the total objects count. </summary>
         public long? TotalObjectsCount { get; }
-        /// <summary> Number of success operations of this action. </summary>
+        /// <summary> Gets the success count. </summary>
         public long? SuccessCount { get; }
-        /// <summary> Error messages of this action if any. </summary>
+        /// <summary> Gets the error list. </summary>
         public string ErrorList { get; }
     }
 }

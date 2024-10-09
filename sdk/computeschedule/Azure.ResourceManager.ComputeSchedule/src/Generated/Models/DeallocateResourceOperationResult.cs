@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The response from a deallocate request. </summary>
+    /// <summary> The DeallocateResourceOperationResult. </summary>
     public partial class DeallocateResourceOperationResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeallocateResourceOperationResult"/>. </summary>
-        /// <param name="description"> The description of the operation response. </param>
-        /// <param name="resourceType"> The type of resources used in the deallocate request eg virtual machines. </param>
-        /// <param name="location"> The location of the deallocate request eg westus. </param>
+        /// <param name="description"></param>
+        /// <param name="resourceType"></param>
+        /// <param name="location"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="description"/> or <paramref name="resourceType"/> is null. </exception>
         internal DeallocateResourceOperationResult(string description, string resourceType, AzureLocation location)
         {
@@ -63,10 +63,10 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DeallocateResourceOperationResult"/>. </summary>
-        /// <param name="description"> The description of the operation response. </param>
-        /// <param name="resourceType"> The type of resources used in the deallocate request eg virtual machines. </param>
-        /// <param name="location"> The location of the deallocate request eg westus. </param>
-        /// <param name="results"> The results from the deallocate request if no errors exist. </param>
+        /// <param name="description"></param>
+        /// <param name="resourceType"></param>
+        /// <param name="location"></param>
+        /// <param name="results"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeallocateResourceOperationResult(string description, string resourceType, AzureLocation location, IReadOnlyList<ResourceOperationResult> results, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> The description of the operation response. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> The type of resources used in the deallocate request eg virtual machines. </summary>
+        /// <summary> Gets the resource type. </summary>
         public string ResourceType { get; }
-        /// <summary> The location of the deallocate request eg westus. </summary>
+        /// <summary> Gets the location. </summary>
         public AzureLocation Location { get; }
-        /// <summary> The results from the deallocate request if no errors exist. </summary>
+        /// <summary> Gets the results. </summary>
         public IReadOnlyList<ResourceOperationResult> Results { get; }
     }
 }

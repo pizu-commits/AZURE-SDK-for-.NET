@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The result of adding a collection of Tasks to a Job. </summary>
+    /// <summary> The BatchTaskAddCollectionResult. </summary>
     public partial class BatchTaskAddCollectionResult
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskAddCollectionResult"/>. </summary>
-        /// <param name="value"> The results of the add Task collection operation. </param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskAddCollectionResult(IReadOnlyList<BatchTaskAddResult> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The results of the add Task collection operation. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<BatchTaskAddResult> Value { get; }
     }
 }

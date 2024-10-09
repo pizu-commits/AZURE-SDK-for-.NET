@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> if showStats=true was specified in the request this field will contain information about the request payload. </summary>
+    /// <summary> The RequestStatistics. </summary>
     public partial class RequestStatistics
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RequestStatistics"/>. </summary>
-        /// <param name="documentsCount"> Number of documents submitted in the request. </param>
-        /// <param name="validDocumentsCount"> Number of valid documents. This excludes empty, over-size limit or non-supported languages documents. </param>
-        /// <param name="erroneousDocumentsCount"> Number of invalid documents. This includes empty, over-size limit or non-supported languages documents. </param>
-        /// <param name="transactionsCount"> Number of transactions for the request. </param>
+        /// <param name="documentsCount"></param>
+        /// <param name="validDocumentsCount"></param>
+        /// <param name="erroneousDocumentsCount"></param>
+        /// <param name="transactionsCount"></param>
         internal RequestStatistics(int documentsCount, int validDocumentsCount, int erroneousDocumentsCount, long transactionsCount)
         {
             DocumentsCount = documentsCount;
@@ -59,10 +59,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="RequestStatistics"/>. </summary>
-        /// <param name="documentsCount"> Number of documents submitted in the request. </param>
-        /// <param name="validDocumentsCount"> Number of valid documents. This excludes empty, over-size limit or non-supported languages documents. </param>
-        /// <param name="erroneousDocumentsCount"> Number of invalid documents. This includes empty, over-size limit or non-supported languages documents. </param>
-        /// <param name="transactionsCount"> Number of transactions for the request. </param>
+        /// <param name="documentsCount"></param>
+        /// <param name="validDocumentsCount"></param>
+        /// <param name="erroneousDocumentsCount"></param>
+        /// <param name="transactionsCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RequestStatistics(int documentsCount, int validDocumentsCount, int erroneousDocumentsCount, long transactionsCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Number of documents submitted in the request. </summary>
+        /// <summary> Gets the documents count. </summary>
         public int DocumentsCount { get; }
-        /// <summary> Number of valid documents. This excludes empty, over-size limit or non-supported languages documents. </summary>
+        /// <summary> Gets the valid documents count. </summary>
         public int ValidDocumentsCount { get; }
-        /// <summary> Number of invalid documents. This includes empty, over-size limit or non-supported languages documents. </summary>
+        /// <summary> Gets the erroneous documents count. </summary>
         public int ErroneousDocumentsCount { get; }
-        /// <summary> Number of transactions for the request. </summary>
+        /// <summary> Gets the transactions count. </summary>
         public long TransactionsCount { get; }
     }
 }

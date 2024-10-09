@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Inference
 {
     /// <summary>
-    /// An abstract representation of a tool that can be used by the model to improve a chat completions response.
+    /// The ChatCompletionsToolDefinition.
     /// Please note <see cref="ChatCompletionsToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ChatCompletionsFunctionToolDefinition"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsToolDefinition"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatCompletionsToolDefinition(string type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Inference
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The object type. </summary>
+        /// <summary> Gets or sets the type. </summary>
         internal string Type { get; set; }
     }
 }

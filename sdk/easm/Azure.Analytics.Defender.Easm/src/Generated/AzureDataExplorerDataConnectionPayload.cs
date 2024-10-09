@@ -14,7 +14,7 @@ namespace Azure.Analytics.Defender.Easm
     public partial class AzureDataExplorerDataConnectionPayload : DataConnectionPayload
     {
         /// <summary> Initializes a new instance of <see cref="AzureDataExplorerDataConnectionPayload"/>. </summary>
-        /// <param name="properties"> properties. </param>
+        /// <param name="properties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="properties"/> is null. </exception>
         public AzureDataExplorerDataConnectionPayload(AzureDataExplorerDataConnectionProperties properties)
         {
@@ -25,13 +25,13 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="AzureDataExplorerDataConnectionPayload"/>. </summary>
-        /// <param name="kind"> Discriminator property for DataConnectionPayload. </param>
-        /// <param name="name"> The name of data connection. </param>
-        /// <param name="content"> The type of data the data connection will transfer. </param>
-        /// <param name="frequency"> The rate at which the data connection will receive updates. </param>
-        /// <param name="frequencyOffset"> The day to update the data connection on. (1-7 for weekly, 1-31 for monthly). </param>
+        /// <param name="kind"></param>
+        /// <param name="name"></param>
+        /// <param name="content"></param>
+        /// <param name="frequency"></param>
+        /// <param name="frequencyOffset"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="properties"> properties. </param>
+        /// <param name="properties"></param>
         internal AzureDataExplorerDataConnectionPayload(string kind, string name, DataConnectionContent? content, DataConnectionFrequency? frequency, int? frequencyOffset, IDictionary<string, BinaryData> serializedAdditionalRawData, AzureDataExplorerDataConnectionProperties properties) : base(kind, name, content, frequency, frequencyOffset, serializedAdditionalRawData)
         {
             Properties = properties;
@@ -42,7 +42,7 @@ namespace Azure.Analytics.Defender.Easm
         {
         }
 
-        /// <summary> properties. </summary>
+        /// <summary> Gets the properties. </summary>
         public AzureDataExplorerDataConnectionProperties Properties { get; }
     }
 }

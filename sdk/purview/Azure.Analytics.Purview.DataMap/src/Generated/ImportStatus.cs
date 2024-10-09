@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Status for import. </summary>
+    /// <summary> The ImportStatus. </summary>
     public readonly partial struct ImportStatus : IEquatable<ImportStatus>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Analytics.Purview.DataMap
         private const string SuccessValue = "SUCCESS";
         private const string FailedValue = "FAILED";
 
-        /// <summary> Success. </summary>
+        /// <summary> SUCCESS. </summary>
         public static ImportStatus Success { get; } = new ImportStatus(SuccessValue);
-        /// <summary> Failed. </summary>
+        /// <summary> FAILED. </summary>
         public static ImportStatus Failed { get; } = new ImportStatus(FailedValue);
         /// <summary> Determines if two <see cref="ImportStatus"/> values are the same. </summary>
         public static bool operator ==(ImportStatus left, ImportStatus right) => left.Equals(right);

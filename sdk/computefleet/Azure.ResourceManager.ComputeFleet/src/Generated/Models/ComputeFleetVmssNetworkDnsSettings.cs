@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a virtual machines scale sets network configuration's DNS settings. </summary>
+    /// <summary> The ComputeFleetVmssNetworkDnsSettings. </summary>
     internal partial class ComputeFleetVmssNetworkDnsSettings
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssNetworkDnsSettings"/>. </summary>
-        /// <param name="dnsServers"> List of DNS servers IP addresses. </param>
+        /// <param name="dnsServers"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssNetworkDnsSettings(IList<string> dnsServers, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> List of DNS servers IP addresses. </summary>
+        /// <summary> Gets the dns servers. </summary>
         public IList<string> DnsServers { get; }
     }
 }

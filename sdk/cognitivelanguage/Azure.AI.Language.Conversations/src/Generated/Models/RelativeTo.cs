@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The reference point that the ordinal number denotes. </summary>
+    /// <summary> The RelativeTo. </summary>
     public readonly partial struct RelativeTo : IEquatable<RelativeTo>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Conversations.Models
         private const string EndValue = "End";
         private const string StartValue = "Start";
 
-        /// <summary> Current state. </summary>
+        /// <summary> Current. </summary>
         public static RelativeTo Current { get; } = new RelativeTo(CurrentValue);
-        /// <summary> End state. </summary>
+        /// <summary> End. </summary>
         public static RelativeTo End { get; } = new RelativeTo(EndValue);
-        /// <summary> Start state. </summary>
+        /// <summary> Start. </summary>
         public static RelativeTo Start { get; } = new RelativeTo(StartValue);
         /// <summary> Determines if two <see cref="RelativeTo"/> values are the same. </summary>
         public static bool operator ==(RelativeTo left, RelativeTo right) => left.Equals(right);

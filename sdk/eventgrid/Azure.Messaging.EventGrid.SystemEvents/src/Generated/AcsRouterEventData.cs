@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of common properties of all Router events. </summary>
+    /// <summary> The AcsRouterEventData. </summary>
     public partial class AcsRouterEventData
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterEventData"/>. </summary>
-        /// <param name="jobId"> Router Event Job ID. </param>
-        /// <param name="channelReference"> Router Event Channel Reference. </param>
-        /// <param name="channelId"> Router Event Channel ID. </param>
+        /// <param name="jobId"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="channelId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRouterEventData(string jobId, string channelReference, string channelId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Router Event Job ID. </summary>
+        /// <summary> Gets the job id. </summary>
         public string JobId { get; }
-        /// <summary> Router Event Channel Reference. </summary>
+        /// <summary> Gets the channel reference. </summary>
         public string ChannelReference { get; }
-        /// <summary> Router Event Channel ID. </summary>
+        /// <summary> Gets the channel id. </summary>
         public string ChannelId { get; }
     }
 }

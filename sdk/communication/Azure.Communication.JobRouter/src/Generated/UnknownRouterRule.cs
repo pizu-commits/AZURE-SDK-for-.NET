@@ -14,7 +14,7 @@ namespace Azure.Communication.JobRouter
     internal partial class UnknownRouterRule : RouterRule
     {
         /// <summary> Initializes a new instance of <see cref="UnknownRouterRule"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of RouterRule. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownRouterRule(RouterRuleKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(kind, serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> An instance of an entity header map. </summary>
+    /// <summary> The AtlasEntityHeaders. </summary>
     public partial class AtlasEntityHeaders
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasEntityHeaders"/>. </summary>
-        /// <param name="guidHeaderMap"> The description of the guid header map,. </param>
+        /// <param name="guidHeaderMap"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasEntityHeaders(IDictionary<string, AtlasEntityHeader> guidHeaderMap, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The description of the guid header map,. </summary>
+        /// <summary> Gets the guid header map. </summary>
         public IDictionary<string, AtlasEntityHeader> GuidHeaderMap { get; }
     }
 }

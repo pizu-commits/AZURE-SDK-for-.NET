@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Custom Summary Results. </summary>
+    /// <summary> The CustomSummaryResult. </summary>
     public partial class CustomSummaryResult
     {
         /// <summary>
@@ -47,10 +47,10 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CustomSummaryResult"/>. </summary>
-        /// <param name="conversations"> array of conversations. </param>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
+        /// <param name="conversations"></param>
+        /// <param name="errors"></param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="conversations"/>, <paramref name="errors"/>, <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         internal CustomSummaryResult(IEnumerable<ConversationsSummaryResult> conversations, IEnumerable<DocumentError> errors, string projectName, string deploymentName)
         {
@@ -66,11 +66,11 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomSummaryResult"/>. </summary>
-        /// <param name="conversations"> array of conversations. </param>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="statistics"> if showStats=true was specified in the request this field will contain information about the request payload. </param>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
+        /// <param name="conversations"></param>
+        /// <param name="errors"></param>
+        /// <param name="statistics"></param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CustomSummaryResult(IReadOnlyList<ConversationsSummaryResult> conversations, IReadOnlyList<DocumentError> errors, RequestStatistics statistics, string projectName, string deploymentName, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,15 +87,15 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> array of conversations. </summary>
+        /// <summary> Gets the conversations. </summary>
         public IReadOnlyList<ConversationsSummaryResult> Conversations { get; }
-        /// <summary> Errors by document id. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<DocumentError> Errors { get; }
-        /// <summary> if showStats=true was specified in the request this field will contain information about the request payload. </summary>
+        /// <summary> Gets the statistics. </summary>
         public RequestStatistics Statistics { get; }
-        /// <summary> This field indicates the project name for the model. </summary>
+        /// <summary> Gets the project name. </summary>
         public string ProjectName { get; }
-        /// <summary> This field indicates the deployment name for the model. </summary>
+        /// <summary> Gets the deployment name. </summary>
         public string DeploymentName { get; }
     }
 }

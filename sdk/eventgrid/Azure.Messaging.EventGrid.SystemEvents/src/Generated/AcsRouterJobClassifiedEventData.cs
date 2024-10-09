@@ -11,14 +11,14 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterJobClassified event. </summary>
+    /// <summary> The AcsRouterJobClassifiedEventData. </summary>
     public partial class AcsRouterJobClassifiedEventData : AcsRouterJobEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobClassifiedEventData"/>. </summary>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
-        /// <param name="queueDetails"> Router Job Queue Info. </param>
-        /// <param name="attachedWorkerSelectors"> Router Job Attached Worker Selector. </param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="queueDetails"></param>
+        /// <param name="attachedWorkerSelectors"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="labels"/>, <paramref name="tags"/>, <paramref name="queueDetails"/> or <paramref name="attachedWorkerSelectors"/> is null. </exception>
         internal AcsRouterJobClassifiedEventData(IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, AcsRouterQueueDetails queueDetails, IEnumerable<AcsRouterWorkerSelector> attachedWorkerSelectors) : base(labels, tags)
         {
@@ -32,17 +32,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobClassifiedEventData"/>. </summary>
-        /// <param name="jobId"> Router Event Job ID. </param>
-        /// <param name="channelReference"> Router Event Channel Reference. </param>
-        /// <param name="channelId"> Router Event Channel ID. </param>
+        /// <param name="jobId"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="channelId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="queueId"> Router Job events Queue Id. </param>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
-        /// <param name="queueDetails"> Router Job Queue Info. </param>
-        /// <param name="classificationPolicyId"> Router Job Classification Policy Id. </param>
-        /// <param name="priority"> Router Job Priority. </param>
-        /// <param name="attachedWorkerSelectors"> Router Job Attached Worker Selector. </param>
+        /// <param name="queueId"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="queueDetails"></param>
+        /// <param name="classificationPolicyId"></param>
+        /// <param name="priority"></param>
+        /// <param name="attachedWorkerSelectors"></param>
         internal AcsRouterJobClassifiedEventData(string jobId, string channelReference, string channelId, IDictionary<string, BinaryData> serializedAdditionalRawData, string queueId, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, AcsRouterQueueDetails queueDetails, string classificationPolicyId, int? priority, IReadOnlyList<AcsRouterWorkerSelector> attachedWorkerSelectors) : base(jobId, channelReference, channelId, serializedAdditionalRawData, queueId, labels, tags)
         {
             QueueDetails = queueDetails;
@@ -56,13 +56,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Job Queue Info. </summary>
+        /// <summary> Gets the queue details. </summary>
         public AcsRouterQueueDetails QueueDetails { get; }
-        /// <summary> Router Job Classification Policy Id. </summary>
+        /// <summary> Gets the classification policy id. </summary>
         public string ClassificationPolicyId { get; }
-        /// <summary> Router Job Priority. </summary>
+        /// <summary> Gets the priority. </summary>
         public int? Priority { get; }
-        /// <summary> Router Job Attached Worker Selector. </summary>
+        /// <summary> Gets the attached worker selectors. </summary>
         public IReadOnlyList<AcsRouterWorkerSelector> AttachedWorkerSelectors { get; }
     }
 }

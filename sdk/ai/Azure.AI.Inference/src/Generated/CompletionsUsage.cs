@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary>
-    /// Representation of the token counts processed for a completions request.
-    /// Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
-    /// other consumers.
-    /// </summary>
+    /// <summary> The CompletionsUsage. </summary>
     public partial class CompletionsUsage
     {
         /// <summary>
@@ -50,9 +46,9 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CompletionsUsage"/>. </summary>
-        /// <param name="completionTokens"> The number of tokens generated across all completions emissions. </param>
-        /// <param name="promptTokens"> The number of tokens in the provided prompts for the completions request. </param>
-        /// <param name="totalTokens"> The total number of tokens processed for the completions request and response. </param>
+        /// <param name="completionTokens"></param>
+        /// <param name="promptTokens"></param>
+        /// <param name="totalTokens"></param>
         internal CompletionsUsage(int completionTokens, int promptTokens, int totalTokens)
         {
             CompletionTokens = completionTokens;
@@ -61,9 +57,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="CompletionsUsage"/>. </summary>
-        /// <param name="completionTokens"> The number of tokens generated across all completions emissions. </param>
-        /// <param name="promptTokens"> The number of tokens in the provided prompts for the completions request. </param>
-        /// <param name="totalTokens"> The total number of tokens processed for the completions request and response. </param>
+        /// <param name="completionTokens"></param>
+        /// <param name="promptTokens"></param>
+        /// <param name="totalTokens"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CompletionsUsage(int completionTokens, int promptTokens, int totalTokens, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +74,11 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The number of tokens generated across all completions emissions. </summary>
+        /// <summary> Gets the completion tokens. </summary>
         public int CompletionTokens { get; }
-        /// <summary> The number of tokens in the provided prompts for the completions request. </summary>
+        /// <summary> Gets the prompt tokens. </summary>
         public int PromptTokens { get; }
-        /// <summary> The total number of tokens processed for the completions request and response. </summary>
+        /// <summary> Gets the total tokens. </summary>
         public int TotalTokens { get; }
     }
 }

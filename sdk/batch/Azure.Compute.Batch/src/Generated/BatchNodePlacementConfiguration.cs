@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// For regional placement, nodes in the pool will be allocated in the same region.
-    /// For zonal placement, nodes in the pool will be spread across different zones
-    /// with best effort balancing.
-    /// </summary>
+    /// <summary> The BatchNodePlacementConfiguration. </summary>
     public partial class BatchNodePlacementConfiguration
     {
         /// <summary>
@@ -55,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodePlacementConfiguration"/>. </summary>
-        /// <param name="policy"> Node placement Policy type on Batch Pools. Allocation policy used by Batch Service to provision the nodes. If not specified, Batch will use the regional policy. </param>
+        /// <param name="policy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodePlacementConfiguration(BatchNodePlacementPolicyType? policy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Node placement Policy type on Batch Pools. Allocation policy used by Batch Service to provision the nodes. If not specified, Batch will use the regional policy. </summary>
+        /// <summary> Gets or sets the policy. </summary>
         public BatchNodePlacementPolicyType? Policy { get; set; }
     }
 }

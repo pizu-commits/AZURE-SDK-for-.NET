@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The result of uploading Batch service log files from a specific Compute Node. </summary>
+    /// <summary> The UploadBatchServiceLogsResult. </summary>
     public partial class UploadBatchServiceLogsResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UploadBatchServiceLogsResult"/>. </summary>
-        /// <param name="virtualDirectoryName"> The virtual directory within Azure Blob Storage container to which the Batch Service log file(s) will be uploaded. The virtual directory name is part of the blob name for each log file uploaded, and it is built based poolId, nodeId and a unique identifier. </param>
-        /// <param name="numberOfFilesUploaded"> The number of log files which will be uploaded. </param>
+        /// <param name="virtualDirectoryName"></param>
+        /// <param name="numberOfFilesUploaded"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="virtualDirectoryName"/> is null. </exception>
         internal UploadBatchServiceLogsResult(string virtualDirectoryName, int numberOfFilesUploaded)
         {
@@ -58,8 +58,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="UploadBatchServiceLogsResult"/>. </summary>
-        /// <param name="virtualDirectoryName"> The virtual directory within Azure Blob Storage container to which the Batch Service log file(s) will be uploaded. The virtual directory name is part of the blob name for each log file uploaded, and it is built based poolId, nodeId and a unique identifier. </param>
-        /// <param name="numberOfFilesUploaded"> The number of log files which will be uploaded. </param>
+        /// <param name="virtualDirectoryName"></param>
+        /// <param name="numberOfFilesUploaded"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UploadBatchServiceLogsResult(string virtualDirectoryName, int numberOfFilesUploaded, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The virtual directory within Azure Blob Storage container to which the Batch Service log file(s) will be uploaded. The virtual directory name is part of the blob name for each log file uploaded, and it is built based poolId, nodeId and a unique identifier. </summary>
+        /// <summary> Gets the virtual directory name. </summary>
         public string VirtualDirectoryName { get; }
-        /// <summary> The number of log files which will be uploaded. </summary>
+        /// <summary> Gets the number of files uploaded. </summary>
         public int NumberOfFilesUploaded { get; }
     }
 }

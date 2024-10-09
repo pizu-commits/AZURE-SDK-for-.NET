@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The operating system type. </summary>
+    /// <summary> The DevBoxOSType. </summary>
     public readonly partial struct DevBoxOSType : IEquatable<DevBoxOSType>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Developer.DevCenter.Models
 
         private const string WindowsValue = "Windows";
 
-        /// <summary> The Windows operating system. </summary>
+        /// <summary> Windows. </summary>
         public static DevBoxOSType Windows { get; } = new DevBoxOSType(WindowsValue);
         /// <summary> Determines if two <see cref="DevBoxOSType"/> values are the same. </summary>
         public static bool operator ==(DevBoxOSType left, DevBoxOSType right) => left.Equals(right);

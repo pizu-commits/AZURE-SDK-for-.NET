@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Indicates level of blurriness. </summary>
+    /// <summary> The BlurLevel. </summary>
     public readonly partial struct BlurLevel : IEquatable<BlurLevel>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string MediumValue = "medium";
         private const string HighValue = "high";
 
-        /// <summary> Low blur level. </summary>
+        /// <summary> low. </summary>
         public static BlurLevel Low { get; } = new BlurLevel(LowValue);
-        /// <summary> Medium blur level. </summary>
+        /// <summary> medium. </summary>
         public static BlurLevel Medium { get; } = new BlurLevel(MediumValue);
-        /// <summary> High blur level. </summary>
+        /// <summary> high. </summary>
         public static BlurLevel High { get; } = new BlurLevel(HighValue);
         /// <summary> Determines if two <see cref="BlurLevel"/> values are the same. </summary>
         public static bool operator ==(BlurLevel left, BlurLevel right) => left.Equals(right);

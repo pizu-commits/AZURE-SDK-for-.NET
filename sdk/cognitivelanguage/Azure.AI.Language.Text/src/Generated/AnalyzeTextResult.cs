@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Text
 {
     /// <summary>
-    /// The result object for the analyze task.
+    /// The AnalyzeTextResult.
     /// Please note <see cref="AnalyzeTextResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="AnalyzeTextDynamicClassificationResult"/>, <see cref="AnalyzeTextEntityLinkingResult"/>, <see cref="AnalyzeTextEntitiesResult"/>, <see cref="AnalyzeTextKeyPhraseResult"/>, <see cref="AnalyzeTextLanguageDetectionResult"/>, <see cref="AnalyzeTextPiiResult"/> and <see cref="AnalyzeTextSentimentResult"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextResult"/>. </summary>
-        /// <param name="kind"> The kind of task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeTextResult(AnalyzeTextResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The kind of task result. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal AnalyzeTextResultsKind Kind { get; set; }
     }
 }

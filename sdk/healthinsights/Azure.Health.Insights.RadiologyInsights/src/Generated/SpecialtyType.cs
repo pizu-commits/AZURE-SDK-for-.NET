@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Known values codes that can be used to indicate the type of the Specialty. </summary>
+    /// <summary> The SpecialtyType. </summary>
     public readonly partial struct SpecialtyType : IEquatable<SpecialtyType>
     {
         private readonly string _value;

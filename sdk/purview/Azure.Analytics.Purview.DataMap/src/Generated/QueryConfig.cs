@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The search query of advanced search request. </summary>
+    /// <summary> The QueryConfig. </summary>
     public partial class QueryConfig
     {
         /// <summary>
@@ -53,19 +53,13 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="QueryConfig"/>. </summary>
-        /// <param name="keywords"> The keywords applied to all searchable fields. </param>
-        /// <param name="limit">
-        /// The limit of the number of the search result. default value is 50; maximum
-        /// value is 1000.
-        /// </param>
-        /// <param name="continuationToken">
-        /// The token used to get next batch of data. Default 'Null' to get the first
-        /// batch, and will return new token in each response unless there's no more data.
-        /// </param>
-        /// <param name="orderby"> The sort order of search results, can specify multiple fields. </param>
-        /// <param name="filter"> The filter for the search. See examples for the usage of supported filters. </param>
-        /// <param name="facets"> The facets for search. See examples for the usage of supported facets. </param>
-        /// <param name="taxonomySetting"> The taxonomy setting for search. </param>
+        /// <param name="keywords"></param>
+        /// <param name="limit"></param>
+        /// <param name="continuationToken"></param>
+        /// <param name="orderby"></param>
+        /// <param name="filter"></param>
+        /// <param name="facets"></param>
+        /// <param name="taxonomySetting"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal QueryConfig(string keywords, int? limit, string continuationToken, IList<BinaryData> orderby, BinaryData filter, IList<SearchFacetItem> facets, SearchTaxonomySetting taxonomySetting, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,20 +73,14 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The keywords applied to all searchable fields. </summary>
+        /// <summary> Gets or sets the keywords. </summary>
         public string Keywords { get; set; }
-        /// <summary>
-        /// The limit of the number of the search result. default value is 50; maximum
-        /// value is 1000.
-        /// </summary>
+        /// <summary> Gets or sets the limit. </summary>
         public int? Limit { get; set; }
-        /// <summary>
-        /// The token used to get next batch of data. Default 'Null' to get the first
-        /// batch, and will return new token in each response unless there's no more data.
-        /// </summary>
+        /// <summary> Gets or sets the continuation token. </summary>
         public string ContinuationToken { get; set; }
         /// <summary>
-        /// The sort order of search results, can specify multiple fields.
+        /// Gets the orderby
         /// <para>
         /// To assign an object to the element of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -123,7 +111,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </summary>
         public IList<BinaryData> Orderby { get; }
         /// <summary>
-        /// The filter for the search. See examples for the usage of supported filters.
+        /// Gets or sets the filter
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -153,9 +141,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public BinaryData Filter { get; set; }
-        /// <summary> The facets for search. See examples for the usage of supported facets. </summary>
+        /// <summary> Gets the facets. </summary>
         public IList<SearchFacetItem> Facets { get; }
-        /// <summary> The taxonomy setting for search. </summary>
+        /// <summary> Gets or sets the taxonomy setting. </summary>
         public SearchTaxonomySetting TaxonomySetting { get; set; }
     }
 }

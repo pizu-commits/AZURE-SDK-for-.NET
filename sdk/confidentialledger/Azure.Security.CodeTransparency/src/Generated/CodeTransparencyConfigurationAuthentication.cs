@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> Configuration of CCF authentication. </summary>
+    /// <summary> The CodeTransparencyConfigurationAuthentication. </summary>
     public partial class CodeTransparencyConfigurationAuthentication
     {
         /// <summary>

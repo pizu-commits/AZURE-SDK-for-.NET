@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Statistics for the queue. </summary>
+    /// <summary> The RouterQueueStatistics. </summary>
     public partial class RouterQueueStatistics
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RouterQueueStatistics"/>. </summary>
-        /// <param name="queueId"> Id of the queue these details are about. </param>
-        /// <param name="length"> Length of the queue: total number of enqueued jobs. </param>
+        /// <param name="queueId"></param>
+        /// <param name="length"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         internal RouterQueueStatistics(string queueId, int length)
         {
@@ -59,10 +59,10 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="RouterQueueStatistics"/>. </summary>
-        /// <param name="queueId"> Id of the queue these details are about. </param>
-        /// <param name="length"> Length of the queue: total number of enqueued jobs. </param>
-        /// <param name="estimatedWaitTimes"> The estimated wait time of this queue rounded up to the nearest minute, grouped by job priority. </param>
-        /// <param name="longestJobWaitTimeMinutes"> The wait time of the job that has been enqueued in this queue for the longest. </param>
+        /// <param name="queueId"></param>
+        /// <param name="length"></param>
+        /// <param name="estimatedWaitTimes"></param>
+        /// <param name="longestJobWaitTimeMinutes"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RouterQueueStatistics(string queueId, int length, IDictionary<int, TimeSpan> estimatedWaitTimes, double? longestJobWaitTimeMinutes, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +78,11 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of the queue these details are about. </summary>
+        /// <summary> Gets the queue id. </summary>
         public string QueueId { get; }
-        /// <summary> Length of the queue: total number of enqueued jobs. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
-        /// <summary> The wait time of the job that has been enqueued in this queue for the longest. </summary>
+        /// <summary> Gets the longest job wait time minutes. </summary>
         public double? LongestJobWaitTimeMinutes { get; }
     }
 }

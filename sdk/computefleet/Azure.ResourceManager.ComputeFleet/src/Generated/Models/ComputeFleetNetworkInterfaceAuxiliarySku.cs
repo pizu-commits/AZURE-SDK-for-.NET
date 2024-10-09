@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies whether the Auxiliary sku is enabled for the Network Interface
-    /// resource.
-    /// </summary>
+    /// <summary> The ComputeFleetNetworkInterfaceAuxiliarySku. </summary>
     public readonly partial struct ComputeFleetNetworkInterfaceAuxiliarySku : IEquatable<ComputeFleetNetworkInterfaceAuxiliarySku>
     {
         private readonly string _value;
@@ -31,15 +28,15 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string A4Value = "A4";
         private const string A8Value = "A8";
 
-        /// <summary> no sku. </summary>
+        /// <summary> None. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliarySku None { get; } = new ComputeFleetNetworkInterfaceAuxiliarySku(NoneValue);
-        /// <summary> A1 sku. </summary>
+        /// <summary> A1. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliarySku A1 { get; } = new ComputeFleetNetworkInterfaceAuxiliarySku(A1Value);
-        /// <summary> A2 sku. </summary>
+        /// <summary> A2. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliarySku A2 { get; } = new ComputeFleetNetworkInterfaceAuxiliarySku(A2Value);
-        /// <summary> A4 sku. </summary>
+        /// <summary> A4. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliarySku A4 { get; } = new ComputeFleetNetworkInterfaceAuxiliarySku(A4Value);
-        /// <summary> A8 sku. </summary>
+        /// <summary> A8. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliarySku A8 { get; } = new ComputeFleetNetworkInterfaceAuxiliarySku(A8Value);
         /// <summary> Determines if two <see cref="ComputeFleetNetworkInterfaceAuxiliarySku"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetNetworkInterfaceAuxiliarySku left, ComputeFleetNetworkInterfaceAuxiliarySku right) => left.Equals(right);

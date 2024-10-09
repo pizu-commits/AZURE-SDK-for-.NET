@@ -11,14 +11,14 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterJobWorkerSelectorsExpired event. </summary>
+    /// <summary> The AcsRouterJobWorkerSelectorsExpiredEventData. </summary>
     public partial class AcsRouterJobWorkerSelectorsExpiredEventData : AcsRouterJobEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobWorkerSelectorsExpiredEventData"/>. </summary>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
-        /// <param name="expiredRequestedWorkerSelectors"> Router Job Worker Selectors Expired Requested Worker Selectors. </param>
-        /// <param name="expiredAttachedWorkerSelectors"> Router Job Worker Selectors Expired Attached Worker Selectors. </param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="expiredRequestedWorkerSelectors"></param>
+        /// <param name="expiredAttachedWorkerSelectors"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="labels"/>, <paramref name="tags"/>, <paramref name="expiredRequestedWorkerSelectors"/> or <paramref name="expiredAttachedWorkerSelectors"/> is null. </exception>
         internal AcsRouterJobWorkerSelectorsExpiredEventData(IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, IEnumerable<AcsRouterWorkerSelector> expiredRequestedWorkerSelectors, IEnumerable<AcsRouterWorkerSelector> expiredAttachedWorkerSelectors) : base(labels, tags)
         {
@@ -32,15 +32,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobWorkerSelectorsExpiredEventData"/>. </summary>
-        /// <param name="jobId"> Router Event Job ID. </param>
-        /// <param name="channelReference"> Router Event Channel Reference. </param>
-        /// <param name="channelId"> Router Event Channel ID. </param>
+        /// <param name="jobId"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="channelId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="queueId"> Router Job events Queue Id. </param>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
-        /// <param name="expiredRequestedWorkerSelectors"> Router Job Worker Selectors Expired Requested Worker Selectors. </param>
-        /// <param name="expiredAttachedWorkerSelectors"> Router Job Worker Selectors Expired Attached Worker Selectors. </param>
+        /// <param name="queueId"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="expiredRequestedWorkerSelectors"></param>
+        /// <param name="expiredAttachedWorkerSelectors"></param>
         internal AcsRouterJobWorkerSelectorsExpiredEventData(string jobId, string channelReference, string channelId, IDictionary<string, BinaryData> serializedAdditionalRawData, string queueId, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, IReadOnlyList<AcsRouterWorkerSelector> expiredRequestedWorkerSelectors, IReadOnlyList<AcsRouterWorkerSelector> expiredAttachedWorkerSelectors) : base(jobId, channelReference, channelId, serializedAdditionalRawData, queueId, labels, tags)
         {
             ExpiredRequestedWorkerSelectors = expiredRequestedWorkerSelectors;
@@ -52,9 +52,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Job Worker Selectors Expired Requested Worker Selectors. </summary>
+        /// <summary> Gets the expired requested worker selectors. </summary>
         public IReadOnlyList<AcsRouterWorkerSelector> ExpiredRequestedWorkerSelectors { get; }
-        /// <summary> Router Job Worker Selectors Expired Attached Worker Selectors. </summary>
+        /// <summary> Gets the expired attached worker selectors. </summary>
         public IReadOnlyList<AcsRouterWorkerSelector> ExpiredAttachedWorkerSelectors { get; }
     }
 }

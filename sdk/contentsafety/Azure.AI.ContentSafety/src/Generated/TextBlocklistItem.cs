@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> Item in a TextBlocklist. </summary>
+    /// <summary> The TextBlocklistItem. </summary>
     public partial class TextBlocklistItem
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TextBlocklistItem"/>. </summary>
-        /// <param name="text"> BlocklistItem content. </param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         public TextBlocklistItem(string text)
         {
@@ -56,9 +56,9 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="TextBlocklistItem"/>. </summary>
-        /// <param name="blocklistItemId"> The service will generate a BlocklistItemId, which will be a UUID. </param>
-        /// <param name="description"> BlocklistItem description. </param>
-        /// <param name="text"> BlocklistItem content. </param>
+        /// <param name="blocklistItemId"></param>
+        /// <param name="description"></param>
+        /// <param name="text"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TextBlocklistItem(string blocklistItemId, string description, string text, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> The service will generate a BlocklistItemId, which will be a UUID. </summary>
+        /// <summary> Gets the blocklist item id. </summary>
         public string BlocklistItemId { get; }
-        /// <summary> BlocklistItem description. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> BlocklistItem content. </summary>
+        /// <summary> Gets or sets the text. </summary>
         public string Text { get; set; }
     }
 }

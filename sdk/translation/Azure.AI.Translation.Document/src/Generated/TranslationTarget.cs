@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Destination for the finished translated documents. </summary>
+    /// <summary> The TargetInput. </summary>
     public partial class TranslationTarget
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TranslationTarget"/>. </summary>
-        /// <param name="targetUri"> Location of the folder / container with your documents. </param>
-        /// <param name="languageCode"> Target Language. </param>
+        /// <param name="targetUri"></param>
+        /// <param name="languageCode"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetUri"/> or <paramref name="languageCode"/> is null. </exception>
         public TranslationTarget(Uri targetUri, string languageCode)
         {
@@ -60,11 +60,11 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="TranslationTarget"/>. </summary>
-        /// <param name="targetUri"> Location of the folder / container with your documents. </param>
-        /// <param name="categoryId"> Category / custom system for translation request. </param>
-        /// <param name="languageCode"> Target Language. </param>
-        /// <param name="glossaries"> List of Glossary. </param>
-        /// <param name="storageSource"> Storage Source. </param>
+        /// <param name="targetUri"></param>
+        /// <param name="categoryId"></param>
+        /// <param name="languageCode"></param>
+        /// <param name="glossaries"></param>
+        /// <param name="storageSource"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TranslationTarget(Uri targetUri, string categoryId, string languageCode, IList<TranslationGlossary> glossaries, string storageSource, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,7 +80,7 @@ namespace Azure.AI.Translation.Document
         internal TranslationTarget()
         {
         }
-        /// <summary> List of Glossary. </summary>
+        /// <summary> Gets the glossaries. </summary>
         public IList<TranslationGlossary> Glossaries { get; }
     }
 }

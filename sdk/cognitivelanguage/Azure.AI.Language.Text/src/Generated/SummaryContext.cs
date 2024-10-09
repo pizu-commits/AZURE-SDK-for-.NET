@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The context of the summary. </summary>
+    /// <summary> The SummaryContext. </summary>
     public partial class SummaryContext
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SummaryContext"/>. </summary>
-        /// <param name="offset"> Start position for the context. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> The length of the context. Use of different 'stringIndexType' values can affect the length returned. </param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         internal SummaryContext(int offset, int length)
         {
             Offset = offset;
@@ -55,8 +55,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SummaryContext"/>. </summary>
-        /// <param name="offset"> Start position for the context. Use of different 'stringIndexType' values can affect the offset returned. </param>
-        /// <param name="length"> The length of the context. Use of different 'stringIndexType' values can affect the length returned. </param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SummaryContext(int offset, int length, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Start position for the context. Use of different 'stringIndexType' values can affect the offset returned. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> The length of the context. Use of different 'stringIndexType' values can affect the length returned. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> IPv4 device indicator. </summary>
+    /// <summary> The Ipv4Address. </summary>
     public partial class Ipv4Address
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="Ipv4Address"/>. </summary>
-        /// <param name="ipv4"> An IPv4 address. This may be specified as an exact address, or as a subnet in CIDR notation. </param>
-        /// <param name="port"> User equipment port. </param>
+        /// <param name="ipv4"></param>
+        /// <param name="port"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="ipv4"/> is null. </exception>
         public Ipv4Address(string ipv4, int port)
         {
@@ -58,8 +58,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="Ipv4Address"/>. </summary>
-        /// <param name="ipv4"> An IPv4 address. This may be specified as an exact address, or as a subnet in CIDR notation. </param>
-        /// <param name="port"> User equipment port. </param>
+        /// <param name="ipv4"></param>
+        /// <param name="port"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal Ipv4Address(string ipv4, int port, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> An IPv4 address. This may be specified as an exact address, or as a subnet in CIDR notation. </summary>
+        /// <summary> Gets the ipv 4. </summary>
         public string Ipv4 { get; }
-        /// <summary> User equipment port. </summary>
+        /// <summary> Gets the port. </summary>
         public int Port { get; }
     }
 }

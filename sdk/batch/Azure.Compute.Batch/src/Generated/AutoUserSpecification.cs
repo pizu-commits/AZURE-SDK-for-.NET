@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Specifies the options for the auto user that runs an Azure Batch Task. </summary>
+    /// <summary> The AutoUserSpecification. </summary>
     public partial class AutoUserSpecification
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="AutoUserSpecification"/>. </summary>
-        /// <param name="scope"> The scope for the auto user. The default value is pool. If the pool is running Windows, a value of Task should be specified if stricter isolation between tasks is required, such as if the task mutates the registry in a way which could impact other tasks. </param>
-        /// <param name="elevationLevel"> The elevation level of the auto user. The default value is nonAdmin. </param>
+        /// <param name="scope"></param>
+        /// <param name="elevationLevel"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AutoUserSpecification(AutoUserScope? scope, ElevationLevel? elevationLevel, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The scope for the auto user. The default value is pool. If the pool is running Windows, a value of Task should be specified if stricter isolation between tasks is required, such as if the task mutates the registry in a way which could impact other tasks. </summary>
+        /// <summary> Gets or sets the scope. </summary>
         public AutoUserScope? Scope { get; set; }
-        /// <summary> The elevation level of the auto user. The default value is nonAdmin. </summary>
+        /// <summary> Gets or sets the elevation level. </summary>
         public ElevationLevel? ElevationLevel { get; set; }
     }
 }

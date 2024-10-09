@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Details about the next run of an action. </summary>
+    /// <summary> The DevBoxNextAction. </summary>
     public partial class DevBoxNextAction
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Developer.DevCenter.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DevBoxNextAction"/>. </summary>
-        /// <param name="scheduledTime"> The time the action will be triggered (UTC). </param>
+        /// <param name="scheduledTime"></param>
         internal DevBoxNextAction(DateTimeOffset scheduledTime)
         {
             ScheduledTime = scheduledTime;
         }
 
         /// <summary> Initializes a new instance of <see cref="DevBoxNextAction"/>. </summary>
-        /// <param name="scheduledTime"> The time the action will be triggered (UTC). </param>
+        /// <param name="scheduledTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevBoxNextAction(DateTimeOffset scheduledTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Developer.DevCenter.Models
         {
         }
 
-        /// <summary> The time the action will be triggered (UTC). </summary>
+        /// <summary> Gets the scheduled time. </summary>
         public DateTimeOffset ScheduledTime { get; }
     }
 }

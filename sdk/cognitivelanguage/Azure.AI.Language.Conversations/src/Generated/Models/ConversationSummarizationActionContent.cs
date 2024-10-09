@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Supported parameters for pre-build conversational summarization task. </summary>
+    /// <summary> The ConversationSummarizationActionContent. </summary>
     public partial class ConversationSummarizationActionContent
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationSummarizationActionContent"/>. </summary>
-        /// <param name="summaryAspects"> Array of Summary Aspects. </param>
+        /// <param name="summaryAspects"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="summaryAspects"/> is null. </exception>
         public ConversationSummarizationActionContent(IEnumerable<SummaryAspect> summaryAspects)
         {
@@ -57,12 +57,12 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationSummarizationActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="sentenceCount"> It controls the approximate number of sentences in the output summaries. </param>
-        /// <param name="stringIndexType"> String index type. </param>
-        /// <param name="summaryLength"> (NOTE: Recommended to use summaryLength over sentenceCount) Controls the approximate length of the output summaries. </param>
-        /// <param name="summaryAspects"> Array of Summary Aspects. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="sentenceCount"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="summaryLength"></param>
+        /// <param name="summaryAspects"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationSummarizationActionContent(bool? loggingOptOut, string modelVersion, int? sentenceCount, StringIndexType? stringIndexType, SummaryLengthBucket? summaryLength, IList<SummaryAspect> summaryAspects, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,17 +80,17 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> It controls the approximate number of sentences in the output summaries. </summary>
+        /// <summary> Gets or sets the sentence count. </summary>
         public int? SentenceCount { get; set; }
-        /// <summary> String index type. </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
-        /// <summary> (NOTE: Recommended to use summaryLength over sentenceCount) Controls the approximate length of the output summaries. </summary>
+        /// <summary> Gets or sets the summary length. </summary>
         public SummaryLengthBucket? SummaryLength { get; set; }
-        /// <summary> Array of Summary Aspects. </summary>
+        /// <summary> Gets the summary aspects. </summary>
         public IList<SummaryAspect> SummaryAspects { get; }
     }
 }

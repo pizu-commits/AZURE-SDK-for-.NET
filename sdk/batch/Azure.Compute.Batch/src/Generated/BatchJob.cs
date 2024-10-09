@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An Azure Batch Job. </summary>
+    /// <summary> The BatchJob. </summary>
     public partial class BatchJob
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchJob"/>. </summary>
-        /// <param name="poolInfo"> The Pool settings associated with the Job. </param>
+        /// <param name="poolInfo"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolInfo"/> is null. </exception>
         public BatchJob(BatchPoolInfo poolInfo)
         {
@@ -58,32 +58,32 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJob"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the Job within the Account. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </param>
-        /// <param name="displayName"> The display name for the Job. </param>
-        /// <param name="usesTaskDependencies"> Whether Tasks in the Job can define dependencies on each other. The default is false. </param>
-        /// <param name="url"> The URL of the Job. </param>
-        /// <param name="eTag"> The ETag of the Job. This is an opaque string. You can use it to detect whether the Job has changed between requests. In particular, you can be pass the ETag when updating a Job to specify that your changes should take effect only if nobody else has modified the Job in the meantime. </param>
-        /// <param name="lastModified"> The last modified time of the Job. This is the last time at which the Job level data, such as the Job state or priority, changed. It does not factor in task-level changes such as adding new Tasks or Tasks changing state. </param>
-        /// <param name="creationTime"> The creation time of the Job. </param>
-        /// <param name="state"> The current state of the Job. </param>
-        /// <param name="stateTransitionTime"> The time at which the Job entered its current state. </param>
-        /// <param name="previousState"> The previous state of the Job. This property is not set if the Job is in its initial Active state. </param>
-        /// <param name="previousStateTransitionTime"> The time at which the Job entered its previous state. This property is not set if the Job is in its initial Active state. </param>
-        /// <param name="priority"> The priority of the Job. Priority values can range from -1000 to 1000, with -1000 being the lowest priority and 1000 being the highest priority. The default value is 0. </param>
-        /// <param name="allowTaskPreemption"> Whether Tasks in this job can be preempted by other high priority jobs. If the value is set to True, other high priority jobs submitted to the system will take precedence and will be able requeue tasks from this job. You can update a job's allowTaskPreemption after it has been created using the update job API. </param>
-        /// <param name="maxParallelTasks"> The maximum number of tasks that can be executed in parallel for the job. The value of maxParallelTasks must be -1 or greater than 0 if specified. If not specified, the default value is -1, which means there's no limit to the number of tasks that can be run at once. You can update a job's maxParallelTasks after it has been created using the update job API. </param>
-        /// <param name="constraints"> The execution constraints for the Job. </param>
-        /// <param name="jobManagerTask"> Details of a Job Manager Task to be launched when the Job is started. </param>
-        /// <param name="jobPreparationTask"> The Job Preparation Task. The Job Preparation Task is a special Task run on each Compute Node before any other Task of the Job. </param>
-        /// <param name="jobReleaseTask"> The Job Release Task. The Job Release Task is a special Task run at the end of the Job on each Compute Node that has run any other Task of the Job. </param>
-        /// <param name="commonEnvironmentSettings"> The list of common environment variable settings. These environment variables are set for all Tasks in the Job (including the Job Manager, Job Preparation and Job Release Tasks). Individual Tasks can override an environment setting specified here by specifying the same setting name with a different value. </param>
-        /// <param name="poolInfo"> The Pool settings associated with the Job. </param>
-        /// <param name="onAllTasksComplete"> The action the Batch service should take when all Tasks in the Job are in the completed state. The default is noaction. </param>
-        /// <param name="onTaskFailure"> The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction. </param>
-        /// <param name="networkConfiguration"> The network configuration for the Job. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </param>
-        /// <param name="executionInfo"> The execution information for the Job. </param>
-        /// <param name="stats"> Resource usage statistics for the entire lifetime of the Job. This property is populated only if the CloudJob was retrieved with an expand clause including the 'stats' attribute; otherwise it is null. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes. </param>
+        /// <param name="id"></param>
+        /// <param name="displayName"></param>
+        /// <param name="usesTaskDependencies"></param>
+        /// <param name="url"></param>
+        /// <param name="eTag"></param>
+        /// <param name="lastModified"></param>
+        /// <param name="creationTime"></param>
+        /// <param name="state"></param>
+        /// <param name="stateTransitionTime"></param>
+        /// <param name="previousState"></param>
+        /// <param name="previousStateTransitionTime"></param>
+        /// <param name="priority"></param>
+        /// <param name="allowTaskPreemption"></param>
+        /// <param name="maxParallelTasks"></param>
+        /// <param name="constraints"></param>
+        /// <param name="jobManagerTask"></param>
+        /// <param name="jobPreparationTask"></param>
+        /// <param name="jobReleaseTask"></param>
+        /// <param name="commonEnvironmentSettings"></param>
+        /// <param name="poolInfo"></param>
+        /// <param name="onAllTasksComplete"></param>
+        /// <param name="onTaskFailure"></param>
+        /// <param name="networkConfiguration"></param>
+        /// <param name="metadata"></param>
+        /// <param name="executionInfo"></param>
+        /// <param name="stats"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJob(string id, string displayName, bool? usesTaskDependencies, string url, string eTag, DateTimeOffset? lastModified, DateTimeOffset? creationTime, BatchJobState? state, DateTimeOffset? stateTransitionTime, BatchJobState? previousState, DateTimeOffset? previousStateTransitionTime, int? priority, bool? allowTaskPreemption, int? maxParallelTasks, BatchJobConstraints constraints, BatchJobManagerTask jobManagerTask, BatchJobPreparationTask jobPreparationTask, BatchJobReleaseTask jobReleaseTask, IReadOnlyList<EnvironmentSetting> commonEnvironmentSettings, BatchPoolInfo poolInfo, OnAllBatchTasksComplete? onAllTasksComplete, OnBatchTaskFailure? onTaskFailure, BatchJobNetworkConfiguration networkConfiguration, IList<MetadataItem> metadata, BatchJobExecutionInfo executionInfo, BatchJobStatistics stats, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -121,57 +121,57 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A string that uniquely identifies the Job within the Account. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The display name for the Job. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> Whether Tasks in the Job can define dependencies on each other. The default is false. </summary>
+        /// <summary> Gets the uses task dependencies. </summary>
         public bool? UsesTaskDependencies { get; }
-        /// <summary> The URL of the Job. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> The ETag of the Job. This is an opaque string. You can use it to detect whether the Job has changed between requests. In particular, you can be pass the ETag when updating a Job to specify that your changes should take effect only if nobody else has modified the Job in the meantime. </summary>
+        /// <summary> Gets the e tag. </summary>
         public string ETag { get; }
-        /// <summary> The last modified time of the Job. This is the last time at which the Job level data, such as the Job state or priority, changed. It does not factor in task-level changes such as adding new Tasks or Tasks changing state. </summary>
+        /// <summary> Gets the last modified. </summary>
         public DateTimeOffset? LastModified { get; }
-        /// <summary> The creation time of the Job. </summary>
+        /// <summary> Gets the creation time. </summary>
         public DateTimeOffset? CreationTime { get; }
-        /// <summary> The current state of the Job. </summary>
+        /// <summary> Gets the state. </summary>
         public BatchJobState? State { get; }
-        /// <summary> The time at which the Job entered its current state. </summary>
+        /// <summary> Gets the state transition time. </summary>
         public DateTimeOffset? StateTransitionTime { get; }
-        /// <summary> The previous state of the Job. This property is not set if the Job is in its initial Active state. </summary>
+        /// <summary> Gets the previous state. </summary>
         public BatchJobState? PreviousState { get; }
-        /// <summary> The time at which the Job entered its previous state. This property is not set if the Job is in its initial Active state. </summary>
+        /// <summary> Gets the previous state transition time. </summary>
         public DateTimeOffset? PreviousStateTransitionTime { get; }
-        /// <summary> The priority of the Job. Priority values can range from -1000 to 1000, with -1000 being the lowest priority and 1000 being the highest priority. The default value is 0. </summary>
+        /// <summary> Gets or sets the priority. </summary>
         public int? Priority { get; set; }
-        /// <summary> Whether Tasks in this job can be preempted by other high priority jobs. If the value is set to True, other high priority jobs submitted to the system will take precedence and will be able requeue tasks from this job. You can update a job's allowTaskPreemption after it has been created using the update job API. </summary>
+        /// <summary> Gets or sets the allow task preemption. </summary>
         public bool? AllowTaskPreemption { get; set; }
-        /// <summary> The maximum number of tasks that can be executed in parallel for the job. The value of maxParallelTasks must be -1 or greater than 0 if specified. If not specified, the default value is -1, which means there's no limit to the number of tasks that can be run at once. You can update a job's maxParallelTasks after it has been created using the update job API. </summary>
+        /// <summary> Gets or sets the max parallel tasks. </summary>
         public int? MaxParallelTasks { get; set; }
-        /// <summary> The execution constraints for the Job. </summary>
+        /// <summary> Gets or sets the constraints. </summary>
         public BatchJobConstraints Constraints { get; set; }
-        /// <summary> Details of a Job Manager Task to be launched when the Job is started. </summary>
+        /// <summary> Gets the job manager task. </summary>
         public BatchJobManagerTask JobManagerTask { get; }
-        /// <summary> The Job Preparation Task. The Job Preparation Task is a special Task run on each Compute Node before any other Task of the Job. </summary>
+        /// <summary> Gets the job preparation task. </summary>
         public BatchJobPreparationTask JobPreparationTask { get; }
-        /// <summary> The Job Release Task. The Job Release Task is a special Task run at the end of the Job on each Compute Node that has run any other Task of the Job. </summary>
+        /// <summary> Gets the job release task. </summary>
         public BatchJobReleaseTask JobReleaseTask { get; }
-        /// <summary> The list of common environment variable settings. These environment variables are set for all Tasks in the Job (including the Job Manager, Job Preparation and Job Release Tasks). Individual Tasks can override an environment setting specified here by specifying the same setting name with a different value. </summary>
+        /// <summary> Gets the common environment settings. </summary>
         public IReadOnlyList<EnvironmentSetting> CommonEnvironmentSettings { get; }
-        /// <summary> The Pool settings associated with the Job. </summary>
+        /// <summary> Gets or sets the pool info. </summary>
         public BatchPoolInfo PoolInfo { get; set; }
-        /// <summary> The action the Batch service should take when all Tasks in the Job are in the completed state. The default is noaction. </summary>
+        /// <summary> Gets or sets the on all tasks complete. </summary>
         public OnAllBatchTasksComplete? OnAllTasksComplete { get; set; }
-        /// <summary> The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction. </summary>
+        /// <summary> Gets the on task failure. </summary>
         public OnBatchTaskFailure? OnTaskFailure { get; }
-        /// <summary> The network configuration for the Job. </summary>
+        /// <summary> Gets the network configuration. </summary>
         public BatchJobNetworkConfiguration NetworkConfiguration { get; }
-        /// <summary> A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataItem> Metadata { get; }
-        /// <summary> The execution information for the Job. </summary>
+        /// <summary> Gets the execution info. </summary>
         public BatchJobExecutionInfo ExecutionInfo { get; }
-        /// <summary> Resource usage statistics for the entire lifetime of the Job. This property is populated only if the CloudJob was retrieved with an expand clause including the 'stats' attribute; otherwise it is null. The statistics may not be immediately available. The Batch service performs periodic roll-up of statistics. The typical delay is about 30 minutes. </summary>
+        /// <summary> Gets the stats. </summary>
         public BatchJobStatistics Stats { get; }
     }
 }

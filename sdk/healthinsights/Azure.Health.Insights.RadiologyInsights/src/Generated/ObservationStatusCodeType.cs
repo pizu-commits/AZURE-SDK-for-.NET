@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Observation Status
-    /// Based on [FHIR ObservationStatus](https://www.hl7.org/fhir/R4/valueset-observation-status.html)
-    /// </summary>
+    /// <summary> The ObservationStatusCodeType. </summary>
     public readonly partial struct ObservationStatusCodeType : IEquatable<ObservationStatusCodeType>
     {
         private readonly string _value;
@@ -34,21 +31,21 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string EnteredInErrorValue = "entered-in-error";
         private const string UnknownValue = "unknown";
 
-        /// <summary> The existence of the observation is registered, but there is no result yet available. </summary>
+        /// <summary> registered. </summary>
         public static ObservationStatusCodeType Registered { get; } = new ObservationStatusCodeType(RegisteredValue);
-        /// <summary> This is an initial or interim observation: data may be incomplete or unverified. </summary>
+        /// <summary> preliminary. </summary>
         public static ObservationStatusCodeType Preliminary { get; } = new ObservationStatusCodeType(PreliminaryValue);
-        /// <summary> The observation is complete and verified by an authorized person. </summary>
+        /// <summary> final. </summary>
         public static ObservationStatusCodeType Final { get; } = new ObservationStatusCodeType(FinalValue);
-        /// <summary> Subsequent to being Final, the observation has been modified subsequent.  This includes updates/new information and corrections. </summary>
+        /// <summary> amended. </summary>
         public static ObservationStatusCodeType Amended { get; } = new ObservationStatusCodeType(AmendedValue);
-        /// <summary> Subsequent to being Final, the observation has been modified to correct an error in the test result. </summary>
+        /// <summary> corrected. </summary>
         public static ObservationStatusCodeType Corrected { get; } = new ObservationStatusCodeType(CorrectedValue);
-        /// <summary> The observation is unavailable because the measurement was not started or not completed (also sometimes called "aborted"). </summary>
+        /// <summary> cancelled. </summary>
         public static ObservationStatusCodeType Cancelled { get; } = new ObservationStatusCodeType(CancelledValue);
-        /// <summary> The observation has been withdrawn following previous final release. </summary>
+        /// <summary> entered-in-error. </summary>
         public static ObservationStatusCodeType EnteredInError { get; } = new ObservationStatusCodeType(EnteredInErrorValue);
-        /// <summary> The observation status is unknown.  Note that "unknown" is a value of last resort and every attempt should be made to provide a meaningful value other than "unknown". </summary>
+        /// <summary> unknown. </summary>
         public static ObservationStatusCodeType Unknown { get; } = new ObservationStatusCodeType(UnknownValue);
         /// <summary> Determines if two <see cref="ObservationStatusCodeType"/> values are the same. </summary>
         public static bool operator ==(ObservationStatusCodeType left, ObservationStatusCodeType right) => left.Equals(right);

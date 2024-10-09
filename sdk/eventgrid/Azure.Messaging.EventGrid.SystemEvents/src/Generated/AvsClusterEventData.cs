@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for Microsoft.AVS/clusters events. </summary>
+    /// <summary> The AvsClusterEventData. </summary>
     public partial class AvsClusterEventData
     {
         /// <summary>
@@ -54,10 +54,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsClusterEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
-        /// <param name="addedHostNames"> Hosts added to the cluster in this event, if any. </param>
-        /// <param name="removedHostNames"> Hosts removed from the cluster in this event, if any. </param>
-        /// <param name="inMaintenanceHostNames"> Hosts in Maintenance mode in the cluster, if any. </param>
+        /// <param name="operationId"></param>
+        /// <param name="addedHostNames"></param>
+        /// <param name="removedHostNames"></param>
+        /// <param name="inMaintenanceHostNames"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AvsClusterEventData(string operationId, IReadOnlyList<string> addedHostNames, IReadOnlyList<string> removedHostNames, IReadOnlyList<string> inMaintenanceHostNames, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,13 +68,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Id of the operation that caused this event. </summary>
+        /// <summary> Gets the operation id. </summary>
         public string OperationId { get; }
-        /// <summary> Hosts added to the cluster in this event, if any. </summary>
+        /// <summary> Gets the added host names. </summary>
         public IReadOnlyList<string> AddedHostNames { get; }
-        /// <summary> Hosts removed from the cluster in this event, if any. </summary>
+        /// <summary> Gets the removed host names. </summary>
         public IReadOnlyList<string> RemovedHostNames { get; }
-        /// <summary> Hosts in Maintenance mode in the cluster, if any. </summary>
+        /// <summary> Gets the in maintenance host names. </summary>
         public IReadOnlyList<string> InMaintenanceHostNames { get; }
     }
 }

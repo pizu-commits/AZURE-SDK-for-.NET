@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Details regarding custom document models. </summary>
+    /// <summary> The CustomDocumentModelsDetails. </summary>
     public partial class CustomDocumentModelsDetails
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CustomDocumentModelsDetails"/>. </summary>
-        /// <param name="count"> Number of custom document models in the current resource. </param>
-        /// <param name="limit"> Maximum number of custom document models supported in the current resource. </param>
+        /// <param name="count"></param>
+        /// <param name="limit"></param>
         internal CustomDocumentModelsDetails(int count, int limit)
         {
             Count = count;
@@ -55,8 +55,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomDocumentModelsDetails"/>. </summary>
-        /// <param name="count"> Number of custom document models in the current resource. </param>
-        /// <param name="limit"> Maximum number of custom document models supported in the current resource. </param>
+        /// <param name="count"></param>
+        /// <param name="limit"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CustomDocumentModelsDetails(int count, int limit, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Number of custom document models in the current resource. </summary>
+        /// <summary> Gets the count. </summary>
         public int Count { get; }
-        /// <summary> Maximum number of custom document models supported in the current resource. </summary>
+        /// <summary> Gets the limit. </summary>
         public int Limit { get; }
     }
 }

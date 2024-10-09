@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Response body for find similar face operation. </summary>
+    /// <summary> The FaceFindSimilarResult. </summary>
     public partial class FaceFindSimilarResult
     {
         /// <summary>
@@ -46,16 +46,16 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FaceFindSimilarResult"/>. </summary>
-        /// <param name="confidence"> Confidence value of the candidate. The higher confidence, the more similar. Range between [0,1]. </param>
+        /// <param name="confidence"></param>
         internal FaceFindSimilarResult(float confidence)
         {
             Confidence = confidence;
         }
 
         /// <summary> Initializes a new instance of <see cref="FaceFindSimilarResult"/>. </summary>
-        /// <param name="confidence"> Confidence value of the candidate. The higher confidence, the more similar. Range between [0,1]. </param>
-        /// <param name="faceId"> faceId of candidate face when find by faceIds. faceId is created by "Detect" and will expire 24 hours after the detection call. </param>
-        /// <param name="persistedFaceId"> persistedFaceId of candidate face when find by faceListId or largeFaceListId. persistedFaceId in face list/large face list is persisted and will not expire. </param>
+        /// <param name="confidence"></param>
+        /// <param name="faceId"></param>
+        /// <param name="persistedFaceId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FaceFindSimilarResult(float confidence, Guid? faceId, Guid? persistedFaceId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,11 +70,11 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> Confidence value of the candidate. The higher confidence, the more similar. Range between [0,1]. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
-        /// <summary> faceId of candidate face when find by faceIds. faceId is created by "Detect" and will expire 24 hours after the detection call. </summary>
+        /// <summary> Gets the face id. </summary>
         public Guid? FaceId { get; }
-        /// <summary> persistedFaceId of candidate face when find by faceListId or largeFaceListId. persistedFaceId in face list/large face list is persisted and will not expire. </summary>
+        /// <summary> Gets the persisted face id. </summary>
         public Guid? PersistedFaceId { get; }
     }
 }

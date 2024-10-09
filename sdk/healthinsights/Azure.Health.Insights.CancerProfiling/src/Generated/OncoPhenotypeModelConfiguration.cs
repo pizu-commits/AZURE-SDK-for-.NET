@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.CancerProfiling
 {
-    /// <summary> Configuration affecting the Onco Phenotype model's inference. </summary>
+    /// <summary> The OncoPhenotypeModelConfiguration. </summary>
     public partial class OncoPhenotypeModelConfiguration
     {
         /// <summary>
@@ -52,14 +52,10 @@ namespace Azure.Health.Insights.CancerProfiling
         }
 
         /// <summary> Initializes a new instance of <see cref="OncoPhenotypeModelConfiguration"/>. </summary>
-        /// <param name="verbose"> An indication whether the model should produce verbose output. </param>
-        /// <param name="includeEvidence"> An indication whether the model's output should include evidence for the inferences. </param>
-        /// <param name="inferenceTypes">
-        /// A list of inference types to be inferred for the current request.
-        /// This could be used if only part of the Onco Phenotype inferences are required.
-        /// If this list is omitted or empty, the model will return all the inference types.
-        /// </param>
-        /// <param name="checkForCancerCase"> An indication whether to perform a preliminary step on the patient's documents to determine whether they relate to a Cancer case. </param>
+        /// <param name="verbose"></param>
+        /// <param name="includeEvidence"></param>
+        /// <param name="inferenceTypes"></param>
+        /// <param name="checkForCancerCase"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OncoPhenotypeModelConfiguration(bool? verbose, bool? includeEvidence, IList<OncoPhenotypeInferenceType> inferenceTypes, bool? checkForCancerCase, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,17 +66,13 @@ namespace Azure.Health.Insights.CancerProfiling
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> An indication whether the model should produce verbose output. </summary>
+        /// <summary> Gets or sets the verbose. </summary>
         public bool? Verbose { get; set; }
-        /// <summary> An indication whether the model's output should include evidence for the inferences. </summary>
+        /// <summary> Gets or sets the include evidence. </summary>
         public bool? IncludeEvidence { get; set; }
-        /// <summary>
-        /// A list of inference types to be inferred for the current request.
-        /// This could be used if only part of the Onco Phenotype inferences are required.
-        /// If this list is omitted or empty, the model will return all the inference types.
-        /// </summary>
+        /// <summary> Gets the inference types. </summary>
         public IList<OncoPhenotypeInferenceType> InferenceTypes { get; }
-        /// <summary> An indication whether to perform a preliminary step on the patient's documents to determine whether they relate to a Cancer case. </summary>
+        /// <summary> Gets or sets the check for cancer case. </summary>
         public bool? CheckForCancerCase { get; set; }
     }
 }

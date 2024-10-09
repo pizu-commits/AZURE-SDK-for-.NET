@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of common properties of all chat thread events. </summary>
+    /// <summary> The AcsMessageEventData. </summary>
     public partial class AcsMessageEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageEventData"/>. </summary>
-        /// <param name="receivedTimestamp"> The time message was received. </param>
-        /// <param name="error"> The channel event error. </param>
+        /// <param name="receivedTimestamp"></param>
+        /// <param name="error"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="error"/> is null. </exception>
         internal AcsMessageEventData(DateTimeOffset receivedTimestamp, AcsMessageChannelEventError error)
         {
@@ -58,10 +58,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageEventData"/>. </summary>
-        /// <param name="from"> The message sender. </param>
-        /// <param name="to"> The message recipient. </param>
-        /// <param name="receivedTimestamp"> The time message was received. </param>
-        /// <param name="error"> The channel event error. </param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="receivedTimestamp"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageEventData(string @from, string to, DateTimeOffset receivedTimestamp, AcsMessageChannelEventError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,13 +77,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The message sender. </summary>
+        /// <summary> Gets the from. </summary>
         public string From { get; }
-        /// <summary> The message recipient. </summary>
+        /// <summary> Gets the to. </summary>
         public string To { get; }
-        /// <summary> The time message was received. </summary>
+        /// <summary> Gets the received timestamp. </summary>
         public DateTimeOffset ReceivedTimestamp { get; }
-        /// <summary> The channel event error. </summary>
+        /// <summary> Gets the error. </summary>
         public AcsMessageChannelEventError Error { get; }
     }
 }

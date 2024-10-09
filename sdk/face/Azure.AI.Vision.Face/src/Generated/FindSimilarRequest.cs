@@ -47,8 +47,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FindSimilarRequest"/>. </summary>
-        /// <param name="faceId"> faceId of the query face. User needs to call "Detect" first to get a valid faceId. Note that this faceId is not persisted and will expire 24 hours after the detection call. </param>
-        /// <param name="faceIds"> An array of candidate faceIds. All of them are created by "Detect" and the faceIds will expire 24 hours after the detection call. The number of faceIds is limited to 1000. </param>
+        /// <param name="faceId"></param>
+        /// <param name="faceIds"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceIds"/> is null. </exception>
         internal FindSimilarRequest(Guid faceId, IEnumerable<Guid> faceIds)
         {
@@ -59,10 +59,10 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="FindSimilarRequest"/>. </summary>
-        /// <param name="faceId"> faceId of the query face. User needs to call "Detect" first to get a valid faceId. Note that this faceId is not persisted and will expire 24 hours after the detection call. </param>
-        /// <param name="maxNumOfCandidatesReturned"> The number of top similar faces returned. The valid range is [1, 1000]. Default value is 20. </param>
-        /// <param name="mode"> Similar face searching mode. It can be 'matchPerson' or 'matchFace'. Default value is 'matchPerson'. </param>
-        /// <param name="faceIds"> An array of candidate faceIds. All of them are created by "Detect" and the faceIds will expire 24 hours after the detection call. The number of faceIds is limited to 1000. </param>
+        /// <param name="faceId"></param>
+        /// <param name="maxNumOfCandidatesReturned"></param>
+        /// <param name="mode"></param>
+        /// <param name="faceIds"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FindSimilarRequest(Guid faceId, int? maxNumOfCandidatesReturned, FindSimilarMatchMode? mode, IReadOnlyList<Guid> faceIds, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> faceId of the query face. User needs to call "Detect" first to get a valid faceId. Note that this faceId is not persisted and will expire 24 hours after the detection call. </summary>
+        /// <summary> Gets the face id. </summary>
         public Guid FaceId { get; }
-        /// <summary> The number of top similar faces returned. The valid range is [1, 1000]. Default value is 20. </summary>
+        /// <summary> Gets the max num of candidates returned. </summary>
         public int? MaxNumOfCandidatesReturned { get; }
-        /// <summary> Similar face searching mode. It can be 'matchPerson' or 'matchFace'. Default value is 'matchPerson'. </summary>
+        /// <summary> Gets the mode. </summary>
         public FindSimilarMatchMode? Mode { get; }
-        /// <summary> An array of candidate faceIds. All of them are created by "Detect" and the faceIds will expire 24 hours after the detection call. The number of faceIds is limited to 1000. </summary>
+        /// <summary> Gets the face ids. </summary>
         public IReadOnlyList<Guid> FaceIds { get; }
     }
 }

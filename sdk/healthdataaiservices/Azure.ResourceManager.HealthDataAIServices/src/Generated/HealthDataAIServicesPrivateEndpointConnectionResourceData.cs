@@ -13,10 +13,7 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.HealthDataAIServices
 {
-    /// <summary>
-    /// A class representing the HealthDataAIServicesPrivateEndpointConnectionResource data model.
-    /// Holder for private endpoint connections
-    /// </summary>
+    /// <summary> A class representing the HealthDataAIServicesPrivateEndpointConnectionResource data model. </summary>
     public partial class HealthDataAIServicesPrivateEndpointConnectionResourceData : ResourceData
     {
         /// <summary>
@@ -61,7 +58,7 @@ namespace Azure.ResourceManager.HealthDataAIServices
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HealthDataAIServicesPrivateEndpointConnectionResourceData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, PrivateEndpointConnectionProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
@@ -69,7 +66,7 @@ namespace Azure.ResourceManager.HealthDataAIServices
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public PrivateEndpointConnectionProperties Properties { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A representation of a chat message as received in a response. </summary>
+    /// <summary> The ChatResponseMessage. </summary>
     public partial class ChatResponseMessage
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Inference
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ChatResponseMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with the message. </param>
-        /// <param name="content"> The content of the message. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
         internal ChatResponseMessage(ChatRole role, string content)
         {
             Role = role;
@@ -56,11 +56,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatResponseMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with the message. </param>
-        /// <param name="content"> The content of the message. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
         /// <param name="toolCalls">
-        /// The tool calls that must be resolved and have their outputs appended to subsequent input messages for the chat
-        /// completions request to resolve as configured.
         /// Please note <see cref="ChatCompletionsToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsFunctionToolCall"/>.
         /// </param>
@@ -78,13 +76,12 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The chat role associated with the message. </summary>
+        /// <summary> Gets the role. </summary>
         public ChatRole Role { get; }
-        /// <summary> The content of the message. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
         /// <summary>
-        /// The tool calls that must be resolved and have their outputs appended to subsequent input messages for the chat
-        /// completions request to resolve as configured.
+        /// Gets the tool calls
         /// Please note <see cref="ChatCompletionsToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsFunctionToolCall"/>.
         /// </summary>

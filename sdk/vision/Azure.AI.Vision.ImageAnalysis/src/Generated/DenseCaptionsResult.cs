@@ -11,10 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary>
-    /// Represents a list of up to 10 image captions for different regions of the image.
-    /// The first caption always applies to the whole image.
-    /// </summary>
+    /// <summary> The DenseCaptionsResult. </summary>
     public partial class DenseCaptionsResult
     {
         /// <summary>
@@ -50,7 +47,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DenseCaptionsResult"/>. </summary>
-        /// <param name="values"> The list of image captions. </param>
+        /// <param name="values"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="values"/> is null. </exception>
         internal DenseCaptionsResult(IEnumerable<DenseCaption> values)
         {
@@ -60,7 +57,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="DenseCaptionsResult"/>. </summary>
-        /// <param name="values"> The list of image captions. </param>
+        /// <param name="values"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DenseCaptionsResult(IReadOnlyList<DenseCaption> values, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,7 +70,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> The list of image captions. </summary>
+        /// <summary> Gets the values. </summary>
         public IReadOnlyList<DenseCaption> Values { get; }
     }
 }

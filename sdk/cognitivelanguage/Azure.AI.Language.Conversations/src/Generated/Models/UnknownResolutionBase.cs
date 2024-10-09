@@ -14,7 +14,7 @@ namespace Azure.AI.Language.Conversations.Models
     internal partial class UnknownResolutionBase : ResolutionBase
     {
         /// <summary> Initializes a new instance of <see cref="UnknownResolutionBase"/>. </summary>
-        /// <param name="resolutionKind"> The entity resolution object kind. </param>
+        /// <param name="resolutionKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownResolutionBase(ResolutionKind resolutionKind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(resolutionKind, serializedAdditionalRawData)
         {

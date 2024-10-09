@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The glossary term. </summary>
+    /// <summary> The AtlasGlossaryTerm. </summary>
     public partial class AtlasGlossaryTerm
     {
         /// <summary>
@@ -73,47 +73,43 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasGlossaryTerm"/>. </summary>
-        /// <param name="guid"> The GUID of the object. </param>
-        /// <param name="classifications"> An array of classifications. </param>
-        /// <param name="longDescription"> The long version description. </param>
-        /// <param name="name"> The name of the glossary object. </param>
-        /// <param name="qualifiedName"> The qualified name of the glossary object. </param>
-        /// <param name="shortDescription"> The short version of description. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="abbreviation"> The abbreviation of the term. </param>
-        /// <param name="templateName"> The name of the template. </param>
-        /// <param name="anchor"> The glossary header with basic information. </param>
-        /// <param name="antonyms"> An array of related term headers as antonyms. </param>
-        /// <param name="status"> Status of the AtlasGlossaryTerm. </param>
-        /// <param name="nickName"> The nick name of the term. </param>
-        /// <param name="hierarchyInfo"> The hierarchy information of the term. </param>
-        /// <param name="resources"> An array of resource link for term. </param>
-        /// <param name="contacts"> The dictionary of contacts for terms. Key could be Expert or Steward. </param>
-        /// <param name="attributes">
-        /// The custom attributes of the term, which is map&lt;string,map&lt;string,object&gt;&gt;.
-        /// The
-        /// key of the first layer map is term template name.
-        /// </param>
-        /// <param name="assignedEntities"> An array of related object IDs. </param>
-        /// <param name="categories"> An array of term categorization headers. </param>
-        /// <param name="classifies"> An array of related term headers. </param>
-        /// <param name="examples"> An array of examples. </param>
-        /// <param name="isA"> An array of related term headers indicating the is-a relationship. </param>
-        /// <param name="preferredTerms"> An array of preferred related term headers. </param>
-        /// <param name="preferredToTerms"> An array of related term headers that are preferred to. </param>
-        /// <param name="replacedBy"> An array of related term headers that are replaced by. </param>
-        /// <param name="replacementTerms"> An array of related term headers for replacement. </param>
-        /// <param name="seeAlso"> An array of related term headers for see also. </param>
-        /// <param name="synonyms"> An array of related term headers as synonyms. </param>
-        /// <param name="translatedTerms"> An array of translated related term headers. </param>
-        /// <param name="translationTerms"> An array of related term headers for translation. </param>
-        /// <param name="usage"> The usage of the term. </param>
-        /// <param name="validValues"> An array of related term headers as valid values. </param>
-        /// <param name="validValuesFor"> An array of related term headers as valid values for other records. </param>
+        /// <param name="guid"></param>
+        /// <param name="classifications"></param>
+        /// <param name="longDescription"></param>
+        /// <param name="name"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="shortDescription"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="abbreviation"></param>
+        /// <param name="templateName"></param>
+        /// <param name="anchor"></param>
+        /// <param name="antonyms"></param>
+        /// <param name="status"></param>
+        /// <param name="nickName"></param>
+        /// <param name="hierarchyInfo"></param>
+        /// <param name="resources"></param>
+        /// <param name="contacts"></param>
+        /// <param name="attributes"></param>
+        /// <param name="assignedEntities"></param>
+        /// <param name="categories"></param>
+        /// <param name="classifies"></param>
+        /// <param name="examples"></param>
+        /// <param name="isA"></param>
+        /// <param name="preferredTerms"></param>
+        /// <param name="preferredToTerms"></param>
+        /// <param name="replacedBy"></param>
+        /// <param name="replacementTerms"></param>
+        /// <param name="seeAlso"></param>
+        /// <param name="synonyms"></param>
+        /// <param name="translatedTerms"></param>
+        /// <param name="translationTerms"></param>
+        /// <param name="usage"></param>
+        /// <param name="validValues"></param>
+        /// <param name="validValuesFor"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasGlossaryTerm(string guid, IList<AtlasClassification> classifications, string longDescription, string name, string qualifiedName, string shortDescription, string lastModifiedTS, long? createTime, string createdBy, long? updateTime, string updatedBy, string abbreviation, IList<BinaryData> templateName, AtlasGlossaryHeader anchor, IList<AtlasRelatedTermHeader> antonyms, TermStatus? status, string nickName, IList<PurviewObjectId> hierarchyInfo, IList<ResourceLink> resources, IDictionary<string, IList<ContactInfo>> contacts, IDictionary<string, IDictionary<string, BinaryData>> attributes, IList<AtlasRelatedObjectId> assignedEntities, IList<AtlasTermCategorizationHeader> categories, IList<AtlasRelatedTermHeader> classifies, IList<string> examples, IList<AtlasRelatedTermHeader> isA, IList<AtlasRelatedTermHeader> preferredTerms, IList<AtlasRelatedTermHeader> preferredToTerms, IList<AtlasRelatedTermHeader> replacedBy, IList<AtlasRelatedTermHeader> replacementTerms, IList<AtlasRelatedTermHeader> seeAlso, IList<AtlasRelatedTermHeader> synonyms, IList<AtlasRelatedTermHeader> translatedTerms, IList<AtlasRelatedTermHeader> translationTerms, string usage, IList<AtlasRelatedTermHeader> validValues, IList<AtlasRelatedTermHeader> validValuesFor, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -157,32 +153,32 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the object. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> An array of classifications. </summary>
+        /// <summary> Gets the classifications. </summary>
         public IList<AtlasClassification> Classifications { get; }
-        /// <summary> The long version description. </summary>
+        /// <summary> Gets or sets the long description. </summary>
         public string LongDescription { get; set; }
-        /// <summary> The name of the glossary object. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The qualified name of the glossary object. </summary>
+        /// <summary> Gets or sets the qualified name. </summary>
         public string QualifiedName { get; set; }
-        /// <summary> The short version of description. </summary>
+        /// <summary> Gets or sets the short description. </summary>
         public string ShortDescription { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
-        /// <summary> The created time of the record. </summary>
+        /// <summary> Gets or sets the create time. </summary>
         public long? CreateTime { get; set; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets or sets the created by. </summary>
         public string CreatedBy { get; set; }
-        /// <summary> The update time of the record. </summary>
+        /// <summary> Gets or sets the update time. </summary>
         public long? UpdateTime { get; set; }
-        /// <summary> The user who updated the record. </summary>
+        /// <summary> Gets or sets the updated by. </summary>
         public string UpdatedBy { get; set; }
-        /// <summary> The abbreviation of the term. </summary>
+        /// <summary> Gets or sets the abbreviation. </summary>
         public string Abbreviation { get; set; }
         /// <summary>
-        /// The name of the template.
+        /// Gets the template name
         /// <para>
         /// To assign an object to the element of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -212,24 +208,22 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IList<BinaryData> TemplateName { get; }
-        /// <summary> The glossary header with basic information. </summary>
+        /// <summary> Gets or sets the anchor. </summary>
         public AtlasGlossaryHeader Anchor { get; set; }
-        /// <summary> An array of related term headers as antonyms. </summary>
+        /// <summary> Gets the antonyms. </summary>
         public IList<AtlasRelatedTermHeader> Antonyms { get; }
-        /// <summary> Status of the AtlasGlossaryTerm. </summary>
+        /// <summary> Gets or sets the status. </summary>
         public TermStatus? Status { get; set; }
-        /// <summary> The nick name of the term. </summary>
+        /// <summary> Gets or sets the nick name. </summary>
         public string NickName { get; set; }
-        /// <summary> The hierarchy information of the term. </summary>
+        /// <summary> Gets the hierarchy info. </summary>
         public IList<PurviewObjectId> HierarchyInfo { get; }
-        /// <summary> An array of resource link for term. </summary>
+        /// <summary> Gets the resources. </summary>
         public IList<ResourceLink> Resources { get; }
-        /// <summary> The dictionary of contacts for terms. Key could be Expert or Steward. </summary>
+        /// <summary> Gets the contacts. </summary>
         public IDictionary<string, IList<ContactInfo>> Contacts { get; }
         /// <summary>
-        /// The custom attributes of the term, which is map&lt;string,map&lt;string,object&gt;&gt;.
-        /// The
-        /// key of the first layer map is term template name.
+        /// Gets the attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -259,37 +253,37 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, IDictionary<string, BinaryData>> Attributes { get; }
-        /// <summary> An array of related object IDs. </summary>
+        /// <summary> Gets the assigned entities. </summary>
         public IList<AtlasRelatedObjectId> AssignedEntities { get; }
-        /// <summary> An array of term categorization headers. </summary>
+        /// <summary> Gets the categories. </summary>
         public IList<AtlasTermCategorizationHeader> Categories { get; }
-        /// <summary> An array of related term headers. </summary>
+        /// <summary> Gets the classifies. </summary>
         public IList<AtlasRelatedTermHeader> Classifies { get; }
-        /// <summary> An array of examples. </summary>
+        /// <summary> Gets the examples. </summary>
         public IList<string> Examples { get; }
-        /// <summary> An array of related term headers indicating the is-a relationship. </summary>
+        /// <summary> Gets the is a. </summary>
         public IList<AtlasRelatedTermHeader> IsA { get; }
-        /// <summary> An array of preferred related term headers. </summary>
+        /// <summary> Gets the preferred terms. </summary>
         public IList<AtlasRelatedTermHeader> PreferredTerms { get; }
-        /// <summary> An array of related term headers that are preferred to. </summary>
+        /// <summary> Gets the preferred to terms. </summary>
         public IList<AtlasRelatedTermHeader> PreferredToTerms { get; }
-        /// <summary> An array of related term headers that are replaced by. </summary>
+        /// <summary> Gets the replaced by. </summary>
         public IList<AtlasRelatedTermHeader> ReplacedBy { get; }
-        /// <summary> An array of related term headers for replacement. </summary>
+        /// <summary> Gets the replacement terms. </summary>
         public IList<AtlasRelatedTermHeader> ReplacementTerms { get; }
-        /// <summary> An array of related term headers for see also. </summary>
+        /// <summary> Gets the see also. </summary>
         public IList<AtlasRelatedTermHeader> SeeAlso { get; }
-        /// <summary> An array of related term headers as synonyms. </summary>
+        /// <summary> Gets the synonyms. </summary>
         public IList<AtlasRelatedTermHeader> Synonyms { get; }
-        /// <summary> An array of translated related term headers. </summary>
+        /// <summary> Gets the translated terms. </summary>
         public IList<AtlasRelatedTermHeader> TranslatedTerms { get; }
-        /// <summary> An array of related term headers for translation. </summary>
+        /// <summary> Gets the translation terms. </summary>
         public IList<AtlasRelatedTermHeader> TranslationTerms { get; }
-        /// <summary> The usage of the term. </summary>
+        /// <summary> Gets or sets the usage. </summary>
         public string Usage { get; set; }
-        /// <summary> An array of related term headers as valid values. </summary>
+        /// <summary> Gets the valid values. </summary>
         public IList<AtlasRelatedTermHeader> ValidValues { get; }
-        /// <summary> An array of related term headers as valid values for other records. </summary>
+        /// <summary> Gets the valid values for. </summary>
         public IList<AtlasRelatedTermHeader> ValidValuesFor { get; }
     }
 }

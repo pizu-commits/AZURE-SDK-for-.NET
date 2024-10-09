@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Properties of an environment. </summary>
+    /// <summary> The DevCenterEnvironment. </summary>
     public partial class DevCenterEnvironment
     {
         /// <summary>
@@ -47,15 +47,15 @@ namespace Azure.Developer.DevCenter.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DevCenterEnvironment"/>. </summary>
-        /// <param name="parameters"> Parameters object for the environment. </param>
-        /// <param name="name"> Environment name. </param>
-        /// <param name="environmentTypeName"> Environment type. </param>
-        /// <param name="userId"> The AAD object id of the owner of this Environment. </param>
-        /// <param name="provisioningState"> The provisioning state of the environment. </param>
-        /// <param name="resourceGroupId"> The identifier of the resource group containing the environment's resources. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
-        /// <param name="environmentDefinitionName"> Name of the environment definition. </param>
-        /// <param name="error"> Provisioning error details. Populated only for error states. </param>
+        /// <param name="parameters"></param>
+        /// <param name="name"></param>
+        /// <param name="environmentTypeName"></param>
+        /// <param name="userId"></param>
+        /// <param name="provisioningState"></param>
+        /// <param name="resourceGroupId"></param>
+        /// <param name="catalogName"></param>
+        /// <param name="environmentDefinitionName"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevCenterEnvironment(IDictionary<string, BinaryData> parameters, string name, string environmentTypeName, Guid? userId, EnvironmentProvisioningState? provisioningState, ResourceIdentifier resourceGroupId, string catalogName, string environmentDefinitionName, ResponseError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,7 +77,7 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary>
-        /// Parameters object for the environment.
+        /// Gets the parameters
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -107,19 +107,19 @@ namespace Azure.Developer.DevCenter.Models
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> Parameters { get; }
-        /// <summary> Environment name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Environment type. </summary>
+        /// <summary> Gets or sets the environment type name. </summary>
         public string EnvironmentTypeName { get; set; }
-        /// <summary> The AAD object id of the owner of this Environment. </summary>
+        /// <summary> Gets the user id. </summary>
         public Guid? UserId { get; }
-        /// <summary> The provisioning state of the environment. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public EnvironmentProvisioningState? ProvisioningState { get; }
-        /// <summary> Name of the catalog. </summary>
+        /// <summary> Gets or sets the catalog name. </summary>
         public string CatalogName { get; set; }
-        /// <summary> Name of the environment definition. </summary>
+        /// <summary> Gets or sets the environment definition name. </summary>
         public string EnvironmentDefinitionName { get; set; }
-        /// <summary> Provisioning error details. Populated only for error states. </summary>
+        /// <summary> Gets the error. </summary>
         public ResponseError Error { get; }
     }
 }

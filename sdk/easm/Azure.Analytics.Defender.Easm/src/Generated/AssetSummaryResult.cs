@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The collection of asset summaries. </summary>
+    /// <summary> The AssetSummaryResult. </summary>
     public partial class AssetSummaryResult
     {
         /// <summary>
@@ -52,16 +52,16 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="AssetSummaryResult"/>. </summary>
-        /// <param name="displayName"> The name of the summary response.  Depending on the request time this will either be the asset filter, risk category, or risk metric. </param>
-        /// <param name="description"> The description of the summary response.  Filters don't have a description. </param>
-        /// <param name="updatedAt"> The last time risk categories or risk metrics were captured. Set to the current time for asset filter requests, which always pull the live asset data. </param>
-        /// <param name="metricCategory"> If the request is for a metric category, this will contain the requested unique category name. </param>
-        /// <param name="metric"> If the request is for a metric, this will contain the requested unique metric name. </param>
-        /// <param name="filter"> If the request is for an asset filter, this will contain the corresponding filter. </param>
-        /// <param name="labelName"> An optional label used to filter requests results. </param>
-        /// <param name="count"> The count of assets matching the request parameters. </param>
-        /// <param name="link"> The link to the corresponding asset details. </param>
-        /// <param name="children"> The corresponding child entities.  For metric categories this will contain metrics.  For filters with groupBy and segmentBy this will contain facets. </param>
+        /// <param name="displayName"></param>
+        /// <param name="description"></param>
+        /// <param name="updatedAt"></param>
+        /// <param name="metricCategory"></param>
+        /// <param name="metric"></param>
+        /// <param name="filter"></param>
+        /// <param name="labelName"></param>
+        /// <param name="count"></param>
+        /// <param name="link"></param>
+        /// <param name="children"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AssetSummaryResult(string displayName, string description, DateTimeOffset? updatedAt, string metricCategory, string metric, string filter, string labelName, long? count, string link, IReadOnlyList<AssetSummaryResult> children, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,25 +78,25 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the summary response.  Depending on the request time this will either be the asset filter, risk category, or risk metric. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The description of the summary response.  Filters don't have a description. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> The last time risk categories or risk metrics were captured. Set to the current time for asset filter requests, which always pull the live asset data. </summary>
+        /// <summary> Gets the updated at. </summary>
         public DateTimeOffset? UpdatedAt { get; }
-        /// <summary> If the request is for a metric category, this will contain the requested unique category name. </summary>
+        /// <summary> Gets the metric category. </summary>
         public string MetricCategory { get; }
-        /// <summary> If the request is for a metric, this will contain the requested unique metric name. </summary>
+        /// <summary> Gets the metric. </summary>
         public string Metric { get; }
-        /// <summary> If the request is for an asset filter, this will contain the corresponding filter. </summary>
+        /// <summary> Gets the filter. </summary>
         public string Filter { get; }
-        /// <summary> An optional label used to filter requests results. </summary>
+        /// <summary> Gets the label name. </summary>
         public string LabelName { get; }
-        /// <summary> The count of assets matching the request parameters. </summary>
+        /// <summary> Gets the count. </summary>
         public long? Count { get; }
-        /// <summary> The link to the corresponding asset details. </summary>
+        /// <summary> Gets the link. </summary>
         public string Link { get; }
-        /// <summary> The corresponding child entities.  For metric categories this will contain metrics.  For filters with groupBy and segmentBy this will contain facets. </summary>
+        /// <summary> Gets the children. </summary>
         public IReadOnlyList<AssetSummaryResult> Children { get; }
     }
 }

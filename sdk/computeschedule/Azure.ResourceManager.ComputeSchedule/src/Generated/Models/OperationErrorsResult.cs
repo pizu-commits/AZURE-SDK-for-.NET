@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> This is the first level of operation errors from the request when clients get errors per vm operation. </summary>
+    /// <summary> The OperationErrorsResult. </summary>
     public partial class OperationErrorsResult
     {
         /// <summary>
@@ -52,13 +52,13 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="OperationErrorsResult"/>. </summary>
-        /// <param name="operationId"> The operationId identifying a vm operation. </param>
-        /// <param name="createdOn"> The creation time of the error result. </param>
-        /// <param name="activationOn"> The activation time of a vm operation. </param>
-        /// <param name="completedOn"> The completion time of the operation if the operation was completed. </param>
-        /// <param name="operationErrors"> A list of errors associated with the operationid. </param>
-        /// <param name="requestErrorCode"> Request level error code. </param>
-        /// <param name="requestErrorDetails"> Request level error details. </param>
+        /// <param name="operationId"></param>
+        /// <param name="createdOn"></param>
+        /// <param name="activationOn"></param>
+        /// <param name="completedOn"></param>
+        /// <param name="operationErrors"></param>
+        /// <param name="requestErrorCode"></param>
+        /// <param name="requestErrorDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OperationErrorsResult(string operationId, DateTimeOffset? createdOn, DateTimeOffset? activationOn, DateTimeOffset? completedOn, IReadOnlyList<OperationErrorDetails> operationErrors, string requestErrorCode, string requestErrorDetails, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,19 +72,19 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The operationId identifying a vm operation. </summary>
+        /// <summary> Gets the operation id. </summary>
         public string OperationId { get; }
-        /// <summary> The creation time of the error result. </summary>
+        /// <summary> Gets the created on. </summary>
         public DateTimeOffset? CreatedOn { get; }
-        /// <summary> The activation time of a vm operation. </summary>
+        /// <summary> Gets the activation on. </summary>
         public DateTimeOffset? ActivationOn { get; }
-        /// <summary> The completion time of the operation if the operation was completed. </summary>
+        /// <summary> Gets the completed on. </summary>
         public DateTimeOffset? CompletedOn { get; }
-        /// <summary> A list of errors associated with the operationid. </summary>
+        /// <summary> Gets the operation errors. </summary>
         public IReadOnlyList<OperationErrorDetails> OperationErrors { get; }
-        /// <summary> Request level error code. </summary>
+        /// <summary> Gets the request error code. </summary>
         public string RequestErrorCode { get; }
-        /// <summary> Request level error details. </summary>
+        /// <summary> Gets the request error details. </summary>
         public string RequestErrorDetails { get; }
     }
 }

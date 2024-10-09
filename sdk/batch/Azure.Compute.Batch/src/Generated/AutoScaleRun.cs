@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The results and errors from an execution of a Pool autoscale formula. </summary>
+    /// <summary> The AutoScaleRun. </summary>
     public partial class AutoScaleRun
     {
         /// <summary>
@@ -46,16 +46,16 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AutoScaleRun"/>. </summary>
-        /// <param name="timestamp"> The time at which the autoscale formula was last evaluated. </param>
+        /// <param name="timestamp"></param>
         internal AutoScaleRun(DateTimeOffset timestamp)
         {
             Timestamp = timestamp;
         }
 
         /// <summary> Initializes a new instance of <see cref="AutoScaleRun"/>. </summary>
-        /// <param name="timestamp"> The time at which the autoscale formula was last evaluated. </param>
-        /// <param name="results"> The final values of all variables used in the evaluation of the autoscale formula. Each variable value is returned in the form $variable=value, and variables are separated by semicolons. </param>
-        /// <param name="error"> Details of the error encountered evaluating the autoscale formula on the Pool, if the evaluation was unsuccessful. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="results"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AutoScaleRun(DateTimeOffset timestamp, string results, AutoScaleRunError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,11 +70,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The time at which the autoscale formula was last evaluated. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public DateTimeOffset Timestamp { get; }
-        /// <summary> The final values of all variables used in the evaluation of the autoscale formula. Each variable value is returned in the form $variable=value, and variables are separated by semicolons. </summary>
+        /// <summary> Gets the results. </summary>
         public string Results { get; }
-        /// <summary> Details of the error encountered evaluating the autoscale formula on the Pool, if the evaluation was unsuccessful. </summary>
+        /// <summary> Gets the error. </summary>
         public AutoScaleRunError Error { get; }
     }
 }

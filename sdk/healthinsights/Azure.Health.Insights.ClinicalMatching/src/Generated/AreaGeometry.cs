@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> `GeoJSON` geometry, representing the area circle's center. </summary>
+    /// <summary> The AreaGeometry. </summary>
     public partial class AreaGeometry
     {
         /// <summary>
@@ -47,11 +47,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AreaGeometry"/>. </summary>
-        /// <param name="type"> `GeoJSON` geometry type. </param>
-        /// <param name="coordinates">
-        /// Coordinates of the area circle's center, represented according to the `GeoJSON` standard.
-        /// This is an array of 2 decimal numbers, longitude and latitude (precisely in this order).
-        /// </param>
+        /// <param name="type"></param>
+        /// <param name="coordinates"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="coordinates"/> is null. </exception>
         public AreaGeometry(GeoJsonGeometryType type, IEnumerable<float> coordinates)
         {
@@ -62,11 +59,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="AreaGeometry"/>. </summary>
-        /// <param name="type"> `GeoJSON` geometry type. </param>
-        /// <param name="coordinates">
-        /// Coordinates of the area circle's center, represented according to the `GeoJSON` standard.
-        /// This is an array of 2 decimal numbers, longitude and latitude (precisely in this order).
-        /// </param>
+        /// <param name="type"></param>
+        /// <param name="coordinates"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AreaGeometry(GeoJsonGeometryType type, IList<float> coordinates, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,12 +74,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> `GeoJSON` geometry type. </summary>
+        /// <summary> Gets the type. </summary>
         public GeoJsonGeometryType Type { get; }
-        /// <summary>
-        /// Coordinates of the area circle's center, represented according to the `GeoJSON` standard.
-        /// This is an array of 2 decimal numbers, longitude and latitude (precisely in this order).
-        /// </summary>
+        /// <summary> Gets the coordinates. </summary>
         public IList<float> Coordinates { get; }
     }
 }

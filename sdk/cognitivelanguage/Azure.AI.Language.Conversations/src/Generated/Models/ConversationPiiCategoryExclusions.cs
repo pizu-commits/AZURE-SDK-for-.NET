@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Describes the PII categories to exclude for detection. If not provided, 'default' categories will be returned which will vary with the language. </summary>
+    /// <summary> The ConversationPiiCategoryExclusions. </summary>
     public readonly partial struct ConversationPiiCategoryExclusions : IEquatable<ConversationPiiCategoryExclusions>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.AI.Language.Conversations.Models
         private const string PhoneNumberValue = "PhoneNumber";
         private const string UsSocialSecurityNumberValue = "USSocialSecurityNumber";
 
-        /// <summary> Address category. </summary>
+        /// <summary> Address. </summary>
         public static ConversationPiiCategoryExclusions Address { get; } = new ConversationPiiCategoryExclusions(AddressValue);
-        /// <summary> Credit card number category. </summary>
+        /// <summary> CreditCardNumber. </summary>
         public static ConversationPiiCategoryExclusions CreditCardNumber { get; } = new ConversationPiiCategoryExclusions(CreditCardNumberValue);
-        /// <summary> Email category. </summary>
+        /// <summary> Email. </summary>
         public static ConversationPiiCategoryExclusions Email { get; } = new ConversationPiiCategoryExclusions(EmailValue);
-        /// <summary> Person category. </summary>
+        /// <summary> Person. </summary>
         public static ConversationPiiCategoryExclusions Person { get; } = new ConversationPiiCategoryExclusions(PersonValue);
-        /// <summary> Numeric identifier category. </summary>
+        /// <summary> NumericIdentifier. </summary>
         public static ConversationPiiCategoryExclusions NumericIdentifier { get; } = new ConversationPiiCategoryExclusions(NumericIdentifierValue);
-        /// <summary> Phone number category. </summary>
+        /// <summary> PhoneNumber. </summary>
         public static ConversationPiiCategoryExclusions PhoneNumber { get; } = new ConversationPiiCategoryExclusions(PhoneNumberValue);
-        /// <summary> US social security number category. </summary>
+        /// <summary> USSocialSecurityNumber. </summary>
         public static ConversationPiiCategoryExclusions UsSocialSecurityNumber { get; } = new ConversationPiiCategoryExclusions(UsSocialSecurityNumberValue);
         /// <summary> Determines if two <see cref="ConversationPiiCategoryExclusions"/> values are the same. </summary>
         public static bool operator ==(ConversationPiiCategoryExclusions left, ConversationPiiCategoryExclusions right) => left.Equals(right);

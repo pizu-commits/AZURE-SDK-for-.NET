@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for creating an Azure Batch Job. </summary>
+    /// <summary> The BatchJobCreateContent. </summary>
     public partial class BatchJobCreateContent
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchJobCreateContent"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the Job within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </param>
-        /// <param name="poolInfo"> The Pool on which the Batch service runs the Job's Tasks. </param>
+        /// <param name="id"></param>
+        /// <param name="poolInfo"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="poolInfo"/> is null. </exception>
         public BatchJobCreateContent(string id, BatchPoolInfo poolInfo)
         {
@@ -61,22 +61,22 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobCreateContent"/>. </summary>
-        /// <param name="id"> A string that uniquely identifies the Job within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </param>
-        /// <param name="displayName"> The display name for the Job. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </param>
-        /// <param name="usesTaskDependencies"> Whether Tasks in the Job can define dependencies on each other. The default is false. </param>
-        /// <param name="priority"> The priority of the Job. Priority values can range from -1000 to 1000, with -1000 being the lowest priority and 1000 being the highest priority. The default value is 0. </param>
-        /// <param name="allowTaskPreemption"> Whether Tasks in this job can be preempted by other high priority jobs. If the value is set to True, other high priority jobs submitted to the system will take precedence and will be able requeue tasks from this job. You can update a job's allowTaskPreemption after it has been created using the update job API. </param>
-        /// <param name="maxParallelTasks"> The maximum number of tasks that can be executed in parallel for the job. The value of maxParallelTasks must be -1 or greater than 0 if specified. If not specified, the default value is -1, which means there's no limit to the number of tasks that can be run at once. You can update a job's maxParallelTasks after it has been created using the update job API. </param>
-        /// <param name="constraints"> The execution constraints for the Job. </param>
-        /// <param name="jobManagerTask"> Details of a Job Manager Task to be launched when the Job is started. If the Job does not specify a Job Manager Task, the user must explicitly add Tasks to the Job. If the Job does specify a Job Manager Task, the Batch service creates the Job Manager Task when the Job is created, and will try to schedule the Job Manager Task before scheduling other Tasks in the Job. The Job Manager Task's typical purpose is to control and/or monitor Job execution, for example by deciding what additional Tasks to run, determining when the work is complete, etc. (However, a Job Manager Task is not restricted to these activities - it is a fully-fledged Task in the system and perform whatever actions are required for the Job.) For example, a Job Manager Task might download a file specified as a parameter, analyze the contents of that file and submit additional Tasks based on those contents. </param>
-        /// <param name="jobPreparationTask"> The Job Preparation Task. If a Job has a Job Preparation Task, the Batch service will run the Job Preparation Task on a Node before starting any Tasks of that Job on that Compute Node. </param>
-        /// <param name="jobReleaseTask"> The Job Release Task. A Job Release Task cannot be specified without also specifying a Job Preparation Task for the Job. The Batch service runs the Job Release Task on the Nodes that have run the Job Preparation Task. The primary purpose of the Job Release Task is to undo changes to Compute Nodes made by the Job Preparation Task. Example activities include deleting local files, or shutting down services that were started as part of Job preparation. </param>
-        /// <param name="commonEnvironmentSettings"> The list of common environment variable settings. These environment variables are set for all Tasks in the Job (including the Job Manager, Job Preparation and Job Release Tasks). Individual Tasks can override an environment setting specified here by specifying the same setting name with a different value. </param>
-        /// <param name="poolInfo"> The Pool on which the Batch service runs the Job's Tasks. </param>
-        /// <param name="onAllTasksComplete"> The action the Batch service should take when all Tasks in the Job are in the completed state. Note that if a Job contains no Tasks, then all Tasks are considered complete. This option is therefore most commonly used with a Job Manager task; if you want to use automatic Job termination without a Job Manager, you should initially set onAllTasksComplete to noaction and update the Job properties to set onAllTasksComplete to terminatejob once you have finished adding Tasks. The default is noaction. </param>
-        /// <param name="onTaskFailure"> The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction. </param>
-        /// <param name="networkConfiguration"> The network configuration for the Job. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </param>
+        /// <param name="id"></param>
+        /// <param name="displayName"></param>
+        /// <param name="usesTaskDependencies"></param>
+        /// <param name="priority"></param>
+        /// <param name="allowTaskPreemption"></param>
+        /// <param name="maxParallelTasks"></param>
+        /// <param name="constraints"></param>
+        /// <param name="jobManagerTask"></param>
+        /// <param name="jobPreparationTask"></param>
+        /// <param name="jobReleaseTask"></param>
+        /// <param name="commonEnvironmentSettings"></param>
+        /// <param name="poolInfo"></param>
+        /// <param name="onAllTasksComplete"></param>
+        /// <param name="onTaskFailure"></param>
+        /// <param name="networkConfiguration"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobCreateContent(string id, string displayName, bool? usesTaskDependencies, int? priority, bool? allowTaskPreemption, int? maxParallelTasks, BatchJobConstraints constraints, BatchJobManagerTask jobManagerTask, BatchJobPreparationTask jobPreparationTask, BatchJobReleaseTask jobReleaseTask, IList<EnvironmentSetting> commonEnvironmentSettings, BatchPoolInfo poolInfo, OnAllBatchTasksComplete? onAllTasksComplete, OnBatchTaskFailure? onTaskFailure, BatchJobNetworkConfiguration networkConfiguration, IList<MetadataItem> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -104,37 +104,37 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A string that uniquely identifies the Job within the Account. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within an Account that differ only by case). </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The display name for the Job. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </summary>
+        /// <summary> Gets or sets the display name. </summary>
         public string DisplayName { get; set; }
-        /// <summary> Whether Tasks in the Job can define dependencies on each other. The default is false. </summary>
+        /// <summary> Gets or sets the uses task dependencies. </summary>
         public bool? UsesTaskDependencies { get; set; }
-        /// <summary> The priority of the Job. Priority values can range from -1000 to 1000, with -1000 being the lowest priority and 1000 being the highest priority. The default value is 0. </summary>
+        /// <summary> Gets or sets the priority. </summary>
         public int? Priority { get; set; }
-        /// <summary> Whether Tasks in this job can be preempted by other high priority jobs. If the value is set to True, other high priority jobs submitted to the system will take precedence and will be able requeue tasks from this job. You can update a job's allowTaskPreemption after it has been created using the update job API. </summary>
+        /// <summary> Gets or sets the allow task preemption. </summary>
         public bool? AllowTaskPreemption { get; set; }
-        /// <summary> The maximum number of tasks that can be executed in parallel for the job. The value of maxParallelTasks must be -1 or greater than 0 if specified. If not specified, the default value is -1, which means there's no limit to the number of tasks that can be run at once. You can update a job's maxParallelTasks after it has been created using the update job API. </summary>
+        /// <summary> Gets or sets the max parallel tasks. </summary>
         public int? MaxParallelTasks { get; set; }
-        /// <summary> The execution constraints for the Job. </summary>
+        /// <summary> Gets or sets the constraints. </summary>
         public BatchJobConstraints Constraints { get; set; }
-        /// <summary> Details of a Job Manager Task to be launched when the Job is started. If the Job does not specify a Job Manager Task, the user must explicitly add Tasks to the Job. If the Job does specify a Job Manager Task, the Batch service creates the Job Manager Task when the Job is created, and will try to schedule the Job Manager Task before scheduling other Tasks in the Job. The Job Manager Task's typical purpose is to control and/or monitor Job execution, for example by deciding what additional Tasks to run, determining when the work is complete, etc. (However, a Job Manager Task is not restricted to these activities - it is a fully-fledged Task in the system and perform whatever actions are required for the Job.) For example, a Job Manager Task might download a file specified as a parameter, analyze the contents of that file and submit additional Tasks based on those contents. </summary>
+        /// <summary> Gets or sets the job manager task. </summary>
         public BatchJobManagerTask JobManagerTask { get; set; }
-        /// <summary> The Job Preparation Task. If a Job has a Job Preparation Task, the Batch service will run the Job Preparation Task on a Node before starting any Tasks of that Job on that Compute Node. </summary>
+        /// <summary> Gets or sets the job preparation task. </summary>
         public BatchJobPreparationTask JobPreparationTask { get; set; }
-        /// <summary> The Job Release Task. A Job Release Task cannot be specified without also specifying a Job Preparation Task for the Job. The Batch service runs the Job Release Task on the Nodes that have run the Job Preparation Task. The primary purpose of the Job Release Task is to undo changes to Compute Nodes made by the Job Preparation Task. Example activities include deleting local files, or shutting down services that were started as part of Job preparation. </summary>
+        /// <summary> Gets or sets the job release task. </summary>
         public BatchJobReleaseTask JobReleaseTask { get; set; }
-        /// <summary> The list of common environment variable settings. These environment variables are set for all Tasks in the Job (including the Job Manager, Job Preparation and Job Release Tasks). Individual Tasks can override an environment setting specified here by specifying the same setting name with a different value. </summary>
+        /// <summary> Gets the common environment settings. </summary>
         public IList<EnvironmentSetting> CommonEnvironmentSettings { get; }
-        /// <summary> The Pool on which the Batch service runs the Job's Tasks. </summary>
+        /// <summary> Gets the pool info. </summary>
         public BatchPoolInfo PoolInfo { get; }
-        /// <summary> The action the Batch service should take when all Tasks in the Job are in the completed state. Note that if a Job contains no Tasks, then all Tasks are considered complete. This option is therefore most commonly used with a Job Manager task; if you want to use automatic Job termination without a Job Manager, you should initially set onAllTasksComplete to noaction and update the Job properties to set onAllTasksComplete to terminatejob once you have finished adding Tasks. The default is noaction. </summary>
+        /// <summary> Gets or sets the on all tasks complete. </summary>
         public OnAllBatchTasksComplete? OnAllTasksComplete { get; set; }
-        /// <summary> The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction. </summary>
+        /// <summary> Gets or sets the on task failure. </summary>
         public OnBatchTaskFailure? OnTaskFailure { get; set; }
-        /// <summary> The network configuration for the Job. </summary>
+        /// <summary> Gets or sets the network configuration. </summary>
         public BatchJobNetworkConfiguration NetworkConfiguration { get; set; }
-        /// <summary> A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataItem> Metadata { get; }
     }
 }

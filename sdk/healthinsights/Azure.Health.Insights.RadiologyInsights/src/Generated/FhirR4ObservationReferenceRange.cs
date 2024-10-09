@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Provides guide for interpretation of component result
-    /// Based on [FHIR Observation.referenceRange](https://www.hl7.org/fhir/R4/observation.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_ObservationReferenceRange. </summary>
     public partial class FhirR4ObservationReferenceRange
     {
         /// <summary>
@@ -55,12 +52,12 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4ObservationReferenceRange"/>. </summary>
-        /// <param name="low"> Low Range, if relevant. </param>
-        /// <param name="high"> High Range, if relevant. </param>
-        /// <param name="type"> Reference range qualifier. </param>
-        /// <param name="appliesTo"> Reference range population. </param>
-        /// <param name="age"> Applicable age range, if relevant. </param>
-        /// <param name="text"> Text based reference range in an observation. </param>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
+        /// <param name="type"></param>
+        /// <param name="appliesTo"></param>
+        /// <param name="age"></param>
+        /// <param name="text"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FhirR4ObservationReferenceRange(FhirR4Quantity low, FhirR4Quantity high, FhirR4CodeableConcept type, IReadOnlyList<FhirR4CodeableConcept> appliesTo, FhirR4Range age, string text, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,17 +70,17 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Low Range, if relevant. </summary>
+        /// <summary> Gets the low. </summary>
         public FhirR4Quantity Low { get; }
-        /// <summary> High Range, if relevant. </summary>
+        /// <summary> Gets the high. </summary>
         public FhirR4Quantity High { get; }
-        /// <summary> Reference range qualifier. </summary>
+        /// <summary> Gets the type. </summary>
         public FhirR4CodeableConcept Type { get; }
-        /// <summary> Reference range population. </summary>
+        /// <summary> Gets the applies to. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> AppliesTo { get; }
-        /// <summary> Applicable age range, if relevant. </summary>
+        /// <summary> Gets the age. </summary>
         public FhirR4Range Age { get; }
-        /// <summary> Text based reference range in an observation. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

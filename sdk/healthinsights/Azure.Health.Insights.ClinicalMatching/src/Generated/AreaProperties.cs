@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> `GeoJSON` object properties. </summary>
+    /// <summary> The AreaProperties. </summary>
     public partial class AreaProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AreaProperties"/>. </summary>
-        /// <param name="subType"> `GeoJSON` object sub-type. </param>
-        /// <param name="radius"> The radius of the area's circle, in meters. </param>
+        /// <param name="subType"></param>
+        /// <param name="radius"></param>
         public AreaProperties(GeoJsonPropertiesSubType subType, double radius)
         {
             SubType = subType;
@@ -55,8 +55,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="AreaProperties"/>. </summary>
-        /// <param name="subType"> `GeoJSON` object sub-type. </param>
-        /// <param name="radius"> The radius of the area's circle, in meters. </param>
+        /// <param name="subType"></param>
+        /// <param name="radius"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AreaProperties(GeoJsonPropertiesSubType subType, double radius, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> `GeoJSON` object sub-type. </summary>
+        /// <summary> Gets the sub type. </summary>
         public GeoJsonPropertiesSubType SubType { get; }
-        /// <summary> The radius of the area's circle, in meters. </summary>
+        /// <summary> Gets the radius. </summary>
         public double Radius { get; }
     }
 }

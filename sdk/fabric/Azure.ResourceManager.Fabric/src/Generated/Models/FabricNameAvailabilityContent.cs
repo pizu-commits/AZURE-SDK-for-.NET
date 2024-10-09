@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The check availability request body. </summary>
+    /// <summary> The FabricNameAvailabilityContent. </summary>
     public partial class FabricNameAvailabilityContent
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricNameAvailabilityContent"/>. </summary>
-        /// <param name="name"> The name of the resource for which availability needs to be checked. </param>
-        /// <param name="resourceType"> The resource type. </param>
+        /// <param name="name"></param>
+        /// <param name="resourceType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricNameAvailabilityContent(string name, string resourceType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.Fabric.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the resource for which availability needs to be checked. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The resource type. </summary>
+        /// <summary> Gets or sets the resource type. </summary>
         public string ResourceType { get; set; }
     }
 }

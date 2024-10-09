@@ -15,75 +15,31 @@ namespace Azure.Analytics.Purview.DataMap
     public static partial class AnalyticsPurviewDataMapModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="DataMap.AtlasTypeDef"/>. </summary>
-        /// <param name="category"> The enum of type category. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="dateFormatter"> The date format. </param>
-        /// <param name="description"> The description of the type definition. </param>
-        /// <param name="guid"> The GUID of the type definition. </param>
-        /// <param name="name"> The name of the type definition. </param>
-        /// <param name="options"> The options for the type definition. </param>
-        /// <param name="serviceType"> The service type. </param>
-        /// <param name="typeVersion"> The version of the type. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="version"> The version of the record. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="entityTypes">
-        /// Specifying a list of entityType names in the classificationDef, ensures that
-        /// classifications can
-        /// only be applied to those entityTypes.
-        ///
-        /// Any subtypes of the entity types inherit the restriction.
-        ///
-        /// Any classificationDef subtypes inherit the parents entityTypes restrictions.
-        ///
-        /// Any classificationDef subtypes can further restrict the parents entityTypes
-        /// restrictions by specifying a subset of the entityTypes.
-        ///
-        /// An empty entityTypes list when there are no parent restrictions means there are no
-        /// restrictions.
-        ///
-        /// An empty entityTypes list when there are parent
-        /// restrictions means that the subtype picks up the parents
-        /// restrictions.
-        ///
-        /// If a list of entityTypes are supplied, where one inherits
-        /// from another, this will be rejected. This should encourage cleaner
-        /// classificationsDefs.
-        ///
-        /// </param>
-        /// <param name="subTypes"> An array of sub types. </param>
-        /// <param name="superTypes"> An array of super types. </param>
-        /// <param name="relationshipAttributeDefs"> An array of relationship attributes. </param>
-        /// <param name="defaultValue"> The default value. </param>
-        /// <param name="elementDefs"> An array of enum element definitions. </param>
-        /// <param name="endDef1">
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </param>
-        /// <param name="endDef2">
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </param>
-        /// <param name="relationshipCategory">
-        /// The Relationship category determines the style of relationship around
-        /// containment and lifecycle.
-        /// UML terminology is used for the values.
-        ///
-        /// ASSOCIATION is a relationship with no containment.
-        /// COMPOSITION and AGGREGATION are containment relationships.
-        ///
-        /// The difference being in the lifecycles of the container and its children.
-        /// In the COMPOSITION case, the children cannot exist without the container.
-        /// For AGGREGATION, the life cycles of the container and children are totally independent.
-        /// </param>
-        /// <param name="relationshipLabel"> The label of the relationship. </param>
-        /// <param name="attributeDefs"> An array of attribute definitions. </param>
+        /// <param name="category"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="dateFormatter"></param>
+        /// <param name="description"></param>
+        /// <param name="guid"></param>
+        /// <param name="name"></param>
+        /// <param name="options"></param>
+        /// <param name="serviceType"></param>
+        /// <param name="typeVersion"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="version"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="entityTypes"></param>
+        /// <param name="subTypes"></param>
+        /// <param name="superTypes"></param>
+        /// <param name="relationshipAttributeDefs"></param>
+        /// <param name="defaultValue"></param>
+        /// <param name="elementDefs"></param>
+        /// <param name="endDef1"></param>
+        /// <param name="endDef2"></param>
+        /// <param name="relationshipCategory"></param>
+        /// <param name="relationshipLabel"></param>
+        /// <param name="attributeDefs"></param>
         /// <returns> A new <see cref="DataMap.AtlasTypeDef"/> instance for mocking. </returns>
         public static AtlasTypeDef AtlasTypeDef(TypeCategory? category = null, long? createTime = null, string createdBy = null, AtlasDateFormat dateFormatter = null, string description = null, string guid = null, string name = null, IReadOnlyDictionary<string, string> options = null, string serviceType = null, string typeVersion = null, long? updateTime = null, string updatedBy = null, long? version = null, string lastModifiedTS = null, IEnumerable<string> entityTypes = null, IEnumerable<string> subTypes = null, IEnumerable<string> superTypes = null, IEnumerable<AtlasRelationshipAttributeDef> relationshipAttributeDefs = null, string defaultValue = null, IEnumerable<AtlasEnumElementDef> elementDefs = null, AtlasRelationshipEndDef endDef1 = null, AtlasRelationshipEndDef endDef2 = null, RelationshipCategory? relationshipCategory = null, string relationshipLabel = null, IEnumerable<AtlasAttributeDef> attributeDefs = null)
         {
@@ -125,9 +81,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AtlasTypeDefHeader"/>. </summary>
-        /// <param name="category"> The enum of type category. </param>
-        /// <param name="guid"> The GUID of the type definition. </param>
-        /// <param name="name"> The name of the type definition. </param>
+        /// <param name="category"></param>
+        /// <param name="guid"></param>
+        /// <param name="name"></param>
         /// <returns> A new <see cref="DataMap.AtlasTypeDefHeader"/> instance for mocking. </returns>
         public static AtlasTypeDefHeader AtlasTypeDefHeader(TypeCategory? category = null, string guid = null, string name = null)
         {
@@ -135,8 +91,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AtlasRelationshipWithExtInfo"/>. </summary>
-        /// <param name="referredEntities"> The referred entity header. </param>
-        /// <param name="relationship"> Atlas relationship instance. </param>
+        /// <param name="referredEntities"></param>
+        /// <param name="relationship"></param>
         /// <returns> A new <see cref="DataMap.AtlasRelationshipWithExtInfo"/> instance for mocking. </returns>
         public static AtlasRelationshipWithExtInfo AtlasRelationshipWithExtInfo(IReadOnlyDictionary<string, AtlasEntityHeader> referredEntities = null, AtlasRelationship relationship = null)
         {
@@ -146,15 +102,15 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AtlasLineageInfo"/>. </summary>
-        /// <param name="baseEntityGuid"> The GUID of the base entity. </param>
-        /// <param name="guidEntityMap"> The GUID entity map. </param>
-        /// <param name="widthCounts"> The entity count in specific direction. </param>
-        /// <param name="lineageDepth"> The depth of lineage. </param>
-        /// <param name="lineageWidth"> The width of lineage. </param>
-        /// <param name="childrenCount"> The number of children node. </param>
-        /// <param name="lineageDirection"> The enum of lineage direction. </param>
-        /// <param name="parentRelations"> An array of parentRelations relations. </param>
-        /// <param name="relations"> An array of lineage relations. </param>
+        /// <param name="baseEntityGuid"></param>
+        /// <param name="guidEntityMap"></param>
+        /// <param name="widthCounts"></param>
+        /// <param name="lineageDepth"></param>
+        /// <param name="lineageWidth"></param>
+        /// <param name="childrenCount"></param>
+        /// <param name="lineageDirection"></param>
+        /// <param name="parentRelations"></param>
+        /// <param name="relations"></param>
         /// <returns> A new <see cref="DataMap.AtlasLineageInfo"/> instance for mocking. </returns>
         public static AtlasLineageInfo AtlasLineageInfo(string baseEntityGuid = null, IReadOnlyDictionary<string, AtlasEntityHeader> guidEntityMap = null, IReadOnlyDictionary<string, IDictionary<string, BinaryData>> widthCounts = null, int? lineageDepth = null, int? lineageWidth = null, int? childrenCount = null, LineageDirection? lineageDirection = null, IEnumerable<ParentRelation> parentRelations = null, IEnumerable<LineageRelation> relations = null)
         {
@@ -177,9 +133,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.ParentRelation"/>. </summary>
-        /// <param name="childEntityId"> The GUID of child entity. </param>
-        /// <param name="relationshipId"> The GUID of relationship. </param>
-        /// <param name="parentEntityId"> The GUID of parent entity. </param>
+        /// <param name="childEntityId"></param>
+        /// <param name="relationshipId"></param>
+        /// <param name="parentEntityId"></param>
         /// <returns> A new <see cref="DataMap.ParentRelation"/> instance for mocking. </returns>
         public static ParentRelation ParentRelation(string childEntityId = null, string relationshipId = null, string parentEntityId = null)
         {
@@ -187,9 +143,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.LineageRelation"/>. </summary>
-        /// <param name="fromEntityId"> The GUID of from-entity. </param>
-        /// <param name="relationshipId"> The GUID of relationship. </param>
-        /// <param name="toEntityId"> The GUID of to-entity. </param>
+        /// <param name="fromEntityId"></param>
+        /// <param name="relationshipId"></param>
+        /// <param name="toEntityId"></param>
         /// <returns> A new <see cref="DataMap.LineageRelation"/> instance for mocking. </returns>
         public static LineageRelation LineageRelation(string fromEntityId = null, string relationshipId = null, string toEntityId = null)
         {
@@ -197,18 +153,11 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.QueryResult"/>. </summary>
-        /// <param name="searchCount">
-        /// The total number of search results (not the number of documents in a single
-        /// page).
-        /// </param>
-        /// <param name="searchCountApproximate"> 'True' if the '@search.count' is an approximate value and vise versa. </param>
-        /// <param name="continuationToken"> The token used to get next batch of data. Absent if there's no more data. </param>
-        /// <param name="searchFacets">
-        /// A facet list that consists of index fields assetType ,classification,
-        /// contactId, and label. When the facet is specified in the request, the value of
-        /// the facet is returned as an element of @search.facets.
-        /// </param>
-        /// <param name="value"> Search result value. </param>
+        /// <param name="searchCount"></param>
+        /// <param name="searchCountApproximate"></param>
+        /// <param name="continuationToken"></param>
+        /// <param name="searchFacets"></param>
+        /// <param name="value"></param>
         /// <returns> A new <see cref="DataMap.QueryResult"/> instance for mocking. </returns>
         public static QueryResult QueryResult(int? searchCount = null, bool? searchCountApproximate = null, string continuationToken = null, SearchFacetResultValue searchFacets = null, IEnumerable<SearchResultValue> value = null)
         {
@@ -224,16 +173,16 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.SearchFacetResultValue"/>. </summary>
-        /// <param name="entityType"> Entity type. </param>
-        /// <param name="assetType"> Asset type. </param>
-        /// <param name="classification"> Classification. </param>
-        /// <param name="term"> Term. </param>
-        /// <param name="contactId"> Contact id. </param>
-        /// <param name="contactType"> Contact type. </param>
-        /// <param name="label"> Label. </param>
-        /// <param name="glossaryType"> Glossary type. </param>
-        /// <param name="termStatus"> Term status. </param>
-        /// <param name="termTemplate"> Term template. </param>
+        /// <param name="entityType"></param>
+        /// <param name="assetType"></param>
+        /// <param name="classification"></param>
+        /// <param name="term"></param>
+        /// <param name="contactId"></param>
+        /// <param name="contactType"></param>
+        /// <param name="label"></param>
+        /// <param name="glossaryType"></param>
+        /// <param name="termStatus"></param>
+        /// <param name="termTemplate"></param>
         /// <returns> A new <see cref="DataMap.SearchFacetResultValue"/> instance for mocking. </returns>
         public static SearchFacetResultValue SearchFacetResultValue(IEnumerable<SearchFacetItemValue> entityType = null, IEnumerable<SearchFacetItemValue> assetType = null, IEnumerable<SearchFacetItemValue> classification = null, IEnumerable<SearchFacetItemValue> term = null, IEnumerable<SearchFacetItemValue> contactId = null, IEnumerable<SearchFacetItemValue> contactType = null, IEnumerable<SearchFacetItemValue> label = null, IEnumerable<SearchFacetItemValue> glossaryType = null, IEnumerable<SearchFacetItemValue> termStatus = null, IEnumerable<SearchFacetItemValue> termTemplate = null)
         {
@@ -263,8 +212,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.SearchFacetItemValue"/>. </summary>
-        /// <param name="count"> The count of the facet item. </param>
-        /// <param name="value"> The name of the facet item. </param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         /// <returns> A new <see cref="DataMap.SearchFacetItemValue"/> instance for mocking. </returns>
         public static SearchFacetItemValue SearchFacetItemValue(int? count = null, string value = null)
         {
@@ -272,42 +221,28 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.SearchResultValue"/>. </summary>
-        /// <param name="searchScore">
-        /// The search score calculated by the search engine. The results are ordered by
-        /// search score by default.
-        /// </param>
-        /// <param name="searchHighlights">
-        /// A highlight list that consists of index fields id ,qualifiedName, name,
-        /// description, entityType. When the keyword appears in those fields, the value of
-        /// the field, attached with emphasis mark, is returned as an element of
-        /// @search.highlights.
-        /// </param>
-        /// <param name="objectType">
-        /// The object type of the record. Object type is the top-level property to
-        /// distinguish whether a record is an asset or a term.
-        /// </param>
-        /// <param name="createTime"> The create time of the record. The Unix epoch format. </param>
-        /// <param name="updateTime"> The last update time of the record. The Unix epoch format. </param>
-        /// <param name="id"> The GUID of the record. </param>
-        /// <param name="name"> The name of the record. </param>
-        /// <param name="qualifiedName"> The qualified name of the record. </param>
-        /// <param name="entityType"> The type name of the asset. </param>
-        /// <param name="description"> The description of the asset. </param>
-        /// <param name="endorsement"> The endorsement of the asset. </param>
-        /// <param name="owner"> The owner of the record. </param>
-        /// <param name="classification"> The classifications of the record. </param>
-        /// <param name="label"> The labels of the asset. </param>
-        /// <param name="term"> The terms assigned to the asset. </param>
-        /// <param name="contact"> The contacts of the asset. </param>
-        /// <param name="assetType"> The asset types of the asset. </param>
-        /// <param name="glossaryType">
-        /// The type name of the term. Could be AtlasGlossary, AtlasGlossaryTerm or
-        /// AtlasGlossaryCategory.
-        /// </param>
-        /// <param name="glossary"> The glossary name of the term. </param>
-        /// <param name="termStatus"> The status of the term. </param>
-        /// <param name="termTemplate"> The term template names used by the term. </param>
-        /// <param name="longDescription"> The definition of the term. </param>
+        /// <param name="searchScore"></param>
+        /// <param name="searchHighlights"></param>
+        /// <param name="objectType"></param>
+        /// <param name="createTime"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="entityType"></param>
+        /// <param name="description"></param>
+        /// <param name="endorsement"></param>
+        /// <param name="owner"></param>
+        /// <param name="classification"></param>
+        /// <param name="label"></param>
+        /// <param name="term"></param>
+        /// <param name="contact"></param>
+        /// <param name="assetType"></param>
+        /// <param name="glossaryType"></param>
+        /// <param name="glossary"></param>
+        /// <param name="termStatus"></param>
+        /// <param name="termTemplate"></param>
+        /// <param name="longDescription"></param>
         /// <returns> A new <see cref="DataMap.SearchResultValue"/> instance for mocking. </returns>
         public static SearchResultValue SearchResultValue(float? searchScore = null, SearchHighlights searchHighlights = null, string objectType = null, long? createTime = null, long? updateTime = null, string id = null, string name = null, string qualifiedName = null, string entityType = null, string description = null, string endorsement = null, string owner = null, IEnumerable<string> classification = null, IEnumerable<string> label = null, IEnumerable<TermSearchResultValue> term = null, IEnumerable<ContactSearchResultValue> contact = null, IEnumerable<string> assetType = null, string glossaryType = null, string glossary = null, string termStatus = null, IEnumerable<string> termTemplate = null, string longDescription = null)
         {
@@ -345,11 +280,11 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.SearchHighlights"/>. </summary>
-        /// <param name="id"> Id. </param>
-        /// <param name="qualifiedName"> Qualified name. </param>
-        /// <param name="name"> Name. </param>
-        /// <param name="description"> Description. </param>
-        /// <param name="entityType"> Entity type. </param>
+        /// <param name="id"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="entityType"></param>
         /// <returns> A new <see cref="DataMap.SearchHighlights"/> instance for mocking. </returns>
         public static SearchHighlights SearchHighlights(IEnumerable<string> id = null, IEnumerable<string> qualifiedName = null, IEnumerable<string> name = null, IEnumerable<string> description = null, IEnumerable<string> entityType = null)
         {
@@ -369,9 +304,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.TermSearchResultValue"/>. </summary>
-        /// <param name="name"> The name of the term. </param>
-        /// <param name="glossaryName"> The name of the glossary which contains the term. </param>
-        /// <param name="guid"> The GUID of the term. </param>
+        /// <param name="name"></param>
+        /// <param name="glossaryName"></param>
+        /// <param name="guid"></param>
         /// <returns> A new <see cref="DataMap.TermSearchResultValue"/> instance for mocking. </returns>
         public static TermSearchResultValue TermSearchResultValue(string name = null, string glossaryName = null, string guid = null)
         {
@@ -379,12 +314,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.ContactSearchResultValue"/>. </summary>
-        /// <param name="id"> The GUID of the contact. </param>
-        /// <param name="info"> The description of the contact. </param>
-        /// <param name="contactType">
-        /// The type of the contact. It can be Expert or Owner for an entity. It can be
-        /// Expert or Steward for a glossary term.
-        /// </param>
+        /// <param name="id"></param>
+        /// <param name="info"></param>
+        /// <param name="contactType"></param>
         /// <returns> A new <see cref="DataMap.ContactSearchResultValue"/> instance for mocking. </returns>
         public static ContactSearchResultValue ContactSearchResultValue(string id = null, string info = null, string contactType = null)
         {
@@ -392,7 +324,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.SuggestResult"/>. </summary>
-        /// <param name="value"> The result value. </param>
+        /// <param name="value"></param>
         /// <returns> A new <see cref="DataMap.SuggestResult"/> instance for mocking. </returns>
         public static SuggestResult SuggestResult(IEnumerable<SuggestResultValue> value = null)
         {
@@ -402,40 +334,28 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.SuggestResultValue"/>. </summary>
-        /// <param name="searchScore">
-        /// The search score calculated by the search engine. The results are ordered by
-        /// search score by default.
-        /// </param>
-        /// <param name="searchText">
-        /// The target text that contains the keyword as prefix. The keyword is wrapped
-        /// with emphasis mark.
-        /// </param>
-        /// <param name="objectType">
-        /// The object type of the record. Object type is the top-level property to
-        /// distinguish whether a record is an asset or a term.
-        /// </param>
-        /// <param name="createTime"> The create time of the record. The Unix epoch format. </param>
-        /// <param name="updateTime"> The last update time of the record. The Unix epoch format. </param>
-        /// <param name="id"> The GUID of the record. </param>
-        /// <param name="name"> The name of the record. </param>
-        /// <param name="qualifiedName"> The qualified name of the record. </param>
-        /// <param name="entityType"> The type name of the asset. </param>
-        /// <param name="description"> The description of the asset. </param>
-        /// <param name="endorsement"> The endorsement of the asset. </param>
-        /// <param name="owner"> The owner of the record. </param>
-        /// <param name="classification"> The classifications of the record. </param>
-        /// <param name="label"> The labels of the asset. </param>
-        /// <param name="term"> The terms assigned to the asset. </param>
-        /// <param name="contact"> The contacts of the asset. </param>
-        /// <param name="assetType"> The asset types of the asset. </param>
-        /// <param name="glossaryType">
-        /// The type name of the term. Could be AtlasGlossary, AtlasGlossaryTerm or
-        /// AtlasGlossaryCategory.
-        /// </param>
-        /// <param name="glossary"> The glossary name of the term. </param>
-        /// <param name="termStatus"> The status of the term. </param>
-        /// <param name="termTemplate"> The term template names used by the term. </param>
-        /// <param name="longDescription"> The definition of the term. </param>
+        /// <param name="searchScore"></param>
+        /// <param name="searchText"></param>
+        /// <param name="objectType"></param>
+        /// <param name="createTime"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="entityType"></param>
+        /// <param name="description"></param>
+        /// <param name="endorsement"></param>
+        /// <param name="owner"></param>
+        /// <param name="classification"></param>
+        /// <param name="label"></param>
+        /// <param name="term"></param>
+        /// <param name="contact"></param>
+        /// <param name="assetType"></param>
+        /// <param name="glossaryType"></param>
+        /// <param name="glossary"></param>
+        /// <param name="termStatus"></param>
+        /// <param name="termTemplate"></param>
+        /// <param name="longDescription"></param>
         /// <returns> A new <see cref="DataMap.SuggestResultValue"/> instance for mocking. </returns>
         public static SuggestResultValue SuggestResultValue(float? searchScore = null, string searchText = null, string objectType = null, long? createTime = null, long? updateTime = null, string id = null, string name = null, string qualifiedName = null, string entityType = null, string description = null, string endorsement = null, string owner = null, IEnumerable<string> classification = null, IEnumerable<string> label = null, IEnumerable<TermSearchResultValue> term = null, IEnumerable<ContactSearchResultValue> contact = null, IEnumerable<string> assetType = null, string glossaryType = null, string glossary = null, string termStatus = null, IEnumerable<string> termTemplate = null, string longDescription = null)
         {
@@ -473,7 +393,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AutoCompleteResult"/>. </summary>
-        /// <param name="value"> The result value. </param>
+        /// <param name="value"></param>
         /// <returns> A new <see cref="DataMap.AutoCompleteResult"/> instance for mocking. </returns>
         public static AutoCompleteResult AutoCompleteResult(IEnumerable<AutoCompleteResultValue> value = null)
         {
@@ -483,8 +403,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AutoCompleteResultValue"/>. </summary>
-        /// <param name="text"> The completed term or phrase. </param>
-        /// <param name="queryPlusText"> The completed search query text. </param>
+        /// <param name="text"></param>
+        /// <param name="queryPlusText"></param>
         /// <returns> A new <see cref="DataMap.AutoCompleteResultValue"/> instance for mocking. </returns>
         public static AutoCompleteResultValue AutoCompleteResultValue(string text = null, string queryPlusText = null)
         {
@@ -492,23 +412,23 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AtlasGlossaryExtInfo"/>. </summary>
-        /// <param name="guid"> The GUID of the object. </param>
-        /// <param name="classifications"> An array of classifications. </param>
-        /// <param name="longDescription"> The long version description. </param>
-        /// <param name="name"> The name of the glossary object. </param>
-        /// <param name="qualifiedName"> The qualified name of the glossary object. </param>
-        /// <param name="shortDescription"> The short version of description. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="categories"> An array of categories. </param>
-        /// <param name="language"> The language of the glossary. </param>
-        /// <param name="terms"> An array of related term headers. </param>
-        /// <param name="usage"> The usage of the glossary. </param>
-        /// <param name="categoryInfo"> The glossary category information. </param>
-        /// <param name="termInfo"> The glossary term information. </param>
+        /// <param name="guid"></param>
+        /// <param name="classifications"></param>
+        /// <param name="longDescription"></param>
+        /// <param name="name"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="shortDescription"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="categories"></param>
+        /// <param name="language"></param>
+        /// <param name="terms"></param>
+        /// <param name="usage"></param>
+        /// <param name="categoryInfo"></param>
+        /// <param name="termInfo"></param>
         /// <returns> A new <see cref="DataMap.AtlasGlossaryExtInfo"/> instance for mocking. </returns>
         public static AtlasGlossaryExtInfo AtlasGlossaryExtInfo(string guid = null, IEnumerable<AtlasClassification> classifications = null, string longDescription = null, string name = null, string qualifiedName = null, string shortDescription = null, string lastModifiedTS = null, long? createTime = null, string createdBy = null, long? updateTime = null, string updatedBy = null, IEnumerable<AtlasRelatedCategoryHeader> categories = null, string language = null, IEnumerable<AtlasRelatedTermHeader> terms = null, string usage = null, IReadOnlyDictionary<string, AtlasGlossaryCategory> categoryInfo = null, IReadOnlyDictionary<string, AtlasGlossaryTerm> termInfo = null)
         {
@@ -540,31 +460,28 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AtlasEntity"/>. </summary>
-        /// <param name="attributes"> The attributes of the struct. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="businessAttributes"> Business attributes. </param>
-        /// <param name="classifications"> An array of classifications. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="customAttributes"> Custom Attribute. </param>
-        /// <param name="guid"> The GUID of the entity. </param>
-        /// <param name="homeId"> The home ID of the entity. </param>
-        /// <param name="collectionId"> The collection ID of the entity. </param>
-        /// <param name="isIncomplete"> Whether it is a shell entity. </param>
-        /// <param name="labels"> labels. </param>
-        /// <param name="meanings"> An array of term assignment headers indicating the meanings of the entity. </param>
-        /// <param name="provenanceType"> Used to record the provenance of an instance of an entity or relationship. </param>
-        /// <param name="proxy"> Determines if there's a proxy. </param>
-        /// <param name="relationshipAttributes"> The attributes of relationship. </param>
-        /// <param name="status">
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="version"> The version of the entity. </param>
-        /// <param name="contacts"> The dictionary of contacts for entities. Key could be Expert or Owner. </param>
+        /// <param name="attributes"></param>
+        /// <param name="typeName"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="businessAttributes"></param>
+        /// <param name="classifications"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="customAttributes"></param>
+        /// <param name="guid"></param>
+        /// <param name="homeId"></param>
+        /// <param name="collectionId"></param>
+        /// <param name="isIncomplete"></param>
+        /// <param name="labels"></param>
+        /// <param name="meanings"></param>
+        /// <param name="provenanceType"></param>
+        /// <param name="proxy"></param>
+        /// <param name="relationshipAttributes"></param>
+        /// <param name="status"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="version"></param>
+        /// <param name="contacts"></param>
         /// <returns> A new <see cref="DataMap.AtlasEntity"/> instance for mocking. </returns>
         public static AtlasEntity AtlasEntity(IDictionary<string, BinaryData> attributes = null, string typeName = null, string lastModifiedTS = null, IDictionary<string, BinaryData> businessAttributes = null, IEnumerable<AtlasClassification> classifications = null, long? createTime = null, string createdBy = null, IDictionary<string, string> customAttributes = null, string guid = null, string homeId = null, string collectionId = null, bool? isIncomplete = null, IEnumerable<string> labels = null, IEnumerable<AtlasTermAssignmentHeader> meanings = null, int? provenanceType = null, bool? proxy = null, IDictionary<string, BinaryData> relationshipAttributes = null, EntityStatus? status = null, long? updateTime = null, string updatedBy = null, long? version = null, IDictionary<string, IList<ContactInfo>> contacts = null)
         {
@@ -604,9 +521,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.EntityMutationResult"/>. </summary>
-        /// <param name="guidAssignments"> A map of GUID assignments with entities. </param>
-        /// <param name="mutatedEntities"> The entity headers of mutated entities. </param>
-        /// <param name="partialUpdatedEntities"> An array of entity headers that partially updated. </param>
+        /// <param name="guidAssignments"></param>
+        /// <param name="mutatedEntities"></param>
+        /// <param name="partialUpdatedEntities"></param>
         /// <returns> A new <see cref="DataMap.EntityMutationResult"/> instance for mocking. </returns>
         public static EntityMutationResult EntityMutationResult(IReadOnlyDictionary<string, string> guidAssignments = null, IReadOnlyDictionary<string, IList<AtlasEntityHeader>> mutatedEntities = null, IEnumerable<AtlasEntityHeader> partialUpdatedEntities = null)
         {
@@ -618,12 +535,12 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.AtlasClassifications"/>. </summary>
-        /// <param name="list"> An array of objects. </param>
-        /// <param name="pageSize"> The size of the page. </param>
-        /// <param name="sortBy"> The sorted by field. </param>
-        /// <param name="sortType"> to specify whether the result should be sorted? If yes, whether asc or desc. </param>
-        /// <param name="startIndex"> The start index of the page. </param>
-        /// <param name="totalCount"> The total count of items. </param>
+        /// <param name="list"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="sortBy"></param>
+        /// <param name="sortType"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="totalCount"></param>
         /// <returns> A new <see cref="DataMap.AtlasClassifications"/> instance for mocking. </returns>
         public static AtlasClassifications AtlasClassifications(IEnumerable<BinaryData> list = null, int? pageSize = null, string sortBy = null, AtlasSortType? sortType = null, int? startIndex = null, int? totalCount = null)
         {
@@ -640,8 +557,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.BulkImportResult"/>. </summary>
-        /// <param name="failedImportInfoList"> failed importInfoList. </param>
-        /// <param name="successImportInfoList"> successful importInfoList. </param>
+        /// <param name="failedImportInfoList"></param>
+        /// <param name="successImportInfoList"></param>
         /// <returns> A new <see cref="DataMap.BulkImportResult"/> instance for mocking. </returns>
         public static BulkImportResult BulkImportResult(IEnumerable<ImportInfo> failedImportInfoList = null, IEnumerable<ImportInfo> successImportInfoList = null)
         {
@@ -652,10 +569,10 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="DataMap.ImportInfo"/>. </summary>
-        /// <param name="childObjectName"> childObjectName. </param>
-        /// <param name="importStatus"> importStatus. </param>
-        /// <param name="parentObjectName"> parentObjectName. </param>
-        /// <param name="remarks"> remarks. </param>
+        /// <param name="childObjectName"></param>
+        /// <param name="importStatus"></param>
+        /// <param name="parentObjectName"></param>
+        /// <param name="remarks"></param>
         /// <returns> A new <see cref="DataMap.ImportInfo"/> instance for mocking. </returns>
         public static ImportInfo ImportInfo(string childObjectName = null, ImportStatus? importStatus = null, string parentObjectName = null, string remarks = null)
         {

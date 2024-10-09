@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> An object representing a figure in the document. </summary>
+    /// <summary> The DocumentFigure. </summary>
     public partial class DocumentFigure
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentFigure"/>. </summary>
-        /// <param name="spans"> Location of the figure in the reading order concatenated content. </param>
+        /// <param name="spans"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="spans"/> is null. </exception>
         internal DocumentFigure(IEnumerable<DocumentSpan> spans)
         {
@@ -60,12 +60,12 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentFigure"/>. </summary>
-        /// <param name="boundingRegions"> Bounding regions covering the figure. </param>
-        /// <param name="spans"> Location of the figure in the reading order concatenated content. </param>
-        /// <param name="elements"> Child elements of the figure, excluding any caption or footnotes. </param>
-        /// <param name="caption"> Caption associated with the figure. </param>
-        /// <param name="footnotes"> List of footnotes associated with the figure. </param>
-        /// <param name="id"> Figure ID. </param>
+        /// <param name="boundingRegions"></param>
+        /// <param name="spans"></param>
+        /// <param name="elements"></param>
+        /// <param name="caption"></param>
+        /// <param name="footnotes"></param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentFigure(IReadOnlyList<BoundingRegion> boundingRegions, IReadOnlyList<DocumentSpan> spans, IReadOnlyList<string> elements, DocumentCaption caption, IReadOnlyList<DocumentFootnote> footnotes, string id, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,17 +83,17 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Bounding regions covering the figure. </summary>
+        /// <summary> Gets the bounding regions. </summary>
         public IReadOnlyList<BoundingRegion> BoundingRegions { get; }
-        /// <summary> Location of the figure in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
-        /// <summary> Child elements of the figure, excluding any caption or footnotes. </summary>
+        /// <summary> Gets the elements. </summary>
         public IReadOnlyList<string> Elements { get; }
-        /// <summary> Caption associated with the figure. </summary>
+        /// <summary> Gets the caption. </summary>
         public DocumentCaption Caption { get; }
-        /// <summary> List of footnotes associated with the figure. </summary>
+        /// <summary> Gets the footnotes. </summary>
         public IReadOnlyList<DocumentFootnote> Footnotes { get; }
-        /// <summary> Figure ID. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
     }
 }

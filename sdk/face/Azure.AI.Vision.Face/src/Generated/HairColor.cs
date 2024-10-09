@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> An array of candidate colors and confidence level in the presence of each. </summary>
+    /// <summary> The HairColor. </summary>
     public partial class HairColor
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="HairColor"/>. </summary>
-        /// <param name="color"> Name of the hair color. </param>
-        /// <param name="confidence"> Confidence level of the color. Range between [0,1]. </param>
+        /// <param name="color"></param>
+        /// <param name="confidence"></param>
         internal HairColor(HairColorType color, float confidence)
         {
             Color = color;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="HairColor"/>. </summary>
-        /// <param name="color"> Name of the hair color. </param>
-        /// <param name="confidence"> Confidence level of the color. Range between [0,1]. </param>
+        /// <param name="color"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HairColor(HairColorType color, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> Name of the hair color. </summary>
+        /// <summary> Gets the color. </summary>
         public HairColorType Color { get; }
-        /// <summary> Confidence level of the color. Range between [0,1]. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

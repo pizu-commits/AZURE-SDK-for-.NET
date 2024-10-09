@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for terminating an Azure Batch Job. </summary>
+    /// <summary> The BatchJobTerminateContent. </summary>
     public partial class BatchJobTerminateContent
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobTerminateContent"/>. </summary>
-        /// <param name="terminationReason"> The text you want to appear as the Job's TerminationReason. The default is 'UserTerminate'. </param>
+        /// <param name="terminationReason"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobTerminateContent(string terminationReason, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The text you want to appear as the Job's TerminationReason. The default is 'UserTerminate'. </summary>
+        /// <summary> Gets or sets the termination reason. </summary>
         public string TerminationReason { get; set; }
     }
 }

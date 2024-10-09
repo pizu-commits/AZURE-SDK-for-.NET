@@ -38,7 +38,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -84,7 +84,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -121,7 +121,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing job by Id. </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -135,7 +135,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing job by Id. </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -163,7 +163,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -202,7 +202,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -237,7 +237,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -272,7 +272,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -297,8 +297,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Reclassify a job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="options"> Request object for reclassifying a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="ReclassifyJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -313,8 +313,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Reclassify a job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="options"> Request object for reclassifying a job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="ReclassifyJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -329,8 +329,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Submits request to cancel an existing job by Id while supplying free-form cancellation reason. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="options"> Request model for cancelling job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="CancelJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -345,8 +345,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Submits request to cancel an existing job by Id while supplying free-form cancellation reason. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="options"> Request model for cancelling job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="CancelJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -361,9 +361,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Completes an assigned job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="options"> Request model for completing job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="assignmentId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="CompleteJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -379,9 +379,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Completes an assigned job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="options"> Request model for completing job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="assignmentId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="CompleteJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -397,9 +397,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Closes a completed job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="options"> Request model for closing job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="assignmentId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="CloseJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -415,9 +415,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Closes a completed job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="options"> Request model for closing job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="assignmentId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="CloseJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -433,7 +433,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Gets a job's position details. </summary>
-        /// <param name="jobId"> Id of the job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -447,7 +447,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Gets a job's position details. </summary>
-        /// <param name="jobId"> Id of the job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -475,7 +475,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of the job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -514,7 +514,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> Id of the job. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -539,9 +539,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Unassign a job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="options"> Request body for unassign route. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="assignmentId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="UnassignJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -557,9 +557,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Unassign a job. </summary>
-        /// <param name="jobId"> Id of a job. </param>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="options"> Request body for unassign route. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="assignmentId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="UnassignJobOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="assignmentId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -575,8 +575,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Accepts an offer to work on a job and returns a 409/Conflict if another agent accepted the job already. </summary>
-        /// <param name="workerId"> Id of a worker. </param>
-        /// <param name="offerId"> Id of an offer. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
+        /// <param name="offerId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> or <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> or <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -591,8 +591,8 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Accepts an offer to work on a job and returns a 409/Conflict if another agent accepted the job already. </summary>
-        /// <param name="workerId"> Id of a worker. </param>
-        /// <param name="offerId"> Id of an offer. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
+        /// <param name="offerId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> or <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> or <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -621,8 +621,8 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
-        /// <param name="offerId"> Id of an offer. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
+        /// <param name="offerId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> or <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> or <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -662,8 +662,8 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
-        /// <param name="offerId"> Id of an offer. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
+        /// <param name="offerId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> or <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> or <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -689,9 +689,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Declines an offer to work on a job. </summary>
-        /// <param name="workerId"> Id of a worker. </param>
-        /// <param name="offerId"> Id of an offer. </param>
-        /// <param name="options"> Request model for declining offer. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
+        /// <param name="offerId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="DeclineJobOfferOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> or <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> or <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -707,9 +707,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Declines an offer to work on a job. </summary>
-        /// <param name="workerId"> Id of a worker. </param>
-        /// <param name="offerId"> Id of an offer. </param>
-        /// <param name="options"> Request model for declining offer. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
+        /// <param name="offerId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="DeclineJobOfferOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> or <paramref name="offerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> or <paramref name="offerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -725,7 +725,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves a queue's statistics. </summary>
-        /// <param name="queueId"> Id of the queue to retrieve statistics. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -739,7 +739,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves a queue's statistics. </summary>
-        /// <param name="queueId"> Id of the queue to retrieve statistics. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -767,7 +767,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of the queue to retrieve statistics. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -806,7 +806,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="queueId"> Id of the queue to retrieve statistics. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="queueId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -840,7 +840,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -886,7 +886,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
@@ -923,7 +923,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing worker by Id. </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -937,7 +937,7 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves an existing worker by Id. </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -965,7 +965,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1004,7 +1004,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1039,7 +1039,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1074,7 +1074,7 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="workerId"> Id of a worker. </param>
+        /// <param name="workerId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="workerId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="workerId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1099,13 +1099,13 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves list of jobs based on filter parameters. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="status"> If specified, filter jobs by status. </param>
-        /// <param name="queueId"> If specified, filter jobs by queue. </param>
-        /// <param name="channelId"> If specified, filter jobs by channel. </param>
-        /// <param name="classificationPolicyId"> If specified, filter jobs by classificationPolicy. </param>
-        /// <param name="scheduledBefore"> If specified, filter on jobs that was scheduled before or at given timestamp. Range: (-Inf, scheduledBefore]. </param>
-        /// <param name="scheduledAfter"> If specified, filter on jobs that was scheduled at or after given value. Range: [scheduledAfter, +Inf). </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="status"> The <see cref="RouterJobStatusSelector"/>? to use. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduledBefore"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="scheduledAfter"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual AsyncPageable<RouterJob> GetJobsAsync(int? maxpagesize = null, RouterJobStatusSelector? status = null, string queueId = null, string channelId = null, string classificationPolicyId = null, DateTimeOffset? scheduledBefore = null, DateTimeOffset? scheduledAfter = null, CancellationToken cancellationToken = default)
         {
@@ -1116,13 +1116,13 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves list of jobs based on filter parameters. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="status"> If specified, filter jobs by status. </param>
-        /// <param name="queueId"> If specified, filter jobs by queue. </param>
-        /// <param name="channelId"> If specified, filter jobs by channel. </param>
-        /// <param name="classificationPolicyId"> If specified, filter jobs by classificationPolicy. </param>
-        /// <param name="scheduledBefore"> If specified, filter on jobs that was scheduled before or at given timestamp. Range: (-Inf, scheduledBefore]. </param>
-        /// <param name="scheduledAfter"> If specified, filter on jobs that was scheduled at or after given value. Range: [scheduledAfter, +Inf). </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="status"> The <see cref="RouterJobStatusSelector"/>? to use. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduledBefore"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="scheduledAfter"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Pageable<RouterJob> GetJobs(int? maxpagesize = null, RouterJobStatusSelector? status = null, string queueId = null, string channelId = null, string classificationPolicyId = null, DateTimeOffset? scheduledBefore = null, DateTimeOffset? scheduledAfter = null, CancellationToken cancellationToken = default)
         {
@@ -1147,13 +1147,13 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="status"> If specified, filter jobs by status. Allowed values: "all" | "pendingClassification" | "queued" | "assigned" | "completed" | "closed" | "cancelled" | "classificationFailed" | "created" | "pendingSchedule" | "scheduled" | "scheduleFailed" | "waitingForActivation" | "active". </param>
-        /// <param name="queueId"> If specified, filter jobs by queue. </param>
-        /// <param name="channelId"> If specified, filter jobs by channel. </param>
-        /// <param name="classificationPolicyId"> If specified, filter jobs by classificationPolicy. </param>
-        /// <param name="scheduledBefore"> If specified, filter on jobs that was scheduled before or at given timestamp. Range: (-Inf, scheduledBefore]. </param>
-        /// <param name="scheduledAfter"> If specified, filter on jobs that was scheduled at or after given value. Range: [scheduledAfter, +Inf). </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="status"> The <see cref="string"/> to use. Allowed values: "all" | "pendingClassification" | "queued" | "assigned" | "completed" | "closed" | "cancelled" | "classificationFailed" | "created" | "pendingSchedule" | "scheduled" | "scheduleFailed" | "waitingForActivation" | "active". </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduledBefore"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="scheduledAfter"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1179,13 +1179,13 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="status"> If specified, filter jobs by status. Allowed values: "all" | "pendingClassification" | "queued" | "assigned" | "completed" | "closed" | "cancelled" | "classificationFailed" | "created" | "pendingSchedule" | "scheduled" | "scheduleFailed" | "waitingForActivation" | "active". </param>
-        /// <param name="queueId"> If specified, filter jobs by queue. </param>
-        /// <param name="channelId"> If specified, filter jobs by channel. </param>
-        /// <param name="classificationPolicyId"> If specified, filter jobs by classificationPolicy. </param>
-        /// <param name="scheduledBefore"> If specified, filter on jobs that was scheduled before or at given timestamp. Range: (-Inf, scheduledBefore]. </param>
-        /// <param name="scheduledAfter"> If specified, filter on jobs that was scheduled at or after given value. Range: [scheduledAfter, +Inf). </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="status"> The <see cref="string"/> to use. Allowed values: "all" | "pendingClassification" | "queued" | "assigned" | "completed" | "closed" | "cancelled" | "classificationFailed" | "created" | "pendingSchedule" | "scheduled" | "scheduleFailed" | "waitingForActivation" | "active". </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationPolicyId"> The <see cref="string"/> to use. </param>
+        /// <param name="scheduledBefore"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="scheduledAfter"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1197,11 +1197,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing workers. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="state"> If specified, select workers by worker state. </param>
-        /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
-        /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="state"> The <see cref="RouterWorkerStateSelector"/>? to use. </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="hasCapacity"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual AsyncPageable<RouterWorker> GetWorkersAsync(int? maxpagesize = null, RouterWorkerStateSelector? state = null, string channelId = null, string queueId = null, bool? hasCapacity = null, CancellationToken cancellationToken = default)
         {
@@ -1212,11 +1212,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Retrieves existing workers. </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="state"> If specified, select workers by worker state. </param>
-        /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
-        /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="state"> The <see cref="RouterWorkerStateSelector"/>? to use. </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="hasCapacity"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Pageable<RouterWorker> GetWorkers(int? maxpagesize = null, RouterWorkerStateSelector? state = null, string channelId = null, string queueId = null, bool? hasCapacity = null, CancellationToken cancellationToken = default)
         {
@@ -1241,11 +1241,11 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="state"> If specified, select workers by worker state. Allowed values: "active" | "draining" | "inactive" | "all". </param>
-        /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
-        /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="state"> The <see cref="string"/> to use. Allowed values: "active" | "draining" | "inactive" | "all". </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="hasCapacity"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -1271,11 +1271,11 @@ namespace Azure.Communication.JobRouter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
-        /// <param name="state"> If specified, select workers by worker state. Allowed values: "active" | "draining" | "inactive" | "all". </param>
-        /// <param name="channelId"> If specified, select workers who have a channel configuration with this channel. </param>
-        /// <param name="queueId"> If specified, select workers who are assigned to this queue. </param>
-        /// <param name="hasCapacity"> If set to true, select only workers who have capacity for the channel specified by `channelId` or for any channel if `channelId` not specified. If set to false, then will return all workers including workers without any capacity for jobs. Defaults to false. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="state"> The <see cref="string"/> to use. Allowed values: "active" | "draining" | "inactive" | "all". </param>
+        /// <param name="channelId"> The <see cref="string"/> to use. </param>
+        /// <param name="queueId"> The <see cref="string"/> to use. </param>
+        /// <param name="hasCapacity"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>

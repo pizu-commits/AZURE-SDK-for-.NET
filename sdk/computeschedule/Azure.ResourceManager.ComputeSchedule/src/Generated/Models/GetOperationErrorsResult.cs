@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> This is the response from a get operations errors request. </summary>
+    /// <summary> The GetOperationErrorsResult. </summary>
     public partial class GetOperationErrorsResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="GetOperationErrorsResult"/>. </summary>
-        /// <param name="results"> An array of operationids and their corresponding errors if any. </param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal GetOperationErrorsResult(IEnumerable<OperationErrorsResult> results)
         {
@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="GetOperationErrorsResult"/>. </summary>
-        /// <param name="results"> An array of operationids and their corresponding errors if any. </param>
+        /// <param name="results"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal GetOperationErrorsResult(IReadOnlyList<OperationErrorsResult> results, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> An array of operationids and their corresponding errors if any. </summary>
+        /// <summary> Gets the results. </summary>
         public IReadOnlyList<OperationErrorsResult> Results { get; }
     }
 }

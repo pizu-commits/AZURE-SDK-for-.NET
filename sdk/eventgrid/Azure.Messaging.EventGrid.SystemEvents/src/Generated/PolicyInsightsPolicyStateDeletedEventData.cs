@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.PolicyInsights.PolicyStateDeleted event. </summary>
+    /// <summary> The PolicyInsightsPolicyStateDeletedEventData. </summary>
     public partial class PolicyInsightsPolicyStateDeletedEventData
     {
         /// <summary>
@@ -46,20 +46,20 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PolicyInsightsPolicyStateDeletedEventData"/>. </summary>
-        /// <param name="timestamp"> The time that the resource was scanned by Azure Policy in the Universal ISO 8601 DateTime format yyyy-MM-ddTHH:mm:ss.fffffffZ. </param>
+        /// <param name="timestamp"></param>
         internal PolicyInsightsPolicyStateDeletedEventData(DateTimeOffset timestamp)
         {
             Timestamp = timestamp;
         }
 
         /// <summary> Initializes a new instance of <see cref="PolicyInsightsPolicyStateDeletedEventData"/>. </summary>
-        /// <param name="timestamp"> The time that the resource was scanned by Azure Policy in the Universal ISO 8601 DateTime format yyyy-MM-ddTHH:mm:ss.fffffffZ. </param>
-        /// <param name="policyAssignmentId"> The resource ID of the policy assignment. </param>
-        /// <param name="policyDefinitionId"> The resource ID of the policy definition. </param>
-        /// <param name="policyDefinitionReferenceId"> The reference ID for the policy definition inside the initiative definition, if the policy assignment is for an initiative. May be empty. </param>
-        /// <param name="complianceState"> The compliance state of the resource with respect to the policy assignment. </param>
-        /// <param name="subscriptionId"> The subscription ID of the resource. </param>
-        /// <param name="complianceReasonCode"> The compliance reason code. May be empty. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="policyAssignmentId"></param>
+        /// <param name="policyDefinitionId"></param>
+        /// <param name="policyDefinitionReferenceId"></param>
+        /// <param name="complianceState"></param>
+        /// <param name="subscriptionId"></param>
+        /// <param name="complianceReasonCode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PolicyInsightsPolicyStateDeletedEventData(DateTimeOffset timestamp, string policyAssignmentId, string policyDefinitionId, string policyDefinitionReferenceId, string complianceState, string subscriptionId, string complianceReasonCode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,19 +78,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time that the resource was scanned by Azure Policy in the Universal ISO 8601 DateTime format yyyy-MM-ddTHH:mm:ss.fffffffZ. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public DateTimeOffset Timestamp { get; }
-        /// <summary> The resource ID of the policy assignment. </summary>
+        /// <summary> Gets the policy assignment id. </summary>
         public string PolicyAssignmentId { get; }
-        /// <summary> The resource ID of the policy definition. </summary>
+        /// <summary> Gets the policy definition id. </summary>
         public string PolicyDefinitionId { get; }
-        /// <summary> The reference ID for the policy definition inside the initiative definition, if the policy assignment is for an initiative. May be empty. </summary>
+        /// <summary> Gets the policy definition reference id. </summary>
         public string PolicyDefinitionReferenceId { get; }
-        /// <summary> The compliance state of the resource with respect to the policy assignment. </summary>
+        /// <summary> Gets the compliance state. </summary>
         public string ComplianceState { get; }
-        /// <summary> The subscription ID of the resource. </summary>
+        /// <summary> Gets the subscription id. </summary>
         public string SubscriptionId { get; }
-        /// <summary> The compliance reason code. May be empty. </summary>
+        /// <summary> Gets the compliance reason code. </summary>
         public string ComplianceReasonCode { get; }
     }
 }

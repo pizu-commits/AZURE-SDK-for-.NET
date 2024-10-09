@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchNodeDisableSchedulingOption enums. </summary>
+    /// <summary> The BatchNodeDisableSchedulingOption. </summary>
     public readonly partial struct BatchNodeDisableSchedulingOption : IEquatable<BatchNodeDisableSchedulingOption>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string TerminateValue = "terminate";
         private const string TaskCompletionValue = "taskcompletion";
 
-        /// <summary> Terminate running Task processes and requeue the Tasks. The Tasks may run again on other Compute Nodes, or when Task scheduling is re-enabled on this Compute Node. Enter offline state as soon as Tasks have been terminated. </summary>
+        /// <summary> requeue. </summary>
         public static BatchNodeDisableSchedulingOption Requeue { get; } = new BatchNodeDisableSchedulingOption(RequeueValue);
-        /// <summary> Terminate running Tasks. The Tasks will be completed with failureInfo indicating that they were terminated, and will not run again. Enter offline state as soon as Tasks have been terminated. </summary>
+        /// <summary> terminate. </summary>
         public static BatchNodeDisableSchedulingOption Terminate { get; } = new BatchNodeDisableSchedulingOption(TerminateValue);
-        /// <summary> Allow currently running Tasks to complete. Schedule no new Tasks while waiting. Enter offline state when all Tasks have completed. </summary>
+        /// <summary> taskcompletion. </summary>
         public static BatchNodeDisableSchedulingOption TaskCompletion { get; } = new BatchNodeDisableSchedulingOption(TaskCompletionValue);
         /// <summary> Determines if two <see cref="BatchNodeDisableSchedulingOption"/> values are the same. </summary>
         public static bool operator ==(BatchNodeDisableSchedulingOption left, BatchNodeDisableSchedulingOption right) => left.Equals(right);

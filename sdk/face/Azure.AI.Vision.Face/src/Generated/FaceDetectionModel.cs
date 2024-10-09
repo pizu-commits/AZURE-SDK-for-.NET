@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The detection model for the face. </summary>
+    /// <summary> The FaceDetectionModel. </summary>
     public readonly partial struct FaceDetectionModel : IEquatable<FaceDetectionModel>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string Detection02Value = "detection_02";
         private const string Detection03Value = "detection_03";
 
-        /// <summary> The default detection model. Recommend for near frontal face detection. For scenarios with exceptionally large angle (head-pose) faces, occluded faces or wrong image orientation, the faces in such cases may not be detected. </summary>
+        /// <summary> detection_01. </summary>
         public static FaceDetectionModel Detection01 { get; } = new FaceDetectionModel(Detection01Value);
-        /// <summary> Detection model released in 2019 May with improved accuracy especially on small, side and blurry faces. </summary>
+        /// <summary> detection_02. </summary>
         public static FaceDetectionModel Detection02 { get; } = new FaceDetectionModel(Detection02Value);
-        /// <summary> Detection model released in 2021 February with improved accuracy especially on small faces. </summary>
+        /// <summary> detection_03. </summary>
         public static FaceDetectionModel Detection03 { get; } = new FaceDetectionModel(Detection03Value);
         /// <summary> Determines if two <see cref="FaceDetectionModel"/> values are the same. </summary>
         public static bool operator ==(FaceDetectionModel left, FaceDetectionModel right) => left.Equals(right);

@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Contact Point System
-    /// see https://www.hl7.org/fhir/R4/valueset-contact-point-system.html
-    /// </summary>
+    /// <summary> The ContactPointSystem. </summary>
     public readonly partial struct ContactPointSystem : IEquatable<ContactPointSystem>
     {
         private readonly string _value;
@@ -33,19 +30,19 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string SmsValue = "sms";
         private const string OtherValue = "other";
 
-        /// <summary> Phone. </summary>
+        /// <summary> phone. </summary>
         public static ContactPointSystem Phone { get; } = new ContactPointSystem(PhoneValue);
-        /// <summary> Fax. </summary>
+        /// <summary> fax. </summary>
         public static ContactPointSystem Fax { get; } = new ContactPointSystem(FaxValue);
-        /// <summary> Email. </summary>
+        /// <summary> email. </summary>
         public static ContactPointSystem Email { get; } = new ContactPointSystem(EmailValue);
-        /// <summary> Pager. </summary>
+        /// <summary> pager. </summary>
         public static ContactPointSystem Pager { get; } = new ContactPointSystem(PagerValue);
-        /// <summary> Url. </summary>
+        /// <summary> url. </summary>
         public static ContactPointSystem Url { get; } = new ContactPointSystem(UrlValue);
-        /// <summary> Sms. </summary>
+        /// <summary> sms. </summary>
         public static ContactPointSystem Sms { get; } = new ContactPointSystem(SmsValue);
-        /// <summary> Other. </summary>
+        /// <summary> other. </summary>
         public static ContactPointSystem Other { get; } = new ContactPointSystem(OtherValue);
         /// <summary> Determines if two <see cref="ContactPointSystem"/> values are the same. </summary>
         public static bool operator ==(ContactPointSystem left, ContactPointSystem right) => left.Equals(right);

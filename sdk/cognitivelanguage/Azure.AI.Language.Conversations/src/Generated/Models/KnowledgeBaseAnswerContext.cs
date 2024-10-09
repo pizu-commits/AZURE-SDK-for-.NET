@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Context object with previous QnA's information. </summary>
+    /// <summary> The KnowledgeBaseAnswerContext. </summary>
     public partial class KnowledgeBaseAnswerContext
     {
         /// <summary>
@@ -46,15 +46,15 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="KnowledgeBaseAnswerContext"/>. </summary>
-        /// <param name="previousQnaId"> Previous turn top answer result QnA ID. </param>
+        /// <param name="previousQnaId"></param>
         public KnowledgeBaseAnswerContext(int previousQnaId)
         {
             PreviousQnaId = previousQnaId;
         }
 
         /// <summary> Initializes a new instance of <see cref="KnowledgeBaseAnswerContext"/>. </summary>
-        /// <param name="previousQnaId"> Previous turn top answer result QnA ID. </param>
-        /// <param name="previousQuestion"> Previous user query. </param>
+        /// <param name="previousQnaId"></param>
+        /// <param name="previousQuestion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal KnowledgeBaseAnswerContext(int previousQnaId, string previousQuestion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,9 +68,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Previous turn top answer result QnA ID. </summary>
+        /// <summary> Gets the previous qna id. </summary>
         public int PreviousQnaId { get; }
-        /// <summary> Previous user query. </summary>
+        /// <summary> Gets or sets the previous question. </summary>
         public string PreviousQuestion { get; set; }
     }
 }

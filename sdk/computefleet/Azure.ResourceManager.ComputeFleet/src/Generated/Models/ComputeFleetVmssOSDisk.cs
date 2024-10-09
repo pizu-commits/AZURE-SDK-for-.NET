@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a virtual machine scale set operating system disk. </summary>
+    /// <summary> The ComputeFleetVmssOSDisk. </summary>
     public partial class ComputeFleetVmssOSDisk
     {
         /// <summary>
@@ -46,13 +46,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssOSDisk"/>. </summary>
-        /// <param name="createOption">
-        /// Specifies how the virtual machines in the scale set should be created. The only
-        /// allowed value is: **FromImage.** This value is used when you are using an image
-        /// to create the virtual machine. If you are using a platform image, you also use
-        /// the imageReference element described above. If you are using a marketplace
-        /// image, you  also use the plan element previously described.
-        /// </param>
+        /// <param name="createOption"></param>
         public ComputeFleetVmssOSDisk(ComputeFleetDiskCreateOptionType createOption)
         {
             CreateOption = createOption;
@@ -60,51 +54,17 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssOSDisk"/>. </summary>
-        /// <param name="name"> The disk name. </param>
-        /// <param name="caching">
-        /// Specifies the caching requirements. Possible values are: **None,**
-        /// **ReadOnly,** **ReadWrite.** The default values are: **None for Standard
-        /// storage. ReadOnly for Premium storage.**
-        /// </param>
-        /// <param name="isWriteAcceleratorEnabled"> Specifies whether writeAccelerator should be enabled or disabled on the disk. </param>
-        /// <param name="createOption">
-        /// Specifies how the virtual machines in the scale set should be created. The only
-        /// allowed value is: **FromImage.** This value is used when you are using an image
-        /// to create the virtual machine. If you are using a platform image, you also use
-        /// the imageReference element described above. If you are using a marketplace
-        /// image, you  also use the plan element previously described.
-        /// </param>
-        /// <param name="diffDiskSettings">
-        /// Specifies the ephemeral disk Settings for the operating system disk used by the
-        /// virtual machine scale set.
-        /// </param>
-        /// <param name="diskSizeGB">
-        /// Specifies the size of an empty data disk in gigabytes. This element can be used
-        /// to overwrite the size of the disk in a virtual machine image. The property 'diskSizeGB'
-        /// is the number of bytes x 1024^3 for the disk and the value cannot
-        /// be larger than 1023.
-        /// </param>
-        /// <param name="osType">
-        /// This property allows you to specify the type of the OS that is included in the
-        /// disk if creating a VM from user-image or a specialized VHD. Possible values
-        /// are: **Windows,** **Linux.**
-        /// </param>
-        /// <param name="image"> Specifies information about the unmanaged user image to base the scale set on. </param>
-        /// <param name="vhdContainers">
-        /// Specifies the container urls that are used to store operating system disks for
-        /// the scale set.
-        /// </param>
-        /// <param name="managedDisk"> The managed disk parameters. </param>
-        /// <param name="deleteOption">
-        /// Specifies whether OS Disk should be deleted or detached upon VMSS Flex deletion
-        /// (This feature is available for VMSS with Flexible OrchestrationMode only).
-        /// &lt;br&gt;&lt;br&gt; Possible values: &lt;br&gt;&lt;br&gt; **Delete** If this value is used, the OS
-        /// disk is deleted when VMSS Flex VM is deleted.&lt;br&gt;&lt;br&gt; **Detach** If this value
-        /// is used, the OS disk is retained after VMSS Flex VM is deleted. &lt;br&gt;&lt;br&gt; The
-        /// default value is set to **Delete**. For an Ephemeral OS Disk, the default value
-        /// is set to **Delete**. User cannot change the delete option for Ephemeral OS
-        /// Disk.
-        /// </param>
+        /// <param name="name"></param>
+        /// <param name="caching"></param>
+        /// <param name="isWriteAcceleratorEnabled"></param>
+        /// <param name="createOption"></param>
+        /// <param name="diffDiskSettings"></param>
+        /// <param name="diskSizeGB"></param>
+        /// <param name="osType"></param>
+        /// <param name="image"></param>
+        /// <param name="vhdContainers"></param>
+        /// <param name="managedDisk"></param>
+        /// <param name="deleteOption"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssOSDisk(string name, ComputeFleetCachingType? caching, bool? isWriteAcceleratorEnabled, ComputeFleetDiskCreateOptionType createOption, ComputeFleetDiffDiskSettings diffDiskSettings, int? diskSizeGB, ComputeFleetOperatingSystemType? osType, ComputeFleetVirtualHardDisk image, IList<string> vhdContainers, ComputeFleetVmssManagedDisk managedDisk, ComputeFleetDiskDeleteOptionType? deleteOption, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -127,45 +87,23 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> The disk name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// Specifies the caching requirements. Possible values are: **None,**
-        /// **ReadOnly,** **ReadWrite.** The default values are: **None for Standard
-        /// storage. ReadOnly for Premium storage.**
-        /// </summary>
+        /// <summary> Gets or sets the caching. </summary>
         public ComputeFleetCachingType? Caching { get; set; }
-        /// <summary> Specifies whether writeAccelerator should be enabled or disabled on the disk. </summary>
+        /// <summary> Gets or sets the is write accelerator enabled. </summary>
         public bool? IsWriteAcceleratorEnabled { get; set; }
-        /// <summary>
-        /// Specifies how the virtual machines in the scale set should be created. The only
-        /// allowed value is: **FromImage.** This value is used when you are using an image
-        /// to create the virtual machine. If you are using a platform image, you also use
-        /// the imageReference element described above. If you are using a marketplace
-        /// image, you  also use the plan element previously described.
-        /// </summary>
+        /// <summary> Gets or sets the create option. </summary>
         public ComputeFleetDiskCreateOptionType CreateOption { get; set; }
-        /// <summary>
-        /// Specifies the ephemeral disk Settings for the operating system disk used by the
-        /// virtual machine scale set.
-        /// </summary>
+        /// <summary> Gets or sets the diff disk settings. </summary>
         public ComputeFleetDiffDiskSettings DiffDiskSettings { get; set; }
-        /// <summary>
-        /// Specifies the size of an empty data disk in gigabytes. This element can be used
-        /// to overwrite the size of the disk in a virtual machine image. The property 'diskSizeGB'
-        /// is the number of bytes x 1024^3 for the disk and the value cannot
-        /// be larger than 1023.
-        /// </summary>
+        /// <summary> Gets or sets the disk size gb. </summary>
         public int? DiskSizeGB { get; set; }
-        /// <summary>
-        /// This property allows you to specify the type of the OS that is included in the
-        /// disk if creating a VM from user-image or a specialized VHD. Possible values
-        /// are: **Windows,** **Linux.**
-        /// </summary>
+        /// <summary> Gets or sets the os type. </summary>
         public ComputeFleetOperatingSystemType? OSType { get; set; }
-        /// <summary> Specifies information about the unmanaged user image to base the scale set on. </summary>
+        /// <summary> Gets or sets the image. </summary>
         internal ComputeFleetVirtualHardDisk Image { get; set; }
-        /// <summary> Specifies the virtual hard disk's uri. </summary>
+        /// <summary> Gets or sets the image uri. </summary>
         public Uri ImageUri
         {
             get => Image is null ? default : Image.Uri;
@@ -177,23 +115,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary>
-        /// Specifies the container urls that are used to store operating system disks for
-        /// the scale set.
-        /// </summary>
+        /// <summary> Gets the vhd containers. </summary>
         public IList<string> VhdContainers { get; }
-        /// <summary> The managed disk parameters. </summary>
+        /// <summary> Gets or sets the managed disk. </summary>
         public ComputeFleetVmssManagedDisk ManagedDisk { get; set; }
-        /// <summary>
-        /// Specifies whether OS Disk should be deleted or detached upon VMSS Flex deletion
-        /// (This feature is available for VMSS with Flexible OrchestrationMode only).
-        /// &lt;br&gt;&lt;br&gt; Possible values: &lt;br&gt;&lt;br&gt; **Delete** If this value is used, the OS
-        /// disk is deleted when VMSS Flex VM is deleted.&lt;br&gt;&lt;br&gt; **Detach** If this value
-        /// is used, the OS disk is retained after VMSS Flex VM is deleted. &lt;br&gt;&lt;br&gt; The
-        /// default value is set to **Delete**. For an Ephemeral OS Disk, the default value
-        /// is set to **Delete**. User cannot change the delete option for Ephemeral OS
-        /// Disk.
-        /// </summary>
+        /// <summary> Gets or sets the delete option. </summary>
         public ComputeFleetDiskDeleteOptionType? DeleteOption { get; set; }
     }
 }

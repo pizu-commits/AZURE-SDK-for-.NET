@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Discriminators for supported queue selector attachment types. </summary>
+    /// <summary> The QueueSelectorAttachmentKind. </summary>
     public readonly partial struct QueueSelectorAttachmentKind : IEquatable<QueueSelectorAttachmentKind>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Communication.JobRouter
         private const string StaticValue = "static";
         private const string WeightedAllocationValue = "weightedAllocation";
 
-        /// <summary> Discriminator value for ConditionalQueueSelectorAttachment. </summary>
+        /// <summary> conditional. </summary>
         public static QueueSelectorAttachmentKind Conditional { get; } = new QueueSelectorAttachmentKind(ConditionalValue);
-        /// <summary> Discriminator value for PassThroughQueueSelectorAttachment. </summary>
+        /// <summary> passThrough. </summary>
         public static QueueSelectorAttachmentKind PassThrough { get; } = new QueueSelectorAttachmentKind(PassThroughValue);
-        /// <summary> Discriminator value for RuleEngineQueueSelectorAttachment. </summary>
+        /// <summary> ruleEngine. </summary>
         public static QueueSelectorAttachmentKind RuleEngine { get; } = new QueueSelectorAttachmentKind(RuleEngineValue);
-        /// <summary> Discriminator value for StaticQueueSelectorAttachment. </summary>
+        /// <summary> static. </summary>
         public static QueueSelectorAttachmentKind Static { get; } = new QueueSelectorAttachmentKind(StaticValue);
-        /// <summary> Discriminator value for WeightedAllocationQueueSelectorAttachment. </summary>
+        /// <summary> weightedAllocation. </summary>
         public static QueueSelectorAttachmentKind WeightedAllocation { get; } = new QueueSelectorAttachmentKind(WeightedAllocationValue);
         /// <summary> Determines if two <see cref="QueueSelectorAttachmentKind"/> values are the same. </summary>
         public static bool operator ==(QueueSelectorAttachmentKind left, QueueSelectorAttachmentKind right) => left.Equals(right);

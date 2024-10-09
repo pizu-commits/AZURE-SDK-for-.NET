@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The Datetime SubKind. </summary>
+    /// <summary> The DateTimeSubKind. </summary>
     public readonly partial struct DateTimeSubKind : IEquatable<DateTimeSubKind>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.AI.Language.Conversations.Models
         private const string DurationValue = "Duration";
         private const string SetValue = "Set";
 
-        /// <summary> Time subkind. </summary>
+        /// <summary> Time. </summary>
         public static DateTimeSubKind Time { get; } = new DateTimeSubKind(TimeValue);
-        /// <summary> Date subkind. </summary>
+        /// <summary> Date. </summary>
         public static DateTimeSubKind Date { get; } = new DateTimeSubKind(DateValue);
-        /// <summary> DateTime subkind. </summary>
+        /// <summary> DateTime. </summary>
         public static DateTimeSubKind DateTime { get; } = new DateTimeSubKind(DateTimeValue);
-        /// <summary> Duration subkind. </summary>
+        /// <summary> Duration. </summary>
         public static DateTimeSubKind Duration { get; } = new DateTimeSubKind(DurationValue);
-        /// <summary> Set subkind. </summary>
+        /// <summary> Set. </summary>
         public static DateTimeSubKind Set { get; } = new DateTimeSubKind(SetValue);
         /// <summary> Determines if two <see cref="DateTimeSubKind"/> values are the same. </summary>
         public static bool operator ==(DateTimeSubKind left, DateTimeSubKind right) => left.Equals(right);

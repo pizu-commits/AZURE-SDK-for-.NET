@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> state of observed port. </summary>
+    /// <summary> The ObservedPortStateValue. </summary>
     public readonly partial struct ObservedPortStateValue : IEquatable<ObservedPortStateValue>
     {
         private readonly string _value;

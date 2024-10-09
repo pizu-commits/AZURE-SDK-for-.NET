@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.AVS.ClusterUpdating event. </summary>
+    /// <summary> The AvsClusterUpdatingEventData. </summary>
     public partial class AvsClusterUpdatingEventData : AvsClusterEventData
     {
         /// <summary> Initializes a new instance of <see cref="AvsClusterUpdatingEventData"/>. </summary>
@@ -19,10 +19,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsClusterUpdatingEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
-        /// <param name="addedHostNames"> Hosts added to the cluster in this event, if any. </param>
-        /// <param name="removedHostNames"> Hosts removed from the cluster in this event, if any. </param>
-        /// <param name="inMaintenanceHostNames"> Hosts in Maintenance mode in the cluster, if any. </param>
+        /// <param name="operationId"></param>
+        /// <param name="addedHostNames"></param>
+        /// <param name="removedHostNames"></param>
+        /// <param name="inMaintenanceHostNames"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AvsClusterUpdatingEventData(string operationId, IReadOnlyList<string> addedHostNames, IReadOnlyList<string> removedHostNames, IReadOnlyList<string> inMaintenanceHostNames, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(operationId, addedHostNames, removedHostNames, inMaintenanceHostNames, serializedAdditionalRawData)
         {

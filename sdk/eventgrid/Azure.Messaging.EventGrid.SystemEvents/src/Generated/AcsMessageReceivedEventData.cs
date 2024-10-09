@@ -10,17 +10,17 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.AdvancedMessageReceived event. </summary>
+    /// <summary> The AcsMessageReceivedEventData. </summary>
     public partial class AcsMessageReceivedEventData : AcsMessageEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsMessageReceivedEventData"/>. </summary>
-        /// <param name="receivedTimestamp"> The time message was received. </param>
-        /// <param name="error"> The channel event error. </param>
-        /// <param name="channelKind"> The message channel type. </param>
-        /// <param name="mediaContent"> The received message media content. </param>
-        /// <param name="context"> The received message context. </param>
-        /// <param name="button"> The received message button content. </param>
-        /// <param name="interactiveContent"> The received message interactive content. </param>
+        /// <param name="receivedTimestamp"></param>
+        /// <param name="error"></param>
+        /// <param name="channelKind"></param>
+        /// <param name="mediaContent"></param>
+        /// <param name="context"></param>
+        /// <param name="button"></param>
+        /// <param name="interactiveContent"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="error"/>, <paramref name="mediaContent"/>, <paramref name="context"/>, <paramref name="button"/> or <paramref name="interactiveContent"/> is null. </exception>
         internal AcsMessageReceivedEventData(DateTimeOffset receivedTimestamp, AcsMessageChannelEventError error, AcsMessageChannelKind channelKind, AcsMessageMediaContent mediaContent, AcsMessageContext context, AcsMessageButtonContent button, AcsMessageInteractiveContent interactiveContent) : base(receivedTimestamp, error)
         {
@@ -38,17 +38,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageReceivedEventData"/>. </summary>
-        /// <param name="from"> The message sender. </param>
-        /// <param name="to"> The message recipient. </param>
-        /// <param name="receivedTimestamp"> The time message was received. </param>
-        /// <param name="error"> The channel event error. </param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="receivedTimestamp"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="content"> The message content. </param>
-        /// <param name="channelKind"> The message channel type. </param>
-        /// <param name="mediaContent"> The received message media content. </param>
-        /// <param name="context"> The received message context. </param>
-        /// <param name="button"> The received message button content. </param>
-        /// <param name="interactiveContent"> The received message interactive content. </param>
+        /// <param name="content"></param>
+        /// <param name="channelKind"></param>
+        /// <param name="mediaContent"></param>
+        /// <param name="context"></param>
+        /// <param name="button"></param>
+        /// <param name="interactiveContent"></param>
         internal AcsMessageReceivedEventData(string @from, string to, DateTimeOffset receivedTimestamp, AcsMessageChannelEventError error, IDictionary<string, BinaryData> serializedAdditionalRawData, string content, AcsMessageChannelKind channelKind, AcsMessageMediaContent mediaContent, AcsMessageContext context, AcsMessageButtonContent button, AcsMessageInteractiveContent interactiveContent) : base(@from, to, receivedTimestamp, error, serializedAdditionalRawData)
         {
             Content = content;
@@ -64,17 +64,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The message content. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary> The message channel type. </summary>
+        /// <summary> Gets the channel kind. </summary>
         public AcsMessageChannelKind ChannelKind { get; }
-        /// <summary> The received message media content. </summary>
+        /// <summary> Gets the media content. </summary>
         public AcsMessageMediaContent MediaContent { get; }
-        /// <summary> The received message context. </summary>
+        /// <summary> Gets the context. </summary>
         public AcsMessageContext Context { get; }
-        /// <summary> The received message button content. </summary>
+        /// <summary> Gets the button. </summary>
         public AcsMessageButtonContent Button { get; }
-        /// <summary> The received message interactive content. </summary>
+        /// <summary> Gets the interactive content. </summary>
         public AcsMessageInteractiveContent InteractiveContent { get; }
     }
 }

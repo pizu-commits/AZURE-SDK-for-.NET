@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> A resolution for boolean expressions. </summary>
+    /// <summary> The BooleanResolution. </summary>
     public partial class BooleanResolution : ResolutionBase
     {
         /// <summary> Initializes a new instance of <see cref="BooleanResolution"/>. </summary>
-        /// <param name="value"> A resolution for boolean expressions. </param>
+        /// <param name="value"></param>
         internal BooleanResolution(bool value)
         {
             ResolutionKind = ResolutionKind.BooleanResolution;
@@ -22,9 +22,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="BooleanResolution"/>. </summary>
-        /// <param name="resolutionKind"> The entity resolution object kind. </param>
+        /// <param name="resolutionKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> A resolution for boolean expressions. </param>
+        /// <param name="value"></param>
         internal BooleanResolution(ResolutionKind resolutionKind, IDictionary<string, BinaryData> serializedAdditionalRawData, bool value) : base(resolutionKind, serializedAdditionalRawData)
         {
             Value = value;
@@ -35,7 +35,7 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> A resolution for boolean expressions. </summary>
+        /// <summary> Gets the value. </summary>
         public bool Value { get; }
     }
 }

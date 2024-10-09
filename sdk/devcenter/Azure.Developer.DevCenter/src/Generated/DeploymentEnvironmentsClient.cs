@@ -63,9 +63,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets an environment. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -82,9 +82,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets an environment. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -115,9 +115,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -159,9 +159,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> Environment name. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -189,8 +189,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets the specified catalog within the project. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -206,8 +206,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Gets the specified catalog within the project. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -237,8 +237,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -279,8 +279,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -307,9 +307,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Get an environment definition from a catalog. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
-        /// <param name="definitionName"> Name of the environment definition. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
+        /// <param name="definitionName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -326,9 +326,9 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Get an environment definition from a catalog. </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
-        /// <param name="definitionName"> Name of the environment definition. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
+        /// <param name="definitionName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -359,9 +359,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
-        /// <param name="definitionName"> Name of the environment definition. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
+        /// <param name="definitionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -403,9 +403,9 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
-        /// <param name="definitionName"> Name of the environment definition. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
+        /// <param name="definitionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="catalogName"/> or <paramref name="definitionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -433,7 +433,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists the environments for a project. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -449,7 +449,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists the environments for a project. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -479,7 +479,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -510,7 +510,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -527,8 +527,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists the environments for a project and user. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -545,8 +545,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists the environments for a project and user. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -577,8 +577,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -610,8 +610,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="userId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="userId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -629,7 +629,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all of the catalogs available for a project. </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -645,7 +645,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all of the catalogs available for a project. </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -675,7 +675,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -706,7 +706,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> Name of the project. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -723,7 +723,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all environment definitions available for a project. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -739,7 +739,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all environment definitions available for a project. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -769,7 +769,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -800,7 +800,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -817,8 +817,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all environment definitions available within a catalog. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="catalogName"> The name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -835,8 +835,8 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all environment definitions available within a catalog. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="catalogName"> The name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -867,8 +867,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="catalogName"> The name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -900,8 +900,8 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="catalogName"> The name of the catalog. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="catalogName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> or <paramref name="catalogName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -919,7 +919,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all environment types configured for a project. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -935,7 +935,7 @@ namespace Azure.Developer.DevCenter
         }
 
         /// <summary> Lists all environment types configured for a project. </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -965,7 +965,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -996,7 +996,7 @@ namespace Azure.Developer.DevCenter
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1023,9 +1023,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="content"/> is null. </exception>
@@ -1065,9 +1065,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/>, <paramref name="environmentName"/> or <paramref name="content"/> is null. </exception>
@@ -1108,9 +1108,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1149,9 +1149,9 @@ namespace Azure.Developer.DevCenter
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="projectName"> The DevCenter Project upon which to execute operations. </param>
-        /// <param name="userId"> The AAD object id of the user. If value is 'me', the identity is taken from the authentication context. </param>
-        /// <param name="environmentName"> The name of the environment. </param>
+        /// <param name="projectName"> The <see cref="string"/> to use. </param>
+        /// <param name="userId"> The <see cref="string"/> to use. </param>
+        /// <param name="environmentName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="projectName"/>, <paramref name="userId"/> or <paramref name="environmentName"/> is an empty string, and was expected to be non-empty. </exception>

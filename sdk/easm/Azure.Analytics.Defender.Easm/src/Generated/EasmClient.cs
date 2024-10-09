@@ -62,8 +62,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Update labels on assets matching the provided filter. </summary>
-        /// <param name="filter"> An expression on the resource type that selects the resources to be returned. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AssetUpdatePayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filter"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='UpdateAssetsAsync(string,AssetUpdatePayload,CancellationToken)']/*" />
@@ -79,8 +79,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Update labels on assets matching the provided filter. </summary>
-        /// <param name="filter"> An expression on the resource type that selects the resources to be returned. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AssetUpdatePayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filter"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='UpdateAssets(string,AssetUpdatePayload,CancellationToken)']/*" />
@@ -110,7 +110,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> An expression on the resource type that selects the resources to be returned. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filter"/> or <paramref name="content"/> is null. </exception>
@@ -151,7 +151,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> An expression on the resource type that selects the resources to be returned. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filter"/> or <paramref name="content"/> is null. </exception>
@@ -178,7 +178,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve an asset by assetId. </summary>
-        /// <param name="assetId"> The system generated unique id for the resource. </param>
+        /// <param name="assetId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assetId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assetId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -193,7 +193,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve an asset by assetId. </summary>
-        /// <param name="assetId"> The system generated unique id for the resource. </param>
+        /// <param name="assetId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assetId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assetId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -222,7 +222,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assetId"> The system generated unique id for the resource. </param>
+        /// <param name="assetId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assetId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assetId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -262,7 +262,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assetId"> The system generated unique id for the resource. </param>
+        /// <param name="assetId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assetId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assetId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -288,7 +288,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Validate a data connection with a given dataConnectionName. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="DataConnectionPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='ValidateDataConnectionAsync(DataConnectionPayload,CancellationToken)']/*" />
@@ -303,7 +303,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Validate a data connection with a given dataConnectionName. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="DataConnectionPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='ValidateDataConnection(DataConnectionPayload,CancellationToken)']/*" />
@@ -396,7 +396,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a data connection with a given dataConnectionName. </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -411,7 +411,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a data connection with a given dataConnectionName. </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -440,7 +440,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -480,7 +480,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -506,8 +506,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Create or replace a data connection with a given dataConnectionName. </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="DataConnectionPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -524,8 +524,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Create or replace a data connection with a given dataConnectionName. </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="DataConnectionPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -556,7 +556,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> or <paramref name="content"/> is null. </exception>
@@ -598,7 +598,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> or <paramref name="content"/> is null. </exception>
@@ -636,7 +636,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -672,7 +672,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="dataConnectionName"> The caller provided unique name for the resource. </param>
+        /// <param name="dataConnectionName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="dataConnectionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="dataConnectionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -698,7 +698,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Validate a discovery group with a given groupName. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="DiscoveryGroupPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='ValidateDiscoveryGroupAsync(DiscoveryGroupPayload,CancellationToken)']/*" />
@@ -713,7 +713,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Validate a discovery group with a given groupName. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="DiscoveryGroupPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='ValidateDiscoveryGroup(DiscoveryGroupPayload,CancellationToken)']/*" />
@@ -806,7 +806,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a discovery group with a given groupName. </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -821,7 +821,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a discovery group with a given groupName. </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -850,7 +850,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -890,7 +890,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -916,8 +916,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Create a discovery group with a given groupName. </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="DiscoveryGroupPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -934,8 +934,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Create a discovery group with a given groupName. </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="DiscoveryGroupPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -966,7 +966,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="content"/> is null. </exception>
@@ -1008,7 +1008,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="content"/> is null. </exception>
@@ -1046,7 +1046,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1082,7 +1082,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The caller provided unique name for the resource. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1108,7 +1108,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a disco template with a given templateId. </summary>
-        /// <param name="templateId"> The system generated unique id for the resource. </param>
+        /// <param name="templateId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="templateId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="templateId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1123,7 +1123,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a disco template with a given templateId. </summary>
-        /// <param name="templateId"> The system generated unique id for the resource. </param>
+        /// <param name="templateId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="templateId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="templateId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1152,7 +1152,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="templateId"> The system generated unique id for the resource. </param>
+        /// <param name="templateId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="templateId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="templateId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1192,7 +1192,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="templateId"> The system generated unique id for the resource. </param>
+        /// <param name="templateId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="templateId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="templateId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1308,7 +1308,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Get the most recent snapshot of asset summary values for the snapshot request. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="ReportAssetSnapshotPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetSnapshotAsync(ReportAssetSnapshotPayload,CancellationToken)']/*" />
@@ -1323,7 +1323,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Get the most recent snapshot of asset summary values for the snapshot request. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="ReportAssetSnapshotPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetSnapshot(ReportAssetSnapshotPayload,CancellationToken)']/*" />
@@ -1416,7 +1416,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Get asset summary details for the summary request. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="ReportAssetSummaryPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetSummaryAsync(ReportAssetSummaryPayload,CancellationToken)']/*" />
@@ -1431,7 +1431,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Get asset summary details for the summary request. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="ReportAssetSummaryPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetSummary(ReportAssetSummaryPayload,CancellationToken)']/*" />
@@ -1524,7 +1524,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a saved filter by filterName. </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1539,7 +1539,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a saved filter by filterName. </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1568,7 +1568,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1608,7 +1608,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1634,8 +1634,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Create or replace a saved filter with a given filterName. </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="SavedFilterPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1652,8 +1652,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Create or replace a saved filter with a given filterName. </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="SavedFilterPayload"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1684,7 +1684,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> or <paramref name="content"/> is null. </exception>
@@ -1726,7 +1726,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> or <paramref name="content"/> is null. </exception>
@@ -1764,7 +1764,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1800,7 +1800,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filterName"> The caller provided unique name for the resource. </param>
+        /// <param name="filterName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="filterName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="filterName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1826,7 +1826,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a task by taskId. </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1841,7 +1841,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a task by taskId. </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1870,7 +1870,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1910,7 +1910,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1936,7 +1936,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Cancel a task by taskId. </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1951,7 +1951,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Cancel a task by taskId. </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1980,7 +1980,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2020,7 +2020,7 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="taskId"> The unique identifier of the task. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2046,11 +2046,11 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of assets for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="mark"> Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent values are returned in the response. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="mark"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetAssetResourcesAsync(string,string,int?,int?,string,CancellationToken)']/*" />
         public virtual AsyncPageable<AssetResource> GetAssetResourcesAsync(string filter = null, string orderby = null, int? skip = null, int? maxpagesize = null, string mark = null, CancellationToken cancellationToken = default)
@@ -2062,11 +2062,11 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of assets for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="mark"> Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent values are returned in the response. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="mark"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetAssetResources(string,string,int?,int?,string,CancellationToken)']/*" />
         public virtual Pageable<AssetResource> GetAssetResources(string filter = null, string orderby = null, int? skip = null, int? maxpagesize = null, string mark = null, CancellationToken cancellationToken = default)
@@ -2092,11 +2092,11 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="mark"> Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent values are returned in the response. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="mark"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2123,11 +2123,11 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
-        /// <param name="mark"> Specify this value instead of 'skip' to use cursor-based searching. Initial value is '*' and subsequent values are returned in the response. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="mark"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2140,8 +2140,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of data connections. </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetDataConnectionsAsync(int?,int?,CancellationToken)']/*" />
         public virtual AsyncPageable<DataConnection> GetDataConnectionsAsync(int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2153,8 +2153,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of data connections. </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetDataConnections(int?,int?,CancellationToken)']/*" />
         public virtual Pageable<DataConnection> GetDataConnections(int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2180,8 +2180,8 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2208,8 +2208,8 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2222,9 +2222,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of discovery group for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetDiscoveryGroupsAsync(string,int?,int?,CancellationToken)']/*" />
         public virtual AsyncPageable<DiscoveryGroup> GetDiscoveryGroupsAsync(string filter = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2236,9 +2236,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of discovery group for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetDiscoveryGroups(string,int?,int?,CancellationToken)']/*" />
         public virtual Pageable<DiscoveryGroup> GetDiscoveryGroups(string filter = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2264,9 +2264,9 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2293,9 +2293,9 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2308,10 +2308,10 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a collection of discovery run results for a discovery group with a given groupName. </summary>
-        /// <param name="groupName"> The unique identifier for the discovery group. </param>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2327,10 +2327,10 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a collection of discovery run results for a discovery group with a given groupName. </summary>
-        /// <param name="groupName"> The unique identifier for the discovery group. </param>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2360,10 +2360,10 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The unique identifier for the discovery group. </param>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2394,10 +2394,10 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> The unique identifier for the discovery group. </param>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2414,9 +2414,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of disco templates for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetDiscoveryTemplatesAsync(string,int?,int?,CancellationToken)']/*" />
         public virtual AsyncPageable<DiscoveryTemplate> GetDiscoveryTemplatesAsync(string filter = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2428,9 +2428,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of disco templates for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetDiscoveryTemplates(string,int?,int?,CancellationToken)']/*" />
         public virtual Pageable<DiscoveryTemplate> GetDiscoveryTemplates(string filter = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2456,9 +2456,9 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2485,9 +2485,9 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2500,9 +2500,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of saved filters for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetSavedFiltersAsync(string,int?,int?,CancellationToken)']/*" />
         public virtual AsyncPageable<SavedFilter> GetSavedFiltersAsync(string filter = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2514,9 +2514,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of saved filters for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetSavedFilters(string,int?,int?,CancellationToken)']/*" />
         public virtual Pageable<SavedFilter> GetSavedFilters(string filter = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2542,9 +2542,9 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2571,9 +2571,9 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2586,10 +2586,10 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of tasks for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetTasksAsync(string,string,int?,int?,CancellationToken)']/*" />
         public virtual AsyncPageable<TaskResource> GetTasksAsync(string filter = null, string orderby = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2601,10 +2601,10 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Retrieve a list of tasks for the provided search parameters. </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/EasmClient.xml" path="doc/members/member[@name='GetTasks(string,string,int?,int?,CancellationToken)']/*" />
         public virtual Pageable<TaskResource> GetTasks(string filter = null, string orderby = null, int? skip = null, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -2630,10 +2630,10 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -2660,10 +2660,10 @@ namespace Azure.Analytics.Defender.Easm
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="filter"> Filter the result list using the given expression. </param>
-        /// <param name="orderby"> A list of expressions that specify the order of the returned resources. </param>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxpagesize"> The maximum number of result items per page. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="orderby"> The <see cref="string"/> to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>

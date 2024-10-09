@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> Configuration affecting the Trial Matcher model's inference. </summary>
+    /// <summary> The TrialMatcherModelConfiguration. </summary>
     public partial class TrialMatcherModelConfiguration
     {
         /// <summary>
@@ -46,12 +46,7 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherModelConfiguration"/>. </summary>
-        /// <param name="clinicalTrials">
-        /// The clinical trials that the patient(s) should be matched to. &lt;br /&gt;The trial
-        /// selection can be given as a list of custom clinical trials and/or a list of
-        /// filters to known clinical trial registries. In case both are given, the
-        /// resulting trial set is a union of the two sets.
-        /// </param>
+        /// <param name="clinicalTrials"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="clinicalTrials"/> is null. </exception>
         public TrialMatcherModelConfiguration(ClinicalTrials clinicalTrials)
         {
@@ -61,14 +56,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherModelConfiguration"/>. </summary>
-        /// <param name="verbose"> An indication whether the model should produce verbose output. </param>
-        /// <param name="includeEvidence"> An indication whether the model's output should include evidence for the inferences. </param>
-        /// <param name="clinicalTrials">
-        /// The clinical trials that the patient(s) should be matched to. &lt;br /&gt;The trial
-        /// selection can be given as a list of custom clinical trials and/or a list of
-        /// filters to known clinical trial registries. In case both are given, the
-        /// resulting trial set is a union of the two sets.
-        /// </param>
+        /// <param name="verbose"></param>
+        /// <param name="includeEvidence"></param>
+        /// <param name="clinicalTrials"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TrialMatcherModelConfiguration(bool? verbose, bool? includeEvidence, ClinicalTrials clinicalTrials, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,16 +73,11 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> An indication whether the model should produce verbose output. </summary>
+        /// <summary> Gets or sets the verbose. </summary>
         public bool? Verbose { get; set; }
-        /// <summary> An indication whether the model's output should include evidence for the inferences. </summary>
+        /// <summary> Gets or sets the include evidence. </summary>
         public bool? IncludeEvidence { get; set; }
-        /// <summary>
-        /// The clinical trials that the patient(s) should be matched to. &lt;br /&gt;The trial
-        /// selection can be given as a list of custom clinical trials and/or a list of
-        /// filters to known clinical trial registries. In case both are given, the
-        /// resulting trial set is a union of the two sets.
-        /// </summary>
+        /// <summary> Gets the clinical trials. </summary>
         public ClinicalTrials ClinicalTrials { get; }
     }
 }

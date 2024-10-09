@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// An instance of an entity along with extended info - like hive_table,
-    /// hive_database.
-    /// </summary>
+    /// <summary> The AtlasEntitiesWithExtInfo. </summary>
     public partial class AtlasEntitiesWithExtInfo
     {
         /// <summary>
@@ -56,8 +53,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasEntitiesWithExtInfo"/>. </summary>
-        /// <param name="referredEntities"> The referred entities. </param>
-        /// <param name="entities"> An array of entities. </param>
+        /// <param name="referredEntities"></param>
+        /// <param name="entities"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasEntitiesWithExtInfo(IDictionary<string, AtlasEntity> referredEntities, IList<AtlasEntity> entities, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,9 +63,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The referred entities. </summary>
+        /// <summary> Gets the referred entities. </summary>
         public IDictionary<string, AtlasEntity> ReferredEntities { get; }
-        /// <summary> An array of entities. </summary>
+        /// <summary> Gets the entities. </summary>
         public IList<AtlasEntity> Entities { get; }
     }
 }

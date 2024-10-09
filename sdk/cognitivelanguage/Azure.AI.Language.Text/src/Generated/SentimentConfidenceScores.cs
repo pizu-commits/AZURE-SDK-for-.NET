@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the confidence scores between 0 and 1 across all sentiment classes: positive, neutral, negative. </summary>
+    /// <summary> The SentimentConfidenceScores. </summary>
     public partial class SentimentConfidenceScores
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SentimentConfidenceScores"/>. </summary>
-        /// <param name="positive"> Confidence score for positive sentiment. </param>
-        /// <param name="neutral"> Confidence score for neutral sentiment. </param>
-        /// <param name="negative"> Confidence score for negative sentiment. </param>
+        /// <param name="positive"></param>
+        /// <param name="neutral"></param>
+        /// <param name="negative"></param>
         internal SentimentConfidenceScores(double positive, double neutral, double negative)
         {
             Positive = positive;
@@ -57,9 +57,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="SentimentConfidenceScores"/>. </summary>
-        /// <param name="positive"> Confidence score for positive sentiment. </param>
-        /// <param name="neutral"> Confidence score for neutral sentiment. </param>
-        /// <param name="negative"> Confidence score for negative sentiment. </param>
+        /// <param name="positive"></param>
+        /// <param name="neutral"></param>
+        /// <param name="negative"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SentimentConfidenceScores(double positive, double neutral, double negative, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Confidence score for positive sentiment. </summary>
+        /// <summary> Gets the positive. </summary>
         public double Positive { get; }
-        /// <summary> Confidence score for neutral sentiment. </summary>
+        /// <summary> Gets the neutral. </summary>
         public double Neutral { get; }
-        /// <summary> Confidence score for negative sentiment. </summary>
+        /// <summary> Gets the negative. </summary>
         public double Negative { get; }
     }
 }

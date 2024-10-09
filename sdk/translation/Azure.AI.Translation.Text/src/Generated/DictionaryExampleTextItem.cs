@@ -10,16 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Element containing the text with translation. </summary>
+    /// <summary> The DictionaryExampleTextItem. </summary>
     public partial class DictionaryExampleTextItem : InputTextItem
     {
         /// <summary> Initializes a new instance of <see cref="DictionaryExampleTextItem"/>. </summary>
-        /// <param name="text"> Text to translate. </param>
-        /// <param name="translation">
-        /// A string specifying the translated text previously returned by the Dictionary lookup operation.
-        /// This should be the value from the normalizedTarget field in the translations list of the Dictionary
-        /// lookup response. The service will return examples for the specific source-target word-pair.
-        /// </param>
+        /// <param name="text"></param>
+        /// <param name="translation"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> or <paramref name="translation"/> is null. </exception>
         public DictionaryExampleTextItem(string text, string translation) : base(text)
         {
@@ -30,13 +26,9 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DictionaryExampleTextItem"/>. </summary>
-        /// <param name="text"> Text to translate. </param>
+        /// <param name="text"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="translation">
-        /// A string specifying the translated text previously returned by the Dictionary lookup operation.
-        /// This should be the value from the normalizedTarget field in the translations list of the Dictionary
-        /// lookup response. The service will return examples for the specific source-target word-pair.
-        /// </param>
+        /// <param name="translation"></param>
         internal DictionaryExampleTextItem(string text, IDictionary<string, BinaryData> serializedAdditionalRawData, string translation) : base(text, serializedAdditionalRawData)
         {
             Translation = translation;
@@ -47,11 +39,7 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary>
-        /// A string specifying the translated text previously returned by the Dictionary lookup operation.
-        /// This should be the value from the normalizedTarget field in the translations list of the Dictionary
-        /// lookup response. The service will return examples for the specific source-target word-pair.
-        /// </summary>
+        /// <summary> Gets the translation. </summary>
         public string Translation { get; }
     }
 }

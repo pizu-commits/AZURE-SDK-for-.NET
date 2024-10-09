@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The properties of a file on a Compute Node. </summary>
+    /// <summary> The FileProperties. </summary>
     public partial class FileProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FileProperties"/>. </summary>
-        /// <param name="lastModified"> The time at which the file was last modified. </param>
-        /// <param name="contentLength"> The length of the file. </param>
+        /// <param name="lastModified"></param>
+        /// <param name="contentLength"></param>
         internal FileProperties(DateTimeOffset lastModified, long contentLength)
         {
             LastModified = lastModified;
@@ -55,11 +55,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="FileProperties"/>. </summary>
-        /// <param name="creationTime"> The file creation time. The creation time is not returned for files on Linux Compute Nodes. </param>
-        /// <param name="lastModified"> The time at which the file was last modified. </param>
-        /// <param name="contentLength"> The length of the file. </param>
-        /// <param name="contentType"> The content type of the file. </param>
-        /// <param name="fileMode"> The file mode attribute in octal format. The file mode is returned only for files on Linux Compute Nodes. </param>
+        /// <param name="creationTime"></param>
+        /// <param name="lastModified"></param>
+        /// <param name="contentLength"></param>
+        /// <param name="contentType"></param>
+        /// <param name="fileMode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FileProperties(DateTimeOffset? creationTime, DateTimeOffset lastModified, long contentLength, string contentType, string fileMode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,15 +76,15 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The file creation time. The creation time is not returned for files on Linux Compute Nodes. </summary>
+        /// <summary> Gets the creation time. </summary>
         public DateTimeOffset? CreationTime { get; }
-        /// <summary> The time at which the file was last modified. </summary>
+        /// <summary> Gets the last modified. </summary>
         public DateTimeOffset LastModified { get; }
-        /// <summary> The length of the file. </summary>
+        /// <summary> Gets the content length. </summary>
         public long ContentLength { get; }
-        /// <summary> The content type of the file. </summary>
+        /// <summary> Gets the content type. </summary>
         public string ContentType { get; }
-        /// <summary> The file mode attribute in octal format. The file mode is returned only for files on Linux Compute Nodes. </summary>
+        /// <summary> Gets the file mode. </summary>
         public string FileMode { get; }
     }
 }

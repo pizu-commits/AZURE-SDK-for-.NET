@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Media Job Retry Options. </summary>
+    /// <summary> The MediaJobRetry. </summary>
     public readonly partial struct MediaJobRetry : IEquatable<MediaJobRetry>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string DoNotRetryValue = "DoNotRetry";
         private const string MayRetryValue = "MayRetry";
 
-        /// <summary> Issue needs to be investigated and then the job resubmitted with corrections or retried once the underlying issue has been corrected. </summary>
+        /// <summary> DoNotRetry. </summary>
         public static MediaJobRetry DoNotRetry { get; } = new MediaJobRetry(DoNotRetryValue);
-        /// <summary> Issue may be resolved after waiting for a period of time and resubmitting the same Job. </summary>
+        /// <summary> MayRetry. </summary>
         public static MediaJobRetry MayRetry { get; } = new MediaJobRetry(MayRetryValue);
         /// <summary> Determines if two <see cref="MediaJobRetry"/> values are the same. </summary>
         public static bool operator ==(MediaJobRetry left, MediaJobRetry right) => left.Equals(right);

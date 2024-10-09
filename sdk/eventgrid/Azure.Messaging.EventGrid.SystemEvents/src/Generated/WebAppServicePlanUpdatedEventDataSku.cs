@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> sku of app service plan. </summary>
+    /// <summary> The WebAppServicePlanUpdatedEventDataSku. </summary>
     public partial class WebAppServicePlanUpdatedEventDataSku
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="WebAppServicePlanUpdatedEventDataSku"/>. </summary>
-        /// <param name="name"> name of app service plan sku. </param>
-        /// <param name="tier"> tier of app service plan sku. </param>
-        /// <param name="size"> size of app service plan sku. </param>
-        /// <param name="family"> family of app service plan sku. </param>
-        /// <param name="capacity"> capacity of app service plan sku. </param>
+        /// <param name="name"></param>
+        /// <param name="tier"></param>
+        /// <param name="size"></param>
+        /// <param name="family"></param>
+        /// <param name="capacity"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WebAppServicePlanUpdatedEventDataSku(string name, string tier, string size, string family, string capacity, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> name of app service plan sku. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> tier of app service plan sku. </summary>
+        /// <summary> Gets the tier. </summary>
         public string Tier { get; }
-        /// <summary> size of app service plan sku. </summary>
+        /// <summary> Gets the size. </summary>
         public string Size { get; }
-        /// <summary> family of app service plan sku. </summary>
+        /// <summary> Gets the family. </summary>
         public string Family { get; }
-        /// <summary> capacity of app service plan sku. </summary>
+        /// <summary> Gets the capacity. </summary>
         public string Capacity { get; }
     }
 }

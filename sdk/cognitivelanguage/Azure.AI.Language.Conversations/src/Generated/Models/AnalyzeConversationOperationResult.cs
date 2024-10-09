@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// Container for results of all tasks in the conversation job.
+    /// The AnalyzeConversationOperationResult.
     /// Please note <see cref="AnalyzeConversationOperationResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ConversationPiiOperationResult"/>, <see cref="SummarizationOperationResult"/> and <see cref="CustomSummarizationOperationResult"/>.
     /// </summary>
@@ -50,8 +50,8 @@ namespace Azure.AI.Language.Conversations.Models
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationOperationResult"/>. </summary>
-        /// <param name="lastUpdateDateTime"> The last updated time in UTC for the task. </param>
-        /// <param name="status"> The status of the task at the mentioned last update time. </param>
+        /// <param name="lastUpdateDateTime"></param>
+        /// <param name="status"></param>
         protected AnalyzeConversationOperationResult(DateTimeOffset lastUpdateDateTime, ConversationActionState status)
         {
             LastUpdateDateTime = lastUpdateDateTime;
@@ -59,10 +59,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationOperationResult"/>. </summary>
-        /// <param name="lastUpdateDateTime"> The last updated time in UTC for the task. </param>
-        /// <param name="status"> The status of the task at the mentioned last update time. </param>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> discriminator kind. </param>
+        /// <param name="lastUpdateDateTime"></param>
+        /// <param name="status"></param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeConversationOperationResult(DateTimeOffset lastUpdateDateTime, ConversationActionState status, string name, AnalyzeConversationOperationResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The last updated time in UTC for the task. </summary>
+        /// <summary> Gets the last update date time. </summary>
         public DateTimeOffset LastUpdateDateTime { get; }
-        /// <summary> The status of the task at the mentioned last update time. </summary>
+        /// <summary> Gets the status. </summary>
         public ConversationActionState Status { get; }
-        /// <summary> task name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> discriminator kind. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal AnalyzeConversationOperationResultsKind Kind { get; set; }
     }
 }

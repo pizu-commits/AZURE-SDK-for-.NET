@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for an Microsoft.Storage.BlobInventoryPolicyCompleted event. </summary>
+    /// <summary> The StorageBlobInventoryPolicyCompletedEventData. </summary>
     public partial class StorageBlobInventoryPolicyCompletedEventData
     {
         /// <summary>
@@ -46,20 +46,20 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StorageBlobInventoryPolicyCompletedEventData"/>. </summary>
-        /// <param name="scheduleDateTime"> The time at which inventory policy was scheduled. </param>
+        /// <param name="scheduleDateTime"></param>
         internal StorageBlobInventoryPolicyCompletedEventData(DateTimeOffset scheduleDateTime)
         {
             ScheduleDateTime = scheduleDateTime;
         }
 
         /// <summary> Initializes a new instance of <see cref="StorageBlobInventoryPolicyCompletedEventData"/>. </summary>
-        /// <param name="scheduleDateTime"> The time at which inventory policy was scheduled. </param>
-        /// <param name="accountName"> The account name for which inventory policy is registered. </param>
-        /// <param name="ruleName"> The rule name for inventory policy. </param>
-        /// <param name="policyRunStatus"> The status of inventory run, it can be Succeeded/PartiallySucceeded/Failed. </param>
-        /// <param name="policyRunStatusMessage"> The status message for inventory run. </param>
-        /// <param name="policyRunId"> The policy run id for inventory run. </param>
-        /// <param name="manifestBlobUrl"> The blob URL for manifest file for inventory run. </param>
+        /// <param name="scheduleDateTime"></param>
+        /// <param name="accountName"></param>
+        /// <param name="ruleName"></param>
+        /// <param name="policyRunStatus"></param>
+        /// <param name="policyRunStatusMessage"></param>
+        /// <param name="policyRunId"></param>
+        /// <param name="manifestBlobUrl"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StorageBlobInventoryPolicyCompletedEventData(DateTimeOffset scheduleDateTime, string accountName, string ruleName, string policyRunStatus, string policyRunStatusMessage, string policyRunId, string manifestBlobUrl, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,19 +78,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which inventory policy was scheduled. </summary>
+        /// <summary> Gets the schedule date time. </summary>
         public DateTimeOffset ScheduleDateTime { get; }
-        /// <summary> The account name for which inventory policy is registered. </summary>
+        /// <summary> Gets the account name. </summary>
         public string AccountName { get; }
-        /// <summary> The rule name for inventory policy. </summary>
+        /// <summary> Gets the rule name. </summary>
         public string RuleName { get; }
-        /// <summary> The status of inventory run, it can be Succeeded/PartiallySucceeded/Failed. </summary>
+        /// <summary> Gets the policy run status. </summary>
         public string PolicyRunStatus { get; }
-        /// <summary> The status message for inventory run. </summary>
+        /// <summary> Gets the policy run status message. </summary>
         public string PolicyRunStatusMessage { get; }
-        /// <summary> The policy run id for inventory run. </summary>
+        /// <summary> Gets the policy run id. </summary>
         public string PolicyRunId { get; }
-        /// <summary> The blob URL for manifest file for inventory run. </summary>
+        /// <summary> Gets the manifest blob url. </summary>
         public string ManifestBlobUrl { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Specifies the SecurityType of the virtual machine. It has to be set to any specified value to enable UefiSettings. </summary>
+    /// <summary> The SecurityTypes. </summary>
     public readonly partial struct SecurityTypes : IEquatable<SecurityTypes>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Compute.Batch
 
         private const string TrustedLaunchValue = "trustedLaunch";
 
-        /// <summary> Trusted launch protects against advanced and persistent attack techniques. </summary>
+        /// <summary> trustedLaunch. </summary>
         public static SecurityTypes TrustedLaunch { get; } = new SecurityTypes(TrustedLaunchValue);
         /// <summary> Determines if two <see cref="SecurityTypes"/> values are the same. </summary>
         public static bool operator ==(SecurityTypes left, SecurityTypes right) => left.Equals(right);

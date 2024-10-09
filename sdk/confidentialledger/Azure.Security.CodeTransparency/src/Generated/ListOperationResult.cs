@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> The Response body of the ListOperations API. </summary>
+    /// <summary> The ListOperationResult. </summary>
     public partial class ListOperationResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Security.CodeTransparency
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ListOperationResult"/>. </summary>
-        /// <param name="operations"> List of operations. </param>
+        /// <param name="operations"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="operations"/> is null. </exception>
         internal ListOperationResult(IEnumerable<GetOperationResult> operations)
         {
@@ -57,7 +57,7 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Initializes a new instance of <see cref="ListOperationResult"/>. </summary>
-        /// <param name="operations"> List of operations. </param>
+        /// <param name="operations"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ListOperationResult(IReadOnlyList<GetOperationResult> operations, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Security.CodeTransparency
         {
         }
 
-        /// <summary> List of operations. </summary>
+        /// <summary> Gets the operations. </summary>
         public IReadOnlyList<GetOperationResult> Operations { get; }
     }
 }

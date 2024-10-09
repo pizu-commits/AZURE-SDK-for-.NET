@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The details describing tools that should be called to submit tool outputs. </summary>
+    /// <summary> The InternalSubmitToolOutputsDetails. </summary>
     internal partial class InternalSubmitToolOutputsDetails
     {
         /// <summary>
@@ -48,7 +48,6 @@ namespace Azure.AI.OpenAI.Assistants
 
         /// <summary> Initializes a new instance of <see cref="InternalSubmitToolOutputsDetails"/>. </summary>
         /// <param name="toolCalls">
-        /// The list of tool calls that must be resolved for the assistant thread run to continue.
         /// Please note <see cref="RequiredToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="RequiredFunctionToolCall"/>.
         /// </param>
@@ -62,7 +61,6 @@ namespace Azure.AI.OpenAI.Assistants
 
         /// <summary> Initializes a new instance of <see cref="InternalSubmitToolOutputsDetails"/>. </summary>
         /// <param name="toolCalls">
-        /// The list of tool calls that must be resolved for the assistant thread run to continue.
         /// Please note <see cref="RequiredToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="RequiredFunctionToolCall"/>.
         /// </param>
@@ -79,7 +77,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary>
-        /// The list of tool calls that must be resolved for the assistant thread run to continue.
+        /// Gets the tool calls
         /// Please note <see cref="RequiredToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="RequiredFunctionToolCall"/>.
         /// </summary>

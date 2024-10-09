@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The instance view status. </summary>
+    /// <summary> The InstanceViewStatus. </summary>
     public partial class InstanceViewStatus
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="InstanceViewStatus"/>. </summary>
-        /// <param name="code"> The status code. </param>
-        /// <param name="displayStatus"> The localized label for the status. </param>
-        /// <param name="level"> Level code. </param>
-        /// <param name="message"> The detailed status message. </param>
-        /// <param name="time"> The time of the status. </param>
+        /// <param name="code"></param>
+        /// <param name="displayStatus"></param>
+        /// <param name="level"></param>
+        /// <param name="message"></param>
+        /// <param name="time"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InstanceViewStatus(string code, string displayStatus, StatusLevelTypes? level, string message, DateTimeOffset? time, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The status code. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> The localized label for the status. </summary>
+        /// <summary> Gets the display status. </summary>
         public string DisplayStatus { get; }
-        /// <summary> Level code. </summary>
+        /// <summary> Gets the level. </summary>
         public StatusLevelTypes? Level { get; }
-        /// <summary> The detailed status message. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> The time of the status. </summary>
+        /// <summary> Gets the time. </summary>
         public DateTimeOffset? Time { get; }
     }
 }

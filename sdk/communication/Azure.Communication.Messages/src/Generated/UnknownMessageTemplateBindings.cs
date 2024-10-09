@@ -14,7 +14,7 @@ namespace Azure.Communication.Messages
     internal partial class UnknownMessageTemplateBindings : MessageTemplateBindings
     {
         /// <summary> Initializes a new instance of <see cref="UnknownMessageTemplateBindings"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a template bindings type. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownMessageTemplateBindings(MessageTemplateBindingsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(kind, serializedAdditionalRawData)
         {

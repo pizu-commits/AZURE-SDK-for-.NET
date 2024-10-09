@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A request body used to create a discovery group. </summary>
+    /// <summary> The DiscoveryGroupPayload. </summary>
     public partial class DiscoveryGroupPayload
     {
         /// <summary>
@@ -54,14 +54,14 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="DiscoveryGroupPayload"/>. </summary>
-        /// <param name="name"> The name for a disco group. </param>
-        /// <param name="description"> The description for a disco group. </param>
-        /// <param name="tier"> The tier for the disco group which will affect the algorithm used for the disco runs in this group. </param>
-        /// <param name="frequencyMilliseconds"> The frequency at which the disco group is supposed to be rerun in milliseconds. </param>
-        /// <param name="seeds"> The list of seeds used for the disco group runs. </param>
-        /// <param name="names"> The list of names used for the disco group runs. </param>
-        /// <param name="excludes"> The list of excludes used for the disco group runs, aka assets to exclude from the discovery algorithm. </param>
-        /// <param name="templateId"> The unique identifier for the disco template used for the disco group creation. </param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="tier"></param>
+        /// <param name="frequencyMilliseconds"></param>
+        /// <param name="seeds"></param>
+        /// <param name="names"></param>
+        /// <param name="excludes"></param>
+        /// <param name="templateId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DiscoveryGroupPayload(string name, string description, string tier, long? frequencyMilliseconds, IList<DiscoverySource> seeds, IList<string> names, IList<DiscoverySource> excludes, string templateId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,21 +76,21 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name for a disco group. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The description for a disco group. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The tier for the disco group which will affect the algorithm used for the disco runs in this group. </summary>
+        /// <summary> Gets or sets the tier. </summary>
         public string Tier { get; set; }
-        /// <summary> The frequency at which the disco group is supposed to be rerun in milliseconds. </summary>
+        /// <summary> Gets or sets the frequency milliseconds. </summary>
         public long? FrequencyMilliseconds { get; set; }
-        /// <summary> The list of seeds used for the disco group runs. </summary>
+        /// <summary> Gets the seeds. </summary>
         public IList<DiscoverySource> Seeds { get; }
-        /// <summary> The list of names used for the disco group runs. </summary>
+        /// <summary> Gets the names. </summary>
         public IList<string> Names { get; }
-        /// <summary> The list of excludes used for the disco group runs, aka assets to exclude from the discovery algorithm. </summary>
+        /// <summary> Gets the excludes. </summary>
         public IList<DiscoverySource> Excludes { get; }
-        /// <summary> The unique identifier for the disco template used for the disco group creation. </summary>
+        /// <summary> Gets or sets the template id. </summary>
         public string TemplateId { get; set; }
     }
 }

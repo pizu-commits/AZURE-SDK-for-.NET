@@ -10,12 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// The relationshipEndDef represents an end of the relationship. The end of the
-    /// relationship is defined by a type, an
-    /// attribute name, cardinality and whether
-    /// it  is the container end of the relationship.
-    /// </summary>
+    /// <summary> The AtlasRelationshipEndDef. </summary>
     public partial class AtlasRelationshipEndDef
     {
         /// <summary>
@@ -56,12 +51,12 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasRelationshipEndDef"/>. </summary>
-        /// <param name="cardinality"> single-valued attribute or multi-valued attribute. </param>
-        /// <param name="description"> The description of the relationship end definition. </param>
-        /// <param name="isContainer"> Determines if it is container. </param>
-        /// <param name="isLegacyAttribute"> Determines if it is a legacy attribute. </param>
-        /// <param name="name"> The name of the relationship end definition. </param>
-        /// <param name="type"> The type of the relationship end. </param>
+        /// <param name="cardinality"></param>
+        /// <param name="description"></param>
+        /// <param name="isContainer"></param>
+        /// <param name="isLegacyAttribute"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasRelationshipEndDef(CardinalityValue? cardinality, string description, bool? isContainer, bool? isLegacyAttribute, string name, string type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,17 +69,17 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> single-valued attribute or multi-valued attribute. </summary>
+        /// <summary> Gets or sets the cardinality. </summary>
         public CardinalityValue? Cardinality { get; set; }
-        /// <summary> The description of the relationship end definition. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> Determines if it is container. </summary>
+        /// <summary> Gets or sets the is container. </summary>
         public bool? IsContainer { get; set; }
-        /// <summary> Determines if it is a legacy attribute. </summary>
+        /// <summary> Gets or sets the is legacy attribute. </summary>
         public bool? IsLegacyAttribute { get; set; }
-        /// <summary> The name of the relationship end definition. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The type of the relationship end. </summary>
+        /// <summary> Gets or sets the type. </summary>
         public string Type { get; set; }
     }
 }

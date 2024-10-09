@@ -106,7 +106,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPoolRuntimeViews_Get</description>
+        /// <description>StandbyContainerGroupPoolRuntimeViewResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -118,7 +118,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="runtimeView"> The unique identifier for the runtime view. The input string should be the word 'latest', which will get the latest runtime view of the pool, otherwise the request will fail with NotFound exception. </param>
+        /// <param name="runtimeView"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="runtimeView"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="runtimeView"/> is an empty string, and was expected to be non-empty. </exception>
@@ -137,7 +137,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPoolRuntimeViews_Get</description>
+        /// <description>StandbyContainerGroupPoolRuntimeViewResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -149,7 +149,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="runtimeView"> The unique identifier for the runtime view. The input string should be the word 'latest', which will get the latest runtime view of the pool, otherwise the request will fail with NotFound exception. </param>
+        /// <param name="runtimeView"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="runtimeView"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="runtimeView"/> is an empty string, and was expected to be non-empty. </exception>
@@ -168,7 +168,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -208,7 +208,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -248,7 +248,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Delete</description>
+        /// <description>StandbyContainerGroupPoolResource_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -290,7 +290,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Delete</description>
+        /// <description>StandbyContainerGroupPoolResource_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -332,7 +332,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Update</description>
+        /// <description>StandbyContainerGroupPoolResource_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -344,7 +344,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="StandbyContainerGroupPoolPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<Response<StandbyContainerGroupPoolResource>> UpdateAsync(StandbyContainerGroupPoolPatch patch, CancellationToken cancellationToken = default)
@@ -374,7 +374,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Update</description>
+        /// <description>StandbyContainerGroupPoolResource_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -386,7 +386,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="StandbyContainerGroupPoolPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual Response<StandbyContainerGroupPoolResource> Update(StandbyContainerGroupPoolPatch patch, CancellationToken cancellationToken = default)
@@ -416,7 +416,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -478,7 +478,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -540,7 +540,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -597,7 +597,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -654,7 +654,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -714,7 +714,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>

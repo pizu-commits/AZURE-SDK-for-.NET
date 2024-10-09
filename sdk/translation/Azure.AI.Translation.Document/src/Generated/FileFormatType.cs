@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Format types. </summary>
+    /// <summary> The FileFormatType. </summary>
     public readonly partial struct FileFormatType : IEquatable<FileFormatType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Translation.Document
         private const string DocumentValue = "document";
         private const string GlossaryValue = "glossary";
 
-        /// <summary> Document type file format. </summary>
+        /// <summary> document. </summary>
         public static FileFormatType Document { get; } = new FileFormatType(DocumentValue);
-        /// <summary> Glossary type file format. </summary>
+        /// <summary> glossary. </summary>
         public static FileFormatType Glossary { get; } = new FileFormatType(GlossaryValue);
         /// <summary> Determines if two <see cref="FileFormatType"/> values are the same. </summary>
         public static bool operator ==(FileFormatType left, FileFormatType right) => left.Equals(right);

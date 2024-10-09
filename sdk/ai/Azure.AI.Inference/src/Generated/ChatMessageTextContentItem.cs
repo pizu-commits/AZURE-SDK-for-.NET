@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A structured chat content item containing plain text. </summary>
+    /// <summary> The ChatMessageTextContentItem. </summary>
     public partial class ChatMessageTextContentItem : ChatMessageContentItem
     {
         /// <summary> Initializes a new instance of <see cref="ChatMessageTextContentItem"/>. </summary>
-        /// <param name="text"> The content of the message. </param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         public ChatMessageTextContentItem(string text)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatMessageTextContentItem"/>. </summary>
-        /// <param name="type"> The discriminated object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="text"> The content of the message. </param>
+        /// <param name="text"></param>
         internal ChatMessageTextContentItem(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, string text) : base(type, serializedAdditionalRawData)
         {
             Text = text;
@@ -38,7 +38,7 @@ namespace Azure.AI.Inference
         {
         }
 
-        /// <summary> The content of the message. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

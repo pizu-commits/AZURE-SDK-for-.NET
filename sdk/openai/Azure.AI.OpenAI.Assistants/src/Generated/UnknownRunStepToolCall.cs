@@ -14,8 +14,8 @@ namespace Azure.AI.OpenAI.Assistants
     internal partial class UnknownRunStepToolCall : RunStepToolCall
     {
         /// <summary> Initializes a new instance of <see cref="UnknownRunStepToolCall"/>. </summary>
-        /// <param name="type"> The object type. </param>
-        /// <param name="id"> The ID of the tool call. This ID must be referenced when you submit tool outputs. </param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownRunStepToolCall(string type, string id, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(type, id, serializedAdditionalRawData)
         {

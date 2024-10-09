@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Metadata associated with the analyzed image. </summary>
+    /// <summary> The ImageMetadata. </summary>
     public partial class ImageMetadata
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ImageMetadata"/>. </summary>
-        /// <param name="height"> The height of the image in pixels. </param>
-        /// <param name="width"> The width of the image in pixels. </param>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
         internal ImageMetadata(int height, int width)
         {
             Height = height;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="ImageMetadata"/>. </summary>
-        /// <param name="height"> The height of the image in pixels. </param>
-        /// <param name="width"> The width of the image in pixels. </param>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ImageMetadata(int height, int width, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> The height of the image in pixels. </summary>
+        /// <summary> Gets the height. </summary>
         public int Height { get; }
-        /// <summary> The width of the image in pixels. </summary>
+        /// <summary> Gets the width. </summary>
         public int Width { get; }
     }
 }

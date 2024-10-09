@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The header of the related category. </summary>
+    /// <summary> The AtlasRelatedCategoryHeader. </summary>
     public partial class AtlasRelatedCategoryHeader
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasRelatedCategoryHeader"/>. </summary>
-        /// <param name="categoryGuid"> The GUID of the category. </param>
-        /// <param name="description"> The description of the category header. </param>
-        /// <param name="displayText"> The display text. </param>
-        /// <param name="parentCategoryGuid"> The GUID of the parent category. </param>
-        /// <param name="relationGuid"> The GUID of the relationship. </param>
+        /// <param name="categoryGuid"></param>
+        /// <param name="description"></param>
+        /// <param name="displayText"></param>
+        /// <param name="parentCategoryGuid"></param>
+        /// <param name="relationGuid"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasRelatedCategoryHeader(string categoryGuid, string description, string displayText, string parentCategoryGuid, string relationGuid, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the category. </summary>
+        /// <summary> Gets or sets the category guid. </summary>
         public string CategoryGuid { get; set; }
-        /// <summary> The description of the category header. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary> The GUID of the parent category. </summary>
+        /// <summary> Gets or sets the parent category guid. </summary>
         public string ParentCategoryGuid { get; set; }
-        /// <summary> The GUID of the relationship. </summary>
+        /// <summary> Gets or sets the relation guid. </summary>
         public string RelationGuid { get; set; }
     }
 }

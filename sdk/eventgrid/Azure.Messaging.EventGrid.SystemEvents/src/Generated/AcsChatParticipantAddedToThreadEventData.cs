@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatThreadParticipantAdded event. </summary>
+    /// <summary> The AcsChatParticipantAddedToThreadEventData. </summary>
     public partial class AcsChatParticipantAddedToThreadEventData : AcsChatEventInThreadBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatParticipantAddedToThreadEventData"/>. </summary>
-        /// <param name="time"> The time at which the user was added to the thread. </param>
-        /// <param name="addedByCommunicationIdentifier"> The communication identifier of the user who added the user. </param>
-        /// <param name="participantAdded"> The details of the user who was added. </param>
+        /// <param name="time"></param>
+        /// <param name="addedByCommunicationIdentifier"></param>
+        /// <param name="participantAdded"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="addedByCommunicationIdentifier"/> or <paramref name="participantAdded"/> is null. </exception>
         internal AcsChatParticipantAddedToThreadEventData(DateTimeOffset time, CommunicationIdentifierModel addedByCommunicationIdentifier, AcsChatThreadParticipantProperties participantAdded)
         {
@@ -29,13 +29,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatParticipantAddedToThreadEventData"/>. </summary>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="time"> The time at which the user was added to the thread. </param>
-        /// <param name="addedByCommunicationIdentifier"> The communication identifier of the user who added the user. </param>
-        /// <param name="participantAdded"> The details of the user who was added. </param>
-        /// <param name="version"> The version of the thread. </param>
+        /// <param name="time"></param>
+        /// <param name="addedByCommunicationIdentifier"></param>
+        /// <param name="participantAdded"></param>
+        /// <param name="version"></param>
         internal AcsChatParticipantAddedToThreadEventData(string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, DateTimeOffset time, CommunicationIdentifierModel addedByCommunicationIdentifier, AcsChatThreadParticipantProperties participantAdded, long? version) : base(transactionId, threadId, serializedAdditionalRawData)
         {
             Time = time;
@@ -49,13 +49,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which the user was added to the thread. </summary>
+        /// <summary> Gets the time. </summary>
         public DateTimeOffset Time { get; }
-        /// <summary> The communication identifier of the user who added the user. </summary>
+        /// <summary> Gets the added by communication identifier. </summary>
         public CommunicationIdentifierModel AddedByCommunicationIdentifier { get; }
-        /// <summary> The details of the user who was added. </summary>
+        /// <summary> Gets the participant added. </summary>
         public AcsChatThreadParticipantProperties ParticipantAdded { get; }
-        /// <summary> The version of the thread. </summary>
+        /// <summary> Gets the version. </summary>
         public long? Version { get; }
     }
 }

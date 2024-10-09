@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.AVS.ScriptExecutionFinished event. </summary>
+    /// <summary> The AvsScriptExecutionFinishedEventData. </summary>
     public partial class AvsScriptExecutionFinishedEventData : AvsScriptExecutionEventData
     {
         /// <summary> Initializes a new instance of <see cref="AvsScriptExecutionFinishedEventData"/>. </summary>
-        /// <param name="namedOutputs"> Named outputs of completed execution, if any. </param>
+        /// <param name="namedOutputs"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="namedOutputs"/> is null. </exception>
         internal AvsScriptExecutionFinishedEventData(IReadOnlyDictionary<string, string> namedOutputs)
         {
@@ -24,11 +24,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsScriptExecutionFinishedEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
-        /// <param name="cmdletId"> Cmdlet referenced in the execution that caused this event. </param>
-        /// <param name="output"> Stdout outputs from the execution, if any. </param>
+        /// <param name="operationId"></param>
+        /// <param name="cmdletId"></param>
+        /// <param name="output"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="namedOutputs"> Named outputs of completed execution, if any. </param>
+        /// <param name="namedOutputs"></param>
         internal AvsScriptExecutionFinishedEventData(string operationId, string cmdletId, IReadOnlyList<string> output, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyDictionary<string, string> namedOutputs) : base(operationId, cmdletId, output, serializedAdditionalRawData)
         {
             NamedOutputs = namedOutputs;
@@ -39,7 +39,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Named outputs of completed execution, if any. </summary>
+        /// <summary> Gets the named outputs. </summary>
         public IReadOnlyDictionary<string, string> NamedOutputs { get; }
     }
 }

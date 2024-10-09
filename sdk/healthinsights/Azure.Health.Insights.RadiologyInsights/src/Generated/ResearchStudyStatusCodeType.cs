@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> https://www.hl7.org/fhir/R4/codesystem-research-study-status.html. </summary>
+    /// <summary> The ResearchStudyStatusCodeType. </summary>
     public readonly partial struct ResearchStudyStatusCodeType : IEquatable<ResearchStudyStatusCodeType>
     {
         private readonly string _value;
@@ -34,27 +34,27 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string TemporarilyClosedToAccrualAndInterventionValue = "temporarily-closed-to-accrual-and-intervention";
         private const string WithdrawnValue = "withdrawn";
 
-        /// <summary> The study is open for accrual. </summary>
+        /// <summary> active. </summary>
         public static ResearchStudyStatusCodeType Active { get; } = new ResearchStudyStatusCodeType(ActiveValue);
-        /// <summary> Study is completed prematurely and will not resume; patients are no longer examined nor treated. </summary>
+        /// <summary> administratively-completed. </summary>
         public static ResearchStudyStatusCodeType AdministrativelyCompleted { get; } = new ResearchStudyStatusCodeType(AdministrativelyCompletedValue);
-        /// <summary> Protocol is approved by the review board. </summary>
+        /// <summary> approved. </summary>
         public static ResearchStudyStatusCodeType Approved { get; } = new ResearchStudyStatusCodeType(ApprovedValue);
-        /// <summary> Study is closed for accrual; patients can be examined and treated. </summary>
+        /// <summary> closed-to-accrual. </summary>
         public static ResearchStudyStatusCodeType ClosedToAccrual { get; } = new ResearchStudyStatusCodeType(ClosedToAccrualValue);
-        /// <summary> The study is closed to accrual and intervention, i.e. the study is closed to enrollment, all study subjects have completed treatment or intervention but are still being followed according to the primary objective of the study. </summary>
+        /// <summary> closed-to-accrual-and-intervention. </summary>
         public static ResearchStudyStatusCodeType ClosedToAccrualAndIntervention { get; } = new ResearchStudyStatusCodeType(ClosedToAccrualAndInterventionValue);
-        /// <summary> Study is closed to accrual and intervention, i.e. the study is closed to enrollment, all study subjects have completed treatment or intervention but are still being followed according to the primary objective of the study. </summary>
+        /// <summary> completed. </summary>
         public static ResearchStudyStatusCodeType Completed { get; } = new ResearchStudyStatusCodeType(CompletedValue);
-        /// <summary> Protocol was disapproved by the review board. </summary>
+        /// <summary> disapproved. </summary>
         public static ResearchStudyStatusCodeType Disapproved { get; } = new ResearchStudyStatusCodeType(DisapprovedValue);
-        /// <summary> Protocol is submitted to the review board for approval. </summary>
+        /// <summary> in-review. </summary>
         public static ResearchStudyStatusCodeType InReview { get; } = new ResearchStudyStatusCodeType(InReviewValue);
-        /// <summary> The study is temporarily closed to accrual; a pause in accrual while study is reviewed, but is expected to resume. </summary>
+        /// <summary> temporarily-closed-to-accrual. </summary>
         public static ResearchStudyStatusCodeType TemporarilyClosedToAccrual { get; } = new ResearchStudyStatusCodeType(TemporarilyClosedToAccrualValue);
-        /// <summary> Study is temporarily closed for accrual; can be potentially resumed in the future. </summary>
+        /// <summary> temporarily-closed-to-accrual-and-intervention. </summary>
         public static ResearchStudyStatusCodeType TemporarilyClosedToAccrualAndIntervention { get; } = new ResearchStudyStatusCodeType(TemporarilyClosedToAccrualAndInterventionValue);
-        /// <summary> Protocol was withdrawn by the lead organization. </summary>
+        /// <summary> withdrawn. </summary>
         public static ResearchStudyStatusCodeType Withdrawn { get; } = new ResearchStudyStatusCodeType(WithdrawnValue);
         /// <summary> Determines if two <see cref="ResearchStudyStatusCodeType"/> values are the same. </summary>
         public static bool operator ==(ResearchStudyStatusCodeType left, ResearchStudyStatusCodeType right) => left.Equals(right);

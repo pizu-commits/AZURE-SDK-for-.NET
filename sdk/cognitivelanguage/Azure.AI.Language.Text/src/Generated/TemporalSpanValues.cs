@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Temporal span object. </summary>
+    /// <summary> The TemporalSpanValues. </summary>
     public partial class TemporalSpanValues
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TemporalSpanValues"/>. </summary>
-        /// <param name="begin"> Start value for the span. </param>
-        /// <param name="end"> End value for the span. </param>
-        /// <param name="duration"> An optional duration value formatted based on the ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601#Durations). </param>
-        /// <param name="modifier"> Modifier for datetime to indicate point of reference like before, after etc. </param>
-        /// <param name="timex"> An optional triplet containing the beginning, the end, and the duration all stated as ISO 8601 formatted strings. </param>
+        /// <param name="begin"></param>
+        /// <param name="end"></param>
+        /// <param name="duration"></param>
+        /// <param name="modifier"></param>
+        /// <param name="timex"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TemporalSpanValues(string begin, string end, string duration, TemporalModifier? modifier, string timex, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Start value for the span. </summary>
+        /// <summary> Gets the begin. </summary>
         public string Begin { get; }
-        /// <summary> End value for the span. </summary>
+        /// <summary> Gets the end. </summary>
         public string End { get; }
-        /// <summary> An optional duration value formatted based on the ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601#Durations). </summary>
+        /// <summary> Gets the duration. </summary>
         public string Duration { get; }
-        /// <summary> Modifier for datetime to indicate point of reference like before, after etc. </summary>
+        /// <summary> Gets the modifier. </summary>
         public TemporalModifier? Modifier { get; }
-        /// <summary> An optional triplet containing the beginning, the end, and the duration all stated as ISO 8601 formatted strings. </summary>
+        /// <summary> Gets the timex. </summary>
         public string Timex { get; }
     }
 }

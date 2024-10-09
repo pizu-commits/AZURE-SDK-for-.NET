@@ -17,7 +17,7 @@ using Azure.Core.Pipeline;
 namespace Azure.AI.OpenAI.Assistants
 {
     // Data plane generated client.
-    /// <summary> Azure OpenAI APIs for Assistants. </summary>
+    /// <summary> The Assistants service client. </summary>
     public partial class AssistantsClient
     {
         private const string AuthorizationHeader = "api-key";
@@ -39,7 +39,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new assistant. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AssistantCreationOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         public virtual async Task<Response<Assistant>> CreateAssistantAsync(AssistantCreationOptions body, CancellationToken cancellationToken = default)
@@ -53,7 +53,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new assistant. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AssistantCreationOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         public virtual Response<Assistant> CreateAssistant(AssistantCreationOptions body, CancellationToken cancellationToken = default)
@@ -133,10 +133,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of assistants that were previously created. </summary>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual async Task<Response<InternalOpenAIPageableListOfAssistant>> InternalGetAssistantsAsync(int? limit = null, ListSortOrder? order = null, string after = null, string before = null, CancellationToken cancellationToken = default)
         {
@@ -146,10 +146,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of assistants that were previously created. </summary>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Response<InternalOpenAIPageableListOfAssistant> InternalGetAssistants(int? limit = null, ListSortOrder? order = null, string after = null, string before = null, CancellationToken cancellationToken = default)
         {
@@ -173,10 +173,10 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -211,10 +211,10 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -235,7 +235,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Retrieves an existing assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -249,7 +249,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Retrieves an existing assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -272,7 +272,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -306,7 +306,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -331,8 +331,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant to modify. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="UpdateAssistantOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -348,8 +348,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant to modify. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="UpdateAssistantOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -374,7 +374,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to modify. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="content"/> is null. </exception>
@@ -410,7 +410,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to modify. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="content"/> is null. </exception>
@@ -437,7 +437,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Deletes an assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant to delete. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -451,7 +451,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Deletes an assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant to delete. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -479,7 +479,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to delete. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -518,7 +518,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to delete. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -543,8 +543,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Attaches a previously uploaded file to an assistant for use by tools that can read files. </summary>
-        /// <param name="assistantId"> The ID of the assistant to attach the file to. </param>
-        /// <param name="fileId"> The ID of the previously uploaded file to attach. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -560,8 +560,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Attaches a previously uploaded file to an assistant for use by tools that can read files. </summary>
-        /// <param name="assistantId"> The ID of the assistant to attach the file to. </param>
-        /// <param name="fileId"> The ID of the previously uploaded file to attach. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -586,7 +586,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to attach the file to. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="content"/> is null. </exception>
@@ -622,7 +622,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to attach the file to. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="content"/> is null. </exception>
@@ -649,11 +649,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of files attached to a specific assistant, as used by tools that can read files. </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve the list of attached files for. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -667,11 +667,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of files attached to a specific assistant, as used by tools that can read files. </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve the list of attached files for. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -699,11 +699,11 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve the list of attached files for. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -742,11 +742,11 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant to retrieve the list of attached files for. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -771,8 +771,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Retrieves a file attached to an assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant associated with the attached file. </param>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -787,8 +787,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Retrieves a file attached to an assistant. </summary>
-        /// <param name="assistantId"> The ID of the assistant associated with the attached file. </param>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -812,8 +812,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant associated with the attached file. </param>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -848,8 +848,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant associated with the attached file. </param>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -878,8 +878,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// Unlinks a previously attached file from an assistant, rendering it unavailable for use by tools that can read
         /// files.
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant from which the specified file should be unlinked. </param>
-        /// <param name="fileId"> The ID of the file to unlink from the specified assistant. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -897,8 +897,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// Unlinks a previously attached file from an assistant, rendering it unavailable for use by tools that can read
         /// files.
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant from which the specified file should be unlinked. </param>
-        /// <param name="fileId"> The ID of the file to unlink from the specified assistant. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -928,8 +928,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant from which the specified file should be unlinked. </param>
-        /// <param name="fileId"> The ID of the file to unlink from the specified assistant. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -970,8 +970,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="assistantId"> The ID of the assistant from which the specified file should be unlinked. </param>
-        /// <param name="fileId"> The ID of the file to unlink from the specified assistant. </param>
+        /// <param name="assistantId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="assistantId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -997,7 +997,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new thread. Threads contain messages and can be run by assistants. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AssistantThreadCreationOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         public virtual async Task<Response<AssistantThread>> CreateThreadAsync(AssistantThreadCreationOptions body, CancellationToken cancellationToken = default)
@@ -1011,7 +1011,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new thread. Threads contain messages and can be run by assistants. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AssistantThreadCreationOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         public virtual Response<AssistantThread> CreateThread(AssistantThreadCreationOptions body, CancellationToken cancellationToken = default)
@@ -1091,7 +1091,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets information about an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1105,7 +1105,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets information about an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1128,7 +1128,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1162,7 +1162,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1187,8 +1187,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to modify. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1203,8 +1203,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to modify. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1228,7 +1228,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to modify. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
@@ -1264,7 +1264,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to modify. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
@@ -1291,7 +1291,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Deletes an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to delete. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1305,7 +1305,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Deletes an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to delete. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1333,7 +1333,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to delete. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1372,7 +1372,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to delete. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1397,11 +1397,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new message on a specified thread. </summary>
-        /// <param name="threadId"> The ID of the thread to create the new message on. </param>
-        /// <param name="role"> The role to associate with the new message. </param>
-        /// <param name="content"> The textual content for the new message. </param>
-        /// <param name="fileIds"> A list of up to 10 file IDs to associate with the message, as used by tools like 'code_interpreter' or 'retrieval' that can read files. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1417,11 +1417,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new message on a specified thread. </summary>
-        /// <param name="threadId"> The ID of the thread to create the new message on. </param>
-        /// <param name="role"> The role to associate with the new message. </param>
-        /// <param name="content"> The textual content for the new message. </param>
-        /// <param name="fileIds"> A list of up to 10 file IDs to associate with the message, as used by tools like 'code_interpreter' or 'retrieval' that can read files. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1446,7 +1446,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to create the new message on. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
@@ -1482,7 +1482,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to create the new message on. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
@@ -1509,11 +1509,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of messages that exist on a thread. </summary>
-        /// <param name="threadId"> The ID of the thread to list messages from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1527,11 +1527,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of messages that exist on a thread. </summary>
-        /// <param name="threadId"> The ID of the thread to list messages from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1559,11 +1559,11 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to list messages from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1602,11 +1602,11 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to list messages from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1631,8 +1631,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets an existing message from an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve the specified message from. </param>
-        /// <param name="messageId"> The ID of the message to retrieve from the specified thread. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1647,8 +1647,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets an existing message from an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve the specified message from. </param>
-        /// <param name="messageId"> The ID of the message to retrieve from the specified thread. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1672,8 +1672,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve the specified message from. </param>
-        /// <param name="messageId"> The ID of the message to retrieve from the specified thread. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1708,8 +1708,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve the specified message from. </param>
-        /// <param name="messageId"> The ID of the message to retrieve from the specified thread. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1735,9 +1735,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing message on an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread containing the specified message to modify. </param>
-        /// <param name="messageId"> The ID of the message to modify on the specified thread. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1753,9 +1753,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing message on an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread containing the specified message to modify. </param>
-        /// <param name="messageId"> The ID of the message to modify on the specified thread. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1780,8 +1780,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread containing the specified message to modify. </param>
-        /// <param name="messageId"> The ID of the message to modify on the specified thread. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="content"/> is null. </exception>
@@ -1818,8 +1818,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread containing the specified message to modify. </param>
-        /// <param name="messageId"> The ID of the message to modify on the specified thread. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="content"/> is null. </exception>
@@ -1847,12 +1847,12 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of previously uploaded files associated with a message from a thread. </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to list files from. </param>
-        /// <param name="messageId"> The ID of the message to list files from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1867,12 +1867,12 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of previously uploaded files associated with a message from a thread. </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to list files from. </param>
-        /// <param name="messageId"> The ID of the message to list files from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1901,12 +1901,12 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to list files from. </param>
-        /// <param name="messageId"> The ID of the message to list files from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1946,12 +1946,12 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to list files from. </param>
-        /// <param name="messageId"> The ID of the message to list files from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="messageId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="messageId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1977,9 +1977,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets information about a file attachment to a message within a thread. </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to get information from. </param>
-        /// <param name="messageId"> The ID of the message to get information from. </param>
-        /// <param name="fileId"> The ID of the file to get information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1995,9 +1995,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets information about a file attachment to a message within a thread. </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to get information from. </param>
-        /// <param name="messageId"> The ID of the message to get information from. </param>
-        /// <param name="fileId"> The ID of the file to get information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2022,9 +2022,9 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to get information from. </param>
-        /// <param name="messageId"> The ID of the message to get information from. </param>
-        /// <param name="fileId"> The ID of the file to get information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2060,9 +2060,9 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread containing the message to get information from. </param>
-        /// <param name="messageId"> The ID of the message to get information from. </param>
-        /// <param name="fileId"> The ID of the file to get information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="messageId"> The <see cref="string"/> to use. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="messageId"/> or <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2089,8 +2089,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new run for an assistant thread. </summary>
-        /// <param name="threadId"> The ID of the thread to run. </param>
-        /// <param name="createRunOptions"> The details for the run to create. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="createRunOptions"> The <see cref="CreateRunOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="createRunOptions"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2106,8 +2106,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new run for an assistant thread. </summary>
-        /// <param name="threadId"> The ID of the thread to run. </param>
-        /// <param name="createRunOptions"> The details for the run to create. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="createRunOptions"> The <see cref="CreateRunOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="createRunOptions"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2132,7 +2132,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to run. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
@@ -2168,7 +2168,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to run. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="content"/> is null. </exception>
@@ -2195,11 +2195,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of runs for a specified thread. </summary>
-        /// <param name="threadId"> The ID of the thread to list runs from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2213,11 +2213,11 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of runs for a specified thread. </summary>
-        /// <param name="threadId"> The ID of the thread to list runs from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2245,11 +2245,11 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to list runs from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2288,11 +2288,11 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to list runs from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2317,8 +2317,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets an existing run from an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve run information from. </param>
-        /// <param name="runId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2333,8 +2333,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets an existing run from an existing thread. </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve run information from. </param>
-        /// <param name="runId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2358,8 +2358,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve run information from. </param>
-        /// <param name="runId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2394,8 +2394,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread to retrieve run information from. </param>
-        /// <param name="runId"> The ID of the thread to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2421,9 +2421,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing thread run. </summary>
-        /// <param name="threadId"> The ID of the thread associated with the specified run. </param>
-        /// <param name="runId"> The ID of the run to modify. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2439,9 +2439,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Modifies an existing thread run. </summary>
-        /// <param name="threadId"> The ID of the thread associated with the specified run. </param>
-        /// <param name="runId"> The ID of the run to modify. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="metadata"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2466,8 +2466,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread associated with the specified run. </param>
-        /// <param name="runId"> The ID of the run to modify. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="content"/> is null. </exception>
@@ -2504,8 +2504,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread associated with the specified run. </param>
-        /// <param name="runId"> The ID of the run to modify. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="content"/> is null. </exception>
@@ -2533,9 +2533,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Submits outputs from tools as requested by tool calls in a run. Runs that need submitted tool outputs will have a status of 'requires_action' with a required_action.type of 'submit_tool_outputs'. </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run that requires tool outputs. </param>
-        /// <param name="toolOutputs"> The list of tool outputs requested by tool calls from the specified run. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="toolOutputs"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="toolOutputs"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2552,9 +2552,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Submits outputs from tools as requested by tool calls in a run. Runs that need submitted tool outputs will have a status of 'requires_action' with a required_action.type of 'submit_tool_outputs'. </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run that requires tool outputs. </param>
-        /// <param name="toolOutputs"> The list of tool outputs requested by tool calls from the specified run. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="toolOutputs"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="toolOutputs"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2580,8 +2580,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run that requires tool outputs. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="content"/> is null. </exception>
@@ -2618,8 +2618,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run that requires tool outputs. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="content"/> is null. </exception>
@@ -2647,8 +2647,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Cancels a run of an in progress thread. </summary>
-        /// <param name="threadId"> The ID of the thread being run. </param>
-        /// <param name="runId"> The ID of the run to cancel. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2663,8 +2663,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Cancels a run of an in progress thread. </summary>
-        /// <param name="threadId"> The ID of the thread being run. </param>
-        /// <param name="runId"> The ID of the run to cancel. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2688,8 +2688,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread being run. </param>
-        /// <param name="runId"> The ID of the run to cancel. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2724,8 +2724,8 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread being run. </param>
-        /// <param name="runId"> The ID of the run to cancel. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2751,7 +2751,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new assistant thread and immediately starts a run using that new thread. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="CreateAndRunThreadOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         public virtual async Task<Response<ThreadRun>> CreateThreadAndRunAsync(CreateAndRunThreadOptions body, CancellationToken cancellationToken = default)
@@ -2765,7 +2765,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Creates a new assistant thread and immediately starts a run using that new thread. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="CreateAndRunThreadOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         public virtual Response<ThreadRun> CreateThreadAndRun(CreateAndRunThreadOptions body, CancellationToken cancellationToken = default)
@@ -2845,9 +2845,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a single run step from a thread run. </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the specific run to retrieve the step from. </param>
-        /// <param name="stepId"> The ID of the step to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="stepId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2863,9 +2863,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a single run step from a thread run. </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the specific run to retrieve the step from. </param>
-        /// <param name="stepId"> The ID of the step to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="stepId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2890,9 +2890,9 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the specific run to retrieve the step from. </param>
-        /// <param name="stepId"> The ID of the step to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="stepId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2928,9 +2928,9 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the specific run to retrieve the step from. </param>
-        /// <param name="stepId"> The ID of the step to retrieve information about. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="stepId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/>, <paramref name="runId"/> or <paramref name="stepId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2957,12 +2957,12 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of run steps from a thread run. </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run to list steps from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2977,12 +2977,12 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of run steps from a thread run. </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run to list steps from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="ListSortOrder"/>? to use. </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3011,12 +3011,12 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run to list steps from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3056,12 +3056,12 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="threadId"> The ID of the thread that was run. </param>
-        /// <param name="runId"> The ID of the run to list steps from. </param>
-        /// <param name="limit"> A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 20. </param>
-        /// <param name="order"> Sort order by the created_at timestamp of the objects. asc for ascending order and desc for descending order. Allowed values: "asc" | "desc". </param>
-        /// <param name="after"> A cursor for use in pagination. after is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include after=obj_foo in order to fetch the next page of the list. </param>
-        /// <param name="before"> A cursor for use in pagination. before is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with obj_foo, your subsequent call can include before=obj_foo in order to fetch the previous page of the list. </param>
+        /// <param name="threadId"> The <see cref="string"/> to use. </param>
+        /// <param name="runId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="order"> The <see cref="string"/> to use. Allowed values: "asc" | "desc". </param>
+        /// <param name="after"> The <see cref="string"/> to use. </param>
+        /// <param name="before"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="threadId"/> or <paramref name="runId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="threadId"/> or <paramref name="runId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3087,7 +3087,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of previously uploaded files. </summary>
-        /// <param name="purpose"> A value that, when provided, limits list results to files matching the corresponding purpose. </param>
+        /// <param name="purpose"> The <see cref="OpenAIFilePurpose"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual async Task<Response<InternalFileListResponse>> InternalListFilesAsync(OpenAIFilePurpose? purpose = null, CancellationToken cancellationToken = default)
         {
@@ -3097,7 +3097,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Gets a list of previously uploaded files. </summary>
-        /// <param name="purpose"> A value that, when provided, limits list results to files matching the corresponding purpose. </param>
+        /// <param name="purpose"> The <see cref="OpenAIFilePurpose"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         internal virtual Response<InternalFileListResponse> InternalListFiles(OpenAIFilePurpose? purpose = null, CancellationToken cancellationToken = default)
         {
@@ -3121,7 +3121,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="purpose"> A value that, when provided, limits list results to files matching the corresponding purpose. Allowed values: "fine-tune" | "fine-tune-results" | "assistants" | "assistants_output". </param>
+        /// <param name="purpose"> The <see cref="string"/> to use. Allowed values: "fine-tune" | "fine-tune-results" | "assistants" | "assistants_output". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -3156,7 +3156,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="purpose"> A value that, when provided, limits list results to files matching the corresponding purpose. Allowed values: "fine-tune" | "fine-tune-results" | "assistants" | "assistants_output". </param>
+        /// <param name="purpose"> The <see cref="string"/> to use. Allowed values: "fine-tune" | "fine-tune-results" | "assistants" | "assistants_output". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -3177,9 +3177,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Uploads a file for use by other operations. </summary>
-        /// <param name="data"> The file data (not filename) to upload. </param>
-        /// <param name="purpose"> The intended purpose of the file. </param>
-        /// <param name="filename"> A filename to associate with the uploaded data. </param>
+        /// <param name="data"></param>
+        /// <param name="purpose"></param>
+        /// <param name="filename"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual async Task<Response<OpenAIFile>> UploadFileAsync(Stream data, OpenAIFilePurpose purpose, string filename = null, CancellationToken cancellationToken = default)
@@ -3194,9 +3194,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Uploads a file for use by other operations. </summary>
-        /// <param name="data"> The file data (not filename) to upload. </param>
-        /// <param name="purpose"> The intended purpose of the file. </param>
-        /// <param name="filename"> A filename to associate with the uploaded data. </param>
+        /// <param name="data"></param>
+        /// <param name="purpose"></param>
+        /// <param name="filename"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="data"/> is null. </exception>
         public virtual Response<OpenAIFile> UploadFile(Stream data, OpenAIFilePurpose purpose, string filename = null, CancellationToken cancellationToken = default)
@@ -3221,7 +3221,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The 'content-type' header value, always 'multipart/format-data' for this operation. Allowed values: "multipart/form-data". </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -3255,7 +3255,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The 'content-type' header value, always 'multipart/format-data' for this operation. Allowed values: "multipart/form-data". </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -3279,7 +3279,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Delete a previously uploaded file. </summary>
-        /// <param name="fileId"> The ID of the file to delete. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3293,7 +3293,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Delete a previously uploaded file. </summary>
-        /// <param name="fileId"> The ID of the file to delete. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3321,7 +3321,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fileId"> The ID of the file to delete. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3360,7 +3360,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fileId"> The ID of the file to delete. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3385,7 +3385,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Returns information about a specific file. Does not retrieve file content. </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3399,7 +3399,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Returns information about a specific file. Does not retrieve file content. </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3422,7 +3422,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3456,7 +3456,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3481,7 +3481,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Returns information about a specific file. Does not retrieve file content. </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3495,7 +3495,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Returns information about a specific file. Does not retrieve file content. </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3518,7 +3518,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3552,7 +3552,7 @@ namespace Azure.AI.OpenAI.Assistants
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fileId"> The ID of the file to retrieve. </param>
+        /// <param name="fileId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fileId"/> is an empty string, and was expected to be non-empty. </exception>

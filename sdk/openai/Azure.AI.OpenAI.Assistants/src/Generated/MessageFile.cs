@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> Information about a file attached to an assistant thread message. </summary>
+    /// <summary> The MessageFile. </summary>
     public partial class MessageFile
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MessageFile"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="messageId"> The ID of the message that this file is attached to. </param>
+        /// <param name="id"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="messageId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="messageId"/> is null. </exception>
         internal MessageFile(string id, DateTimeOffset createdAt, string messageId)
         {
@@ -61,10 +61,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageFile"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="object"> The object type, which is always 'thread.message.file'. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="messageId"> The ID of the message that this file is attached to. </param>
+        /// <param name="id"></param>
+        /// <param name="object"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="messageId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MessageFile(string id, string @object, DateTimeOffset createdAt, string messageId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,12 +80,12 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The identifier, which can be referenced in API endpoints. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
 
-        /// <summary> The Unix timestamp, in seconds, representing when this object was created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset CreatedAt { get; }
-        /// <summary> The ID of the message that this file is attached to. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
     }
 }

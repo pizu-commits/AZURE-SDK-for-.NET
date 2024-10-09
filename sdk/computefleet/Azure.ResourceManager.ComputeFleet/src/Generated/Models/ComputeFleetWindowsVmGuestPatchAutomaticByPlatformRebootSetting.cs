@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies the reboot setting for all AutomaticByPlatform patch installation operations. </summary>
+    /// <summary> The ComputeFleetWindowsVMGuestPatchAutomaticByPlatformRebootSetting. </summary>
     public readonly partial struct ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting : IEquatable<ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string NeverValue = "Never";
         private const string AlwaysValue = "Always";
 
-        /// <summary> Unknown Reboot setting. </summary>
+        /// <summary> Unknown. </summary>
         public static ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting Unknown { get; } = new ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting(UnknownValue);
-        /// <summary> IfRequired Reboot setting. </summary>
+        /// <summary> IfRequired. </summary>
         public static ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting IfRequired { get; } = new ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting(IfRequiredValue);
-        /// <summary> Never Reboot setting. </summary>
+        /// <summary> Never. </summary>
         public static ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting Never { get; } = new ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting(NeverValue);
-        /// <summary> Always Reboot setting. </summary>
+        /// <summary> Always. </summary>
         public static ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting Always { get; } = new ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting(AlwaysValue);
         /// <summary> Determines if two <see cref="ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting left, ComputeFleetWindowsVmGuestPatchAutomaticByPlatformRebootSetting right) => left.Equals(right);

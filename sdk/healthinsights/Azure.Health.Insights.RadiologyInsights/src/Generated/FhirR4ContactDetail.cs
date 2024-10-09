@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Contact details (See: https://www.hl7.org/fhir/R4/metadatatypes.html#ContactDetail). </summary>
+    /// <summary> The Fhir_R4_ContactDetail. </summary>
     public partial class FhirR4ContactDetail : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4ContactDetail"/>. </summary>
@@ -20,20 +20,20 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4ContactDetail"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="name"> Name of an individual to contact. </param>
-        /// <param name="telecom"> Contact details for individual or organization. </param>
+        /// <param name="name"></param>
+        /// <param name="telecom"></param>
         internal FhirR4ContactDetail(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, string name, IReadOnlyList<FhirR4ContactPoint> telecom) : base(id, extension, serializedAdditionalRawData)
         {
             Name = name;
             Telecom = telecom;
         }
 
-        /// <summary> Name of an individual to contact. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Contact details for individual or organization. </summary>
+        /// <summary> Gets the telecom. </summary>
         public IReadOnlyList<FhirR4ContactPoint> Telecom { get; }
     }
 }

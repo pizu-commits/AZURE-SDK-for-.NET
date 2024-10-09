@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> State of standby virtual machines. </summary>
+    /// <summary> The StandbyVirtualMachineState. </summary>
     public readonly partial struct StandbyVirtualMachineState : IEquatable<StandbyVirtualMachineState>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private const string RunningValue = "Running";
         private const string DeallocatedValue = "Deallocated";
 
-        /// <summary> The virtual machine is up and running. </summary>
+        /// <summary> Running. </summary>
         public static StandbyVirtualMachineState Running { get; } = new StandbyVirtualMachineState(RunningValue);
-        /// <summary> The virtual machine has released the lease on the underlying hardware and is powered off. </summary>
+        /// <summary> Deallocated. </summary>
         public static StandbyVirtualMachineState Deallocated { get; } = new StandbyVirtualMachineState(DeallocatedValue);
         /// <summary> Determines if two <see cref="StandbyVirtualMachineState"/> values are the same. </summary>
         public static bool operator ==(StandbyVirtualMachineState left, StandbyVirtualMachineState right) => left.Equals(right);

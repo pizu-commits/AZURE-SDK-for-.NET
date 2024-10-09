@@ -12,10 +12,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Describes a virtual machines scale set IP Configuration's PublicIPAddress
-    /// configuration
-    /// </summary>
+    /// <summary> The ComputeFleetVmssPublicIPAddressConfigurationProperties. </summary>
     public partial class ComputeFleetVmssPublicIPAddressConfigurationProperties
     {
         /// <summary>
@@ -57,16 +54,12 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssPublicIPAddressConfigurationProperties"/>. </summary>
-        /// <param name="idleTimeoutInMinutes"> The idle timeout of the public IP address. </param>
-        /// <param name="dnsSettings"> The dns settings to be applied on the publicIP addresses . </param>
-        /// <param name="ipTags"> The list of IP tags associated with the public IP address. </param>
-        /// <param name="publicIPPrefix"> The PublicIPPrefix from which to allocate publicIP addresses. </param>
-        /// <param name="publicIPAddressVersion">
-        /// Available from Api-Version 2019-07-01 onwards, it represents whether the
-        /// specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4. Possible
-        /// values are: 'IPv4' and 'IPv6'.
-        /// </param>
-        /// <param name="deleteOption"> Specify what happens to the public IP when the VM is deleted. </param>
+        /// <param name="idleTimeoutInMinutes"></param>
+        /// <param name="dnsSettings"></param>
+        /// <param name="ipTags"></param>
+        /// <param name="publicIPPrefix"> Gets or sets the public ip prefix. </param>
+        /// <param name="publicIPAddressVersion"></param>
+        /// <param name="deleteOption"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssPublicIPAddressConfigurationProperties(int? idleTimeoutInMinutes, ComputeFleetVmssPublicIPAddressDnsSettings dnsSettings, IList<ComputeFleetVmssIPTag> ipTags, WritableSubResource publicIPPrefix, ComputeFleetIPVersion? publicIPAddressVersion, ComputeFleetVmDeleteOption? deleteOption, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,13 +72,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The idle timeout of the public IP address. </summary>
+        /// <summary> Gets or sets the idle timeout in minutes. </summary>
         public int? IdleTimeoutInMinutes { get; set; }
-        /// <summary> The dns settings to be applied on the publicIP addresses . </summary>
+        /// <summary> Gets or sets the dns settings. </summary>
         public ComputeFleetVmssPublicIPAddressDnsSettings DnsSettings { get; set; }
-        /// <summary> The list of IP tags associated with the public IP address. </summary>
+        /// <summary> Gets the ip tags. </summary>
         public IList<ComputeFleetVmssIPTag> IPTags { get; }
-        /// <summary> The PublicIPPrefix from which to allocate publicIP addresses. </summary>
+        /// <summary> Gets or sets the public ip prefix. </summary>
         internal WritableSubResource PublicIPPrefix { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier PublicIPPrefixId
@@ -99,13 +92,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary>
-        /// Available from Api-Version 2019-07-01 onwards, it represents whether the
-        /// specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4. Possible
-        /// values are: 'IPv4' and 'IPv6'.
-        /// </summary>
+        /// <summary> Gets or sets the public ip address version. </summary>
         public ComputeFleetIPVersion? PublicIPAddressVersion { get; set; }
-        /// <summary> Specify what happens to the public IP when the VM is deleted. </summary>
+        /// <summary> Gets or sets the delete option. </summary>
         public ComputeFleetVmDeleteOption? DeleteOption { get; set; }
     }
 }

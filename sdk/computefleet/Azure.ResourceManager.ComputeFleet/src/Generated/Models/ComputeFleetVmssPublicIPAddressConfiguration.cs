@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Describes a virtual machines scale set IP Configuration's PublicIPAddress
-    /// configuration
-    /// </summary>
+    /// <summary> The ComputeFleetVmssPublicIPAddressConfiguration. </summary>
     public partial class ComputeFleetVmssPublicIPAddressConfiguration
     {
         /// <summary>
@@ -49,7 +46,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssPublicIPAddressConfiguration"/>. </summary>
-        /// <param name="name"> The publicIP address configuration name. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public ComputeFleetVmssPublicIPAddressConfiguration(string name)
         {
@@ -59,15 +56,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssPublicIPAddressConfiguration"/>. </summary>
-        /// <param name="name"> The publicIP address configuration name. </param>
-        /// <param name="properties">
-        /// Describes a virtual machines scale set IP Configuration's PublicIPAddress
-        /// configuration
-        /// </param>
-        /// <param name="sku">
-        /// Describes the public IP Sku. It can only be set with OrchestrationMode as
-        /// Flexible.
-        /// </param>
+        /// <param name="name"></param>
+        /// <param name="properties"></param>
+        /// <param name="sku"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssPublicIPAddressConfiguration(string name, ComputeFleetVmssPublicIPAddressConfigurationProperties properties, ComputeFleetPublicIPAddressSku sku, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,17 +73,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> The publicIP address configuration name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// Describes a virtual machines scale set IP Configuration's PublicIPAddress
-        /// configuration
-        /// </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public ComputeFleetVmssPublicIPAddressConfigurationProperties Properties { get; set; }
-        /// <summary>
-        /// Describes the public IP Sku. It can only be set with OrchestrationMode as
-        /// Flexible.
-        /// </summary>
+        /// <summary> Gets or sets the sku. </summary>
         public ComputeFleetPublicIPAddressSku Sku { get; set; }
     }
 }

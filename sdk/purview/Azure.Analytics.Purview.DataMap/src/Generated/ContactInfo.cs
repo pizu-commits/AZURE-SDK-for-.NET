@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> ContactInfo. </summary>
+    /// <summary> The ContactInfo. </summary>
     public partial class ContactInfo
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="ContactInfo"/>. </summary>
-        /// <param name="id"> Azure Active Directory object Id. </param>
-        /// <param name="info"> additional information to describe this contact. </param>
+        /// <param name="id"></param>
+        /// <param name="info"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContactInfo(string id, string info, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Azure Active Directory object Id. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> additional information to describe this contact. </summary>
+        /// <summary> Gets or sets the info. </summary>
         public string Info { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the analyze text Entity linking input. </summary>
+    /// <summary> The TextEntityLinkingInput. </summary>
     public partial class TextEntityLinkingInput : AnalyzeTextInput
     {
         /// <summary> Initializes a new instance of <see cref="TextEntityLinkingInput"/>. </summary>
@@ -20,19 +20,19 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TextEntityLinkingInput"/>. </summary>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="textInput"> Contains the analysis input to be handled by the service. </param>
-        /// <param name="actionContent"> Task parameters. </param>
+        /// <param name="textInput"></param>
+        /// <param name="actionContent"></param>
         internal TextEntityLinkingInput(AnalyzeTextInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, MultiLanguageTextInput textInput, EntityLinkingActionContent actionContent) : base(kind, serializedAdditionalRawData)
         {
             TextInput = textInput;
             ActionContent = actionContent;
         }
 
-        /// <summary> Contains the analysis input to be handled by the service. </summary>
+        /// <summary> Gets or sets the text input. </summary>
         public MultiLanguageTextInput TextInput { get; set; }
-        /// <summary> Task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public EntityLinkingActionContent ActionContent { get; set; }
     }
 }

@@ -54,7 +54,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Get Multivariate Anomaly Detection Result. </summary>
-        /// <param name="resultId"> ID of a batch detection result. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// For asynchronous inference, get a multivariate anomaly detection result based on the
@@ -69,7 +69,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Get Multivariate Anomaly Detection Result. </summary>
-        /// <param name="resultId"> ID of a batch detection result. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// For asynchronous inference, get a multivariate anomaly detection result based on the
@@ -98,7 +98,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="resultId"> ID of a batch detection result. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -134,7 +134,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="resultId"> ID of a batch detection result. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -156,7 +156,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Train a Multivariate Anomaly Detection Model. </summary>
-        /// <param name="modelInfo"> Model information. </param>
+        /// <param name="modelInfo"> The <see cref="ModelInfo"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelInfo"/> is null. </exception>
         /// <remarks>
@@ -183,7 +183,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Train a Multivariate Anomaly Detection Model. </summary>
-        /// <param name="modelInfo"> Model information. </param>
+        /// <param name="modelInfo"> The <see cref="ModelInfo"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelInfo"/> is null. </exception>
         /// <remarks>
@@ -298,7 +298,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -334,7 +334,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -360,7 +360,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Get Multivariate Model. </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -379,7 +379,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Get Multivariate Model. </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -412,7 +412,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -452,7 +452,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -478,8 +478,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect Multivariate Anomaly. </summary>
-        /// <param name="modelId"> Model identifier. </param>
-        /// <param name="options"> Request of multivariate anomaly detection. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="MultivariateBatchDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -504,8 +504,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect Multivariate Anomaly. </summary>
-        /// <param name="modelId"> Model identifier. </param>
-        /// <param name="options"> Request of multivariate anomaly detection. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="MultivariateBatchDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -544,7 +544,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="content"/> is null. </exception>
@@ -586,7 +586,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="content"/> is null. </exception>
@@ -614,8 +614,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect anomalies in the last point of the request body. </summary>
-        /// <param name="modelId"> Model identifier. </param>
-        /// <param name="options"> Request of the last detection. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="MultivariateLastDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -638,8 +638,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Detect anomalies in the last point of the request body. </summary>
-        /// <param name="modelId"> Model identifier. </param>
-        /// <param name="options"> Request of the last detection. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="options"> The <see cref="MultivariateLastDetectionOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="options"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -676,7 +676,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="content"/> is null. </exception>
@@ -718,7 +718,7 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Model identifier. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="content"/> is null. </exception>
@@ -746,8 +746,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> List Multivariate Models. </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> List models of a resource. </remarks>
         /// <include file="Docs/Multivariate.xml" path="doc/members/member[@name='GetMultivariateModelsAsync(int?,int?,CancellationToken)']/*" />
@@ -760,8 +760,8 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> List Multivariate Models. </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> List models of a resource. </remarks>
         /// <include file="Docs/Multivariate.xml" path="doc/members/member[@name='GetMultivariateModels(int?,int?,CancellationToken)']/*" />
@@ -788,8 +788,8 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -816,8 +816,8 @@ namespace Azure.AI.AnomalyDetector
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="skip"> The number of result items to skip. </param>
-        /// <param name="maxCount"> The number of result items to return. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>

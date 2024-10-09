@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> Text Blocklist. </summary>
+    /// <summary> The TextBlocklist. </summary>
     public partial class TextBlocklist
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TextBlocklist"/>. </summary>
-        /// <param name="name"> Text blocklist name. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         internal TextBlocklist(string name)
         {
@@ -56,8 +56,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="TextBlocklist"/>. </summary>
-        /// <param name="name"> Text blocklist name. </param>
-        /// <param name="description"> Text blocklist description. </param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TextBlocklist(string name, string description, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> Text blocklist name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Text blocklist description. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
     }
 }

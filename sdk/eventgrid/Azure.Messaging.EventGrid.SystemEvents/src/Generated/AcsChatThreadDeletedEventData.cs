@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatThreadDeleted event. </summary>
+    /// <summary> The AcsChatThreadDeletedEventData. </summary>
     public partial class AcsChatThreadDeletedEventData : AcsChatThreadEventInThreadBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadDeletedEventData"/>. </summary>
-        /// <param name="createTime"> The original creation time of the thread. </param>
-        /// <param name="deletedByCommunicationIdentifier"> The communication identifier of the user who deleted the thread. </param>
-        /// <param name="deleteTime"> The deletion time of the thread. </param>
+        /// <param name="createTime"></param>
+        /// <param name="deletedByCommunicationIdentifier"></param>
+        /// <param name="deleteTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="deletedByCommunicationIdentifier"/> is null. </exception>
         internal AcsChatThreadDeletedEventData(DateTimeOffset createTime, CommunicationIdentifierModel deletedByCommunicationIdentifier, DateTimeOffset deleteTime) : base(createTime)
         {
@@ -27,13 +27,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadDeletedEventData"/>. </summary>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="createTime"> The original creation time of the thread. </param>
-        /// <param name="version"> The version of the thread. </param>
-        /// <param name="deletedByCommunicationIdentifier"> The communication identifier of the user who deleted the thread. </param>
-        /// <param name="deleteTime"> The deletion time of the thread. </param>
+        /// <param name="createTime"></param>
+        /// <param name="version"></param>
+        /// <param name="deletedByCommunicationIdentifier"></param>
+        /// <param name="deleteTime"></param>
         internal AcsChatThreadDeletedEventData(string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, DateTimeOffset createTime, long? version, CommunicationIdentifierModel deletedByCommunicationIdentifier, DateTimeOffset deleteTime) : base(transactionId, threadId, serializedAdditionalRawData, createTime, version)
         {
             DeletedByCommunicationIdentifier = deletedByCommunicationIdentifier;
@@ -45,9 +45,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The communication identifier of the user who deleted the thread. </summary>
+        /// <summary> Gets the deleted by communication identifier. </summary>
         public CommunicationIdentifierModel DeletedByCommunicationIdentifier { get; }
-        /// <summary> The deletion time of the thread. </summary>
+        /// <summary> Gets the delete time. </summary>
         public DateTimeOffset DeleteTime { get; }
     }
 }

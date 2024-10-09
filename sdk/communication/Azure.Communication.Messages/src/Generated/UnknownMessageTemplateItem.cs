@@ -14,10 +14,10 @@ namespace Azure.Communication.Messages
     internal partial class UnknownMessageTemplateItem : MessageTemplateItem
     {
         /// <summary> Initializes a new instance of <see cref="UnknownMessageTemplateItem"/>. </summary>
-        /// <param name="name"> The template's name. </param>
-        /// <param name="language"> The template's language, in the ISO 639 format, consist of a two-letter language code followed by an optional two-letter country code, e.g., 'en' or 'en_US'. </param>
-        /// <param name="status"> The aggregated template status. </param>
-        /// <param name="kind"> The type discriminator describing a template type. </param>
+        /// <param name="name"></param>
+        /// <param name="language"></param>
+        /// <param name="status"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownMessageTemplateItem(string name, string language, MessageTemplateStatus status, CommunicationMessagesChannel kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(name, language, status, kind, serializedAdditionalRawData)
         {

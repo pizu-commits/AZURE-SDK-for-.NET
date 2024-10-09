@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Indicates whether an environment type is enabled for use in a project. </summary>
+    /// <summary> The EnvironmentTypeStatus. </summary>
     public readonly partial struct EnvironmentTypeStatus : IEquatable<EnvironmentTypeStatus>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Developer.DevCenter.Models
         private const string EnabledValue = "Enabled";
         private const string DisabledValue = "Disabled";
 
-        /// <summary> The environment type is enabled for use in the project. </summary>
+        /// <summary> Enabled. </summary>
         public static EnvironmentTypeStatus Enabled { get; } = new EnvironmentTypeStatus(EnabledValue);
-        /// <summary> The environment type is not enabled for use in the project. </summary>
+        /// <summary> Disabled. </summary>
         public static EnvironmentTypeStatus Disabled { get; } = new EnvironmentTypeStatus(DisabledValue);
         /// <summary> Determines if two <see cref="EnvironmentTypeStatus"/> values are the same. </summary>
         public static bool operator ==(EnvironmentTypeStatus left, EnvironmentTypeStatus right) => left.Equals(right);

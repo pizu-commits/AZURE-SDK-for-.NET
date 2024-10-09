@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Details for all kinds of technology mediated contact points for a person or organization, including telephone, email, etc.
-    /// See https://www.hl7.org/fhir/R4/datatypes.html#ContactPoint
-    /// </summary>
+    /// <summary> The Fhir_R4_ContactPoint. </summary>
     public partial class FhirR4ContactPoint
     {
         /// <summary>
@@ -54,11 +51,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4ContactPoint"/>. </summary>
-        /// <param name="system"> phone | fax | email | pager | url | sms | other. </param>
-        /// <param name="value"> The actual contact point details. </param>
-        /// <param name="use"> home | work | temp | old | mobile - purpose of this contact point. </param>
-        /// <param name="rank"> Specify preferred order of use (1 = highest). </param>
-        /// <param name="period"> Time period when the contact point was/is in use. </param>
+        /// <param name="system"></param>
+        /// <param name="value"></param>
+        /// <param name="use"></param>
+        /// <param name="rank"></param>
+        /// <param name="period"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FhirR4ContactPoint(ContactPointSystem? system, string value, ContactPointUse? use, int? rank, FhirR4Period period, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,15 +67,15 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> phone | fax | email | pager | url | sms | other. </summary>
+        /// <summary> Gets the system. </summary>
         public ContactPointSystem? System { get; }
-        /// <summary> The actual contact point details. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
-        /// <summary> home | work | temp | old | mobile - purpose of this contact point. </summary>
+        /// <summary> Gets the use. </summary>
         public ContactPointUse? Use { get; }
-        /// <summary> Specify preferred order of use (1 = highest). </summary>
+        /// <summary> Gets the rank. </summary>
         public int? Rank { get; }
-        /// <summary> Time period when the contact point was/is in use. </summary>
+        /// <summary> Gets the period. </summary>
         public FhirR4Period Period { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> ContainerWorkingDirectory enums. </summary>
+    /// <summary> The ContainerWorkingDirectory. </summary>
     public readonly partial struct ContainerWorkingDirectory : IEquatable<ContainerWorkingDirectory>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string TaskWorkingDirectoryValue = "taskWorkingDirectory";
         private const string ContainerImageDefaultValue = "containerImageDefault";
 
-        /// <summary> Use the standard Batch service Task working directory, which will contain the Task Resource Files populated by Batch. </summary>
+        /// <summary> taskWorkingDirectory. </summary>
         public static ContainerWorkingDirectory TaskWorkingDirectory { get; } = new ContainerWorkingDirectory(TaskWorkingDirectoryValue);
-        /// <summary> Use the working directory defined in the container Image. Beware that this directory will not contain the Resource Files downloaded by Batch. </summary>
+        /// <summary> containerImageDefault. </summary>
         public static ContainerWorkingDirectory ContainerImageDefault { get; } = new ContainerWorkingDirectory(ContainerImageDefaultValue);
         /// <summary> Determines if two <see cref="ContainerWorkingDirectory"/> values are the same. </summary>
         public static bool operator ==(ContainerWorkingDirectory left, ContainerWorkingDirectory right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The user assigned Identity. </summary>
+    /// <summary> The UserAssignedIdentity. </summary>
     public partial class UserAssignedIdentity
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UserAssignedIdentity"/>. </summary>
-        /// <param name="resourceId"> The ARM resource id of the user assigned identity. </param>
+        /// <param name="resourceId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceId"/> is null. </exception>
         internal UserAssignedIdentity(string resourceId)
         {
@@ -56,9 +56,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="UserAssignedIdentity"/>. </summary>
-        /// <param name="resourceId"> The ARM resource id of the user assigned identity. </param>
-        /// <param name="clientId"> The client id of the user assigned identity. </param>
-        /// <param name="principalId"> The principal id of the user assigned identity. </param>
+        /// <param name="resourceId"></param>
+        /// <param name="clientId"></param>
+        /// <param name="principalId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UserAssignedIdentity(string resourceId, string clientId, string principalId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The ARM resource id of the user assigned identity. </summary>
+        /// <summary> Gets the resource id. </summary>
         public string ResourceId { get; }
-        /// <summary> The client id of the user assigned identity. </summary>
+        /// <summary> Gets the client id. </summary>
         public string ClientId { get; }
-        /// <summary> The principal id of the user assigned identity. </summary>
+        /// <summary> Gets the principal id. </summary>
         public string PrincipalId { get; }
     }
 }

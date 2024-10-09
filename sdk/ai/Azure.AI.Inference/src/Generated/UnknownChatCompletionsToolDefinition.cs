@@ -14,7 +14,7 @@ namespace Azure.AI.Inference
     internal partial class UnknownChatCompletionsToolDefinition : ChatCompletionsToolDefinition
     {
         /// <summary> Initializes a new instance of <see cref="UnknownChatCompletionsToolDefinition"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownChatCompletionsToolDefinition(string type, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(type, serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Properties JSON element. </summary>
+    /// <summary> The DeviceTwinInfoProperties. </summary>
     public partial class DeviceTwinInfoProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeviceTwinInfoProperties"/>. </summary>
-        /// <param name="desired"> A portion of the properties that can be written only by the application back-end, and read by the device. </param>
-        /// <param name="reported"> A portion of the properties that can be written only by the device, and read by the application back-end. </param>
+        /// <param name="desired"></param>
+        /// <param name="reported"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="desired"/> or <paramref name="reported"/> is null. </exception>
         internal DeviceTwinInfoProperties(DeviceTwinProperties desired, DeviceTwinProperties reported)
         {
@@ -59,8 +59,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceTwinInfoProperties"/>. </summary>
-        /// <param name="desired"> A portion of the properties that can be written only by the application back-end, and read by the device. </param>
-        /// <param name="reported"> A portion of the properties that can be written only by the device, and read by the application back-end. </param>
+        /// <param name="desired"></param>
+        /// <param name="reported"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceTwinInfoProperties(DeviceTwinProperties desired, DeviceTwinProperties reported, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> A portion of the properties that can be written only by the application back-end, and read by the device. </summary>
+        /// <summary> Gets the desired. </summary>
         public DeviceTwinProperties Desired { get; }
-        /// <summary> A portion of the properties that can be written only by the device, and read by the application back-end. </summary>
+        /// <summary> Gets the reported. </summary>
         public DeviceTwinProperties Reported { get; }
     }
 }

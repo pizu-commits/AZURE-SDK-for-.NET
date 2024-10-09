@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The Volume Unit of measurement. </summary>
+    /// <summary> The VolumeUnit. </summary>
     public readonly partial struct VolumeUnit : IEquatable<VolumeUnit>
     {
         private readonly string _value;
@@ -51,61 +51,61 @@ namespace Azure.AI.Language.Text
         private const string BushelValue = "Bushel";
         private const string HogsheadValue = "Hogshead";
 
-        /// <summary> Unspecified volume unit. </summary>
+        /// <summary> Unspecified. </summary>
         public static VolumeUnit Unspecified { get; } = new VolumeUnit(UnspecifiedValue);
-        /// <summary> Volume unit in cubic meters. </summary>
+        /// <summary> CubicMeter. </summary>
         public static VolumeUnit CubicMeter { get; } = new VolumeUnit(CubicMeterValue);
-        /// <summary> Volume unit in cubic centimeters. </summary>
+        /// <summary> CubicCentimeter. </summary>
         public static VolumeUnit CubicCentimeter { get; } = new VolumeUnit(CubicCentimeterValue);
-        /// <summary> Volume unit in cubic millimeters. </summary>
+        /// <summary> CubicMillimeter. </summary>
         public static VolumeUnit CubicMillimeter { get; } = new VolumeUnit(CubicMillimeterValue);
-        /// <summary> Volume unit in hectoliters. </summary>
+        /// <summary> Hectoliter. </summary>
         public static VolumeUnit Hectoliter { get; } = new VolumeUnit(HectoliterValue);
-        /// <summary> Volume unit in decaliters. </summary>
+        /// <summary> Decaliter. </summary>
         public static VolumeUnit Decaliter { get; } = new VolumeUnit(DecaliterValue);
-        /// <summary> Volume unit in liters. </summary>
+        /// <summary> Liter. </summary>
         public static VolumeUnit Liter { get; } = new VolumeUnit(LiterValue);
-        /// <summary> Volume unit in centiliters. </summary>
+        /// <summary> Centiliter. </summary>
         public static VolumeUnit Centiliter { get; } = new VolumeUnit(CentiliterValue);
-        /// <summary> Volume unit in milliliters. </summary>
+        /// <summary> Milliliter. </summary>
         public static VolumeUnit Milliliter { get; } = new VolumeUnit(MilliliterValue);
-        /// <summary> Volume unit in cubic yards. </summary>
+        /// <summary> CubicYard. </summary>
         public static VolumeUnit CubicYard { get; } = new VolumeUnit(CubicYardValue);
-        /// <summary> Volume unit in cubic inches. </summary>
+        /// <summary> CubicInch. </summary>
         public static VolumeUnit CubicInch { get; } = new VolumeUnit(CubicInchValue);
-        /// <summary> Volume unit in cubic feet. </summary>
+        /// <summary> CubicFoot. </summary>
         public static VolumeUnit CubicFoot { get; } = new VolumeUnit(CubicFootValue);
-        /// <summary> Volume unit in cubic miles. </summary>
+        /// <summary> CubicMile. </summary>
         public static VolumeUnit CubicMile { get; } = new VolumeUnit(CubicMileValue);
-        /// <summary> Volume unit in fluid ounces. </summary>
+        /// <summary> FluidOunce. </summary>
         public static VolumeUnit FluidOunce { get; } = new VolumeUnit(FluidOunceValue);
-        /// <summary> Volume unit in teaspoons. </summary>
+        /// <summary> Teaspoon. </summary>
         public static VolumeUnit Teaspoon { get; } = new VolumeUnit(TeaspoonValue);
-        /// <summary> Volume unit in tablespoons. </summary>
+        /// <summary> Tablespoon. </summary>
         public static VolumeUnit Tablespoon { get; } = new VolumeUnit(TablespoonValue);
-        /// <summary> Volume unit in pints. </summary>
+        /// <summary> Pint. </summary>
         public static VolumeUnit Pint { get; } = new VolumeUnit(PintValue);
-        /// <summary> Volume unit in quarts. </summary>
+        /// <summary> Quart. </summary>
         public static VolumeUnit Quart { get; } = new VolumeUnit(QuartValue);
-        /// <summary> Volume unit in cups. </summary>
+        /// <summary> Cup. </summary>
         public static VolumeUnit Cup { get; } = new VolumeUnit(CupValue);
-        /// <summary> Volume unit in gills. </summary>
+        /// <summary> Gill. </summary>
         public static VolumeUnit Gill { get; } = new VolumeUnit(GillValue);
-        /// <summary> Volume unit in pinches. </summary>
+        /// <summary> Pinch. </summary>
         public static VolumeUnit Pinch { get; } = new VolumeUnit(PinchValue);
-        /// <summary> Volume unit in fluid drams. </summary>
+        /// <summary> FluidDram. </summary>
         public static VolumeUnit FluidDram { get; } = new VolumeUnit(FluidDramValue);
-        /// <summary> Volume unit in barrels. </summary>
+        /// <summary> Barrel. </summary>
         public static VolumeUnit Barrel { get; } = new VolumeUnit(BarrelValue);
-        /// <summary> Volume unit in minims. </summary>
+        /// <summary> Minim. </summary>
         public static VolumeUnit Minim { get; } = new VolumeUnit(MinimValue);
-        /// <summary> Volume unit in cords. </summary>
+        /// <summary> Cord. </summary>
         public static VolumeUnit Cord { get; } = new VolumeUnit(CordValue);
-        /// <summary> Volume unit in pecks. </summary>
+        /// <summary> Peck. </summary>
         public static VolumeUnit Peck { get; } = new VolumeUnit(PeckValue);
-        /// <summary> Volume unit in bushels. </summary>
+        /// <summary> Bushel. </summary>
         public static VolumeUnit Bushel { get; } = new VolumeUnit(BushelValue);
-        /// <summary> Volume unit in hogsheads. </summary>
+        /// <summary> Hogshead. </summary>
         public static VolumeUnit Hogshead { get; } = new VolumeUnit(HogsheadValue);
         /// <summary> Determines if two <see cref="VolumeUnit"/> values are the same. </summary>
         public static bool operator ==(VolumeUnit left, VolumeUnit right) => left.Equals(right);

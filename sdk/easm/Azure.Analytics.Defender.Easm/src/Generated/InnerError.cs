@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> This is an object containing more specific information than the current object about the error. </summary>
+    /// <summary> The InnerError. </summary>
     public partial class InnerError
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="InnerError"/>. </summary>
-        /// <param name="code"> This is a more specific error code than was provided by the containing error. </param>
-        /// <param name="value"> This is an additional field representing the value that caused the error to help with debugging. </param>
+        /// <param name="code"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InnerError(string code, BinaryData value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,10 +61,10 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> This is a more specific error code than was provided by the containing error. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
         /// <summary>
-        /// This is an additional field representing the value that caused the error to help with debugging.
+        /// Gets the value
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

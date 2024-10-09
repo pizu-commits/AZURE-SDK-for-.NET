@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The glossary category. </summary>
+    /// <summary> The AtlasGlossaryCategory. </summary>
     public partial class AtlasGlossaryCategory
     {
         /// <summary>
@@ -54,21 +54,21 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasGlossaryCategory"/>. </summary>
-        /// <param name="guid"> The GUID of the object. </param>
-        /// <param name="classifications"> An array of classifications. </param>
-        /// <param name="longDescription"> The long version description. </param>
-        /// <param name="name"> The name of the glossary object. </param>
-        /// <param name="qualifiedName"> The qualified name of the glossary object. </param>
-        /// <param name="shortDescription"> The short version of description. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="anchor"> The glossary header with basic information. </param>
-        /// <param name="childrenCategories"> An array of children categories. </param>
-        /// <param name="parentCategory"> The header of the related category. </param>
-        /// <param name="terms"> An array of related term headers. </param>
+        /// <param name="guid"></param>
+        /// <param name="classifications"></param>
+        /// <param name="longDescription"></param>
+        /// <param name="name"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="shortDescription"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="anchor"></param>
+        /// <param name="childrenCategories"></param>
+        /// <param name="parentCategory"></param>
+        /// <param name="terms"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasGlossaryCategory(string guid, IList<AtlasClassification> classifications, string longDescription, string name, string qualifiedName, string shortDescription, string lastModifiedTS, long? createTime, string createdBy, long? updateTime, string updatedBy, AtlasGlossaryHeader anchor, IList<AtlasRelatedCategoryHeader> childrenCategories, AtlasRelatedCategoryHeader parentCategory, IList<AtlasRelatedTermHeader> terms, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,35 +90,35 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the object. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> An array of classifications. </summary>
+        /// <summary> Gets the classifications. </summary>
         public IList<AtlasClassification> Classifications { get; }
-        /// <summary> The long version description. </summary>
+        /// <summary> Gets or sets the long description. </summary>
         public string LongDescription { get; set; }
-        /// <summary> The name of the glossary object. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The qualified name of the glossary object. </summary>
+        /// <summary> Gets or sets the qualified name. </summary>
         public string QualifiedName { get; set; }
-        /// <summary> The short version of description. </summary>
+        /// <summary> Gets or sets the short description. </summary>
         public string ShortDescription { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
-        /// <summary> The created time of the record. </summary>
+        /// <summary> Gets or sets the create time. </summary>
         public long? CreateTime { get; set; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets or sets the created by. </summary>
         public string CreatedBy { get; set; }
-        /// <summary> The update time of the record. </summary>
+        /// <summary> Gets or sets the update time. </summary>
         public long? UpdateTime { get; set; }
-        /// <summary> The user who updated the record. </summary>
+        /// <summary> Gets or sets the updated by. </summary>
         public string UpdatedBy { get; set; }
-        /// <summary> The glossary header with basic information. </summary>
+        /// <summary> Gets or sets the anchor. </summary>
         public AtlasGlossaryHeader Anchor { get; set; }
-        /// <summary> An array of children categories. </summary>
+        /// <summary> Gets the children categories. </summary>
         public IList<AtlasRelatedCategoryHeader> ChildrenCategories { get; }
-        /// <summary> The header of the related category. </summary>
+        /// <summary> Gets or sets the parent category. </summary>
         public AtlasRelatedCategoryHeader ParentCategory { get; set; }
-        /// <summary> An array of related term headers. </summary>
+        /// <summary> Gets the terms. </summary>
         public IList<AtlasRelatedTermHeader> Terms { get; }
     }
 }

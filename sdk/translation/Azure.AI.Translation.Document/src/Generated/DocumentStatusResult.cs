@@ -11,7 +11,7 @@ using System.Text.Json;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Document Status Response. </summary>
+    /// <summary> The DocumentStatus. </summary>
     public partial class DocumentStatusResult
     {
         /// <summary>
@@ -47,13 +47,13 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentStatusResult"/>. </summary>
-        /// <param name="sourceDocumentUri"> Location of the source document. </param>
-        /// <param name="createdOn"> Operation created date time. </param>
-        /// <param name="lastModified"> Date time in which the operation's status has been updated. </param>
-        /// <param name="status"> List of possible statuses for job or document. </param>
-        /// <param name="translatedToLanguageCode"> To language. </param>
-        /// <param name="progress"> Progress of the translation if available. </param>
-        /// <param name="id"> Document Id. </param>
+        /// <param name="sourceDocumentUri"></param>
+        /// <param name="createdOn"></param>
+        /// <param name="lastModified"></param>
+        /// <param name="status"></param>
+        /// <param name="translatedToLanguageCode"></param>
+        /// <param name="progress"></param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sourceDocumentUri"/>, <paramref name="translatedToLanguageCode"/> or <paramref name="id"/> is null. </exception>
         internal DocumentStatusResult(Uri sourceDocumentUri, DateTimeOffset createdOn, DateTimeOffset lastModified, DocumentTranslationStatus status, string translatedToLanguageCode, float progress, string id)
         {
@@ -71,19 +71,16 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentStatusResult"/>. </summary>
-        /// <param name="translatedDocumentUri"> Location of the document or folder. </param>
-        /// <param name="sourceDocumentUri"> Location of the source document. </param>
-        /// <param name="createdOn"> Operation created date time. </param>
-        /// <param name="lastModified"> Date time in which the operation's status has been updated. </param>
-        /// <param name="status"> List of possible statuses for job or document. </param>
-        /// <param name="translatedToLanguageCode"> To language. </param>
-        /// <param name="error">
-        /// This contains an outer error with error code, message, details, target and an
-        /// inner error with more descriptive details.
-        /// </param>
-        /// <param name="progress"> Progress of the translation if available. </param>
-        /// <param name="id"> Document Id. </param>
-        /// <param name="charactersCharged"> Character charged by the API. </param>
+        /// <param name="translatedDocumentUri"></param>
+        /// <param name="sourceDocumentUri"></param>
+        /// <param name="createdOn"></param>
+        /// <param name="lastModified"></param>
+        /// <param name="status"></param>
+        /// <param name="translatedToLanguageCode"></param>
+        /// <param name="error"></param>
+        /// <param name="progress"></param>
+        /// <param name="id"></param>
+        /// <param name="charactersCharged"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentStatusResult(Uri translatedDocumentUri, Uri sourceDocumentUri, DateTimeOffset createdOn, DateTimeOffset lastModified, DocumentTranslationStatus status, string translatedToLanguageCode, JsonElement error, float progress, string id, long charactersCharged, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

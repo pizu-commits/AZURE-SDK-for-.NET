@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message Interactive list reply content for a user to business message. </summary>
+    /// <summary> The AcsMessageInteractiveListReplyContent. </summary>
     public partial class AcsMessageInteractiveListReplyContent
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageInteractiveListReplyContent"/>. </summary>
-        /// <param name="listItemId"> The ID of the selected list item. </param>
-        /// <param name="title"> The title of the selected list item. </param>
-        /// <param name="description"> The description of the selected row. </param>
+        /// <param name="listItemId"></param>
+        /// <param name="title"></param>
+        /// <param name="description"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageInteractiveListReplyContent(string listItemId, string title, string description, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the selected list item. </summary>
+        /// <summary> Gets the list item id. </summary>
         public string ListItemId { get; }
-        /// <summary> The title of the selected list item. </summary>
+        /// <summary> Gets the title. </summary>
         public string Title { get; }
-        /// <summary> The description of the selected row. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
     }
 }

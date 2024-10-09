@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The TaskSlot counts for a Job. </summary>
+    /// <summary> The BatchTaskSlotCounts. </summary>
     public partial class BatchTaskSlotCounts
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskSlotCounts"/>. </summary>
-        /// <param name="active"> The number of TaskSlots for active Tasks. </param>
-        /// <param name="running"> The number of TaskSlots for running Tasks. </param>
-        /// <param name="completed"> The number of TaskSlots for completed Tasks. </param>
-        /// <param name="succeeded"> The number of TaskSlots for succeeded Tasks. </param>
-        /// <param name="failed"> The number of TaskSlots for failed Tasks. </param>
+        /// <param name="active"></param>
+        /// <param name="running"></param>
+        /// <param name="completed"></param>
+        /// <param name="succeeded"></param>
+        /// <param name="failed"></param>
         internal BatchTaskSlotCounts(int active, int running, int completed, int succeeded, int failed)
         {
             Active = active;
@@ -61,11 +61,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskSlotCounts"/>. </summary>
-        /// <param name="active"> The number of TaskSlots for active Tasks. </param>
-        /// <param name="running"> The number of TaskSlots for running Tasks. </param>
-        /// <param name="completed"> The number of TaskSlots for completed Tasks. </param>
-        /// <param name="succeeded"> The number of TaskSlots for succeeded Tasks. </param>
-        /// <param name="failed"> The number of TaskSlots for failed Tasks. </param>
+        /// <param name="active"></param>
+        /// <param name="running"></param>
+        /// <param name="completed"></param>
+        /// <param name="succeeded"></param>
+        /// <param name="failed"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskSlotCounts(int active, int running, int completed, int succeeded, int failed, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,15 +82,15 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The number of TaskSlots for active Tasks. </summary>
+        /// <summary> Gets the active. </summary>
         public int Active { get; }
-        /// <summary> The number of TaskSlots for running Tasks. </summary>
+        /// <summary> Gets the running. </summary>
         public int Running { get; }
-        /// <summary> The number of TaskSlots for completed Tasks. </summary>
+        /// <summary> Gets the completed. </summary>
         public int Completed { get; }
-        /// <summary> The number of TaskSlots for succeeded Tasks. </summary>
+        /// <summary> Gets the succeeded. </summary>
         public int Succeeded { get; }
-        /// <summary> The number of TaskSlots for failed Tasks. </summary>
+        /// <summary> Gets the failed. </summary>
         public int Failed { get; }
     }
 }

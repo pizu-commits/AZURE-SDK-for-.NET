@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Serverless Runtime Tags. </summary>
+    /// <summary> The ServerlessRuntimeTag. </summary>
     public partial class ServerlessRuntimeTag
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ServerlessRuntimeTag"/>. </summary>
-        /// <param name="name"> The name (also known as the key) of the tag. </param>
-        /// <param name="value"> The value of the tag. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ServerlessRuntimeTag(string name, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name (also known as the key) of the tag. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The value of the tag. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Response with SimSwap date. </summary>
+    /// <summary> The SimSwapRetrievalResult. </summary>
     public partial class SimSwapRetrievalResult
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="SimSwapRetrievalResult"/>. </summary>
-        /// <param name="date"> Datetime of most recent swap for SIM. </param>
+        /// <param name="date"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SimSwapRetrievalResult(DateTimeOffset? date, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Communication.ProgrammableConnectivity
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Datetime of most recent swap for SIM. </summary>
+        /// <summary> Gets the date. </summary>
         public DateTimeOffset? Date { get; }
     }
 }

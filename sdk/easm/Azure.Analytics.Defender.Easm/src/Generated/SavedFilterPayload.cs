@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A request body used to create a saved filter. </summary>
+    /// <summary> The SavedFilterPayload. </summary>
     public partial class SavedFilterPayload
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Analytics.Defender.Easm
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SavedFilterPayload"/>. </summary>
-        /// <param name="filter"> An expression on the resource type that selects the resources to be returned. </param>
-        /// <param name="description"> A human readable description of the saved filter. </param>
+        /// <param name="filter"></param>
+        /// <param name="description"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="filter"/> or <paramref name="description"/> is null. </exception>
         public SavedFilterPayload(string filter, string description)
         {
@@ -59,8 +59,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="SavedFilterPayload"/>. </summary>
-        /// <param name="filter"> An expression on the resource type that selects the resources to be returned. </param>
-        /// <param name="description"> A human readable description of the saved filter. </param>
+        /// <param name="filter"></param>
+        /// <param name="description"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SavedFilterPayload(string filter, string description, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.Analytics.Defender.Easm
         {
         }
 
-        /// <summary> An expression on the resource type that selects the resources to be returned. </summary>
+        /// <summary> Gets the filter. </summary>
         public string Filter { get; }
-        /// <summary> A human readable description of the saved filter. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a virtual machines scale sets network configuration's DNS settings. </summary>
+    /// <summary> The ComputeFleetVmssPublicIPAddressDnsSettings. </summary>
     public partial class ComputeFleetVmssPublicIPAddressDnsSettings
     {
         /// <summary>
@@ -46,11 +46,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssPublicIPAddressDnsSettings"/>. </summary>
-        /// <param name="domainNameLabel">
-        /// The Domain name label.The concatenation of the domain name label and vm index
-        /// will be the domain name labels of the PublicIPAddress resources that will be
-        /// created
-        /// </param>
+        /// <param name="domainNameLabel"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="domainNameLabel"/> is null. </exception>
         public ComputeFleetVmssPublicIPAddressDnsSettings(string domainNameLabel)
         {
@@ -60,17 +56,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssPublicIPAddressDnsSettings"/>. </summary>
-        /// <param name="domainNameLabel">
-        /// The Domain name label.The concatenation of the domain name label and vm index
-        /// will be the domain name labels of the PublicIPAddress resources that will be
-        /// created
-        /// </param>
-        /// <param name="domainNameLabelScope">
-        /// The Domain name label scope.The concatenation of the hashed domain name label
-        /// that generated according to the policy from domain name label scope and vm
-        /// index will be the domain name labels of the PublicIPAddress resources that will
-        /// be created
-        /// </param>
+        /// <param name="domainNameLabel"></param>
+        /// <param name="domainNameLabelScope"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssPublicIPAddressDnsSettings(string domainNameLabel, ComputeFleetDomainNameLabelScopeType? domainNameLabelScope, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,18 +71,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary>
-        /// The Domain name label.The concatenation of the domain name label and vm index
-        /// will be the domain name labels of the PublicIPAddress resources that will be
-        /// created
-        /// </summary>
+        /// <summary> Gets or sets the domain name label. </summary>
         public string DomainNameLabel { get; set; }
-        /// <summary>
-        /// The Domain name label scope.The concatenation of the hashed domain name label
-        /// that generated according to the policy from domain name label scope and vm
-        /// index will be the domain name labels of the PublicIPAddress resources that will
-        /// be created
-        /// </summary>
+        /// <summary> Gets or sets the domain name label scope. </summary>
         public ComputeFleetDomainNameLabelScopeType? DomainNameLabelScope { get; set; }
     }
 }

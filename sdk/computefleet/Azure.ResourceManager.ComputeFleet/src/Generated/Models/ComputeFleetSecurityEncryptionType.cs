@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the EncryptionType of the managed disk.
-    /// **Note:** It can be set for only Confidential VMs.
-    /// </summary>
+    /// <summary> The ComputeFleetSecurityEncryptionTypes. </summary>
     public readonly partial struct ComputeFleetSecurityEncryptionType : IEquatable<ComputeFleetSecurityEncryptionType>
     {
         private readonly string _value;
@@ -29,20 +26,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string DiskWithVmGuestStateValue = "DiskWithVMGuestState";
         private const string NonPersistedTpmValue = "NonPersistedTPM";
 
-        /// <summary>
-        /// EncryptionType of the managed disk is set to VMGuestStateOnly for encryption
-        /// of just the VMGuestState blob.
-        /// </summary>
+        /// <summary> VMGuestStateOnly. </summary>
         public static ComputeFleetSecurityEncryptionType VmGuestStateOnly { get; } = new ComputeFleetSecurityEncryptionType(VmGuestStateOnlyValue);
-        /// <summary>
-        /// EncryptionType of the managed disk is set to DiskWithVMGuestState for encryption
-        /// of the managed disk along with VMGuestState blob.
-        /// </summary>
+        /// <summary> DiskWithVMGuestState. </summary>
         public static ComputeFleetSecurityEncryptionType DiskWithVmGuestState { get; } = new ComputeFleetSecurityEncryptionType(DiskWithVmGuestStateValue);
-        /// <summary>
-        /// EncryptionType of the managed disk is set to NonPersistedTPM for not persisting
-        /// firmware state in the VMGuestState blob.
-        /// </summary>
+        /// <summary> NonPersistedTPM. </summary>
         public static ComputeFleetSecurityEncryptionType NonPersistedTpm { get; } = new ComputeFleetSecurityEncryptionType(NonPersistedTpmValue);
         /// <summary> Determines if two <see cref="ComputeFleetSecurityEncryptionType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetSecurityEncryptionType left, ComputeFleetSecurityEncryptionType right) => left.Equals(right);

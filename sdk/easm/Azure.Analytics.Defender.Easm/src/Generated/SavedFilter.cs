@@ -51,9 +51,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="SavedFilter"/>. </summary>
-        /// <param name="id"> The system generated unique id for the resource. </param>
-        /// <param name="name"> The caller provided unique name for the resource. </param>
-        /// <param name="displayName"> The name that can be used for display purposes. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
         /// <param name="filter"></param>
         /// <param name="description"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
@@ -67,11 +67,11 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The system generated unique id for the resource. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The caller provided unique name for the resource. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The name that can be used for display purposes. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
         /// <summary> Gets the filter. </summary>
         public string Filter { get; }

@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Describes a queue selector that will be attached to a job. </summary>
+    /// <summary> The StaticQueueSelectorAttachment. </summary>
     public partial class StaticQueueSelectorAttachment : QueueSelectorAttachment
     {
         /// <summary> Initializes a new instance of <see cref="StaticQueueSelectorAttachment"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of QueueSelectorAttachment. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="queueSelector"> The queue selector to attach. </param>
+        /// <param name="queueSelector"></param>
         internal StaticQueueSelectorAttachment(QueueSelectorAttachmentKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, RouterQueueSelector queueSelector) : base(kind, serializedAdditionalRawData)
         {
             QueueSelector = queueSelector;
@@ -27,7 +27,7 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> The queue selector to attach. </summary>
+        /// <summary> Gets the queue selector. </summary>
         public RouterQueueSelector QueueSelector { get; }
     }
 }

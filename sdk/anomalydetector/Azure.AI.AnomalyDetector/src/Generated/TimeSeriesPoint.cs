@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Definition of input time series points. </summary>
+    /// <summary> The TimeSeriesPoint. </summary>
     public partial class TimeSeriesPoint
     {
         /// <summary>
@@ -46,15 +46,15 @@ namespace Azure.AI.AnomalyDetector
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TimeSeriesPoint"/>. </summary>
-        /// <param name="value"> Measurement of that point. </param>
+        /// <param name="value"></param>
         public TimeSeriesPoint(float value)
         {
             Value = value;
         }
 
         /// <summary> Initializes a new instance of <see cref="TimeSeriesPoint"/>. </summary>
-        /// <param name="timestamp"> Argument that indicates the time stamp of a data point (ISO8601 format). </param>
-        /// <param name="value"> Measurement of that point. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TimeSeriesPoint(DateTimeOffset? timestamp, float value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,9 +68,9 @@ namespace Azure.AI.AnomalyDetector
         {
         }
 
-        /// <summary> Argument that indicates the time stamp of a data point (ISO8601 format). </summary>
+        /// <summary> Gets or sets the timestamp. </summary>
         public DateTimeOffset? Timestamp { get; set; }
-        /// <summary> Measurement of that point. </summary>
+        /// <summary> Gets the value. </summary>
         public float Value { get; }
     }
 }

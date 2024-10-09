@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies Windows operating system settings on the virtual machine. </summary>
+    /// <summary> The ComputeFleetWindowsConfiguration. </summary>
     public partial class ComputeFleetWindowsConfiguration
     {
         /// <summary>
@@ -52,37 +52,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetWindowsConfiguration"/>. </summary>
-        /// <param name="isVmAgentProvisioned">
-        /// Indicates whether virtual machine agent should be provisioned on the virtual
-        /// machine. When this property is not specified in the request body, it is set to
-        /// true by default. This will ensure that VM Agent is installed on the VM so that
-        /// extensions can be added to the VM later.
-        /// </param>
-        /// <param name="isAutomaticUpdatesEnabled">
-        /// Indicates whether Automatic Updates is enabled for the Windows virtual machine.
-        /// Default value is true. For virtual machine scale sets, this property can be
-        /// updated and updates will take effect on OS reprovisioning.
-        /// </param>
-        /// <param name="timeZone">
-        /// Specifies the time zone of the virtual machine. e.g. "Pacific Standard Time".
-        /// Possible values can be
-        /// [TimeZoneInfo.Id](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.id?#System_TimeZoneInfo_Id)
-        /// value from time zones returned by
-        /// [TimeZoneInfo.GetSystemTimeZones](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.getsystemtimezones).
-        /// </param>
-        /// <param name="additionalUnattendContent">
-        /// Specifies additional base-64 encoded XML formatted information that can be
-        /// included in the Unattend.xml file, which is used by Windows Setup.
-        /// </param>
-        /// <param name="patchSettings"> [Preview Feature] Specifies settings related to VM Guest Patching on Windows. </param>
-        /// <param name="winRM">
-        /// Specifies the Windows Remote Management listeners. This enables remote Windows
-        /// PowerShell.
-        /// </param>
-        /// <param name="isVmAgentPlatformUpdatesEnabled">
-        /// Indicates whether VMAgent Platform Updates is enabled for the Windows virtual
-        /// machine. Default value is false.
-        /// </param>
+        /// <param name="isVmAgentProvisioned"></param>
+        /// <param name="isAutomaticUpdatesEnabled"></param>
+        /// <param name="timeZone"></param>
+        /// <param name="additionalUnattendContent"></param>
+        /// <param name="patchSettings"></param>
+        /// <param name="winRM"></param>
+        /// <param name="isVmAgentPlatformUpdatesEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetWindowsConfiguration(bool? isVmAgentProvisioned, bool? isAutomaticUpdatesEnabled, string timeZone, IList<WindowsSetupAdditionalInformation> additionalUnattendContent, ComputeFleetVmGuestPatchSettings patchSettings, WinRMConfiguration winRM, bool? isVmAgentPlatformUpdatesEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -96,40 +72,19 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Indicates whether virtual machine agent should be provisioned on the virtual
-        /// machine. When this property is not specified in the request body, it is set to
-        /// true by default. This will ensure that VM Agent is installed on the VM so that
-        /// extensions can be added to the VM later.
-        /// </summary>
+        /// <summary> Gets or sets the is vm agent provisioned. </summary>
         public bool? IsVmAgentProvisioned { get; set; }
-        /// <summary>
-        /// Indicates whether Automatic Updates is enabled for the Windows virtual machine.
-        /// Default value is true. For virtual machine scale sets, this property can be
-        /// updated and updates will take effect on OS reprovisioning.
-        /// </summary>
+        /// <summary> Gets or sets the is automatic updates enabled. </summary>
         public bool? IsAutomaticUpdatesEnabled { get; set; }
-        /// <summary>
-        /// Specifies the time zone of the virtual machine. e.g. "Pacific Standard Time".
-        /// Possible values can be
-        /// [TimeZoneInfo.Id](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.id?#System_TimeZoneInfo_Id)
-        /// value from time zones returned by
-        /// [TimeZoneInfo.GetSystemTimeZones](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.getsystemtimezones).
-        /// </summary>
+        /// <summary> Gets or sets the time zone. </summary>
         public string TimeZone { get; set; }
-        /// <summary>
-        /// Specifies additional base-64 encoded XML formatted information that can be
-        /// included in the Unattend.xml file, which is used by Windows Setup.
-        /// </summary>
+        /// <summary> Gets the additional unattend content. </summary>
         public IList<WindowsSetupAdditionalInformation> AdditionalUnattendContent { get; }
-        /// <summary> [Preview Feature] Specifies settings related to VM Guest Patching on Windows. </summary>
+        /// <summary> Gets or sets the patch settings. </summary>
         public ComputeFleetVmGuestPatchSettings PatchSettings { get; set; }
-        /// <summary>
-        /// Specifies the Windows Remote Management listeners. This enables remote Windows
-        /// PowerShell.
-        /// </summary>
+        /// <summary> Gets or sets the win rm. </summary>
         internal WinRMConfiguration WinRM { get; set; }
-        /// <summary> The list of Windows Remote Management listeners. </summary>
+        /// <summary> Gets the win rm listeners. </summary>
         public IList<ComputeFleetWinRMListener> WinRMListeners
         {
             get
@@ -140,10 +95,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary>
-        /// Indicates whether VMAgent Platform Updates is enabled for the Windows virtual
-        /// machine. Default value is false.
-        /// </summary>
+        /// <summary> Gets or sets the is vm agent platform updates enabled. </summary>
         public bool? IsVmAgentPlatformUpdatesEnabled { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> Represents an assistant that can call the model and use tools. </summary>
+    /// <summary> The Assistant. </summary>
     public partial class Assistant
     {
         /// <summary>
@@ -47,19 +47,18 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="Assistant"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="name"> The name of the assistant. </param>
-        /// <param name="description"> The description of the assistant. </param>
-        /// <param name="model"> The ID of the model to use. </param>
-        /// <param name="instructions"> The system instructions for the assistant to use. </param>
+        /// <param name="id"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="model"></param>
+        /// <param name="instructions"></param>
         /// <param name="tools">
-        /// The collection of tools enabled for the assistant.
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </param>
-        /// <param name="fileIds"> A list of attached file IDs, ordered by creation date in ascending order. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="model"/>, <paramref name="tools"/> or <paramref name="fileIds"/> is null. </exception>
         internal Assistant(string id, DateTimeOffset createdAt, string name, string description, string model, string instructions, IEnumerable<ToolDefinition> tools, IEnumerable<string> fileIds, IReadOnlyDictionary<string, string> metadata)
         {
@@ -80,20 +79,19 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="Assistant"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="object"> The object type, which is always assistant. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="name"> The name of the assistant. </param>
-        /// <param name="description"> The description of the assistant. </param>
-        /// <param name="model"> The ID of the model to use. </param>
-        /// <param name="instructions"> The system instructions for the assistant to use. </param>
+        /// <param name="id"></param>
+        /// <param name="object"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="model"></param>
+        /// <param name="instructions"></param>
         /// <param name="tools">
-        /// The collection of tools enabled for the assistant.
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </param>
-        /// <param name="fileIds"> A list of attached file IDs, ordered by creation date in ascending order. </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal Assistant(string id, string @object, DateTimeOffset createdAt, string name, string description, string model, string instructions, IReadOnlyList<ToolDefinition> tools, IReadOnlyList<string> fileIds, IReadOnlyDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -115,28 +113,28 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The identifier, which can be referenced in API endpoints. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
 
-        /// <summary> The Unix timestamp, in seconds, representing when this object was created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset CreatedAt { get; }
-        /// <summary> The name of the assistant. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The description of the assistant. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> The ID of the model to use. </summary>
+        /// <summary> Gets the model. </summary>
         public string Model { get; }
-        /// <summary> The system instructions for the assistant to use. </summary>
+        /// <summary> Gets the instructions. </summary>
         public string Instructions { get; }
         /// <summary>
-        /// The collection of tools enabled for the assistant.
+        /// Gets the tools
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </summary>
         public IReadOnlyList<ToolDefinition> Tools { get; }
-        /// <summary> A list of attached file IDs, ordered by creation date in ascending order. </summary>
+        /// <summary> Gets the file ids. </summary>
         public IReadOnlyList<string> FileIds { get; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
     }
 }

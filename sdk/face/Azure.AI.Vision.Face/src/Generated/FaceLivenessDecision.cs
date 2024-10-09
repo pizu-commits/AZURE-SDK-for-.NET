@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The outcome of the liveness classification. </summary>
+    /// <summary> The FaceLivenessDecision. </summary>
     public readonly partial struct FaceLivenessDecision : IEquatable<FaceLivenessDecision>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string RealFaceValue = "realface";
         private const string SpoofFaceValue = "spoofface";
 
-        /// <summary> The algorithm could not classify the target face as either real or spoof. </summary>
+        /// <summary> uncertain. </summary>
         public static FaceLivenessDecision Uncertain { get; } = new FaceLivenessDecision(UncertainValue);
-        /// <summary> The algorithm has classified the target face as real. </summary>
+        /// <summary> realface. </summary>
         public static FaceLivenessDecision RealFace { get; } = new FaceLivenessDecision(RealFaceValue);
-        /// <summary> The algorithm has classified the target face as a spoof. </summary>
+        /// <summary> spoofface. </summary>
         public static FaceLivenessDecision SpoofFace { get; } = new FaceLivenessDecision(SpoofFaceValue);
         /// <summary> Determines if two <see cref="FaceLivenessDecision"/> values are the same. </summary>
         public static bool operator ==(FaceLivenessDecision left, FaceLivenessDecision right) => left.Equals(right);

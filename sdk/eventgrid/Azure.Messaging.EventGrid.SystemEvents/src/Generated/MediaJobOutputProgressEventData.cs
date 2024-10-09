@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// Job Output Progress Event Data. Schema of the Data property of an
-    ///   EventGridEvent for a Microsoft.Media.JobOutputProgress event.
-    /// </summary>
+    /// <summary> The MediaJobOutputProgressEventData. </summary>
     public partial class MediaJobOutputProgressEventData
     {
         /// <summary>
@@ -49,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MediaJobOutputProgressEventData"/>. </summary>
-        /// <param name="jobCorrelationData"> Gets the Job correlation data. </param>
+        /// <param name="jobCorrelationData"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobCorrelationData"/> is null. </exception>
         internal MediaJobOutputProgressEventData(IReadOnlyDictionary<string, string> jobCorrelationData)
         {
@@ -59,9 +56,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaJobOutputProgressEventData"/>. </summary>
-        /// <param name="label"> Gets the Job output label. </param>
-        /// <param name="progress"> Gets the Job output progress. </param>
-        /// <param name="jobCorrelationData"> Gets the Job correlation data. </param>
+        /// <param name="label"></param>
+        /// <param name="progress"></param>
+        /// <param name="jobCorrelationData"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaJobOutputProgressEventData(string label, long? progress, IReadOnlyDictionary<string, string> jobCorrelationData, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +73,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Gets the Job output label. </summary>
+        /// <summary> Gets the label. </summary>
         public string Label { get; }
-        /// <summary> Gets the Job output progress. </summary>
+        /// <summary> Gets the progress. </summary>
         public long? Progress { get; }
-        /// <summary> Gets the Job correlation data. </summary>
+        /// <summary> Gets the job correlation data. </summary>
         public IReadOnlyDictionary<string, string> JobCorrelationData { get; }
     }
 }

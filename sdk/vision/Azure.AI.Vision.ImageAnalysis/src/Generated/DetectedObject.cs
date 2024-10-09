@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents a physical object detected in an image. </summary>
+    /// <summary> The DetectedObject. </summary>
     public partial class DetectedObject
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DetectedObject"/>. </summary>
-        /// <param name="boundingBox"> A rectangular boundary where the object was detected. </param>
-        /// <param name="tags"> A single-item list containing the object information. </param>
+        /// <param name="boundingBox"></param>
+        /// <param name="tags"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="boundingBox"/> or <paramref name="tags"/> is null. </exception>
         internal DetectedObject(ImageBoundingBox boundingBox, IEnumerable<DetectedTag> tags)
         {
@@ -60,8 +60,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="DetectedObject"/>. </summary>
-        /// <param name="boundingBox"> A rectangular boundary where the object was detected. </param>
-        /// <param name="tags"> A single-item list containing the object information. </param>
+        /// <param name="boundingBox"></param>
+        /// <param name="tags"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DetectedObject(ImageBoundingBox boundingBox, IReadOnlyList<DetectedTag> tags, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> A rectangular boundary where the object was detected. </summary>
+        /// <summary> Gets the bounding box. </summary>
         public ImageBoundingBox BoundingBox { get; }
-        /// <summary> A single-item list containing the object information. </summary>
+        /// <summary> Gets the tags. </summary>
         public IReadOnlyList<DetectedTag> Tags { get; }
     }
 }

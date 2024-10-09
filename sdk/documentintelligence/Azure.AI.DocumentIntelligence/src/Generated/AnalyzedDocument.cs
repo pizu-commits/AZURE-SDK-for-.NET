@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> An object describing the location and semantic content of a document. </summary>
+    /// <summary> The AnalyzedDocument. </summary>
     public partial class AnalyzedDocument
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzedDocument"/>. </summary>
-        /// <param name="docType"> Document type. </param>
-        /// <param name="spans"> Location of the document in the reading order concatenated content. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the document. </param>
+        /// <param name="docType"></param>
+        /// <param name="spans"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="docType"/> or <paramref name="spans"/> is null. </exception>
         internal AnalyzedDocument(string docType, IEnumerable<DocumentSpan> spans, float confidence)
         {
@@ -64,11 +64,11 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzedDocument"/>. </summary>
-        /// <param name="docType"> Document type. </param>
-        /// <param name="boundingRegions"> Bounding regions covering the document. </param>
-        /// <param name="spans"> Location of the document in the reading order concatenated content. </param>
-        /// <param name="fields"> Dictionary of named field values. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the document. </param>
+        /// <param name="docType"></param>
+        /// <param name="boundingRegions"></param>
+        /// <param name="spans"></param>
+        /// <param name="fields"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzedDocument(string docType, IReadOnlyList<BoundingRegion> boundingRegions, IReadOnlyList<DocumentSpan> spans, IReadOnlyDictionary<string, DocumentField> fields, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,15 +85,15 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Document type. </summary>
+        /// <summary> Gets the doc type. </summary>
         public string DocType { get; }
-        /// <summary> Bounding regions covering the document. </summary>
+        /// <summary> Gets the bounding regions. </summary>
         public IReadOnlyList<BoundingRegion> BoundingRegions { get; }
-        /// <summary> Location of the document in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
-        /// <summary> Dictionary of named field values. </summary>
+        /// <summary> Gets the fields. </summary>
         public IReadOnlyDictionary<string, DocumentField> Fields { get; }
-        /// <summary> Confidence of correctly extracting the document. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

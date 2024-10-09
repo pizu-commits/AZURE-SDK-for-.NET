@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes Windows Remote Management configuration of the VM. </summary>
+    /// <summary> The WinRMConfiguration. </summary>
     internal partial class WinRMConfiguration
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="WinRMConfiguration"/>. </summary>
-        /// <param name="listeners"> The list of Windows Remote Management listeners. </param>
+        /// <param name="listeners"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WinRMConfiguration(IList<ComputeFleetWinRMListener> listeners, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The list of Windows Remote Management listeners. </summary>
+        /// <summary> Gets the listeners. </summary>
         public IList<ComputeFleetWinRMListener> Listeners { get; }
     }
 }

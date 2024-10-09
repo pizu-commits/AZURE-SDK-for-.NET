@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Request of liveness with verify session creation. </summary>
+    /// <summary> The CreateLivenessWithVerifySessionContent. </summary>
     internal partial class CreateLivenessWithVerifySessionContent
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CreateLivenessWithVerifySessionContent"/>. </summary>
-        /// <param name="parameters"> The parameters for creating session. </param>
-        /// <param name="verifyImage"> The image stream for verify. Content-Disposition header field for this part must have filename. </param>
+        /// <param name="parameters"></param>
+        /// <param name="verifyImage"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="parameters"/> or <paramref name="verifyImage"/> is null. </exception>
         public CreateLivenessWithVerifySessionContent(CreateLivenessSessionContent parameters, Stream verifyImage)
         {
@@ -60,8 +60,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="CreateLivenessWithVerifySessionContent"/>. </summary>
-        /// <param name="parameters"> The parameters for creating session. </param>
-        /// <param name="verifyImage"> The image stream for verify. Content-Disposition header field for this part must have filename. </param>
+        /// <param name="parameters"></param>
+        /// <param name="verifyImage"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CreateLivenessWithVerifySessionContent(CreateLivenessSessionContent parameters, Stream verifyImage, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The parameters for creating session. </summary>
+        /// <summary> Gets the parameters. </summary>
         public CreateLivenessSessionContent Parameters { get; }
-        /// <summary> The image stream for verify. Content-Disposition header field for this part must have filename. </summary>
+        /// <summary> Gets the verify image. </summary>
         public Stream VerifyImage { get; }
     }
 }

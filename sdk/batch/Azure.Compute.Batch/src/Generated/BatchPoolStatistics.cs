@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Contains utilization and resource usage statistics for the lifetime of a Pool. </summary>
+    /// <summary> The BatchPoolStatistics. </summary>
     public partial class BatchPoolStatistics
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolStatistics"/>. </summary>
-        /// <param name="url"> The URL for the statistics. </param>
-        /// <param name="startTime"> The start time of the time range covered by the statistics. </param>
-        /// <param name="lastUpdateTime"> The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. </param>
+        /// <param name="url"></param>
+        /// <param name="startTime"></param>
+        /// <param name="lastUpdateTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="url"/> is null. </exception>
         internal BatchPoolStatistics(string url, DateTimeOffset startTime, DateTimeOffset lastUpdateTime)
         {
@@ -60,11 +60,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolStatistics"/>. </summary>
-        /// <param name="url"> The URL for the statistics. </param>
-        /// <param name="startTime"> The start time of the time range covered by the statistics. </param>
-        /// <param name="lastUpdateTime"> The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. </param>
-        /// <param name="usageStats"> Statistics related to Pool usage, such as the amount of core-time used. </param>
-        /// <param name="resourceStats"> Statistics related to resource consumption by Compute Nodes in the Pool. </param>
+        /// <param name="url"></param>
+        /// <param name="startTime"></param>
+        /// <param name="lastUpdateTime"></param>
+        /// <param name="usageStats"></param>
+        /// <param name="resourceStats"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPoolStatistics(string url, DateTimeOffset startTime, DateTimeOffset lastUpdateTime, BatchPoolUsageStatistics usageStats, BatchPoolResourceStatistics resourceStats, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,15 +81,15 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The URL for the statistics. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> The start time of the time range covered by the statistics. </summary>
+        /// <summary> Gets the start time. </summary>
         public DateTimeOffset StartTime { get; }
-        /// <summary> The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. </summary>
+        /// <summary> Gets the last update time. </summary>
         public DateTimeOffset LastUpdateTime { get; }
-        /// <summary> Statistics related to Pool usage, such as the amount of core-time used. </summary>
+        /// <summary> Gets the usage stats. </summary>
         public BatchPoolUsageStatistics UsageStats { get; }
-        /// <summary> Statistics related to resource consumption by Compute Nodes in the Pool. </summary>
+        /// <summary> Gets the resource stats. </summary>
         public BatchPoolResourceStatistics ResourceStats { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The text analysis response. </summary>
+    /// <summary> The AnalyzeTextResult. </summary>
     public partial class AnalyzeTextResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextResult"/>. </summary>
-        /// <param name="categoriesAnalysis"> Analysis result for categories. </param>
+        /// <param name="categoriesAnalysis"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoriesAnalysis"/> is null. </exception>
         internal AnalyzeTextResult(IEnumerable<TextCategoriesAnalysis> categoriesAnalysis)
         {
@@ -58,8 +58,8 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextResult"/>. </summary>
-        /// <param name="blocklistsMatch"> The blocklist match details. </param>
-        /// <param name="categoriesAnalysis"> Analysis result for categories. </param>
+        /// <param name="blocklistsMatch"></param>
+        /// <param name="categoriesAnalysis"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeTextResult(IReadOnlyList<TextBlocklistMatch> blocklistsMatch, IReadOnlyList<TextCategoriesAnalysis> categoriesAnalysis, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> The blocklist match details. </summary>
+        /// <summary> Gets the blocklists match. </summary>
         public IReadOnlyList<TextBlocklistMatch> BlocklistsMatch { get; }
-        /// <summary> Analysis result for categories. </summary>
+        /// <summary> Gets the categories analysis. </summary>
         public IReadOnlyList<TextCategoriesAnalysis> CategoriesAnalysis { get; }
     }
 }

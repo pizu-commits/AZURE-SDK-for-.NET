@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Describes an upgrade policy - automatic, manual, or rolling. </summary>
+    /// <summary> The UpgradePolicy. </summary>
     public partial class UpgradePolicy
     {
         /// <summary>
@@ -46,16 +46,16 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UpgradePolicy"/>. </summary>
-        /// <param name="mode"> Specifies the mode of an upgrade to virtual machines in the scale set.&lt;br /&gt;&lt;br /&gt; Possible values are:&lt;br /&gt;&lt;br /&gt; **Manual** - You  control the application of updates to virtual machines in the scale set. You do this by using the manualUpgrade action.&lt;br /&gt;&lt;br /&gt; **Automatic** - All virtual machines in the scale set are automatically updated at the same time.&lt;br /&gt;&lt;br /&gt; **Rolling** - Scale set performs updates in batches with an optional pause time in between. </param>
+        /// <param name="mode"></param>
         public UpgradePolicy(UpgradeMode mode)
         {
             Mode = mode;
         }
 
         /// <summary> Initializes a new instance of <see cref="UpgradePolicy"/>. </summary>
-        /// <param name="mode"> Specifies the mode of an upgrade to virtual machines in the scale set.&lt;br /&gt;&lt;br /&gt; Possible values are:&lt;br /&gt;&lt;br /&gt; **Manual** - You  control the application of updates to virtual machines in the scale set. You do this by using the manualUpgrade action.&lt;br /&gt;&lt;br /&gt; **Automatic** - All virtual machines in the scale set are automatically updated at the same time.&lt;br /&gt;&lt;br /&gt; **Rolling** - Scale set performs updates in batches with an optional pause time in between. </param>
-        /// <param name="automaticOsUpgradePolicy"> Configuration parameters used for performing automatic OS Upgrade. The configuration parameters used for performing automatic OS upgrade. </param>
-        /// <param name="rollingUpgradePolicy"> The configuration parameters used while performing a rolling upgrade. This property is only supported on Pools with the virtualMachineConfiguration property. </param>
+        /// <param name="mode"></param>
+        /// <param name="automaticOsUpgradePolicy"></param>
+        /// <param name="rollingUpgradePolicy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UpgradePolicy(UpgradeMode mode, AutomaticOsUpgradePolicy automaticOsUpgradePolicy, RollingUpgradePolicy rollingUpgradePolicy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,11 +70,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> Specifies the mode of an upgrade to virtual machines in the scale set.&lt;br /&gt;&lt;br /&gt; Possible values are:&lt;br /&gt;&lt;br /&gt; **Manual** - You  control the application of updates to virtual machines in the scale set. You do this by using the manualUpgrade action.&lt;br /&gt;&lt;br /&gt; **Automatic** - All virtual machines in the scale set are automatically updated at the same time.&lt;br /&gt;&lt;br /&gt; **Rolling** - Scale set performs updates in batches with an optional pause time in between. </summary>
+        /// <summary> Gets or sets the mode. </summary>
         public UpgradeMode Mode { get; set; }
-        /// <summary> Configuration parameters used for performing automatic OS Upgrade. The configuration parameters used for performing automatic OS upgrade. </summary>
+        /// <summary> Gets or sets the automatic os upgrade policy. </summary>
         public AutomaticOsUpgradePolicy AutomaticOsUpgradePolicy { get; set; }
-        /// <summary> The configuration parameters used while performing a rolling upgrade. This property is only supported on Pools with the virtualMachineConfiguration property. </summary>
+        /// <summary> Gets or sets the rolling upgrade policy. </summary>
         public RollingUpgradePolicy RollingUpgradePolicy { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// The abstract base class for entity resolutions.
+    /// The ResolutionBase.
     /// Please note <see cref="ResolutionBase"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="AgeResolution"/>, <see cref="AreaResolution"/>, <see cref="BooleanResolution"/>, <see cref="CurrencyResolution"/>, <see cref="DateTimeResolution"/>, <see cref="InformationResolution"/>, <see cref="LengthResolution"/>, <see cref="NumberResolution"/>, <see cref="NumericRangeResolution"/>, <see cref="OrdinalResolution"/>, <see cref="SpeedResolution"/>, <see cref="TemperatureResolution"/>, <see cref="TemporalSpanResolution"/>, <see cref="VolumeResolution"/> and <see cref="WeightResolution"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ResolutionBase"/>. </summary>
-        /// <param name="resolutionKind"> The entity resolution object kind. </param>
+        /// <param name="resolutionKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResolutionBase(ResolutionKind resolutionKind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The entity resolution object kind. </summary>
+        /// <summary> Gets or sets the resolution kind. </summary>
         internal ResolutionKind ResolutionKind { get; set; }
     }
 }

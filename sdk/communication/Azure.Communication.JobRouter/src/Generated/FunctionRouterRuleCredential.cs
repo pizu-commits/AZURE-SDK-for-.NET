@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Credentials used to access Azure function rule. </summary>
+    /// <summary> The FunctionRouterRuleCredential. </summary>
     public partial class FunctionRouterRuleCredential
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="FunctionRouterRuleCredential"/>. </summary>
-        /// <param name="functionKey"> Access key scoped to a particular function. </param>
-        /// <param name="appKey"> Access key scoped to a Azure Function app. This key grants access to all functions under the app. </param>
-        /// <param name="clientId"> Client id, when AppKey is provided In context of Azure function, this is usually the name of the key. </param>
+        /// <param name="functionKey"></param>
+        /// <param name="appKey"></param>
+        /// <param name="clientId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FunctionRouterRuleCredential(string functionKey, string appKey, string clientId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

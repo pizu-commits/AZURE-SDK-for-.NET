@@ -7,14 +7,14 @@
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Describes temporal information regarding the entity. </summary>
+    /// <summary> The HealthcareAssertionTemporality. </summary>
     public enum HealthcareAssertionTemporality
     {
-        /// <summary> Current temporality. </summary>
+        /// <summary> current. </summary>
         Current,
-        /// <summary> Past temporality. </summary>
+        /// <summary> past. </summary>
         Past,
-        /// <summary> Future temporality. </summary>
+        /// <summary> future. </summary>
         Future
     }
 }

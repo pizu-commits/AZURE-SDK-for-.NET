@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The details used when creating a new run of an assistant thread. </summary>
+    /// <summary> The CreateRunOptions. </summary>
     public partial class CreateRunOptions
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CreateRunOptions"/>. </summary>
-        /// <param name="assistantId"> The ID of the assistant that should run the thread. </param>
+        /// <param name="assistantId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="assistantId"/> is null. </exception>
         public CreateRunOptions(string assistantId)
         {
@@ -58,19 +58,15 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="CreateRunOptions"/>. </summary>
-        /// <param name="assistantId"> The ID of the assistant that should run the thread. </param>
-        /// <param name="overrideModelName"> The overridden model name that the assistant should use to run the thread. </param>
-        /// <param name="overrideInstructions"> The overridden system instructions that the assistant should use to run the thread. </param>
-        /// <param name="additionalInstructions">
-        /// Additional instructions to append at the end of the instructions for the run. This is useful for modifying the behavior
-        /// on a per-run basis without overriding other instructions.
-        /// </param>
+        /// <param name="assistantId"></param>
+        /// <param name="overrideModelName"></param>
+        /// <param name="overrideInstructions"></param>
+        /// <param name="additionalInstructions"></param>
         /// <param name="overrideTools">
-        /// The overridden list of enabled tools that the assistant should use to run the thread.
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CreateRunOptions(string assistantId, string overrideModelName, string overrideInstructions, string additionalInstructions, IList<ToolDefinition> overrideTools, IDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -88,24 +84,21 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The ID of the assistant that should run the thread. </summary>
+        /// <summary> Gets the assistant id. </summary>
         public string AssistantId { get; }
-        /// <summary> The overridden model name that the assistant should use to run the thread. </summary>
+        /// <summary> Gets or sets the override model name. </summary>
         public string OverrideModelName { get; set; }
-        /// <summary> The overridden system instructions that the assistant should use to run the thread. </summary>
+        /// <summary> Gets or sets the override instructions. </summary>
         public string OverrideInstructions { get; set; }
-        /// <summary>
-        /// Additional instructions to append at the end of the instructions for the run. This is useful for modifying the behavior
-        /// on a per-run basis without overriding other instructions.
-        /// </summary>
+        /// <summary> Gets or sets the additional instructions. </summary>
         public string AdditionalInstructions { get; set; }
         /// <summary>
-        /// The overridden list of enabled tools that the assistant should use to run the thread.
+        /// Gets or sets the override tools
         /// Please note <see cref="ToolDefinition"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CodeInterpreterToolDefinition"/>, <see cref="FunctionToolDefinition"/> and <see cref="RetrievalToolDefinition"/>.
         /// </summary>
         public IList<ToolDefinition> OverrideTools { get; set; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets or sets the metadata. </summary>
         public IDictionary<string, string> Metadata { get; set; }
     }
 }

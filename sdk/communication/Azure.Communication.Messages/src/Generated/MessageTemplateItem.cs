@@ -12,7 +12,7 @@ using Azure.Communication.Messages.Models.Channels;
 namespace Azure.Communication.Messages
 {
     /// <summary>
-    /// The message template as returned from the service.
+    /// The MessageTemplateItem.
     /// Please note <see cref="MessageTemplateItem"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="WhatsAppMessageTemplateItem"/>.
     /// </summary>
@@ -51,8 +51,8 @@ namespace Azure.Communication.Messages
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateItem"/>. </summary>
-        /// <param name="language"> The template's language, in the ISO 639 format, consist of a two-letter language code followed by an optional two-letter country code, e.g., 'en' or 'en_US'. </param>
-        /// <param name="status"> The aggregated template status. </param>
+        /// <param name="language"></param>
+        /// <param name="status"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="language"/> is null. </exception>
         protected MessageTemplateItem(string language, MessageTemplateStatus status)
         {
@@ -63,10 +63,10 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateItem"/>. </summary>
-        /// <param name="name"> The template's name. </param>
-        /// <param name="language"> The template's language, in the ISO 639 format, consist of a two-letter language code followed by an optional two-letter country code, e.g., 'en' or 'en_US'. </param>
-        /// <param name="status"> The aggregated template status. </param>
-        /// <param name="kind"> The type discriminator describing a template type. </param>
+        /// <param name="name"></param>
+        /// <param name="language"></param>
+        /// <param name="status"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MessageTemplateItem(string name, string language, MessageTemplateStatus status, CommunicationMessagesChannel kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> The template's name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The template's language, in the ISO 639 format, consist of a two-letter language code followed by an optional two-letter country code, e.g., 'en' or 'en_US'. </summary>
+        /// <summary> Gets the language. </summary>
         public string Language { get; }
-        /// <summary> The aggregated template status. </summary>
+        /// <summary> Gets the status. </summary>
         public MessageTemplateStatus Status { get; }
-        /// <summary> The type discriminator describing a template type. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal CommunicationMessagesChannel Kind { get; set; }
     }
 }

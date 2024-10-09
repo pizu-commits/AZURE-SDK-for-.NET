@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Router Channel Configuration. </summary>
+    /// <summary> The AcsRouterChannelConfiguration. </summary>
     public partial class AcsRouterChannelConfiguration
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterChannelConfiguration"/>. </summary>
-        /// <param name="channelId"> Channel ID for Router Job. </param>
-        /// <param name="capacityCostPerJob"> Capacity Cost Per Job for Router Job. </param>
-        /// <param name="maxNumberOfJobs"> Max Number of Jobs for Router Job. </param>
+        /// <param name="channelId"></param>
+        /// <param name="capacityCostPerJob"></param>
+        /// <param name="maxNumberOfJobs"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRouterChannelConfiguration(string channelId, int? capacityCostPerJob, int? maxNumberOfJobs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Channel ID for Router Job. </summary>
+        /// <summary> Gets the channel id. </summary>
         public string ChannelId { get; }
-        /// <summary> Capacity Cost Per Job for Router Job. </summary>
+        /// <summary> Gets the capacity cost per job. </summary>
         public int? CapacityCostPerJob { get; }
-        /// <summary> Max Number of Jobs for Router Job. </summary>
+        /// <summary> Gets the max number of jobs. </summary>
         public int? MaxNumberOfJobs { get; }
     }
 }

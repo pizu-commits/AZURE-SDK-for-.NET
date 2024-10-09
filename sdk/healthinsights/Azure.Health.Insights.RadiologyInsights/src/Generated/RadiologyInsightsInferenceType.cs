@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> A Radiology Insights inference types. </summary>
+    /// <summary> The RadiologyInsightsInferenceType. </summary>
     public readonly partial struct RadiologyInsightsInferenceType : IEquatable<RadiologyInsightsInferenceType>
     {
         private readonly string _value;
@@ -33,25 +33,25 @@ namespace Azure.Health.Insights.RadiologyInsights
         private const string FollowupCommunicationValue = "followupCommunication";
         private const string RadiologyProcedureValue = "radiologyProcedure";
 
-        /// <summary> Age mismatch inference type. </summary>
+        /// <summary> ageMismatch. </summary>
         public static RadiologyInsightsInferenceType AgeMismatch { get; } = new RadiologyInsightsInferenceType(AgeMismatchValue);
-        /// <summary> Laterality discrepancy inference type. </summary>
+        /// <summary> lateralityDiscrepancy. </summary>
         public static RadiologyInsightsInferenceType LateralityDiscrepancy { get; } = new RadiologyInsightsInferenceType(LateralityDiscrepancyValue);
-        /// <summary> Sex mismatch inference type. </summary>
+        /// <summary> sexMismatch. </summary>
         public static RadiologyInsightsInferenceType SexMismatch { get; } = new RadiologyInsightsInferenceType(SexMismatchValue);
-        /// <summary> Complete order discrepancy inference type. </summary>
+        /// <summary> completeOrderDiscrepancy. </summary>
         public static RadiologyInsightsInferenceType CompleteOrderDiscrepancy { get; } = new RadiologyInsightsInferenceType(CompleteOrderDiscrepancyValue);
-        /// <summary> Limited order discrepancy inference type. </summary>
+        /// <summary> limitedOrderDiscrepancy. </summary>
         public static RadiologyInsightsInferenceType LimitedOrderDiscrepancy { get; } = new RadiologyInsightsInferenceType(LimitedOrderDiscrepancyValue);
-        /// <summary> Finding inference type. </summary>
+        /// <summary> finding. </summary>
         public static RadiologyInsightsInferenceType Finding { get; } = new RadiologyInsightsInferenceType(FindingValue);
-        /// <summary> Critical finding inference type. </summary>
+        /// <summary> criticalResult. </summary>
         public static RadiologyInsightsInferenceType CriticalResult { get; } = new RadiologyInsightsInferenceType(CriticalResultValue);
-        /// <summary> Recommendation inference type. </summary>
+        /// <summary> followupRecommendation. </summary>
         public static RadiologyInsightsInferenceType FollowupRecommendation { get; } = new RadiologyInsightsInferenceType(FollowupRecommendationValue);
-        /// <summary> Followup Communication inference type. </summary>
+        /// <summary> followupCommunication. </summary>
         public static RadiologyInsightsInferenceType FollowupCommunication { get; } = new RadiologyInsightsInferenceType(FollowupCommunicationValue);
-        /// <summary> Radiology Procedure inference type. </summary>
+        /// <summary> radiologyProcedure. </summary>
         public static RadiologyInsightsInferenceType RadiologyProcedure { get; } = new RadiologyInsightsInferenceType(RadiologyProcedureValue);
         /// <summary> Determines if two <see cref="RadiologyInsightsInferenceType"/> values are the same. </summary>
         public static bool operator ==(RadiologyInsightsInferenceType left, RadiologyInsightsInferenceType right) => left.Equals(right);

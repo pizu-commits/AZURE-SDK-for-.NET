@@ -14,7 +14,7 @@ namespace Azure.AI.Inference
     internal partial class UnknownChatRequestMessage : ChatRequestMessage
     {
         /// <summary> Initializes a new instance of <see cref="UnknownChatRequestMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with this message. </param>
+        /// <param name="role"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownChatRequestMessage(ChatRole role, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(role, serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Request body to authorize document model copy. </summary>
+    /// <summary> The AuthorizeCopyContent. </summary>
     public partial class AuthorizeCopyContent
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AuthorizeCopyContent"/>. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         public AuthorizeCopyContent(string modelId)
         {
@@ -57,9 +57,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AuthorizeCopyContent"/>. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="description"> Document model description. </param>
-        /// <param name="tags"> List of key-value tag attributes associated with the document model. </param>
+        /// <param name="modelId"></param>
+        /// <param name="description"></param>
+        /// <param name="tags"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AuthorizeCopyContent(string modelId, string description, IDictionary<string, string> tags, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Unique document model name. </summary>
+        /// <summary> Gets the model id. </summary>
         public string ModelId { get; }
-        /// <summary> Document model description. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> List of key-value tag attributes associated with the document model. </summary>
+        /// <summary> Gets the tags. </summary>
         public IDictionary<string, string> Tags { get; }
     }
 }

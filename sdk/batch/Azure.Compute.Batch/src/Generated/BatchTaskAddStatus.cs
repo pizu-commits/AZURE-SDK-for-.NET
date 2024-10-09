@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchTaskAddStatus enums. </summary>
+    /// <summary> The BatchTaskAddStatus. </summary>
     public readonly partial struct BatchTaskAddStatus : IEquatable<BatchTaskAddStatus>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string ClientErrorValue = "clienterror";
         private const string ServerErrorValue = "servererror";
 
-        /// <summary> The Task was added successfully. </summary>
+        /// <summary> success. </summary>
         public static BatchTaskAddStatus Success { get; } = new BatchTaskAddStatus(SuccessValue);
-        /// <summary> The Task failed to add due to a client error and should not be retried without modifying the request as appropriate. </summary>
+        /// <summary> clienterror. </summary>
         public static BatchTaskAddStatus ClientError { get; } = new BatchTaskAddStatus(ClientErrorValue);
-        /// <summary> Task failed to add due to a server error and can be retried without modification. </summary>
+        /// <summary> servererror. </summary>
         public static BatchTaskAddStatus ServerError { get; } = new BatchTaskAddStatus(ServerErrorValue);
         /// <summary> Determines if two <see cref="BatchTaskAddStatus"/> values are the same. </summary>
         public static bool operator ==(BatchTaskAddStatus left, BatchTaskAddStatus right) => left.Equals(right);

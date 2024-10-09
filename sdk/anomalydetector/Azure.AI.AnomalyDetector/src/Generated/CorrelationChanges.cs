@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Correlation changes among the anomalous variables. </summary>
+    /// <summary> The CorrelationChanges. </summary>
     public partial class CorrelationChanges
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="CorrelationChanges"/>. </summary>
-        /// <param name="changedVariables"> Correlated variables that have correlation changes under an anomaly. </param>
+        /// <param name="changedVariables"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CorrelationChanges(IReadOnlyList<string> changedVariables, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.AI.AnomalyDetector
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Correlated variables that have correlation changes under an anomaly. </summary>
+        /// <summary> Gets the changed variables. </summary>
         public IReadOnlyList<string> ChangedVariables { get; }
     }
 }

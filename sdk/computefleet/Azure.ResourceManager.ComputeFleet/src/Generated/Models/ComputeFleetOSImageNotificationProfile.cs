@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifies OS Image Scheduled Event related configurations. </summary>
+    /// <summary> The ComputeFleetOSImageNotificationProfile. </summary>
     public partial class ComputeFleetOSImageNotificationProfile
     {
         /// <summary>
@@ -51,13 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetOSImageNotificationProfile"/>. </summary>
-        /// <param name="notBeforeTimeout">
-        /// Length of time a Virtual Machine being reimaged or having its OS upgraded will
-        /// have to potentially approve the OS Image Scheduled Event before the event is
-        /// auto approved (timed out). The configuration is specified in ISO 8601 format,
-        /// and the value must not exceed 15 minutes (PT15M)
-        /// </param>
-        /// <param name="isEnabled"> Specifies whether the OS Image Scheduled event is enabled or disabled. </param>
+        /// <param name="notBeforeTimeout"></param>
+        /// <param name="isEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetOSImageNotificationProfile(string notBeforeTimeout, bool? isEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,14 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Length of time a Virtual Machine being reimaged or having its OS upgraded will
-        /// have to potentially approve the OS Image Scheduled Event before the event is
-        /// auto approved (timed out). The configuration is specified in ISO 8601 format,
-        /// and the value must not exceed 15 minutes (PT15M)
-        /// </summary>
+        /// <summary> Gets or sets the not before timeout. </summary>
         public string NotBeforeTimeout { get; set; }
-        /// <summary> Specifies whether the OS Image Scheduled event is enabled or disabled. </summary>
+        /// <summary> Gets or sets the is enabled. </summary>
         public bool? IsEnabled { get; set; }
     }
 }

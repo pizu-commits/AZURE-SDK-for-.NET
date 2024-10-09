@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Element containing the text for translation. </summary>
+    /// <summary> The InputTextItem. </summary>
     public partial class InputTextItem
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Translation.Text
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InputTextItem"/>. </summary>
-        /// <param name="text"> Text to translate. </param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         public InputTextItem(string text)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="InputTextItem"/>. </summary>
-        /// <param name="text"> Text to translate. </param>
+        /// <param name="text"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InputTextItem(string text, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> Text to translate. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A representation of the possible image detail levels for image-based chat completions message content. </summary>
+    /// <summary> The ChatMessageImageDetailLevel. </summary>
     public readonly partial struct ChatMessageImageDetailLevel : IEquatable<ChatMessageImageDetailLevel>
     {
         private readonly string _value;
@@ -26,17 +26,11 @@ namespace Azure.AI.Inference
         private const string LowValue = "low";
         private const string HighValue = "high";
 
-        /// <summary> Specifies that the model should determine which detail level to apply using heuristics like image size. </summary>
+        /// <summary> auto. </summary>
         public static ChatMessageImageDetailLevel Auto { get; } = new ChatMessageImageDetailLevel(AutoValue);
-        /// <summary>
-        /// Specifies that image evaluation should be constrained to the 'low-res' model that may be faster and consume fewer
-        /// tokens but may also be less accurate for highly detailed images.
-        /// </summary>
+        /// <summary> low. </summary>
         public static ChatMessageImageDetailLevel Low { get; } = new ChatMessageImageDetailLevel(LowValue);
-        /// <summary>
-        /// Specifies that image evaluation should enable the 'high-res' model that may be more accurate for highly detailed
-        /// images but may also be slower and consume more tokens.
-        /// </summary>
+        /// <summary> high. </summary>
         public static ChatMessageImageDetailLevel High { get; } = new ChatMessageImageDetailLevel(HighValue);
         /// <summary> Determines if two <see cref="ChatMessageImageDetailLevel"/> values are the same. </summary>
         public static bool operator ==(ChatMessageImageDetailLevel left, ChatMessageImageDetailLevel right) => left.Equals(right);

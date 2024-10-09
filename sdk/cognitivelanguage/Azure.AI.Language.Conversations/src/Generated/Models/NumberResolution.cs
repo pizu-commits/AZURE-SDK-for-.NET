@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> A resolution for numeric entity instances. </summary>
+    /// <summary> The NumberResolution. </summary>
     public partial class NumberResolution : ResolutionBase
     {
         /// <summary> Initializes a new instance of <see cref="NumberResolution"/>. </summary>
-        /// <param name="numberKind"> The type of the extracted number entity. </param>
-        /// <param name="value"> A numeric representation of what the extracted text denotes. </param>
+        /// <param name="numberKind"></param>
+        /// <param name="value"></param>
         internal NumberResolution(NumberKind numberKind, double value)
         {
             ResolutionKind = ResolutionKind.NumberResolution;
@@ -24,10 +24,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="NumberResolution"/>. </summary>
-        /// <param name="resolutionKind"> The entity resolution object kind. </param>
+        /// <param name="resolutionKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="numberKind"> The type of the extracted number entity. </param>
-        /// <param name="value"> A numeric representation of what the extracted text denotes. </param>
+        /// <param name="numberKind"></param>
+        /// <param name="value"></param>
         internal NumberResolution(ResolutionKind resolutionKind, IDictionary<string, BinaryData> serializedAdditionalRawData, NumberKind numberKind, double value) : base(resolutionKind, serializedAdditionalRawData)
         {
             NumberKind = numberKind;
@@ -39,9 +39,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The type of the extracted number entity. </summary>
+        /// <summary> Gets the number kind. </summary>
         public NumberKind NumberKind { get; }
-        /// <summary> A numeric representation of what the extracted text denotes. </summary>
+        /// <summary> Gets the value. </summary>
         public double Value { get; }
     }
 }

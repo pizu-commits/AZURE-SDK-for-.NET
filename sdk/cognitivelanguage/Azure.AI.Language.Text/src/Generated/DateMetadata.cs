@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> A Metadata for date entity instances. </summary>
+    /// <summary> The DateMetadata. </summary>
     public partial class DateMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="DateMetadata"/>. </summary>
@@ -21,15 +21,15 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DateMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="dates"> List of date values. </param>
+        /// <param name="dates"></param>
         internal DateMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyList<DateValue> dates) : base(metadataKind, serializedAdditionalRawData)
         {
             Dates = dates;
         }
 
-        /// <summary> List of date values. </summary>
+        /// <summary> Gets the dates. </summary>
         public IReadOnlyList<DateValue> Dates { get; }
     }
 }

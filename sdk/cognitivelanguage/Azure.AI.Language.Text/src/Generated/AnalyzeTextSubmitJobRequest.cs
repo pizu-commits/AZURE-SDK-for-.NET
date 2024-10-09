@@ -47,9 +47,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextSubmitJobRequest"/>. </summary>
-        /// <param name="textInput"> Contains the input to be analyzed. </param>
+        /// <param name="textInput"></param>
         /// <param name="actions">
-        /// List of tasks to be performed as part of the LRO.
         /// Please note <see cref="AnalyzeTextOperationAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AbstractiveSummarizationOperationAction"/>, <see cref="CustomAbstractiveSummarizationOperationAction"/>, <see cref="CustomEntitiesOperationAction"/>, <see cref="CustomHealthcareOperationAction"/>, <see cref="CustomMultiLabelClassificationOperationAction"/>, <see cref="CustomSentimentAnalysisOperationAction"/>, <see cref="CustomSingleLabelClassificationOperationAction"/>, <see cref="EntityLinkingOperationAction"/>, <see cref="EntitiesOperationAction"/>, <see cref="ExtractiveSummarizationOperationAction"/>, <see cref="HealthcareOperationAction"/>, <see cref="KeyPhraseOperationAction"/>, <see cref="PiiOperationAction"/> and <see cref="SentimentAnalysisOperationAction"/>.
         /// </param>
@@ -64,14 +63,13 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextSubmitJobRequest"/>. </summary>
-        /// <param name="displayName"> Name for the task. </param>
-        /// <param name="textInput"> Contains the input to be analyzed. </param>
+        /// <param name="displayName"></param>
+        /// <param name="textInput"></param>
         /// <param name="actions">
-        /// List of tasks to be performed as part of the LRO.
         /// Please note <see cref="AnalyzeTextOperationAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AbstractiveSummarizationOperationAction"/>, <see cref="CustomAbstractiveSummarizationOperationAction"/>, <see cref="CustomEntitiesOperationAction"/>, <see cref="CustomHealthcareOperationAction"/>, <see cref="CustomMultiLabelClassificationOperationAction"/>, <see cref="CustomSentimentAnalysisOperationAction"/>, <see cref="CustomSingleLabelClassificationOperationAction"/>, <see cref="EntityLinkingOperationAction"/>, <see cref="EntitiesOperationAction"/>, <see cref="ExtractiveSummarizationOperationAction"/>, <see cref="HealthcareOperationAction"/>, <see cref="KeyPhraseOperationAction"/>, <see cref="PiiOperationAction"/> and <see cref="SentimentAnalysisOperationAction"/>.
         /// </param>
-        /// <param name="defaultLanguage"> Default language to use for records requesting automatic language detection. </param>
+        /// <param name="defaultLanguage"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeTextSubmitJobRequest(string displayName, MultiLanguageTextInput textInput, IReadOnlyList<AnalyzeTextOperationAction> actions, string defaultLanguage, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,17 +85,17 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Name for the task. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> Contains the input to be analyzed. </summary>
+        /// <summary> Gets the text input. </summary>
         public MultiLanguageTextInput TextInput { get; }
         /// <summary>
-        /// List of tasks to be performed as part of the LRO.
+        /// Gets the actions
         /// Please note <see cref="AnalyzeTextOperationAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AbstractiveSummarizationOperationAction"/>, <see cref="CustomAbstractiveSummarizationOperationAction"/>, <see cref="CustomEntitiesOperationAction"/>, <see cref="CustomHealthcareOperationAction"/>, <see cref="CustomMultiLabelClassificationOperationAction"/>, <see cref="CustomSentimentAnalysisOperationAction"/>, <see cref="CustomSingleLabelClassificationOperationAction"/>, <see cref="EntityLinkingOperationAction"/>, <see cref="EntitiesOperationAction"/>, <see cref="ExtractiveSummarizationOperationAction"/>, <see cref="HealthcareOperationAction"/>, <see cref="KeyPhraseOperationAction"/>, <see cref="PiiOperationAction"/> and <see cref="SentimentAnalysisOperationAction"/>.
         /// </summary>
         public IReadOnlyList<AnalyzeTextOperationAction> Actions { get; }
-        /// <summary> Default language to use for records requesting automatic language detection. </summary>
+        /// <summary> Gets the default language. </summary>
         public string DefaultLanguage { get; }
     }
 }

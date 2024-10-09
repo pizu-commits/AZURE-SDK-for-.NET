@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Response verifying SimSwap in period. </summary>
+    /// <summary> The SimSwapVerificationResult. </summary>
     public partial class SimSwapVerificationResult
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SimSwapVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if the SIM has swapped in the specified period, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         internal SimSwapVerificationResult(bool verificationResult)
         {
             VerificationResult = verificationResult;
         }
 
         /// <summary> Initializes a new instance of <see cref="SimSwapVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if the SIM has swapped in the specified period, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SimSwapVerificationResult(bool verificationResult, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> True if the SIM has swapped in the specified period, False otherwise. </summary>
+        /// <summary> Gets the verification result. </summary>
         public bool VerificationResult { get; }
     }
 }

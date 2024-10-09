@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> A DID document key. </summary>
+    /// <summary> The DidDocumentKey. </summary>
     public partial class DidDocumentKey
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Security.CodeTransparency
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DidDocumentKey"/>. </summary>
-        /// <param name="id"> Key identifier. </param>
-        /// <param name="controller"> Key controller - similar to DID issuer. </param>
-        /// <param name="publicKeyJwk"> Serialized public key in JWK format. </param>
+        /// <param name="id"></param>
+        /// <param name="controller"></param>
+        /// <param name="publicKeyJwk"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="controller"/> or <paramref name="publicKeyJwk"/> is null. </exception>
         internal DidDocumentKey(string id, string controller, JsonWebKey publicKeyJwk)
         {
@@ -62,10 +62,10 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Initializes a new instance of <see cref="DidDocumentKey"/>. </summary>
-        /// <param name="id"> Key identifier. </param>
-        /// <param name="controller"> Key controller - similar to DID issuer. </param>
-        /// <param name="type"> Key type. </param>
-        /// <param name="publicKeyJwk"> Serialized public key in JWK format. </param>
+        /// <param name="id"></param>
+        /// <param name="controller"></param>
+        /// <param name="type"></param>
+        /// <param name="publicKeyJwk"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DidDocumentKey(string id, string controller, DidDocumentKeyType type, JsonWebKey publicKeyJwk, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,14 +81,14 @@ namespace Azure.Security.CodeTransparency
         {
         }
 
-        /// <summary> Key identifier. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Key controller - similar to DID issuer. </summary>
+        /// <summary> Gets the controller. </summary>
         public string Controller { get; }
-        /// <summary> Key type. </summary>
+        /// <summary> Gets the type. </summary>
         public DidDocumentKeyType Type { get; } = DidDocumentKeyType.JsonWebKey2020;
 
-        /// <summary> Serialized public key in JWK format. </summary>
+        /// <summary> Gets the public key jwk. </summary>
         public JsonWebKey PublicKeyJwk { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> This is a set of request parameters for Customized Conversation projects. </summary>
+    /// <summary> The ConversationConfig. </summary>
     public partial class ConversationConfig : AnalysisConfig
     {
         /// <summary> Initializes a new instance of <see cref="ConversationConfig"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationConfig"/>. </summary>
-        /// <param name="targetProjectKind"> The type of a target service. </param>
-        /// <param name="apiVersion"> The API version to use when call a specific target service. </param>
+        /// <param name="targetProjectKind"></param>
+        /// <param name="apiVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="callingOptions"> The option to set to call a Conversation project. </param>
+        /// <param name="callingOptions"></param>
         internal ConversationConfig(TargetProjectKind targetProjectKind, string apiVersion, IDictionary<string, BinaryData> serializedAdditionalRawData, ConversationCallingConfig callingOptions) : base(targetProjectKind, apiVersion, serializedAdditionalRawData)
         {
             CallingOptions = callingOptions;
         }
 
-        /// <summary> The option to set to call a Conversation project. </summary>
+        /// <summary> Gets or sets the calling options. </summary>
         public ConversationCallingConfig CallingOptions { get; set; }
     }
 }

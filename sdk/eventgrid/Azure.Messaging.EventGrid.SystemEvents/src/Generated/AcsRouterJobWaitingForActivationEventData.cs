@@ -11,16 +11,16 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterJobWaitingForActivation event. </summary>
+    /// <summary> The AcsRouterJobWaitingForActivationEventData. </summary>
     public partial class AcsRouterJobWaitingForActivationEventData : AcsRouterJobEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobWaitingForActivationEventData"/>. </summary>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
-        /// <param name="expiredAttachedWorkerSelectors"> Router Job Waiting For Activation Worker Selector Expired. </param>
-        /// <param name="expiredRequestedWorkerSelectors"> Router Job Waiting For Activation Requested Worker Selector Expired. </param>
-        /// <param name="scheduledOn"> Router Job Waiting For Activation Scheduled Time in UTC. </param>
-        /// <param name="unavailableForMatching"> Router Job Waiting For Activation Unavailable For Matching. </param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="expiredAttachedWorkerSelectors"></param>
+        /// <param name="expiredRequestedWorkerSelectors"></param>
+        /// <param name="scheduledOn"></param>
+        /// <param name="unavailableForMatching"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="labels"/>, <paramref name="tags"/>, <paramref name="expiredAttachedWorkerSelectors"/> or <paramref name="expiredRequestedWorkerSelectors"/> is null. </exception>
         internal AcsRouterJobWaitingForActivationEventData(IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, IEnumerable<AcsRouterWorkerSelector> expiredAttachedWorkerSelectors, IEnumerable<AcsRouterWorkerSelector> expiredRequestedWorkerSelectors, DateTimeOffset scheduledOn, bool unavailableForMatching) : base(labels, tags)
         {
@@ -36,18 +36,18 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterJobWaitingForActivationEventData"/>. </summary>
-        /// <param name="jobId"> Router Event Job ID. </param>
-        /// <param name="channelReference"> Router Event Channel Reference. </param>
-        /// <param name="channelId"> Router Event Channel ID. </param>
+        /// <param name="jobId"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="channelId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="queueId"> Router Job events Queue Id. </param>
-        /// <param name="labels"> Router Job events Labels. </param>
-        /// <param name="tags"> Router Jobs events Tags. </param>
-        /// <param name="priority"> Router Job Waiting For Activation Priority. </param>
-        /// <param name="expiredAttachedWorkerSelectors"> Router Job Waiting For Activation Worker Selector Expired. </param>
-        /// <param name="expiredRequestedWorkerSelectors"> Router Job Waiting For Activation Requested Worker Selector Expired. </param>
-        /// <param name="scheduledOn"> Router Job Waiting For Activation Scheduled Time in UTC. </param>
-        /// <param name="unavailableForMatching"> Router Job Waiting For Activation Unavailable For Matching. </param>
+        /// <param name="queueId"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="priority"></param>
+        /// <param name="expiredAttachedWorkerSelectors"></param>
+        /// <param name="expiredRequestedWorkerSelectors"></param>
+        /// <param name="scheduledOn"></param>
+        /// <param name="unavailableForMatching"></param>
         internal AcsRouterJobWaitingForActivationEventData(string jobId, string channelReference, string channelId, IDictionary<string, BinaryData> serializedAdditionalRawData, string queueId, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, int? priority, IReadOnlyList<AcsRouterWorkerSelector> expiredAttachedWorkerSelectors, IReadOnlyList<AcsRouterWorkerSelector> expiredRequestedWorkerSelectors, DateTimeOffset scheduledOn, bool unavailableForMatching) : base(jobId, channelReference, channelId, serializedAdditionalRawData, queueId, labels, tags)
         {
             Priority = priority;
@@ -62,15 +62,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Job Waiting For Activation Priority. </summary>
+        /// <summary> Gets the priority. </summary>
         public int? Priority { get; }
-        /// <summary> Router Job Waiting For Activation Worker Selector Expired. </summary>
+        /// <summary> Gets the expired attached worker selectors. </summary>
         public IReadOnlyList<AcsRouterWorkerSelector> ExpiredAttachedWorkerSelectors { get; }
-        /// <summary> Router Job Waiting For Activation Requested Worker Selector Expired. </summary>
+        /// <summary> Gets the expired requested worker selectors. </summary>
         public IReadOnlyList<AcsRouterWorkerSelector> ExpiredRequestedWorkerSelectors { get; }
-        /// <summary> Router Job Waiting For Activation Scheduled Time in UTC. </summary>
+        /// <summary> Gets the scheduled on. </summary>
         public DateTimeOffset ScheduledOn { get; }
-        /// <summary> Router Job Waiting For Activation Unavailable For Matching. </summary>
+        /// <summary> Gets the unavailable for matching. </summary>
         public bool UnavailableForMatching { get; }
     }
 }

@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// How the Batch service should respond if a Task exits with a particular exit
-    /// code.
-    /// </summary>
+    /// <summary> The ExitCodeMapping. </summary>
     public partial class ExitCodeMapping
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ExitCodeMapping"/>. </summary>
-        /// <param name="code"> A process exit code. </param>
-        /// <param name="exitOptions"> How the Batch service should respond if the Task exits with this exit code. </param>
+        /// <param name="code"></param>
+        /// <param name="exitOptions"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="exitOptions"/> is null. </exception>
         public ExitCodeMapping(int code, ExitOptions exitOptions)
         {
@@ -61,8 +58,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="ExitCodeMapping"/>. </summary>
-        /// <param name="code"> A process exit code. </param>
-        /// <param name="exitOptions"> How the Batch service should respond if the Task exits with this exit code. </param>
+        /// <param name="code"></param>
+        /// <param name="exitOptions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExitCodeMapping(int code, ExitOptions exitOptions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,9 +73,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A process exit code. </summary>
+        /// <summary> Gets or sets the code. </summary>
         public int Code { get; set; }
-        /// <summary> How the Batch service should respond if the Task exits with this exit code. </summary>
+        /// <summary> Gets or sets the exit options. </summary>
         public ExitOptions ExitOptions { get; set; }
     }
 }

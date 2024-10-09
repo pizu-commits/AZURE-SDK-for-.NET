@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.HealthDataAIServices.Models
 {
-    /// <summary> Details of the HealthDataAIServices DeidService. </summary>
+    /// <summary> The DeidServiceProperties. </summary>
     public partial class DeidServiceProperties
     {
         /// <summary>
@@ -52,10 +52,10 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DeidServiceProperties"/>. </summary>
-        /// <param name="provisioningState"> The status of the last operation. </param>
-        /// <param name="serviceUri"> Deid service url. </param>
-        /// <param name="privateEndpointConnections"> List of private endpoint connections. </param>
-        /// <param name="publicNetworkAccess"> Gets or sets allow or disallow public network access to resource. </param>
+        /// <param name="provisioningState"></param>
+        /// <param name="serviceUri"></param>
+        /// <param name="privateEndpointConnections"></param>
+        /// <param name="publicNetworkAccess"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeidServiceProperties(HealthDataAIServicesProvisioningState? provisioningState, string serviceUri, IReadOnlyList<HealthDataAIServicesPrivateEndpointConnection> privateEndpointConnections, HealthDataAIServicesPublicNetworkAccess? publicNetworkAccess, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,13 +66,13 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The status of the last operation. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public HealthDataAIServicesProvisioningState? ProvisioningState { get; }
-        /// <summary> Deid service url. </summary>
+        /// <summary> Gets the service uri. </summary>
         public string ServiceUri { get; }
-        /// <summary> List of private endpoint connections. </summary>
+        /// <summary> Gets the private endpoint connections. </summary>
         public IReadOnlyList<HealthDataAIServicesPrivateEndpointConnection> PrivateEndpointConnections { get; }
-        /// <summary> Gets or sets allow or disallow public network access to resource. </summary>
+        /// <summary> Gets or sets the public network access. </summary>
         public HealthDataAIServicesPublicNetworkAccess? PublicNetworkAccess { get; set; }
     }
 }

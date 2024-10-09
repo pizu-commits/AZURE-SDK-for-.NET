@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for a Dynamic Classification task. </summary>
+    /// <summary> The DynamicClassificationActionContent. </summary>
     public partial class DynamicClassificationActionContent
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DynamicClassificationActionContent"/>. </summary>
-        /// <param name="categories"> a list of categories to which input is classified to. </param>
+        /// <param name="categories"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="categories"/> is null. </exception>
         public DynamicClassificationActionContent(IEnumerable<string> categories)
         {
@@ -57,10 +57,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DynamicClassificationActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="classificationType"> Specifies either one or multiple categories per document. Defaults to multi classification which may return more than one class for each document. </param>
-        /// <param name="categories"> a list of categories to which input is classified to. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="classificationType"></param>
+        /// <param name="categories"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DynamicClassificationActionContent(bool? loggingOptOut, string modelVersion, ClassificationType? classificationType, IList<string> categories, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,13 +76,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> Specifies either one or multiple categories per document. Defaults to multi classification which may return more than one class for each document. </summary>
+        /// <summary> Gets or sets the classification type. </summary>
         public ClassificationType? ClassificationType { get; set; }
-        /// <summary> a list of categories to which input is classified to. </summary>
+        /// <summary> Gets the categories. </summary>
         public IList<string> Categories { get; }
     }
 }

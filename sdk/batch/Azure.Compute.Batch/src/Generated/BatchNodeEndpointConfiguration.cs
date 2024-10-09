@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The endpoint configuration for the Compute Node. </summary>
+    /// <summary> The BatchNodeEndpointConfiguration. </summary>
     public partial class BatchNodeEndpointConfiguration
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeEndpointConfiguration"/>. </summary>
-        /// <param name="inboundEndpoints"> The list of inbound endpoints that are accessible on the Compute Node. </param>
+        /// <param name="inboundEndpoints"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="inboundEndpoints"/> is null. </exception>
         internal BatchNodeEndpointConfiguration(IEnumerable<InboundEndpoint> inboundEndpoints)
         {
@@ -57,7 +57,7 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeEndpointConfiguration"/>. </summary>
-        /// <param name="inboundEndpoints"> The list of inbound endpoints that are accessible on the Compute Node. </param>
+        /// <param name="inboundEndpoints"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeEndpointConfiguration(IReadOnlyList<InboundEndpoint> inboundEndpoints, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The list of inbound endpoints that are accessible on the Compute Node. </summary>
+        /// <summary> Gets the inbound endpoints. </summary>
         public IReadOnlyList<InboundEndpoint> InboundEndpoints { get; }
     }
 }

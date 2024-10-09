@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Specifications about a VM Size. This will also contain the corresponding rank and weight in future. </summary>
+    /// <summary> The ComputeFleetVmSizeProfile. </summary>
     public partial class ComputeFleetVmSizeProfile
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmSizeProfile"/>. </summary>
-        /// <param name="name"> The Sku name (e.g. 'Standard_DS1_v2'). </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public ComputeFleetVmSizeProfile(string name)
         {
@@ -56,11 +56,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmSizeProfile"/>. </summary>
-        /// <param name="name"> The Sku name (e.g. 'Standard_DS1_v2'). </param>
-        /// <param name="rank">
-        /// The rank of the VM size. This is used with 'RegularPriorityAllocationStrategy.Prioritized'
-        /// The lower the number, the higher the priority. Starting with 0.
-        /// </param>
+        /// <param name="name"></param>
+        /// <param name="rank"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmSizeProfile(string name, int? rank, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,12 +71,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> The Sku name (e.g. 'Standard_DS1_v2'). </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// The rank of the VM size. This is used with 'RegularPriorityAllocationStrategy.Prioritized'
-        /// The lower the number, the higher the priority. Starting with 0.
-        /// </summary>
+        /// <summary> Gets or sets the rank. </summary>
         public int? Rank { get; set; }
     }
 }

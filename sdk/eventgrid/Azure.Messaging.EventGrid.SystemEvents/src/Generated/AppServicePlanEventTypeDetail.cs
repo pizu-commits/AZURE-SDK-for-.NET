@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Detail of action on the app service plan. </summary>
+    /// <summary> The AppServicePlanEventTypeDetail. </summary>
     public partial class AppServicePlanEventTypeDetail
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AppServicePlanEventTypeDetail"/>. </summary>
-        /// <param name="stampKind"> Kind of environment where app service plan is. </param>
-        /// <param name="action"> Type of action on the app service plan. </param>
-        /// <param name="status"> Asynchronous operation status of the operation on the app service plan. </param>
+        /// <param name="stampKind"></param>
+        /// <param name="action"></param>
+        /// <param name="status"></param>
         internal AppServicePlanEventTypeDetail(StampKind stampKind, AppServicePlanAction action, AsyncStatus status)
         {
             StampKind = stampKind;
@@ -57,9 +57,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AppServicePlanEventTypeDetail"/>. </summary>
-        /// <param name="stampKind"> Kind of environment where app service plan is. </param>
-        /// <param name="action"> Type of action on the app service plan. </param>
-        /// <param name="status"> Asynchronous operation status of the operation on the app service plan. </param>
+        /// <param name="stampKind"></param>
+        /// <param name="action"></param>
+        /// <param name="status"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AppServicePlanEventTypeDetail(StampKind stampKind, AppServicePlanAction action, AsyncStatus status, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Kind of environment where app service plan is. </summary>
+        /// <summary> Gets the stamp kind. </summary>
         public StampKind StampKind { get; }
-        /// <summary> Type of action on the app service plan. </summary>
+        /// <summary> Gets the action. </summary>
         public AppServicePlanAction Action { get; }
-        /// <summary> Asynchronous operation status of the operation on the app service plan. </summary>
+        /// <summary> Gets the status. </summary>
         public AsyncStatus Status { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Additional properties for supporting transcript conversation. </summary>
+    /// <summary> The TranscriptConversationItem. </summary>
     public partial class TranscriptConversationItem
     {
         /// <summary>
@@ -46,12 +46,12 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TranscriptConversationItem"/>. </summary>
-        /// <param name="id"> The ID of a conversation item. </param>
-        /// <param name="participantId"> The participant ID of a conversation item. </param>
-        /// <param name="inverseTextNormalized"> Inverse text normalization (ITN) representation of input. The inverse-text-normalized form is the recognized text from Microsoft's speech-to-text API, with phone numbers, numbers, abbreviations, and other transformations applied. </param>
-        /// <param name="maskedInverseTextNormalized"> Inverse-text-normalized format with profanity masking applied. </param>
-        /// <param name="text"> Display form of the recognized text from the speech-to-text API, with punctuation and capitalization added. </param>
-        /// <param name="lexical"> Lexical form of the recognized text from the speech-to-text API, with the actual words recognized. </param>
+        /// <param name="id"></param>
+        /// <param name="participantId"></param>
+        /// <param name="inverseTextNormalized"></param>
+        /// <param name="maskedInverseTextNormalized"></param>
+        /// <param name="text"></param>
+        /// <param name="lexical"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="participantId"/>, <paramref name="inverseTextNormalized"/>, <paramref name="maskedInverseTextNormalized"/>, <paramref name="text"/> or <paramref name="lexical"/> is null. </exception>
         public TranscriptConversationItem(string id, string participantId, string inverseTextNormalized, string maskedInverseTextNormalized, string text, string lexical)
         {
@@ -72,17 +72,17 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="TranscriptConversationItem"/>. </summary>
-        /// <param name="id"> The ID of a conversation item. </param>
-        /// <param name="participantId"> The participant ID of a conversation item. </param>
-        /// <param name="language"> The override language of a conversation item in BCP 47 language representation. </param>
-        /// <param name="modality"> Enumeration of supported conversational modalities. </param>
-        /// <param name="role"> Role of the participant. </param>
-        /// <param name="inverseTextNormalized"> Inverse text normalization (ITN) representation of input. The inverse-text-normalized form is the recognized text from Microsoft's speech-to-text API, with phone numbers, numbers, abbreviations, and other transformations applied. </param>
-        /// <param name="maskedInverseTextNormalized"> Inverse-text-normalized format with profanity masking applied. </param>
-        /// <param name="text"> Display form of the recognized text from the speech-to-text API, with punctuation and capitalization added. </param>
-        /// <param name="lexical"> Lexical form of the recognized text from the speech-to-text API, with the actual words recognized. </param>
-        /// <param name="wordLevelTimings"> List of word-level audio timing information. </param>
-        /// <param name="conversationItemLevelTiming"> Audio timing at the conversation item level. This still can help with AI quality if word-level audio timings are not available. </param>
+        /// <param name="id"></param>
+        /// <param name="participantId"></param>
+        /// <param name="language"></param>
+        /// <param name="modality"></param>
+        /// <param name="role"></param>
+        /// <param name="inverseTextNormalized"></param>
+        /// <param name="maskedInverseTextNormalized"></param>
+        /// <param name="text"></param>
+        /// <param name="lexical"></param>
+        /// <param name="wordLevelTimings"></param>
+        /// <param name="conversationItemLevelTiming"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TranscriptConversationItem(string id, string participantId, string language, InputModality? modality, ParticipantRole? role, string inverseTextNormalized, string maskedInverseTextNormalized, string text, string lexical, IList<WordLevelTiming> wordLevelTimings, ConversationItemLevelTiming conversationItemLevelTiming, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -105,27 +105,27 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The ID of a conversation item. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The participant ID of a conversation item. </summary>
+        /// <summary> Gets the participant id. </summary>
         public string ParticipantId { get; }
-        /// <summary> The override language of a conversation item in BCP 47 language representation. </summary>
+        /// <summary> Gets or sets the language. </summary>
         public string Language { get; set; }
-        /// <summary> Enumeration of supported conversational modalities. </summary>
+        /// <summary> Gets or sets the modality. </summary>
         public InputModality? Modality { get; set; }
-        /// <summary> Role of the participant. </summary>
+        /// <summary> Gets or sets the role. </summary>
         public ParticipantRole? Role { get; set; }
-        /// <summary> Inverse text normalization (ITN) representation of input. The inverse-text-normalized form is the recognized text from Microsoft's speech-to-text API, with phone numbers, numbers, abbreviations, and other transformations applied. </summary>
+        /// <summary> Gets the inverse text normalized. </summary>
         public string InverseTextNormalized { get; }
-        /// <summary> Inverse-text-normalized format with profanity masking applied. </summary>
+        /// <summary> Gets the masked inverse text normalized. </summary>
         public string MaskedInverseTextNormalized { get; }
-        /// <summary> Display form of the recognized text from the speech-to-text API, with punctuation and capitalization added. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Lexical form of the recognized text from the speech-to-text API, with the actual words recognized. </summary>
+        /// <summary> Gets the lexical. </summary>
         public string Lexical { get; }
-        /// <summary> List of word-level audio timing information. </summary>
+        /// <summary> Gets the word level timings. </summary>
         public IList<WordLevelTiming> WordLevelTimings { get; }
-        /// <summary> Audio timing at the conversation item level. This still can help with AI quality if word-level audio timings are not available. </summary>
+        /// <summary> Gets or sets the conversation item level timing. </summary>
         public ConversationItemLevelTiming ConversationItemLevelTiming { get; set; }
     }
 }

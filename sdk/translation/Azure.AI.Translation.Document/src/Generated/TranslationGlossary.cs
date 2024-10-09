@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> Glossary / translation memory for the request. </summary>
+    /// <summary> The Glossary. </summary>
     public partial class TranslationGlossary
     {
         /// <summary>
@@ -46,15 +46,8 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TranslationGlossary"/>. </summary>
-        /// <param name="glossaryUri">
-        /// Location of the glossary.
-        /// We will use the file extension to extract the
-        /// formatting if the format parameter is not supplied.
-        ///
-        /// If the translation
-        /// language pair is not present in the glossary, it will not be applied
-        /// </param>
-        /// <param name="format"> Format. </param>
+        /// <param name="glossaryUri"></param>
+        /// <param name="format"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryUri"/> or <paramref name="format"/> is null. </exception>
         public TranslationGlossary(Uri glossaryUri, string format)
         {
@@ -66,17 +59,10 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="TranslationGlossary"/>. </summary>
-        /// <param name="glossaryUri">
-        /// Location of the glossary.
-        /// We will use the file extension to extract the
-        /// formatting if the format parameter is not supplied.
-        ///
-        /// If the translation
-        /// language pair is not present in the glossary, it will not be applied
-        /// </param>
-        /// <param name="format"> Format. </param>
-        /// <param name="formatVersion"> Optional Version.  If not specified, default is used. </param>
-        /// <param name="storageSource"> Storage Source. </param>
+        /// <param name="glossaryUri"></param>
+        /// <param name="format"></param>
+        /// <param name="formatVersion"></param>
+        /// <param name="storageSource"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TranslationGlossary(Uri glossaryUri, string format, string formatVersion, string storageSource, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

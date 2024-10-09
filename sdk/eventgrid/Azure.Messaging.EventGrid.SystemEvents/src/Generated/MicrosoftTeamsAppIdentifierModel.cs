@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> A Microsoft Teams application. </summary>
+    /// <summary> The MicrosoftTeamsAppIdentifierModel. </summary>
     public partial class MicrosoftTeamsAppIdentifierModel
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MicrosoftTeamsAppIdentifierModel"/>. </summary>
-        /// <param name="appId"> The Id of the Microsoft Teams application. </param>
-        /// <param name="cloud"> The cloud that the Microsoft Teams application belongs to. By default 'public' if missing. </param>
+        /// <param name="appId"></param>
+        /// <param name="cloud"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="appId"/> is null. </exception>
         internal MicrosoftTeamsAppIdentifierModel(string appId, CommunicationCloudEnvironmentModel cloud)
         {
@@ -58,8 +58,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MicrosoftTeamsAppIdentifierModel"/>. </summary>
-        /// <param name="appId"> The Id of the Microsoft Teams application. </param>
-        /// <param name="cloud"> The cloud that the Microsoft Teams application belongs to. By default 'public' if missing. </param>
+        /// <param name="appId"></param>
+        /// <param name="cloud"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MicrosoftTeamsAppIdentifierModel(string appId, CommunicationCloudEnvironmentModel cloud, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The Id of the Microsoft Teams application. </summary>
+        /// <summary> Gets the app id. </summary>
         public string AppId { get; }
-        /// <summary> The cloud that the Microsoft Teams application belongs to. By default 'public' if missing. </summary>
+        /// <summary> Gets the cloud. </summary>
         public CommunicationCloudEnvironmentModel Cloud { get; }
     }
 }

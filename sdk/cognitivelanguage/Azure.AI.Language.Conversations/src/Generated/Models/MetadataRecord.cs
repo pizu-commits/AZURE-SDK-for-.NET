@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Object to provide the key value pair for each metadata. </summary>
+    /// <summary> The MetadataRecord. </summary>
     public partial class MetadataRecord
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MetadataRecord"/>. </summary>
-        /// <param name="key"> Metadata Key from Metadata dictionary used in the QnA. </param>
-        /// <param name="value"> Metadata Value from Metadata dictionary used in the QnA. </param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> or <paramref name="value"/> is null. </exception>
         public MetadataRecord(string key, string value)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="MetadataRecord"/>. </summary>
-        /// <param name="key"> Metadata Key from Metadata dictionary used in the QnA. </param>
-        /// <param name="value"> Metadata Value from Metadata dictionary used in the QnA. </param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MetadataRecord(string key, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Metadata Key from Metadata dictionary used in the QnA. </summary>
+        /// <summary> Gets the key. </summary>
         public string Key { get; }
-        /// <summary> Metadata Value from Metadata dictionary used in the QnA. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

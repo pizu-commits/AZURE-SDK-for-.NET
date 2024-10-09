@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Audit entry for a response in the session. </summary>
+    /// <summary> The AuditLivenessResponseInfo. </summary>
     public partial class AuditLivenessResponseInfo
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AuditLivenessResponseInfo"/>. </summary>
-        /// <param name="body"> The response body. The schema of this field will depend on the request.url and request.method used by the client. </param>
-        /// <param name="statusCode"> The HTTP status code returned to the client. </param>
-        /// <param name="latencyInMilliseconds"> The server measured latency for this request in milliseconds. </param>
+        /// <param name="body"></param>
+        /// <param name="statusCode"></param>
+        /// <param name="latencyInMilliseconds"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         internal AuditLivenessResponseInfo(LivenessResponseBody body, int statusCode, long latencyInMilliseconds)
         {
@@ -60,9 +60,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="AuditLivenessResponseInfo"/>. </summary>
-        /// <param name="body"> The response body. The schema of this field will depend on the request.url and request.method used by the client. </param>
-        /// <param name="statusCode"> The HTTP status code returned to the client. </param>
-        /// <param name="latencyInMilliseconds"> The server measured latency for this request in milliseconds. </param>
+        /// <param name="body"></param>
+        /// <param name="statusCode"></param>
+        /// <param name="latencyInMilliseconds"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AuditLivenessResponseInfo(LivenessResponseBody body, int statusCode, long latencyInMilliseconds, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The response body. The schema of this field will depend on the request.url and request.method used by the client. </summary>
+        /// <summary> Gets the body. </summary>
         public LivenessResponseBody Body { get; }
-        /// <summary> The HTTP status code returned to the client. </summary>
+        /// <summary> Gets the status code. </summary>
         public int StatusCode { get; }
-        /// <summary> The server measured latency for this request in milliseconds. </summary>
+        /// <summary> Gets the latency in milliseconds. </summary>
         public long LatencyInMilliseconds { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The area unit of measurement. </summary>
+    /// <summary> The AreaUnit. </summary>
     public readonly partial struct AreaUnit : IEquatable<AreaUnit>
     {
         private readonly string _value;
@@ -36,31 +36,31 @@ namespace Azure.AI.Language.Conversations.Models
         private const string SquareYardValue = "SquareYard";
         private const string AcreValue = "Acre";
 
-        /// <summary> Unspecified area unit. </summary>
+        /// <summary> Unspecified. </summary>
         public static AreaUnit Unspecified { get; } = new AreaUnit(UnspecifiedValue);
-        /// <summary> Square kilometer area unit. </summary>
+        /// <summary> SquareKilometer. </summary>
         public static AreaUnit SquareKilometer { get; } = new AreaUnit(SquareKilometerValue);
-        /// <summary> Square hectometer area unit. </summary>
+        /// <summary> SquareHectometer. </summary>
         public static AreaUnit SquareHectometer { get; } = new AreaUnit(SquareHectometerValue);
-        /// <summary> Square decameter area unit. </summary>
+        /// <summary> SquareDecameter. </summary>
         public static AreaUnit SquareDecameter { get; } = new AreaUnit(SquareDecameterValue);
-        /// <summary> Square decimeter area unit. </summary>
+        /// <summary> SquareDecimeter. </summary>
         public static AreaUnit SquareDecimeter { get; } = new AreaUnit(SquareDecimeterValue);
-        /// <summary> Square meter area unit. </summary>
+        /// <summary> SquareMeter. </summary>
         public static AreaUnit SquareMeter { get; } = new AreaUnit(SquareMeterValue);
-        /// <summary> Square centimeter area unit. </summary>
+        /// <summary> SquareCentimeter. </summary>
         public static AreaUnit SquareCentimeter { get; } = new AreaUnit(SquareCentimeterValue);
-        /// <summary> Square millimeter area unit. </summary>
+        /// <summary> SquareMillimeter. </summary>
         public static AreaUnit SquareMillimeter { get; } = new AreaUnit(SquareMillimeterValue);
-        /// <summary> Square inch area unit. </summary>
+        /// <summary> SquareInch. </summary>
         public static AreaUnit SquareInch { get; } = new AreaUnit(SquareInchValue);
-        /// <summary> Square foot area unit. </summary>
+        /// <summary> SquareFoot. </summary>
         public static AreaUnit SquareFoot { get; } = new AreaUnit(SquareFootValue);
-        /// <summary> Square mile area unit. </summary>
+        /// <summary> SquareMile. </summary>
         public static AreaUnit SquareMile { get; } = new AreaUnit(SquareMileValue);
-        /// <summary> Square yard area unit. </summary>
+        /// <summary> SquareYard. </summary>
         public static AreaUnit SquareYard { get; } = new AreaUnit(SquareYardValue);
-        /// <summary> Acre area unit. </summary>
+        /// <summary> Acre. </summary>
         public static AreaUnit Acre { get; } = new AreaUnit(AcreValue);
         /// <summary> Determines if two <see cref="AreaUnit"/> values are the same. </summary>
         public static bool operator ==(AreaUnit left, AreaUnit right) => left.Equals(right);

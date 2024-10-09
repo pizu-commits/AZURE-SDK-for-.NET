@@ -14,7 +14,7 @@ namespace Azure.AI.OpenAI.Assistants
     internal partial class UnknownRunStepDetails : RunStepDetails
     {
         /// <summary> Initializes a new instance of <see cref="UnknownRunStepDetails"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownRunStepDetails(RunStepType type, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(type, serializedAdditionalRawData)
         {

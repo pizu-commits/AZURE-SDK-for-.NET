@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The event data for a Job output asset. </summary>
+    /// <summary> The MediaJobOutputAsset. </summary>
     public partial class MediaJobOutputAsset : MediaJobOutput
     {
         /// <summary> Initializes a new instance of <see cref="MediaJobOutputAsset"/>. </summary>
-        /// <param name="error"> Gets the Job output error. </param>
-        /// <param name="progress"> Gets the Job output progress. </param>
-        /// <param name="state"> Gets the Job output state. </param>
+        /// <param name="error"></param>
+        /// <param name="progress"></param>
+        /// <param name="state"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="error"/> is null. </exception>
         internal MediaJobOutputAsset(MediaJobError error, long progress, MediaJobState state) : base(error, progress, state)
         {
@@ -26,13 +26,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaJobOutputAsset"/>. </summary>
-        /// <param name="odataType"> The discriminator for derived types. </param>
-        /// <param name="error"> Gets the Job output error. </param>
-        /// <param name="label"> Gets the Job output label. </param>
-        /// <param name="progress"> Gets the Job output progress. </param>
-        /// <param name="state"> Gets the Job output state. </param>
+        /// <param name="odataType"></param>
+        /// <param name="error"></param>
+        /// <param name="label"></param>
+        /// <param name="progress"></param>
+        /// <param name="state"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="assetName"> Gets the Job output asset name. </param>
+        /// <param name="assetName"></param>
         internal MediaJobOutputAsset(string odataType, MediaJobError error, string label, long progress, MediaJobState state, IDictionary<string, BinaryData> serializedAdditionalRawData, string assetName) : base(odataType, error, label, progress, state, serializedAdditionalRawData)
         {
             AssetName = assetName;
@@ -43,7 +43,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Gets the Job output asset name. </summary>
+        /// <summary> Gets the asset name. </summary>
         public string AssetName { get; }
     }
 }

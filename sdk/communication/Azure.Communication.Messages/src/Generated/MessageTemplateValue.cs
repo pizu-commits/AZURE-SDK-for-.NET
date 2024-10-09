@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Communication.Messages
 {
     /// <summary>
-    /// The class describes a parameter of a template.
+    /// The MessageTemplateValue.
     /// Please note <see cref="MessageTemplateValue"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="MessageTemplateDocument"/>, <see cref="MessageTemplateImage"/>, <see cref="MessageTemplateLocation"/>, <see cref="MessageTemplateQuickAction"/>, <see cref="MessageTemplateText"/> and <see cref="MessageTemplateVideo"/>.
     /// </summary>
@@ -50,7 +50,7 @@ namespace Azure.Communication.Messages
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateValue"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
+        /// <param name="name"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         protected MessageTemplateValue(string name)
         {
@@ -60,8 +60,8 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateValue"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
-        /// <param name="kind"> The type discriminator describing a template parameter type. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MessageTemplateValue(string name, MessageTemplateValueKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> Template binding reference name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The type discriminator describing a template parameter type. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal MessageTemplateValueKind Kind { get; set; }
     }
 }

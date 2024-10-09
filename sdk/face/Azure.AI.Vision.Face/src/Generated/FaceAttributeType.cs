@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Available options for detect face with attribute. </summary>
+    /// <summary> The FaceAttributeType. </summary>
     public readonly partial struct FaceAttributeType : IEquatable<FaceAttributeType>
     {
         private readonly string _value;
@@ -36,31 +36,31 @@ namespace Azure.AI.Vision.Face
         private const string FacialHairValue = "facialHair";
         private const string HairValue = "hair";
 
-        /// <summary> 3-D roll/yaw/pitch angles for face direction. </summary>
+        /// <summary> headPose. </summary>
         public static FaceAttributeType HeadPose { get; } = new FaceAttributeType(HeadPoseValue);
-        /// <summary> Glasses type. Values include 'NoGlasses', 'ReadingGlasses', 'Sunglasses', 'SwimmingGoggles'. </summary>
+        /// <summary> glasses. </summary>
         public static FaceAttributeType Glasses { get; } = new FaceAttributeType(GlassesValue);
-        /// <summary> Whether each facial area is occluded, including forehead, eyes and mouth. </summary>
+        /// <summary> occlusion. </summary>
         public static FaceAttributeType Occlusion { get; } = new FaceAttributeType(OcclusionValue);
-        /// <summary> Accessories around face, including 'headwear', 'glasses' and 'mask'. Empty array means no accessories detected. Note this is after a face is detected. Large mask could result in no face to be detected. </summary>
+        /// <summary> accessories. </summary>
         public static FaceAttributeType Accessories { get; } = new FaceAttributeType(AccessoriesValue);
-        /// <summary> Face is blurry or not. Level returns 'Low', 'Medium' or 'High'. Value returns a number between [0,1], the larger the blurrier. </summary>
+        /// <summary> blur. </summary>
         public static FaceAttributeType Blur { get; } = new FaceAttributeType(BlurValue);
-        /// <summary> Face exposure level. Level returns 'GoodExposure', 'OverExposure' or 'UnderExposure'. </summary>
+        /// <summary> exposure. </summary>
         public static FaceAttributeType Exposure { get; } = new FaceAttributeType(ExposureValue);
-        /// <summary> Noise level of face pixels. Level returns 'Low', 'Medium' and 'High'. Value returns a number between [0,1], the larger the noisier. </summary>
+        /// <summary> noise. </summary>
         public static FaceAttributeType Noise { get; } = new FaceAttributeType(NoiseValue);
-        /// <summary> Whether each face is wearing a mask. Mask type returns 'noMask', 'faceMask', 'otherMaskOrOcclusion', or 'uncertain'. Value returns a boolean 'noseAndMouthCovered' indicating whether nose and mouth are covered. </summary>
+        /// <summary> mask. </summary>
         public static FaceAttributeType Mask { get; } = new FaceAttributeType(MaskValue);
-        /// <summary> The overall image quality regarding whether the image being used in the detection is of sufficient quality to attempt face recognition on. The value is an informal rating of low, medium, or high. Only 'high' quality images are recommended for person enrollment and quality at or above 'medium' is recommended for identification scenarios. The attribute is only available when using recognition models recognition_03 or recognition_04. </summary>
+        /// <summary> qualityForRecognition. </summary>
         public static FaceAttributeType QualityForRecognition { get; } = new FaceAttributeType(QualityForRecognitionValue);
-        /// <summary> Age in years. </summary>
+        /// <summary> age. </summary>
         public static FaceAttributeType Age { get; } = new FaceAttributeType(AgeValue);
-        /// <summary> Smile intensity, a number between [0,1]. </summary>
+        /// <summary> smile. </summary>
         public static FaceAttributeType Smile { get; } = new FaceAttributeType(SmileValue);
-        /// <summary> Properties describing facial hair attributes. </summary>
+        /// <summary> facialHair. </summary>
         public static FaceAttributeType FacialHair { get; } = new FaceAttributeType(FacialHairValue);
-        /// <summary> Properties describing hair attributes. </summary>
+        /// <summary> hair. </summary>
         public static FaceAttributeType Hair { get; } = new FaceAttributeType(HairValue);
         /// <summary> Determines if two <see cref="FaceAttributeType"/> values are the same. </summary>
         public static bool operator ==(FaceAttributeType left, FaceAttributeType right) => left.Equals(right);

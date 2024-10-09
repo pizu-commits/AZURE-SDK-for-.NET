@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> The type of the Trial Matcher inference. </summary>
+    /// <summary> The TrialMatcherInferenceType. </summary>
     public readonly partial struct TrialMatcherInferenceType : IEquatable<TrialMatcherInferenceType>
     {
         private readonly string _value;

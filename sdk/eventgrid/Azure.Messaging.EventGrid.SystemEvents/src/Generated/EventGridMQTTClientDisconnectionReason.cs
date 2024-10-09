@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> EventGrid MQTT Client Disconnection Reason. </summary>
+    /// <summary> The EventGridMQTTClientDisconnectionReason. </summary>
     public readonly partial struct EventGridMQTTClientDisconnectionReason : IEquatable<EventGridMQTTClientDisconnectionReason>
     {
         private readonly string _value;
@@ -34,27 +34,27 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string SessionOverflowValue = "SessionOverflow";
         private const string SessionTakenOverValue = "SessionTakenOver";
 
-        /// <summary> The client got disconnected for any authentication reasons (for example, certificate expired, client got disabled, or client configuration changed). </summary>
+        /// <summary> ClientAuthenticationError. </summary>
         public static EventGridMQTTClientDisconnectionReason ClientAuthenticationError { get; } = new EventGridMQTTClientDisconnectionReason(ClientAuthenticationErrorValue);
-        /// <summary> The client got disconnected for any authorization reasons (for example, because of a change in the configuration of topic spaces, permission bindings, or client groups). </summary>
+        /// <summary> ClientAuthorizationError. </summary>
         public static EventGridMQTTClientDisconnectionReason ClientAuthorizationError { get; } = new EventGridMQTTClientDisconnectionReason(ClientAuthorizationErrorValue);
-        /// <summary> The client sent a bad request or used one of the unsupported features that resulted in a connection termination by the service. </summary>
+        /// <summary> ClientError. </summary>
         public static EventGridMQTTClientDisconnectionReason ClientError { get; } = new EventGridMQTTClientDisconnectionReason(ClientErrorValue);
-        /// <summary> The client initiated a graceful disconnect through a DISCONNECT packet for MQTT or a close frame for MQTT over WebSocket. </summary>
+        /// <summary> ClientInitiatedDisconnect. </summary>
         public static EventGridMQTTClientDisconnectionReason ClientInitiatedDisconnect { get; } = new EventGridMQTTClientDisconnectionReason(ClientInitiatedDisconnectValue);
-        /// <summary> The client-server connection is lost. (EXCHANGE ONLINE PROTECTION). </summary>
+        /// <summary> ConnectionLost. </summary>
         public static EventGridMQTTClientDisconnectionReason ConnectionLost { get; } = new EventGridMQTTClientDisconnectionReason(ConnectionLostValue);
-        /// <summary> The client's IP address is blocked by IP filter or Private links configuration. </summary>
+        /// <summary> IpForbidden. </summary>
         public static EventGridMQTTClientDisconnectionReason IpForbidden { get; } = new EventGridMQTTClientDisconnectionReason(IpForbiddenValue);
-        /// <summary> The client exceeded one or more of the throttling limits that resulted in a connection termination by the service. </summary>
+        /// <summary> QuotaExceeded. </summary>
         public static EventGridMQTTClientDisconnectionReason QuotaExceeded { get; } = new EventGridMQTTClientDisconnectionReason(QuotaExceededValue);
-        /// <summary> The connection got terminated due to an unexpected server error. </summary>
+        /// <summary> ServerError. </summary>
         public static EventGridMQTTClientDisconnectionReason ServerError { get; } = new EventGridMQTTClientDisconnectionReason(ServerErrorValue);
-        /// <summary> The server initiates a graceful disconnect for any operational reason. </summary>
+        /// <summary> ServerInitiatedDisconnect. </summary>
         public static EventGridMQTTClientDisconnectionReason ServerInitiatedDisconnect { get; } = new EventGridMQTTClientDisconnectionReason(ServerInitiatedDisconnectValue);
-        /// <summary> The client's queue for unacknowledged QoS1 messages reached its limit, which resulted in a connection termination by the server. </summary>
+        /// <summary> SessionOverflow. </summary>
         public static EventGridMQTTClientDisconnectionReason SessionOverflow { get; } = new EventGridMQTTClientDisconnectionReason(SessionOverflowValue);
-        /// <summary> The client reconnected with the same authentication name, which resulted in the termination of the previous connection. </summary>
+        /// <summary> SessionTakenOver. </summary>
         public static EventGridMQTTClientDisconnectionReason SessionTakenOver { get; } = new EventGridMQTTClientDisconnectionReason(SessionTakenOverValue);
         /// <summary> Determines if two <see cref="EventGridMQTTClientDisconnectionReason"/> values are the same. </summary>
         public static bool operator ==(EventGridMQTTClientDisconnectionReason left, EventGridMQTTClientDisconnectionReason right) => left.Equals(right);

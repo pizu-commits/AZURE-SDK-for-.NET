@@ -60,21 +60,21 @@ namespace Azure.Analytics.Purview.DataMap
         private Relationship _cachedRelationship;
 
         /// <summary> Initializes a new instance of Entity. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         public virtual Entity GetEntityClient(string apiVersion = "2023-09-01")
         {
             return new Entity(ClientDiagnostics, _pipeline, _tokenCredential, _endpoint, apiVersion);
         }
 
         /// <summary> Initializes a new instance of Glossary. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         public virtual Glossary GetGlossaryClient(string apiVersion = "2023-09-01")
         {
             return new Glossary(ClientDiagnostics, _pipeline, _tokenCredential, _endpoint, apiVersion);
         }
 
         /// <summary> Initializes a new instance of Discovery. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiVersion"/> is null. </exception>
         public virtual Discovery GetDiscoveryClient(string apiVersion = "2023-09-01")
         {
@@ -84,7 +84,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of Lineage. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiVersion"/> is null. </exception>
         public virtual Lineage GetLineageClient(string apiVersion = "2023-09-01")
         {
@@ -100,7 +100,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of TypeDefinition. </summary>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         public virtual TypeDefinition GetTypeDefinitionClient(string apiVersion = "2023-09-01")
         {
             return new TypeDefinition(ClientDiagnostics, _pipeline, _tokenCredential, _endpoint, apiVersion);

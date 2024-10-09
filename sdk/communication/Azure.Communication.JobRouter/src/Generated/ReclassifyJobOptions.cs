@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Request payload for reclassifying jobs. </summary>
+    /// <summary> The ReclassifyJobOptions. </summary>
     internal partial class ReclassifyJobOptions
     {
         /// <summary>

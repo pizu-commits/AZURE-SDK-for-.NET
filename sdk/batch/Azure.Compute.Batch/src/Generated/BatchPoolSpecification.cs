@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Specification for creating a new Pool. </summary>
+    /// <summary> The BatchPoolSpecification. </summary>
     public partial class BatchPoolSpecification
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolSpecification"/>. </summary>
-        /// <param name="vmSize"> The size of the virtual machines in the Pool. All virtual machines in a Pool are the same size. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes). </param>
+        /// <param name="vmSize"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="vmSize"/> is null. </exception>
         public BatchPoolSpecification(string vmSize)
         {
@@ -60,27 +60,27 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolSpecification"/>. </summary>
-        /// <param name="displayName"> The display name for the Pool. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </param>
-        /// <param name="vmSize"> The size of the virtual machines in the Pool. All virtual machines in a Pool are the same size. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes). </param>
-        /// <param name="virtualMachineConfiguration"> The virtual machine configuration for the Pool. This property must be specified if the Pool needs to be created with Azure IaaS VMs. If it is not specified then the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </param>
-        /// <param name="taskSlotsPerNode"> The number of task slots that can be used to run concurrent tasks on a single compute node in the pool. The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool or 256. </param>
-        /// <param name="taskSchedulingPolicy"> How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. </param>
-        /// <param name="resizeTimeout"> The timeout for allocation of Compute Nodes to the Pool. This timeout applies only to manual scaling; it has no effect when enableAutoScale is set to true. The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service rejects the request with an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </param>
-        /// <param name="resourceTags"> The user-specified tags associated with the pool.The user-defined tags to be associated with the Azure Batch Pool. When specified, these tags are propagated to the backing Azure resources associated with the pool. This property can only be specified when the Batch account was created with the poolAllocationMode property set to 'UserSubscription'. </param>
-        /// <param name="targetDedicatedNodes"> The desired number of dedicated Compute Nodes in the Pool. This property must not be specified if enableAutoScale is set to true. If enableAutoScale is set to false, then you must set either targetDedicatedNodes, targetLowPriorityNodes, or both. </param>
-        /// <param name="targetLowPriorityNodes"> The desired number of Spot/Low-priority Compute Nodes in the Pool. This property must not be specified if enableAutoScale is set to true. If enableAutoScale is set to false, then you must set either targetDedicatedNodes, targetLowPriorityNodes, or both. </param>
-        /// <param name="enableAutoScale"> Whether the Pool size should automatically adjust over time. If false, at least one of targetDedicatedNodes and targetLowPriorityNodes must be specified. If true, the autoScaleFormula element is required. The Pool automatically resizes according to the formula. The default value is false. </param>
-        /// <param name="autoScaleFormula"> The formula for the desired number of Compute Nodes in the Pool. This property must not be specified if enableAutoScale is set to false. It is required if enableAutoScale is set to true. The formula is checked for validity before the Pool is created. If the formula is not valid, the Batch service rejects the request with detailed error information. </param>
-        /// <param name="autoScaleEvaluationInterval"> The time interval at which to automatically adjust the Pool size according to the autoscale formula. The default value is 15 minutes. The minimum and maximum value are 5 minutes and 168 hours respectively. If you specify a value less than 5 minutes or greater than 168 hours, the Batch service rejects the request with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </param>
-        /// <param name="enableInterNodeCommunication"> Whether the Pool permits direct communication between Compute Nodes. Enabling inter-node communication limits the maximum size of the Pool due to deployment restrictions on the Compute Nodes of the Pool. This may result in the Pool not reaching its desired size. The default value is false. </param>
-        /// <param name="networkConfiguration"> The network configuration for the Pool. </param>
-        /// <param name="startTask"> A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. </param>
-        /// <param name="applicationPackageReferences"> The list of Packages to be installed on each Compute Node in the Pool. When creating a pool, the package's application ID must be fully qualified (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}). Changes to Package references affect all new Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Package references on any given Pool. </param>
-        /// <param name="userAccounts"> The list of user Accounts to be created on each Compute Node in the Pool. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Pool as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </param>
-        /// <param name="mountConfiguration"> A list of file systems to mount on each node in the pool. This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. </param>
-        /// <param name="targetNodeCommunicationMode"> The desired node communication mode for the pool. If omitted, the default value is Default. </param>
-        /// <param name="upgradePolicy"> The upgrade policy for the Pool. Describes an upgrade policy - automatic, manual, or rolling. </param>
+        /// <param name="displayName"></param>
+        /// <param name="vmSize"></param>
+        /// <param name="virtualMachineConfiguration"></param>
+        /// <param name="taskSlotsPerNode"></param>
+        /// <param name="taskSchedulingPolicy"></param>
+        /// <param name="resizeTimeout"></param>
+        /// <param name="resourceTags"></param>
+        /// <param name="targetDedicatedNodes"></param>
+        /// <param name="targetLowPriorityNodes"></param>
+        /// <param name="enableAutoScale"></param>
+        /// <param name="autoScaleFormula"></param>
+        /// <param name="autoScaleEvaluationInterval"></param>
+        /// <param name="enableInterNodeCommunication"></param>
+        /// <param name="networkConfiguration"></param>
+        /// <param name="startTask"></param>
+        /// <param name="applicationPackageReferences"></param>
+        /// <param name="userAccounts"></param>
+        /// <param name="metadata"></param>
+        /// <param name="mountConfiguration"></param>
+        /// <param name="targetNodeCommunicationMode"></param>
+        /// <param name="upgradePolicy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPoolSpecification(string displayName, string vmSize, VirtualMachineConfiguration virtualMachineConfiguration, int? taskSlotsPerNode, BatchTaskSchedulingPolicy taskSchedulingPolicy, TimeSpan? resizeTimeout, string resourceTags, int? targetDedicatedNodes, int? targetLowPriorityNodes, bool? enableAutoScale, string autoScaleFormula, TimeSpan? autoScaleEvaluationInterval, bool? enableInterNodeCommunication, NetworkConfiguration networkConfiguration, BatchStartTask startTask, IList<BatchApplicationPackageReference> applicationPackageReferences, IList<UserAccount> userAccounts, IList<MetadataItem> metadata, IList<MountConfiguration> mountConfiguration, BatchNodeCommunicationMode? targetNodeCommunicationMode, UpgradePolicy upgradePolicy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -113,47 +113,47 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The display name for the Pool. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. </summary>
+        /// <summary> Gets or sets the display name. </summary>
         public string DisplayName { get; set; }
-        /// <summary> The size of the virtual machines in the Pool. All virtual machines in a Pool are the same size. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes). </summary>
+        /// <summary> Gets or sets the vm size. </summary>
         public string VmSize { get; set; }
-        /// <summary> The virtual machine configuration for the Pool. This property must be specified if the Pool needs to be created with Azure IaaS VMs. If it is not specified then the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </summary>
+        /// <summary> Gets or sets the virtual machine configuration. </summary>
         public VirtualMachineConfiguration VirtualMachineConfiguration { get; set; }
-        /// <summary> The number of task slots that can be used to run concurrent tasks on a single compute node in the pool. The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool or 256. </summary>
+        /// <summary> Gets or sets the task slots per node. </summary>
         public int? TaskSlotsPerNode { get; set; }
-        /// <summary> How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. </summary>
+        /// <summary> Gets or sets the task scheduling policy. </summary>
         public BatchTaskSchedulingPolicy TaskSchedulingPolicy { get; set; }
-        /// <summary> The timeout for allocation of Compute Nodes to the Pool. This timeout applies only to manual scaling; it has no effect when enableAutoScale is set to true. The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service rejects the request with an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </summary>
+        /// <summary> Gets or sets the resize timeout. </summary>
         public TimeSpan? ResizeTimeout { get; set; }
-        /// <summary> The user-specified tags associated with the pool.The user-defined tags to be associated with the Azure Batch Pool. When specified, these tags are propagated to the backing Azure resources associated with the pool. This property can only be specified when the Batch account was created with the poolAllocationMode property set to 'UserSubscription'. </summary>
+        /// <summary> Gets or sets the resource tags. </summary>
         public string ResourceTags { get; set; }
-        /// <summary> The desired number of dedicated Compute Nodes in the Pool. This property must not be specified if enableAutoScale is set to true. If enableAutoScale is set to false, then you must set either targetDedicatedNodes, targetLowPriorityNodes, or both. </summary>
+        /// <summary> Gets or sets the target dedicated nodes. </summary>
         public int? TargetDedicatedNodes { get; set; }
-        /// <summary> The desired number of Spot/Low-priority Compute Nodes in the Pool. This property must not be specified if enableAutoScale is set to true. If enableAutoScale is set to false, then you must set either targetDedicatedNodes, targetLowPriorityNodes, or both. </summary>
+        /// <summary> Gets or sets the target low priority nodes. </summary>
         public int? TargetLowPriorityNodes { get; set; }
-        /// <summary> Whether the Pool size should automatically adjust over time. If false, at least one of targetDedicatedNodes and targetLowPriorityNodes must be specified. If true, the autoScaleFormula element is required. The Pool automatically resizes according to the formula. The default value is false. </summary>
+        /// <summary> Gets or sets the enable auto scale. </summary>
         public bool? EnableAutoScale { get; set; }
-        /// <summary> The formula for the desired number of Compute Nodes in the Pool. This property must not be specified if enableAutoScale is set to false. It is required if enableAutoScale is set to true. The formula is checked for validity before the Pool is created. If the formula is not valid, the Batch service rejects the request with detailed error information. </summary>
+        /// <summary> Gets or sets the auto scale formula. </summary>
         public string AutoScaleFormula { get; set; }
-        /// <summary> The time interval at which to automatically adjust the Pool size according to the autoscale formula. The default value is 15 minutes. The minimum and maximum value are 5 minutes and 168 hours respectively. If you specify a value less than 5 minutes or greater than 168 hours, the Batch service rejects the request with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). </summary>
+        /// <summary> Gets or sets the auto scale evaluation interval. </summary>
         public TimeSpan? AutoScaleEvaluationInterval { get; set; }
-        /// <summary> Whether the Pool permits direct communication between Compute Nodes. Enabling inter-node communication limits the maximum size of the Pool due to deployment restrictions on the Compute Nodes of the Pool. This may result in the Pool not reaching its desired size. The default value is false. </summary>
+        /// <summary> Gets or sets the enable inter node communication. </summary>
         public bool? EnableInterNodeCommunication { get; set; }
-        /// <summary> The network configuration for the Pool. </summary>
+        /// <summary> Gets or sets the network configuration. </summary>
         public NetworkConfiguration NetworkConfiguration { get; set; }
-        /// <summary> A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. </summary>
+        /// <summary> Gets or sets the start task. </summary>
         public BatchStartTask StartTask { get; set; }
-        /// <summary> The list of Packages to be installed on each Compute Node in the Pool. When creating a pool, the package's application ID must be fully qualified (/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/applications/{applicationName}). Changes to Package references affect all new Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Package references on any given Pool. </summary>
+        /// <summary> Gets the application package references. </summary>
         public IList<BatchApplicationPackageReference> ApplicationPackageReferences { get; }
-        /// <summary> The list of user Accounts to be created on each Compute Node in the Pool. </summary>
+        /// <summary> Gets the user accounts. </summary>
         public IList<UserAccount> UserAccounts { get; }
-        /// <summary> A list of name-value pairs associated with the Pool as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataItem> Metadata { get; }
-        /// <summary> A list of file systems to mount on each node in the pool. This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. </summary>
+        /// <summary> Gets the mount configuration. </summary>
         public IList<MountConfiguration> MountConfiguration { get; }
-        /// <summary> The desired node communication mode for the pool. If omitted, the default value is Default. </summary>
+        /// <summary> Gets or sets the target node communication mode. </summary>
         public BatchNodeCommunicationMode? TargetNodeCommunicationMode { get; set; }
-        /// <summary> The upgrade policy for the Pool. Describes an upgrade policy - automatic, manual, or rolling. </summary>
+        /// <summary> Gets or sets the upgrade policy. </summary>
         public UpgradePolicy UpgradePolicy { get; set; }
     }
 }

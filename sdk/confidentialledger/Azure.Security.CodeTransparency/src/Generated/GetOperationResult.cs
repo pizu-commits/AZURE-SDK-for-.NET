@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> The Response body of the GetOperationId API. </summary>
+    /// <summary> The GetOperationResult. </summary>
     public partial class GetOperationResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Security.CodeTransparency
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="GetOperationResult"/>. </summary>
-        /// <param name="operationId"> OperationId. </param>
-        /// <param name="status"> Status of the operation. </param>
+        /// <param name="operationId"></param>
+        /// <param name="status"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         internal GetOperationResult(string operationId, OperationStatus status)
         {
@@ -58,10 +58,10 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Initializes a new instance of <see cref="GetOperationResult"/>. </summary>
-        /// <param name="entryId"> ID of the transaction. Only if status is Succeeded. </param>
-        /// <param name="error"> Error in json format. Only if Status is Failed. </param>
-        /// <param name="operationId"> OperationId. </param>
-        /// <param name="status"> Status of the operation. </param>
+        /// <param name="entryId"></param>
+        /// <param name="error"></param>
+        /// <param name="operationId"></param>
+        /// <param name="status"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal GetOperationResult(string entryId, string error, string operationId, OperationStatus status, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,13 +77,13 @@ namespace Azure.Security.CodeTransparency
         {
         }
 
-        /// <summary> ID of the transaction. Only if status is Succeeded. </summary>
+        /// <summary> Gets the entry id. </summary>
         public string EntryId { get; }
-        /// <summary> Error in json format. Only if Status is Failed. </summary>
+        /// <summary> Gets the error. </summary>
         public string Error { get; }
-        /// <summary> OperationId. </summary>
+        /// <summary> Gets the operation id. </summary>
         public string OperationId { get; }
-        /// <summary> Status of the operation. </summary>
+        /// <summary> Gets the status. </summary>
         public OperationStatus Status { get; }
     }
 }

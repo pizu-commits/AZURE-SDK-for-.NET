@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The details of the HTTP request. </summary>
+    /// <summary> The ResourceHttpRequest. </summary>
     public partial class ResourceHttpRequest
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceHttpRequest"/>. </summary>
-        /// <param name="clientRequestId"> The client request ID. </param>
-        /// <param name="clientIpAddress"> The client IP address. </param>
-        /// <param name="method"> The request method. </param>
-        /// <param name="url"> The url used in the request. </param>
+        /// <param name="clientRequestId"></param>
+        /// <param name="clientIpAddress"></param>
+        /// <param name="method"></param>
+        /// <param name="url"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceHttpRequest(string clientRequestId, string clientIpAddress, string method, string url, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The client request ID. </summary>
+        /// <summary> Gets the client request id. </summary>
         public string ClientRequestId { get; }
-        /// <summary> The client IP address. </summary>
+        /// <summary> Gets the client ip address. </summary>
         public string ClientIpAddress { get; }
-        /// <summary> The request method. </summary>
+        /// <summary> Gets the method. </summary>
         public string Method { get; }
-        /// <summary> The url used in the request. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
     }
 }

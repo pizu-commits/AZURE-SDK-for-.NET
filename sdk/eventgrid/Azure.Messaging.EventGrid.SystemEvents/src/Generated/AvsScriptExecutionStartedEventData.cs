@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.AVS.ScriptExecutionStarted event. </summary>
+    /// <summary> The AvsScriptExecutionStartedEventData. </summary>
     public partial class AvsScriptExecutionStartedEventData : AvsScriptExecutionEventData
     {
         /// <summary> Initializes a new instance of <see cref="AvsScriptExecutionStartedEventData"/>. </summary>
@@ -19,9 +19,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsScriptExecutionStartedEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
-        /// <param name="cmdletId"> Cmdlet referenced in the execution that caused this event. </param>
-        /// <param name="output"> Stdout outputs from the execution, if any. </param>
+        /// <param name="operationId"></param>
+        /// <param name="cmdletId"></param>
+        /// <param name="output"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AvsScriptExecutionStartedEventData(string operationId, string cmdletId, IReadOnlyList<string> output, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(operationId, cmdletId, output, serializedAdditionalRawData)
         {

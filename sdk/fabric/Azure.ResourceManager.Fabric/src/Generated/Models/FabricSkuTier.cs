@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The name of the Azure pricing tier to which the SKU applies. </summary>
+    /// <summary> The FabricSkuTier. </summary>
     public readonly partial struct FabricSkuTier : IEquatable<FabricSkuTier>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.ResourceManager.Fabric.Models
 
         private const string FabricValue = "Fabric";
 
-        /// <summary> Fabric tier. </summary>
+        /// <summary> Fabric. </summary>
         public static FabricSkuTier Fabric { get; } = new FabricSkuTier(FabricValue);
         /// <summary> Determines if two <see cref="FabricSkuTier"/> values are the same. </summary>
         public static bool operator ==(FabricSkuTier left, FabricSkuTier right) => left.Equals(right);

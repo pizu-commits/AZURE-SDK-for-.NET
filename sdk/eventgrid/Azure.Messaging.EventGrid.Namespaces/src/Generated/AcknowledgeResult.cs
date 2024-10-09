@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> The result of the Acknowledge operation. </summary>
+    /// <summary> The AcknowledgeResult. </summary>
     public partial class AcknowledgeResult
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcknowledgeResult"/>. </summary>
-        /// <param name="failedLockTokens"> Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). </param>
-        /// <param name="succeededLockTokens"> Array of lock tokens for the successfully acknowledged cloud events. </param>
+        /// <param name="failedLockTokens"></param>
+        /// <param name="succeededLockTokens"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="failedLockTokens"/> or <paramref name="succeededLockTokens"/> is null. </exception>
         internal AcknowledgeResult(IEnumerable<FailedLockToken> failedLockTokens, IEnumerable<string> succeededLockTokens)
         {
@@ -60,8 +60,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Initializes a new instance of <see cref="AcknowledgeResult"/>. </summary>
-        /// <param name="failedLockTokens"> Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). </param>
-        /// <param name="succeededLockTokens"> Array of lock tokens for the successfully acknowledged cloud events. </param>
+        /// <param name="failedLockTokens"></param>
+        /// <param name="succeededLockTokens"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcknowledgeResult(IReadOnlyList<FailedLockToken> failedLockTokens, IReadOnlyList<string> succeededLockTokens, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         {
         }
 
-        /// <summary> Array of FailedLockToken for failed cloud events. Each FailedLockToken includes the lock token along with the related error information (namely, the error code and description). </summary>
+        /// <summary> Gets the failed lock tokens. </summary>
         public IReadOnlyList<FailedLockToken> FailedLockTokens { get; }
-        /// <summary> Array of lock tokens for the successfully acknowledged cloud events. </summary>
+        /// <summary> Gets the succeeded lock tokens. </summary>
         public IReadOnlyList<string> SucceededLockTokens { get; }
     }
 }

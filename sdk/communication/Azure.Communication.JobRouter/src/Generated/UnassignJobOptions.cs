@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Request payload for unassigning a job. </summary>
+    /// <summary> The UnassignJobOptions. </summary>
     public partial class UnassignJobOptions
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UnassignJobOptions"/>. </summary>
-        /// <param name="suspendMatching"> If SuspendMatching is true, then a job is not queued for re-matching with a worker. </param>
+        /// <param name="suspendMatching"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnassignJobOptions(bool? suspendMatching, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

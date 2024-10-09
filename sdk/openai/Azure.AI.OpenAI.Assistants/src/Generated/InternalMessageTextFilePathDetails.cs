@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> An encapsulation of an image file ID, as used by message image content. </summary>
+    /// <summary> The InternalMessageTextFilePathDetails. </summary>
     internal partial class InternalMessageTextFilePathDetails
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageTextFilePathDetails"/>. </summary>
-        /// <param name="fileId"> The ID of the specific file that the citation is from. </param>
+        /// <param name="fileId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         internal InternalMessageTextFilePathDetails(string fileId)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageTextFilePathDetails"/>. </summary>
-        /// <param name="fileId"> The ID of the specific file that the citation is from. </param>
+        /// <param name="fileId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InternalMessageTextFilePathDetails(string fileId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The ID of the specific file that the citation is from. </summary>
+        /// <summary> Gets the file id. </summary>
         public string FileId { get; }
     }
 }

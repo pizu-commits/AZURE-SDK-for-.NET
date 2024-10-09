@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The text and associated annotations for a single item of assistant thread message content. </summary>
+    /// <summary> The InternalMessageTextDetails. </summary>
     internal partial class InternalMessageTextDetails
     {
         /// <summary>
@@ -47,9 +47,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageTextDetails"/>. </summary>
-        /// <param name="text"> The text data. </param>
+        /// <param name="text"></param>
         /// <param name="annotations">
-        /// A list of annotations associated with this text.
         /// Please note <see cref="MessageTextAnnotation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageTextFileCitationAnnotation"/> and <see cref="MessageTextFilePathAnnotation"/>.
         /// </param>
@@ -64,9 +63,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageTextDetails"/>. </summary>
-        /// <param name="text"> The text data. </param>
+        /// <param name="text"></param>
         /// <param name="annotations">
-        /// A list of annotations associated with this text.
         /// Please note <see cref="MessageTextAnnotation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageTextFileCitationAnnotation"/> and <see cref="MessageTextFilePathAnnotation"/>.
         /// </param>
@@ -83,10 +81,10 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The text data. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
         /// <summary>
-        /// A list of annotations associated with this text.
+        /// Gets the annotations
         /// Please note <see cref="MessageTextAnnotation"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageTextFileCitationAnnotation"/> and <see cref="MessageTextFilePathAnnotation"/>.
         /// </summary>

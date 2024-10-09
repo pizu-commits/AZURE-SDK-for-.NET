@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The public IP Address configuration of the networking configuration of a Pool. </summary>
+    /// <summary> The PublicIpAddressConfiguration. </summary>
     public partial class PublicIpAddressConfiguration
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="PublicIpAddressConfiguration"/>. </summary>
-        /// <param name="ipAddressProvisioningType"> The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. </param>
-        /// <param name="ipAddressIds"> The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. </param>
+        /// <param name="ipAddressProvisioningType"></param>
+        /// <param name="ipAddressIds"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PublicIpAddressConfiguration(IpAddressProvisioningType? ipAddressProvisioningType, IList<string> ipAddressIds, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. </summary>
+        /// <summary> Gets or sets the ip address provisioning type. </summary>
         public IpAddressProvisioningType? IpAddressProvisioningType { get; set; }
-        /// <summary> The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. </summary>
+        /// <summary> Gets the ip address ids. </summary>
         public IList<string> IpAddressIds { get; }
     }
 }

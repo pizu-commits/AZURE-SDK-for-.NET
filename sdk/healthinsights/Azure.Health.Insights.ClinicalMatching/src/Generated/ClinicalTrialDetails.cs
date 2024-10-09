@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A description of a clinical trial. </summary>
+    /// <summary> The ClinicalTrialDetails. </summary>
     public partial class ClinicalTrialDetails
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialDetails"/>. </summary>
-        /// <param name="id"> A given identifier for the clinical trial. Has to be unique within a list of clinical trials. </param>
-        /// <param name="metadata"> Trial data which is of interest to the potential participant. </param>
+        /// <param name="id"></param>
+        /// <param name="metadata"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="metadata"/> is null. </exception>
         public ClinicalTrialDetails(string id, ClinicalTrialMetadata metadata)
         {
@@ -59,10 +59,10 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="ClinicalTrialDetails"/>. </summary>
-        /// <param name="id"> A given identifier for the clinical trial. Has to be unique within a list of clinical trials. </param>
-        /// <param name="eligibilityCriteriaText"> The eligibility criteria of the clinical trial (inclusion and exclusion), given as text. </param>
-        /// <param name="demographics"> Demographic criteria for a clinical trial. </param>
-        /// <param name="metadata"> Trial data which is of interest to the potential participant. </param>
+        /// <param name="id"></param>
+        /// <param name="eligibilityCriteriaText"></param>
+        /// <param name="demographics"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClinicalTrialDetails(string id, string eligibilityCriteriaText, ClinicalTrialDemographics demographics, ClinicalTrialMetadata metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> A given identifier for the clinical trial. Has to be unique within a list of clinical trials. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The eligibility criteria of the clinical trial (inclusion and exclusion), given as text. </summary>
+        /// <summary> Gets or sets the eligibility criteria text. </summary>
         public string EligibilityCriteriaText { get; set; }
-        /// <summary> Demographic criteria for a clinical trial. </summary>
+        /// <summary> Gets or sets the demographics. </summary>
         public ClinicalTrialDemographics Demographics { get; set; }
-        /// <summary> Trial data which is of interest to the potential participant. </summary>
+        /// <summary> Gets the metadata. </summary>
         public ClinicalTrialMetadata Metadata { get; }
     }
 }

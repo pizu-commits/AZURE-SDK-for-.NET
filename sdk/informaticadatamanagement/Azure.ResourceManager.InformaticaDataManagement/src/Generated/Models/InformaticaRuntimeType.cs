@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Various types of the runtime types. </summary>
+    /// <summary> The InformaticaRuntimeType. </summary>
     public readonly partial struct InformaticaRuntimeType : IEquatable<InformaticaRuntimeType>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
 
         private const string ServerlessValue = "SERVERLESS";
 
-        /// <summary> Serverless Runtime type. </summary>
+        /// <summary> SERVERLESS. </summary>
         public static InformaticaRuntimeType Serverless { get; } = new InformaticaRuntimeType(ServerlessValue);
         /// <summary> Determines if two <see cref="InformaticaRuntimeType"/> values are the same. </summary>
         public static bool operator ==(InformaticaRuntimeType left, InformaticaRuntimeType right) => left.Equals(right);

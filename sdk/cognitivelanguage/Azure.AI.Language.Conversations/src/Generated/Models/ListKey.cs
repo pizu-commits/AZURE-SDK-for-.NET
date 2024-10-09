@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The list key extra data kind. </summary>
+    /// <summary> The ListKey. </summary>
     public partial class ListKey : ConversationEntityExtraInformation
     {
         /// <summary> Initializes a new instance of <see cref="ListKey"/>. </summary>
@@ -20,15 +20,15 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ListKey"/>. </summary>
-        /// <param name="extraInformationKind"> The extra information object kind. </param>
+        /// <param name="extraInformationKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="key"> The canonical form of the extracted entity. </param>
+        /// <param name="key"></param>
         internal ListKey(ExtraInformationKind extraInformationKind, IDictionary<string, BinaryData> serializedAdditionalRawData, string key) : base(extraInformationKind, serializedAdditionalRawData)
         {
             Key = key;
         }
 
-        /// <summary> The canonical form of the extracted entity. </summary>
+        /// <summary> Gets the key. </summary>
         public string Key { get; }
     }
 }

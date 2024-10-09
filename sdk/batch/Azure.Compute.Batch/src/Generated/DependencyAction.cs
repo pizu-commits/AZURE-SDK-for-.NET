@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> DependencyAction enums. </summary>
+    /// <summary> The DependencyAction. </summary>
     public readonly partial struct DependencyAction : IEquatable<DependencyAction>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string SatisfyValue = "satisfy";
         private const string BlockValue = "block";
 
-        /// <summary> Satisfy tasks waiting on this task; once all dependencies are satisfied, the task will be scheduled to run. </summary>
+        /// <summary> satisfy. </summary>
         public static DependencyAction Satisfy { get; } = new DependencyAction(SatisfyValue);
-        /// <summary> Blocks tasks waiting on this task, preventing them from being scheduled. </summary>
+        /// <summary> block. </summary>
         public static DependencyAction Block { get; } = new DependencyAction(BlockValue);
         /// <summary> Determines if two <see cref="DependencyAction"/> values are the same. </summary>
         public static bool operator ==(DependencyAction left, DependencyAction right) => left.Equals(right);

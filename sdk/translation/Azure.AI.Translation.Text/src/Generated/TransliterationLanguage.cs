@@ -11,11 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary>
-    /// The value of the transliteration property is a dictionary of (key, value) pairs.
-    /// Each key is a BCP 47 language tag. A key identifies a language for which text can be converted from one script
-    /// to another script.
-    /// </summary>
+    /// <summary> The TransliterationLanguage. </summary>
     public partial class TransliterationLanguage
     {
         /// <summary>
@@ -51,9 +47,9 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TransliterationLanguage"/>. </summary>
-        /// <param name="name"> Display name of the language in the locale requested via Accept-Language header. </param>
-        /// <param name="nativeName"> Display name of the language in the locale native for this language. </param>
-        /// <param name="scripts"> List of scripts to convert from. </param>
+        /// <param name="name"></param>
+        /// <param name="nativeName"></param>
+        /// <param name="scripts"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/>, <paramref name="nativeName"/> or <paramref name="scripts"/> is null. </exception>
         internal TransliterationLanguage(string name, string nativeName, IEnumerable<TransliterableScript> scripts)
         {
@@ -67,9 +63,9 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TransliterationLanguage"/>. </summary>
-        /// <param name="name"> Display name of the language in the locale requested via Accept-Language header. </param>
-        /// <param name="nativeName"> Display name of the language in the locale native for this language. </param>
-        /// <param name="scripts"> List of scripts to convert from. </param>
+        /// <param name="name"></param>
+        /// <param name="nativeName"></param>
+        /// <param name="scripts"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TransliterationLanguage(string name, string nativeName, IReadOnlyList<TransliterableScript> scripts, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,11 +80,11 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary> Display name of the language in the locale requested via Accept-Language header. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Display name of the language in the locale native for this language. </summary>
+        /// <summary> Gets the native name. </summary>
         public string NativeName { get; }
-        /// <summary> List of scripts to convert from. </summary>
+        /// <summary> Gets the scripts. </summary>
         public IReadOnlyList<TransliterableScript> Scripts { get; }
     }
 }

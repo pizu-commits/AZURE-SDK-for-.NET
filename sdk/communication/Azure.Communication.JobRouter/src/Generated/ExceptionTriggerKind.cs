@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Discriminators for supported exception trigger types. </summary>
+    /// <summary> The ExceptionTriggerKind. </summary>
     public readonly partial struct ExceptionTriggerKind : IEquatable<ExceptionTriggerKind>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Communication.JobRouter
         private const string QueueLengthValue = "queueLength";
         private const string WaitTimeValue = "waitTime";
 
-        /// <summary> Discriminator value for QueueLengthExceptionTrigger. </summary>
+        /// <summary> queueLength. </summary>
         public static ExceptionTriggerKind QueueLength { get; } = new ExceptionTriggerKind(QueueLengthValue);
-        /// <summary> Discriminator value for WaitTimeExceptionTrigger. </summary>
+        /// <summary> waitTime. </summary>
         public static ExceptionTriggerKind WaitTime { get; } = new ExceptionTriggerKind(WaitTimeValue);
         /// <summary> Determines if two <see cref="ExceptionTriggerKind"/> values are the same. </summary>
         public static bool operator ==(ExceptionTriggerKind left, ExceptionTriggerKind right) => left.Equals(right);

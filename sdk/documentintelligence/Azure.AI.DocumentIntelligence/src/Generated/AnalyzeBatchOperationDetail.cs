@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Operation detail for a document in a batch analysis. </summary>
+    /// <summary> The AnalyzeBatchOperationDetail. </summary>
     public partial class AnalyzeBatchOperationDetail
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeBatchOperationDetail"/>. </summary>
-        /// <param name="status"> Analyze status.  succeeded, failed, or skipped. </param>
-        /// <param name="sourceUrl"> URL of the source document. </param>
+        /// <param name="status"></param>
+        /// <param name="sourceUrl"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sourceUrl"/> is null. </exception>
         internal AnalyzeBatchOperationDetail(OperationStatus status, Uri sourceUrl)
         {
@@ -58,10 +58,10 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeBatchOperationDetail"/>. </summary>
-        /// <param name="status"> Analyze status.  succeeded, failed, or skipped. </param>
-        /// <param name="sourceUrl"> URL of the source document. </param>
-        /// <param name="resultUrl"> URL of the analyze result JSON. </param>
-        /// <param name="error"> Encountered error. </param>
+        /// <param name="status"></param>
+        /// <param name="sourceUrl"></param>
+        /// <param name="resultUrl"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeBatchOperationDetail(OperationStatus status, Uri sourceUrl, Uri resultUrl, DocumentIntelligenceError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,13 +77,13 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Analyze status.  succeeded, failed, or skipped. </summary>
+        /// <summary> Gets the status. </summary>
         public OperationStatus Status { get; }
-        /// <summary> URL of the source document. </summary>
+        /// <summary> Gets the source url. </summary>
         public Uri SourceUrl { get; }
-        /// <summary> URL of the analyze result JSON. </summary>
+        /// <summary> Gets the result url. </summary>
         public Uri ResultUrl { get; }
-        /// <summary> Encountered error. </summary>
+        /// <summary> Gets the error. </summary>
         public DocumentIntelligenceError Error { get; }
     }
 }

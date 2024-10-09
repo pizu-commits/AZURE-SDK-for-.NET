@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the date value. </summary>
+    /// <summary> The DateValue. </summary>
     public partial class DateValue
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DateValue"/>. </summary>
-        /// <param name="timex"> An extended ISO 8601 date/time representation as described in (https://github.com/Microsoft/Recognizers-Text/blob/master/Patterns/English/English-DateTime.yaml). </param>
-        /// <param name="value"> The actual time that the extracted text denote. </param>
+        /// <param name="timex"></param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="timex"/> or <paramref name="value"/> is null. </exception>
         internal DateValue(string timex, string value)
         {
@@ -59,9 +59,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DateValue"/>. </summary>
-        /// <param name="timex"> An extended ISO 8601 date/time representation as described in (https://github.com/Microsoft/Recognizers-Text/blob/master/Patterns/English/English-DateTime.yaml). </param>
-        /// <param name="value"> The actual time that the extracted text denote. </param>
-        /// <param name="modifier"> Modifier for datetime to indicate point of reference like before, after etc. </param>
+        /// <param name="timex"></param>
+        /// <param name="value"></param>
+        /// <param name="modifier"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DateValue(string timex, string value, TemporalModifier? modifier, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> An extended ISO 8601 date/time representation as described in (https://github.com/Microsoft/Recognizers-Text/blob/master/Patterns/English/English-DateTime.yaml). </summary>
+        /// <summary> Gets the timex. </summary>
         public string Timex { get; }
-        /// <summary> The actual time that the extracted text denote. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
-        /// <summary> Modifier for datetime to indicate point of reference like before, after etc. </summary>
+        /// <summary> Gets the modifier. </summary>
         public TemporalModifier? Modifier { get; }
     }
 }

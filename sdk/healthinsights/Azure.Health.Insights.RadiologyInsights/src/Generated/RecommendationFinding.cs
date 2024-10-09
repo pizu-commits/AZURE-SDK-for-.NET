@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Finding reference for recommendation. </summary>
+    /// <summary> The RecommendationFinding. </summary>
     public partial class RecommendationFinding
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RecommendationFinding"/>. </summary>
-        /// <param name="recommendationFindingStatus"> Recommendation finding status. </param>
+        /// <param name="recommendationFindingStatus"></param>
         internal RecommendationFinding(RecommendationFindingStatusType recommendationFindingStatus)
         {
             RecommendationFindingStatus = recommendationFindingStatus;
@@ -54,10 +54,10 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RecommendationFinding"/>. </summary>
-        /// <param name="finding"> Finding linked to a recommendation. </param>
-        /// <param name="criticalFinding"> Critical result linked to a recommendation. </param>
-        /// <param name="recommendationFindingStatus"> Recommendation finding status. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="finding"></param>
+        /// <param name="criticalFinding"></param>
+        /// <param name="recommendationFindingStatus"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RecommendationFinding(FhirR4Observation finding, CriticalResult criticalFinding, RecommendationFindingStatusType recommendationFindingStatus, IReadOnlyList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,13 +73,13 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Finding linked to a recommendation. </summary>
+        /// <summary> Gets the finding. </summary>
         public FhirR4Observation Finding { get; }
-        /// <summary> Critical result linked to a recommendation. </summary>
+        /// <summary> Gets the critical finding. </summary>
         public CriticalResult CriticalFinding { get; }
-        /// <summary> Recommendation finding status. </summary>
+        /// <summary> Gets the recommendation finding status. </summary>
         public RecommendationFindingStatusType RecommendationFindingStatus { get; }
-        /// <summary> Additional Content defined by implementations. </summary>
+        /// <summary> Gets the extension. </summary>
         public IReadOnlyList<FhirR4Extension> Extension { get; }
     }
 }

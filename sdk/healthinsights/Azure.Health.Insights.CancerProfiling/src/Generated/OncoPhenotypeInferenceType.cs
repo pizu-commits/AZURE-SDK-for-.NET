@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.CancerProfiling
 {
-    /// <summary> The type of the Onco Phenotype inference. </summary>
+    /// <summary> The OncoPhenotypeInferenceType. </summary>
     public readonly partial struct OncoPhenotypeInferenceType : IEquatable<OncoPhenotypeInferenceType>
     {
         private readonly string _value;

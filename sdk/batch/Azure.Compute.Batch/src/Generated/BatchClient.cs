@@ -63,13 +63,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Application. </summary>
-        /// <param name="applicationId"> The ID of the Application. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="applicationId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -91,13 +87,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Application. </summary>
-        /// <param name="applicationId"> The ID of the Application. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="applicationId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -133,13 +125,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="applicationId"> The ID of the Application. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="applicationId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -179,13 +167,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="applicationId"> The ID of the Application. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="applicationId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="applicationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -211,13 +195,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Pool to the specified Account. </summary>
-        /// <param name="pool"> The Pool to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="pool"> The <see cref="BatchPoolCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="pool"/> is null. </exception>
         /// <remarks>
@@ -237,13 +217,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Pool to the specified Account. </summary>
-        /// <param name="pool"> The Pool to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="pool"> The <see cref="BatchPoolCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="pool"/> is null. </exception>
         /// <remarks>
@@ -278,12 +254,8 @@ namespace Azure.Compute.Batch
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -323,12 +295,8 @@ namespace Azure.Compute.Batch
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -363,13 +331,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -406,13 +370,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -439,15 +399,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -463,15 +419,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -501,15 +453,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -550,15 +498,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -594,14 +538,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -638,14 +578,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -683,13 +619,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool on which to disable automatic scaling. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -725,13 +657,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool on which to disable automatic scaling. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -757,14 +685,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Enables automatic scaling for a Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="content"> The options to use for enabling automatic scaling. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchPoolEnableAutoScaleContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -790,14 +714,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Enables automatic scaling for a Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="content"> The options to use for enabling automatic scaling. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchPoolEnableAutoScaleContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -837,14 +757,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -886,14 +802,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -921,14 +833,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets the result of evaluating an automatic scaling formula on the Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool on which to evaluate the automatic scaling formula. </param>
-        /// <param name="content"> The options to use for evaluating the automatic scaling formula. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchPoolEvaluateAutoScaleContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -950,14 +858,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets the result of evaluating an automatic scaling formula on the Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool on which to evaluate the automatic scaling formula. </param>
-        /// <param name="content"> The options to use for evaluating the automatic scaling formula. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchPoolEvaluateAutoScaleContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -993,14 +897,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool on which to evaluate the automatic scaling formula. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1041,14 +941,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool on which to evaluate the automatic scaling formula. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1075,14 +971,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Changes the number of Compute Nodes that are assigned to a Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="content"> The options to use for resizing the pool. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchPoolResizeContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1109,14 +1001,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Changes the number of Compute Nodes that are assigned to a Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="content"> The options to use for resizing the pool. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchPoolResizeContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1157,14 +1045,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1206,14 +1090,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1251,13 +1131,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -1294,13 +1170,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
@@ -1327,14 +1199,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to update. </param>
-        /// <param name="pool"> The options to use for replacing properties on the pool. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="pool"> The <see cref="BatchPoolReplaceContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="pool"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1356,14 +1224,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to update. </param>
-        /// <param name="pool"> The options to use for replacing properties on the pool. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="pool"> The <see cref="BatchPoolReplaceContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="pool"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1399,14 +1263,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to update. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1447,14 +1307,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to update. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1481,14 +1337,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Removes Compute Nodes from the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="content"> The options to use for removing the node. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchNodeRemoveContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1511,14 +1363,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Removes Compute Nodes from the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
-        /// <param name="content"> The options to use for removing the node. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchNodeRemoveContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1555,14 +1403,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1604,14 +1448,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool to get. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="content"/> is null. </exception>
@@ -1649,13 +1489,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -1692,13 +1528,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -1725,15 +1557,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -1749,15 +1577,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -1787,15 +1611,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -1836,15 +1656,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -1880,14 +1696,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -1924,14 +1736,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -1959,14 +1767,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
-        /// <param name="job"> A job with updated properties. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="job"> The <see cref="BatchJob"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="job"/> is null. </exception>
@@ -1989,14 +1793,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
-        /// <param name="job"> A job with updated properties. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="job"> The <see cref="BatchJob"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="job"/> is null. </exception>
@@ -2033,14 +1833,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -2082,14 +1878,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job whose properties you want to update. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -2117,14 +1909,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Disables the specified Job, preventing new Tasks from running. </summary>
-        /// <param name="jobId"> The ID of the Job to disable. </param>
-        /// <param name="content"> The options to use for disabling the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchJobDisableContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -2152,14 +1940,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Disables the specified Job, preventing new Tasks from running. </summary>
-        /// <param name="jobId"> The ID of the Job to disable. </param>
-        /// <param name="content"> The options to use for disabling the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchJobDisableContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -2201,14 +1985,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to disable. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -2250,14 +2030,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to disable. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
@@ -2295,13 +2071,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to enable. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -2338,13 +2110,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to enable. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -2371,14 +2139,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Terminates the specified Job, marking it as completed. </summary>
-        /// <param name="jobId"> The ID of the Job to terminate. </param>
-        /// <param name="parameters"> The options to use for terminating the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="parameters"> The <see cref="BatchJobTerminateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -2403,14 +2167,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Terminates the specified Job, marking it as completed. </summary>
-        /// <param name="jobId"> The ID of the Job to terminate. </param>
-        /// <param name="parameters"> The options to use for terminating the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="parameters"> The <see cref="BatchJobTerminateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -2449,14 +2209,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to terminate. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -2497,14 +2253,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to terminate. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
@@ -2531,13 +2283,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Job to the specified Account. </summary>
-        /// <param name="job"> The Job to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="job"> The <see cref="BatchJobCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="job"/> is null. </exception>
         /// <remarks>
@@ -2563,13 +2311,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Job to the specified Account. </summary>
-        /// <param name="job"> The Job to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="job"> The <see cref="BatchJobCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="job"/> is null. </exception>
         /// <remarks>
@@ -2610,12 +2354,8 @@ namespace Azure.Compute.Batch
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -2655,12 +2395,8 @@ namespace Azure.Compute.Batch
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -2685,13 +2421,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets the Task counts for the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2712,13 +2444,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets the Task counts for the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2753,13 +2481,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2799,13 +2523,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2841,13 +2561,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -2884,13 +2600,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -2917,15 +2629,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Job Schedule. </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -2941,15 +2649,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Job Schedule. </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -2979,15 +2683,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3028,15 +2728,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to get. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3072,14 +2768,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to update. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> or <paramref name="content"/> is null. </exception>
@@ -3116,14 +2808,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to update. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> or <paramref name="content"/> is null. </exception>
@@ -3151,14 +2839,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Job Schedule. </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to update. </param>
-        /// <param name="jobSchedule"> A Job Schedule with updated properties. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="jobSchedule"> The <see cref="BatchJobSchedule"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> or <paramref name="jobSchedule"/> is null. </exception>
@@ -3183,14 +2867,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Job Schedule. </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to update. </param>
-        /// <param name="jobSchedule"> A Job Schedule with updated properties. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="jobSchedule"> The <see cref="BatchJobSchedule"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> or <paramref name="jobSchedule"/> is null. </exception>
@@ -3229,14 +2909,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to update. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> or <paramref name="content"/> is null. </exception>
@@ -3278,14 +2954,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to update. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> or <paramref name="content"/> is null. </exception>
@@ -3323,13 +2995,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to disable. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3366,13 +3034,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to disable. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3409,13 +3073,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to enable. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3452,13 +3112,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to enable. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3495,13 +3151,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to terminates. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3538,13 +3190,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule to terminates. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
@@ -3571,13 +3219,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Job Schedule to the specified Account. </summary>
-        /// <param name="jobSchedule"> The Job Schedule to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobSchedule"> The <see cref="BatchJobScheduleCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobSchedule"/> is null. </exception>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='CreateJobScheduleAsync(BatchJobScheduleCreateContent,int?,DateTimeOffset?,CancellationToken)']/*" />
@@ -3592,13 +3236,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Job Schedule to the specified Account. </summary>
-        /// <param name="jobSchedule"> The Job Schedule to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobSchedule"> The <see cref="BatchJobScheduleCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobSchedule"/> is null. </exception>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='CreateJobSchedule(BatchJobScheduleCreateContent,int?,DateTimeOffset?,CancellationToken)']/*" />
@@ -3628,12 +3268,8 @@ namespace Azure.Compute.Batch
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -3673,12 +3309,8 @@ namespace Azure.Compute.Batch
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -3703,14 +3335,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Task to the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task is to be created. </param>
-        /// <param name="task"> The Task to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="task"> The <see cref="BatchTaskCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="task"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3732,14 +3360,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Creates a Task to the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task is to be created. </param>
-        /// <param name="task"> The Task to be created. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="task"> The <see cref="BatchTaskCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="task"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3775,14 +3399,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task is to be created. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3823,14 +3443,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task is to be created. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3857,14 +3473,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Adds a collection of Tasks to the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task collection is to be added. </param>
-        /// <param name="taskCollection"> The Tasks to be added. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskCollection"> The <see cref="BatchTaskGroup"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskCollection"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3897,14 +3509,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Adds a collection of Tasks to the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task collection is to be added. </param>
-        /// <param name="taskCollection"> The Tasks to be added. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskCollection"> The <see cref="BatchTaskGroup"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskCollection"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3951,14 +3559,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task collection is to be added. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3999,14 +3603,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job to which the Task collection is to be added. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4043,14 +3643,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job from which to delete the Task. </param>
-        /// <param name="taskId"> The ID of the Task to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4088,14 +3684,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job from which to delete the Task. </param>
-        /// <param name="taskId"> The ID of the Task to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4123,16 +3715,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Task. </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4154,16 +3742,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Task. </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4199,16 +3783,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4250,16 +3830,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4287,15 +3863,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Task. </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to update. </param>
-        /// <param name="task"> The Task to update. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="task"> The <see cref="BatchTask"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="task"/> is null. </exception>
@@ -4314,15 +3886,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the properties of the specified Task. </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to update. </param>
-        /// <param name="task"> The Task to update. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="task"> The <see cref="BatchTask"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="task"/> is null. </exception>
@@ -4355,15 +3923,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to update. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="content"/> is null. </exception>
@@ -4406,15 +3970,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to update. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="content"/> is null. </exception>
@@ -4453,14 +4013,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to terminate. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4498,14 +4054,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to terminate. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4544,14 +4096,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to reactivate. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4590,14 +4138,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job containing the Task. </param>
-        /// <param name="taskId"> The ID of the Task to reactivate. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
@@ -4635,21 +4179,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to delete children of a directory. If the filePath parameter represents
-        /// a directory instead of a file, you can set recursive to true to delete the
-        /// directory and all of the files and subdirectories in it. If recursive is false
-        /// then the directory must be empty or deletion will fail.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4687,21 +4222,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to delete children of a directory. If the filePath parameter represents
-        /// a directory instead of a file, you can set recursive to true to delete the
-        /// directory and all of the files and subdirectories in it. If recursive is false
-        /// then the directory must be empty or deletion will fail.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4729,19 +4255,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Returns the content of the specified Task file. </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
@@ -4759,19 +4278,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Returns the content of the specified Task file. </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
@@ -4803,19 +4315,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
@@ -4867,19 +4372,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
@@ -4927,15 +4425,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
@@ -4982,15 +4476,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose file you want to retrieve. </param>
-        /// <param name="filePath"> The path to the Task file that you want to get the content of. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/>, <paramref name="taskId"/> or <paramref name="filePath"/> is null. </exception>
@@ -5027,15 +4517,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Adds a user Account to the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to create a user Account. </param>
-        /// <param name="user"> The options to use for creating the user. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="user"> The <see cref="BatchNodeUserCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="user"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5057,15 +4543,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Adds a user Account to the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to create a user Account. </param>
-        /// <param name="user"> The options to use for creating the user. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="user"> The <see cref="BatchNodeUserCreateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="user"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5101,15 +4583,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to create a user Account. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5151,15 +4629,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to create a user Account. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5197,15 +4671,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to delete a user Account. </param>
-        /// <param name="userName"> The name of the user Account to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="userName"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5243,15 +4713,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to delete a user Account. </param>
-        /// <param name="userName"> The name of the user Account to delete. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="userName"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5279,16 +4745,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the password and expiration time of a user Account on the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
-        /// <param name="userName"> The name of the user Account to update. </param>
-        /// <param name="content"> The options to use for updating the user. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="userName"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchNodeUserUpdateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/>, <paramref name="userName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5313,16 +4775,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Updates the password and expiration time of a user Account on the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
-        /// <param name="userName"> The name of the user Account to update. </param>
-        /// <param name="content"> The options to use for updating the user. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="userName"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="BatchNodeUserUpdateContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/>, <paramref name="userName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5361,16 +4819,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
-        /// <param name="userName"> The name of the user Account to update. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="userName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/>, <paramref name="userName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5413,16 +4867,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the machine on which you want to update a user Account. </param>
-        /// <param name="userName"> The name of the user Account to update. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="userName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/>, <paramref name="userName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="userName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5451,15 +4901,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5475,15 +4921,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5513,15 +4955,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5562,15 +5000,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5597,15 +5031,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Restarts the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to restart. </param>
-        /// <param name="parameters"> The options to use for rebooting the Compute Node. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="parameters"> The <see cref="BatchNodeRebootContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5623,15 +5053,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Restarts the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to restart. </param>
-        /// <param name="parameters"> The options to use for rebooting the Compute Node. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="parameters"> The <see cref="BatchNodeRebootContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5663,15 +5089,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to restart. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5712,15 +5134,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to restart. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5747,15 +5165,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Disables Task scheduling on the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node on which you want to disable Task scheduling. </param>
-        /// <param name="parameters"> The options to use for disabling scheduling on the Compute Node. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="parameters"> The <see cref="BatchNodeDisableSchedulingContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5776,15 +5190,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Disables Task scheduling on the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node on which you want to disable Task scheduling. </param>
-        /// <param name="parameters"> The options to use for disabling scheduling on the Compute Node. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="parameters"> The <see cref="BatchNodeDisableSchedulingContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5819,15 +5229,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node on which you want to disable Task scheduling. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5868,15 +5274,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node on which you want to disable Task scheduling. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5913,14 +5315,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node on which you want to enable Task scheduling. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5957,14 +5355,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node on which you want to enable Task scheduling. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -5991,14 +5385,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets the settings required for remote login to a Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node for which to obtain the remote login settings. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6019,14 +5409,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets the settings required for remote login to a Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node for which to obtain the remote login settings. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6061,14 +5447,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node for which to obtain the remote login settings. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6109,14 +5491,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node for which to obtain the remote login settings. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6146,18 +5524,11 @@ namespace Azure.Compute.Batch
         /// Upload Azure Batch service log files from the specified Compute Node to Azure
         /// Blob Storage.
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId">
-        /// The ID of the Compute Node for which you want to get the Remote Desktop
-        /// Protocol file.
-        /// </param>
-        /// <param name="content"> The Azure Batch service log files upload options. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="UploadBatchServiceLogsContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6184,18 +5555,11 @@ namespace Azure.Compute.Batch
         /// Upload Azure Batch service log files from the specified Compute Node to Azure
         /// Blob Storage.
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId">
-        /// The ID of the Compute Node for which you want to get the Remote Desktop
-        /// Protocol file.
-        /// </param>
-        /// <param name="content"> The Azure Batch service log files upload options. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="UploadBatchServiceLogsContent"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6234,18 +5598,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId">
-        /// The ID of the Compute Node for which you want to get the Remote Desktop
-        /// Protocol file.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6288,18 +5645,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId">
-        /// The ID of the Compute Node for which you want to get the Remote Desktop
-        /// Protocol file.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6327,16 +5677,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Compute Node Extension. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that contains the extensions. </param>
-        /// <param name="extensionName"> The name of the Compute Node Extension that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="extensionName"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6353,16 +5699,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Gets information about the specified Compute Node Extension. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that contains the extensions. </param>
-        /// <param name="extensionName"> The name of the Compute Node Extension that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="extensionName"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6393,16 +5735,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that contains the extensions. </param>
-        /// <param name="extensionName"> The name of the Compute Node Extension that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="extensionName"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6444,16 +5782,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that contains the extensions. </param>
-        /// <param name="extensionName"> The name of the Compute Node Extension that you want to get information about. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="extensionName"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="extensionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6491,21 +5825,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to delete children of a directory. If the filePath parameter represents
-        /// a directory instead of a file, you can set recursive to true to delete the
-        /// directory and all of the files and subdirectories in it. If recursive is false
-        /// then the directory must be empty or deletion will fail.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6543,21 +5868,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to delete children of a directory. If the filePath parameter represents
-        /// a directory instead of a file, you can set recursive to true to delete the
-        /// directory and all of the files and subdirectories in it. If recursive is false
-        /// then the directory must be empty or deletion will fail.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is an empty string, and was expected to be non-empty. </exception>
@@ -6585,19 +5901,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Returns the content of the specified Compute Node file. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
@@ -6615,19 +5924,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Returns the content of the specified Compute Node file. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
@@ -6659,19 +5961,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
@@ -6723,19 +6018,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="ocpRange">
-        /// The byte range to be retrieved. The default is to retrieve the entire file. The
-        /// format is bytes=startRange-endRange.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="ocpRange"> The <see cref="string"/> to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
@@ -6783,15 +6071,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
@@ -6838,15 +6122,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node. </param>
-        /// <param name="filePath"> The path to the file or directory. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="filePath"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
         /// <param name="requestConditions"> The content to send as the request conditions of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/>, <paramref name="nodeId"/> or <paramref name="filePath"/> is null. </exception>
@@ -6883,16 +6163,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the applications available in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// This operation returns only Applications and versions that are available for
@@ -6911,16 +6184,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the applications available in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// This operation returns only Applications and versions that are available for
@@ -6953,16 +6219,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -6989,16 +6248,9 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7014,30 +6266,12 @@ namespace Azure.Compute.Batch
         /// Lists the usage metrics, aggregated by Pool across individual time intervals,
         /// for the specified Account.
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="starttime">
-        /// The earliest time from which to include metrics. This must be at least two and
-        /// a half hours before the current time. If not specified this defaults to the
-        /// start time of the last aggregation interval currently available.
-        /// </param>
-        /// <param name="endtime">
-        /// The latest time from which to include metrics. This must be at least two hours
-        /// before the current time. If not specified this defaults to the end time of the
-        /// last aggregation interval currently available.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="starttime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="endtime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// If you do not specify a $filter clause including a poolId, the response
@@ -7060,30 +6294,12 @@ namespace Azure.Compute.Batch
         /// Lists the usage metrics, aggregated by Pool across individual time intervals,
         /// for the specified Account.
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="starttime">
-        /// The earliest time from which to include metrics. This must be at least two and
-        /// a half hours before the current time. If not specified this defaults to the
-        /// start time of the last aggregation interval currently available.
-        /// </param>
-        /// <param name="endtime">
-        /// The latest time from which to include metrics. This must be at least two hours
-        /// before the current time. If not specified this defaults to the end time of the
-        /// last aggregation interval currently available.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="starttime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="endtime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// If you do not specify a $filter clause including a poolId, the response
@@ -7118,30 +6334,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="starttime">
-        /// The earliest time from which to include metrics. This must be at least two and
-        /// a half hours before the current time. If not specified this defaults to the
-        /// start time of the last aggregation interval currently available.
-        /// </param>
-        /// <param name="endtime">
-        /// The latest time from which to include metrics. This must be at least two hours
-        /// before the current time. If not specified this defaults to the end time of the
-        /// last aggregation interval currently available.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="starttime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="endtime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7169,30 +6367,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="starttime">
-        /// The earliest time from which to include metrics. This must be at least two and
-        /// a half hours before the current time. If not specified this defaults to the
-        /// start time of the last aggregation interval currently available.
-        /// </param>
-        /// <param name="endtime">
-        /// The latest time from which to include metrics. This must be at least two hours
-        /// before the current time. If not specified this defaults to the end time of the
-        /// last aggregation interval currently available.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="starttime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="endtime"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7205,22 +6385,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Pools in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetPoolsAsync(int?,DateTimeOffset?,int?,string,IEnumerable{string},IEnumerable{string},CancellationToken)']/*" />
         public virtual AsyncPageable<BatchPool> GetPoolsAsync(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, IEnumerable<string> select = null, IEnumerable<string> expand = null, CancellationToken cancellationToken = default)
@@ -7232,22 +6402,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Pools in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetPools(int?,DateTimeOffset?,int?,string,IEnumerable{string},IEnumerable{string},CancellationToken)']/*" />
         public virtual Pageable<BatchPool> GetPools(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, IEnumerable<string> select = null, IEnumerable<string> expand = null, CancellationToken cancellationToken = default)
@@ -7273,22 +6433,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7315,22 +6465,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7343,20 +6483,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all Virtual Machine Images supported by the Azure Batch service. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetSupportedImagesAsync(int?,DateTimeOffset?,int?,string,CancellationToken)']/*" />
         public virtual AsyncPageable<BatchSupportedImage> GetSupportedImagesAsync(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, CancellationToken cancellationToken = default)
@@ -7368,20 +6498,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all Virtual Machine Images supported by the Azure Batch service. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetSupportedImages(int?,DateTimeOffset?,int?,string,CancellationToken)']/*" />
         public virtual Pageable<BatchSupportedImage> GetSupportedImages(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, CancellationToken cancellationToken = default)
@@ -7407,20 +6527,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7447,20 +6557,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7477,20 +6577,10 @@ namespace Azure.Compute.Batch
         /// numbers returned may not always be up to date. If you need exact node counts,
         /// use a list query.
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetPoolNodeCountsAsync(int?,DateTimeOffset?,int?,string,CancellationToken)']/*" />
         public virtual AsyncPageable<BatchPoolNodeCounts> GetPoolNodeCountsAsync(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, CancellationToken cancellationToken = default)
@@ -7506,20 +6596,10 @@ namespace Azure.Compute.Batch
         /// numbers returned may not always be up to date. If you need exact node counts,
         /// use a list query.
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetPoolNodeCounts(int?,DateTimeOffset?,int?,string,CancellationToken)']/*" />
         public virtual Pageable<BatchPoolNodeCounts> GetPoolNodeCounts(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, CancellationToken cancellationToken = default)
@@ -7547,20 +6627,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7589,20 +6659,10 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-        /// </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7615,22 +6675,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Jobs in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetJobsAsync(int?,DateTimeOffset?,int?,string,IEnumerable{string},IEnumerable{string},CancellationToken)']/*" />
         public virtual AsyncPageable<BatchJob> GetJobsAsync(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, IEnumerable<string> select = null, IEnumerable<string> expand = null, CancellationToken cancellationToken = default)
@@ -7642,22 +6692,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Jobs in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetJobs(int?,DateTimeOffset?,int?,string,IEnumerable{string},IEnumerable{string},CancellationToken)']/*" />
         public virtual Pageable<BatchJob> GetJobs(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, IEnumerable<string> select = null, IEnumerable<string> expand = null, CancellationToken cancellationToken = default)
@@ -7683,22 +6723,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7725,22 +6755,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -7753,23 +6773,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the Jobs that have been created under the specified Job Schedule. </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule from which you want to get a list of Jobs. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobScheduleId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -7785,23 +6795,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the Jobs that have been created under the specified Job Schedule. </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule from which you want to get a list of Jobs. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobScheduleId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -7831,23 +6831,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule from which you want to get a list of Jobs. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobScheduleId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -7878,23 +6868,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobScheduleId"> The ID of the Job Schedule from which you want to get a list of Jobs. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobScheduleId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobScheduleId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobScheduleId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -7914,22 +6894,12 @@ namespace Azure.Compute.Batch
         /// Lists the execution status of the Job Preparation and Job Release Task for the
         /// specified Job across the Compute Nodes where the Job has run.
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -7956,22 +6926,12 @@ namespace Azure.Compute.Batch
         /// Lists the execution status of the Job Preparation and Job Release Task for the
         /// specified Job across the Compute Nodes where the Job has run.
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8010,22 +6970,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8057,22 +7007,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8089,22 +7029,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Job Schedules in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetJobSchedulesAsync(int?,DateTimeOffset?,int?,string,IEnumerable{string},IEnumerable{string},CancellationToken)']/*" />
         public virtual AsyncPageable<BatchJobSchedule> GetJobSchedulesAsync(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, IEnumerable<string> select = null, IEnumerable<string> expand = null, CancellationToken cancellationToken = default)
@@ -8116,22 +7046,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Job Schedules in the specified Account. </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/BatchClient.xml" path="doc/members/member[@name='GetJobSchedules(int?,DateTimeOffset?,int?,string,IEnumerable{string},IEnumerable{string},CancellationToken)']/*" />
         public virtual Pageable<BatchJobSchedule> GetJobSchedules(int? timeOutInSeconds = null, DateTimeOffset? ocpdate = null, int? maxresults = null, string filter = null, IEnumerable<string> select = null, IEnumerable<string> expand = null, CancellationToken cancellationToken = default)
@@ -8157,22 +7077,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -8199,22 +7109,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -8227,23 +7127,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Tasks that are associated with the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8264,23 +7154,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the Tasks that are associated with the specified Job. </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8315,23 +7195,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8362,23 +7232,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
-        /// <param name="expand"> An OData $expand clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="expand"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8398,15 +7258,11 @@ namespace Azure.Compute.Batch
         /// Lists all of the subtasks that are associated with the specified multi-instance
         /// Task.
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="taskId"> The ID of the Task. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8427,15 +7283,11 @@ namespace Azure.Compute.Batch
         /// Lists all of the subtasks that are associated with the specified multi-instance
         /// Task.
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="taskId"> The ID of the Task. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8468,15 +7320,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="taskId"> The ID of the Task. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8509,15 +7357,11 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job. </param>
-        /// <param name="taskId"> The ID of the Task. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8535,26 +7379,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the files in a Task's directory on its Compute Node. </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to list children of the Task directory. This parameter can be used in
-        /// combination with the filter parameter to list specific type of files.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8571,26 +7402,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the files in a Task's directory on its Compute Node. </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to list children of the Task directory. This parameter can be used in
-        /// combination with the filter parameter to list specific type of files.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8621,26 +7439,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to list children of the Task directory. This parameter can be used in
-        /// combination with the filter parameter to list specific type of files.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8672,26 +7477,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> The ID of the Job that contains the Task. </param>
-        /// <param name="taskId"> The ID of the Task whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
-        /// </param>
-        /// <param name="recursive">
-        /// Whether to list children of the Task directory. This parameter can be used in
-        /// combination with the filter parameter to list specific type of files.
-        /// </param>
+        /// <param name="jobId"> The <see cref="string"/> to use. </param>
+        /// <param name="taskId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="jobId"/> or <paramref name="taskId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="jobId"/> or <paramref name="taskId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8709,22 +7501,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the Compute Nodes in the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool from which you want to list Compute Nodes. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8740,22 +7522,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the Compute Nodes in the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool from which you want to list Compute Nodes. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8785,22 +7557,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool from which you want to list Compute Nodes. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8831,22 +7593,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool from which you want to list Compute Nodes. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8863,19 +7615,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the Compute Nodes Extensions in the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to list extensions. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8892,19 +7637,12 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists the Compute Nodes Extensions in the specified Pool. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to list extensions. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8935,19 +7673,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to list extensions. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -8979,19 +7710,12 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node that you want to list extensions. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="select"> An OData $select clause. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="select"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -9009,23 +7733,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the files in Task directories on the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.
-        /// </param>
-        /// <param name="recursive"> Whether to list children of a directory. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -9042,23 +7756,13 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Lists all of the files in Task directories on the specified Compute Node. </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.
-        /// </param>
-        /// <param name="recursive"> Whether to list children of a directory. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -9089,23 +7793,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.
-        /// </param>
-        /// <param name="recursive"> Whether to list children of a directory. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -9137,23 +7831,13 @@ namespace Azure.Compute.Batch
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="poolId"> The ID of the Pool that contains the Compute Node. </param>
-        /// <param name="nodeId"> The ID of the Compute Node whose files you want to list. </param>
-        /// <param name="timeOutInSeconds"> The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". </param>
-        /// <param name="ocpdate">
-        /// The time the request was issued. Client libraries typically set this to the
-        /// current system clock time; set it explicitly if you are calling the REST API
-        /// directly.
-        /// </param>
-        /// <param name="maxresults">
-        /// The maximum number of items to return in the response. A maximum of 1000
-        /// applications can be returned.
-        /// </param>
-        /// <param name="filter">
-        /// An OData $filter clause. For more information on constructing this filter, see
-        /// https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.
-        /// </param>
-        /// <param name="recursive"> Whether to list children of a directory. </param>
+        /// <param name="poolId"> The <see cref="string"/> to use. </param>
+        /// <param name="nodeId"> The <see cref="string"/> to use. </param>
+        /// <param name="timeOutInSeconds"> The <see cref="int"/>? to use. </param>
+        /// <param name="ocpdate"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="maxresults"> The <see cref="int"/>? to use. </param>
+        /// <param name="filter"> The <see cref="string"/> to use. </param>
+        /// <param name="recursive"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="poolId"/> or <paramref name="nodeId"/> is an empty string, and was expected to be non-empty. </exception>

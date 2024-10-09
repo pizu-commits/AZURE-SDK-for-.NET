@@ -10,10 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies whether the Auxiliary mode is enabled for the Network Interface
-    /// resource.
-    /// </summary>
+    /// <summary> The ComputeFleetNetworkInterfaceAuxiliaryMode. </summary>
     public readonly partial struct ComputeFleetNetworkInterfaceAuxiliaryMode : IEquatable<ComputeFleetNetworkInterfaceAuxiliaryMode>
     {
         private readonly string _value;
@@ -29,11 +26,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string AcceleratedConnectionsValue = "AcceleratedConnections";
         private const string FloatingValue = "Floating";
 
-        /// <summary> None Mode. </summary>
+        /// <summary> None. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliaryMode None { get; } = new ComputeFleetNetworkInterfaceAuxiliaryMode(NoneValue);
-        /// <summary> AcceleratedConnections Mode. </summary>
+        /// <summary> AcceleratedConnections. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliaryMode AcceleratedConnections { get; } = new ComputeFleetNetworkInterfaceAuxiliaryMode(AcceleratedConnectionsValue);
-        /// <summary> Floating Mode. </summary>
+        /// <summary> Floating. </summary>
         public static ComputeFleetNetworkInterfaceAuxiliaryMode Floating { get; } = new ComputeFleetNetworkInterfaceAuxiliaryMode(FloatingValue);
         /// <summary> Determines if two <see cref="ComputeFleetNetworkInterfaceAuxiliaryMode"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetNetworkInterfaceAuxiliaryMode left, ComputeFleetNetworkInterfaceAuxiliaryMode right) => left.Equals(right);

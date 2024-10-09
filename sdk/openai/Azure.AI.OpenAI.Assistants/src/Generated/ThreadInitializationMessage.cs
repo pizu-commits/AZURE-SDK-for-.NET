@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> A single message within an assistant thread, as provided during that thread's creation for its initial state. </summary>
+    /// <summary> The ThreadInitializationMessage. </summary>
     public partial class ThreadInitializationMessage
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ThreadInitializationMessage"/>. </summary>
-        /// <param name="role"> The role associated with the assistant thread message. Currently, only 'user' is supported when providing initial messages to a new thread. </param>
-        /// <param name="content"> The textual content of the initial message. Currently, robust input including images and annotated text may only be provided via a separate call to the create message API. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public ThreadInitializationMessage(MessageRole role, string content)
         {
@@ -60,13 +60,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="ThreadInitializationMessage"/>. </summary>
-        /// <param name="role"> The role associated with the assistant thread message. Currently, only 'user' is supported when providing initial messages to a new thread. </param>
-        /// <param name="content"> The textual content of the initial message. Currently, robust input including images and annotated text may only be provided via a separate call to the create message API. </param>
-        /// <param name="fileIds">
-        /// A list of file IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can
-        /// access files.
-        /// </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ThreadInitializationMessage(MessageRole role, string content, IList<string> fileIds, IDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,16 +79,13 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The role associated with the assistant thread message. Currently, only 'user' is supported when providing initial messages to a new thread. </summary>
+        /// <summary> Gets the role. </summary>
         public MessageRole Role { get; }
-        /// <summary> The textual content of the initial message. Currently, robust input including images and annotated text may only be provided via a separate call to the create message API. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary>
-        /// A list of file IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can
-        /// access files.
-        /// </summary>
+        /// <summary> Gets the file ids. </summary>
         public IList<string> FileIds { get; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets or sets the metadata. </summary>
         public IDictionary<string, string> Metadata { get; set; }
     }
 }

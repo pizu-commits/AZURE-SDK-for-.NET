@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The data provided during a tool outputs submission to resolve pending tool calls and allow the model to continue. </summary>
+    /// <summary> The ToolOutput. </summary>
     public partial class ToolOutput
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="ToolOutput"/>. </summary>
-        /// <param name="toolCallId"> The ID of the tool call being resolved, as provided in the tool calls of a required action from a run. </param>
-        /// <param name="output"> The output from the tool to be submitted. </param>
+        /// <param name="toolCallId"></param>
+        /// <param name="output"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ToolOutput(string toolCallId, string output, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.AI.OpenAI.Assistants
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the tool call being resolved, as provided in the tool calls of a required action from a run. </summary>
+        /// <summary> Gets or sets the tool call id. </summary>
         public string ToolCallId { get; set; }
-        /// <summary> The output from the tool to be submitted. </summary>
+        /// <summary> Gets or sets the output. </summary>
         public string Output { get; set; }
     }
 }

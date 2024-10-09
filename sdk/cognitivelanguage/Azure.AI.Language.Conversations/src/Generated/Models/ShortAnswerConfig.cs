@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> To configure Answer span prediction feature. </summary>
+    /// <summary> The ShortAnswerConfig. </summary>
     public partial class ShortAnswerConfig
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ShortAnswerConfig"/>. </summary>
-        /// <param name="enable"> Enable or disable Answer Span prediction. </param>
-        /// <param name="confidenceThreshold"> Minimum threshold score required to include an answer span, value ranges from 0 to 1. </param>
-        /// <param name="top"> Number of Top answers to be considered for span prediction from 1 to 10. </param>
+        /// <param name="enable"></param>
+        /// <param name="confidenceThreshold"></param>
+        /// <param name="top"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ShortAnswerConfig(bool? enable, double? confidenceThreshold, int? top, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Enable or disable Answer Span prediction. </summary>
+        /// <summary> Gets or sets the enable. </summary>
         public bool? Enable { get; set; }
-        /// <summary> Minimum threshold score required to include an answer span, value ranges from 0 to 1. </summary>
+        /// <summary> Gets or sets the confidence threshold. </summary>
         public double? ConfidenceThreshold { get; set; }
-        /// <summary> Number of Top answers to be considered for span prediction from 1 to 10. </summary>
+        /// <summary> Gets or sets the top. </summary>
         public int? Top { get; set; }
     }
 }

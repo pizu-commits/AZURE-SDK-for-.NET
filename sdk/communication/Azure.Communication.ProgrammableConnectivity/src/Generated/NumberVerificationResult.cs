@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> Response verifying number of device. </summary>
+    /// <summary> The NumberVerificationResult. </summary>
     public partial class NumberVerificationResult
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NumberVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if number if the phone number matches the device, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         internal NumberVerificationResult(bool verificationResult)
         {
             VerificationResult = verificationResult;
         }
 
         /// <summary> Initializes a new instance of <see cref="NumberVerificationResult"/>. </summary>
-        /// <param name="verificationResult"> True if number if the phone number matches the device, False otherwise. </param>
+        /// <param name="verificationResult"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NumberVerificationResult(bool verificationResult, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> True if number if the phone number matches the device, False otherwise. </summary>
+        /// <summary> Gets the verification result. </summary>
         public bool VerificationResult { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Response payload from declining a job. </summary>
+    /// <summary> The DeclineJobOfferResult. </summary>
     internal partial class DeclineJobOfferResult
     {
         /// <summary>

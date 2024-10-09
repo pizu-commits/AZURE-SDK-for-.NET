@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Text
 {
     /// <summary>
-    /// Collection of documents to analyze and a single task to execute.
+    /// The AnalyzeTextInput.
     /// Please note <see cref="AnalyzeTextInput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="TextDynamicClassificationInput"/>, <see cref="TextEntityLinkingInput"/>, <see cref="TextEntityRecognitionInput"/>, <see cref="TextKeyPhraseExtractionInput"/>, <see cref="TextLanguageDetectionInput"/>, <see cref="TextPiiEntitiesRecognitionInput"/> and <see cref="TextSentimentAnalysisInput"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextInput"/>. </summary>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeTextInput(AnalyzeTextInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The kind of task to perform. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal AnalyzeTextInputKind Kind { get; set; }
     }
 }

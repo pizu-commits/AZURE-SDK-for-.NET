@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Configuration affecting the Radiology Insights model's inference. </summary>
+    /// <summary> The RadiologyInsightsModelConfiguration. </summary>
     public partial class RadiologyInsightsModelConfiguration
     {
         /// <summary>
@@ -52,11 +52,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsModelConfiguration"/>. </summary>
-        /// <param name="verbose"> An indication whether the model should produce verbose output. </param>
-        /// <param name="includeEvidence"> An indication whether the model's output should include evidence for the inferences. </param>
-        /// <param name="inferenceTypes"> This is a list of inference types to be inferred for the current request. It could be used if only part of the Radiology Insights inferences are required. If this list is omitted or empty, the model will return all the inference types. </param>
-        /// <param name="inferenceOptions"> Options regarding follow up recommendation inferences and finding inferences. </param>
-        /// <param name="locale"> Local for the model to use. If not specified, the model will use the default locale. </param>
+        /// <param name="verbose"></param>
+        /// <param name="includeEvidence"></param>
+        /// <param name="inferenceTypes"></param>
+        /// <param name="inferenceOptions"></param>
+        /// <param name="locale"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RadiologyInsightsModelConfiguration(bool? verbose, bool? includeEvidence, IList<RadiologyInsightsInferenceType> inferenceTypes, RadiologyInsightsInferenceOptions inferenceOptions, string locale, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,15 +68,15 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> An indication whether the model should produce verbose output. </summary>
+        /// <summary> Gets or sets the verbose. </summary>
         public bool? Verbose { get; set; }
-        /// <summary> An indication whether the model's output should include evidence for the inferences. </summary>
+        /// <summary> Gets or sets the include evidence. </summary>
         public bool? IncludeEvidence { get; set; }
-        /// <summary> This is a list of inference types to be inferred for the current request. It could be used if only part of the Radiology Insights inferences are required. If this list is omitted or empty, the model will return all the inference types. </summary>
+        /// <summary> Gets the inference types. </summary>
         public IList<RadiologyInsightsInferenceType> InferenceTypes { get; }
-        /// <summary> Options regarding follow up recommendation inferences and finding inferences. </summary>
+        /// <summary> Gets or sets the inference options. </summary>
         public RadiologyInsightsInferenceOptions InferenceOptions { get; set; }
-        /// <summary> Local for the model to use. If not specified, the model will use the default locale. </summary>
+        /// <summary> Gets or sets the locale. </summary>
         public string Locale { get; set; }
     }
 }

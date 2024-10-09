@@ -15,24 +15,18 @@ namespace Azure.Health.Deidentification
     public static partial class HealthDeidentificationModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="Deidentification.DeidentificationJob"/>. </summary>
-        /// <param name="name"> The name of a job. </param>
-        /// <param name="sourceLocation"> Storage location to perform the operation on. </param>
-        /// <param name="targetLocation"> Target location to store output of operation. </param>
-        /// <param name="operation"> Operation to perform on the input documents. </param>
-        /// <param name="dataType"> Data type of the input documents. </param>
-        /// <param name="redactionFormat"> Format of the redacted output. Only valid when Operation is Redact. </param>
-        /// <param name="status"> Current status of a job. </param>
-        /// <param name="error"> Error when job fails in it's entirety. </param>
-        /// <param name="lastUpdatedAt">
-        /// Date and time when the job was completed.
-        ///
-        /// If the job is canceled, this is the time when the job was canceled.
-        ///
-        /// If the job failed, this is the time when the job failed.
-        /// </param>
-        /// <param name="createdAt"> Date and time when the job was created. </param>
-        /// <param name="startedAt"> Date and time when the job was started. </param>
-        /// <param name="summary"> Summary of a job. Exists only when the job is completed. </param>
+        /// <param name="name"></param>
+        /// <param name="sourceLocation"></param>
+        /// <param name="targetLocation"></param>
+        /// <param name="operation"></param>
+        /// <param name="dataType"></param>
+        /// <param name="redactionFormat"></param>
+        /// <param name="status"></param>
+        /// <param name="error"></param>
+        /// <param name="lastUpdatedAt"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="startedAt"></param>
+        /// <param name="summary"></param>
         /// <returns> A new <see cref="Deidentification.DeidentificationJob"/> instance for mocking. </returns>
         public static DeidentificationJob DeidentificationJob(string name = null, SourceStorageLocation sourceLocation = null, TargetStorageLocation targetLocation = null, OperationType? operation = null, DocumentDataType? dataType = null, string redactionFormat = null, JobStatus status = default, ResponseError error = null, DateTimeOffset lastUpdatedAt = default, DateTimeOffset createdAt = default, DateTimeOffset? startedAt = null, JobSummary summary = null)
         {
@@ -53,11 +47,11 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.JobSummary"/>. </summary>
-        /// <param name="successful"> Number of documents that have completed. </param>
-        /// <param name="failed"> Number of documents that have failed. </param>
-        /// <param name="canceled"> Number of documents that have been canceled. </param>
-        /// <param name="total"> Number of documents total. </param>
-        /// <param name="bytesProcessed"> Number of bytes processed. </param>
+        /// <param name="successful"></param>
+        /// <param name="failed"></param>
+        /// <param name="canceled"></param>
+        /// <param name="total"></param>
+        /// <param name="bytesProcessed"></param>
         /// <returns> A new <see cref="Deidentification.JobSummary"/> instance for mocking. </returns>
         public static JobSummary JobSummary(int successful = default, int failed = default, int canceled = default, int total = default, long bytesProcessed = default)
         {
@@ -71,11 +65,11 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.DocumentDetails"/>. </summary>
-        /// <param name="id"> Id of the document details. </param>
-        /// <param name="input"> Location for the input. </param>
-        /// <param name="output"> Location for the output. </param>
-        /// <param name="status"> Status of the document. </param>
-        /// <param name="error"> Error when document fails. </param>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <param name="status"></param>
+        /// <param name="error"></param>
         /// <returns> A new <see cref="Deidentification.DocumentDetails"/> instance for mocking. </returns>
         public static DocumentDetails DocumentDetails(string id = null, DocumentLocation input = null, DocumentLocation output = null, OperationState status = default, ResponseError error = null)
         {
@@ -89,8 +83,8 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.DocumentLocation"/>. </summary>
-        /// <param name="path"> Path of document in storage. </param>
-        /// <param name="etag"> The entity tag for this resource. </param>
+        /// <param name="path"></param>
+        /// <param name="etag"></param>
         /// <returns> A new <see cref="Deidentification.DocumentLocation"/> instance for mocking. </returns>
         public static DocumentLocation DocumentLocation(string path = null, ETag etag = default)
         {
@@ -98,10 +92,10 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.DeidentificationContent"/>. </summary>
-        /// <param name="inputText"> Input text to de-identify. </param>
-        /// <param name="operation"> Operation to perform on the input. </param>
-        /// <param name="dataType"> Data type of the input. </param>
-        /// <param name="redactionFormat"> Format of the redacted output. Only valid when OperationType is "Redact". </param>
+        /// <param name="inputText"></param>
+        /// <param name="operation"></param>
+        /// <param name="dataType"></param>
+        /// <param name="redactionFormat"></param>
         /// <returns> A new <see cref="Deidentification.DeidentificationContent"/> instance for mocking. </returns>
         public static DeidentificationContent DeidentificationContent(string inputText = null, OperationType? operation = null, DocumentDataType? dataType = null, string redactionFormat = null)
         {
@@ -109,8 +103,8 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.DeidentificationResult"/>. </summary>
-        /// <param name="outputText"> Output text after de-identification. Not available for "Tag" operation. </param>
-        /// <param name="taggerResult"> Result of the "Tag" operation. Only available for "Tag" Operation. </param>
+        /// <param name="outputText"></param>
+        /// <param name="taggerResult"></param>
         /// <returns> A new <see cref="Deidentification.DeidentificationResult"/> instance for mocking. </returns>
         public static DeidentificationResult DeidentificationResult(string outputText = null, PhiTaggerResult taggerResult = null)
         {
@@ -118,9 +112,9 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.PhiTaggerResult"/>. </summary>
-        /// <param name="entities"> List of entities detected in the input. </param>
-        /// <param name="path"> Path to the document in storage. </param>
-        /// <param name="etag"> The entity tag for this resource. </param>
+        /// <param name="entities"></param>
+        /// <param name="path"></param>
+        /// <param name="etag"></param>
         /// <returns> A new <see cref="Deidentification.PhiTaggerResult"/> instance for mocking. </returns>
         public static PhiTaggerResult PhiTaggerResult(IEnumerable<PhiEntity> entities = null, string path = null, ETag? etag = null)
         {
@@ -130,11 +124,11 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.PhiEntity"/>. </summary>
-        /// <param name="category"> PHI Category of the entity. </param>
-        /// <param name="offset"> Starting index of the location from within the input text. </param>
-        /// <param name="length"> Length of the input text. </param>
-        /// <param name="text"> Text of the entity. </param>
-        /// <param name="confidenceScore"> Confidence score of the category match. </param>
+        /// <param name="category"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
+        /// <param name="text"></param>
+        /// <param name="confidenceScore"></param>
         /// <returns> A new <see cref="Deidentification.PhiEntity"/> instance for mocking. </returns>
         public static PhiEntity PhiEntity(PhiCategory category = default, StringIndex offset = null, StringIndex length = null, string text = null, double? confidenceScore = null)
         {
@@ -148,17 +142,9 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="Deidentification.StringIndex"/>. </summary>
-        /// <param name="utf8"> The offset or length of the substring in UTF-8 encoding. </param>
-        /// <param name="utf16">
-        /// The offset or length of the substring in UTF-16 encoding.
-        ///
-        /// Primary encoding used by .NET, Java, and JavaScript.
-        /// </param>
-        /// <param name="codePoint">
-        /// The offset or length of the substring in CodePoint encoding.
-        ///
-        /// Primary encoding used by Python.
-        /// </param>
+        /// <param name="utf8"></param>
+        /// <param name="utf16"></param>
+        /// <param name="codePoint"></param>
         /// <returns> A new <see cref="Deidentification.StringIndex"/> instance for mocking. </returns>
         public static StringIndex StringIndex(int utf8 = default, int utf16 = default, int codePoint = default)
         {

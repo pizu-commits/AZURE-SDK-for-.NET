@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Input parameters necessary for a Conversation task. </summary>
+    /// <summary> The ConversationLanguageUnderstandingActionContent. </summary>
     public partial class ConversationLanguageUnderstandingActionContent
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationLanguageUnderstandingActionContent"/>. </summary>
-        /// <param name="projectName"> The name of the project to use. </param>
-        /// <param name="deploymentName"> The name of the deployment to use. </param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         public ConversationLanguageUnderstandingActionContent(string projectName, string deploymentName)
         {
@@ -60,14 +60,13 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationLanguageUnderstandingActionContent"/>. </summary>
-        /// <param name="projectName"> The name of the project to use. </param>
-        /// <param name="deploymentName"> The name of the deployment to use. </param>
-        /// <param name="verbose"> If true, the service will return more detailed information in the response. </param>
-        /// <param name="isLoggingEnabled"> If true, the service will keep the query for further review. </param>
-        /// <param name="stringIndexType"> Specifies the method used to interpret string offsets.  Defaults to Text Elements (Graphemes) according to Unicode v8.0.0. For additional information see https://aka.ms/text-analytics-offsets. </param>
-        /// <param name="directTarget"> The name of a target project to forward the request to. </param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
+        /// <param name="verbose"></param>
+        /// <param name="isLoggingEnabled"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="directTarget"></param>
         /// <param name="targetProjectParameters">
-        /// A dictionary representing the parameters for each target project.
         /// Please note <see cref="AnalysisConfig"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationConfig"/>, <see cref="LuisConfig"/> and <see cref="QuestionAnsweringConfig"/>.
         /// </param>
@@ -89,20 +88,20 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The name of the project to use. </summary>
+        /// <summary> Gets the project name. </summary>
         public string ProjectName { get; }
-        /// <summary> The name of the deployment to use. </summary>
+        /// <summary> Gets the deployment name. </summary>
         public string DeploymentName { get; }
-        /// <summary> If true, the service will return more detailed information in the response. </summary>
+        /// <summary> Gets or sets the verbose. </summary>
         public bool? Verbose { get; set; }
-        /// <summary> If true, the service will keep the query for further review. </summary>
+        /// <summary> Gets or sets the is logging enabled. </summary>
         public bool? IsLoggingEnabled { get; set; }
-        /// <summary> Specifies the method used to interpret string offsets.  Defaults to Text Elements (Graphemes) according to Unicode v8.0.0. For additional information see https://aka.ms/text-analytics-offsets. </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
-        /// <summary> The name of a target project to forward the request to. </summary>
+        /// <summary> Gets or sets the direct target. </summary>
         public string DirectTarget { get; set; }
         /// <summary>
-        /// A dictionary representing the parameters for each target project.
+        /// Gets the target project parameters
         /// Please note <see cref="AnalysisConfig"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationConfig"/>, <see cref="LuisConfig"/> and <see cref="QuestionAnsweringConfig"/>.
         /// </summary>

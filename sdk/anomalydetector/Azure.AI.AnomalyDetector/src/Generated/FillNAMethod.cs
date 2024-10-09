@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Field that indicates how missing values will be filled. </summary>
+    /// <summary> The FillNAMethod. </summary>
     public readonly partial struct FillNAMethod : IEquatable<FillNAMethod>
     {
         private readonly string _value;

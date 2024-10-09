@@ -14,18 +14,7 @@ using Azure.Core.Pipeline;
 namespace Azure.Communication.ProgrammableConnectivity
 {
     // Data plane generated sub-client.
-    /// <summary>
-    ///   Number operations include Frontend Authentication.
-    ///
-    ///   Users first make a call to the endpoint /Number:verify, which returns a redirect to the device's
-    ///   Network. This is followed by the device to authenticate directly with the Network. The Network
-    ///   responds with a token and a redirect. This token can be exchanged with APC for a code.
-    ///
-    ///   Users make a second call to the endpoint /Number:verify including the code. The code is used
-    ///   to verify the device number. The second response is a 200 containing the result of the query.
-    ///
-    ///   For more information on the steps required to use Number Verificaiton, see the APC documentation.
-    /// </summary>
+    /// <summary> The NumberVerification sub-client. </summary>
     public partial class NumberVerification
     {
         private static readonly string[] AuthorizationScopes = new string[] { "https://management.azure.com//.default" };
@@ -50,7 +39,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="tokenCredential"> The token credential to copy. </param>
         /// <param name="endpoint"> An Azure Programmable Connectivity Endpoint providing access to Network APIs, for example https://{region}.apcgatewayapi.azure.com. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         internal NumberVerification(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, TokenCredential tokenCredential, Uri endpoint, string apiVersion)
         {
             ClientDiagnostics = clientDiagnostics;
@@ -61,8 +50,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Verifies the phone number (MSISDN) associated with a device. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="NumberVerificationWithCodeContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/NumberVerification.xml" path="doc/members/member[@name='VerifyWithCodeAsync(string,NumberVerificationWithCodeContent,CancellationToken)']/*" />
@@ -78,8 +67,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Verifies the phone number (MSISDN) associated with a device. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="NumberVerificationWithCodeContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/NumberVerification.xml" path="doc/members/member[@name='VerifyWithCode(string,NumberVerificationWithCodeContent,CancellationToken)']/*" />
@@ -109,7 +98,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>
@@ -150,7 +139,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>

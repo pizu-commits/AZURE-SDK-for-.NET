@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Statistics related to Pool usage information. </summary>
+    /// <summary> The BatchPoolUsageStatistics. </summary>
     public partial class BatchPoolUsageStatistics
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolUsageStatistics"/>. </summary>
-        /// <param name="startTime"> The start time of the time range covered by the statistics. </param>
-        /// <param name="lastUpdateTime"> The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. </param>
-        /// <param name="dedicatedCoreTime"> The aggregated wall-clock time of the dedicated Compute Node cores being part of the Pool. </param>
+        /// <param name="startTime"></param>
+        /// <param name="lastUpdateTime"></param>
+        /// <param name="dedicatedCoreTime"></param>
         internal BatchPoolUsageStatistics(DateTimeOffset startTime, DateTimeOffset lastUpdateTime, TimeSpan dedicatedCoreTime)
         {
             StartTime = startTime;
@@ -57,9 +57,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolUsageStatistics"/>. </summary>
-        /// <param name="startTime"> The start time of the time range covered by the statistics. </param>
-        /// <param name="lastUpdateTime"> The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. </param>
-        /// <param name="dedicatedCoreTime"> The aggregated wall-clock time of the dedicated Compute Node cores being part of the Pool. </param>
+        /// <param name="startTime"></param>
+        /// <param name="lastUpdateTime"></param>
+        /// <param name="dedicatedCoreTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPoolUsageStatistics(DateTimeOffset startTime, DateTimeOffset lastUpdateTime, TimeSpan dedicatedCoreTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The start time of the time range covered by the statistics. </summary>
+        /// <summary> Gets the start time. </summary>
         public DateTimeOffset StartTime { get; }
-        /// <summary> The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. </summary>
+        /// <summary> Gets the last update time. </summary>
         public DateTimeOffset LastUpdateTime { get; }
-        /// <summary> The aggregated wall-clock time of the dedicated Compute Node cores being part of the Pool. </summary>
+        /// <summary> Gets the dedicated core time. </summary>
         public TimeSpan DedicatedCoreTime { get; }
     }
 }

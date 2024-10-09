@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> Source entity used to drive discovery. </summary>
+    /// <summary> The DiscoverySource. </summary>
     public partial class DiscoverySource
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="DiscoverySource"/>. </summary>
-        /// <param name="kind"> The kind of disco source. </param>
-        /// <param name="name"> The name for the disco source. </param>
+        /// <param name="kind"></param>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DiscoverySource(DiscoverySourceKind? kind, string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The kind of disco source. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         public DiscoverySourceKind? Kind { get; set; }
-        /// <summary> The name for the disco source. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
     }
 }

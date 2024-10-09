@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The supported types for a scheduled task. </summary>
+    /// <summary> The ScheduleType. </summary>
     public readonly partial struct ScheduleType : IEquatable<ScheduleType>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Developer.DevCenter.Models
 
         private const string StopDevBoxValue = "StopDevBox";
 
-        /// <summary> The scheduled task will stop impacted Dev Boxes. </summary>
+        /// <summary> StopDevBox. </summary>
         public static ScheduleType StopDevBox { get; } = new ScheduleType(StopDevBoxValue);
         /// <summary> Determines if two <see cref="ScheduleType"/> values are the same. </summary>
         public static bool operator ==(ScheduleType left, ScheduleType right) => left.Equals(right);

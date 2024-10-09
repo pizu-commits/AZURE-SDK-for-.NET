@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The image analysis response. </summary>
+    /// <summary> The AnalyzeImageResult. </summary>
     public partial class AnalyzeImageResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeImageResult"/>. </summary>
-        /// <param name="categoriesAnalysis"> Analysis result for categories. </param>
+        /// <param name="categoriesAnalysis"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoriesAnalysis"/> is null. </exception>
         internal AnalyzeImageResult(IEnumerable<ImageCategoriesAnalysis> categoriesAnalysis)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeImageResult"/>. </summary>
-        /// <param name="categoriesAnalysis"> Analysis result for categories. </param>
+        /// <param name="categoriesAnalysis"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeImageResult(IReadOnlyList<ImageCategoriesAnalysis> categoriesAnalysis, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> Analysis result for categories. </summary>
+        /// <summary> Gets the categories analysis. </summary>
         public IReadOnlyList<ImageCategoriesAnalysis> CategoriesAnalysis { get; }
     }
 }

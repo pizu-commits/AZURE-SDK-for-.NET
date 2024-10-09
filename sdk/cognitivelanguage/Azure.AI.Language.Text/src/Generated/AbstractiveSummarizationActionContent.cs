@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for the pre-built Abstractive Summarization task. </summary>
+    /// <summary> The AbstractiveSummarizationActionContent. </summary>
     public partial class AbstractiveSummarizationActionContent
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AbstractiveSummarizationActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="sentenceCount"> Controls the approximate number of sentences in the output summaries. </param>
-        /// <param name="stringIndexType"> String index type. </param>
-        /// <param name="summaryLength"> (NOTE: Recommended to use summaryLength over sentenceCount) Controls the approximate length of the output summaries. </param>
-        /// <param name="query"> (Optional) If provided, the query will be used to generate the summary. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="sentenceCount"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="summaryLength"></param>
+        /// <param name="query"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AbstractiveSummarizationActionContent(bool? loggingOptOut, string modelVersion, int? sentenceCount, StringIndexType? stringIndexType, SummaryLengthBucket? summaryLength, string query, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> Controls the approximate number of sentences in the output summaries. </summary>
+        /// <summary> Gets or sets the sentence count. </summary>
         public int? SentenceCount { get; set; }
-        /// <summary> String index type. </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
-        /// <summary> (NOTE: Recommended to use summaryLength over sentenceCount) Controls the approximate length of the output summaries. </summary>
+        /// <summary> Gets or sets the summary length. </summary>
         public SummaryLengthBucket? SummaryLength { get; set; }
-        /// <summary> (Optional) If provided, the query will be used to generate the summary. </summary>
+        /// <summary> Gets or sets the query. </summary>
         public string Query { get; set; }
     }
 }

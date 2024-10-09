@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Discriminators for supported matching mode types. </summary>
+    /// <summary> The JobMatchingModeKind. </summary>
     public readonly partial struct JobMatchingModeKind : IEquatable<JobMatchingModeKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Communication.JobRouter
         private const string ScheduleAndSuspendValue = "scheduleAndSuspend";
         private const string SuspendValue = "suspend";
 
-        /// <summary> Discriminator value for QueueAndMatchMode. </summary>
+        /// <summary> queueAndMatch. </summary>
         public static JobMatchingModeKind QueueAndMatch { get; } = new JobMatchingModeKind(QueueAndMatchValue);
-        /// <summary> Discriminator value for ScheduleAndSuspendMode. </summary>
+        /// <summary> scheduleAndSuspend. </summary>
         public static JobMatchingModeKind ScheduleAndSuspend { get; } = new JobMatchingModeKind(ScheduleAndSuspendValue);
-        /// <summary> Discriminator value for SuspendMode. </summary>
+        /// <summary> suspend. </summary>
         public static JobMatchingModeKind Suspend { get; } = new JobMatchingModeKind(SuspendValue);
         /// <summary> Determines if two <see cref="JobMatchingModeKind"/> values are the same. </summary>
         public static bool operator ==(JobMatchingModeKind left, JobMatchingModeKind right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Font style. </summary>
+    /// <summary> The DocumentFontStyle. </summary>
     public readonly partial struct DocumentFontStyle : IEquatable<DocumentFontStyle>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string NormalValue = "normal";
         private const string ItalicValue = "italic";
 
-        /// <summary> Characters are represented normally. </summary>
+        /// <summary> normal. </summary>
         public static DocumentFontStyle Normal { get; } = new DocumentFontStyle(NormalValue);
-        /// <summary> Characters are visually slanted to the right. </summary>
+        /// <summary> italic. </summary>
         public static DocumentFontStyle Italic { get; } = new DocumentFontStyle(ItalicValue);
         /// <summary> Determines if two <see cref="DocumentFontStyle"/> values are the same. </summary>
         public static bool operator ==(DocumentFontStyle left, DocumentFontStyle right) => left.Equals(right);

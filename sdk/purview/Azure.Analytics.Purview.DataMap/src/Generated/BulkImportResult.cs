@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Bulk import result. </summary>
+    /// <summary> The BulkImportResult. </summary>
     public partial class BulkImportResult
     {
         /// <summary>
@@ -53,8 +53,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="BulkImportResult"/>. </summary>
-        /// <param name="failedImportInfoList"> failed importInfoList. </param>
-        /// <param name="successImportInfoList"> successful importInfoList. </param>
+        /// <param name="failedImportInfoList"></param>
+        /// <param name="successImportInfoList"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BulkImportResult(IReadOnlyList<ImportInfo> failedImportInfoList, IReadOnlyList<ImportInfo> successImportInfoList, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,9 +63,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> failed importInfoList. </summary>
+        /// <summary> Gets the failed import info list. </summary>
         public IReadOnlyList<ImportInfo> FailedImportInfoList { get; }
-        /// <summary> successful importInfoList. </summary>
+        /// <summary> Gets the success import info list. </summary>
         public IReadOnlyList<ImportInfo> SuccessImportInfoList { get; }
     }
 }

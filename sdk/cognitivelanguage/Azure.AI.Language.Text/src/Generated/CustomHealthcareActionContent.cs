@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for a custom Healthcare task. </summary>
+    /// <summary> The CustomHealthcareActionContent. </summary>
     public partial class CustomHealthcareActionContent
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CustomHealthcareActionContent"/>. </summary>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/> or <paramref name="deploymentName"/> is null. </exception>
         public CustomHealthcareActionContent(string projectName, string deploymentName)
         {
@@ -59,10 +59,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomHealthcareActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
-        /// <param name="stringIndexType"> Optional parameter to provide the string index type used to interpret string offsets. Defaults to TextElements (Graphemes). </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
+        /// <param name="stringIndexType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CustomHealthcareActionContent(bool? loggingOptOut, string projectName, string deploymentName, StringIndexType? stringIndexType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> This field indicates the project name for the model. </summary>
+        /// <summary> Gets the project name. </summary>
         public string ProjectName { get; }
-        /// <summary> This field indicates the deployment name for the model. </summary>
+        /// <summary> Gets the deployment name. </summary>
         public string DeploymentName { get; }
-        /// <summary> Optional parameter to provide the string index type used to interpret string offsets. Defaults to TextElements (Graphemes). </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
     }
 }

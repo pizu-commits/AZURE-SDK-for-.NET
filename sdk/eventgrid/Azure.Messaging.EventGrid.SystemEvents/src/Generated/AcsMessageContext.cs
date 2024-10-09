@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message Context. </summary>
+    /// <summary> The AcsMessageContext. </summary>
     public partial class AcsMessageContext
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageContext"/>. </summary>
-        /// <param name="from"> The WhatsApp ID for the customer who replied to an inbound message. </param>
-        /// <param name="messageId"> The message ID for the sent message for an inbound reply. </param>
+        /// <param name="from"></param>
+        /// <param name="messageId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageContext(string @from, string messageId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The WhatsApp ID for the customer who replied to an inbound message. </summary>
+        /// <summary> Gets the from. </summary>
         public string From { get; }
-        /// <summary> The message ID for the sent message for an inbound reply. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Identifies a participant in Azure Communication services. A participant is, for example, a phone number or an Azure communication user. This model must be interpreted as a union: Apart from rawId, at most one further property may be set. </summary>
+    /// <summary> The CommunicationIdentifierModel. </summary>
     public partial class CommunicationIdentifierModel
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CommunicationIdentifierModel"/>. </summary>
-        /// <param name="kind"> The identifier kind. Only required in responses. </param>
-        /// <param name="communicationUser"> The communication user. </param>
-        /// <param name="phoneNumber"> The phone number. </param>
-        /// <param name="microsoftTeamsUser"> The Microsoft Teams user. </param>
-        /// <param name="microsoftTeamsApp"> The Microsoft Teams application. </param>
+        /// <param name="kind"></param>
+        /// <param name="communicationUser"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="microsoftTeamsUser"></param>
+        /// <param name="microsoftTeamsApp"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="communicationUser"/>, <paramref name="phoneNumber"/>, <paramref name="microsoftTeamsUser"/> or <paramref name="microsoftTeamsApp"/> is null. </exception>
         internal CommunicationIdentifierModel(CommunicationIdentifierModelKind kind, CommunicationUserIdentifierModel communicationUser, PhoneNumberIdentifierModel phoneNumber, MicrosoftTeamsUserIdentifierModel microsoftTeamsUser, MicrosoftTeamsAppIdentifierModel microsoftTeamsApp)
         {
@@ -67,12 +67,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="CommunicationIdentifierModel"/>. </summary>
-        /// <param name="kind"> The identifier kind. Only required in responses. </param>
-        /// <param name="rawId"> Raw Id of the identifier. Optional in requests, required in responses. </param>
-        /// <param name="communicationUser"> The communication user. </param>
-        /// <param name="phoneNumber"> The phone number. </param>
-        /// <param name="microsoftTeamsUser"> The Microsoft Teams user. </param>
-        /// <param name="microsoftTeamsApp"> The Microsoft Teams application. </param>
+        /// <param name="kind"></param>
+        /// <param name="rawId"></param>
+        /// <param name="communicationUser"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="microsoftTeamsUser"></param>
+        /// <param name="microsoftTeamsApp"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CommunicationIdentifierModel(CommunicationIdentifierModelKind kind, string rawId, CommunicationUserIdentifierModel communicationUser, PhoneNumberIdentifierModel phoneNumber, MicrosoftTeamsUserIdentifierModel microsoftTeamsUser, MicrosoftTeamsAppIdentifierModel microsoftTeamsApp, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,17 +90,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The identifier kind. Only required in responses. </summary>
+        /// <summary> Gets the kind. </summary>
         public CommunicationIdentifierModelKind Kind { get; }
-        /// <summary> Raw Id of the identifier. Optional in requests, required in responses. </summary>
+        /// <summary> Gets the raw id. </summary>
         public string RawId { get; }
-        /// <summary> The communication user. </summary>
+        /// <summary> Gets the communication user. </summary>
         public CommunicationUserIdentifierModel CommunicationUser { get; }
-        /// <summary> The phone number. </summary>
+        /// <summary> Gets the phone number. </summary>
         public PhoneNumberIdentifierModel PhoneNumber { get; }
-        /// <summary> The Microsoft Teams user. </summary>
+        /// <summary> Gets the microsoft teams user. </summary>
         public MicrosoftTeamsUserIdentifierModel MicrosoftTeamsUser { get; }
-        /// <summary> The Microsoft Teams application. </summary>
+        /// <summary> Gets the microsoft teams app. </summary>
         public MicrosoftTeamsAppIdentifierModel MicrosoftTeamsApp { get; }
     }
 }

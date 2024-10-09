@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> A Compute Node in the Batch service. </summary>
+    /// <summary> The BatchNode. </summary>
     public partial class BatchNode
     {
         /// <summary>
@@ -53,28 +53,28 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNode"/>. </summary>
-        /// <param name="id"> The ID of the Compute Node. Every Compute Node that is added to a Pool is assigned a unique ID. Whenever a Compute Node is removed from a Pool, all of its local files are deleted, and the ID is reclaimed and could be reused for new Compute Nodes. </param>
-        /// <param name="url"> The URL of the Compute Node. </param>
-        /// <param name="state"> The current state of the Compute Node. The Spot/Low-priority Compute Node has been preempted. Tasks which were running on the Compute Node when it was preempted will be rescheduled when another Compute Node becomes available. </param>
-        /// <param name="schedulingState"> Whether the Compute Node is available for Task scheduling. </param>
-        /// <param name="stateTransitionTime"> The time at which the Compute Node entered its current state. </param>
-        /// <param name="lastBootTime"> The last time at which the Compute Node was started. This property may not be present if the Compute Node state is unusable. </param>
-        /// <param name="allocationTime"> The time at which this Compute Node was allocated to the Pool. This is the time when the Compute Node was initially allocated and doesn't change once set. It is not updated when the Compute Node is service healed or preempted. </param>
-        /// <param name="ipAddress"> The IP address that other Nodes can use to communicate with this Compute Node. Every Compute Node that is added to a Pool is assigned a unique IP address. Whenever a Compute Node is removed from a Pool, all of its local files are deleted, and the IP address is reclaimed and could be reused for new Compute Nodes. </param>
-        /// <param name="affinityId"> An identifier which can be passed when adding a Task to request that the Task be scheduled on this Compute Node. Note that this is just a soft affinity. If the target Compute Node is busy or unavailable at the time the Task is scheduled, then the Task will be scheduled elsewhere. </param>
-        /// <param name="vmSize"> The size of the virtual machine hosting the Compute Node. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes). </param>
-        /// <param name="totalTasksRun"> The total number of Job Tasks completed on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </param>
-        /// <param name="runningTasksCount"> The total number of currently running Job Tasks on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </param>
-        /// <param name="runningTaskSlotsCount"> The total number of scheduling slots used by currently running Job Tasks on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </param>
-        /// <param name="totalTasksSucceeded"> The total number of Job Tasks which completed successfully (with exitCode 0) on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </param>
-        /// <param name="recentTasks"> A list of Tasks whose state has recently changed. This property is present only if at least one Task has run on this Compute Node since it was assigned to the Pool. </param>
-        /// <param name="startTask"> The Task specified to run on the Compute Node as it joins the Pool. </param>
-        /// <param name="startTaskInfo"> Runtime information about the execution of the StartTask on the Compute Node. </param>
-        /// <param name="errors"> The list of errors that are currently being encountered by the Compute Node. </param>
-        /// <param name="isDedicated"> Whether this Compute Node is a dedicated Compute Node. If false, the Compute Node is a Spot/Low-priority Compute Node. </param>
-        /// <param name="endpointConfiguration"> The endpoint configuration for the Compute Node. </param>
-        /// <param name="nodeAgentInfo"> Information about the Compute Node agent version and the time the Compute Node upgraded to a new version. </param>
-        /// <param name="virtualMachineInfo"> Info about the current state of the virtual machine. </param>
+        /// <param name="id"></param>
+        /// <param name="url"></param>
+        /// <param name="state"></param>
+        /// <param name="schedulingState"></param>
+        /// <param name="stateTransitionTime"></param>
+        /// <param name="lastBootTime"></param>
+        /// <param name="allocationTime"></param>
+        /// <param name="ipAddress"></param>
+        /// <param name="affinityId"></param>
+        /// <param name="vmSize"></param>
+        /// <param name="totalTasksRun"></param>
+        /// <param name="runningTasksCount"></param>
+        /// <param name="runningTaskSlotsCount"></param>
+        /// <param name="totalTasksSucceeded"></param>
+        /// <param name="recentTasks"></param>
+        /// <param name="startTask"></param>
+        /// <param name="startTaskInfo"></param>
+        /// <param name="errors"></param>
+        /// <param name="isDedicated"></param>
+        /// <param name="endpointConfiguration"></param>
+        /// <param name="nodeAgentInfo"></param>
+        /// <param name="virtualMachineInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNode(string id, string url, BatchNodeState? state, SchedulingState? schedulingState, DateTimeOffset? stateTransitionTime, DateTimeOffset? lastBootTime, DateTimeOffset? allocationTime, string ipAddress, string affinityId, string vmSize, int? totalTasksRun, int? runningTasksCount, int? runningTaskSlotsCount, int? totalTasksSucceeded, IReadOnlyList<BatchTaskInfo> recentTasks, BatchStartTask startTask, BatchStartTaskInfo startTaskInfo, IReadOnlyList<BatchNodeError> errors, bool? isDedicated, BatchNodeEndpointConfiguration endpointConfiguration, BatchNodeAgentInfo nodeAgentInfo, VirtualMachineInfo virtualMachineInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -103,49 +103,49 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the Compute Node. Every Compute Node that is added to a Pool is assigned a unique ID. Whenever a Compute Node is removed from a Pool, all of its local files are deleted, and the ID is reclaimed and could be reused for new Compute Nodes. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The URL of the Compute Node. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> The current state of the Compute Node. The Spot/Low-priority Compute Node has been preempted. Tasks which were running on the Compute Node when it was preempted will be rescheduled when another Compute Node becomes available. </summary>
+        /// <summary> Gets the state. </summary>
         public BatchNodeState? State { get; }
-        /// <summary> Whether the Compute Node is available for Task scheduling. </summary>
+        /// <summary> Gets the scheduling state. </summary>
         public SchedulingState? SchedulingState { get; }
-        /// <summary> The time at which the Compute Node entered its current state. </summary>
+        /// <summary> Gets the state transition time. </summary>
         public DateTimeOffset? StateTransitionTime { get; }
-        /// <summary> The last time at which the Compute Node was started. This property may not be present if the Compute Node state is unusable. </summary>
+        /// <summary> Gets the last boot time. </summary>
         public DateTimeOffset? LastBootTime { get; }
-        /// <summary> The time at which this Compute Node was allocated to the Pool. This is the time when the Compute Node was initially allocated and doesn't change once set. It is not updated when the Compute Node is service healed or preempted. </summary>
+        /// <summary> Gets the allocation time. </summary>
         public DateTimeOffset? AllocationTime { get; }
-        /// <summary> The IP address that other Nodes can use to communicate with this Compute Node. Every Compute Node that is added to a Pool is assigned a unique IP address. Whenever a Compute Node is removed from a Pool, all of its local files are deleted, and the IP address is reclaimed and could be reused for new Compute Nodes. </summary>
+        /// <summary> Gets the ip address. </summary>
         public string IpAddress { get; }
-        /// <summary> An identifier which can be passed when adding a Task to request that the Task be scheduled on this Compute Node. Note that this is just a soft affinity. If the target Compute Node is busy or unavailable at the time the Task is scheduled, then the Task will be scheduled elsewhere. </summary>
+        /// <summary> Gets the affinity id. </summary>
         public string AffinityId { get; }
-        /// <summary> The size of the virtual machine hosting the Compute Node. For information about available sizes of virtual machines in Pools, see Choose a VM size for Compute Nodes in an Azure Batch Pool (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes). </summary>
+        /// <summary> Gets the vm size. </summary>
         public string VmSize { get; }
-        /// <summary> The total number of Job Tasks completed on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </summary>
+        /// <summary> Gets the total tasks run. </summary>
         public int? TotalTasksRun { get; }
-        /// <summary> The total number of currently running Job Tasks on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </summary>
+        /// <summary> Gets the running tasks count. </summary>
         public int? RunningTasksCount { get; }
-        /// <summary> The total number of scheduling slots used by currently running Job Tasks on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </summary>
+        /// <summary> Gets the running task slots count. </summary>
         public int? RunningTaskSlotsCount { get; }
-        /// <summary> The total number of Job Tasks which completed successfully (with exitCode 0) on the Compute Node. This includes Job Manager Tasks and normal Tasks, but not Job Preparation, Job Release or Start Tasks. </summary>
+        /// <summary> Gets the total tasks succeeded. </summary>
         public int? TotalTasksSucceeded { get; }
-        /// <summary> A list of Tasks whose state has recently changed. This property is present only if at least one Task has run on this Compute Node since it was assigned to the Pool. </summary>
+        /// <summary> Gets the recent tasks. </summary>
         public IReadOnlyList<BatchTaskInfo> RecentTasks { get; }
-        /// <summary> The Task specified to run on the Compute Node as it joins the Pool. </summary>
+        /// <summary> Gets the start task. </summary>
         public BatchStartTask StartTask { get; }
-        /// <summary> Runtime information about the execution of the StartTask on the Compute Node. </summary>
+        /// <summary> Gets the start task info. </summary>
         public BatchStartTaskInfo StartTaskInfo { get; }
-        /// <summary> The list of errors that are currently being encountered by the Compute Node. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<BatchNodeError> Errors { get; }
-        /// <summary> Whether this Compute Node is a dedicated Compute Node. If false, the Compute Node is a Spot/Low-priority Compute Node. </summary>
+        /// <summary> Gets the is dedicated. </summary>
         public bool? IsDedicated { get; }
-        /// <summary> The endpoint configuration for the Compute Node. </summary>
+        /// <summary> Gets the endpoint configuration. </summary>
         public BatchNodeEndpointConfiguration EndpointConfiguration { get; }
-        /// <summary> Information about the Compute Node agent version and the time the Compute Node upgraded to a new version. </summary>
+        /// <summary> Gets the node agent info. </summary>
         public BatchNodeAgentInfo NodeAgentInfo { get; }
-        /// <summary> Info about the current state of the virtual machine. </summary>
+        /// <summary> Gets the virtual machine info. </summary>
         public VirtualMachineInfo VirtualMachineInfo { get; }
     }
 }

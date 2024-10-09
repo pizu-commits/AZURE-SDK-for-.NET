@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Status for term. </summary>
+    /// <summary> The TermStatus. </summary>
     public readonly partial struct TermStatus : IEquatable<TermStatus>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.Analytics.Purview.DataMap
         private const string AlertValue = "Alert";
         private const string ExpiredValue = "Expired";
 
-        /// <summary> draft. </summary>
+        /// <summary> Draft. </summary>
         public static TermStatus Draft { get; } = new TermStatus(DraftValue);
-        /// <summary> approved. </summary>
+        /// <summary> Approved. </summary>
         public static TermStatus Approved { get; } = new TermStatus(ApprovedValue);
-        /// <summary> alert. </summary>
+        /// <summary> Alert. </summary>
         public static TermStatus Alert { get; } = new TermStatus(AlertValue);
-        /// <summary> expired. </summary>
+        /// <summary> Expired. </summary>
         public static TermStatus Expired { get; } = new TermStatus(ExpiredValue);
         /// <summary> Determines if two <see cref="TermStatus"/> values are the same. </summary>
         public static bool operator ==(TermStatus left, TermStatus right) => left.Equals(right);

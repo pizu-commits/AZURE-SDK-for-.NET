@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Human-readable error code. </summary>
+    /// <summary> The InnerErrorCode. </summary>
     public readonly partial struct InnerErrorCode : IEquatable<InnerErrorCode>
     {
         private readonly string _value;
@@ -37,33 +37,33 @@ namespace Azure.AI.Language.Text
         private const string UnsupportedLanguageCodeValue = "UnsupportedLanguageCode";
         private const string InvalidCountryHintValue = "InvalidCountryHint";
 
-        /// <summary> Invalid request error. </summary>
+        /// <summary> InvalidRequest. </summary>
         public static InnerErrorCode InvalidRequest { get; } = new InnerErrorCode(InvalidRequestValue);
-        /// <summary> Invalid parameter value error. </summary>
+        /// <summary> InvalidParameterValue. </summary>
         public static InnerErrorCode InvalidParameterValue { get; } = new InnerErrorCode(InvalidParameterValueValue);
-        /// <summary> Knowledge base not found error. </summary>
+        /// <summary> KnowledgeBaseNotFound. </summary>
         public static InnerErrorCode KnowledgeBaseNotFound { get; } = new InnerErrorCode(KnowledgeBaseNotFoundValue);
-        /// <summary> Azure Cognitive Search not found error. </summary>
+        /// <summary> AzureCognitiveSearchNotFound. </summary>
         public static InnerErrorCode AzureCognitiveSearchNotFound { get; } = new InnerErrorCode(AzureCognitiveSearchNotFoundValue);
-        /// <summary> Azure Cognitive Search throttling error. </summary>
+        /// <summary> AzureCognitiveSearchThrottling. </summary>
         public static InnerErrorCode AzureCognitiveSearchThrottling { get; } = new InnerErrorCode(AzureCognitiveSearchThrottlingValue);
-        /// <summary> Extraction failure error. </summary>
+        /// <summary> ExtractionFailure. </summary>
         public static InnerErrorCode ExtractionFailure { get; } = new InnerErrorCode(ExtractionFailureValue);
-        /// <summary> Invalid request body format error. </summary>
+        /// <summary> InvalidRequestBodyFormat. </summary>
         public static InnerErrorCode InvalidRequestBodyFormat { get; } = new InnerErrorCode(InvalidRequestBodyFormatValue);
-        /// <summary> Empty request error. </summary>
+        /// <summary> EmptyRequest. </summary>
         public static InnerErrorCode EmptyRequest { get; } = new InnerErrorCode(EmptyRequestValue);
-        /// <summary> Missing input documents error. </summary>
+        /// <summary> MissingInputDocuments. </summary>
         public static InnerErrorCode MissingInputDocuments { get; } = new InnerErrorCode(MissingInputDocumentsValue);
-        /// <summary> Invalid document error. </summary>
+        /// <summary> InvalidDocument. </summary>
         public static InnerErrorCode InvalidDocument { get; } = new InnerErrorCode(InvalidDocumentValue);
-        /// <summary> Model version incorrect error. </summary>
+        /// <summary> ModelVersionIncorrect. </summary>
         public static InnerErrorCode ModelVersionIncorrect { get; } = new InnerErrorCode(ModelVersionIncorrectValue);
-        /// <summary> Invalid document batch error. </summary>
+        /// <summary> InvalidDocumentBatch. </summary>
         public static InnerErrorCode InvalidDocumentBatch { get; } = new InnerErrorCode(InvalidDocumentBatchValue);
-        /// <summary> Unsupported language code error. </summary>
+        /// <summary> UnsupportedLanguageCode. </summary>
         public static InnerErrorCode UnsupportedLanguageCode { get; } = new InnerErrorCode(UnsupportedLanguageCodeValue);
-        /// <summary> Invalid country hint error. </summary>
+        /// <summary> InvalidCountryHint. </summary>
         public static InnerErrorCode InvalidCountryHint { get; } = new InnerErrorCode(InvalidCountryHintValue);
         /// <summary> Determines if two <see cref="InnerErrorCode"/> values are the same. </summary>
         public static bool operator ==(InnerErrorCode left, InnerErrorCode right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the custom healthcare task definition. </summary>
+    /// <summary> The CustomHealthcareOperationAction. </summary>
     public partial class CustomHealthcareOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="CustomHealthcareOperationAction"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomHealthcareOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> Contains the custom healthcare task parameters. </param>
+        /// <param name="actionContent"></param>
         internal CustomHealthcareOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, CustomHealthcareActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
         }
 
-        /// <summary> Contains the custom healthcare task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public CustomHealthcareActionContent ActionContent { get; set; }
     }
 }

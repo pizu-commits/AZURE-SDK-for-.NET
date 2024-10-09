@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Document type. </summary>
+    /// <summary> The healthcareDocumentType. </summary>
     public readonly partial struct HealthcareDocumentType : IEquatable<HealthcareDocumentType>
     {
         private readonly string _value;
@@ -32,23 +32,23 @@ namespace Azure.AI.Language.Text
         private const string PathologyValue = "Pathology";
         private const string ProcedureNoteValue = "ProcedureNote";
 
-        /// <summary> None document type. </summary>
+        /// <summary> None. </summary>
         public static HealthcareDocumentType None { get; } = new HealthcareDocumentType(NoneValue);
-        /// <summary> Clinical trial document type. </summary>
+        /// <summary> ClinicalTrial. </summary>
         public static HealthcareDocumentType ClinicalTrial { get; } = new HealthcareDocumentType(ClinicalTrialValue);
-        /// <summary> Discharge summary document type. </summary>
+        /// <summary> DischargeSummary. </summary>
         public static HealthcareDocumentType DischargeSummary { get; } = new HealthcareDocumentType(DischargeSummaryValue);
-        /// <summary> Progress note document type. </summary>
+        /// <summary> ProgressNote. </summary>
         public static HealthcareDocumentType ProgressNote { get; } = new HealthcareDocumentType(ProgressNoteValue);
-        /// <summary> History and physical document type. </summary>
+        /// <summary> HistoryAndPhysical. </summary>
         public static HealthcareDocumentType HistoryAndPhysical { get; } = new HealthcareDocumentType(HistoryAndPhysicalValue);
-        /// <summary> Consult document type. </summary>
+        /// <summary> Consult. </summary>
         public static HealthcareDocumentType Consult { get; } = new HealthcareDocumentType(ConsultValue);
-        /// <summary> Imaging document type. </summary>
+        /// <summary> Imaging. </summary>
         public static HealthcareDocumentType Imaging { get; } = new HealthcareDocumentType(ImagingValue);
-        /// <summary> Pathology document type. </summary>
+        /// <summary> Pathology. </summary>
         public static HealthcareDocumentType Pathology { get; } = new HealthcareDocumentType(PathologyValue);
-        /// <summary> Procedure note document type. </summary>
+        /// <summary> ProcedureNote. </summary>
         public static HealthcareDocumentType ProcedureNote { get; } = new HealthcareDocumentType(ProcedureNoteValue);
         /// <summary> Determines if two <see cref="HealthcareDocumentType"/> values are the same. </summary>
         public static bool operator ==(HealthcareDocumentType left, HealthcareDocumentType right) => left.Equals(right);

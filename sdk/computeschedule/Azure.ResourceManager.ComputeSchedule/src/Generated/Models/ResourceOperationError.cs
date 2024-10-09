@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> These describe errors that occur at the resource level. </summary>
+    /// <summary> The ResourceOperationError. </summary>
     public partial class ResourceOperationError
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceOperationError"/>. </summary>
-        /// <param name="errorCode"> Code for the error eg 404, 500. </param>
-        /// <param name="errorDetails"> Detailed message about the error. </param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="errorCode"/> or <paramref name="errorDetails"/> is null. </exception>
         internal ResourceOperationError(string errorCode, string errorDetails)
         {
@@ -59,8 +59,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceOperationError"/>. </summary>
-        /// <param name="errorCode"> Code for the error eg 404, 500. </param>
-        /// <param name="errorDetails"> Detailed message about the error. </param>
+        /// <param name="errorCode"></param>
+        /// <param name="errorDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceOperationError(string errorCode, string errorDetails, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> Code for the error eg 404, 500. </summary>
+        /// <summary> Gets the error code. </summary>
         public string ErrorCode { get; }
-        /// <summary> Detailed message about the error. </summary>
+        /// <summary> Gets the error details. </summary>
         public string ErrorDetails { get; }
     }
 }

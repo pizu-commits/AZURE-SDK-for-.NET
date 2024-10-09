@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> ResourceLink. </summary>
+    /// <summary> The ResourceLink. </summary>
     public partial class ResourceLink
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceLink"/>. </summary>
-        /// <param name="displayName"> Display name for url. </param>
-        /// <param name="url"> web url. http or https. </param>
+        /// <param name="displayName"></param>
+        /// <param name="url"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceLink(string displayName, string url, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Display name for url. </summary>
+        /// <summary> Gets or sets the display name. </summary>
         public string DisplayName { get; set; }
-        /// <summary> web url. http or https. </summary>
+        /// <summary> Gets or sets the url. </summary>
         public string Url { get; set; }
     }
 }

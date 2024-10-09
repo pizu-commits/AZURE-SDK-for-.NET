@@ -23,8 +23,8 @@ namespace Azure.ResourceManager.Fabric.Models
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
-        /// <param name="sku"> The SKU details. </param>
+        /// <param name="properties"></param>
+        /// <param name="sku"></param>
         /// <returns> A new <see cref="Fabric.FabricCapacityData"/> instance for mocking. </returns>
         public static FabricCapacityData FabricCapacityData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, FabricCapacityProperties properties = null, FabricSku sku = null)
         {
@@ -43,9 +43,9 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.FabricCapacityProperties"/>. </summary>
-        /// <param name="provisioningState"> The current deployment state of Microsoft Fabric resource. The provisioningState is to indicate states for resource provisioning. </param>
-        /// <param name="state"> The current state of Microsoft Fabric resource. The state is to indicate more states outside of resource provisioning. </param>
-        /// <param name="administrationMembers"> The capacity administration. </param>
+        /// <param name="provisioningState"></param>
+        /// <param name="state"></param>
+        /// <param name="administrationMembers"></param>
         /// <returns> A new <see cref="Models.FabricCapacityProperties"/> instance for mocking. </returns>
         public static FabricCapacityProperties FabricCapacityProperties(FabricProvisioningState? provisioningState = null, FabricResourceState? state = null, IEnumerable<string> administrationMembers = null)
         {
@@ -55,9 +55,9 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.FabricNameAvailabilityResult"/>. </summary>
-        /// <param name="isNameAvailable"> Indicates if the resource name is available. </param>
-        /// <param name="reason"> The reason why the given name is not available. </param>
-        /// <param name="message"> Detailed reason why the given name is not available. </param>
+        /// <param name="isNameAvailable"></param>
+        /// <param name="reason"></param>
+        /// <param name="message"></param>
         /// <returns> A new <see cref="Models.FabricNameAvailabilityResult"/> instance for mocking. </returns>
         public static FabricNameAvailabilityResult FabricNameAvailabilityResult(bool? isNameAvailable = null, FabricNameUnavailableReason? reason = null, string message = null)
         {
@@ -65,8 +65,8 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.FabricSkuDetailsForExistingCapacity"/>. </summary>
-        /// <param name="resourceType"> The resource type. </param>
-        /// <param name="sku"> The SKU details. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="sku"></param>
         /// <returns> A new <see cref="Models.FabricSkuDetailsForExistingCapacity"/> instance for mocking. </returns>
         public static FabricSkuDetailsForExistingCapacity FabricSkuDetailsForExistingCapacity(string resourceType = null, FabricSku sku = null)
         {
@@ -74,9 +74,9 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.FabricSkuDetailsForNewCapacity"/>. </summary>
-        /// <param name="resourceType"> The resource type. </param>
-        /// <param name="name"> The SKU's name. </param>
-        /// <param name="locations"> The list of available locations for the SKU. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="name"></param>
+        /// <param name="locations"></param>
         /// <returns> A new <see cref="Models.FabricSkuDetailsForNewCapacity"/> instance for mocking. </returns>
         public static FabricSkuDetailsForNewCapacity FabricSkuDetailsForNewCapacity(string resourceType = null, string name = null, IEnumerable<AzureLocation> locations = null)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Properties describing the presence of a mask on a given face. </summary>
+    /// <summary> The MaskProperties. </summary>
     public partial class MaskProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MaskProperties"/>. </summary>
-        /// <param name="noseAndMouthCovered"> A boolean value indicating whether nose and mouth are covered. </param>
-        /// <param name="type"> Type of the mask. </param>
+        /// <param name="noseAndMouthCovered"></param>
+        /// <param name="type"></param>
         internal MaskProperties(bool noseAndMouthCovered, MaskType type)
         {
             NoseAndMouthCovered = noseAndMouthCovered;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="MaskProperties"/>. </summary>
-        /// <param name="noseAndMouthCovered"> A boolean value indicating whether nose and mouth are covered. </param>
-        /// <param name="type"> Type of the mask. </param>
+        /// <param name="noseAndMouthCovered"></param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MaskProperties(bool noseAndMouthCovered, MaskType type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> A boolean value indicating whether nose and mouth are covered. </summary>
+        /// <summary> Gets the nose and mouth covered. </summary>
         public bool NoseAndMouthCovered { get; }
-        /// <summary> Type of the mask. </summary>
+        /// <summary> Gets the type. </summary>
         public MaskType Type { get; }
     }
 }

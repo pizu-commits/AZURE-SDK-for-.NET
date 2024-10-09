@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.HealthDataAIServices.Models
 {
-    /// <summary> The status of the current operation. </summary>
+    /// <summary> The HealthDataAIServicesProvisioningState. </summary>
     public readonly partial struct HealthDataAIServicesProvisioningState : IEquatable<HealthDataAIServicesProvisioningState>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.ResourceManager.HealthDataAIServices.Models
         private const string DeletingValue = "Deleting";
         private const string AcceptedValue = "Accepted";
 
-        /// <summary> Resource has been created. </summary>
+        /// <summary> Succeeded. </summary>
         public static HealthDataAIServicesProvisioningState Succeeded { get; } = new HealthDataAIServicesProvisioningState(SucceededValue);
-        /// <summary> Resource creation failed. </summary>
+        /// <summary> Failed. </summary>
         public static HealthDataAIServicesProvisioningState Failed { get; } = new HealthDataAIServicesProvisioningState(FailedValue);
-        /// <summary> Resource creation was canceled. </summary>
+        /// <summary> Canceled. </summary>
         public static HealthDataAIServicesProvisioningState Canceled { get; } = new HealthDataAIServicesProvisioningState(CanceledValue);
-        /// <summary> The resource is being provisioned. </summary>
+        /// <summary> Provisioning. </summary>
         public static HealthDataAIServicesProvisioningState Provisioning { get; } = new HealthDataAIServicesProvisioningState(ProvisioningValue);
-        /// <summary> The resource is being updated. </summary>
+        /// <summary> Updating. </summary>
         public static HealthDataAIServicesProvisioningState Updating { get; } = new HealthDataAIServicesProvisioningState(UpdatingValue);
-        /// <summary> The resource is being deleted. </summary>
+        /// <summary> Deleting. </summary>
         public static HealthDataAIServicesProvisioningState Deleting { get; } = new HealthDataAIServicesProvisioningState(DeletingValue);
-        /// <summary> The resource provisioning request has been accepted. </summary>
+        /// <summary> Accepted. </summary>
         public static HealthDataAIServicesProvisioningState Accepted { get; } = new HealthDataAIServicesProvisioningState(AcceptedValue);
         /// <summary> Determines if two <see cref="HealthDataAIServicesProvisioningState"/> values are the same. </summary>
         public static bool operator ==(HealthDataAIServicesProvisioningState left, HealthDataAIServicesProvisioningState right) => left.Equals(right);

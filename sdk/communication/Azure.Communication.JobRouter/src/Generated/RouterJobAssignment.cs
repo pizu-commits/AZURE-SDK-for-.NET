@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Assignment details of a job to a worker. </summary>
+    /// <summary> The RouterJobAssignment. </summary>
     public partial class RouterJobAssignment
     {
         /// <summary>
@@ -46,18 +46,18 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RouterJobAssignment"/>. </summary>
-        /// <param name="assignedAt"> Timestamp when the job was assigned to a worker in UTC. </param>
+        /// <param name="assignedAt"></param>
         internal RouterJobAssignment(DateTimeOffset assignedAt)
         {
             AssignedAt = assignedAt;
         }
 
         /// <summary> Initializes a new instance of <see cref="RouterJobAssignment"/>. </summary>
-        /// <param name="assignmentId"> Id of a job assignment. </param>
-        /// <param name="workerId"> Id of the Worker assigned to the job. </param>
-        /// <param name="assignedAt"> Timestamp when the job was assigned to a worker in UTC. </param>
-        /// <param name="completedAt"> Timestamp when the job was marked as completed after being assigned in UTC. </param>
-        /// <param name="closedAt"> Timestamp when the job was marked as closed after being completed in UTC. </param>
+        /// <param name="assignmentId"></param>
+        /// <param name="workerId"></param>
+        /// <param name="assignedAt"></param>
+        /// <param name="completedAt"></param>
+        /// <param name="closedAt"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RouterJobAssignment(string assignmentId, string workerId, DateTimeOffset assignedAt, DateTimeOffset? completedAt, DateTimeOffset? closedAt, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,15 +74,15 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of a job assignment. </summary>
+        /// <summary> Gets the assignment id. </summary>
         public string AssignmentId { get; }
-        /// <summary> Id of the Worker assigned to the job. </summary>
+        /// <summary> Gets the worker id. </summary>
         public string WorkerId { get; }
-        /// <summary> Timestamp when the job was assigned to a worker in UTC. </summary>
+        /// <summary> Gets the assigned at. </summary>
         public DateTimeOffset AssignedAt { get; }
-        /// <summary> Timestamp when the job was marked as completed after being assigned in UTC. </summary>
+        /// <summary> Gets the completed at. </summary>
         public DateTimeOffset? CompletedAt { get; }
-        /// <summary> Timestamp when the job was marked as closed after being completed in UTC. </summary>
+        /// <summary> Gets the closed at. </summary>
         public DateTimeOffset? ClosedAt { get; }
     }
 }

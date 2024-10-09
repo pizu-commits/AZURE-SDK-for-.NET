@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> A geographic area, expressed as a `Circle` geometry represented using a `GeoJSON Feature` (see [GeoJSON spec](https://tools.ietf.org/html/rfc7946)). </summary>
+    /// <summary> The GeographicArea. </summary>
     public partial class GeographicArea
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="GeographicArea"/>. </summary>
-        /// <param name="type"> `GeoJSON` type. </param>
-        /// <param name="geometry"> `GeoJSON` geometry, representing the area circle's center. </param>
-        /// <param name="properties"> `GeoJSON` object properties. </param>
+        /// <param name="type"></param>
+        /// <param name="geometry"></param>
+        /// <param name="properties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="geometry"/> or <paramref name="properties"/> is null. </exception>
         public GeographicArea(GeoJsonType type, AreaGeometry geometry, AreaProperties properties)
         {
@@ -61,9 +61,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="GeographicArea"/>. </summary>
-        /// <param name="type"> `GeoJSON` type. </param>
-        /// <param name="geometry"> `GeoJSON` geometry, representing the area circle's center. </param>
-        /// <param name="properties"> `GeoJSON` object properties. </param>
+        /// <param name="type"></param>
+        /// <param name="geometry"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal GeographicArea(GeoJsonType type, AreaGeometry geometry, AreaProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +78,11 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> `GeoJSON` type. </summary>
+        /// <summary> Gets the type. </summary>
         public GeoJsonType Type { get; }
-        /// <summary> `GeoJSON` geometry, representing the area circle's center. </summary>
+        /// <summary> Gets the geometry. </summary>
         public AreaGeometry Geometry { get; }
-        /// <summary> `GeoJSON` object properties. </summary>
+        /// <summary> Gets the properties. </summary>
         public AreaProperties Properties { get; }
     }
 }

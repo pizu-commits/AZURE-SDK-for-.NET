@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> A patient record, including their clinical information and data. </summary>
+    /// <summary> The PatientRecord. </summary>
     public partial class PatientRecord
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PatientRecord"/>. </summary>
-        /// <param name="id"> A given identifier for the patient. Has to be unique across all patients in a single request. </param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         public PatientRecord(string id)
         {
@@ -58,10 +58,10 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="PatientRecord"/>. </summary>
-        /// <param name="id"> A given identifier for the patient. Has to be unique across all patients in a single request. </param>
-        /// <param name="details"> Patient structured information, including demographics and known structured clinical information. </param>
-        /// <param name="encounters"> Patient encounters/visits. </param>
-        /// <param name="patientDocuments"> Patient unstructured clinical data, given as documents. </param>
+        /// <param name="id"></param>
+        /// <param name="details"></param>
+        /// <param name="encounters"></param>
+        /// <param name="patientDocuments"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PatientRecord(string id, PatientDetails details, IList<PatientEncounter> encounters, IList<PatientDocument> patientDocuments, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,13 +77,13 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> A given identifier for the patient. Has to be unique across all patients in a single request. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> Patient structured information, including demographics and known structured clinical information. </summary>
+        /// <summary> Gets or sets the details. </summary>
         public PatientDetails Details { get; set; }
-        /// <summary> Patient encounters/visits. </summary>
+        /// <summary> Gets the encounters. </summary>
         public IList<PatientEncounter> Encounters { get; }
-        /// <summary> Patient unstructured clinical data, given as documents. </summary>
+        /// <summary> Gets the patient documents. </summary>
         public IList<PatientDocument> PatientDocuments { get; }
     }
 }

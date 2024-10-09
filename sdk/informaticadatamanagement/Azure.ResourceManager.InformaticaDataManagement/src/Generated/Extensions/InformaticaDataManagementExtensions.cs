@@ -96,7 +96,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -113,7 +113,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="organizationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="organizationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -134,7 +134,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Organizations_Get</description>
+        /// <description>InformaticaOrganizationResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -151,7 +151,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="organizationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="organizationName"/> is an empty string, and was expected to be non-empty. </exception>

@@ -10,11 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// This property allows you to specify the type of the OS that is included in the
-    /// disk if creating a VM from user-image or a specialized VHD. Possible values
-    /// are: **Windows,** **Linux.**
-    /// </summary>
+    /// <summary> The ComputeFleetOperatingSystemTypes. </summary>
     public readonly partial struct ComputeFleetOperatingSystemType : IEquatable<ComputeFleetOperatingSystemType>
     {
         private readonly string _value;
@@ -29,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string WindowsValue = "Windows";
         private const string LinuxValue = "Linux";
 
-        /// <summary> Windows OS type. </summary>
+        /// <summary> Windows. </summary>
         public static ComputeFleetOperatingSystemType Windows { get; } = new ComputeFleetOperatingSystemType(WindowsValue);
-        /// <summary> Linux OS type. </summary>
+        /// <summary> Linux. </summary>
         public static ComputeFleetOperatingSystemType Linux { get; } = new ComputeFleetOperatingSystemType(LinuxValue);
         /// <summary> Determines if two <see cref="ComputeFleetOperatingSystemType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetOperatingSystemType left, ComputeFleetOperatingSystemType right) => left.Equals(right);

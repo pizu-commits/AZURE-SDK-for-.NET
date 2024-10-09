@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The retry policy for the user request. </summary>
+    /// <summary> The UserRequestRetryPolicy. </summary>
     public partial class UserRequestRetryPolicy
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="UserRequestRetryPolicy"/>. </summary>
-        /// <param name="retryCount"> Retry count for user request. </param>
-        /// <param name="retryWindowInMinutes"> Retry window in minutes for user request. </param>
+        /// <param name="retryCount"></param>
+        /// <param name="retryWindowInMinutes"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UserRequestRetryPolicy(int? retryCount, int? retryWindowInMinutes, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Retry count for user request. </summary>
+        /// <summary> Gets or sets the retry count. </summary>
         public int? RetryCount { get; set; }
-        /// <summary> Retry window in minutes for user request. </summary>
+        /// <summary> Gets or sets the retry window in minutes. </summary>
         public int? RetryWindowInMinutes { get; set; }
     }
 }

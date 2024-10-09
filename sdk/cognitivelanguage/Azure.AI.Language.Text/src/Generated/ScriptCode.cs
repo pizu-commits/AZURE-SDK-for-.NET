@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Identifies the script of the input document. Maps to the ISO 15924 standard script code. </summary>
+    /// <summary> The ScriptCode. </summary>
     public readonly partial struct ScriptCode : IEquatable<ScriptCode>
     {
         private readonly string _value;
@@ -52,63 +52,63 @@ namespace Azure.AI.Language.Text
         private const string ThaiValue = "Thai";
         private const string TibtValue = "Tibt";
 
-        /// <summary> Script code for the Arabic script. </summary>
+        /// <summary> Arab. </summary>
         public static ScriptCode Arab { get; } = new ScriptCode(ArabValue);
-        /// <summary> Script code for the Armenian script. </summary>
+        /// <summary> Armn. </summary>
         public static ScriptCode Armn { get; } = new ScriptCode(ArmnValue);
-        /// <summary> Script code for the Bangla script. </summary>
+        /// <summary> Beng. </summary>
         public static ScriptCode Beng { get; } = new ScriptCode(BengValue);
-        /// <summary> Script code for the UnifiedCanadianAboriginalSyllabics script. </summary>
+        /// <summary> Cans. </summary>
         public static ScriptCode Cans { get; } = new ScriptCode(CansValue);
-        /// <summary> Script code for the Cyrillic script. </summary>
+        /// <summary> Cyrl. </summary>
         public static ScriptCode Cyrl { get; } = new ScriptCode(CyrlValue);
-        /// <summary> Script code for the Devanagari script. </summary>
+        /// <summary> Deva. </summary>
         public static ScriptCode Deva { get; } = new ScriptCode(DevaValue);
-        /// <summary> Script code for the Ethiopic script. </summary>
+        /// <summary> Ethi. </summary>
         public static ScriptCode Ethi { get; } = new ScriptCode(EthiValue);
-        /// <summary> Script code for the Georgian script. </summary>
+        /// <summary> Geor. </summary>
         public static ScriptCode Geor { get; } = new ScriptCode(GeorValue);
-        /// <summary> Script code for the Greek script. </summary>
+        /// <summary> Grek. </summary>
         public static ScriptCode Grek { get; } = new ScriptCode(GrekValue);
-        /// <summary> Script code for the Gujarati script. </summary>
+        /// <summary> Gujr. </summary>
         public static ScriptCode Gujr { get; } = new ScriptCode(GujrValue);
-        /// <summary> Script code for the Gurmukhi script. </summary>
+        /// <summary> Guru. </summary>
         public static ScriptCode Guru { get; } = new ScriptCode(GuruValue);
-        /// <summary> Script code for the Hangul script. </summary>
+        /// <summary> Hang. </summary>
         public static ScriptCode Hang { get; } = new ScriptCode(HangValue);
-        /// <summary> Script code for the HanSimplified script. </summary>
+        /// <summary> Hans. </summary>
         public static ScriptCode Hans { get; } = new ScriptCode(HansValue);
-        /// <summary> Script code for the HanTraditional script. </summary>
+        /// <summary> Hant. </summary>
         public static ScriptCode Hant { get; } = new ScriptCode(HantValue);
-        /// <summary> Script code for the Hebrew script. </summary>
+        /// <summary> Hebr. </summary>
         public static ScriptCode Hebr { get; } = new ScriptCode(HebrValue);
-        /// <summary> Script code for the Japanese script. </summary>
+        /// <summary> Jpan. </summary>
         public static ScriptCode Jpan { get; } = new ScriptCode(JpanValue);
-        /// <summary> Script code for the Khmer script. </summary>
+        /// <summary> Khmr. </summary>
         public static ScriptCode Khmr { get; } = new ScriptCode(KhmrValue);
-        /// <summary> Script code for the Kannada script. </summary>
+        /// <summary> Knda. </summary>
         public static ScriptCode Knda { get; } = new ScriptCode(KndaValue);
-        /// <summary> Script code for the Lao script. </summary>
+        /// <summary> Laoo. </summary>
         public static ScriptCode Laoo { get; } = new ScriptCode(LaooValue);
-        /// <summary> Script code for the Latin script. </summary>
+        /// <summary> Latn. </summary>
         public static ScriptCode Latn { get; } = new ScriptCode(LatnValue);
-        /// <summary> Script code for the Malayalam script. </summary>
+        /// <summary> Mlym. </summary>
         public static ScriptCode Mlym { get; } = new ScriptCode(MlymValue);
-        /// <summary> Script code for the Myanmar script. </summary>
+        /// <summary> Mymr. </summary>
         public static ScriptCode Mymr { get; } = new ScriptCode(MymrValue);
-        /// <summary> Script code for the Odia script. </summary>
+        /// <summary> Orya. </summary>
         public static ScriptCode Orya { get; } = new ScriptCode(OryaValue);
-        /// <summary> Script code for the Sinhala script. </summary>
+        /// <summary> Sinh. </summary>
         public static ScriptCode Sinh { get; } = new ScriptCode(SinhValue);
-        /// <summary> Script code for the Tamil script. </summary>
+        /// <summary> Taml. </summary>
         public static ScriptCode Taml { get; } = new ScriptCode(TamlValue);
-        /// <summary> Script code for the Telugu script. </summary>
+        /// <summary> Telu. </summary>
         public static ScriptCode Telu { get; } = new ScriptCode(TeluValue);
-        /// <summary> Script code for the Thaana script. </summary>
+        /// <summary> Thaa. </summary>
         public static ScriptCode Thaa { get; } = new ScriptCode(ThaaValue);
-        /// <summary> Script code for the Thai script. </summary>
+        /// <summary> Thai. </summary>
         public static ScriptCode Thai { get; } = new ScriptCode(ThaiValue);
-        /// <summary> Script code for the Tibetan script. </summary>
+        /// <summary> Tibt. </summary>
         public static ScriptCode Tibt { get; } = new ScriptCode(TibtValue);
         /// <summary> Determines if two <see cref="ScriptCode"/> values are the same. </summary>
         public static bool operator ==(ScriptCode left, ScriptCode right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> A catalog. </summary>
+    /// <summary> The DevCenterCatalog. </summary>
     public partial class DevCenterCatalog
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DevCenterCatalog"/>. </summary>
-        /// <param name="name"> Name of the catalog. </param>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevCenterCatalog(string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Developer.DevCenter.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Name of the catalog. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
     }
 }

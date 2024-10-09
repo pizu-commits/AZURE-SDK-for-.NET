@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Response for the Radiology Insights request. </summary>
+    /// <summary> The RadiologyInsightsJob. </summary>
     public partial class RadiologyInsightsJob
     {
         /// <summary>
@@ -51,14 +51,14 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="RadiologyInsightsJob"/>. </summary>
-        /// <param name="jobData"> The request data for the operation. </param>
-        /// <param name="result"> The result of the operation. </param>
-        /// <param name="id"> The unique ID of the job. </param>
-        /// <param name="status"> The status of the job. </param>
-        /// <param name="createdAt"> The date and time when the processing job was created. </param>
-        /// <param name="expiresAt"> The date and time when the processing job is set to expire. </param>
-        /// <param name="updatedAt"> The date and time when the processing job was last updated. </param>
-        /// <param name="error"> Error object that describes the error when status is "Failed". </param>
+        /// <param name="jobData"></param>
+        /// <param name="result"></param>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="expiresAt"></param>
+        /// <param name="updatedAt"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RadiologyInsightsJob(RadiologyInsightsData jobData, RadiologyInsightsInferenceResult result, string id, JobStatus status, DateTimeOffset? createdAt, DateTimeOffset? expiresAt, DateTimeOffset? updatedAt, ResponseError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,21 +73,21 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The request data for the operation. </summary>
+        /// <summary> Gets or sets the job data. </summary>
         public RadiologyInsightsData JobData { get; set; }
-        /// <summary> The result of the operation. </summary>
+        /// <summary> Gets the result. </summary>
         public RadiologyInsightsInferenceResult Result { get; }
-        /// <summary> The unique ID of the job. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The status of the job. </summary>
+        /// <summary> Gets the status. </summary>
         public JobStatus Status { get; }
-        /// <summary> The date and time when the processing job was created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset? CreatedAt { get; }
-        /// <summary> The date and time when the processing job is set to expire. </summary>
+        /// <summary> Gets the expires at. </summary>
         public DateTimeOffset? ExpiresAt { get; }
-        /// <summary> The date and time when the processing job was last updated. </summary>
+        /// <summary> Gets the updated at. </summary>
         public DateTimeOffset? UpdatedAt { get; }
-        /// <summary> Error object that describes the error when status is "Failed". </summary>
+        /// <summary> Gets the error. </summary>
         public ResponseError Error { get; }
     }
 }

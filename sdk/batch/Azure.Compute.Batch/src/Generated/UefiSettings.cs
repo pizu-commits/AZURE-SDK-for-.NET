@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Specifies the security settings like secure boot and vTPM used while creating the virtual machine. </summary>
+    /// <summary> The UefiSettings. </summary>
     public partial class UefiSettings
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="UefiSettings"/>. </summary>
-        /// <param name="secureBootEnabled"> Specifies whether secure boot should be enabled on the virtual machine. </param>
-        /// <param name="vTpmEnabled"> Specifies whether vTPM should be enabled on the virtual machine. </param>
+        /// <param name="secureBootEnabled"></param>
+        /// <param name="vTpmEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UefiSettings(bool? secureBootEnabled, bool? vTpmEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specifies whether secure boot should be enabled on the virtual machine. </summary>
+        /// <summary> Gets or sets the secure boot enabled. </summary>
         public bool? SecureBootEnabled { get; set; }
-        /// <summary> Specifies whether vTPM should be enabled on the virtual machine. </summary>
+        /// <summary> Gets or sets the v tpm enabled. </summary>
         public bool? VTpmEnabled { get; set; }
     }
 }

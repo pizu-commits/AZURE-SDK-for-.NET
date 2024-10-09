@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary>
-    /// A response format for Chat Completions that restricts responses to emitting valid JSON objects.
-    /// Note that to enable JSON mode, some AI models may also require you to instruct the model to produce JSON
-    /// via a system or user message.
-    /// </summary>
+    /// <summary> The ChatCompletionsResponseFormatJSON. </summary>
     public partial class ChatCompletionsResponseFormatJSON : ChatCompletionsResponseFormat
     {
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsResponseFormatJSON"/>. </summary>
@@ -24,7 +20,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsResponseFormatJSON"/>. </summary>
-        /// <param name="type"> The response format type to use for chat completions. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatCompletionsResponseFormatJSON(string type, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(type, serializedAdditionalRawData)
         {

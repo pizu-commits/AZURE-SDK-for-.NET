@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The action the Batch service should take when all Tasks in the Job are in the completed state. </summary>
+    /// <summary> The OnAllBatchTasksComplete. </summary>
     public readonly partial struct OnAllBatchTasksComplete : IEquatable<OnAllBatchTasksComplete>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string NoActionValue = "noaction";
         private const string TerminateJobValue = "terminatejob";
 
-        /// <summary> Do nothing. The Job remains active unless terminated or disabled by some other means. </summary>
+        /// <summary> noaction. </summary>
         public static OnAllBatchTasksComplete NoAction { get; } = new OnAllBatchTasksComplete(NoActionValue);
-        /// <summary> Terminate the Job. The Job's terminationReason is set to 'AllTasksComplete'. </summary>
+        /// <summary> terminatejob. </summary>
         public static OnAllBatchTasksComplete TerminateJob { get; } = new OnAllBatchTasksComplete(TerminateJobValue);
         /// <summary> Determines if two <see cref="OnAllBatchTasksComplete"/> values are the same. </summary>
         public static bool operator ==(OnAllBatchTasksComplete left, OnAllBatchTasksComplete right) => left.Equals(right);

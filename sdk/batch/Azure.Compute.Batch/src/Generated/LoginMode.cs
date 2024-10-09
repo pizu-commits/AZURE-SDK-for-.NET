@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> LoginMode enums. </summary>
+    /// <summary> The LoginMode. </summary>
     public readonly partial struct LoginMode : IEquatable<LoginMode>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string BatchValue = "batch";
         private const string InteractiveValue = "interactive";
 
-        /// <summary> The LOGON32_LOGON_BATCH Win32 login mode. The batch login mode is recommended for long running parallel processes. </summary>
+        /// <summary> batch. </summary>
         public static LoginMode Batch { get; } = new LoginMode(BatchValue);
-        /// <summary> The LOGON32_LOGON_INTERACTIVE Win32 login mode. UAC is enabled on Windows VirtualMachineConfiguration Pools. If this option is used with an elevated user identity in a Windows VirtualMachineConfiguration Pool, the user session will not be elevated unless the application executed by the Task command line is configured to always require administrative privilege or to always require maximum privilege. </summary>
+        /// <summary> interactive. </summary>
         public static LoginMode Interactive { get; } = new LoginMode(InteractiveValue);
         /// <summary> Determines if two <see cref="LoginMode"/> values are the same. </summary>
         public static bool operator ==(LoginMode left, LoginMode right) => left.Equals(right);

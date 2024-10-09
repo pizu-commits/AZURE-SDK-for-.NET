@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Supported parameters for an Entity Linking task. </summary>
+    /// <summary> The EntityLinkingActionContent. </summary>
     public partial class EntityLinkingActionContent
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityLinkingActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="modelVersion"> model version. </param>
-        /// <param name="stringIndexType"> Optional parameter to provide the string index type used to interpret string offsets. Defaults to TextElements (Graphemes). </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="stringIndexType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityLinkingActionContent(bool? loggingOptOut, string modelVersion, StringIndexType? stringIndexType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> model version. </summary>
+        /// <summary> Gets or sets the model version. </summary>
         public string ModelVersion { get; set; }
-        /// <summary> Optional parameter to provide the string index type used to interpret string offsets. Defaults to TextElements (Graphemes). </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
     }
 }

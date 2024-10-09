@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Role of the participant. </summary>
+    /// <summary> The ParticipantRole. </summary>
     public readonly partial struct ParticipantRole : IEquatable<ParticipantRole>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Conversations.Models
         private const string AgentValue = "agent";
         private const string GenericValue = "generic";
 
-        /// <summary> The participant is a customer. </summary>
+        /// <summary> customer. </summary>
         public static ParticipantRole Customer { get; } = new ParticipantRole(CustomerValue);
-        /// <summary> The participant is an agent. </summary>
+        /// <summary> agent. </summary>
         public static ParticipantRole Agent { get; } = new ParticipantRole(AgentValue);
-        /// <summary> The is a generic participant. </summary>
+        /// <summary> generic. </summary>
         public static ParticipantRole Generic { get; } = new ParticipantRole(GenericValue);
         /// <summary> Determines if two <see cref="ParticipantRole"/> values are the same. </summary>
         public static bool operator ==(ParticipantRole left, ParticipantRole right) => left.Equals(right);

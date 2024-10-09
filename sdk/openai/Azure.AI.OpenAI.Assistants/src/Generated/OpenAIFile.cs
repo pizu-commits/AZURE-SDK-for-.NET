@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> Represents an assistant that can call the model and use tools. </summary>
+    /// <summary> The OpenAIFile. </summary>
     public partial class OpenAIFile
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OpenAIFile"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="size"> The size of the file, in bytes. </param>
-        /// <param name="filename"> The name of the file. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="purpose"> The intended purpose of a file. </param>
+        /// <param name="id"></param>
+        /// <param name="size"></param>
+        /// <param name="filename"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="purpose"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="filename"/> is null. </exception>
         internal OpenAIFile(string id, int size, string filename, DateTimeOffset createdAt, OpenAIFilePurpose purpose)
         {
@@ -65,12 +65,12 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="OpenAIFile"/>. </summary>
-        /// <param name="object"> The object type, which is always 'file'. </param>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="size"> The size of the file, in bytes. </param>
-        /// <param name="filename"> The name of the file. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="purpose"> The intended purpose of a file. </param>
+        /// <param name="object"></param>
+        /// <param name="id"></param>
+        /// <param name="size"></param>
+        /// <param name="filename"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="purpose"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OpenAIFile(string @object, string id, int size, string filename, DateTimeOffset createdAt, OpenAIFilePurpose purpose, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -88,15 +88,15 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The identifier, which can be referenced in API endpoints. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The size of the file, in bytes. </summary>
+        /// <summary> Gets the size. </summary>
         public int Size { get; }
-        /// <summary> The name of the file. </summary>
+        /// <summary> Gets the filename. </summary>
         public string Filename { get; }
-        /// <summary> The Unix timestamp, in seconds, representing when this object was created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset CreatedAt { get; }
-        /// <summary> The intended purpose of a file. </summary>
+        /// <summary> Gets the purpose. </summary>
         public OpenAIFilePurpose Purpose { get; }
     }
 }

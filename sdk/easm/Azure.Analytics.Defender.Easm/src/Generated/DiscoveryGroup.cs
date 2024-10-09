@@ -54,18 +54,18 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="DiscoveryGroup"/>. </summary>
-        /// <param name="id"> The system generated unique id for the resource. </param>
-        /// <param name="name"> The caller provided unique name for the resource. </param>
-        /// <param name="displayName"> The name that can be used for display purposes. </param>
-        /// <param name="description"> The description for a disco group. </param>
-        /// <param name="tier"> The tier for the disco group which will affect the algorithm used for the disco runs in this group. </param>
-        /// <param name="frequencyMilliseconds"> The frequency at which the disco group is supposed to be rerun in milliseconds. </param>
-        /// <param name="seeds"> The list of seeds used for the disco group runs. </param>
-        /// <param name="names"> The list of names used for the disco group runs. </param>
-        /// <param name="excludes"> The list of excludes used for the disco group runs, aka assets to exclude from the discovery algorithm. </param>
-        /// <param name="latestRun"> The latest run of this disco group with some limited information, null if the group has never been run. </param>
-        /// <param name="createdDate"> The date for the disco group was created. </param>
-        /// <param name="templateId"> The unique identifier for the disco template used for the disco group creation. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
+        /// <param name="description"></param>
+        /// <param name="tier"></param>
+        /// <param name="frequencyMilliseconds"></param>
+        /// <param name="seeds"></param>
+        /// <param name="names"></param>
+        /// <param name="excludes"></param>
+        /// <param name="latestRun"></param>
+        /// <param name="createdDate"></param>
+        /// <param name="templateId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DiscoveryGroup(string id, string name, string displayName, string description, string tier, long? frequencyMilliseconds, IReadOnlyList<DiscoverySource> seeds, IReadOnlyList<string> names, IReadOnlyList<DiscoverySource> excludes, DiscoveryRunResult latestRun, DateTimeOffset? createdDate, string templateId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,29 +84,29 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The system generated unique id for the resource. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The caller provided unique name for the resource. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The name that can be used for display purposes. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The description for a disco group. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> The tier for the disco group which will affect the algorithm used for the disco runs in this group. </summary>
+        /// <summary> Gets the tier. </summary>
         public string Tier { get; }
-        /// <summary> The frequency at which the disco group is supposed to be rerun in milliseconds. </summary>
+        /// <summary> Gets the frequency milliseconds. </summary>
         public long? FrequencyMilliseconds { get; }
-        /// <summary> The list of seeds used for the disco group runs. </summary>
+        /// <summary> Gets the seeds. </summary>
         public IReadOnlyList<DiscoverySource> Seeds { get; }
-        /// <summary> The list of names used for the disco group runs. </summary>
+        /// <summary> Gets the names. </summary>
         public IReadOnlyList<string> Names { get; }
-        /// <summary> The list of excludes used for the disco group runs, aka assets to exclude from the discovery algorithm. </summary>
+        /// <summary> Gets the excludes. </summary>
         public IReadOnlyList<DiscoverySource> Excludes { get; }
-        /// <summary> The latest run of this disco group with some limited information, null if the group has never been run. </summary>
+        /// <summary> Gets the latest run. </summary>
         public DiscoveryRunResult LatestRun { get; }
-        /// <summary> The date for the disco group was created. </summary>
+        /// <summary> Gets the created date. </summary>
         public DateTimeOffset? CreatedDate { get; }
-        /// <summary> The unique identifier for the disco template used for the disco group creation. </summary>
+        /// <summary> Gets the template id. </summary>
         public string TemplateId { get; }
     }
 }

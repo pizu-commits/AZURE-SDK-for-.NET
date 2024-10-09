@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The kind of the analyze-text tasks supported. </summary>
+    /// <summary> The AnalyzeTextInputKind. </summary>
     internal readonly partial struct AnalyzeTextInputKind : IEquatable<AnalyzeTextInputKind>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.AI.Language.Text
         private const string EntityLinkingValue = "EntityLinking";
         private const string DynamicClassificationValue = "DynamicClassification";
 
-        /// <summary> Sentiment analysis task. </summary>
+        /// <summary> SentimentAnalysis. </summary>
         public static AnalyzeTextInputKind SentimentAnalysis { get; } = new AnalyzeTextInputKind(SentimentAnalysisValue);
-        /// <summary> Entity recognition task. </summary>
+        /// <summary> EntityRecognition. </summary>
         public static AnalyzeTextInputKind EntityRecognition { get; } = new AnalyzeTextInputKind(EntityRecognitionValue);
-        /// <summary> PII entity recognition task. </summary>
+        /// <summary> PiiEntityRecognition. </summary>
         public static AnalyzeTextInputKind PiiEntityRecognition { get; } = new AnalyzeTextInputKind(PiiEntityRecognitionValue);
-        /// <summary> Key phrase extraction task. </summary>
+        /// <summary> KeyPhraseExtraction. </summary>
         public static AnalyzeTextInputKind KeyPhraseExtraction { get; } = new AnalyzeTextInputKind(KeyPhraseExtractionValue);
-        /// <summary> Language detection task. </summary>
+        /// <summary> LanguageDetection. </summary>
         public static AnalyzeTextInputKind LanguageDetection { get; } = new AnalyzeTextInputKind(LanguageDetectionValue);
-        /// <summary> Entity linking task. </summary>
+        /// <summary> EntityLinking. </summary>
         public static AnalyzeTextInputKind EntityLinking { get; } = new AnalyzeTextInputKind(EntityLinkingValue);
-        /// <summary> Dynamic classification task. </summary>
+        /// <summary> DynamicClassification. </summary>
         public static AnalyzeTextInputKind DynamicClassification { get; } = new AnalyzeTextInputKind(DynamicClassificationValue);
         /// <summary> Determines if two <see cref="AnalyzeTextInputKind"/> values are the same. </summary>
         public static bool operator ==(AnalyzeTextInputKind left, AnalyzeTextInputKind right) => left.Equals(right);

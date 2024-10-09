@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The type of the template parameter. </summary>
+    /// <summary> The MessageTemplateValueKind. </summary>
     internal readonly partial struct MessageTemplateValueKind : IEquatable<MessageTemplateValueKind>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Communication.Messages
         private const string LocationValue = "location";
         private const string QuickActionValue = "quickAction";
 
-        /// <summary> The text template parameter type. </summary>
+        /// <summary> text. </summary>
         public static MessageTemplateValueKind Text { get; } = new MessageTemplateValueKind(TextValue);
-        /// <summary> The image template parameter type. </summary>
+        /// <summary> image. </summary>
         public static MessageTemplateValueKind Image { get; } = new MessageTemplateValueKind(ImageValue);
-        /// <summary> The document template parameter type. </summary>
+        /// <summary> document. </summary>
         public static MessageTemplateValueKind Document { get; } = new MessageTemplateValueKind(DocumentValue);
-        /// <summary> The video template parameter type. </summary>
+        /// <summary> video. </summary>
         public static MessageTemplateValueKind Video { get; } = new MessageTemplateValueKind(VideoValue);
-        /// <summary> The location template parameter type. </summary>
+        /// <summary> location. </summary>
         public static MessageTemplateValueKind Location { get; } = new MessageTemplateValueKind(LocationValue);
-        /// <summary> The quick action template parameter type. </summary>
+        /// <summary> quickAction. </summary>
         public static MessageTemplateValueKind QuickAction { get; } = new MessageTemplateValueKind(QuickActionValue);
         /// <summary> Determines if two <see cref="MessageTemplateValueKind"/> values are the same. </summary>
         public static bool operator ==(MessageTemplateValueKind left, MessageTemplateValueKind right) => left.Equals(right);

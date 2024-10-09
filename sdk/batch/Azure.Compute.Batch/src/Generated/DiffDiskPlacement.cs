@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> AccessDiffDiskPlacementScope enums. </summary>
+    /// <summary> The DiffDiskPlacement. </summary>
     public readonly partial struct DiffDiskPlacement : IEquatable<DiffDiskPlacement>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Compute.Batch
 
         private const string CacheDiskValue = "cachedisk";
 
-        /// <summary> The Ephemeral OS Disk is stored on the VM cache. </summary>
+        /// <summary> cachedisk. </summary>
         public static DiffDiskPlacement CacheDisk { get; } = new DiffDiskPlacement(CacheDiskValue);
         /// <summary> Determines if two <see cref="DiffDiskPlacement"/> values are the same. </summary>
         public static bool operator ==(DiffDiskPlacement left, DiffDiskPlacement right) => left.Equals(right);

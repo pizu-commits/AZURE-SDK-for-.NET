@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> An object representing the field key or value in a key-value pair. </summary>
+    /// <summary> The DocumentKeyValueElement. </summary>
     public partial class DocumentKeyValueElement
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentKeyValueElement"/>. </summary>
-        /// <param name="content"> Concatenated content of the key-value element in reading order. </param>
-        /// <param name="spans"> Location of the key-value element in the reading order concatenated content. </param>
+        /// <param name="content"></param>
+        /// <param name="spans"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> or <paramref name="spans"/> is null. </exception>
         internal DocumentKeyValueElement(string content, IEnumerable<DocumentSpan> spans)
         {
@@ -61,9 +61,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentKeyValueElement"/>. </summary>
-        /// <param name="content"> Concatenated content of the key-value element in reading order. </param>
-        /// <param name="boundingRegions"> Bounding regions covering the key-value element. </param>
-        /// <param name="spans"> Location of the key-value element in the reading order concatenated content. </param>
+        /// <param name="content"></param>
+        /// <param name="boundingRegions"></param>
+        /// <param name="spans"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentKeyValueElement(string content, IReadOnlyList<BoundingRegion> boundingRegions, IReadOnlyList<DocumentSpan> spans, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +78,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Concatenated content of the key-value element in reading order. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary> Bounding regions covering the key-value element. </summary>
+        /// <summary> Gets the bounding regions. </summary>
         public IReadOnlyList<BoundingRegion> BoundingRegions { get; }
-        /// <summary> Location of the key-value element in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
     }
 }

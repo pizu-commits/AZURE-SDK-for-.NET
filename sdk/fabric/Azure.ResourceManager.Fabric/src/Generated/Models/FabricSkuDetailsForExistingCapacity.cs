@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> An object that represents SKU details for existing resources. </summary>
+    /// <summary> The FabricSkuDetailsForExistingCapacity. </summary>
     public partial class FabricSkuDetailsForExistingCapacity
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.ResourceManager.Fabric.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FabricSkuDetailsForExistingCapacity"/>. </summary>
-        /// <param name="resourceType"> The resource type. </param>
-        /// <param name="sku"> The SKU details. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="sku"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceType"/> or <paramref name="sku"/> is null. </exception>
         internal FabricSkuDetailsForExistingCapacity(string resourceType, FabricSku sku)
         {
@@ -59,8 +59,8 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricSkuDetailsForExistingCapacity"/>. </summary>
-        /// <param name="resourceType"> The resource type. </param>
-        /// <param name="sku"> The SKU details. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="sku"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricSkuDetailsForExistingCapacity(string resourceType, FabricSku sku, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.ResourceManager.Fabric.Models
         {
         }
 
-        /// <summary> The resource type. </summary>
+        /// <summary> Gets the resource type. </summary>
         public string ResourceType { get; }
-        /// <summary> The SKU details. </summary>
+        /// <summary> Gets the sku. </summary>
         public FabricSku Sku { get; }
     }
 }

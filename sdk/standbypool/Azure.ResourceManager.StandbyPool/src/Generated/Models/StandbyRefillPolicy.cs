@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Refill policy of standby pool. </summary>
+    /// <summary> The StandbyRefillPolicy. </summary>
     public readonly partial struct StandbyRefillPolicy : IEquatable<StandbyRefillPolicy>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.ResourceManager.StandbyPool.Models
 
         private const string AlwaysValue = "always";
 
-        /// <summary> A refill policy that standby pool is automatically refilled to maintain maxReadyCapacity. </summary>
+        /// <summary> always. </summary>
         public static StandbyRefillPolicy Always { get; } = new StandbyRefillPolicy(AlwaysValue);
         /// <summary> Determines if two <see cref="StandbyRefillPolicy"/> values are the same. </summary>
         public static bool operator ==(StandbyRefillPolicy left, StandbyRefillPolicy right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Status for term assignment. </summary>
+    /// <summary> The AtlasTermAssignmentStatus. </summary>
     public readonly partial struct AtlasTermAssignmentStatus : IEquatable<AtlasTermAssignmentStatus>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.Analytics.Purview.DataMap
         private const string ObsoleteValue = "OBSOLETE";
         private const string OtherValue = "OTHER";
 
-        /// <summary> The status is discovered. </summary>
+        /// <summary> DISCOVERED. </summary>
         public static AtlasTermAssignmentStatus Discovered { get; } = new AtlasTermAssignmentStatus(DiscoveredValue);
-        /// <summary> The status is proposed. </summary>
+        /// <summary> PROPOSED. </summary>
         public static AtlasTermAssignmentStatus Proposed { get; } = new AtlasTermAssignmentStatus(ProposedValue);
-        /// <summary> The status is imported. </summary>
+        /// <summary> IMPORTED. </summary>
         public static AtlasTermAssignmentStatus Imported { get; } = new AtlasTermAssignmentStatus(ImportedValue);
-        /// <summary> The status is validated. </summary>
+        /// <summary> VALIDATED. </summary>
         public static AtlasTermAssignmentStatus Validated { get; } = new AtlasTermAssignmentStatus(ValidatedValue);
-        /// <summary> The status is deprecated. </summary>
+        /// <summary> DEPRECATED. </summary>
         public static AtlasTermAssignmentStatus Deprecated { get; } = new AtlasTermAssignmentStatus(DeprecatedValue);
-        /// <summary> The status is obsolete. </summary>
+        /// <summary> OBSOLETE. </summary>
         public static AtlasTermAssignmentStatus Obsolete { get; } = new AtlasTermAssignmentStatus(ObsoleteValue);
-        /// <summary> Other status. </summary>
+        /// <summary> OTHER. </summary>
         public static AtlasTermAssignmentStatus Other { get; } = new AtlasTermAssignmentStatus(OtherValue);
         /// <summary> Determines if two <see cref="AtlasTermAssignmentStatus"/> values are the same. </summary>
         public static bool operator ==(AtlasTermAssignmentStatus left, AtlasTermAssignmentStatus right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Encapsulates all options that can be passed as parameters for scoring rule with BestWorkerMode. </summary>
+    /// <summary> The ScoringRuleOptions. </summary>
     public partial class ScoringRuleOptions
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ScoringRuleOptions"/>. </summary>
-        /// <param name="batchSize"> Set batch size when 'isBatchScoringEnabled' is set to true. Defaults to 20 if not configured. </param>
-        /// <param name="scoringParameters"> List of extra parameters from a job that will be sent as part of the payload to scoring rule. If not set, a job's labels (sent in the payload as `job`) and a job's worker selectors (sent in the payload as `selectors`) are added to the payload of the scoring rule by default. Note: Worker labels are always sent with scoring payload. </param>
-        /// <param name="isBatchScoringEnabled"> If set to true, will score workers in batches, and the parameter name of the worker labels will be sent as `workers`. By default, set to false and the parameter name for the worker labels will be sent as `worker`. Note: If enabled, use 'batchSize' to set batch size. </param>
-        /// <param name="descendingOrder"> If false, will sort scores by ascending order. By default, set to true. </param>
+        /// <param name="batchSize"></param>
+        /// <param name="scoringParameters"></param>
+        /// <param name="isBatchScoringEnabled"></param>
+        /// <param name="descendingOrder"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ScoringRuleOptions(int? batchSize, IList<ScoringRuleParameterSelector> scoringParameters, bool? isBatchScoringEnabled, bool? descendingOrder, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

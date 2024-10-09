@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information about the most recent Job to run under the Job Schedule. </summary>
+    /// <summary> The RecentBatchJob. </summary>
     public partial class RecentBatchJob
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="RecentBatchJob"/>. </summary>
-        /// <param name="id"> The ID of the Job. </param>
-        /// <param name="url"> The URL of the Job. </param>
+        /// <param name="id"></param>
+        /// <param name="url"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RecentBatchJob(string id, string url, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the Job. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The URL of the Job. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
     }
 }

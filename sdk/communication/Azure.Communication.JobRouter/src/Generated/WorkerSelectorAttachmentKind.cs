@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Discriminators for supported worker selector attachment types. </summary>
+    /// <summary> The WorkerSelectorAttachmentKind. </summary>
     public readonly partial struct WorkerSelectorAttachmentKind : IEquatable<WorkerSelectorAttachmentKind>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Communication.JobRouter
         private const string StaticValue = "static";
         private const string WeightedAllocationValue = "weightedAllocation";
 
-        /// <summary> Discriminator value for ConditionalWorkerSelectorAttachment. </summary>
+        /// <summary> conditional. </summary>
         public static WorkerSelectorAttachmentKind Conditional { get; } = new WorkerSelectorAttachmentKind(ConditionalValue);
-        /// <summary> Discriminator value for PassThroughWorkerSelectorAttachment. </summary>
+        /// <summary> passThrough. </summary>
         public static WorkerSelectorAttachmentKind PassThrough { get; } = new WorkerSelectorAttachmentKind(PassThroughValue);
-        /// <summary> Discriminator value for RuleEngineWorkerSelectorAttachment. </summary>
+        /// <summary> ruleEngine. </summary>
         public static WorkerSelectorAttachmentKind RuleEngine { get; } = new WorkerSelectorAttachmentKind(RuleEngineValue);
-        /// <summary> Discriminator value for StaticWorkerSelectorAttachment. </summary>
+        /// <summary> static. </summary>
         public static WorkerSelectorAttachmentKind Static { get; } = new WorkerSelectorAttachmentKind(StaticValue);
-        /// <summary> Discriminator value for WeightedAllocationWorkerSelectorAttachment. </summary>
+        /// <summary> weightedAllocation. </summary>
         public static WorkerSelectorAttachmentKind WeightedAllocation { get; } = new WorkerSelectorAttachmentKind(WeightedAllocationValue);
         /// <summary> Determines if two <see cref="WorkerSelectorAttachmentKind"/> values are the same. </summary>
         public static bool operator ==(WorkerSelectorAttachmentKind left, WorkerSelectorAttachmentKind right) => left.Equals(right);

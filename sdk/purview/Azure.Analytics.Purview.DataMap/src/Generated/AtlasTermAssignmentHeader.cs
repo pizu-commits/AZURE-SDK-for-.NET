@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The header for term assignment. </summary>
+    /// <summary> The AtlasTermAssignmentHeader. </summary>
     public partial class AtlasTermAssignmentHeader
     {
         /// <summary>
@@ -51,15 +51,15 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasTermAssignmentHeader"/>. </summary>
-        /// <param name="confidence"> The confidence of the term assignment. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="description"> The description of the term assignment. </param>
-        /// <param name="displayText"> The display text. </param>
-        /// <param name="expression"> The expression of the term assignment. </param>
-        /// <param name="relationGuid"> The GUID of the relationship. </param>
-        /// <param name="status"> The status of terms assignment. </param>
-        /// <param name="steward"> The steward of the term. </param>
-        /// <param name="termGuid"> The GUID of the term. </param>
+        /// <param name="confidence"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="description"></param>
+        /// <param name="displayText"></param>
+        /// <param name="expression"></param>
+        /// <param name="relationGuid"></param>
+        /// <param name="status"></param>
+        /// <param name="steward"></param>
+        /// <param name="termGuid"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasTermAssignmentHeader(int? confidence, string createdBy, string description, string displayText, string expression, Guid? relationGuid, AtlasTermAssignmentStatus? status, string steward, Guid? termGuid, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,23 +75,23 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The confidence of the term assignment. </summary>
+        /// <summary> Gets or sets the confidence. </summary>
         public int? Confidence { get; set; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets or sets the created by. </summary>
         public string CreatedBy { get; set; }
-        /// <summary> The description of the term assignment. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary> The expression of the term assignment. </summary>
+        /// <summary> Gets or sets the expression. </summary>
         public string Expression { get; set; }
-        /// <summary> The GUID of the relationship. </summary>
+        /// <summary> Gets or sets the relation guid. </summary>
         public Guid? RelationGuid { get; set; }
-        /// <summary> The status of terms assignment. </summary>
+        /// <summary> Gets or sets the status. </summary>
         public AtlasTermAssignmentStatus? Status { get; set; }
-        /// <summary> The steward of the term. </summary>
+        /// <summary> Gets or sets the steward. </summary>
         public string Steward { get; set; }
-        /// <summary> The GUID of the term. </summary>
+        /// <summary> Gets or sets the term guid. </summary>
         public Guid? TermGuid { get; set; }
     }
 }

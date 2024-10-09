@@ -11,7 +11,7 @@ using Azure.Communication.Messages.Models.Channels;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The template object used to create templates. </summary>
+    /// <summary> The MessageTemplate. </summary>
     public partial class MessageTemplate
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Communication.Messages
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplate"/>. </summary>
-        /// <param name="name"> Name of the template. </param>
-        /// <param name="language"> The template's language, in the ISO 639 format, consist of a two-letter language code followed by an optional two-letter country code, e.g., 'en' or 'en_US'. </param>
+        /// <param name="name"></param>
+        /// <param name="language"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="language"/> is null. </exception>
         public MessageTemplate(string name, string language)
         {
@@ -61,15 +61,13 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplate"/>. </summary>
-        /// <param name="name"> Name of the template. </param>
-        /// <param name="language"> The template's language, in the ISO 639 format, consist of a two-letter language code followed by an optional two-letter country code, e.g., 'en' or 'en_US'. </param>
+        /// <param name="name"></param>
+        /// <param name="language"></param>
         /// <param name="values">
-        /// The template values.
         /// Please note <see cref="MessageTemplateValue"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageTemplateDocument"/>, <see cref="MessageTemplateImage"/>, <see cref="MessageTemplateLocation"/>, <see cref="MessageTemplateQuickAction"/>, <see cref="MessageTemplateText"/> and <see cref="MessageTemplateVideo"/>.
         /// </param>
         /// <param name="bindings">
-        /// The binding object to link values to the template specific locations
         /// Please note <see cref="MessageTemplateBindings"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="WhatsAppMessageTemplateBindings"/>.
         /// </param>
@@ -88,18 +86,18 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> Name of the template. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The template's language, in the ISO 639 format, consist of a two-letter language code followed by an optional two-letter country code, e.g., 'en' or 'en_US'. </summary>
+        /// <summary> Gets the language. </summary>
         public string Language { get; }
         /// <summary>
-        /// The template values.
+        /// Gets the values
         /// Please note <see cref="MessageTemplateValue"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageTemplateDocument"/>, <see cref="MessageTemplateImage"/>, <see cref="MessageTemplateLocation"/>, <see cref="MessageTemplateQuickAction"/>, <see cref="MessageTemplateText"/> and <see cref="MessageTemplateVideo"/>.
         /// </summary>
         public IList<MessageTemplateValue> Values { get; }
         /// <summary>
-        /// The binding object to link values to the template specific locations
+        /// Gets or sets the bindings
         /// Please note <see cref="MessageTemplateBindings"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="WhatsAppMessageTemplateBindings"/>.
         /// </summary>

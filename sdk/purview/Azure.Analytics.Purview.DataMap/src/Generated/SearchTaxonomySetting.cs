@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Taxonomy setting for search request. </summary>
+    /// <summary> The SearchTaxonomySetting. </summary>
     public partial class SearchTaxonomySetting
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchTaxonomySetting"/>. </summary>
-        /// <param name="assetTypes"> Asset types. </param>
-        /// <param name="facet"> The content of a search facet result item. </param>
+        /// <param name="assetTypes"></param>
+        /// <param name="facet"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SearchTaxonomySetting(IList<string> assetTypes, SearchFacetItem facet, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Asset types. </summary>
+        /// <summary> Gets the asset types. </summary>
         public IList<string> AssetTypes { get; }
-        /// <summary> The content of a search facet result item. </summary>
+        /// <summary> Gets or sets the facet. </summary>
         public SearchFacetItem Facet { get; set; }
     }
 }

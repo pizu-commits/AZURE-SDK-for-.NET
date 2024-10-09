@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> It is a wrap up a Question Answering KB response. </summary>
+    /// <summary> The AnalyzeConversationOperationInput. </summary>
     public partial class AnalyzeConversationOperationInput
     {
         /// <summary>
@@ -47,9 +47,8 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationOperationInput"/>. </summary>
-        /// <param name="conversationInput"> Analysis Input. </param>
+        /// <param name="conversationInput"></param>
         /// <param name="actions">
-        /// Set of tasks to execute on the input conversation.
         /// Please note <see cref="AnalyzeConversationOperationAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="PiiOperationAction"/>, <see cref="SummarizationOperationAction"/> and <see cref="CustomSummarizationOperationAction"/>.
         /// </param>
@@ -64,10 +63,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeConversationOperationInput"/>. </summary>
-        /// <param name="displayName"> Display name for the analysis job. </param>
-        /// <param name="conversationInput"> Analysis Input. </param>
+        /// <param name="displayName"></param>
+        /// <param name="conversationInput"></param>
         /// <param name="actions">
-        /// Set of tasks to execute on the input conversation.
         /// Please note <see cref="AnalyzeConversationOperationAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="PiiOperationAction"/>, <see cref="SummarizationOperationAction"/> and <see cref="CustomSummarizationOperationAction"/>.
         /// </param>
@@ -85,12 +83,12 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Display name for the analysis job. </summary>
+        /// <summary> Gets or sets the display name. </summary>
         public string DisplayName { get; set; }
-        /// <summary> Analysis Input. </summary>
+        /// <summary> Gets the conversation input. </summary>
         public MultiLanguageConversationInput ConversationInput { get; }
         /// <summary>
-        /// Set of tasks to execute on the input conversation.
+        /// Gets the actions
         /// Please note <see cref="AnalyzeConversationOperationAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="PiiOperationAction"/>, <see cref="SummarizationOperationAction"/> and <see cref="CustomSummarizationOperationAction"/>.
         /// </summary>

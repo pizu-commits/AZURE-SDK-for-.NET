@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Contains the state for the tasks that are being executed as part of the submitted job for analyzing a conversation. </summary>
+    /// <summary> The ConversationActions. </summary>
     public partial class ConversationActions
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationActions"/>. </summary>
-        /// <param name="completed"> Count of tasks that finished successfully. </param>
-        /// <param name="failed"> Count of tasks that failed. </param>
-        /// <param name="inProgress"> Count of tasks that are currently in progress. </param>
-        /// <param name="total"> Total count of tasks submitted as part of the job. </param>
+        /// <param name="completed"></param>
+        /// <param name="failed"></param>
+        /// <param name="inProgress"></param>
+        /// <param name="total"></param>
         internal ConversationActions(int completed, int failed, int inProgress, int total)
         {
             Completed = completed;
@@ -60,12 +60,11 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationActions"/>. </summary>
-        /// <param name="completed"> Count of tasks that finished successfully. </param>
-        /// <param name="failed"> Count of tasks that failed. </param>
-        /// <param name="inProgress"> Count of tasks that are currently in progress. </param>
-        /// <param name="total"> Total count of tasks submitted as part of the job. </param>
+        /// <param name="completed"></param>
+        /// <param name="failed"></param>
+        /// <param name="inProgress"></param>
+        /// <param name="total"></param>
         /// <param name="items">
-        /// List of results from tasks (if available).
         /// Please note <see cref="AnalyzeConversationOperationResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationPiiOperationResult"/>, <see cref="SummarizationOperationResult"/> and <see cref="CustomSummarizationOperationResult"/>.
         /// </param>
@@ -85,16 +84,16 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Count of tasks that finished successfully. </summary>
+        /// <summary> Gets the completed. </summary>
         public int Completed { get; }
-        /// <summary> Count of tasks that failed. </summary>
+        /// <summary> Gets the failed. </summary>
         public int Failed { get; }
-        /// <summary> Count of tasks that are currently in progress. </summary>
+        /// <summary> Gets the in progress. </summary>
         public int InProgress { get; }
-        /// <summary> Total count of tasks submitted as part of the job. </summary>
+        /// <summary> Gets the total. </summary>
         public int Total { get; }
         /// <summary>
-        /// List of results from tasks (if available).
+        /// Gets the items
         /// Please note <see cref="AnalyzeConversationOperationResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationPiiOperationResult"/>, <see cref="SummarizationOperationResult"/> and <see cref="CustomSummarizationOperationResult"/>.
         /// </summary>

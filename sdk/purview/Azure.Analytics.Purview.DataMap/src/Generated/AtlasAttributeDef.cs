@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> class that captures details of a struct-attribute. </summary>
+    /// <summary> The AtlasAttributeDef. </summary>
     public partial class AtlasAttributeDef
     {
         /// <summary>
@@ -53,19 +53,19 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasAttributeDef"/>. </summary>
-        /// <param name="cardinality"> single-valued attribute or multi-valued attribute. </param>
-        /// <param name="constraints"> An array of constraints. </param>
-        /// <param name="defaultValue"> The default value of the attribute. </param>
-        /// <param name="description"> The description of the attribute. </param>
-        /// <param name="includeInNotification"> Determines if it is included in notification. </param>
-        /// <param name="isIndexable"> Determines if it is indexable. </param>
-        /// <param name="isOptional"> Determines if it is optional. </param>
-        /// <param name="isUnique"> Determines if it unique. </param>
-        /// <param name="name"> The name of the attribute. </param>
-        /// <param name="options"> The options for the attribute. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="valuesMaxCount"> The maximum count of the values. </param>
-        /// <param name="valuesMinCount"> The minimum count of the values. </param>
+        /// <param name="cardinality"></param>
+        /// <param name="constraints"></param>
+        /// <param name="defaultValue"></param>
+        /// <param name="description"></param>
+        /// <param name="includeInNotification"></param>
+        /// <param name="isIndexable"></param>
+        /// <param name="isOptional"></param>
+        /// <param name="isUnique"></param>
+        /// <param name="name"></param>
+        /// <param name="options"></param>
+        /// <param name="typeName"></param>
+        /// <param name="valuesMaxCount"></param>
+        /// <param name="valuesMinCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasAttributeDef(CardinalityValue? cardinality, IList<AtlasConstraintDef> constraints, string defaultValue, string description, bool? includeInNotification, bool? isIndexable, bool? isOptional, bool? isUnique, string name, IDictionary<string, string> options, string typeName, int? valuesMaxCount, int? valuesMinCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,31 +85,31 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> single-valued attribute or multi-valued attribute. </summary>
+        /// <summary> Gets or sets the cardinality. </summary>
         public CardinalityValue? Cardinality { get; set; }
-        /// <summary> An array of constraints. </summary>
+        /// <summary> Gets the constraints. </summary>
         public IList<AtlasConstraintDef> Constraints { get; }
-        /// <summary> The default value of the attribute. </summary>
+        /// <summary> Gets or sets the default value. </summary>
         public string DefaultValue { get; set; }
-        /// <summary> The description of the attribute. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> Determines if it is included in notification. </summary>
+        /// <summary> Gets or sets the include in notification. </summary>
         public bool? IncludeInNotification { get; set; }
-        /// <summary> Determines if it is indexable. </summary>
+        /// <summary> Gets or sets the is indexable. </summary>
         public bool? IsIndexable { get; set; }
-        /// <summary> Determines if it is optional. </summary>
+        /// <summary> Gets or sets the is optional. </summary>
         public bool? IsOptional { get; set; }
-        /// <summary> Determines if it unique. </summary>
+        /// <summary> Gets or sets the is unique. </summary>
         public bool? IsUnique { get; set; }
-        /// <summary> The name of the attribute. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The options for the attribute. </summary>
+        /// <summary> Gets the options. </summary>
         public IDictionary<string, string> Options { get; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
-        /// <summary> The maximum count of the values. </summary>
+        /// <summary> Gets or sets the values max count. </summary>
         public int? ValuesMaxCount { get; set; }
-        /// <summary> The minimum count of the values. </summary>
+        /// <summary> Gets or sets the values min count. </summary>
         public int? ValuesMinCount { get; set; }
     }
 }

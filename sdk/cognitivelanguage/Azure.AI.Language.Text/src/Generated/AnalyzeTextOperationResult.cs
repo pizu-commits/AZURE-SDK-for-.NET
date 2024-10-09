@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Text
 {
     /// <summary>
-    /// Contains the AnalyzeText long running operation result object.
+    /// The AnalyzeTextOperationResult.
     /// Please note <see cref="AnalyzeTextOperationResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="AbstractiveSummarizationOperationResult"/>, <see cref="CustomAbstractiveSummarizationOperationResult"/>, <see cref="CustomEntityRecognitionOperationResult"/>, <see cref="CustomHealthcareOperationResult"/>, <see cref="CustomMultiLabelClassificationOperationResult"/>, <see cref="CustomSentimentAnalysisOperationResult"/>, <see cref="CustomSingleLabelClassificationOperationResult"/>, <see cref="EntityLinkingOperationResult"/>, <see cref="EntityRecognitionOperationResult"/>, <see cref="ExtractiveSummarizationOperationResult"/>, <see cref="HealthcareOperationResult"/>, <see cref="KeyPhraseExtractionOperationResult"/>, <see cref="PiiEntityRecognitionOperationResult"/> and <see cref="SentimentOperationResult"/>.
     /// </summary>
@@ -50,8 +50,8 @@ namespace Azure.AI.Language.Text
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextOperationResult"/>. </summary>
-        /// <param name="lastUpdateDateTime"> The last updated time in UTC for the task. </param>
-        /// <param name="status"> The status of the task at the mentioned last update time. </param>
+        /// <param name="lastUpdateDateTime"></param>
+        /// <param name="status"></param>
         protected AnalyzeTextOperationResult(DateTimeOffset lastUpdateDateTime, TextActionState status)
         {
             LastUpdateDateTime = lastUpdateDateTime;
@@ -59,10 +59,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextOperationResult"/>. </summary>
-        /// <param name="lastUpdateDateTime"> The last updated time in UTC for the task. </param>
-        /// <param name="status"> The status of the task at the mentioned last update time. </param>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> Kind of the task. </param>
+        /// <param name="lastUpdateDateTime"></param>
+        /// <param name="status"></param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeTextOperationResult(DateTimeOffset lastUpdateDateTime, TextActionState status, string name, AnalyzeTextOperationResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The last updated time in UTC for the task. </summary>
+        /// <summary> Gets the last update date time. </summary>
         public DateTimeOffset LastUpdateDateTime { get; }
-        /// <summary> The status of the task at the mentioned last update time. </summary>
+        /// <summary> Gets the status. </summary>
         public TextActionState Status { get; }
-        /// <summary> task name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Kind of the task. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal AnalyzeTextOperationResultsKind Kind { get; set; }
     }
 }

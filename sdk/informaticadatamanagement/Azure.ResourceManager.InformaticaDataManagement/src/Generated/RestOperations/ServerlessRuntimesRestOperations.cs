@@ -26,7 +26,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="applicationId"> The application id to use for user agent. </param>
         /// <param name="endpoint"> The <see cref="Uri"/> to use. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="pipeline"/> or <paramref name="apiVersion"/> is null. </exception>
         public ServerlessRuntimesRestOperations(HttpPipeline pipeline, string applicationId, Uri endpoint = null, string apiVersion = default)
         {
@@ -75,10 +75,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Get a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -108,10 +108,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Get a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -183,11 +183,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Create a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
-        /// <param name="data"> Resource create parameters. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
+        /// <param name="data"> The <see cref="InformaticaServerlessRuntimeData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/>, <paramref name="serverlessRuntimeName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -212,11 +212,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Create a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
-        /// <param name="data"> Resource create parameters. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
+        /// <param name="data"> The <see cref="InformaticaServerlessRuntimeData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/>, <paramref name="serverlessRuntimeName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -279,10 +279,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Delete a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -306,10 +306,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Delete a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -369,9 +369,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> List InformaticaServerlessRuntimeResource resources by InformaticaOrganizationResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -398,9 +398,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> List InformaticaServerlessRuntimeResource resources by InformaticaOrganizationResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -469,11 +469,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Update a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
+        /// <param name="patch"> The <see cref="InformaticaServerlessRuntimePatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/>, <paramref name="serverlessRuntimeName"/> or <paramref name="patch"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -502,11 +502,11 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Update a InformaticaServerlessRuntimeResource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
+        /// <param name="patch"> The <see cref="InformaticaServerlessRuntimePatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/>, <paramref name="serverlessRuntimeName"/> or <paramref name="patch"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -575,10 +575,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Checks all dependencies for a serverless runtime resource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -606,10 +606,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Checks all dependencies for a serverless runtime resource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -677,10 +677,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Starts a failed runtime resource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -703,10 +703,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Starts a failed runtime resource. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -769,10 +769,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Returns a serverless runtime resource by ID. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -800,10 +800,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement
         }
 
         /// <summary> Returns a serverless runtime resource by ID. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
-        /// <param name="serverlessRuntimeName"> Name of the Serverless Runtime resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
+        /// <param name="serverlessRuntimeName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="organizationName"/> or <paramref name="serverlessRuntimeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -854,9 +854,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement
 
         /// <summary> List InformaticaServerlessRuntimeResource resources by InformaticaOrganizationResource. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -885,9 +885,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement
 
         /// <summary> List InformaticaServerlessRuntimeResource resources by InformaticaOrganizationResource. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="organizationName"> Name of the Organizations resource. </param>
+        /// <param name="subscriptionId"> The <see cref="string"/> to use. </param>
+        /// <param name="resourceGroupName"> The <see cref="string"/> to use. </param>
+        /// <param name="organizationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="organizationName"/> is an empty string, and was expected to be non-empty. </exception>

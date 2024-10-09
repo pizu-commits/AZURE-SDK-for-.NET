@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Provisioning State of the Organization resource. </summary>
+    /// <summary> The InformaticaProvisioningState. </summary>
     public readonly partial struct InformaticaProvisioningState : IEquatable<InformaticaProvisioningState>
     {
         private readonly string _value;
@@ -32,23 +32,23 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private const string DeletedValue = "Deleted";
         private const string NotSpecifiedValue = "NotSpecified";
 
-        /// <summary> Organization resource creation request accepted. </summary>
+        /// <summary> Accepted. </summary>
         public static InformaticaProvisioningState Accepted { get; } = new InformaticaProvisioningState(AcceptedValue);
-        /// <summary> Organization resource creation started. </summary>
+        /// <summary> Creating. </summary>
         public static InformaticaProvisioningState Creating { get; } = new InformaticaProvisioningState(CreatingValue);
-        /// <summary> Organization resource is being updated. </summary>
+        /// <summary> Updating. </summary>
         public static InformaticaProvisioningState Updating { get; } = new InformaticaProvisioningState(UpdatingValue);
-        /// <summary> Organization resource deletion started. </summary>
+        /// <summary> Deleting. </summary>
         public static InformaticaProvisioningState Deleting { get; } = new InformaticaProvisioningState(DeletingValue);
-        /// <summary> Organization resource creation successful. </summary>
+        /// <summary> Succeeded. </summary>
         public static InformaticaProvisioningState Succeeded { get; } = new InformaticaProvisioningState(SucceededValue);
-        /// <summary> Organization resource creation failed. </summary>
+        /// <summary> Failed. </summary>
         public static InformaticaProvisioningState Failed { get; } = new InformaticaProvisioningState(FailedValue);
-        /// <summary> Organization resource creation canceled. </summary>
+        /// <summary> Canceled. </summary>
         public static InformaticaProvisioningState Canceled { get; } = new InformaticaProvisioningState(CanceledValue);
-        /// <summary> Organization resource is deleted. </summary>
+        /// <summary> Deleted. </summary>
         public static InformaticaProvisioningState Deleted { get; } = new InformaticaProvisioningState(DeletedValue);
-        /// <summary> Organization resource state is unknown. </summary>
+        /// <summary> NotSpecified. </summary>
         public static InformaticaProvisioningState NotSpecified { get; } = new InformaticaProvisioningState(NotSpecifiedValue);
         /// <summary> Determines if two <see cref="InformaticaProvisioningState"/> values are the same. </summary>
         public static bool operator ==(InformaticaProvisioningState left, InformaticaProvisioningState right) => left.Equals(right);

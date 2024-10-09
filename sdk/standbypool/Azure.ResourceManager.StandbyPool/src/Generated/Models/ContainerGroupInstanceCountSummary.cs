@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Displays the counts of container groups in each state, as known by the StandbyPool resource provider. </summary>
+    /// <summary> The ContainerGroupInstanceCountSummary. </summary>
     public partial class ContainerGroupInstanceCountSummary
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ContainerGroupInstanceCountSummary"/>. </summary>
-        /// <param name="instanceCountsByState"> The count of pooled resources in each state. </param>
+        /// <param name="instanceCountsByState"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="instanceCountsByState"/> is null. </exception>
         internal ContainerGroupInstanceCountSummary(IEnumerable<PoolResourceStateCount> instanceCountsByState)
         {
@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.StandbyPool.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerGroupInstanceCountSummary"/>. </summary>
-        /// <param name="instanceCountsByState"> The count of pooled resources in each state. </param>
+        /// <param name="instanceCountsByState"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerGroupInstanceCountSummary(IReadOnlyList<PoolResourceStateCount> instanceCountsByState, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.StandbyPool.Models
         {
         }
 
-        /// <summary> The count of pooled resources in each state. </summary>
+        /// <summary> Gets the instance counts by state. </summary>
         public IReadOnlyList<PoolResourceStateCount> InstanceCountsByState { get; }
     }
 }

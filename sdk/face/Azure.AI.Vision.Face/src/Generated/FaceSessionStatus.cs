@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The current status of the session. </summary>
+    /// <summary> The FaceSessionStatus. </summary>
     public readonly partial struct FaceSessionStatus : IEquatable<FaceSessionStatus>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string StartedValue = "Started";
         private const string ResultAvailableValue = "ResultAvailable";
 
-        /// <summary> Session has not started. </summary>
+        /// <summary> NotStarted. </summary>
         public static FaceSessionStatus NotStarted { get; } = new FaceSessionStatus(NotStartedValue);
-        /// <summary> Session has started. </summary>
+        /// <summary> Started. </summary>
         public static FaceSessionStatus Started { get; } = new FaceSessionStatus(StartedValue);
-        /// <summary> Session has available result. </summary>
+        /// <summary> ResultAvailable. </summary>
         public static FaceSessionStatus ResultAvailable { get; } = new FaceSessionStatus(ResultAvailableValue);
         /// <summary> Determines if two <see cref="FaceSessionStatus"/> values are the same. </summary>
         public static bool operator ==(FaceSessionStatus left, FaceSessionStatus right) => left.Equals(right);

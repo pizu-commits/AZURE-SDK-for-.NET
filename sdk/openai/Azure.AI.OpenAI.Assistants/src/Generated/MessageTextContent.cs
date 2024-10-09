@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> A representation of a textual item of thread message content. </summary>
+    /// <summary> The MessageTextContent. </summary>
     public partial class MessageTextContent : MessageContent
     {
         /// <summary> Initializes a new instance of <see cref="MessageTextContent"/>. </summary>
-        /// <param name="internalDetails"> The text and associated annotations for this thread message content item. </param>
+        /// <param name="internalDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="internalDetails"/> is null. </exception>
         internal MessageTextContent(InternalMessageTextDetails internalDetails)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTextContent"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="internalDetails"> The text and associated annotations for this thread message content item. </param>
+        /// <param name="internalDetails"></param>
         internal MessageTextContent(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, InternalMessageTextDetails internalDetails) : base(type, serializedAdditionalRawData)
         {
             InternalDetails = internalDetails;

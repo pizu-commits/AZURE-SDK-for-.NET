@@ -10,14 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Base for all elements
-    /// Based on [FHIR Element](https://www.hl7.org/fhir/datatypes.html#Element)
-    /// </summary>
+    /// <summary> The Fhir_R4_Extension. </summary>
     public partial class FhirR4Extension : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Extension"/>. </summary>
-        /// <param name="url"> Source of the definition for the extension code - a logical name or a URL. </param>
+        /// <param name="url"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="url"/> is null. </exception>
         public FhirR4Extension(string url)
         {
@@ -27,22 +24,22 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Extension"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="url"> Source of the definition for the extension code - a logical name or a URL. </param>
-        /// <param name="valueQuantity"> Value as Quantity. </param>
-        /// <param name="valueCodeableConcept"> Value as CodeableConcept. </param>
-        /// <param name="valueString"> Value as string. </param>
-        /// <param name="valueBoolean"> Value as boolean. </param>
-        /// <param name="valueInteger"> Value as integer. </param>
-        /// <param name="valueRange"> Value as Range. </param>
-        /// <param name="valueRatio"> Value as Ratio. </param>
-        /// <param name="valueSampledData"> Value as SampledData. </param>
-        /// <param name="valueTime"> Value as time (hh:mm:ss). </param>
-        /// <param name="valueDateTime"> Value as dateTime. </param>
-        /// <param name="valuePeriod"> Value as Period. </param>
-        /// <param name="valueReference"> Value as reference. </param>
+        /// <param name="url"></param>
+        /// <param name="valueQuantity"></param>
+        /// <param name="valueCodeableConcept"></param>
+        /// <param name="valueString"></param>
+        /// <param name="valueBoolean"></param>
+        /// <param name="valueInteger"></param>
+        /// <param name="valueRange"></param>
+        /// <param name="valueRatio"></param>
+        /// <param name="valueSampledData"></param>
+        /// <param name="valueTime"></param>
+        /// <param name="valueDateTime"></param>
+        /// <param name="valuePeriod"></param>
+        /// <param name="valueReference"></param>
         internal FhirR4Extension(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, string url, FhirR4Quantity valueQuantity, FhirR4CodeableConcept valueCodeableConcept, string valueString, bool? valueBoolean, int? valueInteger, FhirR4Range valueRange, FhirR4Ratio valueRatio, FhirR4SampledData valueSampledData, TimeSpan? valueTime, string valueDateTime, FhirR4Period valuePeriod, FhirR4Reference valueReference) : base(id, extension, serializedAdditionalRawData)
         {
             Url = url;
@@ -65,31 +62,31 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Source of the definition for the extension code - a logical name or a URL. </summary>
+        /// <summary> Gets or sets the url. </summary>
         public string Url { get; set; }
-        /// <summary> Value as Quantity. </summary>
+        /// <summary> Gets or sets the value quantity. </summary>
         public FhirR4Quantity ValueQuantity { get; set; }
-        /// <summary> Value as CodeableConcept. </summary>
+        /// <summary> Gets or sets the value codeable concept. </summary>
         public FhirR4CodeableConcept ValueCodeableConcept { get; set; }
-        /// <summary> Value as string. </summary>
+        /// <summary> Gets or sets the value string. </summary>
         public string ValueString { get; set; }
-        /// <summary> Value as boolean. </summary>
+        /// <summary> Gets or sets the value boolean. </summary>
         public bool? ValueBoolean { get; set; }
-        /// <summary> Value as integer. </summary>
+        /// <summary> Gets or sets the value integer. </summary>
         public int? ValueInteger { get; set; }
-        /// <summary> Value as Range. </summary>
+        /// <summary> Gets or sets the value range. </summary>
         public FhirR4Range ValueRange { get; set; }
-        /// <summary> Value as Ratio. </summary>
+        /// <summary> Gets or sets the value ratio. </summary>
         public FhirR4Ratio ValueRatio { get; set; }
-        /// <summary> Value as SampledData. </summary>
+        /// <summary> Gets or sets the value sampled data. </summary>
         public FhirR4SampledData ValueSampledData { get; set; }
-        /// <summary> Value as time (hh:mm:ss). </summary>
+        /// <summary> Gets or sets the value time. </summary>
         public TimeSpan? ValueTime { get; set; }
-        /// <summary> Value as dateTime. </summary>
+        /// <summary> Gets or sets the value date time. </summary>
         public string ValueDateTime { get; set; }
-        /// <summary> Value as Period. </summary>
+        /// <summary> Gets or sets the value period. </summary>
         public FhirR4Period ValuePeriod { get; set; }
-        /// <summary> Value as reference. </summary>
+        /// <summary> Gets or sets the value reference. </summary>
         public FhirR4Reference ValueReference { get; set; }
     }
 }

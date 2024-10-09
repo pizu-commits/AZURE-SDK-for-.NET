@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The extended information of glossary. </summary>
+    /// <summary> The AtlasGlossaryExtInfo. </summary>
     public partial class AtlasGlossaryExtInfo
     {
         /// <summary>
@@ -56,23 +56,23 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasGlossaryExtInfo"/>. </summary>
-        /// <param name="guid"> The GUID of the object. </param>
-        /// <param name="classifications"> An array of classifications. </param>
-        /// <param name="longDescription"> The long version description. </param>
-        /// <param name="name"> The name of the glossary object. </param>
-        /// <param name="qualifiedName"> The qualified name of the glossary object. </param>
-        /// <param name="shortDescription"> The short version of description. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="categories"> An array of categories. </param>
-        /// <param name="language"> The language of the glossary. </param>
-        /// <param name="terms"> An array of related term headers. </param>
-        /// <param name="usage"> The usage of the glossary. </param>
-        /// <param name="categoryInfo"> The glossary category information. </param>
-        /// <param name="termInfo"> The glossary term information. </param>
+        /// <param name="guid"></param>
+        /// <param name="classifications"></param>
+        /// <param name="longDescription"></param>
+        /// <param name="name"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="shortDescription"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="categories"></param>
+        /// <param name="language"></param>
+        /// <param name="terms"></param>
+        /// <param name="usage"></param>
+        /// <param name="categoryInfo"></param>
+        /// <param name="termInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasGlossaryExtInfo(string guid, IReadOnlyList<AtlasClassification> classifications, string longDescription, string name, string qualifiedName, string shortDescription, string lastModifiedTS, long? createTime, string createdBy, long? updateTime, string updatedBy, IReadOnlyList<AtlasRelatedCategoryHeader> categories, string language, IReadOnlyList<AtlasRelatedTermHeader> terms, string usage, IReadOnlyDictionary<string, AtlasGlossaryCategory> categoryInfo, IReadOnlyDictionary<string, AtlasGlossaryTerm> termInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -96,39 +96,39 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the object. </summary>
+        /// <summary> Gets the guid. </summary>
         public string Guid { get; }
-        /// <summary> An array of classifications. </summary>
+        /// <summary> Gets the classifications. </summary>
         public IReadOnlyList<AtlasClassification> Classifications { get; }
-        /// <summary> The long version description. </summary>
+        /// <summary> Gets the long description. </summary>
         public string LongDescription { get; }
-        /// <summary> The name of the glossary object. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The qualified name of the glossary object. </summary>
+        /// <summary> Gets the qualified name. </summary>
         public string QualifiedName { get; }
-        /// <summary> The short version of description. </summary>
+        /// <summary> Gets the short description. </summary>
         public string ShortDescription { get; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets the last modified ts. </summary>
         public string LastModifiedTS { get; }
-        /// <summary> The created time of the record. </summary>
+        /// <summary> Gets the create time. </summary>
         public long? CreateTime { get; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets the created by. </summary>
         public string CreatedBy { get; }
-        /// <summary> The update time of the record. </summary>
+        /// <summary> Gets the update time. </summary>
         public long? UpdateTime { get; }
-        /// <summary> The user who updated the record. </summary>
+        /// <summary> Gets the updated by. </summary>
         public string UpdatedBy { get; }
-        /// <summary> An array of categories. </summary>
+        /// <summary> Gets the categories. </summary>
         public IReadOnlyList<AtlasRelatedCategoryHeader> Categories { get; }
-        /// <summary> The language of the glossary. </summary>
+        /// <summary> Gets the language. </summary>
         public string Language { get; }
-        /// <summary> An array of related term headers. </summary>
+        /// <summary> Gets the terms. </summary>
         public IReadOnlyList<AtlasRelatedTermHeader> Terms { get; }
-        /// <summary> The usage of the glossary. </summary>
+        /// <summary> Gets the usage. </summary>
         public string Usage { get; }
-        /// <summary> The glossary category information. </summary>
+        /// <summary> Gets the category info. </summary>
         public IReadOnlyDictionary<string, AtlasGlossaryCategory> CategoryInfo { get; }
-        /// <summary> The glossary term information. </summary>
+        /// <summary> Gets the term info. </summary>
         public IReadOnlyDictionary<string, AtlasGlossaryTerm> TermInfo { get; }
     }
 }

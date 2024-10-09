@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Identifies the script of the input document. Maps to the ISO 15924 standard formal name. </summary>
+    /// <summary> The ScriptKind. </summary>
     public readonly partial struct ScriptKind : IEquatable<ScriptKind>
     {
         private readonly string _value;
@@ -52,63 +52,63 @@ namespace Azure.AI.Language.Text
         private const string ThaiValue = "Thai";
         private const string TibetanValue = "Tibetan";
 
-        /// <summary> Script name for the Arabic script. </summary>
+        /// <summary> Arabic. </summary>
         public static ScriptKind Arabic { get; } = new ScriptKind(ArabicValue);
-        /// <summary> Script name for the Armenian script. </summary>
+        /// <summary> Armenian. </summary>
         public static ScriptKind Armenian { get; } = new ScriptKind(ArmenianValue);
-        /// <summary> Script name for the Bangla script. </summary>
+        /// <summary> Bangla. </summary>
         public static ScriptKind Bangla { get; } = new ScriptKind(BanglaValue);
-        /// <summary> Script name for the UnifiedCanadianAboriginalSyllabics script. </summary>
+        /// <summary> UnifiedCanadianAboriginalSyllabics. </summary>
         public static ScriptKind UnifiedCanadianAboriginalSyllabics { get; } = new ScriptKind(UnifiedCanadianAboriginalSyllabicsValue);
-        /// <summary> Script name for the Cyrillic script. </summary>
+        /// <summary> Cyrillic. </summary>
         public static ScriptKind Cyrillic { get; } = new ScriptKind(CyrillicValue);
-        /// <summary> Script name for the Devanagari script. </summary>
+        /// <summary> Devanagari. </summary>
         public static ScriptKind Devanagari { get; } = new ScriptKind(DevanagariValue);
-        /// <summary> Script name for the Ethiopic script. </summary>
+        /// <summary> Ethiopic. </summary>
         public static ScriptKind Ethiopic { get; } = new ScriptKind(EthiopicValue);
-        /// <summary> Script name for the Georgian script. </summary>
+        /// <summary> Georgian. </summary>
         public static ScriptKind Georgian { get; } = new ScriptKind(GeorgianValue);
-        /// <summary> Script name for the Greek script. </summary>
+        /// <summary> Greek. </summary>
         public static ScriptKind Greek { get; } = new ScriptKind(GreekValue);
-        /// <summary> Script name for the Gujarati script. </summary>
+        /// <summary> Gujarati. </summary>
         public static ScriptKind Gujarati { get; } = new ScriptKind(GujaratiValue);
-        /// <summary> Script name for the Gurmukhi script. </summary>
+        /// <summary> Gurmukhi. </summary>
         public static ScriptKind Gurmukhi { get; } = new ScriptKind(GurmukhiValue);
-        /// <summary> Script name for the Hangul script. </summary>
+        /// <summary> Hangul. </summary>
         public static ScriptKind Hangul { get; } = new ScriptKind(HangulValue);
-        /// <summary> Script name for the HanSimplified script. </summary>
+        /// <summary> HanSimplified. </summary>
         public static ScriptKind HanSimplified { get; } = new ScriptKind(HanSimplifiedValue);
-        /// <summary> Script name for the HanTraditional script. </summary>
+        /// <summary> HanTraditional. </summary>
         public static ScriptKind HanTraditional { get; } = new ScriptKind(HanTraditionalValue);
-        /// <summary> Script name for the Hebrew script. </summary>
+        /// <summary> Hebrew. </summary>
         public static ScriptKind Hebrew { get; } = new ScriptKind(HebrewValue);
-        /// <summary> Script name for the Japanese script. </summary>
+        /// <summary> Japanese. </summary>
         public static ScriptKind Japanese { get; } = new ScriptKind(JapaneseValue);
-        /// <summary> Script name for the Khmer script. </summary>
+        /// <summary> Khmer. </summary>
         public static ScriptKind Khmer { get; } = new ScriptKind(KhmerValue);
-        /// <summary> Script name for the Kannada script. </summary>
+        /// <summary> Kannada. </summary>
         public static ScriptKind Kannada { get; } = new ScriptKind(KannadaValue);
-        /// <summary> Script name for the Lao script. </summary>
+        /// <summary> Lao. </summary>
         public static ScriptKind Lao { get; } = new ScriptKind(LaoValue);
-        /// <summary> Script name for the Latin script. </summary>
+        /// <summary> Latin. </summary>
         public static ScriptKind Latin { get; } = new ScriptKind(LatinValue);
-        /// <summary> Script name for the Malayalam script. </summary>
+        /// <summary> Malayalam. </summary>
         public static ScriptKind Malayalam { get; } = new ScriptKind(MalayalamValue);
-        /// <summary> Script name for the Myanmar script. </summary>
+        /// <summary> Myanmar. </summary>
         public static ScriptKind Myanmar { get; } = new ScriptKind(MyanmarValue);
-        /// <summary> Script name for the Odia script. </summary>
+        /// <summary> Odia. </summary>
         public static ScriptKind Odia { get; } = new ScriptKind(OdiaValue);
-        /// <summary> Script name for the Sinhala script. </summary>
+        /// <summary> Sinhala. </summary>
         public static ScriptKind Sinhala { get; } = new ScriptKind(SinhalaValue);
-        /// <summary> Script name for the Tamil script. </summary>
+        /// <summary> Tamil. </summary>
         public static ScriptKind Tamil { get; } = new ScriptKind(TamilValue);
-        /// <summary> Script name for the Telugu script. </summary>
+        /// <summary> Telugu. </summary>
         public static ScriptKind Telugu { get; } = new ScriptKind(TeluguValue);
-        /// <summary> Script name for the Thaana script. </summary>
+        /// <summary> Thaana. </summary>
         public static ScriptKind Thaana { get; } = new ScriptKind(ThaanaValue);
-        /// <summary> Script name for the Thai script. </summary>
+        /// <summary> Thai. </summary>
         public static ScriptKind Thai { get; } = new ScriptKind(ThaiValue);
-        /// <summary> Script name for the Tibetan script. </summary>
+        /// <summary> Tibetan. </summary>
         public static ScriptKind Tibetan { get; } = new ScriptKind(TibetanValue);
         /// <summary> Determines if two <see cref="ScriptKind"/> values are the same. </summary>
         public static bool operator ==(ScriptKind left, ScriptKind right) => left.Equals(right);

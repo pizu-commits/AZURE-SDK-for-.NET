@@ -15,7 +15,7 @@ using Azure.Core.Pipeline;
 namespace Azure.AI.Language.Conversations
 {
     // Data plane generated client.
-    /// <summary> The language service conversations API is a suite of natural language processing (NLP) skills that can be used to analyze structured conversations (textual or spoken). The synchronous API in this suite accepts a request and mediates among multiple language projects, such as LUIS Generally Available, Question Answering, Conversational Language Understanding, and then calls the best candidate service to handle the request. At last, it returns a response with the candidate service's response as a payload.\n\n In some cases, this API needs to forward requests and responses between the caller and an upstream service. The asynchronous APIs in this suite enable tasks like Conversation Summarization and Conversational PII detection. </summary>
+    /// <summary> The ConversationAnalysis service client. </summary>
     public partial class ConversationAnalysisClient
     {
         private const string AuthorizationHeader = "Ocp-Apim-Subscription-Key";
@@ -71,7 +71,7 @@ namespace Azure.AI.Language.Conversations
         }
 
         /// <summary> Analyzes the input conversation utterance. </summary>
-        /// <param name="analyzeConversationInput"> The input for the analyze conversations operation. </param>
+        /// <param name="analyzeConversationInput"> The <see cref="AnalyzeConversationInput"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyzeConversationInput"/> is null. </exception>
         /// <include file="Docs/ConversationAnalysisClient.xml" path="doc/members/member[@name='AnalyzeConversationAsync(AnalyzeConversationInput,CancellationToken)']/*" />
@@ -86,7 +86,7 @@ namespace Azure.AI.Language.Conversations
         }
 
         /// <summary> Analyzes the input conversation utterance. </summary>
-        /// <param name="analyzeConversationInput"> The input for the analyze conversations operation. </param>
+        /// <param name="analyzeConversationInput"> The <see cref="AnalyzeConversationInput"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyzeConversationInput"/> is null. </exception>
         /// <include file="Docs/ConversationAnalysisClient.xml" path="doc/members/member[@name='AnalyzeConversation(AnalyzeConversationInput,CancellationToken)']/*" />
@@ -179,8 +179,8 @@ namespace Azure.AI.Language.Conversations
         }
 
         /// <summary> Get analysis status and results. </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> Get the status of an analysis job. A job can consist of one or more tasks. After all tasks succeed, the job transitions to the succeeded state and results are available for each task. </remarks>
         /// <include file="Docs/ConversationAnalysisClient.xml" path="doc/members/member[@name='GetAnalyzeConversationJobStatusAsync(Guid,bool?,CancellationToken)']/*" />
@@ -192,8 +192,8 @@ namespace Azure.AI.Language.Conversations
         }
 
         /// <summary> Get analysis status and results. </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks> Get the status of an analysis job. A job can consist of one or more tasks. After all tasks succeed, the job transitions to the succeeded state and results are available for each task. </remarks>
         /// <include file="Docs/ConversationAnalysisClient.xml" path="doc/members/member[@name='GetAnalyzeConversationJobStatus(Guid,bool?,CancellationToken)']/*" />
@@ -219,8 +219,8 @@ namespace Azure.AI.Language.Conversations
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -256,8 +256,8 @@ namespace Azure.AI.Language.Conversations
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="jobId"> job ID. </param>
-        /// <param name="showStatistics"> (Optional) if set to true, response will contain request and document level statistics. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="showStatistics"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -280,7 +280,7 @@ namespace Azure.AI.Language.Conversations
 
         /// <summary> Analyzes the input conversation utterance. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="analyzeConversationOperationInput"> The input for the analyze conversations operation. </param>
+        /// <param name="analyzeConversationOperationInput"> The <see cref="AnalyzeConversationOperationInput"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyzeConversationOperationInput"/> is null. </exception>
         /// <include file="Docs/ConversationAnalysisClient.xml" path="doc/members/member[@name='AnalyzeConversationSubmitOperationAsync(WaitUntil,AnalyzeConversationOperationInput,CancellationToken)']/*" />
@@ -295,7 +295,7 @@ namespace Azure.AI.Language.Conversations
 
         /// <summary> Analyzes the input conversation utterance. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="analyzeConversationOperationInput"> The input for the analyze conversations operation. </param>
+        /// <param name="analyzeConversationOperationInput"> The <see cref="AnalyzeConversationOperationInput"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyzeConversationOperationInput"/> is null. </exception>
         /// <include file="Docs/ConversationAnalysisClient.xml" path="doc/members/member[@name='AnalyzeConversationSubmitOperation(WaitUntil,AnalyzeConversationOperationInput,CancellationToken)']/*" />
@@ -400,7 +400,7 @@ namespace Azure.AI.Language.Conversations
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="jobId"> The job ID to cancel. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
@@ -433,7 +433,7 @@ namespace Azure.AI.Language.Conversations
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="jobId"> The job ID to cancel. </param>
+        /// <param name="jobId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>

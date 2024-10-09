@@ -52,8 +52,8 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns the status for a specific document. </summary>
-        /// <param name="id"> Format - uuid.  The batch id. </param>
-        /// <param name="documentId"> Format - uuid.  The document id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="documentId"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Returns the translation status for a specific document based on the request Id
@@ -67,8 +67,8 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns the status for a specific document. </summary>
-        /// <param name="id"> Format - uuid.  The batch id. </param>
-        /// <param name="documentId"> Format - uuid.  The document id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="documentId"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Returns the translation status for a specific document based on the request Id
@@ -96,8 +96,8 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The batch id. </param>
-        /// <param name="documentId"> Format - uuid.  The document id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="documentId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -132,8 +132,8 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The batch id. </param>
-        /// <param name="documentId"> Format - uuid.  The document id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="documentId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -154,7 +154,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns the status for a document translation request. </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Returns the status for a document translation request.
@@ -170,7 +170,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns the status for a document translation request. </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Returns the status for a document translation request.
@@ -200,7 +200,7 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -235,7 +235,7 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -256,7 +256,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Cancel a currently processing or queued translation. </summary>
-        /// <param name="id"> Format - uuid.  The operation-id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Cancel a currently processing or queued translation.
@@ -276,7 +276,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Cancel a currently processing or queued translation. </summary>
-        /// <param name="id"> Format - uuid.  The operation-id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Cancel a currently processing or queued translation.
@@ -310,7 +310,7 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The operation-id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -345,7 +345,7 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The operation-id. </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -366,7 +366,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns a list of supported document formats. </summary>
-        /// <param name="type"> the type of format like document or glossary. </param>
+        /// <param name="type"> The <see cref="FileFormatType"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// The list of supported formats supported by the Document Translation
@@ -382,7 +382,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns a list of supported document formats. </summary>
-        /// <param name="type"> the type of format like document or glossary. </param>
+        /// <param name="type"> The <see cref="FileFormatType"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// The list of supported formats supported by the Document Translation
@@ -412,7 +412,7 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="type"> the type of format like document or glossary . Allowed values: "document" | "glossary". </param>
+        /// <param name="type"> The <see cref="string"/> to use. Allowed values: "document" | "glossary". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -447,7 +447,7 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="type"> the type of format like document or glossary . Allowed values: "document" | "glossary". </param>
+        /// <param name="type"> The <see cref="string"/> to use. Allowed values: "document" | "glossary". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -468,51 +468,15 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns the status for all documents in a batch document translation request. </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
-        /// <param name="maxCount">
-        /// top indicates the total number of records the user wants to be returned across
-        /// all pages.
-        ///
-        /// Clients MAY use top and skip query parameters to
-        /// specify a number of results to return and an offset into the collection.
-        /// When
-        /// both top and skip are given by a client, the server SHOULD first apply skip
-        /// and then top on the collection.
-        ///
-        /// Note: If the server can't honor
-        /// top and/or skip, the server MUST return an error to the client informing
-        /// about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="skip">
-        /// skip indicates the number of records to skip from the list of records held by
-        /// the server based on the sorting method specified.  By default, we sort by
-        /// descending start time.
-        ///
-        /// Clients MAY use top and skip query
-        /// parameters to specify a number of results to return and an offset into the
-        /// collection.
-        /// When both top and skip are given by a client, the server SHOULD
-        /// first apply skip and then top on the collection.
-        ///
-        /// Note: If the
-        /// server can't honor top and/or skip, the server MUST return an error to the
-        /// client informing about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="maxpagesize">
-        /// maxpagesize is the maximum items returned in a page.  If more items are
-        /// requested via top (or top is not specified and there are more items to be
-        /// returned), @nextLink will contain the link to the next page.
-        ///
-        ///
-        /// Clients MAY request server-driven paging with a specific page size by
-        /// specifying a maxpagesize preference. The server SHOULD honor this preference
-        /// if the specified page size is smaller than the server's default page size.
-        /// </param>
-        /// <param name="ids"> Ids to use in filtering. </param>
-        /// <param name="statuses"> Statuses to use in filtering. </param>
-        /// <param name="createdDateTimeUtcStart"> the start datetime to get items after. </param>
-        /// <param name="createdDateTimeUtcEnd"> the end datetime to get items before. </param>
-        /// <param name="orderby"> the sorting query for the collection (ex: 'CreatedDateTimeUtc asc','CreatedDateTimeUtc desc'). </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="ids"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="Guid"/> to use. </param>
+        /// <param name="statuses"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="createdDateTimeUtcStart"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="createdDateTimeUtcEnd"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="orderby"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Returns the status for all documents in a batch document translation request.
@@ -571,51 +535,15 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Returns the status for all documents in a batch document translation request. </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
-        /// <param name="maxCount">
-        /// top indicates the total number of records the user wants to be returned across
-        /// all pages.
-        ///
-        /// Clients MAY use top and skip query parameters to
-        /// specify a number of results to return and an offset into the collection.
-        /// When
-        /// both top and skip are given by a client, the server SHOULD first apply skip
-        /// and then top on the collection.
-        ///
-        /// Note: If the server can't honor
-        /// top and/or skip, the server MUST return an error to the client informing
-        /// about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="skip">
-        /// skip indicates the number of records to skip from the list of records held by
-        /// the server based on the sorting method specified.  By default, we sort by
-        /// descending start time.
-        ///
-        /// Clients MAY use top and skip query
-        /// parameters to specify a number of results to return and an offset into the
-        /// collection.
-        /// When both top and skip are given by a client, the server SHOULD
-        /// first apply skip and then top on the collection.
-        ///
-        /// Note: If the
-        /// server can't honor top and/or skip, the server MUST return an error to the
-        /// client informing about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="maxpagesize">
-        /// maxpagesize is the maximum items returned in a page.  If more items are
-        /// requested via top (or top is not specified and there are more items to be
-        /// returned), @nextLink will contain the link to the next page.
-        ///
-        ///
-        /// Clients MAY request server-driven paging with a specific page size by
-        /// specifying a maxpagesize preference. The server SHOULD honor this preference
-        /// if the specified page size is smaller than the server's default page size.
-        /// </param>
-        /// <param name="ids"> Ids to use in filtering. </param>
-        /// <param name="statuses"> Statuses to use in filtering. </param>
-        /// <param name="createdDateTimeUtcStart"> the start datetime to get items after. </param>
-        /// <param name="createdDateTimeUtcEnd"> the end datetime to get items before. </param>
-        /// <param name="orderby"> the sorting query for the collection (ex: 'CreatedDateTimeUtc asc','CreatedDateTimeUtc desc'). </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="ids"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="Guid"/> to use. </param>
+        /// <param name="statuses"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="createdDateTimeUtcStart"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="createdDateTimeUtcEnd"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="orderby"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// Returns the status for all documents in a batch document translation request.
@@ -688,51 +616,15 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
-        /// <param name="maxCount">
-        /// top indicates the total number of records the user wants to be returned across
-        /// all pages.
-        ///
-        /// Clients MAY use top and skip query parameters to
-        /// specify a number of results to return and an offset into the collection.
-        /// When
-        /// both top and skip are given by a client, the server SHOULD first apply skip
-        /// and then top on the collection.
-        ///
-        /// Note: If the server can't honor
-        /// top and/or skip, the server MUST return an error to the client informing
-        /// about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="skip">
-        /// skip indicates the number of records to skip from the list of records held by
-        /// the server based on the sorting method specified.  By default, we sort by
-        /// descending start time.
-        ///
-        /// Clients MAY use top and skip query
-        /// parameters to specify a number of results to return and an offset into the
-        /// collection.
-        /// When both top and skip are given by a client, the server SHOULD
-        /// first apply skip and then top on the collection.
-        ///
-        /// Note: If the
-        /// server can't honor top and/or skip, the server MUST return an error to the
-        /// client informing about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="maxpagesize">
-        /// maxpagesize is the maximum items returned in a page.  If more items are
-        /// requested via top (or top is not specified and there are more items to be
-        /// returned), @nextLink will contain the link to the next page.
-        ///
-        ///
-        /// Clients MAY request server-driven paging with a specific page size by
-        /// specifying a maxpagesize preference. The server SHOULD honor this preference
-        /// if the specified page size is smaller than the server's default page size.
-        /// </param>
-        /// <param name="ids"> Ids to use in filtering. </param>
-        /// <param name="statuses"> Statuses to use in filtering. </param>
-        /// <param name="createdDateTimeUtcStart"> the start datetime to get items after. </param>
-        /// <param name="createdDateTimeUtcEnd"> the end datetime to get items before. </param>
-        /// <param name="orderby"> the sorting query for the collection (ex: 'CreatedDateTimeUtc asc','CreatedDateTimeUtc desc'). </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="ids"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="Guid"/> to use. </param>
+        /// <param name="statuses"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="createdDateTimeUtcStart"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="createdDateTimeUtcEnd"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="orderby"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -758,51 +650,15 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Format - uuid.  The operation id. </param>
-        /// <param name="maxCount">
-        /// top indicates the total number of records the user wants to be returned across
-        /// all pages.
-        ///
-        /// Clients MAY use top and skip query parameters to
-        /// specify a number of results to return and an offset into the collection.
-        /// When
-        /// both top and skip are given by a client, the server SHOULD first apply skip
-        /// and then top on the collection.
-        ///
-        /// Note: If the server can't honor
-        /// top and/or skip, the server MUST return an error to the client informing
-        /// about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="skip">
-        /// skip indicates the number of records to skip from the list of records held by
-        /// the server based on the sorting method specified.  By default, we sort by
-        /// descending start time.
-        ///
-        /// Clients MAY use top and skip query
-        /// parameters to specify a number of results to return and an offset into the
-        /// collection.
-        /// When both top and skip are given by a client, the server SHOULD
-        /// first apply skip and then top on the collection.
-        ///
-        /// Note: If the
-        /// server can't honor top and/or skip, the server MUST return an error to the
-        /// client informing about it instead of just ignoring the query options.
-        /// </param>
-        /// <param name="maxpagesize">
-        /// maxpagesize is the maximum items returned in a page.  If more items are
-        /// requested via top (or top is not specified and there are more items to be
-        /// returned), @nextLink will contain the link to the next page.
-        ///
-        ///
-        /// Clients MAY request server-driven paging with a specific page size by
-        /// specifying a maxpagesize preference. The server SHOULD honor this preference
-        /// if the specified page size is smaller than the server's default page size.
-        /// </param>
-        /// <param name="ids"> Ids to use in filtering. </param>
-        /// <param name="statuses"> Statuses to use in filtering. </param>
-        /// <param name="createdDateTimeUtcStart"> the start datetime to get items after. </param>
-        /// <param name="createdDateTimeUtcEnd"> the end datetime to get items before. </param>
-        /// <param name="orderby"> the sorting query for the collection (ex: 'CreatedDateTimeUtc asc','CreatedDateTimeUtc desc'). </param>
+        /// <param name="id"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxCount"> The <see cref="int"/>? to use. </param>
+        /// <param name="skip"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
+        /// <param name="ids"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="Guid"/> to use. </param>
+        /// <param name="statuses"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="createdDateTimeUtcStart"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="createdDateTimeUtcEnd"> The <see cref="DateTimeOffset"/>? to use. </param>
+        /// <param name="orderby"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -815,7 +671,7 @@ namespace Azure.AI.Translation.Document
 
         /// <summary> Submit a document translation request to the Document Translation service. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="startTranslationDetails"> Translation job submission batch request. </param>
+        /// <param name="startTranslationDetails"> The <see cref="StartTranslationDetails"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="startTranslationDetails"/> is null. </exception>
         /// <remarks>
@@ -850,7 +706,7 @@ namespace Azure.AI.Translation.Document
 
         /// <summary> Submit a document translation request to the Document Translation service. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="startTranslationDetails"> Translation job submission batch request. </param>
+        /// <param name="startTranslationDetails"> The <see cref="StartTranslationDetails"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="startTranslationDetails"/> is null. </exception>
         /// <remarks>

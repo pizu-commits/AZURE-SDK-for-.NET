@@ -10,11 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// A word object consisting of a contiguous sequence of characters.  For non-space
-    /// delimited languages, such as Chinese, Japanese, and Korean, each character is
-    /// represented as its own word.
-    /// </summary>
+    /// <summary> The DocumentWord. </summary>
     public partial class DocumentWord
     {
         /// <summary>
@@ -50,9 +46,9 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentWord"/>. </summary>
-        /// <param name="content"> Text content of the word. </param>
-        /// <param name="span"> Location of the word in the reading order concatenated content. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the word. </param>
+        /// <param name="content"></param>
+        /// <param name="span"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> or <paramref name="span"/> is null. </exception>
         internal DocumentWord(string content, DocumentSpan span, float confidence)
         {
@@ -66,15 +62,10 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentWord"/>. </summary>
-        /// <param name="content"> Text content of the word. </param>
-        /// <param name="polygon">
-        /// Bounding polygon of the word, with coordinates specified relative to the
-        /// top-left of the page. The numbers represent the x, y values of the polygon
-        /// vertices, clockwise from the left (-180 degrees inclusive) relative to the
-        /// element orientation.
-        /// </param>
-        /// <param name="span"> Location of the word in the reading order concatenated content. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the word. </param>
+        /// <param name="content"></param>
+        /// <param name="polygon"></param>
+        /// <param name="span"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentWord(string content, IReadOnlyList<float> polygon, DocumentSpan span, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,18 +81,13 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Text content of the word. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary>
-        /// Bounding polygon of the word, with coordinates specified relative to the
-        /// top-left of the page. The numbers represent the x, y values of the polygon
-        /// vertices, clockwise from the left (-180 degrees inclusive) relative to the
-        /// element orientation.
-        /// </summary>
+        /// <summary> Gets the polygon. </summary>
         public IReadOnlyList<float> Polygon { get; }
-        /// <summary> Location of the word in the reading order concatenated content. </summary>
+        /// <summary> Gets the span. </summary>
         public DocumentSpan Span { get; }
-        /// <summary> Confidence of correctly extracting the word. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Conversations.Models
 {
     /// <summary>
-    /// This is the parameter set of either the Orchestration project itself or one of the target services.
+    /// The AnalysisConfig.
     /// Please note <see cref="AnalysisConfig"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ConversationConfig"/>, <see cref="LuisConfig"/> and <see cref="QuestionAnsweringConfig"/>.
     /// </summary>
@@ -55,8 +55,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalysisConfig"/>. </summary>
-        /// <param name="targetProjectKind"> The type of a target service. </param>
-        /// <param name="apiVersion"> The API version to use when call a specific target service. </param>
+        /// <param name="targetProjectKind"></param>
+        /// <param name="apiVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalysisConfig(TargetProjectKind targetProjectKind, string apiVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,9 +65,9 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The type of a target service. </summary>
+        /// <summary> Gets or sets the target project kind. </summary>
         internal TargetProjectKind TargetProjectKind { get; set; }
-        /// <summary> The API version to use when call a specific target service. </summary>
+        /// <summary> Gets or sets the api version. </summary>
         public string ApiVersion { get; set; }
     }
 }

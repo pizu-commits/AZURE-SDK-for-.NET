@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Use custom models to ease the process of sentiment analysis from documents like product reviews. </summary>
+    /// <summary> The CustomSentimentAnalysisOperationAction. </summary>
     public partial class CustomSentimentAnalysisOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="CustomSentimentAnalysisOperationAction"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomSentimentAnalysisOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> Custom Sentiment Analysis task parameters. </param>
+        /// <param name="actionContent"></param>
         internal CustomSentimentAnalysisOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, CustomSentimentAnalysisActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
         }
 
-        /// <summary> Custom Sentiment Analysis task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public CustomSentimentAnalysisActionContent ActionContent { get; set; }
     }
 }

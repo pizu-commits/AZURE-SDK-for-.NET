@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.SignalRService.ClientConnectionDisconnected event. </summary>
+    /// <summary> The SignalRServiceClientConnectionDisconnectedEventData. </summary>
     public partial class SignalRServiceClientConnectionDisconnectedEventData
     {
         /// <summary>
@@ -46,18 +46,18 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SignalRServiceClientConnectionDisconnectedEventData"/>. </summary>
-        /// <param name="timestamp"> The time at which the event occurred. </param>
+        /// <param name="timestamp"></param>
         internal SignalRServiceClientConnectionDisconnectedEventData(DateTimeOffset timestamp)
         {
             Timestamp = timestamp;
         }
 
         /// <summary> Initializes a new instance of <see cref="SignalRServiceClientConnectionDisconnectedEventData"/>. </summary>
-        /// <param name="timestamp"> The time at which the event occurred. </param>
-        /// <param name="hubName"> The hub of connected client connection. </param>
-        /// <param name="connectionId"> The connection Id of connected client connection. </param>
-        /// <param name="userId"> The user Id of connected client connection. </param>
-        /// <param name="errorMessage"> The message of error that cause the client connection disconnected. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="hubName"></param>
+        /// <param name="connectionId"></param>
+        /// <param name="userId"></param>
+        /// <param name="errorMessage"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SignalRServiceClientConnectionDisconnectedEventData(DateTimeOffset timestamp, string hubName, string connectionId, string userId, string errorMessage, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,15 +74,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which the event occurred. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public DateTimeOffset Timestamp { get; }
-        /// <summary> The hub of connected client connection. </summary>
+        /// <summary> Gets the hub name. </summary>
         public string HubName { get; }
-        /// <summary> The connection Id of connected client connection. </summary>
+        /// <summary> Gets the connection id. </summary>
         public string ConnectionId { get; }
-        /// <summary> The user Id of connected client connection. </summary>
+        /// <summary> Gets the user id. </summary>
         public string UserId { get; }
-        /// <summary> The message of error that cause the client connection disconnected. </summary>
+        /// <summary> Gets the error message. </summary>
         public string ErrorMessage { get; }
     }
 }

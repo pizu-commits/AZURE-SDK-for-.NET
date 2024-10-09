@@ -7,12 +7,12 @@
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Describes if the entity is the subject of the text or if it describes someone else. </summary>
+    /// <summary> The HealthcareAssertionAssociation. </summary>
     public enum HealthcareAssertionAssociation
     {
-        /// <summary> Subject association. </summary>
+        /// <summary> subject. </summary>
         Subject,
-        /// <summary> Other association. </summary>
+        /// <summary> other. </summary>
         Other
     }
 }

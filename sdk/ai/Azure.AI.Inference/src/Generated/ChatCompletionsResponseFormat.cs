@@ -11,9 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Inference
 {
     /// <summary>
-    /// Represents the format that the model must output. Use this to enable JSON mode instead of the default text mode.
-    /// Note that to enable JSON mode, some AI models may also require you to instruct the model to produce JSON
-    /// via a system or user message.
+    /// The ChatCompletionsResponseFormat.
     /// Please note <see cref="ChatCompletionsResponseFormat"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="ChatCompletionsResponseFormatJSON"/> and <see cref="ChatCompletionsResponseFormatText"/>.
     /// </summary>
@@ -57,7 +55,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsResponseFormat"/>. </summary>
-        /// <param name="type"> The response format type to use for chat completions. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatCompletionsResponseFormat(string type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,7 +63,7 @@ namespace Azure.AI.Inference
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The response format type to use for chat completions. </summary>
+        /// <summary> Gets or sets the type. </summary>
         internal string Type { get; set; }
     }
 }

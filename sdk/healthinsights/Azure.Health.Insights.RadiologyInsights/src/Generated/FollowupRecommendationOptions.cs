@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Follow-up recommendation options. </summary>
+    /// <summary> The FollowupRecommendationOptions. </summary>
     public partial class FollowupRecommendationOptions
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FollowupRecommendationOptions"/>. </summary>
-        /// <param name="includeRecommendationsWithNoSpecifiedModality"> Include/Exclude follow-up recommendations without a specific radiology procedure. Default is false. </param>
-        /// <param name="includeRecommendationsInReferences"> Include/Exclude follow-up recommendations in references to a guideline or article. Default is false. </param>
-        /// <param name="provideFocusedSentenceEvidence"> If this is true, provide one or more sentences as evidence for the recommendation, next to the token evidence. The start and end positions of these sentences will be put in an extension with url 'modality_sentences'. Default is false. </param>
+        /// <param name="includeRecommendationsWithNoSpecifiedModality"></param>
+        /// <param name="includeRecommendationsInReferences"></param>
+        /// <param name="provideFocusedSentenceEvidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FollowupRecommendationOptions(bool? includeRecommendationsWithNoSpecifiedModality, bool? includeRecommendationsInReferences, bool? provideFocusedSentenceEvidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Include/Exclude follow-up recommendations without a specific radiology procedure. Default is false. </summary>
+        /// <summary> Gets or sets the include recommendations with no specified modality. </summary>
         public bool? IncludeRecommendationsWithNoSpecifiedModality { get; set; }
-        /// <summary> Include/Exclude follow-up recommendations in references to a guideline or article. Default is false. </summary>
+        /// <summary> Gets or sets the include recommendations in references. </summary>
         public bool? IncludeRecommendationsInReferences { get; set; }
-        /// <summary> If this is true, provide one or more sentences as evidence for the recommendation, next to the token evidence. The start and end positions of these sentences will be put in an extension with url 'modality_sentences'. Default is false. </summary>
+        /// <summary> Gets or sets the provide focused sentence evidence. </summary>
         public bool? ProvideFocusedSentenceEvidence { get; set; }
     }
 }

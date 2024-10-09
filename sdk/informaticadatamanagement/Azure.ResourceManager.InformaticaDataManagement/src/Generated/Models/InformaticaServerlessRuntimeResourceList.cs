@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> A list of serverless runtime resources as fetched using the informatica APIs. </summary>
+    /// <summary> The InformaticaServerlessRuntimeResourceList. </summary>
     public partial class InformaticaServerlessRuntimeResourceList
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InformaticaServerlessRuntimeResourceList"/>. </summary>
-        /// <param name="informaticaRuntimeResources"> List of runtime resources for the fetch all API. </param>
+        /// <param name="informaticaRuntimeResources"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="informaticaRuntimeResources"/> is null. </exception>
         internal InformaticaServerlessRuntimeResourceList(IEnumerable<InformaticaRuntimeResourceFetchMetadata> informaticaRuntimeResources)
         {
@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaServerlessRuntimeResourceList"/>. </summary>
-        /// <param name="informaticaRuntimeResources"> List of runtime resources for the fetch all API. </param>
+        /// <param name="informaticaRuntimeResources"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaServerlessRuntimeResourceList(IReadOnlyList<InformaticaRuntimeResourceFetchMetadata> informaticaRuntimeResources, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         {
         }
 
-        /// <summary> List of runtime resources for the fetch all API. </summary>
+        /// <summary> Gets the informatica runtime resources. </summary>
         public IReadOnlyList<InformaticaRuntimeResourceFetchMetadata> InformaticaRuntimeResources { get; }
     }
 }

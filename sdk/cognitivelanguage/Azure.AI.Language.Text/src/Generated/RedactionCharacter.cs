@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Optional parameter to use a Custom Character to be used for redaction in PII responses. Default character will be * as before. We allow specific ascii characters for redaction. </summary>
+    /// <summary> The redactionCharacter. </summary>
     public readonly partial struct RedactionCharacter : IEquatable<RedactionCharacter>
     {
         private readonly string _value;
@@ -37,33 +37,33 @@ namespace Azure.AI.Language.Text
         private const string UnderscoreValue = "_";
         private const string TildeValue = "~";
 
-        /// <summary> Exclamation point character. </summary>
+        /// <summary> !. </summary>
         public static RedactionCharacter ExclamationPoint { get; } = new RedactionCharacter(ExclamationPointValue);
-        /// <summary> Number sign character. </summary>
+        /// <summary> #. </summary>
         public static RedactionCharacter NumberSign { get; } = new RedactionCharacter(NumberSignValue);
-        /// <summary> Dollar sign character. </summary>
+        /// <summary> $. </summary>
         public static RedactionCharacter Dollar { get; } = new RedactionCharacter(DollarValue);
-        /// <summary> Percent sign character. </summary>
+        /// <summary> %. </summary>
         public static RedactionCharacter PerCent { get; } = new RedactionCharacter(PerCentValue);
-        /// <summary> Ampersand character. </summary>
+        /// <summary> &amp;. </summary>
         public static RedactionCharacter Ampersand { get; } = new RedactionCharacter(AmpersandValue);
-        /// <summary> Asterisk character. </summary>
+        /// <summary> *. </summary>
         public static RedactionCharacter Asterisk { get; } = new RedactionCharacter(AsteriskValue);
-        /// <summary> Plus sign character. </summary>
+        /// <summary> +. </summary>
         public static RedactionCharacter Plus { get; } = new RedactionCharacter(PlusValue);
-        /// <summary> Minus sign character. </summary>
+        /// <summary> -. </summary>
         public static RedactionCharacter Minus { get; } = new RedactionCharacter(MinusValue);
-        /// <summary> Equals sign character. </summary>
+        /// <summary> =. </summary>
         public static RedactionCharacter EqualsValue { get; } = new RedactionCharacter(EqualsValueValue);
-        /// <summary> Question mark character. </summary>
+        /// <summary> ?. </summary>
         public static RedactionCharacter QuestionMark { get; } = new RedactionCharacter(QuestionMarkValue);
-        /// <summary> At sign character. </summary>
+        /// <summary> @. </summary>
         public static RedactionCharacter AtSign { get; } = new RedactionCharacter(AtSignValue);
-        /// <summary> Caret character. </summary>
+        /// <summary> ^. </summary>
         public static RedactionCharacter Caret { get; } = new RedactionCharacter(CaretValue);
-        /// <summary> Underscore character. </summary>
+        /// <summary> _. </summary>
         public static RedactionCharacter Underscore { get; } = new RedactionCharacter(UnderscoreValue);
-        /// <summary> Tilde character. </summary>
+        /// <summary> ~. </summary>
         public static RedactionCharacter Tilde { get; } = new RedactionCharacter(TildeValue);
         /// <summary> Determines if two <see cref="RedactionCharacter"/> values are the same. </summary>
         public static bool operator ==(RedactionCharacter left, RedactionCharacter right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> An error encountered by a Compute Node. </summary>
+    /// <summary> The BatchNodeError. </summary>
     public partial class BatchNodeError
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchNodeError"/>. </summary>
-        /// <param name="code"> An identifier for the Compute Node error. Codes are invariant and are intended to be consumed programmatically. </param>
-        /// <param name="message"> A message describing the Compute Node error, intended to be suitable for display in a user interface. </param>
-        /// <param name="errorDetails"> The list of additional error details related to the Compute Node error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="errorDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchNodeError(string code, string message, IReadOnlyList<NameValuePair> errorDetails, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> An identifier for the Compute Node error. Codes are invariant and are intended to be consumed programmatically. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A message describing the Compute Node error, intended to be suitable for display in a user interface. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> The list of additional error details related to the Compute Node error. </summary>
+        /// <summary> Gets the error details. </summary>
         public IReadOnlyList<NameValuePair> ErrorDetails { get; }
     }
 }

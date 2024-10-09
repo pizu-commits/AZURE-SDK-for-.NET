@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Address field value. </summary>
+    /// <summary> The AddressValue. </summary>
     public partial class AddressValue
     {
         /// <summary>
@@ -51,23 +51,20 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AddressValue"/>. </summary>
-        /// <param name="houseNumber"> House or building number. </param>
-        /// <param name="poBox"> Post office box number. </param>
-        /// <param name="road"> Street name. </param>
-        /// <param name="city"> Name of city, town, village, etc. </param>
-        /// <param name="state"> First-level administrative division. </param>
-        /// <param name="postalCode"> Postal code used for mail sorting. </param>
-        /// <param name="countryRegion"> Country/region. </param>
-        /// <param name="streetAddress"> Street-level address, excluding city, state, countryRegion, and postalCode. </param>
-        /// <param name="unit"> Apartment or office number. </param>
-        /// <param name="cityDistrict">
-        /// Districts or boroughs within a city, such as Brooklyn in New York City or City
-        /// of Westminster in London.
-        /// </param>
-        /// <param name="stateDistrict"> Second-level administrative division used in certain locales. </param>
-        /// <param name="suburb"> Unofficial neighborhood name, like Chinatown. </param>
-        /// <param name="house"> Build name, such as World Trade Center. </param>
-        /// <param name="level"> Floor number, such as 3F. </param>
+        /// <param name="houseNumber"></param>
+        /// <param name="poBox"></param>
+        /// <param name="road"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="postalCode"></param>
+        /// <param name="countryRegion"></param>
+        /// <param name="streetAddress"></param>
+        /// <param name="unit"></param>
+        /// <param name="cityDistrict"></param>
+        /// <param name="stateDistrict"></param>
+        /// <param name="suburb"></param>
+        /// <param name="house"></param>
+        /// <param name="level"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AddressValue(string houseNumber, string poBox, string road, string city, string state, string postalCode, string countryRegion, string streetAddress, string unit, string cityDistrict, string stateDistrict, string suburb, string house, string level, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -88,36 +85,33 @@ namespace Azure.AI.DocumentIntelligence
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> House or building number. </summary>
+        /// <summary> Gets the house number. </summary>
         public string HouseNumber { get; }
-        /// <summary> Post office box number. </summary>
+        /// <summary> Gets the po box. </summary>
         public string PoBox { get; }
-        /// <summary> Street name. </summary>
+        /// <summary> Gets the road. </summary>
         public string Road { get; }
-        /// <summary> Name of city, town, village, etc. </summary>
+        /// <summary> Gets the city. </summary>
         public string City { get; }
-        /// <summary> First-level administrative division. </summary>
+        /// <summary> Gets the state. </summary>
         public string State { get; }
-        /// <summary> Postal code used for mail sorting. </summary>
+        /// <summary> Gets the postal code. </summary>
         public string PostalCode { get; }
-        /// <summary> Country/region. </summary>
+        /// <summary> Gets the country region. </summary>
         public string CountryRegion { get; }
-        /// <summary> Street-level address, excluding city, state, countryRegion, and postalCode. </summary>
+        /// <summary> Gets the street address. </summary>
         public string StreetAddress { get; }
-        /// <summary> Apartment or office number. </summary>
+        /// <summary> Gets the unit. </summary>
         public string Unit { get; }
-        /// <summary>
-        /// Districts or boroughs within a city, such as Brooklyn in New York City or City
-        /// of Westminster in London.
-        /// </summary>
+        /// <summary> Gets the city district. </summary>
         public string CityDistrict { get; }
-        /// <summary> Second-level administrative division used in certain locales. </summary>
+        /// <summary> Gets the state district. </summary>
         public string StateDistrict { get; }
-        /// <summary> Unofficial neighborhood name, like Chinatown. </summary>
+        /// <summary> Gets the suburb. </summary>
         public string Suburb { get; }
-        /// <summary> Build name, such as World Trade Center. </summary>
+        /// <summary> Gets the house. </summary>
         public string House { get; }
-        /// <summary> Floor number, such as 3F. </summary>
+        /// <summary> Gets the level. </summary>
         public string Level { get; }
     }
 }

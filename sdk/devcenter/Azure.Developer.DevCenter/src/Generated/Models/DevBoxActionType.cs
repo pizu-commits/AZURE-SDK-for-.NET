@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The type of action which will take place on a Dev Box. </summary>
+    /// <summary> The DevBoxActionType. </summary>
     public readonly partial struct DevBoxActionType : IEquatable<DevBoxActionType>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Developer.DevCenter.Models
 
         private const string StopValue = "Stop";
 
-        /// <summary> The action will stop the Dev Box. </summary>
+        /// <summary> Stop. </summary>
         public static DevBoxActionType Stop { get; } = new DevBoxActionType(StopValue);
         /// <summary> Determines if two <see cref="DevBoxActionType"/> values are the same. </summary>
         public static bool operator ==(DevBoxActionType left, DevBoxActionType right) => left.Equals(right);

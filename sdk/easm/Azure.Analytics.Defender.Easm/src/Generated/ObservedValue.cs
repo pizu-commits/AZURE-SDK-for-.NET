@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> Template model for observed values. </summary>
+    /// <summary> The ObservedValue. </summary>
     public partial class ObservedValue
     {
         /// <summary>

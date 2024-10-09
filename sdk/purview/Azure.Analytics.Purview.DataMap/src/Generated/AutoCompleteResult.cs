@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The result of the autocomplete request. </summary>
+    /// <summary> The AutoCompleteResult. </summary>
     public partial class AutoCompleteResult
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AutoCompleteResult"/>. </summary>
-        /// <param name="value"> The result value. </param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AutoCompleteResult(IReadOnlyList<AutoCompleteResultValue> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The result value. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<AutoCompleteResultValue> Value { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Kind of entity components supported. </summary>
+    /// <summary> The entityComponentKind. </summary>
     internal readonly partial struct EntityComponentKind : IEquatable<EntityComponentKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Language.Text
         private const string LearnedComponentValue = "LearnedComponent";
         private const string ListComponentValue = "ListComponent";
 
-        /// <summary> Prebuilt component. </summary>
+        /// <summary> PrebuiltComponent. </summary>
         public static EntityComponentKind PrebuiltComponent { get; } = new EntityComponentKind(PrebuiltComponentValue);
-        /// <summary> Learned component. </summary>
+        /// <summary> LearnedComponent. </summary>
         public static EntityComponentKind LearnedComponent { get; } = new EntityComponentKind(LearnedComponentValue);
-        /// <summary> List component. </summary>
+        /// <summary> ListComponent. </summary>
         public static EntityComponentKind ListComponent { get; } = new EntityComponentKind(ListComponentValue);
         /// <summary> Determines if two <see cref="EntityComponentKind"/> values are the same. </summary>
         public static bool operator ==(EntityComponentKind left, EntityComponentKind right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Detailed information about the status if any. </summary>
+    /// <summary> The AcsEmailDeliveryReportStatusDetails. </summary>
     public partial class AcsEmailDeliveryReportStatusDetails
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsEmailDeliveryReportStatusDetails"/>. </summary>
-        /// <param name="statusMessage"> Detailed status message. </param>
+        /// <param name="statusMessage"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsEmailDeliveryReportStatusDetails(string statusMessage, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Detailed status message. </summary>
+        /// <summary> Gets the status message. </summary>
         public string StatusMessage { get; }
     }
 }

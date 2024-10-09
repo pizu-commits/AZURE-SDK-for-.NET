@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> Location of a document. </summary>
+    /// <summary> The DocumentLocation. </summary>
     public partial class DocumentLocation
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Health.Deidentification
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentLocation"/>. </summary>
-        /// <param name="path"> Path of document in storage. </param>
+        /// <param name="path"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="path"/> is null. </exception>
         internal DocumentLocation(string path)
         {
@@ -56,8 +56,8 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentLocation"/>. </summary>
-        /// <param name="path"> Path of document in storage. </param>
-        /// <param name="etag"> The entity tag for this resource. </param>
+        /// <param name="path"></param>
+        /// <param name="etag"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentLocation(string path, ETag etag, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Health.Deidentification
         {
         }
 
-        /// <summary> Path of document in storage. </summary>
+        /// <summary> Gets the path. </summary>
         public string Path { get; }
-        /// <summary> The entity tag for this resource. </summary>
+        /// <summary> Gets the etag. </summary>
         public ETag Etag { get; }
     }
 }

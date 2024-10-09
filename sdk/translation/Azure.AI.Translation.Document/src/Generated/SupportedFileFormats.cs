@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Document
 {
-    /// <summary> List of supported file formats. </summary>
+    /// <summary> The SupportedFileFormats. </summary>
     public partial class SupportedFileFormats
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.Translation.Document
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SupportedFileFormats"/>. </summary>
-        /// <param name="value"> list of objects. </param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal SupportedFileFormats(IEnumerable<DocumentTranslationFileFormat> value)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="SupportedFileFormats"/>. </summary>
-        /// <param name="value"> list of objects. </param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SupportedFileFormats(IReadOnlyList<DocumentTranslationFileFormat> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.Translation.Document
         {
         }
 
-        /// <summary> list of objects. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<DocumentTranslationFileFormat> Value { get; }
     }
 }

@@ -39,8 +39,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Publish a single Cloud Event to a namespace topic. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="event"> Single Cloud Event being published. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="event"> The <see cref="CloudEventInternal"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="event"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -56,8 +56,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Publish a single Cloud Event to a namespace topic. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="event"> Single Cloud Event being published. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="event"> The <see cref="CloudEventInternal"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="event"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -87,7 +87,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="content"/> is null. </exception>
@@ -128,7 +128,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="content"/> is null. </exception>
@@ -155,8 +155,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Publish a batch of Cloud Events to a namespace topic. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="events"> Array of Cloud Events being published. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="events"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="CloudEventInternal"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="events"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -172,8 +172,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Publish a batch of Cloud Events to a namespace topic. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="events"> Array of Cloud Events being published. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="events"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="CloudEventInternal"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="events"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -203,7 +203,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="content"/> is null. </exception>
@@ -244,7 +244,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="content"/> is null. </exception>

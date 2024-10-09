@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The response returned by a Conversation project. </summary>
+    /// <summary> The ConversationResult. </summary>
     public partial class ConversationResult
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ConversationResult"/>. </summary>
-        /// <param name="query"> The same query given in request. </param>
+        /// <param name="query"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="query"/> is null. </exception>
         internal ConversationResult(string query)
         {
@@ -56,9 +56,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationResult"/>. </summary>
-        /// <param name="query"> The same query given in request. </param>
-        /// <param name="detectedLanguage"> The detected language from the query in BCP 47 language representation. </param>
-        /// <param name="prediction"> The predicted result for the query. </param>
+        /// <param name="query"></param>
+        /// <param name="detectedLanguage"></param>
+        /// <param name="prediction"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationResult(string query, string detectedLanguage, ConversationPrediction prediction, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> The same query given in request. </summary>
+        /// <summary> Gets the query. </summary>
         public string Query { get; }
-        /// <summary> The detected language from the query in BCP 47 language representation. </summary>
+        /// <summary> Gets the detected language. </summary>
         public string DetectedLanguage { get; }
-        /// <summary> The predicted result for the query. </summary>
+        /// <summary> Gets the prediction. </summary>
         public ConversationPrediction Prediction { get; }
     }
 }

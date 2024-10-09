@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Information used to connect to an NFS file system. </summary>
+    /// <summary> The NfsMountConfiguration. </summary>
     public partial class NfsMountConfiguration
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NfsMountConfiguration"/>. </summary>
-        /// <param name="source"> The URI of the file system to mount. </param>
-        /// <param name="relativeMountPath"> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
+        /// <param name="source"></param>
+        /// <param name="relativeMountPath"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="source"/> or <paramref name="relativeMountPath"/> is null. </exception>
         public NfsMountConfiguration(string source, string relativeMountPath)
         {
@@ -59,9 +59,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="NfsMountConfiguration"/>. </summary>
-        /// <param name="source"> The URI of the file system to mount. </param>
-        /// <param name="relativeMountPath"> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </param>
-        /// <param name="mountOptions"> Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. </param>
+        /// <param name="source"></param>
+        /// <param name="relativeMountPath"></param>
+        /// <param name="mountOptions"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NfsMountConfiguration(string source, string relativeMountPath, string mountOptions, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The URI of the file system to mount. </summary>
+        /// <summary> Gets or sets the source. </summary>
         public string Source { get; set; }
-        /// <summary> The relative path on the compute node where the file system will be mounted. All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable. </summary>
+        /// <summary> Gets or sets the relative mount path. </summary>
         public string RelativeMountPath { get; set; }
-        /// <summary> Additional command line options to pass to the mount command. These are 'net use' options in Windows and 'mount' options in Linux. </summary>
+        /// <summary> Gets or sets the mount options. </summary>
         public string MountOptions { get; set; }
     }
 }

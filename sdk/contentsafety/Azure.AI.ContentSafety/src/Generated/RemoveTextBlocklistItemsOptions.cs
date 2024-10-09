@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The request to remove blocklistItems from a text blocklist. </summary>
+    /// <summary> The RemoveTextBlocklistItemsOptions. </summary>
     public partial class RemoveTextBlocklistItemsOptions
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RemoveTextBlocklistItemsOptions"/>. </summary>
-        /// <param name="blocklistItemIds"> Array of blocklistItemIds to remove. </param>
+        /// <param name="blocklistItemIds"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="blocklistItemIds"/> is null. </exception>
         public RemoveTextBlocklistItemsOptions(IEnumerable<string> blocklistItemIds)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="RemoveTextBlocklistItemsOptions"/>. </summary>
-        /// <param name="blocklistItemIds"> Array of blocklistItemIds to remove. </param>
+        /// <param name="blocklistItemIds"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RemoveTextBlocklistItemsOptions(IList<string> blocklistItemIds, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> Array of blocklistItemIds to remove. </summary>
+        /// <summary> Gets the blocklist item ids. </summary>
         public IList<string> BlocklistItemIds { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Properties describing any presence of blur within the image. </summary>
+    /// <summary> The BlurProperties. </summary>
     public partial class BlurProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BlurProperties"/>. </summary>
-        /// <param name="blurLevel"> An enum value indicating level of blurriness. </param>
-        /// <param name="value"> A number indicating level of blurriness ranging from 0 to 1. </param>
+        /// <param name="blurLevel"></param>
+        /// <param name="value"></param>
         internal BlurProperties(BlurLevel blurLevel, float value)
         {
             BlurLevel = blurLevel;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="BlurProperties"/>. </summary>
-        /// <param name="blurLevel"> An enum value indicating level of blurriness. </param>
-        /// <param name="value"> A number indicating level of blurriness ranging from 0 to 1. </param>
+        /// <param name="blurLevel"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BlurProperties(BlurLevel blurLevel, float value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> An enum value indicating level of blurriness. </summary>
+        /// <summary> Gets the blur level. </summary>
         public BlurLevel BlurLevel { get; }
-        /// <summary> A number indicating level of blurriness ranging from 0 to 1. </summary>
+        /// <summary> Gets the value. </summary>
         public float Value { get; }
     }
 }

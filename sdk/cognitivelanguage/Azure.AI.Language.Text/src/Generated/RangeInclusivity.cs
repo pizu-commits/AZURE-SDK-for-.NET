@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The range inclusiveness of this property property. </summary>
+    /// <summary> The RangeInclusivity. </summary>
     public readonly partial struct RangeInclusivity : IEquatable<RangeInclusivity>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.Language.Text
         private const string RightInclusiveValue = "RightInclusive";
         private const string LeftRightInclusiveValue = "LeftRightInclusive";
 
-        /// <summary> No inclusivity. </summary>
+        /// <summary> NoneInclusive. </summary>
         public static RangeInclusivity NoneInclusive { get; } = new RangeInclusivity(NoneInclusiveValue);
-        /// <summary> Left side inclusive. </summary>
+        /// <summary> LeftInclusive. </summary>
         public static RangeInclusivity LeftInclusive { get; } = new RangeInclusivity(LeftInclusiveValue);
-        /// <summary> Right side inclusive. </summary>
+        /// <summary> RightInclusive. </summary>
         public static RangeInclusivity RightInclusive { get; } = new RangeInclusivity(RightInclusiveValue);
-        /// <summary> Both sides inclusive. </summary>
+        /// <summary> LeftRightInclusive. </summary>
         public static RangeInclusivity LeftRightInclusive { get; } = new RangeInclusivity(LeftRightInclusiveValue);
         /// <summary> Determines if two <see cref="RangeInclusivity"/> values are the same. </summary>
         public static bool operator ==(RangeInclusivity left, RangeInclusivity right) => left.Equals(right);

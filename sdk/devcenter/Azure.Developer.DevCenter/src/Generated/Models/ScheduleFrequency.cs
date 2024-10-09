@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The frequency of task execution. </summary>
+    /// <summary> The ScheduleFrequency. </summary>
     public readonly partial struct ScheduleFrequency : IEquatable<ScheduleFrequency>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.Developer.DevCenter.Models
 
         private const string DailyValue = "Daily";
 
-        /// <summary> The scheduled task will run every day. </summary>
+        /// <summary> Daily. </summary>
         public static ScheduleFrequency Daily { get; } = new ScheduleFrequency(DailyValue);
         /// <summary> Determines if two <see cref="ScheduleFrequency"/> values are the same. </summary>
         public static bool operator ==(ScheduleFrequency left, ScheduleFrequency right) => left.Equals(right);

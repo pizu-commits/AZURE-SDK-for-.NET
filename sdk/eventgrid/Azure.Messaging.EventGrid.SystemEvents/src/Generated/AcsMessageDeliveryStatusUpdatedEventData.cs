@@ -10,14 +10,14 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.AdvancedMessageDeliveryStatusUpdated event. </summary>
+    /// <summary> The AcsMessageDeliveryStatusUpdatedEventData. </summary>
     public partial class AcsMessageDeliveryStatusUpdatedEventData : AcsMessageEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsMessageDeliveryStatusUpdatedEventData"/>. </summary>
-        /// <param name="receivedTimestamp"> The time message was received. </param>
-        /// <param name="error"> The channel event error. </param>
-        /// <param name="status"> The updated message status. </param>
-        /// <param name="channelKind"> The updated message channel type. </param>
+        /// <param name="receivedTimestamp"></param>
+        /// <param name="error"></param>
+        /// <param name="status"></param>
+        /// <param name="channelKind"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="error"/> is null. </exception>
         internal AcsMessageDeliveryStatusUpdatedEventData(DateTimeOffset receivedTimestamp, AcsMessageChannelEventError error, AcsMessageDeliveryStatus status, AcsMessageChannelKind channelKind) : base(receivedTimestamp, error)
         {
@@ -28,14 +28,14 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageDeliveryStatusUpdatedEventData"/>. </summary>
-        /// <param name="from"> The message sender. </param>
-        /// <param name="to"> The message recipient. </param>
-        /// <param name="receivedTimestamp"> The time message was received. </param>
-        /// <param name="error"> The channel event error. </param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <param name="receivedTimestamp"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="messageId"> The message id. </param>
-        /// <param name="status"> The updated message status. </param>
-        /// <param name="channelKind"> The updated message channel type. </param>
+        /// <param name="messageId"></param>
+        /// <param name="status"></param>
+        /// <param name="channelKind"></param>
         internal AcsMessageDeliveryStatusUpdatedEventData(string @from, string to, DateTimeOffset receivedTimestamp, AcsMessageChannelEventError error, IDictionary<string, BinaryData> serializedAdditionalRawData, string messageId, AcsMessageDeliveryStatus status, AcsMessageChannelKind channelKind) : base(@from, to, receivedTimestamp, error, serializedAdditionalRawData)
         {
             MessageId = messageId;
@@ -48,11 +48,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The message id. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
-        /// <summary> The updated message status. </summary>
+        /// <summary> Gets the status. </summary>
         public AcsMessageDeliveryStatus Status { get; }
-        /// <summary> The updated message channel type. </summary>
+        /// <summary> Gets the channel kind. </summary>
         public AcsMessageChannelKind ChannelKind { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Indicates the provisioning state of the Dev Box. </summary>
+    /// <summary> The DevBoxProvisioningState. </summary>
     public readonly partial struct DevBoxProvisioningState : IEquatable<DevBoxProvisioningState>
     {
         private readonly string _value;
@@ -35,29 +35,29 @@ namespace Azure.Developer.DevCenter.Models
         private const string InGracePeriodValue = "InGracePeriod";
         private const string NotProvisionedValue = "NotProvisioned";
 
-        /// <summary> Dev Box was successfully provisioned. </summary>
+        /// <summary> Succeeded. </summary>
         public static DevBoxProvisioningState Succeeded { get; } = new DevBoxProvisioningState(SucceededValue);
-        /// <summary> Dev Box failed to provision. </summary>
+        /// <summary> Failed. </summary>
         public static DevBoxProvisioningState Failed { get; } = new DevBoxProvisioningState(FailedValue);
-        /// <summary> Dev Box provision was canceled. </summary>
+        /// <summary> Canceled. </summary>
         public static DevBoxProvisioningState Canceled { get; } = new DevBoxProvisioningState(CanceledValue);
-        /// <summary> Dev Box is being created. </summary>
+        /// <summary> Creating. </summary>
         public static DevBoxProvisioningState Creating { get; } = new DevBoxProvisioningState(CreatingValue);
-        /// <summary> Dev Box is being deleted. </summary>
+        /// <summary> Deleting. </summary>
         public static DevBoxProvisioningState Deleting { get; } = new DevBoxProvisioningState(DeletingValue);
-        /// <summary> Dev Box is updating. </summary>
+        /// <summary> Updating. </summary>
         public static DevBoxProvisioningState Updating { get; } = new DevBoxProvisioningState(UpdatingValue);
-        /// <summary> Dev Box is starting. </summary>
+        /// <summary> Starting. </summary>
         public static DevBoxProvisioningState Starting { get; } = new DevBoxProvisioningState(StartingValue);
-        /// <summary> Dev Box is stopping. </summary>
+        /// <summary> Stopping. </summary>
         public static DevBoxProvisioningState Stopping { get; } = new DevBoxProvisioningState(StoppingValue);
-        /// <summary> Dev Box is provisioning. </summary>
+        /// <summary> Provisioning. </summary>
         public static DevBoxProvisioningState Provisioning { get; } = new DevBoxProvisioningState(ProvisioningValue);
-        /// <summary> Dev Box was provisioned with warning. </summary>
+        /// <summary> ProvisionedWithWarning. </summary>
         public static DevBoxProvisioningState ProvisionedWithWarning { get; } = new DevBoxProvisioningState(ProvisionedWithWarningValue);
-        /// <summary> Dev Box is in grace period. </summary>
+        /// <summary> InGracePeriod. </summary>
         public static DevBoxProvisioningState InGracePeriod { get; } = new DevBoxProvisioningState(InGracePeriodValue);
-        /// <summary> Dev Box is not provisioned. </summary>
+        /// <summary> NotProvisioned. </summary>
         public static DevBoxProvisioningState NotProvisioned { get; } = new DevBoxProvisioningState(NotProvisionedValue);
         /// <summary> Determines if two <see cref="DevBoxProvisioningState"/> values are the same. </summary>
         public static bool operator ==(DevBoxProvisioningState left, DevBoxProvisioningState right) => left.Equals(right);

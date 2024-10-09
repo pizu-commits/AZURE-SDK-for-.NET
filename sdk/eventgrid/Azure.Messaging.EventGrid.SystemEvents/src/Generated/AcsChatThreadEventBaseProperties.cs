@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of common properties of all chat thread events. </summary>
+    /// <summary> The AcsChatThreadEventBaseProperties. </summary>
     public partial class AcsChatThreadEventBaseProperties : AcsChatEventBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadEventBaseProperties"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="createTime"> The original creation time of the thread. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="createTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="recipientCommunicationIdentifier"/> is null. </exception>
         internal AcsChatThreadEventBaseProperties(CommunicationIdentifierModel recipientCommunicationIdentifier, DateTimeOffset createTime) : base(recipientCommunicationIdentifier)
         {
@@ -25,12 +25,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadEventBaseProperties"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="createTime"> The original creation time of the thread. </param>
-        /// <param name="version"> The version of the thread. </param>
+        /// <param name="createTime"></param>
+        /// <param name="version"></param>
         internal AcsChatThreadEventBaseProperties(CommunicationIdentifierModel recipientCommunicationIdentifier, string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, DateTimeOffset createTime, long? version) : base(recipientCommunicationIdentifier, transactionId, threadId, serializedAdditionalRawData)
         {
             CreateTime = createTime;
@@ -42,9 +42,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The original creation time of the thread. </summary>
+        /// <summary> Gets the create time. </summary>
         public DateTimeOffset CreateTime { get; }
-        /// <summary> The version of the thread. </summary>
+        /// <summary> Gets the version. </summary>
         public long? Version { get; }
     }
 }

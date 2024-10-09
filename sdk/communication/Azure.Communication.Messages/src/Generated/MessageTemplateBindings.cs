@@ -12,7 +12,7 @@ using Azure.Communication.Messages.Models.Channels;
 namespace Azure.Communication.Messages
 {
     /// <summary>
-    /// The binding object to link values to the template specific locations
+    /// The MessageTemplateBindings.
     /// Please note <see cref="MessageTemplateBindings"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="WhatsAppMessageTemplateBindings"/>.
     /// </summary>
@@ -56,7 +56,7 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateBindings"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a template bindings type. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MessageTemplateBindings(MessageTemplateBindingsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,7 +64,7 @@ namespace Azure.Communication.Messages
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The type discriminator describing a template bindings type. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal MessageTemplateBindingsKind Kind { get; set; }
     }
 }

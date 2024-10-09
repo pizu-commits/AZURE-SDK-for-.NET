@@ -14,7 +14,7 @@ using Azure.Core.Pipeline;
 namespace Azure.Communication.ProgrammableConnectivity
 {
     // Data plane generated sub-client.
-    /// <summary> SIM Swap API provides the customer the ability to obtain information on any recent SIM pairing change related to the User's mobile account. </summary>
+    /// <summary> The SimSwap sub-client. </summary>
     public partial class SimSwap
     {
         private static readonly string[] AuthorizationScopes = new string[] { "https://management.azure.com//.default" };
@@ -39,7 +39,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="tokenCredential"> The token credential to copy. </param>
         /// <param name="endpoint"> An Azure Programmable Connectivity Endpoint providing access to Network APIs, for example https://{region}.apcgatewayapi.azure.com. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         internal SimSwap(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, TokenCredential tokenCredential, Uri endpoint, string apiVersion)
         {
             ClientDiagnostics = clientDiagnostics;
@@ -50,8 +50,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Provides timestamp of latest SIM swap. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="SimSwapRetrievalContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/SimSwap.xml" path="doc/members/member[@name='RetrieveAsync(string,SimSwapRetrievalContent,CancellationToken)']/*" />
@@ -67,8 +67,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Provides timestamp of latest SIM swap. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="SimSwapRetrievalContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/SimSwap.xml" path="doc/members/member[@name='Retrieve(string,SimSwapRetrievalContent,CancellationToken)']/*" />
@@ -98,7 +98,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>
@@ -139,7 +139,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>
@@ -166,8 +166,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Verifies if a SIM swap has been performed during a past period (defined in the request with 'maxAgeHours' attribute). Returns 'True' if a SIM swap has occured. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="SimSwapVerificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/SimSwap.xml" path="doc/members/member[@name='VerifyAsync(string,SimSwapVerificationContent,CancellationToken)']/*" />
@@ -183,8 +183,8 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Verifies if a SIM swap has been performed during a past period (defined in the request with 'maxAgeHours' attribute). Returns 'True' if a SIM swap has occured. </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="SimSwapVerificationContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/SimSwap.xml" path="doc/members/member[@name='Verify(string,SimSwapVerificationContent,CancellationToken)']/*" />
@@ -214,7 +214,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>
@@ -255,7 +255,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="apcGatewayId"> The identifier of the APC Gateway resource which should handle this request. </param>
+        /// <param name="apcGatewayId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="apcGatewayId"/> or <paramref name="content"/> is null. </exception>

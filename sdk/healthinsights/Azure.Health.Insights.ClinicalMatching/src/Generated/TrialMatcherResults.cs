@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> The inference results for the Trial Matcher request. </summary>
+    /// <summary> The TrialMatcherResults. </summary>
     public partial class TrialMatcherResults
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherResults"/>. </summary>
-        /// <param name="patients"> Results for the patients given in the request. </param>
-        /// <param name="modelVersion"> The version of the model used for inference, expressed as the model date. </param>
+        /// <param name="patients"></param>
+        /// <param name="modelVersion"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="patients"/> or <paramref name="modelVersion"/> is null. </exception>
         internal TrialMatcherResults(IEnumerable<TrialMatcherPatientResult> patients, string modelVersion)
         {
@@ -60,9 +60,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherResults"/>. </summary>
-        /// <param name="patients"> Results for the patients given in the request. </param>
-        /// <param name="modelVersion"> The version of the model used for inference, expressed as the model date. </param>
-        /// <param name="knowledgeGraphLastUpdateDate"> The date when the clinical trials knowledge graph was last updated. </param>
+        /// <param name="patients"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="knowledgeGraphLastUpdateDate"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TrialMatcherResults(IReadOnlyList<TrialMatcherPatientResult> patients, string modelVersion, DateTimeOffset? knowledgeGraphLastUpdateDate, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> Results for the patients given in the request. </summary>
+        /// <summary> Gets the patients. </summary>
         public IReadOnlyList<TrialMatcherPatientResult> Patients { get; }
-        /// <summary> The version of the model used for inference, expressed as the model date. </summary>
+        /// <summary> Gets the model version. </summary>
         public string ModelVersion { get; }
-        /// <summary> The date when the clinical trials knowledge graph was last updated. </summary>
+        /// <summary> Gets the knowledge graph last update date. </summary>
         public DateTimeOffset? KnowledgeGraphLastUpdateDate { get; }
     }
 }

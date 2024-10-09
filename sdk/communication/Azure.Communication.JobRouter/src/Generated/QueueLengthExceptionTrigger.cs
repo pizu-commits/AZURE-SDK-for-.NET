@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Trigger for an exception action on exceeding queue length. </summary>
+    /// <summary> The QueueLengthExceptionTrigger. </summary>
     public partial class QueueLengthExceptionTrigger : ExceptionTrigger
     {
         /// <summary> Initializes a new instance of <see cref="QueueLengthExceptionTrigger"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of ExceptionTrigger. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="threshold"> Threshold of number of jobs ahead in the queue to for this trigger to fire. </param>
+        /// <param name="threshold"></param>
         internal QueueLengthExceptionTrigger(ExceptionTriggerKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, int threshold) : base(kind, serializedAdditionalRawData)
         {
             Threshold = threshold;
@@ -27,7 +27,7 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Threshold of number of jobs ahead in the queue to for this trigger to fire. </summary>
+        /// <summary> Gets the threshold. </summary>
         public int Threshold { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for replacing properties on an Azure Batch Pool. </summary>
+    /// <summary> The BatchPoolReplaceContent. </summary>
     public partial class BatchPoolReplaceContent
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolReplaceContent"/>. </summary>
-        /// <param name="applicationPackageReferences"> The list of Application Packages to be installed on each Compute Node in the Pool. The list replaces any existing Application Package references on the Pool. Changes to Application Package references affect all new Compute Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Application Package references on any given Pool. If omitted, or if you specify an empty collection, any existing Application Packages references are removed from the Pool. A maximum of 10 references may be specified on a given Pool. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Pool as metadata. This list replaces any existing metadata configured on the Pool. If omitted, or if you specify an empty collection, any existing metadata is removed from the Pool. </param>
+        /// <param name="applicationPackageReferences"></param>
+        /// <param name="metadata"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="applicationPackageReferences"/> or <paramref name="metadata"/> is null. </exception>
         public BatchPoolReplaceContent(IEnumerable<BatchApplicationPackageReference> applicationPackageReferences, IEnumerable<MetadataItem> metadata)
         {
@@ -60,10 +60,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolReplaceContent"/>. </summary>
-        /// <param name="startTask"> A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. If this element is present, it overwrites any existing StartTask. If omitted, any existing StartTask is removed from the Pool. </param>
-        /// <param name="applicationPackageReferences"> The list of Application Packages to be installed on each Compute Node in the Pool. The list replaces any existing Application Package references on the Pool. Changes to Application Package references affect all new Compute Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Application Package references on any given Pool. If omitted, or if you specify an empty collection, any existing Application Packages references are removed from the Pool. A maximum of 10 references may be specified on a given Pool. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Pool as metadata. This list replaces any existing metadata configured on the Pool. If omitted, or if you specify an empty collection, any existing metadata is removed from the Pool. </param>
-        /// <param name="targetNodeCommunicationMode"> The desired node communication mode for the pool. This setting replaces any existing targetNodeCommunication setting on the Pool. If omitted, the existing setting is default. </param>
+        /// <param name="startTask"></param>
+        /// <param name="applicationPackageReferences"></param>
+        /// <param name="metadata"></param>
+        /// <param name="targetNodeCommunicationMode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPoolReplaceContent(BatchStartTask startTask, IList<BatchApplicationPackageReference> applicationPackageReferences, IList<MetadataItem> metadata, BatchNodeCommunicationMode? targetNodeCommunicationMode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,13 +79,13 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. If this element is present, it overwrites any existing StartTask. If omitted, any existing StartTask is removed from the Pool. </summary>
+        /// <summary> Gets or sets the start task. </summary>
         public BatchStartTask StartTask { get; set; }
-        /// <summary> The list of Application Packages to be installed on each Compute Node in the Pool. The list replaces any existing Application Package references on the Pool. Changes to Application Package references affect all new Compute Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. There is a maximum of 10 Application Package references on any given Pool. If omitted, or if you specify an empty collection, any existing Application Packages references are removed from the Pool. A maximum of 10 references may be specified on a given Pool. </summary>
+        /// <summary> Gets the application package references. </summary>
         public IList<BatchApplicationPackageReference> ApplicationPackageReferences { get; }
-        /// <summary> A list of name-value pairs associated with the Pool as metadata. This list replaces any existing metadata configured on the Pool. If omitted, or if you specify an empty collection, any existing metadata is removed from the Pool. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataItem> Metadata { get; }
-        /// <summary> The desired node communication mode for the pool. This setting replaces any existing targetNodeCommunication setting on the Pool. If omitted, the existing setting is default. </summary>
+        /// <summary> Gets or sets the target node communication mode. </summary>
         public BatchNodeCommunicationMode? TargetNodeCommunicationMode { get; set; }
     }
 }

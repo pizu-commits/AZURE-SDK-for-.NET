@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes the uri of a disk. </summary>
+    /// <summary> The ComputeFleetVirtualHardDisk. </summary>
     internal partial class ComputeFleetVirtualHardDisk
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVirtualHardDisk"/>. </summary>
-        /// <param name="uri"> Specifies the virtual hard disk's uri. </param>
+        /// <param name="uri"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVirtualHardDisk(Uri uri, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specifies the virtual hard disk's uri. </summary>
+        /// <summary> Gets or sets the uri. </summary>
         public Uri Uri { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Azure.AI.Inference
     internal partial class UnknownChatCompletionsResponseFormat : ChatCompletionsResponseFormat
     {
         /// <summary> Initializes a new instance of <see cref="UnknownChatCompletionsResponseFormat"/>. </summary>
-        /// <param name="type"> The response format type to use for chat completions. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownChatCompletionsResponseFormat(string type, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(type, serializedAdditionalRawData)
         {

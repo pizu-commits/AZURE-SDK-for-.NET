@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> A Dev Box. </summary>
+    /// <summary> The DevBox. </summary>
     public partial class DevBox
     {
         /// <summary>
@@ -47,32 +47,23 @@ namespace Azure.Developer.DevCenter.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DevBox"/>. </summary>
-        /// <param name="name"> Display name for the Dev Box. </param>
-        /// <param name="projectName"> Name of the project this Dev Box belongs to. </param>
-        /// <param name="poolName"> The name of the Dev Box pool this machine belongs to. </param>
-        /// <param name="hibernateSupport"> Indicates whether hibernate is enabled/disabled or unknown. </param>
-        /// <param name="provisioningState"> The current provisioning state of the Dev Box. </param>
-        /// <param name="actionState">
-        /// The current action state of the Dev Box. This is state is based on previous
-        /// action performed by user.
-        /// </param>
-        /// <param name="powerState"> The current power state of the Dev Box. </param>
-        /// <param name="uniqueId">
-        /// A unique identifier for the Dev Box. This is a GUID-formatted string (e.g.
-        /// 00000000-0000-0000-0000-000000000000).
-        /// </param>
-        /// <param name="error"> Provisioning or action error details. Populated only for error states. </param>
-        /// <param name="location">
-        /// Azure region where this Dev Box is located. This will be the same region as the
-        /// Virtual Network it is attached to.
-        /// </param>
-        /// <param name="osType"> The operating system type of this Dev Box. </param>
-        /// <param name="userId"> The AAD object id of the user this Dev Box is assigned to. </param>
-        /// <param name="hardwareProfile"> Information about the Dev Box's hardware resources. </param>
-        /// <param name="storageProfile"> Storage settings for this Dev Box. </param>
-        /// <param name="imageReference"> Information about the image used for this Dev Box. </param>
-        /// <param name="createdTime"> Creation time of this Dev Box. </param>
-        /// <param name="localAdministratorStatus"> Indicates whether the owner of the Dev Box is a local administrator. </param>
+        /// <param name="name"></param>
+        /// <param name="projectName"></param>
+        /// <param name="poolName"></param>
+        /// <param name="hibernateSupport"></param>
+        /// <param name="provisioningState"></param>
+        /// <param name="actionState"></param>
+        /// <param name="powerState"></param>
+        /// <param name="uniqueId"></param>
+        /// <param name="error"></param>
+        /// <param name="location"></param>
+        /// <param name="osType"></param>
+        /// <param name="userId"></param>
+        /// <param name="hardwareProfile"></param>
+        /// <param name="storageProfile"></param>
+        /// <param name="imageReference"></param>
+        /// <param name="createdTime"></param>
+        /// <param name="localAdministratorStatus"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevBox(string name, string projectName, string poolName, HibernateSupport? hibernateSupport, DevBoxProvisioningState? provisioningState, string actionState, PowerState? powerState, Guid? uniqueId, ResponseError error, AzureLocation? location, DevBoxOSType? osType, Guid? userId, DevBoxHardwareProfile hardwareProfile, DevBoxStorageProfile storageProfile, DevBoxImageReference imageReference, DateTimeOffset? createdTime, LocalAdministratorStatus? localAdministratorStatus, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -101,48 +92,39 @@ namespace Azure.Developer.DevCenter.Models
         {
         }
 
-        /// <summary> Display name for the Dev Box. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Name of the project this Dev Box belongs to. </summary>
+        /// <summary> Gets the project name. </summary>
         public string ProjectName { get; }
-        /// <summary> The name of the Dev Box pool this machine belongs to. </summary>
+        /// <summary> Gets or sets the pool name. </summary>
         public string PoolName { get; set; }
-        /// <summary> Indicates whether hibernate is enabled/disabled or unknown. </summary>
+        /// <summary> Gets the hibernate support. </summary>
         public HibernateSupport? HibernateSupport { get; }
-        /// <summary> The current provisioning state of the Dev Box. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public DevBoxProvisioningState? ProvisioningState { get; }
-        /// <summary>
-        /// The current action state of the Dev Box. This is state is based on previous
-        /// action performed by user.
-        /// </summary>
+        /// <summary> Gets the action state. </summary>
         public string ActionState { get; }
-        /// <summary> The current power state of the Dev Box. </summary>
+        /// <summary> Gets the power state. </summary>
         public PowerState? PowerState { get; }
-        /// <summary>
-        /// A unique identifier for the Dev Box. This is a GUID-formatted string (e.g.
-        /// 00000000-0000-0000-0000-000000000000).
-        /// </summary>
+        /// <summary> Gets the unique id. </summary>
         public Guid? UniqueId { get; }
-        /// <summary> Provisioning or action error details. Populated only for error states. </summary>
+        /// <summary> Gets the error. </summary>
         public ResponseError Error { get; }
-        /// <summary>
-        /// Azure region where this Dev Box is located. This will be the same region as the
-        /// Virtual Network it is attached to.
-        /// </summary>
+        /// <summary> Gets the location. </summary>
         public AzureLocation? Location { get; }
-        /// <summary> The operating system type of this Dev Box. </summary>
+        /// <summary> Gets the os type. </summary>
         public DevBoxOSType? OSType { get; }
-        /// <summary> The AAD object id of the user this Dev Box is assigned to. </summary>
+        /// <summary> Gets the user id. </summary>
         public Guid? UserId { get; }
-        /// <summary> Information about the Dev Box's hardware resources. </summary>
+        /// <summary> Gets the hardware profile. </summary>
         public DevBoxHardwareProfile HardwareProfile { get; }
-        /// <summary> Storage settings for this Dev Box. </summary>
+        /// <summary> Gets the storage profile. </summary>
         public DevBoxStorageProfile StorageProfile { get; }
-        /// <summary> Information about the image used for this Dev Box. </summary>
+        /// <summary> Gets the image reference. </summary>
         public DevBoxImageReference ImageReference { get; }
-        /// <summary> Creation time of this Dev Box. </summary>
+        /// <summary> Gets the created time. </summary>
         public DateTimeOffset? CreatedTime { get; }
-        /// <summary> Indicates whether the owner of the Dev Box is a local administrator. </summary>
+        /// <summary> Gets or sets the local administrator status. </summary>
         public LocalAdministratorStatus? LocalAdministratorStatus { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> An object representing the task definition for an Entities Recognition task. </summary>
+    /// <summary> The EntitiesOperationAction. </summary>
     public partial class EntitiesOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="EntitiesOperationAction"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntitiesOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> Task parameters. </param>
+        /// <param name="actionContent"></param>
         internal EntitiesOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, EntitiesActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
         }
 
-        /// <summary> Task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public EntitiesActionContent ActionContent { get; set; }
     }
 }

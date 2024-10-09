@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Details of the Compute Fleet. </summary>
+    /// <summary> The ComputeFleetProperties. </summary>
     public partial class ComputeFleetProperties
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetProperties"/>. </summary>
-        /// <param name="vmSizesProfile"> List of VM sizes supported for Compute Fleet. </param>
-        /// <param name="computeProfile"> Compute Profile to use for running user's workloads. </param>
+        /// <param name="vmSizesProfile"></param>
+        /// <param name="computeProfile"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="vmSizesProfile"/> or <paramref name="computeProfile"/> is null. </exception>
         public ComputeFleetProperties(IEnumerable<ComputeFleetVmSizeProfile> vmSizesProfile, ComputeFleetComputeProfile computeProfile)
         {
@@ -60,13 +60,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetProperties"/>. </summary>
-        /// <param name="provisioningState"> The status of the last operation. </param>
-        /// <param name="spotPriorityProfile"> Configuration Options for Spot instances in Compute Fleet. </param>
-        /// <param name="regularPriorityProfile"> Configuration Options for Regular instances in Compute Fleet. </param>
-        /// <param name="vmSizesProfile"> List of VM sizes supported for Compute Fleet. </param>
-        /// <param name="computeProfile"> Compute Profile to use for running user's workloads. </param>
-        /// <param name="createdOn"> Specifies the time at which the Compute Fleet is created. </param>
-        /// <param name="uniqueId"> Specifies the ID which uniquely identifies a Compute Fleet. </param>
+        /// <param name="provisioningState"></param>
+        /// <param name="spotPriorityProfile"></param>
+        /// <param name="regularPriorityProfile"></param>
+        /// <param name="vmSizesProfile"></param>
+        /// <param name="computeProfile"></param>
+        /// <param name="createdOn"></param>
+        /// <param name="uniqueId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetProperties(ComputeFleetProvisioningState? provisioningState, SpotPriorityProfile spotPriorityProfile, RegularPriorityProfile regularPriorityProfile, IList<ComputeFleetVmSizeProfile> vmSizesProfile, ComputeFleetComputeProfile computeProfile, DateTimeOffset? createdOn, string uniqueId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,19 +85,19 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> The status of the last operation. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public ComputeFleetProvisioningState? ProvisioningState { get; }
-        /// <summary> Configuration Options for Spot instances in Compute Fleet. </summary>
+        /// <summary> Gets or sets the spot priority profile. </summary>
         public SpotPriorityProfile SpotPriorityProfile { get; set; }
-        /// <summary> Configuration Options for Regular instances in Compute Fleet. </summary>
+        /// <summary> Gets or sets the regular priority profile. </summary>
         public RegularPriorityProfile RegularPriorityProfile { get; set; }
-        /// <summary> List of VM sizes supported for Compute Fleet. </summary>
+        /// <summary> Gets the vm sizes profile. </summary>
         public IList<ComputeFleetVmSizeProfile> VmSizesProfile { get; }
-        /// <summary> Compute Profile to use for running user's workloads. </summary>
+        /// <summary> Gets or sets the compute profile. </summary>
         public ComputeFleetComputeProfile ComputeProfile { get; set; }
-        /// <summary> Specifies the time at which the Compute Fleet is created. </summary>
+        /// <summary> Gets the created on. </summary>
         public DateTimeOffset? CreatedOn { get; }
-        /// <summary> Specifies the ID which uniquely identifies a Compute Fleet. </summary>
+        /// <summary> Gets the unique id. </summary>
         public string UniqueId { get; }
     }
 }

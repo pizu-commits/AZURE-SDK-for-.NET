@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents the Weight ) entity Metadata model. </summary>
+    /// <summary> The WeightMetadata. </summary>
     public partial class WeightMetadata : BaseMetadata
     {
         /// <summary> Initializes a new instance of <see cref="WeightMetadata"/>. </summary>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> Unit of measure for weight. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         internal WeightMetadata(double value, WeightUnit unit)
         {
             MetadataKind = MetadataKind.WeightMetadata;
@@ -24,10 +24,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="WeightMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> The numeric value that the extracted text denotes. </param>
-        /// <param name="unit"> Unit of measure for weight. </param>
+        /// <param name="value"></param>
+        /// <param name="unit"></param>
         internal WeightMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData, double value, WeightUnit unit) : base(metadataKind, serializedAdditionalRawData)
         {
             Value = value;
@@ -39,9 +39,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The numeric value that the extracted text denotes. </summary>
+        /// <summary> Gets the value. </summary>
         public double Value { get; }
-        /// <summary> Unit of measure for weight. </summary>
+        /// <summary> Gets the unit. </summary>
         public WeightUnit Unit { get; }
     }
 }

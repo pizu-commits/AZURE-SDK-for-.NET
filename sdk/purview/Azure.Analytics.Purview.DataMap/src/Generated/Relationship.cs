@@ -47,7 +47,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a new relationship between entities. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasRelationship"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Relationship.xml" path="doc/members/member[@name='CreateAsync(AtlasRelationship,CancellationToken)']/*" />
@@ -62,7 +62,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a new relationship between entities. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasRelationship"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Relationship.xml" path="doc/members/member[@name='Create(AtlasRelationship,CancellationToken)']/*" />
@@ -155,7 +155,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update an existing relationship between entities. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasRelationship"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Relationship.xml" path="doc/members/member[@name='UpdateAsync(AtlasRelationship,CancellationToken)']/*" />
@@ -170,7 +170,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update an existing relationship between entities. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasRelationship"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Relationship.xml" path="doc/members/member[@name='Update(AtlasRelationship,CancellationToken)']/*" />
@@ -263,8 +263,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get relationship information between entities by its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the relationship. </param>
-        /// <param name="extendedInfo"> Limits whether includes extended information. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="extendedInfo"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -279,8 +279,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get relationship information between entities by its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the relationship. </param>
-        /// <param name="extendedInfo"> Limits whether includes extended information. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="extendedInfo"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -309,8 +309,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the relationship. </param>
-        /// <param name="extendedInfo"> Limits whether includes extended information. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="extendedInfo"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -350,8 +350,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the relationship. </param>
-        /// <param name="extendedInfo"> Limits whether includes extended information. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="extendedInfo"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -387,7 +387,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the relationship. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -423,7 +423,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the relationship. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>

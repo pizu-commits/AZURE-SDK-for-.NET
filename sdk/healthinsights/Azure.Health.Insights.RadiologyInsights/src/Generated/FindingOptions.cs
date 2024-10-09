@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Finding options. </summary>
+    /// <summary> The FindingOptions. </summary>
     public partial class FindingOptions
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FindingOptions"/>. </summary>
-        /// <param name="provideFocusedSentenceEvidence"> If this is true, provide the sentence that contains the first token of the finding's clinical indicator (i.e. the medical problem), if there is one. This sentence is provided as an extension with url 'ci_sentence', next to the token evidence. Default is false. </param>
+        /// <param name="provideFocusedSentenceEvidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FindingOptions(bool? provideFocusedSentenceEvidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> If this is true, provide the sentence that contains the first token of the finding's clinical indicator (i.e. the medical problem), if there is one. This sentence is provided as an extension with url 'ci_sentence', next to the token evidence. Default is false. </summary>
+        /// <summary> Gets or sets the provide focused sentence evidence. </summary>
         public bool? ProvideFocusedSentenceEvidence { get; set; }
     }
 }

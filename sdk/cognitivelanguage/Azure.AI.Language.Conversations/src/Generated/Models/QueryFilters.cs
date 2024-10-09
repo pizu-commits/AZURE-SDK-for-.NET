@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> filters over knowledge base. </summary>
+    /// <summary> The QueryFilters. </summary>
     public partial class QueryFilters
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="QueryFilters"/>. </summary>
-        /// <param name="metadataFilter"> filters over knowledge base. </param>
-        /// <param name="sourceFilter"> filters over knowledge base. </param>
-        /// <param name="logicalOperation"> Logical operation used to join metadata filter with source filter. </param>
+        /// <param name="metadataFilter"></param>
+        /// <param name="sourceFilter"></param>
+        /// <param name="logicalOperation"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal QueryFilters(MetadataFilter metadataFilter, IList<string> sourceFilter, LogicalOperationKind? logicalOperation, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> filters over knowledge base. </summary>
+        /// <summary> Gets or sets the metadata filter. </summary>
         public MetadataFilter MetadataFilter { get; set; }
-        /// <summary> filters over knowledge base. </summary>
+        /// <summary> Gets the source filter. </summary>
         public IList<string> SourceFilter { get; }
-        /// <summary> Logical operation used to join metadata filter with source filter. </summary>
+        /// <summary> Gets or sets the logical operation. </summary>
         public LogicalOperationKind? LogicalOperation { get; set; }
     }
 }

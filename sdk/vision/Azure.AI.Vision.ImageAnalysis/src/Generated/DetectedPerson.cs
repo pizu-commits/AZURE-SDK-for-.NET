@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents a person detected in an image. </summary>
+    /// <summary> The DetectedPerson. </summary>
     public partial class DetectedPerson
     {
         /// <summary>
@@ -51,11 +51,8 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="DetectedPerson"/>. </summary>
-        /// <param name="boundingBox"> A rectangular boundary where the person was detected. </param>
-        /// <param name="confidence">
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this detection was accurate.
-        /// Higher values indicating higher confidence.
-        /// </param>
+        /// <param name="boundingBox"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DetectedPerson(ImageBoundingBox boundingBox, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,12 +61,9 @@ namespace Azure.AI.Vision.ImageAnalysis
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A rectangular boundary where the person was detected. </summary>
+        /// <summary> Gets the bounding box. </summary>
         public ImageBoundingBox BoundingBox { get; }
-        /// <summary>
-        /// A score, in the range of 0 to 1 (inclusive), representing the confidence that this detection was accurate.
-        /// Higher values indicating higher confidence.
-        /// </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

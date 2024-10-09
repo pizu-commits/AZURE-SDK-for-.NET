@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Details of the product offering. </summary>
+    /// <summary> The InformaticaOfferDetailsUpdate. </summary>
     public partial class InformaticaOfferDetailsUpdate
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaOfferDetailsUpdate"/>. </summary>
-        /// <param name="publisherId"> Id of the product publisher. </param>
-        /// <param name="offerId"> Id of the product offering. </param>
-        /// <param name="planId"> Id of the product offer plan. </param>
-        /// <param name="planName"> Name of the product offer plan. </param>
-        /// <param name="termUnit"> Offer plan term unit. </param>
-        /// <param name="termId"> Offer plan term id. </param>
+        /// <param name="publisherId"></param>
+        /// <param name="offerId"></param>
+        /// <param name="planId"></param>
+        /// <param name="planName"></param>
+        /// <param name="termUnit"></param>
+        /// <param name="termId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaOfferDetailsUpdate(string publisherId, string offerId, string planId, string planName, string termUnit, string termId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Id of the product publisher. </summary>
+        /// <summary> Gets or sets the publisher id. </summary>
         public string PublisherId { get; set; }
-        /// <summary> Id of the product offering. </summary>
+        /// <summary> Gets or sets the offer id. </summary>
         public string OfferId { get; set; }
-        /// <summary> Id of the product offer plan. </summary>
+        /// <summary> Gets or sets the plan id. </summary>
         public string PlanId { get; set; }
-        /// <summary> Name of the product offer plan. </summary>
+        /// <summary> Gets or sets the plan name. </summary>
         public string PlanName { get; set; }
-        /// <summary> Offer plan term unit. </summary>
+        /// <summary> Gets or sets the term unit. </summary>
         public string TermUnit { get; set; }
-        /// <summary> Offer plan term id. </summary>
+        /// <summary> Gets or sets the term id. </summary>
         public string TermId { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Audit entry for a request in session. </summary>
+    /// <summary> The LivenessSessionAuditEntry. </summary>
     public partial class LivenessSessionAuditEntry
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LivenessSessionAuditEntry"/>. </summary>
-        /// <param name="id"> The unique id to refer to this audit request. Use this id with the 'start' query parameter to continue on to the next page of audit results. </param>
-        /// <param name="sessionId"> The unique sessionId of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding session DELETE operation. </param>
-        /// <param name="requestId"> The unique requestId that is returned by the service to the client in the 'apim-request-id' header. </param>
-        /// <param name="clientRequestId"> The unique clientRequestId that is sent by the client in the 'client-request-id' header. </param>
-        /// <param name="receivedDateTime"> The UTC DateTime that the request was received. </param>
-        /// <param name="request"> The request of this entry. </param>
-        /// <param name="response"> The response of this entry. </param>
-        /// <param name="digest"> The server calculated digest for this request. If the client reported digest differs from the server calculated digest, then the message integrity between the client and service has been compromised and the result should not be trusted. For more information, see how to guides on how to leverage this value to secure your end-to-end solution. </param>
+        /// <param name="id"></param>
+        /// <param name="sessionId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="clientRequestId"></param>
+        /// <param name="receivedDateTime"></param>
+        /// <param name="request"></param>
+        /// <param name="response"></param>
+        /// <param name="digest"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/>, <paramref name="requestId"/>, <paramref name="clientRequestId"/>, <paramref name="request"/>, <paramref name="response"/> or <paramref name="digest"/> is null. </exception>
         internal LivenessSessionAuditEntry(long id, string sessionId, string requestId, string clientRequestId, DateTimeOffset receivedDateTime, AuditRequestInfo request, AuditLivenessResponseInfo response, string digest)
         {
@@ -75,14 +75,14 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="LivenessSessionAuditEntry"/>. </summary>
-        /// <param name="id"> The unique id to refer to this audit request. Use this id with the 'start' query parameter to continue on to the next page of audit results. </param>
-        /// <param name="sessionId"> The unique sessionId of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding session DELETE operation. </param>
-        /// <param name="requestId"> The unique requestId that is returned by the service to the client in the 'apim-request-id' header. </param>
-        /// <param name="clientRequestId"> The unique clientRequestId that is sent by the client in the 'client-request-id' header. </param>
-        /// <param name="receivedDateTime"> The UTC DateTime that the request was received. </param>
-        /// <param name="request"> The request of this entry. </param>
-        /// <param name="response"> The response of this entry. </param>
-        /// <param name="digest"> The server calculated digest for this request. If the client reported digest differs from the server calculated digest, then the message integrity between the client and service has been compromised and the result should not be trusted. For more information, see how to guides on how to leverage this value to secure your end-to-end solution. </param>
+        /// <param name="id"></param>
+        /// <param name="sessionId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="clientRequestId"></param>
+        /// <param name="receivedDateTime"></param>
+        /// <param name="request"></param>
+        /// <param name="response"></param>
+        /// <param name="digest"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LivenessSessionAuditEntry(long id, string sessionId, string requestId, string clientRequestId, DateTimeOffset receivedDateTime, AuditRequestInfo request, AuditLivenessResponseInfo response, string digest, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -102,21 +102,21 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The unique id to refer to this audit request. Use this id with the 'start' query parameter to continue on to the next page of audit results. </summary>
+        /// <summary> Gets the id. </summary>
         public long Id { get; }
-        /// <summary> The unique sessionId of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding session DELETE operation. </summary>
+        /// <summary> Gets the session id. </summary>
         public string SessionId { get; }
-        /// <summary> The unique requestId that is returned by the service to the client in the 'apim-request-id' header. </summary>
+        /// <summary> Gets the request id. </summary>
         public string RequestId { get; }
-        /// <summary> The unique clientRequestId that is sent by the client in the 'client-request-id' header. </summary>
+        /// <summary> Gets the client request id. </summary>
         public string ClientRequestId { get; }
-        /// <summary> The UTC DateTime that the request was received. </summary>
+        /// <summary> Gets the received date time. </summary>
         public DateTimeOffset ReceivedDateTime { get; }
-        /// <summary> The request of this entry. </summary>
+        /// <summary> Gets the request. </summary>
         public AuditRequestInfo Request { get; }
-        /// <summary> The response of this entry. </summary>
+        /// <summary> Gets the response. </summary>
         public AuditLivenessResponseInfo Response { get; }
-        /// <summary> The server calculated digest for this request. If the client reported digest differs from the server calculated digest, then the message integrity between the client and service has been compromised and the result should not be trusted. For more information, see how to guides on how to leverage this value to secure your end-to-end solution. </summary>
+        /// <summary> Gets the digest. </summary>
         public string Digest { get; }
     }
 }

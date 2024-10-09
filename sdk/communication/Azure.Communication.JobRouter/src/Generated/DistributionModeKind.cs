@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Discriminators for supported distribution mode types. </summary>
+    /// <summary> The DistributionModeKind. </summary>
     public readonly partial struct DistributionModeKind : IEquatable<DistributionModeKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Communication.JobRouter
         private const string LongestIdleValue = "longestIdle";
         private const string RoundRobinValue = "roundRobin";
 
-        /// <summary> Discriminator value for BestWorkerMode. </summary>
+        /// <summary> bestWorker. </summary>
         public static DistributionModeKind BestWorker { get; } = new DistributionModeKind(BestWorkerValue);
-        /// <summary> Discriminator value for LongestIdleMode. </summary>
+        /// <summary> longestIdle. </summary>
         public static DistributionModeKind LongestIdle { get; } = new DistributionModeKind(LongestIdleValue);
-        /// <summary> Discriminator value for RoundRobinMode. </summary>
+        /// <summary> roundRobin. </summary>
         public static DistributionModeKind RoundRobin { get; } = new DistributionModeKind(RoundRobinValue);
         /// <summary> Determines if two <see cref="DistributionModeKind"/> values are the same. </summary>
         public static bool operator ==(DistributionModeKind left, DistributionModeKind right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Storage settings for the Dev Box's disks. </summary>
+    /// <summary> The DevBoxStorageProfile. </summary>
     public partial class DevBoxStorageProfile
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DevBoxStorageProfile"/>. </summary>
-        /// <param name="osDisk"> Settings for the operating system disk. </param>
+        /// <param name="osDisk"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevBoxStorageProfile(OSDisk osDisk, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Developer.DevCenter.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Settings for the operating system disk. </summary>
+        /// <summary> Gets or sets the os disk. </summary>
         public OSDisk OSDisk { get; set; }
     }
 }

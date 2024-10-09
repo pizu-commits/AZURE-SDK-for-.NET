@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The information (data) Unit of measurement. </summary>
+    /// <summary> The InformationUnit. </summary>
     public readonly partial struct InformationUnit : IEquatable<InformationUnit>
     {
         private readonly string _value;
@@ -36,31 +36,31 @@ namespace Azure.AI.Language.Conversations.Models
         private const string TerabyteValue = "Terabyte";
         private const string PetabyteValue = "Petabyte";
 
-        /// <summary> Unspecified information unit. </summary>
+        /// <summary> Unspecified. </summary>
         public static InformationUnit Unspecified { get; } = new InformationUnit(UnspecifiedValue);
-        /// <summary> Bit information unit. </summary>
+        /// <summary> Bit. </summary>
         public static InformationUnit Bit { get; } = new InformationUnit(BitValue);
-        /// <summary> Kilobit information unit. </summary>
+        /// <summary> Kilobit. </summary>
         public static InformationUnit Kilobit { get; } = new InformationUnit(KilobitValue);
-        /// <summary> Megabit information unit. </summary>
+        /// <summary> Megabit. </summary>
         public static InformationUnit Megabit { get; } = new InformationUnit(MegabitValue);
-        /// <summary> Gigabit information unit. </summary>
+        /// <summary> Gigabit. </summary>
         public static InformationUnit Gigabit { get; } = new InformationUnit(GigabitValue);
-        /// <summary> Terabit information unit. </summary>
+        /// <summary> Terabit. </summary>
         public static InformationUnit Terabit { get; } = new InformationUnit(TerabitValue);
-        /// <summary> Petabit information unit. </summary>
+        /// <summary> Petabit. </summary>
         public static InformationUnit Petabit { get; } = new InformationUnit(PetabitValue);
-        /// <summary> Byte information unit. </summary>
+        /// <summary> Byte. </summary>
         public static InformationUnit Byte { get; } = new InformationUnit(ByteValue);
-        /// <summary> Kilobyte information unit. </summary>
+        /// <summary> Kilobyte. </summary>
         public static InformationUnit Kilobyte { get; } = new InformationUnit(KilobyteValue);
-        /// <summary> Megabyte information unit. </summary>
+        /// <summary> Megabyte. </summary>
         public static InformationUnit Megabyte { get; } = new InformationUnit(MegabyteValue);
-        /// <summary> Gigabyte information unit. </summary>
+        /// <summary> Gigabyte. </summary>
         public static InformationUnit Gigabyte { get; } = new InformationUnit(GigabyteValue);
-        /// <summary> Terabyte information unit. </summary>
+        /// <summary> Terabyte. </summary>
         public static InformationUnit Terabyte { get; } = new InformationUnit(TerabyteValue);
-        /// <summary> Petabyte information unit. </summary>
+        /// <summary> Petabyte. </summary>
         public static InformationUnit Petabyte { get; } = new InformationUnit(PetabyteValue);
         /// <summary> Determines if two <see cref="InformationUnit"/> values are the same. </summary>
         public static bool operator ==(InformationUnit left, InformationUnit right) => left.Equals(right);

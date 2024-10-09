@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Represents a name-value pair. </summary>
+    /// <summary> The NameValuePair. </summary>
     public partial class NameValuePair
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="NameValuePair"/>. </summary>
-        /// <param name="name"> The name in the name-value pair. </param>
-        /// <param name="value"> The value in the name-value pair. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NameValuePair(string name, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name in the name-value pair. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The value in the name-value pair. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

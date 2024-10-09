@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> A representation of a file-based text citation, as used in a file-based annotation of text thread message content. </summary>
+    /// <summary> The InternalMessageTextFileCitationDetails. </summary>
     internal partial class InternalMessageTextFileCitationDetails
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageTextFileCitationDetails"/>. </summary>
-        /// <param name="fileId"> The ID of the file associated with this citation. </param>
-        /// <param name="quote"> The specific quote cited in the associated file. </param>
+        /// <param name="fileId"></param>
+        /// <param name="quote"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> or <paramref name="quote"/> is null. </exception>
         internal InternalMessageTextFileCitationDetails(string fileId, string quote)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="InternalMessageTextFileCitationDetails"/>. </summary>
-        /// <param name="fileId"> The ID of the file associated with this citation. </param>
-        /// <param name="quote"> The specific quote cited in the associated file. </param>
+        /// <param name="fileId"></param>
+        /// <param name="quote"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InternalMessageTextFileCitationDetails(string fileId, string quote, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The ID of the file associated with this citation. </summary>
+        /// <summary> Gets the file id. </summary>
         public string FileId { get; }
-        /// <summary> The specific quote cited in the associated file. </summary>
+        /// <summary> Gets the quote. </summary>
         public string Quote { get; }
     }
 }

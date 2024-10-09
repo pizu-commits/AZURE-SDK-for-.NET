@@ -10,11 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual
-    /// machines associated to virtual machine scale set with OrchestrationMode as
-    /// Flexible.
-    /// </summary>
+    /// <summary> The ComputeFleetLinuxVMGuestPatchMode. </summary>
     public readonly partial struct ComputeFleetLinuxVmGuestPatchMode : IEquatable<ComputeFleetLinuxVmGuestPatchMode>
     {
         private readonly string _value;
@@ -29,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string ImageDefaultValue = "ImageDefault";
         private const string AutomaticByPlatformValue = "AutomaticByPlatform";
 
-        /// <summary> The virtual machine's default patching configuration is used. </summary>
+        /// <summary> ImageDefault. </summary>
         public static ComputeFleetLinuxVmGuestPatchMode ImageDefault { get; } = new ComputeFleetLinuxVmGuestPatchMode(ImageDefaultValue);
-        /// <summary> The virtual machine will be automatically updated by the platform. The property provisionVMAgent must be true. </summary>
+        /// <summary> AutomaticByPlatform. </summary>
         public static ComputeFleetLinuxVmGuestPatchMode AutomaticByPlatform { get; } = new ComputeFleetLinuxVmGuestPatchMode(AutomaticByPlatformValue);
         /// <summary> Determines if two <see cref="ComputeFleetLinuxVmGuestPatchMode"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetLinuxVmGuestPatchMode left, ComputeFleetLinuxVmGuestPatchMode right) => left.Equals(right);

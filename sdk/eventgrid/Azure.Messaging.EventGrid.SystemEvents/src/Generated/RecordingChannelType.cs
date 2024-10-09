@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Recording channel type. </summary>
+    /// <summary> The recordingChannelType. </summary>
     public readonly partial struct RecordingChannelType : IEquatable<RecordingChannelType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string MixedValue = "Mixed";
         private const string UnmixedValue = "Unmixed";
 
-        /// <summary> Mixed channel type. </summary>
+        /// <summary> Mixed. </summary>
         public static RecordingChannelType Mixed { get; } = new RecordingChannelType(MixedValue);
-        /// <summary> Unmixed channel type. </summary>
+        /// <summary> Unmixed. </summary>
         public static RecordingChannelType Unmixed { get; } = new RecordingChannelType(UnmixedValue);
         /// <summary> Determines if two <see cref="RecordingChannelType"/> values are the same. </summary>
         public static bool operator ==(RecordingChannelType left, RecordingChannelType right) => left.Equals(right);

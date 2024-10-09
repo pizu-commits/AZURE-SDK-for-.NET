@@ -49,7 +49,7 @@ namespace Azure.ResourceManager.ComputeFleet.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -61,7 +61,7 @@ namespace Azure.ResourceManager.ComputeFleet.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fleetName"> The name of the Compute Fleet. </param>
+        /// <param name="fleetName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fleetName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fleetName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -80,7 +80,7 @@ namespace Azure.ResourceManager.ComputeFleet.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>Fleets_Get</description>
+        /// <description>Fleet_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -92,7 +92,7 @@ namespace Azure.ResourceManager.ComputeFleet.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="fleetName"> The name of the Compute Fleet. </param>
+        /// <param name="fleetName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="fleetName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="fleetName"/> is an empty string, and was expected to be non-empty. </exception>

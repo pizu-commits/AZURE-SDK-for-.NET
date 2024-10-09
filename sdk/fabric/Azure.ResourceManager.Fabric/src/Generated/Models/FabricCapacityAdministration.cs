@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The administration properties of the Fabric capacity resource. </summary>
+    /// <summary> The FabricCapacityAdministration. </summary>
     public partial class FabricCapacityAdministration
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.Fabric.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FabricCapacityAdministration"/>. </summary>
-        /// <param name="members"> An array of administrator user identities. </param>
+        /// <param name="members"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="members"/> is null. </exception>
         public FabricCapacityAdministration(IEnumerable<string> members)
         {
@@ -57,7 +57,7 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricCapacityAdministration"/>. </summary>
-        /// <param name="members"> An array of administrator user identities. </param>
+        /// <param name="members"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricCapacityAdministration(IList<string> members, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.Fabric.Models
         {
         }
 
-        /// <summary> An array of administrator user identities. </summary>
+        /// <summary> Gets the members. </summary>
         public IList<string> Members { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Response payload from closing a job. </summary>
+    /// <summary> The CloseJobResult. </summary>
     internal partial class CloseJobResult
     {
         /// <summary>

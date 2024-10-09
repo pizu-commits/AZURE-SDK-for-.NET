@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Compute Profile to use for running user's workloads. </summary>
+    /// <summary> The ComputeFleetComputeProfile. </summary>
     public partial class ComputeFleetComputeProfile
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetComputeProfile"/>. </summary>
-        /// <param name="baseVirtualMachineProfile"> Base Virtual Machine Profile Properties to be specified according to "specification/compute/resource-manager/Microsoft.Compute/ComputeRP/stable/{computeApiVersion}/virtualMachineScaleSet.json#/definitions/VirtualMachineScaleSetVMProfile". </param>
+        /// <param name="baseVirtualMachineProfile"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="baseVirtualMachineProfile"/> is null. </exception>
         public ComputeFleetComputeProfile(ComputeFleetVmProfile baseVirtualMachineProfile)
         {
@@ -56,18 +56,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetComputeProfile"/>. </summary>
-        /// <param name="baseVirtualMachineProfile"> Base Virtual Machine Profile Properties to be specified according to "specification/compute/resource-manager/Microsoft.Compute/ComputeRP/stable/{computeApiVersion}/virtualMachineScaleSet.json#/definitions/VirtualMachineScaleSetVMProfile". </param>
-        /// <param name="computeApiVersion">
-        /// Specifies the Microsoft.Compute API version to use when creating underlying Virtual Machine scale sets and Virtual Machines.
-        /// The default value will be the latest supported computeApiVersion by Compute Fleet.
-        /// </param>
-        /// <param name="platformFaultDomainCount">
-        /// Specifies the number of fault domains to use when creating the underlying VMSS.
-        /// A fault domain is a logical group of hardware within an Azure datacenter.
-        /// VMs in the same fault domain share a common power source and network switch.
-        /// If not specified, defaults to 1, which represents "Max Spreading" (using as many fault domains as possible).
-        /// This property cannot be updated.
-        /// </param>
+        /// <param name="baseVirtualMachineProfile"></param>
+        /// <param name="computeApiVersion"></param>
+        /// <param name="platformFaultDomainCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetComputeProfile(ComputeFleetVmProfile baseVirtualMachineProfile, string computeApiVersion, int? platformFaultDomainCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,20 +73,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> Base Virtual Machine Profile Properties to be specified according to "specification/compute/resource-manager/Microsoft.Compute/ComputeRP/stable/{computeApiVersion}/virtualMachineScaleSet.json#/definitions/VirtualMachineScaleSetVMProfile". </summary>
+        /// <summary> Gets or sets the base virtual machine profile. </summary>
         public ComputeFleetVmProfile BaseVirtualMachineProfile { get; set; }
-        /// <summary>
-        /// Specifies the Microsoft.Compute API version to use when creating underlying Virtual Machine scale sets and Virtual Machines.
-        /// The default value will be the latest supported computeApiVersion by Compute Fleet.
-        /// </summary>
+        /// <summary> Gets or sets the compute api version. </summary>
         public string ComputeApiVersion { get; set; }
-        /// <summary>
-        /// Specifies the number of fault domains to use when creating the underlying VMSS.
-        /// A fault domain is a logical group of hardware within an Azure datacenter.
-        /// VMs in the same fault domain share a common power source and network switch.
-        /// If not specified, defaults to 1, which represents "Max Spreading" (using as many fault domains as possible).
-        /// This property cannot be updated.
-        /// </summary>
+        /// <summary> Gets or sets the platform fault domain count. </summary>
         public int? PlatformFaultDomainCount { get; set; }
     }
 }

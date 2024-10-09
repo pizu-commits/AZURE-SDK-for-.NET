@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The number format. </summary>
+    /// <summary> The AtlasNumberFormat. </summary>
     public partial class AtlasNumberFormat
     {
         /// <summary>
@@ -52,20 +52,20 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasNumberFormat"/>. </summary>
-        /// <param name="availableLocales"> The number format. </param>
-        /// <param name="currency"> The currency. </param>
-        /// <param name="currencyInstance"> The number format. </param>
-        /// <param name="groupingUsed"> Determines if grouping is used. </param>
-        /// <param name="instance"> The number format. </param>
-        /// <param name="integerInstance"> The number format. </param>
-        /// <param name="maximumFractionDigits"> The maximum of fraction digits. </param>
-        /// <param name="maximumIntegerDigits"> The maximum of integer digits. </param>
-        /// <param name="minimumFractionDigits"> The minimum of fraction digits. </param>
-        /// <param name="minimumIntegerDigits"> The minimum of integer digits. </param>
-        /// <param name="numberInstance"> The number format. </param>
-        /// <param name="parseIntegerOnly"> Determines if only integer is parsed. </param>
-        /// <param name="percentInstance"> The number format. </param>
-        /// <param name="roundingMode"> The enum of rounding mode. </param>
+        /// <param name="availableLocales"></param>
+        /// <param name="currency"></param>
+        /// <param name="currencyInstance"></param>
+        /// <param name="groupingUsed"></param>
+        /// <param name="instance"></param>
+        /// <param name="integerInstance"></param>
+        /// <param name="maximumFractionDigits"></param>
+        /// <param name="maximumIntegerDigits"></param>
+        /// <param name="minimumFractionDigits"></param>
+        /// <param name="minimumIntegerDigits"></param>
+        /// <param name="numberInstance"></param>
+        /// <param name="parseIntegerOnly"></param>
+        /// <param name="percentInstance"></param>
+        /// <param name="roundingMode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasNumberFormat(IList<string> availableLocales, string currency, AtlasNumberFormat currencyInstance, bool? groupingUsed, AtlasNumberFormat instance, AtlasNumberFormat integerInstance, int? maximumFractionDigits, int? maximumIntegerDigits, int? minimumFractionDigits, int? minimumIntegerDigits, AtlasNumberFormat numberInstance, bool? parseIntegerOnly, AtlasNumberFormat percentInstance, RoundingMode? roundingMode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,33 +86,33 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The number format. </summary>
+        /// <summary> Gets the available locales. </summary>
         public IList<string> AvailableLocales { get; }
-        /// <summary> The currency. </summary>
+        /// <summary> Gets or sets the currency. </summary>
         public string Currency { get; set; }
-        /// <summary> The number format. </summary>
+        /// <summary> Gets or sets the currency instance. </summary>
         public AtlasNumberFormat CurrencyInstance { get; set; }
-        /// <summary> Determines if grouping is used. </summary>
+        /// <summary> Gets or sets the grouping used. </summary>
         public bool? GroupingUsed { get; set; }
-        /// <summary> The number format. </summary>
+        /// <summary> Gets or sets the instance. </summary>
         public AtlasNumberFormat Instance { get; set; }
-        /// <summary> The number format. </summary>
+        /// <summary> Gets or sets the integer instance. </summary>
         public AtlasNumberFormat IntegerInstance { get; set; }
-        /// <summary> The maximum of fraction digits. </summary>
+        /// <summary> Gets or sets the maximum fraction digits. </summary>
         public int? MaximumFractionDigits { get; set; }
-        /// <summary> The maximum of integer digits. </summary>
+        /// <summary> Gets or sets the maximum integer digits. </summary>
         public int? MaximumIntegerDigits { get; set; }
-        /// <summary> The minimum of fraction digits. </summary>
+        /// <summary> Gets or sets the minimum fraction digits. </summary>
         public int? MinimumFractionDigits { get; set; }
-        /// <summary> The minimum of integer digits. </summary>
+        /// <summary> Gets or sets the minimum integer digits. </summary>
         public int? MinimumIntegerDigits { get; set; }
-        /// <summary> The number format. </summary>
+        /// <summary> Gets or sets the number instance. </summary>
         public AtlasNumberFormat NumberInstance { get; set; }
-        /// <summary> Determines if only integer is parsed. </summary>
+        /// <summary> Gets or sets the parse integer only. </summary>
         public bool? ParseIntegerOnly { get; set; }
-        /// <summary> The number format. </summary>
+        /// <summary> Gets or sets the percent instance. </summary>
         public AtlasNumberFormat PercentInstance { get; set; }
-        /// <summary> The enum of rounding mode. </summary>
+        /// <summary> Gets or sets the rounding mode. </summary>
         public RoundingMode? RoundingMode { get; set; }
     }
 }

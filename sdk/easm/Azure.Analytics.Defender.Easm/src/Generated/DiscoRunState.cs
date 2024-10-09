@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The State of the disco run. </summary>
+    /// <summary> The DiscoRunState. </summary>
     public readonly partial struct DiscoRunState : IEquatable<DiscoRunState>
     {
         private readonly string _value;

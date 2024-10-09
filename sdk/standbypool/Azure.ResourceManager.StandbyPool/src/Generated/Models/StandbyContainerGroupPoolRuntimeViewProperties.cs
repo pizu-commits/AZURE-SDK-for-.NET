@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Contains information about a standby pool as last known by the StandbyPool resource provider. </summary>
+    /// <summary> The StandbyContainerGroupPoolRuntimeViewProperties. </summary>
     public partial class StandbyContainerGroupPoolRuntimeViewProperties
     {
         /// <summary>
@@ -47,15 +47,15 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StandbyContainerGroupPoolRuntimeViewProperties"/>. </summary>
-        /// <param name="instanceCountSummary"> A list containing the counts of container groups in each possible state, as known by the StandbyPool resource provider. </param>
+        /// <param name="instanceCountSummary"></param>
         internal StandbyContainerGroupPoolRuntimeViewProperties(IEnumerable<ContainerGroupInstanceCountSummary> instanceCountSummary)
         {
             InstanceCountSummary = instanceCountSummary.ToList();
         }
 
         /// <summary> Initializes a new instance of <see cref="StandbyContainerGroupPoolRuntimeViewProperties"/>. </summary>
-        /// <param name="instanceCountSummary"> A list containing the counts of container groups in each possible state, as known by the StandbyPool resource provider. </param>
-        /// <param name="provisioningState"> Displays the provisioning state of the standby pool. </param>
+        /// <param name="instanceCountSummary"></param>
+        /// <param name="provisioningState"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyContainerGroupPoolRuntimeViewProperties(IReadOnlyList<ContainerGroupInstanceCountSummary> instanceCountSummary, StandbyProvisioningState? provisioningState, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,9 +69,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
         {
         }
 
-        /// <summary> A list containing the counts of container groups in each possible state, as known by the StandbyPool resource provider. </summary>
+        /// <summary> Gets the instance count summary. </summary>
         public IReadOnlyList<ContainerGroupInstanceCountSummary> InstanceCountSummary { get; }
-        /// <summary> Displays the provisioning state of the standby pool. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public StandbyProvisioningState? ProvisioningState { get; }
     }
 }

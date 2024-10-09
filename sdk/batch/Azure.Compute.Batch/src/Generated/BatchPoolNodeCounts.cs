@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The number of Compute Nodes in each state for a Pool. </summary>
+    /// <summary> The BatchPoolNodeCounts. </summary>
     public partial class BatchPoolNodeCounts
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolNodeCounts"/>. </summary>
-        /// <param name="poolId"> The ID of the Pool. </param>
+        /// <param name="poolId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="poolId"/> is null. </exception>
         internal BatchPoolNodeCounts(string poolId)
         {
@@ -56,9 +56,9 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolNodeCounts"/>. </summary>
-        /// <param name="poolId"> The ID of the Pool. </param>
-        /// <param name="dedicated"> The number of dedicated Compute Nodes in each state. </param>
-        /// <param name="lowPriority"> The number of Spot/Low-priority Compute Nodes in each state. </param>
+        /// <param name="poolId"></param>
+        /// <param name="dedicated"></param>
+        /// <param name="lowPriority"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPoolNodeCounts(string poolId, BatchNodeCounts dedicated, BatchNodeCounts lowPriority, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The ID of the Pool. </summary>
+        /// <summary> Gets the pool id. </summary>
         public string PoolId { get; }
-        /// <summary> The number of dedicated Compute Nodes in each state. </summary>
+        /// <summary> Gets the dedicated. </summary>
         public BatchNodeCounts Dedicated { get; }
-        /// <summary> The number of Spot/Low-priority Compute Nodes in each state. </summary>
+        /// <summary> Gets the low priority. </summary>
         public BatchNodeCounts LowPriority { get; }
     }
 }

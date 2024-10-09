@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> Representation of the manner in which a completions response concluded. </summary>
+    /// <summary> The CompletionsFinishReason. </summary>
     public readonly partial struct CompletionsFinishReason : IEquatable<CompletionsFinishReason>
     {
         private readonly string _value;
@@ -27,16 +27,13 @@ namespace Azure.AI.Inference
         private const string ContentFilteredValue = "content_filter";
         private const string ToolCallsValue = "tool_calls";
 
-        /// <summary> Completions ended normally and reached its end of token generation. </summary>
+        /// <summary> stop. </summary>
         public static CompletionsFinishReason Stopped { get; } = new CompletionsFinishReason(StoppedValue);
-        /// <summary> Completions exhausted available token limits before generation could complete. </summary>
+        /// <summary> length. </summary>
         public static CompletionsFinishReason TokenLimitReached { get; } = new CompletionsFinishReason(TokenLimitReachedValue);
-        /// <summary>
-        /// Completions generated a response that was identified as potentially sensitive per content
-        /// moderation policies.
-        /// </summary>
+        /// <summary> content_filter. </summary>
         public static CompletionsFinishReason ContentFiltered { get; } = new CompletionsFinishReason(ContentFilteredValue);
-        /// <summary> Completion ended with the model calling a provided tool for output. </summary>
+        /// <summary> tool_calls. </summary>
         public static CompletionsFinishReason ToolCalls { get; } = new CompletionsFinishReason(ToolCallsValue);
         /// <summary> Determines if two <see cref="CompletionsFinishReason"/> values are the same. </summary>
         public static bool operator ==(CompletionsFinishReason left, CompletionsFinishReason right) => left.Equals(right);

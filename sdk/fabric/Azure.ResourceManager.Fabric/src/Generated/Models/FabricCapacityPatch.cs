@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The type used for update operations of the FabricCapacity. </summary>
+    /// <summary> The FabricCapacityPatch. </summary>
     public partial class FabricCapacityPatch
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricCapacityPatch"/>. </summary>
-        /// <param name="sku"> The SKU details. </param>
-        /// <param name="tags"> Resource tags. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="sku"></param>
+        /// <param name="tags"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricCapacityPatch(FabricSku sku, IDictionary<string, string> tags, FabricCapacityUpdateProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,13 +64,13 @@ namespace Azure.ResourceManager.Fabric.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The SKU details. </summary>
+        /// <summary> Gets or sets the sku. </summary>
         public FabricSku Sku { get; set; }
-        /// <summary> Resource tags. </summary>
+        /// <summary> Gets the tags. </summary>
         public IDictionary<string, string> Tags { get; }
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         internal FabricCapacityUpdateProperties Properties { get; set; }
-        /// <summary> An array of administrator user identities. </summary>
+        /// <summary> Gets the administration members. </summary>
         public IList<string> AdministrationMembers
         {
             get

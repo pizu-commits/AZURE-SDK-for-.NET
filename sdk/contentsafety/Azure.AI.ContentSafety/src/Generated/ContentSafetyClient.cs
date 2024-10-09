@@ -101,7 +101,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Analyze Text. </summary>
-        /// <param name="options"> The text analysis request. </param>
+        /// <param name="options"> The <see cref="AnalyzeTextOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks> A synchronous API for the analysis of potentially harmful text content. Currently, it supports four categories: Hate, SelfHarm, Sexual, and Violence. </remarks>
@@ -117,7 +117,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Analyze Text. </summary>
-        /// <param name="options"> The text analysis request. </param>
+        /// <param name="options"> The <see cref="AnalyzeTextOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks> A synchronous API for the analysis of potentially harmful text content. Currently, it supports four categories: Hate, SelfHarm, Sexual, and Violence. </remarks>
@@ -211,7 +211,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Analyze Image. </summary>
-        /// <param name="options"> The image analysis request. </param>
+        /// <param name="options"> The <see cref="AnalyzeImageOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks> A synchronous API for the analysis of potentially harmful image content. Currently, it supports four categories: Hate, SelfHarm, Sexual, and Violence. </remarks>
@@ -227,7 +227,7 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Analyze Image. </summary>
-        /// <param name="options"> The image analysis request. </param>
+        /// <param name="options"> The <see cref="AnalyzeImageOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="options"/> is null. </exception>
         /// <remarks> A synchronous API for the analysis of potentially harmful image content. Currently, it supports four categories: Hate, SelfHarm, Sexual, and Violence. </remarks>

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Discriminators for supported exception action types. </summary>
+    /// <summary> The ExceptionActionKind. </summary>
     public readonly partial struct ExceptionActionKind : IEquatable<ExceptionActionKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Communication.JobRouter
         private const string ManualReclassifyValue = "manualReclassify";
         private const string ReclassifyValue = "reclassify";
 
-        /// <summary> Discriminator value for CancelExceptionAction. </summary>
+        /// <summary> cancel. </summary>
         public static ExceptionActionKind Cancel { get; } = new ExceptionActionKind(CancelValue);
-        /// <summary> Discriminator value for ManualReclassifyExceptionAction. </summary>
+        /// <summary> manualReclassify. </summary>
         public static ExceptionActionKind ManualReclassify { get; } = new ExceptionActionKind(ManualReclassifyValue);
-        /// <summary> Discriminator value for ReclassifyExceptionAction. </summary>
+        /// <summary> reclassify. </summary>
         public static ExceptionActionKind Reclassify { get; } = new ExceptionActionKind(ReclassifyValue);
         /// <summary> Determines if two <see cref="ExceptionActionKind"/> values are the same. </summary>
         public static bool operator ==(ExceptionActionKind left, ExceptionActionKind right) => left.Equals(right);

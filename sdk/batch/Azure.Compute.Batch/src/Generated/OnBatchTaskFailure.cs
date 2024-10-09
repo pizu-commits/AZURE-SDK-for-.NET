@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> OnTaskFailure enums. </summary>
+    /// <summary> The OnBatchTaskFailure. </summary>
     public readonly partial struct OnBatchTaskFailure : IEquatable<OnBatchTaskFailure>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string NoActionValue = "noaction";
         private const string PerformExitOptionsJobActionValue = "performexitoptionsjobaction";
 
-        /// <summary> Do nothing. The Job remains active unless terminated or disabled by some other means. </summary>
+        /// <summary> noaction. </summary>
         public static OnBatchTaskFailure NoAction { get; } = new OnBatchTaskFailure(NoActionValue);
-        /// <summary> Terminate the Job. The Job's terminationReason is set to 'AllTasksComplete'. </summary>
+        /// <summary> performexitoptionsjobaction. </summary>
         public static OnBatchTaskFailure PerformExitOptionsJobAction { get; } = new OnBatchTaskFailure(PerformExitOptionsJobActionValue);
         /// <summary> Determines if two <see cref="OnBatchTaskFailure"/> values are the same. </summary>
         public static bool operator ==(OnBatchTaskFailure left, OnBatchTaskFailure right) => left.Equals(right);

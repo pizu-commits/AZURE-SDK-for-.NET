@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Event data for Microsoft.Devices.DeviceTelemetry event. </summary>
+    /// <summary> The IotHubDeviceTelemetryEventData. </summary>
     public partial class IotHubDeviceTelemetryEventData : DeviceTelemetryEventProperties
     {
         /// <summary> Initializes a new instance of <see cref="IotHubDeviceTelemetryEventData"/>. </summary>
-        /// <param name="body"> The content of the message from the device. </param>
-        /// <param name="properties"> Application properties are user-defined strings that can be added to the message. These fields are optional. </param>
-        /// <param name="systemProperties"> System properties help identify contents and source of the messages. </param>
+        /// <param name="body"></param>
+        /// <param name="properties"></param>
+        /// <param name="systemProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/>, <paramref name="properties"/> or <paramref name="systemProperties"/> is null. </exception>
         internal IotHubDeviceTelemetryEventData(IReadOnlyDictionary<string, BinaryData> body, IReadOnlyDictionary<string, string> properties, IReadOnlyDictionary<string, string> systemProperties) : base(body, properties, systemProperties)
         {
@@ -26,9 +26,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="IotHubDeviceTelemetryEventData"/>. </summary>
-        /// <param name="body"> The content of the message from the device. </param>
-        /// <param name="properties"> Application properties are user-defined strings that can be added to the message. These fields are optional. </param>
-        /// <param name="systemProperties"> System properties help identify contents and source of the messages. </param>
+        /// <param name="body"></param>
+        /// <param name="properties"></param>
+        /// <param name="systemProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal IotHubDeviceTelemetryEventData(IReadOnlyDictionary<string, BinaryData> body, IReadOnlyDictionary<string, string> properties, IReadOnlyDictionary<string, string> systemProperties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(body, properties, systemProperties, serializedAdditionalRawData)
         {

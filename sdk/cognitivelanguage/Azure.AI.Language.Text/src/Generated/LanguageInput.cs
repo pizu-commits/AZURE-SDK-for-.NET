@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the language detection input. </summary>
+    /// <summary> The LanguageInput. </summary>
     public partial class LanguageInput
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LanguageInput"/>. </summary>
-        /// <param name="id"> A unique, non-empty document identifier. </param>
-        /// <param name="text"> The input text to process. </param>
+        /// <param name="id"></param>
+        /// <param name="text"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="text"/> is null. </exception>
         public LanguageInput(string id, string text)
         {
@@ -59,9 +59,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="LanguageInput"/>. </summary>
-        /// <param name="id"> A unique, non-empty document identifier. </param>
-        /// <param name="text"> The input text to process. </param>
-        /// <param name="countryHint"> The country hint to help with language detection of the text. </param>
+        /// <param name="id"></param>
+        /// <param name="text"></param>
+        /// <param name="countryHint"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LanguageInput(string id, string text, string countryHint, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> A unique, non-empty document identifier. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The input text to process. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The country hint to help with language detection of the text. </summary>
+        /// <summary> Gets or sets the country hint. </summary>
         public string CountryHint { get; set; }
     }
 }

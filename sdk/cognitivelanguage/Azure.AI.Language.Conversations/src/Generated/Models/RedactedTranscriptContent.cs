@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Transcript content response that the service generates, with all necessary personally identifiable information redacted. </summary>
+    /// <summary> The RedactedTranscriptContent. </summary>
     public partial class RedactedTranscriptContent
     {
         /// <summary>
@@ -52,11 +52,11 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="RedactedTranscriptContent"/>. </summary>
-        /// <param name="inverseTextNormalized"> Redacted output for input in inverse-text-normalized format. </param>
-        /// <param name="maskedInverseTextNormalized"> Redacted output for input in masked inverse-text-normalized format. </param>
-        /// <param name="text"> Redacted output for input in text (Microsoft's speech-to-text 'display') format. </param>
-        /// <param name="lexical"> Redacted output for input in lexical format. </param>
-        /// <param name="audioTimings"> List of redacted audio segments. </param>
+        /// <param name="inverseTextNormalized"></param>
+        /// <param name="maskedInverseTextNormalized"></param>
+        /// <param name="text"></param>
+        /// <param name="lexical"></param>
+        /// <param name="audioTimings"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RedactedTranscriptContent(string inverseTextNormalized, string maskedInverseTextNormalized, string text, string lexical, IReadOnlyList<AudioTiming> audioTimings, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,15 +68,15 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Redacted output for input in inverse-text-normalized format. </summary>
+        /// <summary> Gets the inverse text normalized. </summary>
         public string InverseTextNormalized { get; }
-        /// <summary> Redacted output for input in masked inverse-text-normalized format. </summary>
+        /// <summary> Gets the masked inverse text normalized. </summary>
         public string MaskedInverseTextNormalized { get; }
-        /// <summary> Redacted output for input in text (Microsoft's speech-to-text 'display') format. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> Redacted output for input in lexical format. </summary>
+        /// <summary> Gets the lexical. </summary>
         public string Lexical { get; }
-        /// <summary> List of redacted audio segments. </summary>
+        /// <summary> Gets the audio timings. </summary>
         public IReadOnlyList<AudioTiming> AudioTimings { get; }
     }
 }

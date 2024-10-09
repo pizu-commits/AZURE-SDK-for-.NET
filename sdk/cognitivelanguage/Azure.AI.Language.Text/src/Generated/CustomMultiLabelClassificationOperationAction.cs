@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Use custom models to classify text into multi label taxonomy. </summary>
+    /// <summary> The CustomMultiLabelClassificationOperationAction. </summary>
     public partial class CustomMultiLabelClassificationOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="CustomMultiLabelClassificationOperationAction"/>. </summary>
@@ -20,16 +20,16 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomMultiLabelClassificationOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="actionContent"> Task parameters. </param>
+        /// <param name="actionContent"></param>
         internal CustomMultiLabelClassificationOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, CustomMultiLabelClassificationActionContent actionContent) : base(name, kind, serializedAdditionalRawData)
         {
             ActionContent = actionContent;
         }
 
-        /// <summary> Task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public CustomMultiLabelClassificationActionContent ActionContent { get; set; }
     }
 }

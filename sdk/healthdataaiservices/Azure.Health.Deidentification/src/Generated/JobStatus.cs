@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> List of statuses a job can have. </summary>
+    /// <summary> The JobStatus. </summary>
     public readonly partial struct JobStatus : IEquatable<JobStatus>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Health.Deidentification
         private const string FailedValue = "Failed";
         private const string CanceledValue = "Canceled";
 
-        /// <summary> Job has been submitted and is waiting to be processed. </summary>
+        /// <summary> NotStarted. </summary>
         public static JobStatus NotStarted { get; } = new JobStatus(NotStartedValue);
-        /// <summary> Job has been started. </summary>
+        /// <summary> Running. </summary>
         public static JobStatus Running { get; } = new JobStatus(RunningValue);
-        /// <summary> Job has completed successfully. All documents have succeeded. </summary>
+        /// <summary> Succeeded. </summary>
         public static JobStatus Succeeded { get; } = new JobStatus(SucceededValue);
-        /// <summary> Job has completed with at least a single document failing. </summary>
+        /// <summary> PartialFailed. </summary>
         public static JobStatus PartialFailed { get; } = new JobStatus(PartialFailedValue);
-        /// <summary> Job has completed with all documents failing, or a validation failure. </summary>
+        /// <summary> Failed. </summary>
         public static JobStatus Failed { get; } = new JobStatus(FailedValue);
-        /// <summary> Job has been canceled after user request. </summary>
+        /// <summary> Canceled. </summary>
         public static JobStatus Canceled { get; } = new JobStatus(CanceledValue);
         /// <summary> Determines if two <see cref="JobStatus"/> values are the same. </summary>
         public static bool operator ==(JobStatus left, JobStatus right) => left.Equals(right);

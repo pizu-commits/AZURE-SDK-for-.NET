@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.ContentSafety
 {
-    /// <summary> The result of blocklist match. </summary>
+    /// <summary> The TextBlocklistMatch. </summary>
     public partial class TextBlocklistMatch
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.ContentSafety
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TextBlocklistMatch"/>. </summary>
-        /// <param name="blocklistName"> The name of the matched blocklist. </param>
-        /// <param name="blocklistItemId"> The ID of the matched item. </param>
-        /// <param name="blocklistItemText"> The content of the matched item. </param>
+        /// <param name="blocklistName"></param>
+        /// <param name="blocklistItemId"></param>
+        /// <param name="blocklistItemText"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="blocklistName"/>, <paramref name="blocklistItemId"/> or <paramref name="blocklistItemText"/> is null. </exception>
         internal TextBlocklistMatch(string blocklistName, string blocklistItemId, string blocklistItemText)
         {
@@ -62,9 +62,9 @@ namespace Azure.AI.ContentSafety
         }
 
         /// <summary> Initializes a new instance of <see cref="TextBlocklistMatch"/>. </summary>
-        /// <param name="blocklistName"> The name of the matched blocklist. </param>
-        /// <param name="blocklistItemId"> The ID of the matched item. </param>
-        /// <param name="blocklistItemText"> The content of the matched item. </param>
+        /// <param name="blocklistName"></param>
+        /// <param name="blocklistItemId"></param>
+        /// <param name="blocklistItemText"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TextBlocklistMatch(string blocklistName, string blocklistItemId, string blocklistItemText, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,11 +79,11 @@ namespace Azure.AI.ContentSafety
         {
         }
 
-        /// <summary> The name of the matched blocklist. </summary>
+        /// <summary> Gets the blocklist name. </summary>
         public string BlocklistName { get; }
-        /// <summary> The ID of the matched item. </summary>
+        /// <summary> Gets the blocklist item id. </summary>
         public string BlocklistItemId { get; }
-        /// <summary> The content of the matched item. </summary>
+        /// <summary> Gets the blocklist item text. </summary>
         public string BlocklistItemText { get; }
     }
 }

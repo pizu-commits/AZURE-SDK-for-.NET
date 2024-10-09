@@ -15,9 +15,9 @@ namespace Azure.AI.Translation.Document
     public static partial class DocumentTranslationModelFactory
     {
         /// <summary> Initializes a new instance of <see cref="Document.DocumentTranslationInput"/>. </summary>
-        /// <param name="source"> Source of the input documents. </param>
-        /// <param name="targets"> Location of the destination for the output. </param>
-        /// <param name="storageUriKind"> Storage type of the input documents source string. </param>
+        /// <param name="source"></param>
+        /// <param name="targets"></param>
+        /// <param name="storageUriKind"></param>
         /// <returns> A new <see cref="Document.DocumentTranslationInput"/> instance for mocking. </returns>
         public static DocumentTranslationInput DocumentTranslationInput(TranslationSource source = null, IEnumerable<TranslationTarget> targets = null, StorageInputUriKind? storageUriKind = null)
         {
@@ -27,7 +27,7 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="Document.SupportedFileFormats"/>. </summary>
-        /// <param name="value"> list of objects. </param>
+        /// <param name="value"></param>
         /// <returns> A new <see cref="Document.SupportedFileFormats"/> instance for mocking. </returns>
         public static SupportedFileFormats SupportedFileFormats(IEnumerable<DocumentTranslationFileFormat> value = null)
         {
@@ -37,12 +37,12 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Initializes a new instance of <see cref="Document.DocumentTranslationFileFormat"/>. </summary>
-        /// <param name="format"> Name of the format. </param>
-        /// <param name="fileExtensions"> Supported file extension for this format. </param>
-        /// <param name="contentTypes"> Supported Content-Types for this format. </param>
-        /// <param name="defaultFormatVersion"> Default version if none is specified. </param>
-        /// <param name="formatVersions"> Supported Version. </param>
-        /// <param name="type"> Supported Type for this format. </param>
+        /// <param name="format"></param>
+        /// <param name="fileExtensions"></param>
+        /// <param name="contentTypes"></param>
+        /// <param name="defaultFormatVersion"></param>
+        /// <param name="formatVersions"></param>
+        /// <param name="type"></param>
         /// <returns> A new <see cref="Document.DocumentTranslationFileFormat"/> instance for mocking. </returns>
         public static DocumentTranslationFileFormat DocumentTranslationFileFormat(string format = null, IEnumerable<string> fileExtensions = null, IEnumerable<string> contentTypes = null, string defaultFormatVersion = null, IEnumerable<string> formatVersions = null, string type = null)
         {

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Media Job Error Codes. </summary>
+    /// <summary> The MediaJobErrorCode. </summary>
     public readonly partial struct MediaJobErrorCode : IEquatable<MediaJobErrorCode>
     {
         private readonly string _value;
@@ -33,25 +33,25 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string ContentUnsupportedValue = "ContentUnsupported";
         private const string IdentityUnsupportedValue = "IdentityUnsupported";
 
-        /// <summary> Fatal service error, please contact support. </summary>
+        /// <summary> ServiceError. </summary>
         public static MediaJobErrorCode ServiceError { get; } = new MediaJobErrorCode(ServiceErrorValue);
-        /// <summary> Transient error, please retry, if retry is unsuccessful, please contact support. </summary>
+        /// <summary> ServiceTransientError. </summary>
         public static MediaJobErrorCode ServiceTransientError { get; } = new MediaJobErrorCode(ServiceTransientErrorValue);
-        /// <summary> While trying to download the input files, the files were not accessible, please check the availability of the source. </summary>
+        /// <summary> DownloadNotAccessible. </summary>
         public static MediaJobErrorCode DownloadNotAccessible { get; } = new MediaJobErrorCode(DownloadNotAccessibleValue);
-        /// <summary> While trying to download the input files, there was an issue during transfer (storage service, network errors), see details and check your source. </summary>
+        /// <summary> DownloadTransientError. </summary>
         public static MediaJobErrorCode DownloadTransientError { get; } = new MediaJobErrorCode(DownloadTransientErrorValue);
-        /// <summary> While trying to upload the output files, the destination was not reachable, please check the availability of the destination. </summary>
+        /// <summary> UploadNotAccessible. </summary>
         public static MediaJobErrorCode UploadNotAccessible { get; } = new MediaJobErrorCode(UploadNotAccessibleValue);
-        /// <summary> While trying to upload the output files, there was an issue during transfer (storage service, network errors), see details and check your destination. </summary>
+        /// <summary> UploadTransientError. </summary>
         public static MediaJobErrorCode UploadTransientError { get; } = new MediaJobErrorCode(UploadTransientErrorValue);
-        /// <summary> There was a problem with the combination of input files and the configuration settings applied, fix the configuration settings and retry with the same input, or change input to match the configuration. </summary>
+        /// <summary> ConfigurationUnsupported. </summary>
         public static MediaJobErrorCode ConfigurationUnsupported { get; } = new MediaJobErrorCode(ConfigurationUnsupportedValue);
-        /// <summary> There was a problem with the input content (for example: zero byte files, or corrupt/non-decodable files), check the input files. </summary>
+        /// <summary> ContentMalformed. </summary>
         public static MediaJobErrorCode ContentMalformed { get; } = new MediaJobErrorCode(ContentMalformedValue);
-        /// <summary> There was a problem with the format of the input (not valid media file, or an unsupported file/codec), check the validity of the input files. </summary>
+        /// <summary> ContentUnsupported. </summary>
         public static MediaJobErrorCode ContentUnsupported { get; } = new MediaJobErrorCode(ContentUnsupportedValue);
-        /// <summary> There is an error verifying to the account identity. Check and fix the identity configurations and retry. If unsuccessful, please contact support. </summary>
+        /// <summary> IdentityUnsupported. </summary>
         public static MediaJobErrorCode IdentityUnsupported { get; } = new MediaJobErrorCode(IdentityUnsupportedValue);
         /// <summary> Determines if two <see cref="MediaJobErrorCode"/> values are the same. </summary>
         public static bool operator ==(MediaJobErrorCode left, MediaJobErrorCode right) => left.Equals(right);

@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// The start and end of the range are inclusive. For example, if a range has start
-    /// 9 and end 12, then it represents Tasks '9', '10', '11' and '12'.
-    /// </summary>
+    /// <summary> The BatchTaskIdRange. </summary>
     public partial class BatchTaskIdRange
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskIdRange"/>. </summary>
-        /// <param name="start"> The first Task ID in the range. </param>
-        /// <param name="end"> The last Task ID in the range. </param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         public BatchTaskIdRange(int start, int end)
         {
             Start = start;
@@ -58,8 +55,8 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchTaskIdRange"/>. </summary>
-        /// <param name="start"> The first Task ID in the range. </param>
-        /// <param name="end"> The last Task ID in the range. </param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchTaskIdRange(int start, int end, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +70,9 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The first Task ID in the range. </summary>
+        /// <summary> Gets or sets the start. </summary>
         public int Start { get; set; }
-        /// <summary> The last Task ID in the range. </summary>
+        /// <summary> Gets or sets the end. </summary>
         public int End { get; set; }
     }
 }

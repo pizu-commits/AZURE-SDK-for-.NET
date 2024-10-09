@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the analyze text Entity linking task result. </summary>
+    /// <summary> The AnalyzeTextEntityLinkingResult. </summary>
     public partial class AnalyzeTextEntityLinkingResult : AnalyzeTextResult
     {
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextEntityLinkingResult"/>. </summary>
-        /// <param name="results"> Entity linking result. </param>
+        /// <param name="results"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="results"/> is null. </exception>
         internal AnalyzeTextEntityLinkingResult(EntityLinkingResult results)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeTextEntityLinkingResult"/>. </summary>
-        /// <param name="kind"> The kind of task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="results"> Entity linking result. </param>
+        /// <param name="results"></param>
         internal AnalyzeTextEntityLinkingResult(AnalyzeTextResultsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, EntityLinkingResult results) : base(kind, serializedAdditionalRawData)
         {
             Results = results;
@@ -38,7 +38,7 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Entity linking result. </summary>
+        /// <summary> Gets the results. </summary>
         public EntityLinkingResult Results { get; }
     }
 }

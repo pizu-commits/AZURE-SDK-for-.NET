@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message Interactive Content. </summary>
+    /// <summary> The AcsMessageInteractiveContent. </summary>
     public partial class AcsMessageInteractiveContent
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageInteractiveContent"/>. </summary>
-        /// <param name="replyKind"> The Message interactive reply type. </param>
-        /// <param name="buttonReply"> The Message Sent when a customer clicks a button. </param>
-        /// <param name="listReply"> The Message Sent when a customer selects an item from a list. </param>
+        /// <param name="replyKind"></param>
+        /// <param name="buttonReply"></param>
+        /// <param name="listReply"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="buttonReply"/> or <paramref name="listReply"/> is null. </exception>
         internal AcsMessageInteractiveContent(AcsInteractiveReplyKind replyKind, AcsMessageInteractiveButtonReplyContent buttonReply, AcsMessageInteractiveListReplyContent listReply)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageInteractiveContent"/>. </summary>
-        /// <param name="replyKind"> The Message interactive reply type. </param>
-        /// <param name="buttonReply"> The Message Sent when a customer clicks a button. </param>
-        /// <param name="listReply"> The Message Sent when a customer selects an item from a list. </param>
+        /// <param name="replyKind"></param>
+        /// <param name="buttonReply"></param>
+        /// <param name="listReply"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageInteractiveContent(AcsInteractiveReplyKind replyKind, AcsMessageInteractiveButtonReplyContent buttonReply, AcsMessageInteractiveListReplyContent listReply, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +78,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The Message interactive reply type. </summary>
+        /// <summary> Gets the reply kind. </summary>
         public AcsInteractiveReplyKind ReplyKind { get; }
-        /// <summary> The Message Sent when a customer clicks a button. </summary>
+        /// <summary> Gets the button reply. </summary>
         public AcsMessageInteractiveButtonReplyContent ButtonReply { get; }
-        /// <summary> The Message Sent when a customer selects an item from a list. </summary>
+        /// <summary> Gets the list reply. </summary>
         public AcsMessageInteractiveListReplyContent ListReply { get; }
     }
 }

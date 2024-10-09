@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary>
-    /// Properties used to create a user used to execute Tasks on an Azure Batch
-    /// Compute Node.
-    /// </summary>
+    /// <summary> The UserAccount. </summary>
     public partial class UserAccount
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.Compute.Batch
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UserAccount"/>. </summary>
-        /// <param name="name"> The name of the user Account. Names can contain any Unicode characters up to a maximum length of 20. </param>
-        /// <param name="password"> The password for the user Account. </param>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="password"/> is null. </exception>
         public UserAccount(string name, string password)
         {
@@ -62,11 +59,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="UserAccount"/>. </summary>
-        /// <param name="name"> The name of the user Account. Names can contain any Unicode characters up to a maximum length of 20. </param>
-        /// <param name="password"> The password for the user Account. </param>
-        /// <param name="elevationLevel"> The elevation level of the user Account. The default value is nonAdmin. </param>
-        /// <param name="linuxUserConfiguration"> The Linux-specific user configuration for the user Account. This property is ignored if specified on a Windows Pool. If not specified, the user is created with the default options. </param>
-        /// <param name="windowsUserConfiguration"> The Windows-specific user configuration for the user Account. This property can only be specified if the user is on a Windows Pool. If not specified and on a Windows Pool, the user is created with the default options. </param>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
+        /// <param name="elevationLevel"></param>
+        /// <param name="linuxUserConfiguration"></param>
+        /// <param name="windowsUserConfiguration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UserAccount(string name, string password, ElevationLevel? elevationLevel, LinuxUserConfiguration linuxUserConfiguration, WindowsUserConfiguration windowsUserConfiguration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,15 +80,15 @@ namespace Azure.Compute.Batch
         {
         }
 
-        /// <summary> The name of the user Account. Names can contain any Unicode characters up to a maximum length of 20. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The password for the user Account. </summary>
+        /// <summary> Gets or sets the password. </summary>
         public string Password { get; set; }
-        /// <summary> The elevation level of the user Account. The default value is nonAdmin. </summary>
+        /// <summary> Gets or sets the elevation level. </summary>
         public ElevationLevel? ElevationLevel { get; set; }
-        /// <summary> The Linux-specific user configuration for the user Account. This property is ignored if specified on a Windows Pool. If not specified, the user is created with the default options. </summary>
+        /// <summary> Gets or sets the linux user configuration. </summary>
         public LinuxUserConfiguration LinuxUserConfiguration { get; set; }
-        /// <summary> The Windows-specific user configuration for the user Account. This property can only be specified if the user is on a Windows Pool. If not specified and on a Windows Pool, the user is created with the default options. </summary>
+        /// <summary> Gets or sets the windows user configuration. </summary>
         public WindowsUserConfiguration WindowsUserConfiguration { get; set; }
     }
 }

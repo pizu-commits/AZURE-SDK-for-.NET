@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The option to set to call a Conversation project. </summary>
+    /// <summary> The ConversationCallingConfig. </summary>
     public partial class ConversationCallingConfig
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationCallingConfig"/>. </summary>
-        /// <param name="language"> The language of the query in BCP 47 language representation. </param>
-        /// <param name="verbose"> If true, the service will return more detailed information. </param>
-        /// <param name="isLoggingEnabled"> If true, the query will be saved for customers to further review in authoring, to improve the model quality. </param>
+        /// <param name="language"></param>
+        /// <param name="verbose"></param>
+        /// <param name="isLoggingEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ConversationCallingConfig(string language, bool? verbose, bool? isLoggingEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The language of the query in BCP 47 language representation. </summary>
+        /// <summary> Gets or sets the language. </summary>
         public string Language { get; set; }
-        /// <summary> If true, the service will return more detailed information. </summary>
+        /// <summary> Gets or sets the verbose. </summary>
         public bool? Verbose { get; set; }
-        /// <summary> If true, the query will be saved for customers to further review in authoring, to improve the model quality. </summary>
+        /// <summary> Gets or sets the is logging enabled. </summary>
         public bool? IsLoggingEnabled { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a virtual machine scale set network profile. </summary>
+    /// <summary> The ComputeFleetVmssNetworkProfile. </summary>
     public partial class ComputeFleetVmssNetworkProfile
     {
         /// <summary>
@@ -54,17 +54,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssNetworkProfile"/>. </summary>
-        /// <param name="healthProbe">
-        /// A reference to a load balancer probe used to determine the health of an
-        /// instance in the virtual machine scale set. The reference will be in the form:
-        /// '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/probes/{probeName}'.
-        /// </param>
-        /// <param name="networkInterfaceConfigurations"> The list of network configurations. </param>
-        /// <param name="networkApiVersion">
-        /// specifies the Microsoft.Network API version used when creating networking
-        /// resources in the Network Interface Configurations for Virtual Machine Scale Set
-        /// with orchestration mode 'Flexible'
-        /// </param>
+        /// <param name="healthProbe"> Gets or sets the health probe. </param>
+        /// <param name="networkInterfaceConfigurations"></param>
+        /// <param name="networkApiVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssNetworkProfile(WritableSubResource healthProbe, IList<ComputeFleetVmssNetworkConfiguration> networkInterfaceConfigurations, ComputeFleetNetworkApiVersion? networkApiVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +66,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// A reference to a load balancer probe used to determine the health of an
-        /// instance in the virtual machine scale set. The reference will be in the form:
-        /// '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/probes/{probeName}'.
-        /// </summary>
+        /// <summary> Gets or sets the health probe. </summary>
         internal WritableSubResource HealthProbe { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier HealthProbeId
@@ -92,13 +80,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             }
         }
 
-        /// <summary> The list of network configurations. </summary>
+        /// <summary> Gets the network interface configurations. </summary>
         public IList<ComputeFleetVmssNetworkConfiguration> NetworkInterfaceConfigurations { get; }
-        /// <summary>
-        /// specifies the Microsoft.Network API version used when creating networking
-        /// resources in the Network Interface Configurations for Virtual Machine Scale Set
-        /// with orchestration mode 'Flexible'
-        /// </summary>
+        /// <summary> Gets or sets the network api version. </summary>
         public ComputeFleetNetworkApiVersion? NetworkApiVersion { get; set; }
     }
 }

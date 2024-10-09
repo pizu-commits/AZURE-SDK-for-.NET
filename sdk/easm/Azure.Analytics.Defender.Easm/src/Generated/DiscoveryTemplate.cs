@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The items in the current page of results. </summary>
+    /// <summary> The DiscoveryTemplate. </summary>
     public partial class DiscoveryTemplate
     {
         /// <summary>
@@ -53,16 +53,16 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="DiscoveryTemplate"/>. </summary>
-        /// <param name="id"> The system generated unique id for the resource. </param>
-        /// <param name="name"> The caller provided unique name for the resource. </param>
-        /// <param name="displayName"> The name that can be used for display purposes. </param>
-        /// <param name="industry"> The name of the industry. </param>
-        /// <param name="region"> The name of the region. </param>
-        /// <param name="countryCode"> The country code. </param>
-        /// <param name="stateCode"> The state code. </param>
-        /// <param name="city"> The name of the city. </param>
-        /// <param name="seeds"> The list of disco template seeds. </param>
-        /// <param name="names"> The list of disco template names. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
+        /// <param name="industry"></param>
+        /// <param name="region"></param>
+        /// <param name="countryCode"></param>
+        /// <param name="stateCode"></param>
+        /// <param name="city"></param>
+        /// <param name="seeds"></param>
+        /// <param name="names"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DiscoveryTemplate(string id, string name, string displayName, string industry, string region, string countryCode, string stateCode, string city, IReadOnlyList<DiscoverySource> seeds, IReadOnlyList<string> names, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,25 +79,25 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The system generated unique id for the resource. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The caller provided unique name for the resource. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The name that can be used for display purposes. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The name of the industry. </summary>
+        /// <summary> Gets the industry. </summary>
         public string Industry { get; }
-        /// <summary> The name of the region. </summary>
+        /// <summary> Gets the region. </summary>
         public string Region { get; }
-        /// <summary> The country code. </summary>
+        /// <summary> Gets the country code. </summary>
         public string CountryCode { get; }
-        /// <summary> The state code. </summary>
+        /// <summary> Gets the state code. </summary>
         public string StateCode { get; }
-        /// <summary> The name of the city. </summary>
+        /// <summary> Gets the city. </summary>
         public string City { get; }
-        /// <summary> The list of disco template seeds. </summary>
+        /// <summary> Gets the seeds. </summary>
         public IReadOnlyList<DiscoverySource> Seeds { get; }
-        /// <summary> The list of disco template names. </summary>
+        /// <summary> Gets the names. </summary>
         public IReadOnlyList<string> Names { get; }
     }
 }

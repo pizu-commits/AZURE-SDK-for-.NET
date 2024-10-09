@@ -10,14 +10,14 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A rule providing a binding to an HTTP Triggered Azure Function. </summary>
+    /// <summary> The FunctionRouterRule. </summary>
     public partial class FunctionRouterRule : RouterRule
     {
         /// <summary> Initializes a new instance of <see cref="FunctionRouterRule"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a sub-type of RouterRule. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="functionUri"> URL for Azure Function. </param>
-        /// <param name="credential"> Credentials used to access Azure function rule. </param>
+        /// <param name="functionUri"></param>
+        /// <param name="credential"></param>
         internal FunctionRouterRule(RouterRuleKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, Uri functionUri, FunctionRouterRuleCredential credential) : base(kind, serializedAdditionalRawData)
         {
             FunctionUri = functionUri;
@@ -29,7 +29,7 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> URL for Azure Function. </summary>
+        /// <summary> Gets the function uri. </summary>
         public Uri FunctionUri { get; }
     }
 }

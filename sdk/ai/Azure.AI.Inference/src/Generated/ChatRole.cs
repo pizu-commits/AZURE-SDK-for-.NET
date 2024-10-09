@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A description of the intended purpose of a message within a chat completions interaction. </summary>
+    /// <summary> The ChatRole. </summary>
     public readonly partial struct ChatRole : IEquatable<ChatRole>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.Inference
         private const string AssistantValue = "assistant";
         private const string ToolValue = "tool";
 
-        /// <summary> The role that instructs or sets the behavior of the assistant. </summary>
+        /// <summary> system. </summary>
         public static ChatRole System { get; } = new ChatRole(SystemValue);
-        /// <summary> The role that provides input for chat completions. </summary>
+        /// <summary> user. </summary>
         public static ChatRole User { get; } = new ChatRole(UserValue);
-        /// <summary> The role that provides responses to system-instructed, user-prompted input. </summary>
+        /// <summary> assistant. </summary>
         public static ChatRole Assistant { get; } = new ChatRole(AssistantValue);
-        /// <summary> The role that represents extension tool activity within a chat completions operation. </summary>
+        /// <summary> tool. </summary>
         public static ChatRole Tool { get; } = new ChatRole(ToolValue);
         /// <summary> Determines if two <see cref="ChatRole"/> values are the same. </summary>
         public static bool operator ==(ChatRole left, ChatRole right) => left.Equals(right);

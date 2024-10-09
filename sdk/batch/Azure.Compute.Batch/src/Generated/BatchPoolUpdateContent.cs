@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> Parameters for updating an Azure Batch Pool. </summary>
+    /// <summary> The BatchPoolUpdateContent. </summary>
     public partial class BatchPoolUpdateContent
     {
         /// <summary>
@@ -53,10 +53,10 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchPoolUpdateContent"/>. </summary>
-        /// <param name="startTask"> A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. If this element is present, it overwrites any existing StartTask. If omitted, any existing StartTask is left unchanged. </param>
-        /// <param name="applicationPackageReferences"> A list of Packages to be installed on each Compute Node in the Pool. Changes to Package references affect all new Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. If this element is present, it replaces any existing Package references. If you specify an empty collection, then all Package references are removed from the Pool. If omitted, any existing Package references are left unchanged. </param>
-        /// <param name="metadata"> A list of name-value pairs associated with the Pool as metadata. If this element is present, it replaces any existing metadata configured on the Pool. If you specify an empty collection, any metadata is removed from the Pool. If omitted, any existing metadata is left unchanged. </param>
-        /// <param name="targetNodeCommunicationMode"> The desired node communication mode for the pool. If this element is present, it replaces the existing targetNodeCommunicationMode configured on the Pool. If omitted, any existing metadata is left unchanged. </param>
+        /// <param name="startTask"></param>
+        /// <param name="applicationPackageReferences"></param>
+        /// <param name="metadata"></param>
+        /// <param name="targetNodeCommunicationMode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchPoolUpdateContent(BatchStartTask startTask, IList<BatchApplicationPackageReference> applicationPackageReferences, IList<MetadataItem> metadata, BatchNodeCommunicationMode? targetNodeCommunicationMode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,13 +67,13 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A Task to run on each Compute Node as it joins the Pool. The Task runs when the Compute Node is added to the Pool or when the Compute Node is restarted. If this element is present, it overwrites any existing StartTask. If omitted, any existing StartTask is left unchanged. </summary>
+        /// <summary> Gets or sets the start task. </summary>
         public BatchStartTask StartTask { get; set; }
-        /// <summary> A list of Packages to be installed on each Compute Node in the Pool. Changes to Package references affect all new Nodes joining the Pool, but do not affect Compute Nodes that are already in the Pool until they are rebooted or reimaged. If this element is present, it replaces any existing Package references. If you specify an empty collection, then all Package references are removed from the Pool. If omitted, any existing Package references are left unchanged. </summary>
+        /// <summary> Gets the application package references. </summary>
         public IList<BatchApplicationPackageReference> ApplicationPackageReferences { get; }
-        /// <summary> A list of name-value pairs associated with the Pool as metadata. If this element is present, it replaces any existing metadata configured on the Pool. If you specify an empty collection, any metadata is removed from the Pool. If omitted, any existing metadata is left unchanged. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataItem> Metadata { get; }
-        /// <summary> The desired node communication mode for the pool. If this element is present, it replaces the existing targetNodeCommunicationMode configured on the Pool. If omitted, any existing metadata is left unchanged. </summary>
+        /// <summary> Gets or sets the target node communication mode. </summary>
         public BatchNodeCommunicationMode? TargetNodeCommunicationMode { get; set; }
     }
 }

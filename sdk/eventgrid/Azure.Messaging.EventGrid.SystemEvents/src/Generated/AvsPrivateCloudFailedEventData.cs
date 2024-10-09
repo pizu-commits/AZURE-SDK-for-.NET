@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.AVS.PrivateCloudFailed event. </summary>
+    /// <summary> The AvsPrivateCloudFailedEventData. </summary>
     public partial class AvsPrivateCloudFailedEventData : AvsPrivateCloudEventData
     {
         /// <summary> Initializes a new instance of <see cref="AvsPrivateCloudFailedEventData"/>. </summary>
@@ -19,15 +19,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsPrivateCloudFailedEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
+        /// <param name="operationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="failureMessage"> Failure reason of an event. </param>
+        /// <param name="failureMessage"></param>
         internal AvsPrivateCloudFailedEventData(string operationId, IDictionary<string, BinaryData> serializedAdditionalRawData, string failureMessage) : base(operationId, serializedAdditionalRawData)
         {
             FailureMessage = failureMessage;
         }
 
-        /// <summary> Failure reason of an event. </summary>
+        /// <summary> Gets the failure message. </summary>
         public string FailureMessage { get; }
     }
 }

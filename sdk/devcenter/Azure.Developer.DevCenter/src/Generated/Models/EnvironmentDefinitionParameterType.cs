@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The type of data a parameter accepts. </summary>
+    /// <summary> The EnvironmentDefinitionParameterType. </summary>
     public readonly partial struct EnvironmentDefinitionParameterType : IEquatable<EnvironmentDefinitionParameterType>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Developer.DevCenter.Models
         private const string ObjectValue = "object";
         private const string StringValue = "string";
 
-        /// <summary> The parameter accepts an array of values. </summary>
+        /// <summary> array. </summary>
         public static EnvironmentDefinitionParameterType Array { get; } = new EnvironmentDefinitionParameterType(ArrayValue);
-        /// <summary> The parameter accepts a boolean value. </summary>
+        /// <summary> boolean. </summary>
         public static EnvironmentDefinitionParameterType Boolean { get; } = new EnvironmentDefinitionParameterType(BooleanValue);
-        /// <summary> The parameter accepts an integer value. </summary>
+        /// <summary> integer. </summary>
         public static EnvironmentDefinitionParameterType Integer { get; } = new EnvironmentDefinitionParameterType(IntegerValue);
-        /// <summary> The parameter accepts a number value. </summary>
+        /// <summary> number. </summary>
         public static EnvironmentDefinitionParameterType Number { get; } = new EnvironmentDefinitionParameterType(NumberValue);
-        /// <summary> The parameter accepts an object value. </summary>
+        /// <summary> object. </summary>
         public static EnvironmentDefinitionParameterType Object { get; } = new EnvironmentDefinitionParameterType(ObjectValue);
-        /// <summary> The parameter accepts a string value. </summary>
+        /// <summary> string. </summary>
         public static EnvironmentDefinitionParameterType String { get; } = new EnvironmentDefinitionParameterType(StringValue);
         /// <summary> Determines if two <see cref="EnvironmentDefinitionParameterType"/> values are the same. </summary>
         public static bool operator ==(EnvironmentDefinitionParameterType left, EnvironmentDefinitionParameterType right) => left.Equals(right);

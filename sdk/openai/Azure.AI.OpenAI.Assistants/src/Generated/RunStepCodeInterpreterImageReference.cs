@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> An image reference emitted by a code interpreter tool in response to a tool call by the model. </summary>
+    /// <summary> The RunStepCodeInterpreterImageReference. </summary>
     public partial class RunStepCodeInterpreterImageReference
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RunStepCodeInterpreterImageReference"/>. </summary>
-        /// <param name="fileId"> The ID of the file associated with this image. </param>
+        /// <param name="fileId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="fileId"/> is null. </exception>
         internal RunStepCodeInterpreterImageReference(string fileId)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunStepCodeInterpreterImageReference"/>. </summary>
-        /// <param name="fileId"> The ID of the file associated with this image. </param>
+        /// <param name="fileId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RunStepCodeInterpreterImageReference(string fileId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The ID of the file associated with this image. </summary>
+        /// <summary> Gets the file id. </summary>
         public string FileId { get; }
     }
 }

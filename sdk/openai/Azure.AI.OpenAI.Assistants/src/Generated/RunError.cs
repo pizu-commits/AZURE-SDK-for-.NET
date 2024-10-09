@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> The details of an error as encountered by an assistant thread run. </summary>
+    /// <summary> The RunError. </summary>
     public partial class RunError
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RunError"/>. </summary>
-        /// <param name="code"> The status for the error. </param>
-        /// <param name="message"> The human-readable text associated with the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> or <paramref name="message"/> is null. </exception>
         internal RunError(string code, string message)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunError"/>. </summary>
-        /// <param name="code"> The status for the error. </param>
-        /// <param name="message"> The human-readable text associated with the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RunError(string code, string message, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The status for the error. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> The human-readable text associated with the error. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
     }
 }

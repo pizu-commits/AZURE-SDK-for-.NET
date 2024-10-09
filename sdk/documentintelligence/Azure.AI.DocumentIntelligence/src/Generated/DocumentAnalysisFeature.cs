@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Document analysis features to enable. </summary>
+    /// <summary> The DocumentAnalysisFeature. </summary>
     public readonly partial struct DocumentAnalysisFeature : IEquatable<DocumentAnalysisFeature>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.AI.DocumentIntelligence
         private const string StyleFontValue = "styleFont";
         private const string QueryFieldsValue = "queryFields";
 
-        /// <summary> Perform OCR at a higher resolution to handle documents with fine print. </summary>
+        /// <summary> ocrHighResolution. </summary>
         public static DocumentAnalysisFeature OcrHighResolution { get; } = new DocumentAnalysisFeature(OcrHighResolutionValue);
-        /// <summary> Enable the detection of the text content language. </summary>
+        /// <summary> languages. </summary>
         public static DocumentAnalysisFeature Languages { get; } = new DocumentAnalysisFeature(LanguagesValue);
-        /// <summary> Enable the detection of barcodes in the document. </summary>
+        /// <summary> barcodes. </summary>
         public static DocumentAnalysisFeature Barcodes { get; } = new DocumentAnalysisFeature(BarcodesValue);
-        /// <summary> Enable the detection of mathematical expressions in the document. </summary>
+        /// <summary> formulas. </summary>
         public static DocumentAnalysisFeature Formulas { get; } = new DocumentAnalysisFeature(FormulasValue);
-        /// <summary> Enable the detection of general key value pairs (form fields) in the document. </summary>
+        /// <summary> keyValuePairs. </summary>
         public static DocumentAnalysisFeature KeyValuePairs { get; } = new DocumentAnalysisFeature(KeyValuePairsValue);
-        /// <summary> Enable the recognition of various font styles. </summary>
+        /// <summary> styleFont. </summary>
         public static DocumentAnalysisFeature StyleFont { get; } = new DocumentAnalysisFeature(StyleFontValue);
-        /// <summary> Enable the extraction of additional fields via the queryFields query parameter. </summary>
+        /// <summary> queryFields. </summary>
         public static DocumentAnalysisFeature QueryFields { get; } = new DocumentAnalysisFeature(QueryFieldsValue);
         /// <summary> Determines if two <see cref="DocumentAnalysisFeature"/> values are the same. </summary>
         public static bool operator ==(DocumentAnalysisFeature left, DocumentAnalysisFeature right) => left.Equals(right);

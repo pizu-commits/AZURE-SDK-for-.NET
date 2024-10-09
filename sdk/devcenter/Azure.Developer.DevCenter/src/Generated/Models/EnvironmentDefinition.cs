@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> An environment definition. </summary>
+    /// <summary> The EnvironmentDefinition. </summary>
     public partial class EnvironmentDefinition
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Developer.DevCenter.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="EnvironmentDefinition"/>. </summary>
-        /// <param name="id"> The ID of the environment definition. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
+        /// <param name="id"></param>
+        /// <param name="catalogName"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="catalogName"/> is null. </exception>
         internal EnvironmentDefinition(string id, string catalogName)
         {
@@ -60,13 +60,13 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="EnvironmentDefinition"/>. </summary>
-        /// <param name="id"> The ID of the environment definition. </param>
-        /// <param name="name"> Name of the environment definition. </param>
-        /// <param name="catalogName"> Name of the catalog. </param>
-        /// <param name="description"> A short description of the environment definition. </param>
-        /// <param name="parameters"> Input parameters passed to an environment. </param>
-        /// <param name="parametersSchema"> JSON schema defining the parameters object passed to an environment. </param>
-        /// <param name="templatePath"> Path to the Environment Definition entrypoint file. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="catalogName"></param>
+        /// <param name="description"></param>
+        /// <param name="parameters"></param>
+        /// <param name="parametersSchema"></param>
+        /// <param name="templatePath"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EnvironmentDefinition(string id, string name, string catalogName, string description, IReadOnlyList<EnvironmentDefinitionParameter> parameters, string parametersSchema, string templatePath, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,19 +85,19 @@ namespace Azure.Developer.DevCenter.Models
         {
         }
 
-        /// <summary> The ID of the environment definition. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Name of the environment definition. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Name of the catalog. </summary>
+        /// <summary> Gets the catalog name. </summary>
         public string CatalogName { get; }
-        /// <summary> A short description of the environment definition. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> Input parameters passed to an environment. </summary>
+        /// <summary> Gets the parameters. </summary>
         public IReadOnlyList<EnvironmentDefinitionParameter> Parameters { get; }
-        /// <summary> JSON schema defining the parameters object passed to an environment. </summary>
+        /// <summary> Gets the parameters schema. </summary>
         public string ParametersSchema { get; }
-        /// <summary> Path to the Environment Definition entrypoint file. </summary>
+        /// <summary> Gets the template path. </summary>
         public string TemplatePath { get; }
     }
 }

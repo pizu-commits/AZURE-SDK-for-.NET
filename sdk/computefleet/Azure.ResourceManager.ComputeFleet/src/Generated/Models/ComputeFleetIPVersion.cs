@@ -10,11 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Available from Api-Version 2017-03-30 onwards, it represents whether the
-    /// specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible
-    /// values are: 'IPv4' and 'IPv6'.
-    /// </summary>
+    /// <summary> The ComputeFleetIPVersion. </summary>
     public readonly partial struct ComputeFleetIPVersion : IEquatable<ComputeFleetIPVersion>
     {
         private readonly string _value;
@@ -29,9 +25,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string IPv4Value = "IPv4";
         private const string IPv6Value = "IPv6";
 
-        /// <summary> IPv4 version. </summary>
+        /// <summary> IPv4. </summary>
         public static ComputeFleetIPVersion IPv4 { get; } = new ComputeFleetIPVersion(IPv4Value);
-        /// <summary> IPv6 version. </summary>
+        /// <summary> IPv6. </summary>
         public static ComputeFleetIPVersion IPv6 { get; } = new ComputeFleetIPVersion(IPv6Value);
         /// <summary> Determines if two <see cref="ComputeFleetIPVersion"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetIPVersion left, ComputeFleetIPVersion right) => left.Equals(right);

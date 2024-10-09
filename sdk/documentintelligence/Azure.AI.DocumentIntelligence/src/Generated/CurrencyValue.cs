@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Currency field value. </summary>
+    /// <summary> The CurrencyValue. </summary>
     public partial class CurrencyValue
     {
         /// <summary>
@@ -46,16 +46,16 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CurrencyValue"/>. </summary>
-        /// <param name="amount"> Currency amount. </param>
+        /// <param name="amount"></param>
         internal CurrencyValue(double amount)
         {
             Amount = amount;
         }
 
         /// <summary> Initializes a new instance of <see cref="CurrencyValue"/>. </summary>
-        /// <param name="amount"> Currency amount. </param>
-        /// <param name="currencySymbol"> Currency symbol label, if any. </param>
-        /// <param name="currencyCode"> Resolved currency code (ISO 4217), if any. </param>
+        /// <param name="amount"></param>
+        /// <param name="currencySymbol"></param>
+        /// <param name="currencyCode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CurrencyValue(double amount, string currencySymbol, string currencyCode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,11 +70,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Currency amount. </summary>
+        /// <summary> Gets the amount. </summary>
         public double Amount { get; }
-        /// <summary> Currency symbol label, if any. </summary>
+        /// <summary> Gets the currency symbol. </summary>
         public string CurrencySymbol { get; }
-        /// <summary> Resolved currency code (ISO 4217), if any. </summary>
+        /// <summary> Gets the currency code. </summary>
         public string CurrencyCode { get; }
     }
 }

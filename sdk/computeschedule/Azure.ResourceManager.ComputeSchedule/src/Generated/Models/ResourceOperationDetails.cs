@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The details of a response from an operation on a resource. </summary>
+    /// <summary> The ResourceOperationDetails. </summary>
     public partial class ResourceOperationDetails
     {
         /// <summary>
@@ -47,13 +47,13 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceOperationDetails"/>. </summary>
-        /// <param name="operationId"> Operation identifier for the unique operation. </param>
-        /// <param name="resourceId"> Unique identifier for the resource involved in the operation, eg ArmId. </param>
-        /// <param name="opType"> Type of operation performed on the resources. </param>
-        /// <param name="subscriptionId"> Subscription id attached to the request. </param>
-        /// <param name="deadline"> Deadline for the operation. </param>
-        /// <param name="deadlineType"> Type of deadline of the operation. </param>
-        /// <param name="state"> Current state of the operation. </param>
+        /// <param name="operationId"></param>
+        /// <param name="resourceId"></param>
+        /// <param name="opType"></param>
+        /// <param name="subscriptionId"></param>
+        /// <param name="deadline"></param>
+        /// <param name="deadlineType"></param>
+        /// <param name="state"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/>, <paramref name="resourceId"/> or <paramref name="subscriptionId"/> is null. </exception>
         internal ResourceOperationDetails(string operationId, ResourceIdentifier resourceId, ResourceOperationType opType, string subscriptionId, DateTimeOffset deadline, ScheduledActionDeadlineType deadlineType, ScheduledActionOperationState state)
         {
@@ -71,17 +71,17 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceOperationDetails"/>. </summary>
-        /// <param name="operationId"> Operation identifier for the unique operation. </param>
-        /// <param name="resourceId"> Unique identifier for the resource involved in the operation, eg ArmId. </param>
-        /// <param name="opType"> Type of operation performed on the resources. </param>
-        /// <param name="subscriptionId"> Subscription id attached to the request. </param>
-        /// <param name="deadline"> Deadline for the operation. </param>
-        /// <param name="deadlineType"> Type of deadline of the operation. </param>
-        /// <param name="state"> Current state of the operation. </param>
-        /// <param name="timeZone"> Timezone for the operation. </param>
-        /// <param name="resourceOperationError"> Operation level errors if they exist. </param>
-        /// <param name="completedOn"> Time the operation was complete if errors are null. </param>
-        /// <param name="retryPolicy"> Retry policy the user can pass. </param>
+        /// <param name="operationId"></param>
+        /// <param name="resourceId"></param>
+        /// <param name="opType"></param>
+        /// <param name="subscriptionId"></param>
+        /// <param name="deadline"></param>
+        /// <param name="deadlineType"></param>
+        /// <param name="state"></param>
+        /// <param name="timeZone"></param>
+        /// <param name="resourceOperationError"></param>
+        /// <param name="completedOn"></param>
+        /// <param name="retryPolicy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceOperationDetails(string operationId, ResourceIdentifier resourceId, ResourceOperationType opType, string subscriptionId, DateTimeOffset deadline, ScheduledActionDeadlineType deadlineType, ScheduledActionOperationState state, string timeZone, ResourceOperationError resourceOperationError, DateTimeOffset? completedOn, UserRequestRetryPolicy retryPolicy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -104,27 +104,27 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> Operation identifier for the unique operation. </summary>
+        /// <summary> Gets the operation id. </summary>
         public string OperationId { get; }
-        /// <summary> Unique identifier for the resource involved in the operation, eg ArmId. </summary>
+        /// <summary> Gets the resource id. </summary>
         public ResourceIdentifier ResourceId { get; }
-        /// <summary> Type of operation performed on the resources. </summary>
+        /// <summary> Gets the op type. </summary>
         public ResourceOperationType OpType { get; }
-        /// <summary> Subscription id attached to the request. </summary>
+        /// <summary> Gets the subscription id. </summary>
         public string SubscriptionId { get; }
-        /// <summary> Deadline for the operation. </summary>
+        /// <summary> Gets the deadline. </summary>
         public DateTimeOffset Deadline { get; }
-        /// <summary> Type of deadline of the operation. </summary>
+        /// <summary> Gets the deadline type. </summary>
         public ScheduledActionDeadlineType DeadlineType { get; }
-        /// <summary> Current state of the operation. </summary>
+        /// <summary> Gets the state. </summary>
         public ScheduledActionOperationState State { get; }
-        /// <summary> Timezone for the operation. </summary>
+        /// <summary> Gets the time zone. </summary>
         public string TimeZone { get; }
-        /// <summary> Operation level errors if they exist. </summary>
+        /// <summary> Gets the resource operation error. </summary>
         public ResourceOperationError ResourceOperationError { get; }
-        /// <summary> Time the operation was complete if errors are null. </summary>
+        /// <summary> Gets the completed on. </summary>
         public DateTimeOffset? CompletedOn { get; }
-        /// <summary> Retry policy the user can pass. </summary>
+        /// <summary> Gets the retry policy. </summary>
         public UserRequestRetryPolicy RetryPolicy { get; }
     }
 }

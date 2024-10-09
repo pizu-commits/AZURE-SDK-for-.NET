@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The aggregated template status. </summary>
+    /// <summary> The MessageTemplateStatus. </summary>
     public readonly partial struct MessageTemplateStatus : IEquatable<MessageTemplateStatus>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.Communication.Messages
         private const string PendingValue = "pending";
         private const string PausedValue = "paused";
 
-        /// <summary> Message template is approved. </summary>
+        /// <summary> approved. </summary>
         public static MessageTemplateStatus Approved { get; } = new MessageTemplateStatus(ApprovedValue);
-        /// <summary> Message template is rejected. </summary>
+        /// <summary> rejected. </summary>
         public static MessageTemplateStatus Rejected { get; } = new MessageTemplateStatus(RejectedValue);
-        /// <summary> Message template is pending. </summary>
+        /// <summary> pending. </summary>
         public static MessageTemplateStatus Pending { get; } = new MessageTemplateStatus(PendingValue);
-        /// <summary> Message template is paused. </summary>
+        /// <summary> paused. </summary>
         public static MessageTemplateStatus Paused { get; } = new MessageTemplateStatus(PausedValue);
         /// <summary> Determines if two <see cref="MessageTemplateStatus"/> values are the same. </summary>
         public static bool operator ==(MessageTemplateStatus left, MessageTemplateStatus right) => left.Equals(right);

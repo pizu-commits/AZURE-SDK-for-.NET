@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A request chat message representing response or action from the assistant. </summary>
+    /// <summary> The ChatRequestAssistantMessage. </summary>
     public partial class ChatRequestAssistantMessage : ChatRequestMessage
     {
         /// <summary> Initializes a new instance of <see cref="ChatRequestAssistantMessage"/>. </summary>
@@ -21,12 +21,10 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatRequestAssistantMessage"/>. </summary>
-        /// <param name="role"> The chat role associated with this message. </param>
+        /// <param name="role"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="content"> The content of the message. </param>
+        /// <param name="content"></param>
         /// <param name="toolCalls">
-        /// The tool calls that must be resolved and have their outputs appended to subsequent input messages for the chat
-        /// completions request to resolve as configured.
         /// Please note <see cref="ChatCompletionsToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsFunctionToolCall"/>.
         /// </param>
@@ -36,11 +34,10 @@ namespace Azure.AI.Inference
             ToolCalls = toolCalls;
         }
 
-        /// <summary> The content of the message. </summary>
+        /// <summary> Gets or sets the content. </summary>
         public string Content { get; set; }
         /// <summary>
-        /// The tool calls that must be resolved and have their outputs appended to subsequent input messages for the chat
-        /// completions request to resolve as configured.
+        /// Gets the tool calls
         /// Please note <see cref="ChatCompletionsToolCall"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ChatCompletionsFunctionToolCall"/>.
         /// </summary>

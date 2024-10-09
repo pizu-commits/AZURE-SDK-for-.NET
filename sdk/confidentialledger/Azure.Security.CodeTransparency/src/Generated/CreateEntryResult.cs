@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> Response of entry submission containing the operationId. </summary>
+    /// <summary> The CreateEntryResult. </summary>
     public partial class CreateEntryResult
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Security.CodeTransparency
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CreateEntryResult"/>. </summary>
-        /// <param name="operationId"> String representing the operation id submitted. </param>
+        /// <param name="operationId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         internal CreateEntryResult(string operationId)
         {
@@ -56,7 +56,7 @@ namespace Azure.Security.CodeTransparency
         }
 
         /// <summary> Initializes a new instance of <see cref="CreateEntryResult"/>. </summary>
-        /// <param name="operationId"> String representing the operation id submitted. </param>
+        /// <param name="operationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CreateEntryResult(string operationId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Security.CodeTransparency
         {
         }
 
-        /// <summary> String representing the operation id submitted. </summary>
+        /// <summary> Gets the operation id. </summary>
         public string OperationId { get; }
     }
 }

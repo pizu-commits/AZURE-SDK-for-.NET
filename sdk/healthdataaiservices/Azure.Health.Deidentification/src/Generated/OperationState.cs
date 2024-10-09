@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> Enum describing allowed operation states. </summary>
+    /// <summary> The OperationState. </summary>
     public readonly partial struct OperationState : IEquatable<OperationState>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Health.Deidentification
         private const string FailedValue = "Failed";
         private const string CanceledValue = "Canceled";
 
-        /// <summary> The operation has not started. </summary>
+        /// <summary> NotStarted. </summary>
         public static OperationState NotStarted { get; } = new OperationState(NotStartedValue);
-        /// <summary> The operation is in progress. </summary>
+        /// <summary> Running. </summary>
         public static OperationState Running { get; } = new OperationState(RunningValue);
-        /// <summary> The operation has completed successfully. </summary>
+        /// <summary> Succeeded. </summary>
         public static OperationState Succeeded { get; } = new OperationState(SucceededValue);
-        /// <summary> The operation has failed. </summary>
+        /// <summary> Failed. </summary>
         public static OperationState Failed { get; } = new OperationState(FailedValue);
-        /// <summary> The operation has been canceled by the user. </summary>
+        /// <summary> Canceled. </summary>
         public static OperationState Canceled { get; } = new OperationState(CanceledValue);
         /// <summary> Determines if two <see cref="OperationState"/> values are the same. </summary>
         public static bool operator ==(OperationState left, OperationState right) => left.Equals(right);

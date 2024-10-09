@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Word-level timing information that the speech-to-text API generates. The words in this object should have 1:1 correspondence with the lexical input to allow for audio redaction. </summary>
+    /// <summary> The WordLevelTiming. </summary>
     public partial class WordLevelTiming
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="WordLevelTiming"/>. </summary>
-        /// <param name="offset"> Offset from the start of speech audio, in ticks. 1 tick = 100 nanoseconds. </param>
-        /// <param name="duration"> Duration of word articulation, in ticks. 1 tick = 100 nanoseconds. </param>
-        /// <param name="word"> Recognized word. </param>
+        /// <param name="offset"></param>
+        /// <param name="duration"></param>
+        /// <param name="word"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal WordLevelTiming(long? offset, long? duration, string word, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Offset from the start of speech audio, in ticks. 1 tick = 100 nanoseconds. </summary>
+        /// <summary> Gets or sets the offset. </summary>
         public long? Offset { get; set; }
-        /// <summary> Duration of word articulation, in ticks. 1 tick = 100 nanoseconds. </summary>
+        /// <summary> Gets or sets the duration. </summary>
         public long? Duration { get; set; }
-        /// <summary> Recognized word. </summary>
+        /// <summary> Gets or sets the word. </summary>
         public string Word { get; set; }
     }
 }

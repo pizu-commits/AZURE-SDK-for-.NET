@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Informatica Serverless Runtime Application type Metadata. </summary>
+    /// <summary> The InformaticaApplicationTypeMetadata. </summary>
     public partial class InformaticaApplicationTypeMetadata
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaApplicationTypeMetadata"/>. </summary>
-        /// <param name="name"> Application type name. </param>
-        /// <param name="value"> Application type value. </param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaApplicationTypeMetadata(string name, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Application type name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Application type value. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.InformaticaDataManagement.Models
 {
-    /// <summary> Properties of the Informatica organization. </summary>
+    /// <summary> The InformaticaProperties. </summary>
     public partial class InformaticaProperties
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InformaticaProperties"/>. </summary>
-        /// <param name="organizationId"> Organization id. </param>
-        /// <param name="organizationName"> Organization name. </param>
-        /// <param name="informaticaRegion"> Informatica organization region. </param>
-        /// <param name="singleSignOnUri"> Single sing on URL for informatica organization. </param>
+        /// <param name="organizationId"></param>
+        /// <param name="organizationName"></param>
+        /// <param name="informaticaRegion"></param>
+        /// <param name="singleSignOnUri"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InformaticaProperties(string organizationId, string organizationName, string informaticaRegion, Uri singleSignOnUri, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.ResourceManager.InformaticaDataManagement.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Organization id. </summary>
+        /// <summary> Gets or sets the organization id. </summary>
         public string OrganizationId { get; set; }
-        /// <summary> Organization name. </summary>
+        /// <summary> Gets or sets the organization name. </summary>
         public string OrganizationName { get; set; }
-        /// <summary> Informatica organization region. </summary>
+        /// <summary> Gets or sets the informatica region. </summary>
         public string InformaticaRegion { get; set; }
-        /// <summary> Single sing on URL for informatica organization. </summary>
+        /// <summary> Gets or sets the single sign on uri. </summary>
         public Uri SingleSignOnUri { get; set; }
     }
 }

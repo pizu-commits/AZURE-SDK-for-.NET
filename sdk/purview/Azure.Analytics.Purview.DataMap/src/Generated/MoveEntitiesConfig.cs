@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> MoveEntitiesOptions. </summary>
+    /// <summary> The MoveEntitiesConfig. </summary>
     public partial class MoveEntitiesConfig
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="MoveEntitiesConfig"/>. </summary>
-        /// <param name="entityGuids"> An array of entity guids to be moved to target collection. </param>
+        /// <param name="entityGuids"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MoveEntitiesConfig(IList<string> entityGuids, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> An array of entity guids to be moved to target collection. </summary>
+        /// <summary> Gets the entity guids. </summary>
         public IList<string> EntityGuids { get; }
     }
 }

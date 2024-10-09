@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Describes supported operations on label values. </summary>
+    /// <summary> The LabelOperator. </summary>
     public readonly partial struct LabelOperator : IEquatable<LabelOperator>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Communication.JobRouter
         private const string GreaterThanValue = "greaterThan";
         private const string GreaterThanOrEqualValue = "greaterThanOrEqual";
 
-        /// <summary> Equal. </summary>
+        /// <summary> equal. </summary>
         public static LabelOperator Equal { get; } = new LabelOperator(EqualValue);
-        /// <summary> Not Equal. </summary>
+        /// <summary> notEqual. </summary>
         public static LabelOperator NotEqual { get; } = new LabelOperator(NotEqualValue);
-        /// <summary> Less than. </summary>
+        /// <summary> lessThan. </summary>
         public static LabelOperator LessThan { get; } = new LabelOperator(LessThanValue);
-        /// <summary> Less than or equal. </summary>
+        /// <summary> lessThanOrEqual. </summary>
         public static LabelOperator LessThanOrEqual { get; } = new LabelOperator(LessThanOrEqualValue);
-        /// <summary> Greater than. </summary>
+        /// <summary> greaterThan. </summary>
         public static LabelOperator GreaterThan { get; } = new LabelOperator(GreaterThanValue);
-        /// <summary> Greater than or equal. </summary>
+        /// <summary> greaterThanOrEqual. </summary>
         public static LabelOperator GreaterThanOrEqual { get; } = new LabelOperator(GreaterThanOrEqualValue);
         /// <summary> Determines if two <see cref="LabelOperator"/> values are the same. </summary>
         public static bool operator ==(LabelOperator left, LabelOperator right) => left.Equals(right);

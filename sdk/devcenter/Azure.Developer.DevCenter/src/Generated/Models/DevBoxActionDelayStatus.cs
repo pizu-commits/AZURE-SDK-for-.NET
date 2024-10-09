@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The result of the delay operation on this action. </summary>
+    /// <summary> The DevBoxActionDelayStatus. </summary>
     public readonly partial struct DevBoxActionDelayStatus : IEquatable<DevBoxActionDelayStatus>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Developer.DevCenter.Models
         private const string SucceededValue = "Succeeded";
         private const string FailedValue = "Failed";
 
-        /// <summary> The delay operation succeeded. </summary>
+        /// <summary> Succeeded. </summary>
         public static DevBoxActionDelayStatus Succeeded { get; } = new DevBoxActionDelayStatus(SucceededValue);
-        /// <summary> The delay operation failed. </summary>
+        /// <summary> Failed. </summary>
         public static DevBoxActionDelayStatus Failed { get; } = new DevBoxActionDelayStatus(FailedValue);
         /// <summary> Determines if two <see cref="DevBoxActionDelayStatus"/> values are the same. </summary>
         public static bool operator ==(DevBoxActionDelayStatus left, DevBoxActionDelayStatus right) => left.Equals(right);

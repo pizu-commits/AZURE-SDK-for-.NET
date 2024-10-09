@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Anomaly status and information. </summary>
+    /// <summary> The AnomalyState. </summary>
     public partial class AnomalyState
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.AnomalyDetector
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnomalyState"/>. </summary>
-        /// <param name="timestamp"> Time stamp for this anomaly. </param>
+        /// <param name="timestamp"></param>
         internal AnomalyState(DateTimeOffset timestamp)
         {
             Timestamp = timestamp;
@@ -54,9 +54,9 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AnomalyState"/>. </summary>
-        /// <param name="timestamp"> Time stamp for this anomaly. </param>
-        /// <param name="value"> Detailed value of this anomalous time stamp. </param>
-        /// <param name="errors"> Error message for the current time stamp. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="value"></param>
+        /// <param name="errors"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnomalyState(DateTimeOffset timestamp, AnomalyValue value, IReadOnlyList<ErrorResponse> errors, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,11 +71,11 @@ namespace Azure.AI.AnomalyDetector
         {
         }
 
-        /// <summary> Time stamp for this anomaly. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public DateTimeOffset Timestamp { get; }
-        /// <summary> Detailed value of this anomalous time stamp. </summary>
+        /// <summary> Gets the value. </summary>
         public AnomalyValue Value { get; }
-        /// <summary> Error message for the current time stamp. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<ErrorResponse> Errors { get; }
     }
 }

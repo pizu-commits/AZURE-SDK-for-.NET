@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Supported parameters for a custom conversation summarization task. </summary>
+    /// <summary> The CustomConversationSummarizationActionContent. </summary>
     public partial class CustomConversationSummarizationActionContent
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CustomConversationSummarizationActionContent"/>. </summary>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
-        /// <param name="summaryAspects"> Array of Summary Aspects. </param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
+        /// <param name="summaryAspects"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="projectName"/>, <paramref name="deploymentName"/> or <paramref name="summaryAspects"/> is null. </exception>
         public CustomConversationSummarizationActionContent(string projectName, string deploymentName, IEnumerable<SummaryAspect> summaryAspects)
         {
@@ -63,13 +63,13 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CustomConversationSummarizationActionContent"/>. </summary>
-        /// <param name="loggingOptOut"> logging opt out. </param>
-        /// <param name="projectName"> This field indicates the project name for the model. </param>
-        /// <param name="deploymentName"> This field indicates the deployment name for the model. </param>
-        /// <param name="sentenceCount"> It controls the approximate number of sentences in the output summaries. </param>
-        /// <param name="stringIndexType"> String index type. </param>
-        /// <param name="summaryLength"> Controls the approximate length of the output summaries. Recommended to use summaryLength over sentenceCount. </param>
-        /// <param name="summaryAspects"> Array of Summary Aspects. </param>
+        /// <param name="loggingOptOut"></param>
+        /// <param name="projectName"></param>
+        /// <param name="deploymentName"></param>
+        /// <param name="sentenceCount"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="summaryLength"></param>
+        /// <param name="summaryAspects"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CustomConversationSummarizationActionContent(bool? loggingOptOut, string projectName, string deploymentName, int? sentenceCount, StringIndexType? stringIndexType, SummaryLengthBucket? summaryLength, IList<SummaryAspect> summaryAspects, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -88,19 +88,19 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> logging opt out. </summary>
+        /// <summary> Gets or sets the logging opt out. </summary>
         public bool? LoggingOptOut { get; set; }
-        /// <summary> This field indicates the project name for the model. </summary>
+        /// <summary> Gets the project name. </summary>
         public string ProjectName { get; }
-        /// <summary> This field indicates the deployment name for the model. </summary>
+        /// <summary> Gets the deployment name. </summary>
         public string DeploymentName { get; }
-        /// <summary> It controls the approximate number of sentences in the output summaries. </summary>
+        /// <summary> Gets or sets the sentence count. </summary>
         public int? SentenceCount { get; set; }
-        /// <summary> String index type. </summary>
+        /// <summary> Gets or sets the string index type. </summary>
         public StringIndexType? StringIndexType { get; set; }
-        /// <summary> Controls the approximate length of the output summaries. Recommended to use summaryLength over sentenceCount. </summary>
+        /// <summary> Gets or sets the summary length. </summary>
         public SummaryLengthBucket? SummaryLength { get; set; }
-        /// <summary> Array of Summary Aspects. </summary>
+        /// <summary> Gets the summary aspects. </summary>
         public IList<SummaryAspect> SummaryAspects { get; }
     }
 }

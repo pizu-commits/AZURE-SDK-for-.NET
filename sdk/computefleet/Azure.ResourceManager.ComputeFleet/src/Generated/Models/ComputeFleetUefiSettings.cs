@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the security settings like secure boot and vTPM used while creating
-    /// the virtual machine. Minimum api-version: 2020-12-01.
-    /// </summary>
+    /// <summary> The ComputeFleetUefiSettings. </summary>
     public partial class ComputeFleetUefiSettings
     {
         /// <summary>
@@ -54,14 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetUefiSettings"/>. </summary>
-        /// <param name="isSecureBootEnabled">
-        /// Specifies whether secure boot should be enabled on the virtual machine. Minimum
-        /// api-version: 2020-12-01.
-        /// </param>
-        /// <param name="isVTpmEnabled">
-        /// Specifies whether vTPM should be enabled on the virtual machine. Minimum
-        /// api-version: 2020-12-01.
-        /// </param>
+        /// <param name="isSecureBootEnabled"></param>
+        /// <param name="isVTpmEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetUefiSettings(bool? isSecureBootEnabled, bool? isVTpmEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,15 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Specifies whether secure boot should be enabled on the virtual machine. Minimum
-        /// api-version: 2020-12-01.
-        /// </summary>
+        /// <summary> Gets or sets the is secure boot enabled. </summary>
         public bool? IsSecureBootEnabled { get; set; }
-        /// <summary>
-        /// Specifies whether vTPM should be enabled on the virtual machine. Minimum
-        /// api-version: 2020-12-01.
-        /// </summary>
+        /// <summary> Gets or sets the is v tpm enabled. </summary>
         public bool? IsVTpmEnabled { get; set; }
     }
 }

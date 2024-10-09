@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> OSType enums. </summary>
+    /// <summary> The OSType. </summary>
     public readonly partial struct OSType : IEquatable<OSType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string LinuxValue = "linux";
         private const string WindowsValue = "windows";
 
-        /// <summary> The Linux operating system. </summary>
+        /// <summary> linux. </summary>
         public static OSType Linux { get; } = new OSType(LinuxValue);
-        /// <summary> The Windows operating system. </summary>
+        /// <summary> windows. </summary>
         public static OSType Windows { get; } = new OSType(WindowsValue);
         /// <summary> Determines if two <see cref="OSType"/> values are the same. </summary>
         public static bool operator ==(OSType left, OSType right) => left.Equals(right);

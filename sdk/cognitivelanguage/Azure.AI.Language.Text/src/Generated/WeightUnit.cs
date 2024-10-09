@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The weight Unit of measurement. </summary>
+    /// <summary> The WeightUnit. </summary>
     public readonly partial struct WeightUnit : IEquatable<WeightUnit>
     {
         private readonly string _value;
@@ -39,37 +39,37 @@ namespace Azure.AI.Language.Text
         private const string StoneValue = "Stone";
         private const string DramValue = "Dram";
 
-        /// <summary> Unspecified weight unit. </summary>
+        /// <summary> Unspecified. </summary>
         public static WeightUnit Unspecified { get; } = new WeightUnit(UnspecifiedValue);
-        /// <summary> Weight unit in kilograms. </summary>
+        /// <summary> Kilogram. </summary>
         public static WeightUnit Kilogram { get; } = new WeightUnit(KilogramValue);
-        /// <summary> Weight unit in grams. </summary>
+        /// <summary> Gram. </summary>
         public static WeightUnit Gram { get; } = new WeightUnit(GramValue);
-        /// <summary> Weight unit in milligrams. </summary>
+        /// <summary> Milligram. </summary>
         public static WeightUnit Milligram { get; } = new WeightUnit(MilligramValue);
-        /// <summary> Volume unit in gallons. </summary>
+        /// <summary> Gallon. </summary>
         public static WeightUnit Gallon { get; } = new WeightUnit(GallonValue);
-        /// <summary> Weight unit in metric tons. </summary>
+        /// <summary> MetricTon. </summary>
         public static WeightUnit MetricTon { get; } = new WeightUnit(MetricTonValue);
-        /// <summary> Weight unit in tons. </summary>
+        /// <summary> Ton. </summary>
         public static WeightUnit Ton { get; } = new WeightUnit(TonValue);
-        /// <summary> Weight unit in pounds. </summary>
+        /// <summary> Pound. </summary>
         public static WeightUnit Pound { get; } = new WeightUnit(PoundValue);
-        /// <summary> Weight unit in ounces. </summary>
+        /// <summary> Ounce. </summary>
         public static WeightUnit Ounce { get; } = new WeightUnit(OunceValue);
-        /// <summary> Weight unit in grains. </summary>
+        /// <summary> Grain. </summary>
         public static WeightUnit Grain { get; } = new WeightUnit(GrainValue);
-        /// <summary> Weight unit in pennyweights. </summary>
+        /// <summary> PennyWeight. </summary>
         public static WeightUnit PennyWeight { get; } = new WeightUnit(PennyWeightValue);
-        /// <summary> Weight unit in long tons (British). </summary>
+        /// <summary> LongTonBritish. </summary>
         public static WeightUnit LongTonBritish { get; } = new WeightUnit(LongTonBritishValue);
-        /// <summary> Weight unit in short tons (US). </summary>
+        /// <summary> ShortTonUS. </summary>
         public static WeightUnit ShortTonUs { get; } = new WeightUnit(ShortTonUsValue);
-        /// <summary> Weight unit in short hundredweights (US). </summary>
+        /// <summary> ShortHundredWeightUS. </summary>
         public static WeightUnit ShortHundredWeightUs { get; } = new WeightUnit(ShortHundredWeightUsValue);
-        /// <summary> Weight unit in stones. </summary>
+        /// <summary> Stone. </summary>
         public static WeightUnit Stone { get; } = new WeightUnit(StoneValue);
-        /// <summary> Weight unit in drams. </summary>
+        /// <summary> Dram. </summary>
         public static WeightUnit Dram { get; } = new WeightUnit(DramValue);
         /// <summary> Determines if two <see cref="WeightUnit"/> values are the same. </summary>
         public static bool operator ==(WeightUnit left, WeightUnit right) => left.Equals(right);

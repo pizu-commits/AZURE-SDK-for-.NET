@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> The error object. </summary>
+    /// <summary> The DocumentIntelligenceWarning. </summary>
     public partial class DocumentIntelligenceWarning
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentIntelligenceWarning"/>. </summary>
-        /// <param name="code"> One of a server-defined set of warning codes. </param>
-        /// <param name="message"> A human-readable representation of the warning. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> or <paramref name="message"/> is null. </exception>
         internal DocumentIntelligenceWarning(string code, string message)
         {
@@ -59,9 +59,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentIntelligenceWarning"/>. </summary>
-        /// <param name="code"> One of a server-defined set of warning codes. </param>
-        /// <param name="message"> A human-readable representation of the warning. </param>
-        /// <param name="target"> The target of the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="target"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentIntelligenceWarning(string code, string message, string target, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> One of a server-defined set of warning codes. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A human-readable representation of the warning. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> The target of the error. </summary>
+        /// <summary> Gets the target. </summary>
         public string Target { get; }
     }
 }

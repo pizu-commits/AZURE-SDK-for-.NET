@@ -104,14 +104,14 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Detect human faces in an image, return face rectangles, and optionally with faceIds, landmarks, and attributes. </summary>
-        /// <param name="uri"> URL of input image. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="uri"></param>
+        /// <param name="detectionModel"> The <see cref="FaceDetectionModel"/>? to use. </param>
+        /// <param name="recognitionModel"> The <see cref="FaceRecognitionModel"/>? to use. </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="uri"/> is null. </exception>
         /// <remarks>
@@ -149,14 +149,14 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Detect human faces in an image, return face rectangles, and optionally with faceIds, landmarks, and attributes. </summary>
-        /// <param name="uri"> URL of input image. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="uri"></param>
+        /// <param name="detectionModel"> The <see cref="FaceDetectionModel"/>? to use. </param>
+        /// <param name="recognitionModel"> The <see cref="FaceRecognitionModel"/>? to use. </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="uri"/> is null. </exception>
         /// <remarks>
@@ -209,13 +209,13 @@ namespace Azure.AI.Vision.Face
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="detectionModel"> The <see cref="string"/> to use. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
+        /// <param name="recognitionModel"> The <see cref="string"/> to use. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -254,13 +254,13 @@ namespace Azure.AI.Vision.Face
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="detectionModel"> The <see cref="string"/> to use. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
+        /// <param name="recognitionModel"> The <see cref="string"/> to use. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -284,14 +284,14 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Detect human faces in an image, return face rectangles, and optionally with faceIds, landmarks, and attributes. </summary>
-        /// <param name="imageContent"> The input image binary. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="imageContent"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="detectionModel"> The <see cref="FaceDetectionModel"/>? to use. </param>
+        /// <param name="recognitionModel"> The <see cref="FaceRecognitionModel"/>? to use. </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="imageContent"/> is null. </exception>
         /// <remarks>
@@ -329,14 +329,14 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Detect human faces in an image, return face rectangles, and optionally with faceIds, landmarks, and attributes. </summary>
-        /// <param name="imageContent"> The input image binary. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="imageContent"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="detectionModel"> The <see cref="FaceDetectionModel"/>? to use. </param>
+        /// <param name="recognitionModel"> The <see cref="FaceRecognitionModel"/>? to use. </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="imageContent"/> is null. </exception>
         /// <remarks>
@@ -389,13 +389,13 @@ namespace Azure.AI.Vision.Face
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="detectionModel"> The <see cref="string"/> to use. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
+        /// <param name="recognitionModel"> The <see cref="string"/> to use. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -434,13 +434,13 @@ namespace Azure.AI.Vision.Face
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="detectionModel"> The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
-        /// <param name="recognitionModel"> The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
-        /// <param name="returnFaceId"> Return faceIds of the detected faces or not. The default value is true. </param>
-        /// <param name="returnFaceAttributes"> Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. </param>
-        /// <param name="returnFaceLandmarks"> Return face landmarks of the detected faces or not. The default value is false. </param>
-        /// <param name="returnRecognitionModel"> Return 'recognitionModel' or not. The default value is false. This is only applicable when returnFaceId = true. </param>
-        /// <param name="faceIdTimeToLive"> The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). </param>
+        /// <param name="detectionModel"> The <see cref="string"/> to use. Allowed values: "detection_01" | "detection_02" | "detection_03". </param>
+        /// <param name="recognitionModel"> The <see cref="string"/> to use. Allowed values: "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04". </param>
+        /// <param name="returnFaceId"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnFaceAttributes"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="FaceAttributeType"/> to use. </param>
+        /// <param name="returnFaceLandmarks"> The <see cref="bool"/>? to use. </param>
+        /// <param name="returnRecognitionModel"> The <see cref="bool"/>? to use. </param>
+        /// <param name="faceIdTimeToLive"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -464,10 +464,10 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Given query face's faceId, to search the similar-looking faces from a faceId array. A faceId array contains the faces created by Detect. </summary>
-        /// <param name="faceId"> faceId of the query face. User needs to call "Detect" first to get a valid faceId. Note that this faceId is not persisted and will expire 24 hours after the detection call. </param>
-        /// <param name="faceIds"> An array of candidate faceIds. All of them are created by "Detect" and the faceIds will expire 24 hours after the detection call. The number of faceIds is limited to 1000. </param>
-        /// <param name="maxNumOfCandidatesReturned"> The number of top similar faces returned. The valid range is [1, 1000]. Default value is 20. </param>
-        /// <param name="mode"> Similar face searching mode. It can be 'matchPerson' or 'matchFace'. Default value is 'matchPerson'. </param>
+        /// <param name="faceId"></param>
+        /// <param name="faceIds"></param>
+        /// <param name="maxNumOfCandidatesReturned"></param>
+        /// <param name="mode"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceIds"/> is null. </exception>
         /// <remarks>
@@ -497,10 +497,10 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Given query face's faceId, to search the similar-looking faces from a faceId array. A faceId array contains the faces created by Detect. </summary>
-        /// <param name="faceId"> faceId of the query face. User needs to call "Detect" first to get a valid faceId. Note that this faceId is not persisted and will expire 24 hours after the detection call. </param>
-        /// <param name="faceIds"> An array of candidate faceIds. All of them are created by "Detect" and the faceIds will expire 24 hours after the detection call. The number of faceIds is limited to 1000. </param>
-        /// <param name="maxNumOfCandidatesReturned"> The number of top similar faces returned. The valid range is [1, 1000]. Default value is 20. </param>
-        /// <param name="mode"> Similar face searching mode. It can be 'matchPerson' or 'matchFace'. Default value is 'matchPerson'. </param>
+        /// <param name="faceId"></param>
+        /// <param name="faceIds"></param>
+        /// <param name="maxNumOfCandidatesReturned"></param>
+        /// <param name="mode"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceIds"/> is null. </exception>
         /// <remarks>
@@ -608,8 +608,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Verify whether two faces belong to a same person. </summary>
-        /// <param name="faceId1"> The faceId of one face, come from "Detect". </param>
-        /// <param name="faceId2"> The faceId of another face, come from "Detect". </param>
+        /// <param name="faceId1"></param>
+        /// <param name="faceId2"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// &gt; [!NOTE]
@@ -629,8 +629,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Verify whether two faces belong to a same person. </summary>
-        /// <param name="faceId1"> The faceId of one face, come from "Detect". </param>
-        /// <param name="faceId2"> The faceId of another face, come from "Detect". </param>
+        /// <param name="faceId1"></param>
+        /// <param name="faceId2"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// &gt; [!NOTE]
@@ -728,7 +728,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Divide candidate faces into groups based on face similarity. </summary>
-        /// <param name="faceIds"> Array of candidate faceIds created by "Detect". The maximum is 1000 faces. </param>
+        /// <param name="faceIds"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceIds"/> is null. </exception>
         /// <remarks>
@@ -751,7 +751,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Divide candidate faces into groups based on face similarity. </summary>
-        /// <param name="faceIds"> Array of candidate faceIds created by "Detect". The maximum is 1000 faces. </param>
+        /// <param name="faceIds"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceIds"/> is null. </exception>
         /// <remarks>

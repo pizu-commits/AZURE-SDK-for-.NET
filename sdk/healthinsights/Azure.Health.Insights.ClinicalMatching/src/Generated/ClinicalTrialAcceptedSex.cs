@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> Possible values for the Sex eligibility criterion as accepted by clinical trials, which indicates the sex of people who may participate in a clinical study. </summary>
+    /// <summary> The ClinicalTrialAcceptedSex. </summary>
     public readonly partial struct ClinicalTrialAcceptedSex : IEquatable<ClinicalTrialAcceptedSex>
     {
         private readonly string _value;

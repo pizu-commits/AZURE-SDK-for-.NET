@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The type of image. </summary>
+    /// <summary> The FaceImageType. </summary>
     public readonly partial struct FaceImageType : IEquatable<FaceImageType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string InfraredValue = "Infrared";
         private const string DepthValue = "Depth";
 
-        /// <summary> Color image. </summary>
+        /// <summary> Color. </summary>
         public static FaceImageType Color { get; } = new FaceImageType(ColorValue);
-        /// <summary> Infrared image. </summary>
+        /// <summary> Infrared. </summary>
         public static FaceImageType Infrared { get; } = new FaceImageType(InfraredValue);
-        /// <summary> Depth image. </summary>
+        /// <summary> Depth. </summary>
         public static FaceImageType Depth { get; } = new FaceImageType(DepthValue);
         /// <summary> Determines if two <see cref="FaceImageType"/> values are the same. </summary>
         public static bool operator ==(FaceImageType left, FaceImageType right) => left.Equals(right);

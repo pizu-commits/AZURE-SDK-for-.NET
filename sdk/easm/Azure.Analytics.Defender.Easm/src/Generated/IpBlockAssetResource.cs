@@ -14,7 +14,7 @@ namespace Azure.Analytics.Defender.Easm
     public partial class IpBlockAssetResource : AssetResource
     {
         /// <summary> Initializes a new instance of <see cref="IpBlockAssetResource"/>. </summary>
-        /// <param name="asset"> asset. </param>
+        /// <param name="asset"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="asset"/> is null. </exception>
         internal IpBlockAssetResource(IpBlockAsset asset)
         {
@@ -25,22 +25,22 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="IpBlockAssetResource"/>. </summary>
-        /// <param name="kind"> Discriminator property for AssetResource. </param>
-        /// <param name="id"> The system generated unique id for the resource. </param>
-        /// <param name="name"> The caller provided unique name for the resource. </param>
-        /// <param name="displayName"> The name that can be used for display purposes. </param>
-        /// <param name="uuid"> Global UUID for the asset. </param>
-        /// <param name="createdDate"> The date this asset was first added to this workspace. </param>
-        /// <param name="updatedDate"> The date this asset was last updated for this workspace. </param>
+        /// <param name="kind"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
+        /// <param name="uuid"></param>
+        /// <param name="createdDate"></param>
+        /// <param name="updatedDate"></param>
         /// <param name="state"></param>
-        /// <param name="externalId"> An optional customer provided identifier for this asset. </param>
-        /// <param name="labels"> Customer labels assigned to this asset. </param>
-        /// <param name="wildcard"> An indicator of whether this asset represents a wildcard rollup of assets on this domain. </param>
-        /// <param name="discoGroupName"> The name of the DiscoGroup that brought added this asset to the workspace. </param>
-        /// <param name="auditTrail"> The history of how this asset was pulled into the workspace through the discovery process. </param>
+        /// <param name="externalId"></param>
+        /// <param name="labels"></param>
+        /// <param name="wildcard"></param>
+        /// <param name="discoGroupName"></param>
+        /// <param name="auditTrail"></param>
         /// <param name="reason"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="asset"> asset. </param>
+        /// <param name="asset"></param>
         internal IpBlockAssetResource(string kind, string id, string name, string displayName, Guid? uuid, DateTimeOffset? createdDate, DateTimeOffset? updatedDate, AssetState? state, string externalId, IReadOnlyList<string> labels, bool? wildcard, string discoGroupName, IReadOnlyList<AuditTrailItem> auditTrail, string reason, IDictionary<string, BinaryData> serializedAdditionalRawData, IpBlockAsset asset) : base(kind, id, name, displayName, uuid, createdDate, updatedDate, state, externalId, labels, wildcard, discoGroupName, auditTrail, reason, serializedAdditionalRawData)
         {
             Asset = asset;
@@ -51,7 +51,7 @@ namespace Azure.Analytics.Defender.Easm
         {
         }
 
-        /// <summary> asset. </summary>
+        /// <summary> Gets the asset. </summary>
         public IpBlockAsset Asset { get; }
     }
 }

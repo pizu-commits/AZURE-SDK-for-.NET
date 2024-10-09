@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> A portion of the properties that can be written only by the application back-end, and read by the device. </summary>
+    /// <summary> The DeviceTwinProperties. </summary>
     public partial class DeviceTwinProperties
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeviceTwinProperties"/>. </summary>
-        /// <param name="metadata"> Metadata information for the properties JSON document. </param>
+        /// <param name="metadata"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="metadata"/> is null. </exception>
         internal DeviceTwinProperties(DeviceTwinMetadata metadata)
         {
@@ -56,8 +56,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceTwinProperties"/>. </summary>
-        /// <param name="metadata"> Metadata information for the properties JSON document. </param>
-        /// <param name="version"> Version of device twin properties. </param>
+        /// <param name="metadata"></param>
+        /// <param name="version"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceTwinProperties(DeviceTwinMetadata metadata, float? version, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,9 +71,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Metadata information for the properties JSON document. </summary>
+        /// <summary> Gets the metadata. </summary>
         public DeviceTwinMetadata Metadata { get; }
-        /// <summary> Version of device twin properties. </summary>
+        /// <summary> Gets the version. </summary>
         public float? Version { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The type of a target service. </summary>
+    /// <summary> The targetProjectKind. </summary>
     internal readonly partial struct TargetProjectKind : IEquatable<TargetProjectKind>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.Language.Conversations.Models
         private const string QuestionAnsweringValue = "QuestionAnswering";
         private const string NonLinkedValue = "NonLinked";
 
-        /// <summary> Luis target service type. </summary>
+        /// <summary> Luis. </summary>
         public static TargetProjectKind Luis { get; } = new TargetProjectKind(LuisValue);
-        /// <summary> Conversation target service type. </summary>
+        /// <summary> Conversation. </summary>
         public static TargetProjectKind Conversation { get; } = new TargetProjectKind(ConversationValue);
-        /// <summary> QuestionAnswering target service type. </summary>
+        /// <summary> QuestionAnswering. </summary>
         public static TargetProjectKind QuestionAnswering { get; } = new TargetProjectKind(QuestionAnsweringValue);
-        /// <summary> NonLinked target service type. </summary>
+        /// <summary> NonLinked. </summary>
         public static TargetProjectKind NonLinked { get; } = new TargetProjectKind(NonLinkedValue);
         /// <summary> Determines if two <see cref="TargetProjectKind"/> values are the same. </summary>
         public static bool operator ==(TargetProjectKind left, TargetProjectKind right) => left.Equals(right);

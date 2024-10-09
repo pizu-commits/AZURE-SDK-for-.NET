@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Specifies either one or multiple categories per document. Defaults to multi classification which may return more than one class for each document. </summary>
+    /// <summary> The ClassificationType. </summary>
     public readonly partial struct ClassificationType : IEquatable<ClassificationType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         private const string MultiValue = "Multi";
         private const string SingleValue = "Single";
 
-        /// <summary> Multi selection. </summary>
+        /// <summary> Multi. </summary>
         public static ClassificationType Multi { get; } = new ClassificationType(MultiValue);
-        /// <summary> Single selection. </summary>
+        /// <summary> Single. </summary>
         public static ClassificationType Single { get; } = new ClassificationType(SingleValue);
         /// <summary> Determines if two <see cref="ClassificationType"/> values are the same. </summary>
         public static bool operator ==(ClassificationType left, ClassificationType right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchPoolState enums. </summary>
+    /// <summary> The BatchPoolState. </summary>
     public readonly partial struct BatchPoolState : IEquatable<BatchPoolState>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string ActiveValue = "active";
         private const string DeletingValue = "deleting";
 
-        /// <summary> The Pool is available to run Tasks subject to the availability of Compute Nodes. </summary>
+        /// <summary> active. </summary>
         public static BatchPoolState Active { get; } = new BatchPoolState(ActiveValue);
-        /// <summary> The user has requested that the Pool be deleted, but the delete operation has not yet completed. </summary>
+        /// <summary> deleting. </summary>
         public static BatchPoolState Deleting { get; } = new BatchPoolState(DeletingValue);
         /// <summary> Determines if two <see cref="BatchPoolState"/> values are the same. </summary>
         public static bool operator ==(BatchPoolState left, BatchPoolState right) => left.Equals(right);

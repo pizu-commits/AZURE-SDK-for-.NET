@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Configuration Options for Spot instances in Compute Fleet. </summary>
+    /// <summary> The SpotPriorityProfile. </summary>
     public partial class SpotPriorityProfile
     {
         /// <summary>
@@ -51,17 +51,12 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="SpotPriorityProfile"/>. </summary>
-        /// <param name="capacity"> Total capacity to achieve. It is currently in terms of number of VMs. </param>
-        /// <param name="minCapacity"> Minimum capacity to achieve which cannot be updated. If we will not be able to "guarantee" minimum capacity, we will reject the request in the sync path itself. </param>
-        /// <param name="maxPricePerVm"> Price per hour of each Spot VM will never exceed this. </param>
-        /// <param name="evictionPolicy"> Eviction Policy to follow when evicting Spot VMs. </param>
-        /// <param name="allocationStrategy"> Allocation strategy to follow when determining the VM sizes distribution for Spot VMs. </param>
-        /// <param name="isMaintainEnabled">
-        /// Flag to enable/disable continuous goal seeking for the desired capacity and restoration of evicted Spot VMs.
-        /// If maintain is enabled, AzureFleetRP will use all VM sizes in vmSizesProfile to create new VMs (if VMs are evicted deleted)
-        /// or update existing VMs with new VM sizes (if VMs are evicted deallocated or failed to allocate due to capacity constraint) in order to achieve the desired capacity.
-        /// Maintain is enabled by default.
-        /// </param>
+        /// <param name="capacity"></param>
+        /// <param name="minCapacity"></param>
+        /// <param name="maxPricePerVm"></param>
+        /// <param name="evictionPolicy"></param>
+        /// <param name="allocationStrategy"></param>
+        /// <param name="isMaintainEnabled"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SpotPriorityProfile(int? capacity, int? minCapacity, float? maxPricePerVm, ComputeFleetEvictionPolicy? evictionPolicy, SpotAllocationStrategy? allocationStrategy, bool? isMaintainEnabled, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,22 +69,17 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Total capacity to achieve. It is currently in terms of number of VMs. </summary>
+        /// <summary> Gets or sets the capacity. </summary>
         public int? Capacity { get; set; }
-        /// <summary> Minimum capacity to achieve which cannot be updated. If we will not be able to "guarantee" minimum capacity, we will reject the request in the sync path itself. </summary>
+        /// <summary> Gets or sets the min capacity. </summary>
         public int? MinCapacity { get; set; }
-        /// <summary> Price per hour of each Spot VM will never exceed this. </summary>
+        /// <summary> Gets or sets the max price per vm. </summary>
         public float? MaxPricePerVm { get; set; }
-        /// <summary> Eviction Policy to follow when evicting Spot VMs. </summary>
+        /// <summary> Gets or sets the eviction policy. </summary>
         public ComputeFleetEvictionPolicy? EvictionPolicy { get; set; }
-        /// <summary> Allocation strategy to follow when determining the VM sizes distribution for Spot VMs. </summary>
+        /// <summary> Gets or sets the allocation strategy. </summary>
         public SpotAllocationStrategy? AllocationStrategy { get; set; }
-        /// <summary>
-        /// Flag to enable/disable continuous goal seeking for the desired capacity and restoration of evicted Spot VMs.
-        /// If maintain is enabled, AzureFleetRP will use all VM sizes in vmSizesProfile to create new VMs (if VMs are evicted deleted)
-        /// or update existing VMs with new VM sizes (if VMs are evicted deallocated or failed to allocate due to capacity constraint) in order to achieve the desired capacity.
-        /// Maintain is enabled by default.
-        /// </summary>
+        /// <summary> Gets or sets the is maintain enabled. </summary>
         public bool? IsMaintainEnabled { get; set; }
     }
 }

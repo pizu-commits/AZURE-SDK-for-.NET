@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The phase the task is in. </summary>
+    /// <summary> The TaskResourcePhase. </summary>
     public readonly partial struct TaskResourcePhase : IEquatable<TaskResourcePhase>
     {
         private readonly string _value;

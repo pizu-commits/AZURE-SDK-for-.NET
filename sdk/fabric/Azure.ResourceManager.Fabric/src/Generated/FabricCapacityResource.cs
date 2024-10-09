@@ -100,7 +100,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -140,7 +140,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -180,7 +180,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Delete</description>
+        /// <description>FabricCapacity_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -222,7 +222,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Delete</description>
+        /// <description>FabricCapacity_Delete</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -264,7 +264,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Update</description>
+        /// <description>FabricCapacity_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -277,7 +277,7 @@ namespace Azure.ResourceManager.Fabric
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="FabricCapacityPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual async Task<ArmOperation<FabricCapacityResource>> UpdateAsync(WaitUntil waitUntil, FabricCapacityPatch patch, CancellationToken cancellationToken = default)
@@ -310,7 +310,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Update</description>
+        /// <description>FabricCapacity_Update</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -323,7 +323,7 @@ namespace Azure.ResourceManager.Fabric
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="patch"> The resource properties to be updated. </param>
+        /// <param name="patch"> The <see cref="FabricCapacityPatch"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="patch"/> is null. </exception>
         public virtual ArmOperation<FabricCapacityResource> Update(WaitUntil waitUntil, FabricCapacityPatch patch, CancellationToken cancellationToken = default)
@@ -584,7 +584,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -646,7 +646,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -708,7 +708,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -765,7 +765,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -822,7 +822,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -882,7 +882,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>

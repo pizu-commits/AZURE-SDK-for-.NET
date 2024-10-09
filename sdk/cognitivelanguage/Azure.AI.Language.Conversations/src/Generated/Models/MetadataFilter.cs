@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Find QnAs that are associated with the given list of metadata. </summary>
+    /// <summary> The MetadataFilter. </summary>
     public partial class MetadataFilter
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="MetadataFilter"/>. </summary>
-        /// <param name="metadata"> List of metadata. </param>
-        /// <param name="logicalOperation"> Operation used to join metadata filters. </param>
+        /// <param name="metadata"></param>
+        /// <param name="logicalOperation"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MetadataFilter(IList<MetadataRecord> metadata, LogicalOperationKind? logicalOperation, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> List of metadata. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IList<MetadataRecord> Metadata { get; }
-        /// <summary> Operation used to join metadata filters. </summary>
+        /// <summary> Gets or sets the logical operation. </summary>
         public LogicalOperationKind? LogicalOperation { get; set; }
     }
 }

@@ -10,12 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> This represents the prediction result of an Orchestration project. </summary>
+    /// <summary> The OrchestrationPrediction. </summary>
     public partial class OrchestrationPrediction : PredictionBase
     {
         /// <summary> Initializes a new instance of <see cref="OrchestrationPrediction"/>. </summary>
         /// <param name="intents">
-        /// A dictionary that contains all intents. A key is an intent name and a value is its confidence score and target type. The top intent's value also contains the actual response from the target project.
         /// Please note <see cref="TargetIntentResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationTargetIntentResult"/>, <see cref="LuisTargetIntentResult"/>, <see cref="NoneLinkedTargetIntentResult"/> and <see cref="QuestionAnsweringTargetIntentResult"/>.
         /// </param>
@@ -29,11 +28,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="OrchestrationPrediction"/>. </summary>
-        /// <param name="projectKind"> The type of the project. </param>
-        /// <param name="topIntent"> The intent with the highest score. </param>
+        /// <param name="projectKind"></param>
+        /// <param name="topIntent"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="intents">
-        /// A dictionary that contains all intents. A key is an intent name and a value is its confidence score and target type. The top intent's value also contains the actual response from the target project.
         /// Please note <see cref="TargetIntentResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationTargetIntentResult"/>, <see cref="LuisTargetIntentResult"/>, <see cref="NoneLinkedTargetIntentResult"/> and <see cref="QuestionAnsweringTargetIntentResult"/>.
         /// </param>
@@ -48,7 +46,7 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary>
-        /// A dictionary that contains all intents. A key is an intent name and a value is its confidence score and target type. The top intent's value also contains the actual response from the target project.
+        /// Gets the intents
         /// Please note <see cref="TargetIntentResult"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ConversationTargetIntentResult"/>, <see cref="LuisTargetIntentResult"/>, <see cref="NoneLinkedTargetIntentResult"/> and <see cref="QuestionAnsweringTargetIntentResult"/>.
         /// </summary>

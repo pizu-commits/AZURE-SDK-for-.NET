@@ -123,8 +123,8 @@ namespace Azure.ResourceManager.Fabric.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> The name of the Azure region. </param>
-        /// <param name="content"> The CheckAvailability request. </param>
+        /// <param name="location"> The <see cref="AzureLocation"/> to use. </param>
+        /// <param name="content"> The <see cref="FabricNameAvailabilityContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual async Task<Response<FabricNameAvailabilityResult>> CheckFabricCapacityNameAvailabilityAsync(AzureLocation location, FabricNameAvailabilityContent content, CancellationToken cancellationToken = default)
@@ -166,8 +166,8 @@ namespace Azure.ResourceManager.Fabric.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> The name of the Azure region. </param>
-        /// <param name="content"> The CheckAvailability request. </param>
+        /// <param name="location"> The <see cref="AzureLocation"/> to use. </param>
+        /// <param name="content"> The <see cref="FabricNameAvailabilityContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         public virtual Response<FabricNameAvailabilityResult> CheckFabricCapacityNameAvailability(AzureLocation location, FabricNameAvailabilityContent content, CancellationToken cancellationToken = default)

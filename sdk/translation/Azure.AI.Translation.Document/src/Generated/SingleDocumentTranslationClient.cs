@@ -89,26 +89,11 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Submit a single document translation request to the Document Translation service. </summary>
-        /// <param name="targetLanguage">
-        /// Specifies the language of the output document.
-        /// The target language must be one of the supported languages included in the translation scope.
-        /// For example if you want to translate the document in German language, then use targetLanguage=de
-        /// </param>
-        /// <param name="documentTranslateContent"> Document Translate Request Content. </param>
-        /// <param name="sourceLanguage">
-        /// Specifies source language of the input document.
-        /// If this parameter isn't specified, automatic language detection is applied to determine the source language.
-        /// For example if the source document is written in English, then use sourceLanguage=en
-        /// </param>
-        /// <param name="category">
-        /// A string specifying the category (domain) of the translation. This parameter is used to get translations
-        /// from a customized system built with Custom Translator. Add the Category ID from your Custom Translator
-        /// project details to this parameter to use your deployed customized system. Default value is: general.
-        /// </param>
-        /// <param name="allowFallback">
-        /// Specifies that the service is allowed to fall back to a general system when a custom system doesn't exist.
-        /// Possible values are: true (default) or false.
-        /// </param>
+        /// <param name="targetLanguage"> The <see cref="string"/> to use. </param>
+        /// <param name="documentTranslateContent"> The <see cref="DocumentTranslateContent"/> to use. </param>
+        /// <param name="sourceLanguage"> The <see cref="string"/> to use. </param>
+        /// <param name="category"> The <see cref="string"/> to use. </param>
+        /// <param name="allowFallback"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetLanguage"/> or <paramref name="documentTranslateContent"/> is null. </exception>
         /// <remarks> Use this API to submit a single translation request to the Document Translation Service. </remarks>
@@ -124,26 +109,11 @@ namespace Azure.AI.Translation.Document
         }
 
         /// <summary> Submit a single document translation request to the Document Translation service. </summary>
-        /// <param name="targetLanguage">
-        /// Specifies the language of the output document.
-        /// The target language must be one of the supported languages included in the translation scope.
-        /// For example if you want to translate the document in German language, then use targetLanguage=de
-        /// </param>
-        /// <param name="documentTranslateContent"> Document Translate Request Content. </param>
-        /// <param name="sourceLanguage">
-        /// Specifies source language of the input document.
-        /// If this parameter isn't specified, automatic language detection is applied to determine the source language.
-        /// For example if the source document is written in English, then use sourceLanguage=en
-        /// </param>
-        /// <param name="category">
-        /// A string specifying the category (domain) of the translation. This parameter is used to get translations
-        /// from a customized system built with Custom Translator. Add the Category ID from your Custom Translator
-        /// project details to this parameter to use your deployed customized system. Default value is: general.
-        /// </param>
-        /// <param name="allowFallback">
-        /// Specifies that the service is allowed to fall back to a general system when a custom system doesn't exist.
-        /// Possible values are: true (default) or false.
-        /// </param>
+        /// <param name="targetLanguage"> The <see cref="string"/> to use. </param>
+        /// <param name="documentTranslateContent"> The <see cref="DocumentTranslateContent"/> to use. </param>
+        /// <param name="sourceLanguage"> The <see cref="string"/> to use. </param>
+        /// <param name="category"> The <see cref="string"/> to use. </param>
+        /// <param name="allowFallback"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetLanguage"/> or <paramref name="documentTranslateContent"/> is null. </exception>
         /// <remarks> Use this API to submit a single translation request to the Document Translation Service. </remarks>
@@ -173,27 +143,12 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="targetLanguage">
-        /// Specifies the language of the output document.
-        /// The target language must be one of the supported languages included in the translation scope.
-        /// For example if you want to translate the document in German language, then use targetLanguage=de
-        /// </param>
+        /// <param name="targetLanguage"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> Content Type as multipart/form-data. Allowed values: "multipart/form-data". </param>
-        /// <param name="sourceLanguage">
-        /// Specifies source language of the input document.
-        /// If this parameter isn't specified, automatic language detection is applied to determine the source language.
-        /// For example if the source document is written in English, then use sourceLanguage=en
-        /// </param>
-        /// <param name="category">
-        /// A string specifying the category (domain) of the translation. This parameter is used to get translations
-        /// from a customized system built with Custom Translator. Add the Category ID from your Custom Translator
-        /// project details to this parameter to use your deployed customized system. Default value is: general.
-        /// </param>
-        /// <param name="allowFallback">
-        /// Specifies that the service is allowed to fall back to a general system when a custom system doesn't exist.
-        /// Possible values are: true (default) or false.
-        /// </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
+        /// <param name="sourceLanguage"> The <see cref="string"/> to use. </param>
+        /// <param name="category"> The <see cref="string"/> to use. </param>
+        /// <param name="allowFallback"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetLanguage"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -232,27 +187,12 @@ namespace Azure.AI.Translation.Document
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="targetLanguage">
-        /// Specifies the language of the output document.
-        /// The target language must be one of the supported languages included in the translation scope.
-        /// For example if you want to translate the document in German language, then use targetLanguage=de
-        /// </param>
+        /// <param name="targetLanguage"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> Content Type as multipart/form-data. Allowed values: "multipart/form-data". </param>
-        /// <param name="sourceLanguage">
-        /// Specifies source language of the input document.
-        /// If this parameter isn't specified, automatic language detection is applied to determine the source language.
-        /// For example if the source document is written in English, then use sourceLanguage=en
-        /// </param>
-        /// <param name="category">
-        /// A string specifying the category (domain) of the translation. This parameter is used to get translations
-        /// from a customized system built with Custom Translator. Add the Category ID from your Custom Translator
-        /// project details to this parameter to use your deployed customized system. Default value is: general.
-        /// </param>
-        /// <param name="allowFallback">
-        /// Specifies that the service is allowed to fall back to a general system when a custom system doesn't exist.
-        /// Possible values are: true (default) or false.
-        /// </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
+        /// <param name="sourceLanguage"> The <see cref="string"/> to use. </param>
+        /// <param name="category"> The <see cref="string"/> to use. </param>
+        /// <param name="allowFallback"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetLanguage"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>

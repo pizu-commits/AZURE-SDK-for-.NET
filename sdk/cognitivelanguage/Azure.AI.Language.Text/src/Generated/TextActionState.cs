@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The status of the task at the mentioned last update time. </summary>
+    /// <summary> The TextActionState. </summary>
     public readonly partial struct TextActionState : IEquatable<TextActionState>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.AI.Language.Text
         private const string CancelledValue = "cancelled";
         private const string CancellingValue = "cancelling";
 
-        /// <summary> Not started status. </summary>
+        /// <summary> notStarted. </summary>
         public static TextActionState NotStarted { get; } = new TextActionState(NotStartedValue);
-        /// <summary> Running status. </summary>
+        /// <summary> running. </summary>
         public static TextActionState Running { get; } = new TextActionState(RunningValue);
-        /// <summary> Succeeded status. </summary>
+        /// <summary> succeeded. </summary>
         public static TextActionState Succeeded { get; } = new TextActionState(SucceededValue);
-        /// <summary> Partially completed status. </summary>
+        /// <summary> partiallyCompleted. </summary>
         public static TextActionState PartiallyCompleted { get; } = new TextActionState(PartiallyCompletedValue);
-        /// <summary> Failed status. </summary>
+        /// <summary> failed. </summary>
         public static TextActionState Failed { get; } = new TextActionState(FailedValue);
-        /// <summary> Cancelled status. </summary>
+        /// <summary> cancelled. </summary>
         public static TextActionState Cancelled { get; } = new TextActionState(CancelledValue);
-        /// <summary> Cancelling status. </summary>
+        /// <summary> cancelling. </summary>
         public static TextActionState Cancelling { get; } = new TextActionState(CancellingValue);
         /// <summary> Determines if two <see cref="TextActionState"/> values are the same. </summary>
         public static bool operator ==(TextActionState left, TextActionState right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). </summary>
+    /// <summary> The PatientDocument. </summary>
     public partial class PatientDocument
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PatientDocument"/>. </summary>
-        /// <param name="type"> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </param>
-        /// <param name="id"> A given identifier for the document. Has to be unique across all documents for a single patient. </param>
-        /// <param name="content"> The content of the patient document. </param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="content"/> is null. </exception>
         public PatientDocument(ClinicalDocumentContentType type, string id, ClinicalDocumentContent content)
         {
@@ -62,15 +62,15 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="PatientDocument"/>. </summary>
-        /// <param name="type"> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </param>
-        /// <param name="clinicalType"> The type of the clinical document. </param>
-        /// <param name="id"> A given identifier for the document. Has to be unique across all documents for a single patient. </param>
-        /// <param name="language"> A 2 letter ISO 639-1 representation of the language of the document. </param>
-        /// <param name="createdAt"> The date and time when the document was created. </param>
-        /// <param name="authors"> Document author(s). </param>
-        /// <param name="specialtyType"> specialty type the document. </param>
-        /// <param name="administrativeMetadata"> Administrative metadata for the document. </param>
-        /// <param name="content"> The content of the patient document. </param>
+        /// <param name="type"></param>
+        /// <param name="clinicalType"></param>
+        /// <param name="id"></param>
+        /// <param name="language"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="authors"></param>
+        /// <param name="specialtyType"></param>
+        /// <param name="administrativeMetadata"></param>
+        /// <param name="content"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PatientDocument(ClinicalDocumentContentType type, ClinicalDocumentType? clinicalType, string id, string language, DateTimeOffset? createdAt, IList<ClinicalDocumentAuthor> authors, SpecialtyType? specialtyType, DocumentAdministrativeMetadata administrativeMetadata, ClinicalDocumentContent content, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -91,23 +91,23 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </summary>
+        /// <summary> Gets or sets the type. </summary>
         public ClinicalDocumentContentType Type { get; set; }
-        /// <summary> The type of the clinical document. </summary>
+        /// <summary> Gets or sets the clinical type. </summary>
         public ClinicalDocumentType? ClinicalType { get; set; }
-        /// <summary> A given identifier for the document. Has to be unique across all documents for a single patient. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> A 2 letter ISO 639-1 representation of the language of the document. </summary>
+        /// <summary> Gets or sets the language. </summary>
         public string Language { get; set; }
-        /// <summary> The date and time when the document was created. </summary>
+        /// <summary> Gets or sets the created at. </summary>
         public DateTimeOffset? CreatedAt { get; set; }
-        /// <summary> Document author(s). </summary>
+        /// <summary> Gets the authors. </summary>
         public IList<ClinicalDocumentAuthor> Authors { get; }
-        /// <summary> specialty type the document. </summary>
+        /// <summary> Gets or sets the specialty type. </summary>
         public SpecialtyType? SpecialtyType { get; set; }
-        /// <summary> Administrative metadata for the document. </summary>
+        /// <summary> Gets or sets the administrative metadata. </summary>
         public DocumentAdministrativeMetadata AdministrativeMetadata { get; set; }
-        /// <summary> The content of the patient document. </summary>
+        /// <summary> Gets or sets the content. </summary>
         public ClinicalDocumentContent Content { get; set; }
     }
 }

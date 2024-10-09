@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Properties describing noise level of the image. </summary>
+    /// <summary> The NoiseProperties. </summary>
     public partial class NoiseProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NoiseProperties"/>. </summary>
-        /// <param name="noiseLevel"> An enum value indicating level of noise. </param>
-        /// <param name="value"> A number indicating level of noise level ranging from 0 to 1. [0, 0.25) is under exposure. [0.25, 0.75) is good exposure. [0.75, 1] is over exposure. [0, 0.3) is low noise level. [0.3, 0.7) is medium noise level. [0.7, 1] is high noise level. </param>
+        /// <param name="noiseLevel"></param>
+        /// <param name="value"></param>
         internal NoiseProperties(NoiseLevel noiseLevel, float value)
         {
             NoiseLevel = noiseLevel;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="NoiseProperties"/>. </summary>
-        /// <param name="noiseLevel"> An enum value indicating level of noise. </param>
-        /// <param name="value"> A number indicating level of noise level ranging from 0 to 1. [0, 0.25) is under exposure. [0.25, 0.75) is good exposure. [0.75, 1] is over exposure. [0, 0.3) is low noise level. [0.3, 0.7) is medium noise level. [0.7, 1] is high noise level. </param>
+        /// <param name="noiseLevel"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NoiseProperties(NoiseLevel noiseLevel, float value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> An enum value indicating level of noise. </summary>
+        /// <summary> Gets the noise level. </summary>
         public NoiseLevel NoiseLevel { get; }
-        /// <summary> A number indicating level of noise level ranging from 0 to 1. [0, 0.25) is under exposure. [0.25, 0.75) is good exposure. [0.75, 1] is over exposure. [0, 0.3) is low noise level. [0.3, 0.7) is medium noise level. [0.7, 1] is high noise level. </summary>
+        /// <summary> Gets the value. </summary>
         public float Value { get; }
     }
 }

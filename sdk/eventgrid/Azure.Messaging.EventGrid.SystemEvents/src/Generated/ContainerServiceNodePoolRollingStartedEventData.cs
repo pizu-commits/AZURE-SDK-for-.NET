@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.ContainerService.NodePoolRollingStarted event. </summary>
+    /// <summary> The ContainerServiceNodePoolRollingStartedEventData. </summary>
     public partial class ContainerServiceNodePoolRollingStartedEventData : ContainerServiceNodePoolRollingEventData
     {
         /// <summary> Initializes a new instance of <see cref="ContainerServiceNodePoolRollingStartedEventData"/>. </summary>
@@ -19,7 +19,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerServiceNodePoolRollingStartedEventData"/>. </summary>
-        /// <param name="nodePoolName"> The name of the node pool in the ManagedCluster resource. </param>
+        /// <param name="nodePoolName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerServiceNodePoolRollingStartedEventData(string nodePoolName, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(nodePoolName, serializedAdditionalRawData)
         {

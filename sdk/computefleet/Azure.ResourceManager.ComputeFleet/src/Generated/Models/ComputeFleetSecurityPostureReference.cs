@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the security posture to be used for all virtual machines in the scale
-    /// set. Minimum api-version: 2023-03-01
-    /// </summary>
+    /// <summary> The ComputeFleetSecurityPostureReference. </summary>
     public partial class ComputeFleetSecurityPostureReference
     {
         /// <summary>
@@ -55,15 +52,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetSecurityPostureReference"/>. </summary>
-        /// <param name="id">
-        /// The security posture reference id in the form of
-        /// /CommunityGalleries/{communityGalleryName}/securityPostures/{securityPostureName}/versions/{major.minor.patch}|{major.*}|latest
-        /// </param>
-        /// <param name="excludeExtensions">
-        /// List of virtual machine extension names to exclude when applying the security
-        /// posture.
-        /// </param>
-        /// <param name="isOverridable"> Whether the security posture can be overridden by the user. </param>
+        /// <param name="id"></param>
+        /// <param name="excludeExtensions"></param>
+        /// <param name="isOverridable"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetSecurityPostureReference(string id, IList<string> excludeExtensions, bool? isOverridable, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,17 +64,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// The security posture reference id in the form of
-        /// /CommunityGalleries/{communityGalleryName}/securityPostures/{securityPostureName}/versions/{major.minor.patch}|{major.*}|latest
-        /// </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary>
-        /// List of virtual machine extension names to exclude when applying the security
-        /// posture.
-        /// </summary>
+        /// <summary> Gets the exclude extensions. </summary>
         public IList<string> ExcludeExtensions { get; }
-        /// <summary> Whether the security posture can be overridden by the user. </summary>
+        /// <summary> Gets or sets the is overridable. </summary>
         public bool? IsOverridable { get; set; }
     }
 }

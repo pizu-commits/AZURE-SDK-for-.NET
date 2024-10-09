@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Stop on disconnect configuration settings for Dev Boxes created in this pool. </summary>
+    /// <summary> The StopOnDisconnectConfiguration. </summary>
     public partial class StopOnDisconnectConfiguration
     {
         /// <summary>
@@ -46,24 +46,15 @@ namespace Azure.Developer.DevCenter.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StopOnDisconnectConfiguration"/>. </summary>
-        /// <param name="status">
-        /// Indicates whether the feature to stop the devbox on disconnect once the grace
-        /// period has lapsed is enabled.
-        /// </param>
+        /// <param name="status"></param>
         internal StopOnDisconnectConfiguration(StopOnDisconnectStatus status)
         {
             Status = status;
         }
 
         /// <summary> Initializes a new instance of <see cref="StopOnDisconnectConfiguration"/>. </summary>
-        /// <param name="status">
-        /// Indicates whether the feature to stop the devbox on disconnect once the grace
-        /// period has lapsed is enabled.
-        /// </param>
-        /// <param name="gracePeriodMinutes">
-        /// The specified time in minutes to wait before stopping a Dev Box once disconnect
-        /// is detected.
-        /// </param>
+        /// <param name="status"></param>
+        /// <param name="gracePeriodMinutes"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StopOnDisconnectConfiguration(StopOnDisconnectStatus status, int? gracePeriodMinutes, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,15 +68,9 @@ namespace Azure.Developer.DevCenter.Models
         {
         }
 
-        /// <summary>
-        /// Indicates whether the feature to stop the devbox on disconnect once the grace
-        /// period has lapsed is enabled.
-        /// </summary>
+        /// <summary> Gets the status. </summary>
         public StopOnDisconnectStatus Status { get; }
-        /// <summary>
-        /// The specified time in minutes to wait before stopping a Dev Box once disconnect
-        /// is detected.
-        /// </summary>
+        /// <summary> Gets the grace period minutes. </summary>
         public int? GracePeriodMinutes { get; }
     }
 }

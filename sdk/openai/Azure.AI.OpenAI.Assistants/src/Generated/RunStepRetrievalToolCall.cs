@@ -10,15 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary>
-    /// A record of a call to a retrieval tool, issued by the model in evaluation of a defined tool, that represents
-    /// executed retrieval actions.
-    /// </summary>
+    /// <summary> The RunStepRetrievalToolCall. </summary>
     public partial class RunStepRetrievalToolCall : RunStepToolCall
     {
         /// <summary> Initializes a new instance of <see cref="RunStepRetrievalToolCall"/>. </summary>
-        /// <param name="id"> The ID of the tool call. This ID must be referenced when you submit tool outputs. </param>
-        /// <param name="retrieval"> The key/value pairs produced by the retrieval tool. </param>
+        /// <param name="id"></param>
+        /// <param name="retrieval"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="retrieval"/> is null. </exception>
         internal RunStepRetrievalToolCall(string id, IReadOnlyDictionary<string, string> retrieval) : base(id)
         {
@@ -30,10 +27,10 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="RunStepRetrievalToolCall"/>. </summary>
-        /// <param name="type"> The object type. </param>
-        /// <param name="id"> The ID of the tool call. This ID must be referenced when you submit tool outputs. </param>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="retrieval"> The key/value pairs produced by the retrieval tool. </param>
+        /// <param name="retrieval"></param>
         internal RunStepRetrievalToolCall(string type, string id, IDictionary<string, BinaryData> serializedAdditionalRawData, IReadOnlyDictionary<string, string> retrieval) : base(type, id, serializedAdditionalRawData)
         {
             Retrieval = retrieval;
@@ -44,7 +41,7 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The key/value pairs produced by the retrieval tool. </summary>
+        /// <summary> Gets the retrieval. </summary>
         public IReadOnlyDictionary<string, string> Retrieval { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.AI.Language.Text
 {
     /// <summary>
-    /// The abstract base class for entity Metadata.
+    /// The BaseMetadata.
     /// Please note <see cref="BaseMetadata"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="AgeMetadata"/>, <see cref="AreaMetadata"/>, <see cref="CurrencyMetadata"/>, <see cref="DateMetadata"/>, <see cref="DateTimeMetadata"/>, <see cref="InformationMetadata"/>, <see cref="LengthMetadata"/>, <see cref="NumberMetadata"/>, <see cref="NumericRangeMetadata"/>, <see cref="OrdinalMetadata"/>, <see cref="SpeedMetadata"/>, <see cref="TemperatureMetadata"/>, <see cref="TemporalSetMetadata"/>, <see cref="TemporalSpanMetadata"/>, <see cref="TimeMetadata"/>, <see cref="VolumeMetadata"/> and <see cref="WeightMetadata"/>.
     /// </summary>
@@ -55,7 +55,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="BaseMetadata"/>. </summary>
-        /// <param name="metadataKind"> The entity Metadata object kind. </param>
+        /// <param name="metadataKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BaseMetadata(MetadataKind metadataKind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The entity Metadata object kind. </summary>
+        /// <summary> Gets or sets the metadata kind. </summary>
         internal MetadataKind MetadataKind { get; set; }
     }
 }

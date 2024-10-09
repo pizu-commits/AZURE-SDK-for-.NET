@@ -10,17 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the ephemeral disk placement for operating system disk. This property
-    /// can be used by user in the request to choose the location i.e, cache disk or
-    /// resource disk space for Ephemeral OS disk provisioning. For more information on
-    /// Ephemeral OS disk size requirements, please refer Ephemeral OS disk size
-    /// requirements for Windows VM at
-    /// https://docs.microsoft.com/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements
-    /// and Linux VM at
-    /// https://docs.microsoft.com/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements
-    /// Minimum api-version for NvmeDisk: 2024-03-01.
-    /// </summary>
+    /// <summary> The ComputeFleetDiffDiskPlacement. </summary>
     public readonly partial struct ComputeFleetDiffDiskPlacement : IEquatable<ComputeFleetDiffDiskPlacement>
     {
         private readonly string _value;
@@ -36,11 +26,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string ResourceDiskValue = "ResourceDisk";
         private const string NvmeDiskValue = "NvmeDisk";
 
-        /// <summary> CacheDisk option. </summary>
+        /// <summary> CacheDisk. </summary>
         public static ComputeFleetDiffDiskPlacement CacheDisk { get; } = new ComputeFleetDiffDiskPlacement(CacheDiskValue);
-        /// <summary> Resource Disk option. </summary>
+        /// <summary> ResourceDisk. </summary>
         public static ComputeFleetDiffDiskPlacement ResourceDisk { get; } = new ComputeFleetDiffDiskPlacement(ResourceDiskValue);
-        /// <summary> NvmeDisk option. </summary>
+        /// <summary> NvmeDisk. </summary>
         public static ComputeFleetDiffDiskPlacement NvmeDisk { get; } = new ComputeFleetDiffDiskPlacement(NvmeDiskValue);
         /// <summary> Determines if two <see cref="ComputeFleetDiffDiskPlacement"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetDiffDiskPlacement left, ComputeFleetDiffDiskPlacement right) => left.Equals(right);

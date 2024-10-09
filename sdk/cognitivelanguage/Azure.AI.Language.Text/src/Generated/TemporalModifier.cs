@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> An optional modifier of a date/time instance. </summary>
+    /// <summary> The TemporalModifier. </summary>
     public readonly partial struct TemporalModifier : IEquatable<TemporalModifier>
     {
         private readonly string _value;
@@ -41,41 +41,41 @@ namespace Azure.AI.Language.Text
         private const string MidValue = "Mid";
         private const string MoreValue = "More";
 
-        /// <summary> After an approximate time. </summary>
+        /// <summary> AfterApprox. </summary>
         public static TemporalModifier AfterApprox { get; } = new TemporalModifier(AfterApproxValue);
-        /// <summary> Before a specific time. </summary>
+        /// <summary> Before. </summary>
         public static TemporalModifier Before { get; } = new TemporalModifier(BeforeValue);
-        /// <summary> Before the start of a time period. </summary>
+        /// <summary> BeforeStart. </summary>
         public static TemporalModifier BeforeStart { get; } = new TemporalModifier(BeforeStartValue);
-        /// <summary> Approximately at a specific time. </summary>
+        /// <summary> Approx. </summary>
         public static TemporalModifier Approx { get; } = new TemporalModifier(ApproxValue);
-        /// <summary> Reference to an undefined time. </summary>
+        /// <summary> ReferenceUndefined. </summary>
         public static TemporalModifier ReferenceUndefined { get; } = new TemporalModifier(ReferenceUndefinedValue);
-        /// <summary> Since the end of a time period. </summary>
+        /// <summary> SinceEnd. </summary>
         public static TemporalModifier SinceEnd { get; } = new TemporalModifier(SinceEndValue);
-        /// <summary> After the middle of a time period. </summary>
+        /// <summary> AfterMid. </summary>
         public static TemporalModifier AfterMid { get; } = new TemporalModifier(AfterMidValue);
-        /// <summary> At the start of a time period. </summary>
+        /// <summary> Start. </summary>
         public static TemporalModifier Start { get; } = new TemporalModifier(StartValue);
-        /// <summary> After a specific time. </summary>
+        /// <summary> After. </summary>
         public static TemporalModifier After { get; } = new TemporalModifier(AfterValue);
-        /// <summary> Before the end of a time period. </summary>
+        /// <summary> BeforeEnd. </summary>
         public static TemporalModifier BeforeEnd { get; } = new TemporalModifier(BeforeEndValue);
-        /// <summary> Until a specific time. </summary>
+        /// <summary> Until. </summary>
         public static TemporalModifier Until { get; } = new TemporalModifier(UntilValue);
-        /// <summary> At the end of a time period. </summary>
+        /// <summary> End. </summary>
         public static TemporalModifier End { get; } = new TemporalModifier(EndValue);
-        /// <summary> Less than a specific time. </summary>
+        /// <summary> Less. </summary>
         public static TemporalModifier Less { get; } = new TemporalModifier(LessValue);
-        /// <summary> Since a specific time. </summary>
+        /// <summary> Since. </summary>
         public static TemporalModifier Since { get; } = new TemporalModifier(SinceValue);
-        /// <summary> After the start of a time period. </summary>
+        /// <summary> AfterStart. </summary>
         public static TemporalModifier AfterStart { get; } = new TemporalModifier(AfterStartValue);
-        /// <summary> Before an approximate time. </summary>
+        /// <summary> BeforeApprox. </summary>
         public static TemporalModifier BeforeApprox { get; } = new TemporalModifier(BeforeApproxValue);
-        /// <summary> In the middle of a time period. </summary>
+        /// <summary> Mid. </summary>
         public static TemporalModifier Mid { get; } = new TemporalModifier(MidValue);
-        /// <summary> More than a specific time. </summary>
+        /// <summary> More. </summary>
         public static TemporalModifier More { get; } = new TemporalModifier(MoreValue);
         /// <summary> Determines if two <see cref="TemporalModifier"/> values are the same. </summary>
         public static bool operator ==(TemporalModifier left, TemporalModifier right) => left.Equals(right);

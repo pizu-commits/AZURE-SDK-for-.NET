@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.ProgrammableConnectivity
 {
-    /// <summary> The network that the device is on. </summary>
+    /// <summary> The NetworkRetrievalResult. </summary>
     public partial class NetworkRetrievalResult
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="NetworkRetrievalResult"/>. </summary>
-        /// <param name="networkCode"> The identifier for the network. This can be used as the networkIdentifier for the service APIs. </param>
+        /// <param name="networkCode"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="networkCode"/> is null. </exception>
         internal NetworkRetrievalResult(string networkCode)
         {
@@ -56,7 +56,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         }
 
         /// <summary> Initializes a new instance of <see cref="NetworkRetrievalResult"/>. </summary>
-        /// <param name="networkCode"> The identifier for the network. This can be used as the networkIdentifier for the service APIs. </param>
+        /// <param name="networkCode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal NetworkRetrievalResult(string networkCode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Communication.ProgrammableConnectivity
         {
         }
 
-        /// <summary> The identifier for the network. This can be used as the networkIdentifier for the service APIs. </summary>
+        /// <summary> Gets the network code. </summary>
         public string NetworkCode { get; }
     }
 }

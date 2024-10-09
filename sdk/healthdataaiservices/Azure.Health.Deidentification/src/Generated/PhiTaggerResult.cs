@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> Result of the "Tag" operation. </summary>
+    /// <summary> The PhiTaggerResult. </summary>
     public partial class PhiTaggerResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Health.Deidentification
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PhiTaggerResult"/>. </summary>
-        /// <param name="entities"> List of entities detected in the input. </param>
+        /// <param name="entities"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="entities"/> is null. </exception>
         internal PhiTaggerResult(IEnumerable<PhiEntity> entities)
         {
@@ -57,9 +57,9 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="PhiTaggerResult"/>. </summary>
-        /// <param name="entities"> List of entities detected in the input. </param>
-        /// <param name="path"> Path to the document in storage. </param>
-        /// <param name="etag"> The entity tag for this resource. </param>
+        /// <param name="entities"></param>
+        /// <param name="path"></param>
+        /// <param name="etag"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PhiTaggerResult(IReadOnlyList<PhiEntity> entities, string path, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.Health.Deidentification
         {
         }
 
-        /// <summary> List of entities detected in the input. </summary>
+        /// <summary> Gets the entities. </summary>
         public IReadOnlyList<PhiEntity> Entities { get; }
-        /// <summary> Path to the document in storage. </summary>
+        /// <summary> Gets the path. </summary>
         public string Path { get; }
-        /// <summary> The entity tag for this resource. </summary>
+        /// <summary> Gets the etag. </summary>
         public ETag? Etag { get; }
     }
 }

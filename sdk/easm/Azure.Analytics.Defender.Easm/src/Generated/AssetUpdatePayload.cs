@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A request body used to update an asset. </summary>
+    /// <summary> The AssetUpdatePayload. </summary>
     public partial class AssetUpdatePayload
     {
         /// <summary>
@@ -52,10 +52,10 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="AssetUpdatePayload"/>. </summary>
-        /// <param name="state"> The state to update the asset to. </param>
-        /// <param name="externalId"> A string which can be used to identify the asset in external systems. </param>
-        /// <param name="labels"> Any Labels to update the asset with. </param>
-        /// <param name="transfers"> A list of asset types to cascade the updates to. </param>
+        /// <param name="state"></param>
+        /// <param name="externalId"></param>
+        /// <param name="labels"></param>
+        /// <param name="transfers"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AssetUpdatePayload(AssetUpdateState? state, string externalId, IDictionary<string, bool> labels, AssetUpdateTransfers? transfers, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,13 +66,13 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The state to update the asset to. </summary>
+        /// <summary> Gets or sets the state. </summary>
         public AssetUpdateState? State { get; set; }
-        /// <summary> A string which can be used to identify the asset in external systems. </summary>
+        /// <summary> Gets or sets the external id. </summary>
         public string ExternalId { get; set; }
-        /// <summary> Any Labels to update the asset with. </summary>
+        /// <summary> Gets the labels. </summary>
         public IDictionary<string, bool> Labels { get; }
-        /// <summary> A list of asset types to cascade the updates to. </summary>
+        /// <summary> Gets or sets the transfers. </summary>
         public AssetUpdateTransfers? Transfers { get; set; }
     }
 }

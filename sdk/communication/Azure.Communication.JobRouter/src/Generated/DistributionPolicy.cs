@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Policy governing how jobs are distributed to workers. </summary>
+    /// <summary> The DistributionPolicy. </summary>
     public partial class DistributionPolicy
     {
         /// <summary>
@@ -51,12 +51,11 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="DistributionPolicy"/>. </summary>
-        /// <param name="eTag"> The entity tag for this resource. </param>
-        /// <param name="id"> Id of a distribution policy. </param>
-        /// <param name="name"> Friendly name of this policy. </param>
-        /// <param name="offerExpiresAfter"> Number of seconds after which any offers created under this policy will be expired. </param>
+        /// <param name="eTag"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="offerExpiresAfter"></param>
         /// <param name="mode">
-        /// Mode governing the specific distribution method.
         /// Please note <see cref="DistributionMode"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="BestWorkerMode"/>, <see cref="LongestIdleMode"/> and <see cref="RoundRobinMode"/>.
         /// </param>
@@ -70,7 +69,7 @@ namespace Azure.Communication.JobRouter
             Mode = mode;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
-        /// <summary> Id of a distribution policy. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
     }
 }

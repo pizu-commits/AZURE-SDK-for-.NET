@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchTaskState enums. </summary>
+    /// <summary> The BatchTaskState. </summary>
     public readonly partial struct BatchTaskState : IEquatable<BatchTaskState>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.Compute.Batch
         private const string RunningValue = "running";
         private const string CompletedValue = "completed";
 
-        /// <summary> The Task is queued and able to run, but is not currently assigned to a Compute Node. A Task enters this state when it is created, when it is enabled after being disabled, or when it is awaiting a retry after a failed run. </summary>
+        /// <summary> active. </summary>
         public static BatchTaskState Active { get; } = new BatchTaskState(ActiveValue);
-        /// <summary> The Task has been assigned to a Compute Node, but is waiting for a required Job Preparation Task to complete on the Compute Node. If the Job Preparation Task succeeds, the Task will move to running. If the Job Preparation Task fails, the Task will return to active and will be eligible to be assigned to a different Compute Node. </summary>
+        /// <summary> preparing. </summary>
         public static BatchTaskState Preparing { get; } = new BatchTaskState(PreparingValue);
-        /// <summary> The Task is running on a Compute Node. This includes task-level preparation such as downloading resource files or deploying Packages specified on the Task - it does not necessarily mean that the Task command line has started executing. </summary>
+        /// <summary> running. </summary>
         public static BatchTaskState Running { get; } = new BatchTaskState(RunningValue);
-        /// <summary> The Task is no longer eligible to run, usually because the Task has finished successfully, or the Task has finished unsuccessfully and has exhausted its retry limit. A Task is also marked as completed if an error occurred launching the Task, or when the Task has been terminated. </summary>
+        /// <summary> completed. </summary>
         public static BatchTaskState Completed { get; } = new BatchTaskState(CompletedValue);
         /// <summary> Determines if two <see cref="BatchTaskState"/> values are the same. </summary>
         public static bool operator ==(BatchTaskState left, BatchTaskState right) => left.Equals(right);

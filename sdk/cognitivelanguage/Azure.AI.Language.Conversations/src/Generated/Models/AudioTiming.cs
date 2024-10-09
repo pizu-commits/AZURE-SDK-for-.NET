@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Audio timing information. </summary>
+    /// <summary> The AudioTiming. </summary>
     public partial class AudioTiming
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="AudioTiming"/>. </summary>
-        /// <param name="offset"> Offset from the start of speech audio, in ticks. 1 tick = 100 nanoseconds. </param>
-        /// <param name="duration"> Duration of word articulation, in ticks. 1 tick = 100 nanoseconds. </param>
+        /// <param name="offset"></param>
+        /// <param name="duration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AudioTiming(long? offset, long? duration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Offset from the start of speech audio, in ticks. 1 tick = 100 nanoseconds. </summary>
+        /// <summary> Gets the offset. </summary>
         public long? Offset { get; }
-        /// <summary> Duration of word articulation, in ticks. 1 tick = 100 nanoseconds. </summary>
+        /// <summary> Gets the duration. </summary>
         public long? Duration { get; }
     }
 }

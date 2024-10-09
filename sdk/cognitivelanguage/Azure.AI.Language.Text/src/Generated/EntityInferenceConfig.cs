@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> The class that houses the inference options allowed for named entity recognition. </summary>
+    /// <summary> The EntityInferenceConfig. </summary>
     public partial class EntityInferenceConfig
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityInferenceConfig"/>. </summary>
-        /// <param name="excludeNormalizedValues"> Option to include/exclude the detected entity values to be normalized and included in the metadata. The numeric and temporal entity types support value normalization. </param>
+        /// <param name="excludeNormalizedValues"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityInferenceConfig(bool? excludeNormalizedValues, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.AI.Language.Text
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Option to include/exclude the detected entity values to be normalized and included in the metadata. The numeric and temporal entity types support value normalization. </summary>
+        /// <summary> Gets or sets the exclude normalized values. </summary>
         public bool? ExcludeNormalizedValues { get; set; }
     }
 }

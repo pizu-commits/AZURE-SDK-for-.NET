@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The relationship with extended information. </summary>
+    /// <summary> The AtlasRelationshipWithExtInfo. </summary>
     public partial class AtlasRelationshipWithExtInfo
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasRelationshipWithExtInfo"/>. </summary>
-        /// <param name="referredEntities"> The referred entity header. </param>
-        /// <param name="relationship"> Atlas relationship instance. </param>
+        /// <param name="referredEntities"></param>
+        /// <param name="relationship"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasRelationshipWithExtInfo(IReadOnlyDictionary<string, AtlasEntityHeader> referredEntities, AtlasRelationship relationship, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The referred entity header. </summary>
+        /// <summary> Gets the referred entities. </summary>
         public IReadOnlyDictionary<string, AtlasEntityHeader> ReferredEntities { get; }
-        /// <summary> Atlas relationship instance. </summary>
+        /// <summary> Gets the relationship. </summary>
         public AtlasRelationship Relationship { get; }
     }
 }

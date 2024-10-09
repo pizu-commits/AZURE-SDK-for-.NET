@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// A measured or measurable amount
-    /// Based on [FHIR Quantity](https://www.hl7.org/fhir/R4/datatypes.html#Quantity)
-    /// </summary>
+    /// <summary> The Fhir_R4_Quantity. </summary>
     public partial class FhirR4Quantity : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Quantity"/>. </summary>
@@ -22,14 +19,14 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Quantity"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="value"> Numerical value (with implicit precision). </param>
-        /// <param name="comparator"> &lt; | &lt;= | &gt;= | &gt; - how to understand the value. </param>
-        /// <param name="unit"> Unit representation. </param>
-        /// <param name="system"> System that defines coded unit form. </param>
-        /// <param name="code"> Coded form of the unit. </param>
+        /// <param name="value"></param>
+        /// <param name="comparator"></param>
+        /// <param name="unit"></param>
+        /// <param name="system"></param>
+        /// <param name="code"></param>
         internal FhirR4Quantity(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, double? value, string comparator, string unit, string system, string code) : base(id, extension, serializedAdditionalRawData)
         {
             Value = value;
@@ -39,15 +36,15 @@ namespace Azure.Health.Insights.RadiologyInsights
             Code = code;
         }
 
-        /// <summary> Numerical value (with implicit precision). </summary>
+        /// <summary> Gets or sets the value. </summary>
         public double? Value { get; set; }
-        /// <summary> &lt; | &lt;= | &gt;= | &gt; - how to understand the value. </summary>
+        /// <summary> Gets or sets the comparator. </summary>
         public string Comparator { get; set; }
-        /// <summary> Unit representation. </summary>
+        /// <summary> Gets or sets the unit. </summary>
         public string Unit { get; set; }
-        /// <summary> System that defines coded unit form. </summary>
+        /// <summary> Gets or sets the system. </summary>
         public string System { get; set; }
-        /// <summary> Coded form of the unit. </summary>
+        /// <summary> Gets or sets the code. </summary>
         public string Code { get; set; }
     }
 }

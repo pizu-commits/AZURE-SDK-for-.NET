@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> Properties of the Event Broker operation. </summary>
+    /// <summary> The BrokerProperties. </summary>
     public partial class BrokerProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BrokerProperties"/>. </summary>
-        /// <param name="lockToken"> The token of the lock on the event. </param>
-        /// <param name="deliveryCount"> The attempt count for delivering the event. </param>
+        /// <param name="lockToken"></param>
+        /// <param name="deliveryCount"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="lockToken"/> is null. </exception>
         internal BrokerProperties(string lockToken, int deliveryCount)
         {
@@ -58,8 +58,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Initializes a new instance of <see cref="BrokerProperties"/>. </summary>
-        /// <param name="lockToken"> The token of the lock on the event. </param>
-        /// <param name="deliveryCount"> The attempt count for delivering the event. </param>
+        /// <param name="lockToken"></param>
+        /// <param name="deliveryCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BrokerProperties(string lockToken, int deliveryCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         {
         }
 
-        /// <summary> The token of the lock on the event. </summary>
+        /// <summary> Gets the lock token. </summary>
         public string LockToken { get; }
-        /// <summary> The attempt count for delivering the event. </summary>
+        /// <summary> Gets the delivery count. </summary>
         public int DeliveryCount { get; }
     }
 }

@@ -47,7 +47,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ReleaseRequest"/>. </summary>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="lockTokens"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="lockTokens"/> is null. </exception>
         internal ReleaseRequest(IEnumerable<string> lockTokens)
         {
@@ -57,7 +57,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Initializes a new instance of <see cref="ReleaseRequest"/>. </summary>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="lockTokens"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReleaseRequest(IReadOnlyList<string> lockTokens, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         {
         }
 
-        /// <summary> Array of lock tokens. </summary>
+        /// <summary> Gets the lock tokens. </summary>
         public IReadOnlyList<string> LockTokens { get; }
     }
 }

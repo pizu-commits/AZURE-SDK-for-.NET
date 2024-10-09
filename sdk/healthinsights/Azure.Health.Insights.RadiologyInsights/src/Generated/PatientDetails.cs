@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> Patient structured information, including demographics and known structured clinical information. </summary>
+    /// <summary> The PatientDetails. </summary>
     public partial class PatientDetails
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="PatientDetails"/>. </summary>
-        /// <param name="sex"> The patient's sex. </param>
-        /// <param name="birthDate"> The patient's date of birth. </param>
-        /// <param name="clinicalInfo"> Known clinical information for the patient, structured. </param>
+        /// <param name="sex"></param>
+        /// <param name="birthDate"></param>
+        /// <param name="clinicalInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PatientDetails(PatientSex? sex, DateTimeOffset? birthDate, IList<FhirR4Resource> clinicalInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The patient's sex. </summary>
+        /// <summary> Gets or sets the sex. </summary>
         public PatientSex? Sex { get; set; }
-        /// <summary> The patient's date of birth. </summary>
+        /// <summary> Gets or sets the birth date. </summary>
         public DateTimeOffset? BirthDate { get; set; }
-        /// <summary> Known clinical information for the patient, structured. </summary>
+        /// <summary> Gets the clinical info. </summary>
         public IList<FhirR4Resource> ClinicalInfo { get; }
     }
 }

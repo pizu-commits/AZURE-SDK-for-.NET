@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Summary Results. </summary>
+    /// <summary> The SummaryResult. </summary>
     public partial class SummaryResult
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Language.Conversations.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="SummaryResult"/>. </summary>
-        /// <param name="conversations"> array of conversations. </param>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="modelVersion"> This field indicates which model is used for scoring. </param>
+        /// <param name="conversations"></param>
+        /// <param name="errors"></param>
+        /// <param name="modelVersion"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="conversations"/>, <paramref name="errors"/> or <paramref name="modelVersion"/> is null. </exception>
         internal SummaryResult(IEnumerable<ConversationsSummaryResult> conversations, IEnumerable<DocumentError> errors, string modelVersion)
         {
@@ -63,10 +63,10 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="SummaryResult"/>. </summary>
-        /// <param name="conversations"> array of conversations. </param>
-        /// <param name="errors"> Errors by document id. </param>
-        /// <param name="statistics"> statistics. </param>
-        /// <param name="modelVersion"> This field indicates which model is used for scoring. </param>
+        /// <param name="conversations"></param>
+        /// <param name="errors"></param>
+        /// <param name="statistics"></param>
+        /// <param name="modelVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SummaryResult(IReadOnlyList<ConversationsSummaryResult> conversations, IReadOnlyList<DocumentError> errors, RequestStatistics statistics, string modelVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> array of conversations. </summary>
+        /// <summary> Gets the conversations. </summary>
         public IReadOnlyList<ConversationsSummaryResult> Conversations { get; }
-        /// <summary> Errors by document id. </summary>
+        /// <summary> Gets the errors. </summary>
         public IReadOnlyList<DocumentError> Errors { get; }
-        /// <summary> statistics. </summary>
+        /// <summary> Gets the statistics. </summary>
         public RequestStatistics Statistics { get; }
-        /// <summary> This field indicates which model is used for scoring. </summary>
+        /// <summary> Gets the model version. </summary>
         public string ModelVersion { get; }
     }
 }

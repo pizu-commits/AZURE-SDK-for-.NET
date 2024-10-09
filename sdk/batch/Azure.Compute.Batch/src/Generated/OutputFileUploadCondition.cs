@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> OutputFileUploadCondition enums. </summary>
+    /// <summary> The OutputFileUploadCondition. </summary>
     public readonly partial struct OutputFileUploadCondition : IEquatable<OutputFileUploadCondition>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Compute.Batch
         private const string TaskFailureValue = "taskfailure";
         private const string TaskCompletionValue = "taskcompletion";
 
-        /// <summary> Upload the file(s) only after the Task process exits with an exit code of 0. </summary>
+        /// <summary> tasksuccess. </summary>
         public static OutputFileUploadCondition TaskSuccess { get; } = new OutputFileUploadCondition(TaskSuccessValue);
-        /// <summary> Upload the file(s) only after the Task process exits with a nonzero exit code. </summary>
+        /// <summary> taskfailure. </summary>
         public static OutputFileUploadCondition TaskFailure { get; } = new OutputFileUploadCondition(TaskFailureValue);
-        /// <summary> Upload the file(s) after the Task process exits, no matter what the exit code was. </summary>
+        /// <summary> taskcompletion. </summary>
         public static OutputFileUploadCondition TaskCompletion { get; } = new OutputFileUploadCondition(TaskCompletionValue);
         /// <summary> Determines if two <see cref="OutputFileUploadCondition"/> values are the same. </summary>
         public static bool operator ==(OutputFileUploadCondition left, OutputFileUploadCondition right) => left.Equals(right);

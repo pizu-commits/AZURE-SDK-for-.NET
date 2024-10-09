@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> An instance of an entity - like hive_table, hive_database. </summary>
+    /// <summary> The AtlasEntityHeader. </summary>
     public partial class AtlasEntityHeader
     {
         /// <summary>
@@ -57,21 +57,18 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasEntityHeader"/>. </summary>
-        /// <param name="attributes"> The attributes of the struct. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="classificationNames"> An array of classification names. </param>
-        /// <param name="classifications"> An array of classifications. </param>
-        /// <param name="displayText"> The display text. </param>
-        /// <param name="guid"> The GUID of the record. </param>
-        /// <param name="isIncomplete"> Whether it is a shell entity. </param>
-        /// <param name="labels"> labels. </param>
-        /// <param name="meaningNames"> An array of meanings. </param>
-        /// <param name="meanings"> An array of term assignment headers. </param>
-        /// <param name="status">
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </param>
+        /// <param name="attributes"></param>
+        /// <param name="typeName"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="classificationNames"></param>
+        /// <param name="classifications"></param>
+        /// <param name="displayText"></param>
+        /// <param name="guid"></param>
+        /// <param name="isIncomplete"></param>
+        /// <param name="labels"></param>
+        /// <param name="meaningNames"></param>
+        /// <param name="meanings"></param>
+        /// <param name="status"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasEntityHeader(IDictionary<string, BinaryData> attributes, string typeName, string lastModifiedTS, IList<string> classificationNames, IList<AtlasClassification> classifications, string displayText, string guid, bool? isIncomplete, IList<string> labels, IList<string> meaningNames, IList<AtlasTermAssignmentHeader> meanings, EntityStatus? status, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -91,7 +88,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary>
-        /// The attributes of the struct.
+        /// Gets the attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -121,30 +118,27 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> Attributes { get; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
-        /// <summary> An array of classification names. </summary>
+        /// <summary> Gets the classification names. </summary>
         public IList<string> ClassificationNames { get; }
-        /// <summary> An array of classifications. </summary>
+        /// <summary> Gets the classifications. </summary>
         public IList<AtlasClassification> Classifications { get; }
-        /// <summary> The display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary> The GUID of the record. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> Whether it is a shell entity. </summary>
+        /// <summary> Gets or sets the is incomplete. </summary>
         public bool? IsIncomplete { get; set; }
-        /// <summary> labels. </summary>
+        /// <summary> Gets the labels. </summary>
         public IList<string> Labels { get; }
-        /// <summary> An array of meanings. </summary>
+        /// <summary> Gets the meaning names. </summary>
         public IList<string> MeaningNames { get; }
-        /// <summary> An array of term assignment headers. </summary>
+        /// <summary> Gets the meanings. </summary>
         public IList<AtlasTermAssignmentHeader> Meanings { get; }
-        /// <summary>
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </summary>
+        /// <summary> Gets or sets the status. </summary>
         public EntityStatus? Status { get; set; }
     }
 }

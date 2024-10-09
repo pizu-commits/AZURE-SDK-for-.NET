@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Spot allocation strategy types for Compute Fleet. </summary>
+    /// <summary> The SpotAllocationStrategy. </summary>
     public readonly partial struct SpotAllocationStrategy : IEquatable<SpotAllocationStrategy>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string LowestPriceValue = "LowestPrice";
         private const string CapacityOptimizedValue = "CapacityOptimized";
 
-        /// <summary> Default. VM sizes distribution will be determined to optimize for both price and capacity. </summary>
+        /// <summary> PriceCapacityOptimized. </summary>
         public static SpotAllocationStrategy PriceCapacityOptimized { get; } = new SpotAllocationStrategy(PriceCapacityOptimizedValue);
-        /// <summary> VM sizes distribution will be determined to optimize for price. Note: Capacity will still be considered here but will be given much less weight. </summary>
+        /// <summary> LowestPrice. </summary>
         public static SpotAllocationStrategy LowestPrice { get; } = new SpotAllocationStrategy(LowestPriceValue);
-        /// <summary> VM sizes distribution will be determined to optimize for capacity. </summary>
+        /// <summary> CapacityOptimized. </summary>
         public static SpotAllocationStrategy CapacityOptimized { get; } = new SpotAllocationStrategy(CapacityOptimizedValue);
         /// <summary> Determines if two <see cref="SpotAllocationStrategy"/> values are the same. </summary>
         public static bool operator ==(SpotAllocationStrategy left, SpotAllocationStrategy right) => left.Equals(right);

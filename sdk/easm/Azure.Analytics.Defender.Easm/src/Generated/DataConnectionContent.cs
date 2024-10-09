@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The type of data the data connection will transfer. </summary>
+    /// <summary> The DataConnectionContent. </summary>
     public readonly partial struct DataConnectionContent : IEquatable<DataConnectionContent>
     {
         private readonly string _value;

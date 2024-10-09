@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> A duration of time during which an event is happening. </summary>
+    /// <summary> The TimePeriod. </summary>
     public partial class TimePeriod
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="TimePeriod"/>. </summary>
-        /// <param name="start"> Starting time with inclusive boundary. </param>
-        /// <param name="end"> End time with inclusive boundary, if not ongoing. </param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TimePeriod(DateTimeOffset? start, DateTimeOffset? end, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Health.Insights.RadiologyInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Starting time with inclusive boundary. </summary>
+        /// <summary> Gets or sets the start. </summary>
         public DateTimeOffset? Start { get; set; }
-        /// <summary> End time with inclusive boundary, if not ongoing. </summary>
+        /// <summary> Gets or sets the end. </summary>
         public DateTimeOffset? End { get; set; }
     }
 }

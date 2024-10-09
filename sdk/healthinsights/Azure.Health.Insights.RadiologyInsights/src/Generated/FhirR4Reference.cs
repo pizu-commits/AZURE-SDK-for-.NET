@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// A reference from one resource to another
-    /// Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_Reference. </summary>
     public partial class FhirR4Reference : FhirR4Element
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Reference"/>. </summary>
@@ -22,13 +19,13 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Reference"/>. </summary>
-        /// <param name="id"> Unique id for inter-element referencing. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="id"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="reference"> Literal reference, Relative, internal or absolute URL. </param>
-        /// <param name="type"> Type the reference refers to (e.g. "Patient"). </param>
-        /// <param name="identifier"> Logical reference, when literal reference is not known. </param>
-        /// <param name="display"> Text alternative for the resource. </param>
+        /// <param name="reference"></param>
+        /// <param name="type"></param>
+        /// <param name="identifier"></param>
+        /// <param name="display"></param>
         internal FhirR4Reference(string id, IList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, string reference, string type, FhirR4Identifier identifier, string display) : base(id, extension, serializedAdditionalRawData)
         {
             Reference = reference;
@@ -37,13 +34,13 @@ namespace Azure.Health.Insights.RadiologyInsights
             Display = display;
         }
 
-        /// <summary> Literal reference, Relative, internal or absolute URL. </summary>
+        /// <summary> Gets or sets the reference. </summary>
         public string Reference { get; set; }
-        /// <summary> Type the reference refers to (e.g. "Patient"). </summary>
+        /// <summary> Gets or sets the type. </summary>
         public string Type { get; set; }
-        /// <summary> Logical reference, when literal reference is not known. </summary>
+        /// <summary> Gets or sets the identifier. </summary>
         public FhirR4Identifier Identifier { get; set; }
-        /// <summary> Text alternative for the resource. </summary>
+        /// <summary> Gets or sets the display. </summary>
         public string Display { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> This is the request to get operation status using operationids. </summary>
+    /// <summary> The GetOperationStatusContent. </summary>
     public partial class GetOperationStatusContent
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="GetOperationStatusContent"/>. </summary>
-        /// <param name="operationIds"> The list of operation ids to get the status of. </param>
-        /// <param name="correlationId"> CorrelationId item. </param>
+        /// <param name="operationIds"></param>
+        /// <param name="correlationId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationIds"/> or <paramref name="correlationId"/> is null. </exception>
         public GetOperationStatusContent(IEnumerable<string> operationIds, string correlationId)
         {
@@ -60,8 +60,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="GetOperationStatusContent"/>. </summary>
-        /// <param name="operationIds"> The list of operation ids to get the status of. </param>
-        /// <param name="correlationId"> CorrelationId item. </param>
+        /// <param name="operationIds"></param>
+        /// <param name="correlationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal GetOperationStatusContent(IList<string> operationIds, string correlationId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> The list of operation ids to get the status of. </summary>
+        /// <summary> Gets the operation ids. </summary>
         public IList<string> OperationIds { get; }
-        /// <summary> CorrelationId item. </summary>
+        /// <summary> Gets the correlation id. </summary>
         public string CorrelationId { get; }
     }
 }

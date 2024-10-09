@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Describes a condition that must be met against a set of labels for queue selection. </summary>
+    /// <summary> The RouterQueueSelector. </summary>
     public partial class RouterQueueSelector
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RouterQueueSelector"/>. </summary>
-        /// <param name="key"> The label key to query against. </param>
-        /// <param name="labelOperator"> Describes how the value of the label is compared to the value defined on the label selector. </param>
+        /// <param name="key"></param>
+        /// <param name="labelOperator"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         internal RouterQueueSelector(string key, LabelOperator labelOperator)
         {
@@ -58,9 +58,9 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="RouterQueueSelector"/>. </summary>
-        /// <param name="key"> The label key to query against. </param>
-        /// <param name="labelOperator"> Describes how the value of the label is compared to the value defined on the label selector. </param>
-        /// <param name="value"> The value to compare against the actual label value with the given operator. Values must be primitive values - number, string, boolean. </param>
+        /// <param name="key"></param>
+        /// <param name="labelOperator"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RouterQueueSelector(string key, LabelOperator labelOperator, BinaryData value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,9 +75,9 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> The label key to query against. </summary>
+        /// <summary> Gets the key. </summary>
         public string Key { get; }
-        /// <summary> Describes how the value of the label is compared to the value defined on the label selector. </summary>
+        /// <summary> Gets the label operator. </summary>
         public LabelOperator LabelOperator { get; }
     }
 }

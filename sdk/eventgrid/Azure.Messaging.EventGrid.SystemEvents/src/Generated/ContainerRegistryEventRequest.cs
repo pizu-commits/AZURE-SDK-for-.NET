@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The request that generated the event. </summary>
+    /// <summary> The ContainerRegistryEventRequest. </summary>
     public partial class ContainerRegistryEventRequest
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerRegistryEventRequest"/>. </summary>
-        /// <param name="id"> The ID of the request that initiated the event. </param>
-        /// <param name="addr"> The IP or hostname and possibly port of the client connection that initiated the event. This is the RemoteAddr from the standard http request. </param>
-        /// <param name="host"> The externally accessible hostname of the registry instance, as specified by the http host header on incoming requests. </param>
-        /// <param name="method"> The request method that generated the event. </param>
-        /// <param name="useragent"> The user agent header of the request. </param>
+        /// <param name="id"></param>
+        /// <param name="addr"></param>
+        /// <param name="host"></param>
+        /// <param name="method"></param>
+        /// <param name="useragent"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerRegistryEventRequest(string id, string addr, string host, string method, string useragent, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the request that initiated the event. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The IP or hostname and possibly port of the client connection that initiated the event. This is the RemoteAddr from the standard http request. </summary>
+        /// <summary> Gets the addr. </summary>
         public string Addr { get; }
-        /// <summary> The externally accessible hostname of the registry instance, as specified by the http host header on incoming requests. </summary>
+        /// <summary> Gets the host. </summary>
         public string Host { get; }
-        /// <summary> The request method that generated the event. </summary>
+        /// <summary> Gets the method. </summary>
         public string Method { get; }
-        /// <summary> The user agent header of the request. </summary>
+        /// <summary> Gets the useragent. </summary>
         public string Useragent { get; }
     }
 }

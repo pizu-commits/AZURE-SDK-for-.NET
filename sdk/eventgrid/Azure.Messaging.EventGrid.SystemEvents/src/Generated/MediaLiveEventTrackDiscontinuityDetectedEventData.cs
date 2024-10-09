@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Ingest track discontinuity detected event data. Schema of the data property of an EventGridEvent for a Microsoft.Media.LiveEventTrackDiscontinuityDetected event. </summary>
+    /// <summary> The MediaLiveEventTrackDiscontinuityDetectedEventData. </summary>
     public partial class MediaLiveEventTrackDiscontinuityDetectedEventData
     {
         /// <summary>
@@ -51,13 +51,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventTrackDiscontinuityDetectedEventData"/>. </summary>
-        /// <param name="trackType"> Gets the type of the track (Audio / Video). </param>
-        /// <param name="trackName"> Gets the track name. </param>
-        /// <param name="bitrate"> Gets the bitrate. </param>
-        /// <param name="previousTimestamp"> Gets the timestamp of the previous fragment. </param>
-        /// <param name="newTimestamp"> Gets the timestamp of the current fragment. </param>
-        /// <param name="timescale"> Gets the timescale in which both timestamps and discontinuity gap are represented. </param>
-        /// <param name="discontinuityGap"> Gets the discontinuity gap between PreviousTimestamp and NewTimestamp. </param>
+        /// <param name="trackType"></param>
+        /// <param name="trackName"></param>
+        /// <param name="bitrate"></param>
+        /// <param name="previousTimestamp"></param>
+        /// <param name="newTimestamp"></param>
+        /// <param name="timescale"></param>
+        /// <param name="discontinuityGap"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaLiveEventTrackDiscontinuityDetectedEventData(string trackType, string trackName, long? bitrate, string previousTimestamp, string newTimestamp, string timescale, string discontinuityGap, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,19 +71,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the type of the track (Audio / Video). </summary>
+        /// <summary> Gets the track type. </summary>
         public string TrackType { get; }
         /// <summary> Gets the track name. </summary>
         public string TrackName { get; }
         /// <summary> Gets the bitrate. </summary>
         public long? Bitrate { get; }
-        /// <summary> Gets the timestamp of the previous fragment. </summary>
+        /// <summary> Gets the previous timestamp. </summary>
         public string PreviousTimestamp { get; }
-        /// <summary> Gets the timestamp of the current fragment. </summary>
+        /// <summary> Gets the new timestamp. </summary>
         public string NewTimestamp { get; }
-        /// <summary> Gets the timescale in which both timestamps and discontinuity gap are represented. </summary>
+        /// <summary> Gets the timescale. </summary>
         public string Timescale { get; }
-        /// <summary> Gets the discontinuity gap between PreviousTimestamp and NewTimestamp. </summary>
+        /// <summary> Gets the discontinuity gap. </summary>
         public string DiscontinuityGap { get; }
     }
 }

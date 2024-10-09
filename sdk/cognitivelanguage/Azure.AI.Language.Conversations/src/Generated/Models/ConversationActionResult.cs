@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The results of a Conversation task. </summary>
+    /// <summary> The ConversationActionResult. </summary>
     public partial class ConversationActionResult : AnalyzeConversationActionResult
     {
         /// <summary> Initializes a new instance of <see cref="ConversationActionResult"/>. </summary>
-        /// <param name="result"> Represents a conversation analysis response. </param>
+        /// <param name="result"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="result"/> is null. </exception>
         internal ConversationActionResult(AnalyzeConversationResult result)
         {
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ConversationActionResult"/>. </summary>
-        /// <param name="kind"> The base class of a conversation input task result. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="result"> Represents a conversation analysis response. </param>
+        /// <param name="result"></param>
         internal ConversationActionResult(AnalyzeConversationResultKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, AnalyzeConversationResult result) : base(kind, serializedAdditionalRawData)
         {
             Result = result;
@@ -38,7 +38,7 @@ namespace Azure.AI.Language.Conversations.Models
         {
         }
 
-        /// <summary> Represents a conversation analysis response. </summary>
+        /// <summary> Gets the result. </summary>
         public AnalyzeConversationResult Result { get; }
     }
 }

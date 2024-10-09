@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Properties describing facial hair attributes. </summary>
+    /// <summary> The FacialHair. </summary>
     public partial class FacialHair
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FacialHair"/>. </summary>
-        /// <param name="moustache"> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </param>
-        /// <param name="beard"> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </param>
-        /// <param name="sideburns"> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </param>
+        /// <param name="moustache"></param>
+        /// <param name="beard"></param>
+        /// <param name="sideburns"></param>
         internal FacialHair(float moustache, float beard, float sideburns)
         {
             Moustache = moustache;
@@ -57,9 +57,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="FacialHair"/>. </summary>
-        /// <param name="moustache"> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </param>
-        /// <param name="beard"> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </param>
-        /// <param name="sideburns"> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </param>
+        /// <param name="moustache"></param>
+        /// <param name="beard"></param>
+        /// <param name="sideburns"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FacialHair(float moustache, float beard, float sideburns, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </summary>
+        /// <summary> Gets the moustache. </summary>
         public float Moustache { get; }
-        /// <summary> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </summary>
+        /// <summary> Gets the beard. </summary>
         public float Beard { get; }
-        /// <summary> A number ranging from 0 to 1 indicating a level of confidence associated with a property. </summary>
+        /// <summary> Gets the sideburns. </summary>
         public float Sideburns { get; }
     }
 }

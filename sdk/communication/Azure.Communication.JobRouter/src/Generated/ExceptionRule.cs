@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> A rule that defines actions to execute upon a specific trigger. </summary>
+    /// <summary> The ExceptionRule. </summary>
     public partial class ExceptionRule
     {
         /// <summary>
@@ -47,14 +47,12 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ExceptionRule"/>. </summary>
-        /// <param name="id"> Id of an exception rule. </param>
+        /// <param name="id"></param>
         /// <param name="trigger">
-        /// The trigger for this exception rule.
         /// Please note <see cref="ExceptionTrigger"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="QueueLengthExceptionTrigger"/> and <see cref="WaitTimeExceptionTrigger"/>.
         /// </param>
         /// <param name="actions">
-        /// A collection of actions to perform once the exception is triggered.
         /// Please note <see cref="ExceptionAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CancelExceptionAction"/>, <see cref="ManualReclassifyExceptionAction"/> and <see cref="ReclassifyExceptionAction"/>.
         /// </param>
@@ -71,14 +69,12 @@ namespace Azure.Communication.JobRouter
         }
 
         /// <summary> Initializes a new instance of <see cref="ExceptionRule"/>. </summary>
-        /// <param name="id"> Id of an exception rule. </param>
+        /// <param name="id"></param>
         /// <param name="trigger">
-        /// The trigger for this exception rule.
         /// Please note <see cref="ExceptionTrigger"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="QueueLengthExceptionTrigger"/> and <see cref="WaitTimeExceptionTrigger"/>.
         /// </param>
         /// <param name="actions">
-        /// A collection of actions to perform once the exception is triggered.
         /// Please note <see cref="ExceptionAction"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="CancelExceptionAction"/>, <see cref="ManualReclassifyExceptionAction"/> and <see cref="ReclassifyExceptionAction"/>.
         /// </param>
@@ -96,10 +92,10 @@ namespace Azure.Communication.JobRouter
         {
         }
 
-        /// <summary> Id of an exception rule. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
         /// <summary>
-        /// The trigger for this exception rule.
+        /// Gets the trigger
         /// Please note <see cref="ExceptionTrigger"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="QueueLengthExceptionTrigger"/> and <see cref="WaitTimeExceptionTrigger"/>.
         /// </summary>

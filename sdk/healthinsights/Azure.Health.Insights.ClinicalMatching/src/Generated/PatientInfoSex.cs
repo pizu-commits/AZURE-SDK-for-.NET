@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> The patient's sex. </summary>
+    /// <summary> The PatientInfoSex. </summary>
     public readonly partial struct PatientInfoSex : IEquatable<PatientInfoSex>
     {
         private readonly string _value;

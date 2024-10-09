@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> Represents a single block of detected text in the image. </summary>
+    /// <summary> The DetectedTextBlock. </summary>
     public partial class DetectedTextBlock
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DetectedTextBlock"/>. </summary>
-        /// <param name="lines"> A list of text lines in this block. </param>
+        /// <param name="lines"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="lines"/> is null. </exception>
         internal DetectedTextBlock(IEnumerable<DetectedTextLine> lines)
         {
@@ -57,7 +57,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="DetectedTextBlock"/>. </summary>
-        /// <param name="lines"> A list of text lines in this block. </param>
+        /// <param name="lines"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DetectedTextBlock(IReadOnlyList<DetectedTextLine> lines, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> A list of text lines in this block. </summary>
+        /// <summary> Gets the lines. </summary>
         public IReadOnlyList<DetectedTextLine> Lines { get; }
     }
 }

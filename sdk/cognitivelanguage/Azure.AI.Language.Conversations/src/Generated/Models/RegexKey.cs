@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> The regex key extra data kind. </summary>
+    /// <summary> The RegexKey. </summary>
     public partial class RegexKey : ConversationEntityExtraInformation
     {
         /// <summary> Initializes a new instance of <see cref="RegexKey"/>. </summary>
@@ -20,19 +20,19 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="RegexKey"/>. </summary>
-        /// <param name="extraInformationKind"> The extra information object kind. </param>
+        /// <param name="extraInformationKind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="key"> The key of the regex pattern used in extracting the entity. </param>
-        /// <param name="regexPattern"> The .NET regex pattern used in extracting the entity. Please visit https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions for more information about .NET regular expressions. </param>
+        /// <param name="key"></param>
+        /// <param name="regexPattern"></param>
         internal RegexKey(ExtraInformationKind extraInformationKind, IDictionary<string, BinaryData> serializedAdditionalRawData, string key, string regexPattern) : base(extraInformationKind, serializedAdditionalRawData)
         {
             Key = key;
             RegexPattern = regexPattern;
         }
 
-        /// <summary> The key of the regex pattern used in extracting the entity. </summary>
+        /// <summary> Gets the key. </summary>
         public string Key { get; }
-        /// <summary> The .NET regex pattern used in extracting the entity. Please visit https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions for more information about .NET regular expressions. </summary>
+        /// <summary> Gets the regex pattern. </summary>
         public string RegexPattern { get; }
     }
 }

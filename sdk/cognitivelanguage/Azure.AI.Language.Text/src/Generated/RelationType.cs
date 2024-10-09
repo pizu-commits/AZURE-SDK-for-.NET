@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Type of relation. Examples include: `DosageOfMedication` or 'FrequencyOfMedication', etc. </summary>
+    /// <summary> The relationType. </summary>
     public readonly partial struct RelationType : IEquatable<RelationType>
     {
         private readonly string _value;
@@ -60,73 +60,73 @@ namespace Azure.AI.Language.Text
 
         /// <summary> Abbreviation. </summary>
         public static RelationType Abbreviation { get; } = new RelationType(AbbreviationValue);
-        /// <summary> Direction of body structure. </summary>
+        /// <summary> DirectionOfBodyStructure. </summary>
         public static RelationType DirectionOfBodyStructure { get; } = new RelationType(DirectionOfBodyStructureValue);
-        /// <summary> Direction of condition. </summary>
+        /// <summary> DirectionOfCondition. </summary>
         public static RelationType DirectionOfCondition { get; } = new RelationType(DirectionOfConditionValue);
-        /// <summary> Direction of examination. </summary>
+        /// <summary> DirectionOfExamination. </summary>
         public static RelationType DirectionOfExamination { get; } = new RelationType(DirectionOfExaminationValue);
-        /// <summary> Direction of treatment. </summary>
+        /// <summary> DirectionOfTreatment. </summary>
         public static RelationType DirectionOfTreatment { get; } = new RelationType(DirectionOfTreatmentValue);
-        /// <summary> Dosage of medication. </summary>
+        /// <summary> DosageOfMedication. </summary>
         public static RelationType DosageOfMedication { get; } = new RelationType(DosageOfMedicationValue);
-        /// <summary> Form of medication. </summary>
+        /// <summary> FormOfMedication. </summary>
         public static RelationType FormOfMedication { get; } = new RelationType(FormOfMedicationValue);
-        /// <summary> Frequency of medication. </summary>
+        /// <summary> FrequencyOfMedication. </summary>
         public static RelationType FrequencyOfMedication { get; } = new RelationType(FrequencyOfMedicationValue);
-        /// <summary> Frequency of treatment. </summary>
+        /// <summary> FrequencyOfTreatment. </summary>
         public static RelationType FrequencyOfTreatment { get; } = new RelationType(FrequencyOfTreatmentValue);
-        /// <summary> Qualifier of condition. </summary>
+        /// <summary> QualifierOfCondition. </summary>
         public static RelationType QualifierOfCondition { get; } = new RelationType(QualifierOfConditionValue);
-        /// <summary> Relation of examination. </summary>
+        /// <summary> RelationOfExamination. </summary>
         public static RelationType RelationOfExamination { get; } = new RelationType(RelationOfExaminationValue);
-        /// <summary> Route of medication. </summary>
+        /// <summary> RouteOfMedication. </summary>
         public static RelationType RouteOfMedication { get; } = new RelationType(RouteOfMedicationValue);
-        /// <summary> Time of condition. </summary>
+        /// <summary> TimeOfCondition. </summary>
         public static RelationType TimeOfCondition { get; } = new RelationType(TimeOfConditionValue);
-        /// <summary> Time of event. </summary>
+        /// <summary> TimeOfEvent. </summary>
         public static RelationType TimeOfEvent { get; } = new RelationType(TimeOfEventValue);
-        /// <summary> Time of examination. </summary>
+        /// <summary> TimeOfExamination. </summary>
         public static RelationType TimeOfExamination { get; } = new RelationType(TimeOfExaminationValue);
-        /// <summary> Time of medication. </summary>
+        /// <summary> TimeOfMedication. </summary>
         public static RelationType TimeOfMedication { get; } = new RelationType(TimeOfMedicationValue);
-        /// <summary> Time of treatment. </summary>
+        /// <summary> TimeOfTreatment. </summary>
         public static RelationType TimeOfTreatment { get; } = new RelationType(TimeOfTreatmentValue);
-        /// <summary> Unit of condition. </summary>
+        /// <summary> UnitOfCondition. </summary>
         public static RelationType UnitOfCondition { get; } = new RelationType(UnitOfConditionValue);
-        /// <summary> Unit of examination. </summary>
+        /// <summary> UnitOfExamination. </summary>
         public static RelationType UnitOfExamination { get; } = new RelationType(UnitOfExaminationValue);
-        /// <summary> Value of condition. </summary>
+        /// <summary> ValueOfCondition. </summary>
         public static RelationType ValueOfCondition { get; } = new RelationType(ValueOfConditionValue);
-        /// <summary> Value of examination. </summary>
+        /// <summary> ValueOfExamination. </summary>
         public static RelationType ValueOfExamination { get; } = new RelationType(ValueOfExaminationValue);
-        /// <summary> Body site of condition. </summary>
+        /// <summary> BodySiteOfCondition. </summary>
         public static RelationType BodySiteOfCondition { get; } = new RelationType(BodySiteOfConditionValue);
-        /// <summary> Body site of treatment. </summary>
+        /// <summary> BodySiteOfTreatment. </summary>
         public static RelationType BodySiteOfTreatment { get; } = new RelationType(BodySiteOfTreatmentValue);
-        /// <summary> Course of condition. </summary>
+        /// <summary> CourseOfCondition. </summary>
         public static RelationType CourseOfCondition { get; } = new RelationType(CourseOfConditionValue);
-        /// <summary> Course of examination. </summary>
+        /// <summary> CourseOfExamination. </summary>
         public static RelationType CourseOfExamination { get; } = new RelationType(CourseOfExaminationValue);
-        /// <summary> Course of medication. </summary>
+        /// <summary> CourseOfMedication. </summary>
         public static RelationType CourseOfMedication { get; } = new RelationType(CourseOfMedicationValue);
-        /// <summary> Course of treatment. </summary>
+        /// <summary> CourseOfTreatment. </summary>
         public static RelationType CourseOfTreatment { get; } = new RelationType(CourseOfTreatmentValue);
-        /// <summary> Examination finds condition. </summary>
+        /// <summary> ExaminationFindsCondition. </summary>
         public static RelationType ExaminationFindsCondition { get; } = new RelationType(ExaminationFindsConditionValue);
-        /// <summary> Expression of gene. </summary>
+        /// <summary> ExpressionOfGene. </summary>
         public static RelationType ExpressionOfGene { get; } = new RelationType(ExpressionOfGeneValue);
-        /// <summary> Expression of variant. </summary>
+        /// <summary> ExpressionOfVariant. </summary>
         public static RelationType ExpressionOfVariant { get; } = new RelationType(ExpressionOfVariantValue);
-        /// <summary> Frequency of condition. </summary>
+        /// <summary> FrequencyOfCondition. </summary>
         public static RelationType FrequencyOfCondition { get; } = new RelationType(FrequencyOfConditionValue);
-        /// <summary> Mutation type of gene. </summary>
+        /// <summary> MutationTypeOfGene. </summary>
         public static RelationType MutationTypeOfGene { get; } = new RelationType(MutationTypeOfGeneValue);
-        /// <summary> Mutation type of variant. </summary>
+        /// <summary> MutationTypeOfVariant. </summary>
         public static RelationType MutationTypeOfVariant { get; } = new RelationType(MutationTypeOfVariantValue);
-        /// <summary> Scale of condition. </summary>
+        /// <summary> ScaleOfCondition. </summary>
         public static RelationType ScaleOfCondition { get; } = new RelationType(ScaleOfConditionValue);
-        /// <summary> Variant of gene. </summary>
+        /// <summary> VariantOfGene. </summary>
         public static RelationType VariantOfGene { get; } = new RelationType(VariantOfGeneValue);
         /// <summary> Determines if two <see cref="RelationType"/> values are the same. </summary>
         public static bool operator ==(RelationType left, RelationType right) => left.Equals(right);

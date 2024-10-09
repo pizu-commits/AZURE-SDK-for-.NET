@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> An object that represents enumerating SKUs for existing resources. </summary>
+    /// <summary> The RpSkuEnumerationForExistingResourceResult. </summary>
     internal partial class RpSkuEnumerationForExistingResourceResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.Fabric.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RpSkuEnumerationForExistingResourceResult"/>. </summary>
-        /// <param name="value"> The SKU details. </param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal RpSkuEnumerationForExistingResourceResult(IEnumerable<FabricSkuDetailsForExistingCapacity> value)
         {
@@ -57,8 +57,8 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="RpSkuEnumerationForExistingResourceResult"/>. </summary>
-        /// <param name="value"> The SKU details. </param>
-        /// <param name="nextLink"> Url for the next page.  Null if no more pages available. </param>
+        /// <param name="value"></param>
+        /// <param name="nextLink"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RpSkuEnumerationForExistingResourceResult(IReadOnlyList<FabricSkuDetailsForExistingCapacity> value, string nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.Fabric.Models
         {
         }
 
-        /// <summary> The SKU details. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<FabricSkuDetailsForExistingCapacity> Value { get; }
-        /// <summary> Url for the next page.  Null if no more pages available. </summary>
+        /// <summary> Gets the next link. </summary>
         public string NextLink { get; }
     }
 }

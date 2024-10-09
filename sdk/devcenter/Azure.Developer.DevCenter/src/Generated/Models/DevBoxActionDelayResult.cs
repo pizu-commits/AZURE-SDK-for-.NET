@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> The action delay result. </summary>
+    /// <summary> The DevBoxActionDelayResult. </summary>
     public partial class DevBoxActionDelayResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Developer.DevCenter.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DevBoxActionDelayResult"/>. </summary>
-        /// <param name="actionName"> The name of the action. </param>
-        /// <param name="delayStatus"> The result of the delay operation on this action. </param>
+        /// <param name="actionName"></param>
+        /// <param name="delayStatus"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="actionName"/> is null. </exception>
         internal DevBoxActionDelayResult(string actionName, DevBoxActionDelayStatus delayStatus)
         {
@@ -58,10 +58,10 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DevBoxActionDelayResult"/>. </summary>
-        /// <param name="actionName"> The name of the action. </param>
-        /// <param name="delayStatus"> The result of the delay operation on this action. </param>
-        /// <param name="action"> The delayed action. </param>
-        /// <param name="error"> Information about the error that occurred. Only populated on error. </param>
+        /// <param name="actionName"></param>
+        /// <param name="delayStatus"></param>
+        /// <param name="action"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevBoxActionDelayResult(string actionName, DevBoxActionDelayStatus delayStatus, DevBoxAction action, ResponseError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,13 +77,13 @@ namespace Azure.Developer.DevCenter.Models
         {
         }
 
-        /// <summary> The name of the action. </summary>
+        /// <summary> Gets the action name. </summary>
         public string ActionName { get; }
-        /// <summary> The result of the delay operation on this action. </summary>
+        /// <summary> Gets the delay status. </summary>
         public DevBoxActionDelayStatus DelayStatus { get; }
-        /// <summary> The delayed action. </summary>
+        /// <summary> Gets the action. </summary>
         public DevBoxAction Action { get; }
-        /// <summary> Information about the error that occurred. Only populated on error. </summary>
+        /// <summary> Gets the error. </summary>
         public ResponseError Error { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> PII domains. </summary>
+    /// <summary> The PiiDomain. </summary>
     public readonly partial struct PiiDomain : IEquatable<PiiDomain>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Language.Text
         private const string PhiValue = "phi";
         private const string NoneValue = "none";
 
-        /// <summary> Indicates that entities in the Personal Health Information domain should be redacted. </summary>
+        /// <summary> phi. </summary>
         public static PiiDomain Phi { get; } = new PiiDomain(PhiValue);
-        /// <summary> Indicates that no domain is specified. </summary>
+        /// <summary> none. </summary>
         public static PiiDomain None { get; } = new PiiDomain(NoneValue);
         /// <summary> Determines if two <see cref="PiiDomain"/> values are the same. </summary>
         public static bool operator ==(PiiDomain left, PiiDomain right) => left.Equals(right);

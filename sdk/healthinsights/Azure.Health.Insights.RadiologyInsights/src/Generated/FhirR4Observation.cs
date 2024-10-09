@@ -10,15 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary>
-    /// Detailed information about observations
-    /// Based on [FHIR Observation](https://www.hl7.org/fhir/R4/observation.html)
-    /// </summary>
+    /// <summary> The Fhir_R4_Observation. </summary>
     public partial class FhirR4Observation : FhirR4DomainResource
     {
         /// <summary> Initializes a new instance of <see cref="FhirR4Observation"/>. </summary>
-        /// <param name="status"> registered | preliminary | final | amended +. </param>
-        /// <param name="code"> Type of observation (code / type). </param>
+        /// <param name="status"></param>
+        /// <param name="code"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> is null. </exception>
         internal FhirR4Observation(ObservationStatusCodeType status, FhirR4CodeableConcept code) : base("Observation")
         {
@@ -37,46 +34,46 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="FhirR4Observation"/>. </summary>
-        /// <param name="resourceType"> The type of resource. </param>
-        /// <param name="id"> Resource Id. </param>
-        /// <param name="meta"> Metadata about the resource. </param>
-        /// <param name="implicitRules"> A set of rules under which this content was created. </param>
-        /// <param name="language"> Language of the resource content. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="id"></param>
+        /// <param name="meta"></param>
+        /// <param name="implicitRules"></param>
+        /// <param name="language"></param>
         /// <param name="additionalProperties"> Additional Properties. </param>
-        /// <param name="text"> Text summary of the resource, for human interpretation. </param>
-        /// <param name="contained"> Contained, inline Resources. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
-        /// <param name="modifierExtension"> Extensions that cannot be ignored. </param>
-        /// <param name="identifier"> Business Identifier for observation. </param>
-        /// <param name="status"> registered | preliminary | final | amended +. </param>
-        /// <param name="category"> Classification of  type of observation. </param>
-        /// <param name="code"> Type of observation (code / type). </param>
-        /// <param name="subject"> Who and/or what the observation is about. </param>
-        /// <param name="encounter"> Healthcare event during which this observation is made. </param>
-        /// <param name="effectiveDateTime"> Clinically relevant time/time-period for observation. </param>
-        /// <param name="effectivePeriod"> Clinically relevant time/time-period for observation. </param>
-        /// <param name="effectiveInstant"> Clinically relevant time/time-period for observation. </param>
-        /// <param name="issued"> Date/Time this version was made available. </param>
-        /// <param name="valueQuantity"> Actual result. </param>
-        /// <param name="valueCodeableConcept"> Actual result. </param>
-        /// <param name="valueString"> Actual result. </param>
-        /// <param name="valueBoolean"> Actual result. </param>
-        /// <param name="valueInteger"> Actual result. </param>
-        /// <param name="valueRange"> Actual result. </param>
-        /// <param name="valueRatio"> Actual result. </param>
-        /// <param name="valueSampledData"> Actual result. </param>
-        /// <param name="valueTime"> Actual result. </param>
-        /// <param name="valueDateTime"> Actual result. </param>
-        /// <param name="valuePeriod"> Actual result. </param>
-        /// <param name="dataAbsentReason"> Why the result is missing. </param>
-        /// <param name="interpretation"> High, low, normal, etc. </param>
-        /// <param name="note"> Comments about the observation. </param>
-        /// <param name="bodySite"> Observed body part. </param>
-        /// <param name="method"> How it was done. </param>
-        /// <param name="referenceRange"> Provides guide for interpretation. </param>
-        /// <param name="hasMember"> Related resource that belongs to the Observation group. </param>
-        /// <param name="derivedFrom"> Related measurements the observation is made from. </param>
-        /// <param name="component"> Component results. </param>
+        /// <param name="text"></param>
+        /// <param name="contained"></param>
+        /// <param name="extension"></param>
+        /// <param name="modifierExtension"></param>
+        /// <param name="identifier"></param>
+        /// <param name="status"></param>
+        /// <param name="category"></param>
+        /// <param name="code"></param>
+        /// <param name="subject"></param>
+        /// <param name="encounter"></param>
+        /// <param name="effectiveDateTime"></param>
+        /// <param name="effectivePeriod"></param>
+        /// <param name="effectiveInstant"></param>
+        /// <param name="issued"></param>
+        /// <param name="valueQuantity"></param>
+        /// <param name="valueCodeableConcept"></param>
+        /// <param name="valueString"></param>
+        /// <param name="valueBoolean"></param>
+        /// <param name="valueInteger"></param>
+        /// <param name="valueRange"></param>
+        /// <param name="valueRatio"></param>
+        /// <param name="valueSampledData"></param>
+        /// <param name="valueTime"></param>
+        /// <param name="valueDateTime"></param>
+        /// <param name="valuePeriod"></param>
+        /// <param name="dataAbsentReason"></param>
+        /// <param name="interpretation"></param>
+        /// <param name="note"></param>
+        /// <param name="bodySite"></param>
+        /// <param name="method"></param>
+        /// <param name="referenceRange"></param>
+        /// <param name="hasMember"></param>
+        /// <param name="derivedFrom"></param>
+        /// <param name="component"></param>
         internal FhirR4Observation(string resourceType, string id, FhirR4Meta meta, string implicitRules, string language, IDictionary<string, BinaryData> additionalProperties, FhirR4Narrative text, IReadOnlyList<FhirR4Resource> contained, IReadOnlyList<FhirR4Extension> extension, IReadOnlyList<FhirR4Extension> modifierExtension, IReadOnlyList<FhirR4Identifier> identifier, ObservationStatusCodeType status, IReadOnlyList<FhirR4CodeableConcept> category, FhirR4CodeableConcept code, FhirR4Reference subject, FhirR4Reference encounter, string effectiveDateTime, FhirR4Period effectivePeriod, string effectiveInstant, string issued, FhirR4Quantity valueQuantity, FhirR4CodeableConcept valueCodeableConcept, string valueString, bool? valueBoolean, int? valueInteger, FhirR4Range valueRange, FhirR4Ratio valueRatio, FhirR4SampledData valueSampledData, TimeSpan? valueTime, string valueDateTime, FhirR4Period valuePeriod, FhirR4CodeableConcept dataAbsentReason, IReadOnlyList<FhirR4CodeableConcept> interpretation, IReadOnlyList<FhirR4Annotation> note, FhirR4CodeableConcept bodySite, FhirR4CodeableConcept method, IReadOnlyList<FhirR4ObservationReferenceRange> referenceRange, IReadOnlyList<FhirR4Reference> hasMember, IReadOnlyList<FhirR4Reference> derivedFrom, IReadOnlyList<FhirR4ObservationComponent> component) : base(resourceType, id, meta, implicitRules, language, additionalProperties, text, contained, extension, modifierExtension)
         {
             Identifier = identifier;
@@ -116,65 +113,65 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Business Identifier for observation. </summary>
+        /// <summary> Gets the identifier. </summary>
         public IReadOnlyList<FhirR4Identifier> Identifier { get; }
-        /// <summary> registered | preliminary | final | amended +. </summary>
+        /// <summary> Gets the status. </summary>
         public ObservationStatusCodeType Status { get; }
-        /// <summary> Classification of  type of observation. </summary>
+        /// <summary> Gets the category. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Category { get; }
-        /// <summary> Type of observation (code / type). </summary>
+        /// <summary> Gets the code. </summary>
         public FhirR4CodeableConcept Code { get; }
-        /// <summary> Who and/or what the observation is about. </summary>
+        /// <summary> Gets the subject. </summary>
         public FhirR4Reference Subject { get; }
-        /// <summary> Healthcare event during which this observation is made. </summary>
+        /// <summary> Gets the encounter. </summary>
         public FhirR4Reference Encounter { get; }
-        /// <summary> Clinically relevant time/time-period for observation. </summary>
+        /// <summary> Gets the effective date time. </summary>
         public string EffectiveDateTime { get; }
-        /// <summary> Clinically relevant time/time-period for observation. </summary>
+        /// <summary> Gets the effective period. </summary>
         public FhirR4Period EffectivePeriod { get; }
-        /// <summary> Clinically relevant time/time-period for observation. </summary>
+        /// <summary> Gets the effective instant. </summary>
         public string EffectiveInstant { get; }
-        /// <summary> Date/Time this version was made available. </summary>
+        /// <summary> Gets the issued. </summary>
         public string Issued { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value quantity. </summary>
         public FhirR4Quantity ValueQuantity { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value codeable concept. </summary>
         public FhirR4CodeableConcept ValueCodeableConcept { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value string. </summary>
         public string ValueString { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value boolean. </summary>
         public bool? ValueBoolean { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value integer. </summary>
         public int? ValueInteger { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value range. </summary>
         public FhirR4Range ValueRange { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value ratio. </summary>
         public FhirR4Ratio ValueRatio { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value sampled data. </summary>
         public FhirR4SampledData ValueSampledData { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value time. </summary>
         public TimeSpan? ValueTime { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value date time. </summary>
         public string ValueDateTime { get; }
-        /// <summary> Actual result. </summary>
+        /// <summary> Gets the value period. </summary>
         public FhirR4Period ValuePeriod { get; }
-        /// <summary> Why the result is missing. </summary>
+        /// <summary> Gets the data absent reason. </summary>
         public FhirR4CodeableConcept DataAbsentReason { get; }
-        /// <summary> High, low, normal, etc. </summary>
+        /// <summary> Gets the interpretation. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> Interpretation { get; }
-        /// <summary> Comments about the observation. </summary>
+        /// <summary> Gets the note. </summary>
         public IReadOnlyList<FhirR4Annotation> Note { get; }
-        /// <summary> Observed body part. </summary>
+        /// <summary> Gets the body site. </summary>
         public FhirR4CodeableConcept BodySite { get; }
-        /// <summary> How it was done. </summary>
+        /// <summary> Gets the method. </summary>
         public FhirR4CodeableConcept Method { get; }
-        /// <summary> Provides guide for interpretation. </summary>
+        /// <summary> Gets the reference range. </summary>
         public IReadOnlyList<FhirR4ObservationReferenceRange> ReferenceRange { get; }
-        /// <summary> Related resource that belongs to the Observation group. </summary>
+        /// <summary> Gets the has member. </summary>
         public IReadOnlyList<FhirR4Reference> HasMember { get; }
-        /// <summary> Related measurements the observation is made from. </summary>
+        /// <summary> Gets the derived from. </summary>
         public IReadOnlyList<FhirR4Reference> DerivedFrom { get; }
-        /// <summary> Component results. </summary>
+        /// <summary> Gets the component. </summary>
         public IReadOnlyList<FhirR4ObservationComponent> Component { get; }
     }
 }

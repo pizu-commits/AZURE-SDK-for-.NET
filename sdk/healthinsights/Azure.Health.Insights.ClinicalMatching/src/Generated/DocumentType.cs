@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). </summary>
+    /// <summary> The DocumentType. </summary>
     public readonly partial struct DocumentType : IEquatable<DocumentType>
     {
         private readonly string _value;

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> Details of a single document in a job. </summary>
+    /// <summary> The DocumentDetails. </summary>
     public partial class DocumentDetails
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Health.Deidentification
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentDetails"/>. </summary>
-        /// <param name="input"> Location for the input. </param>
-        /// <param name="status"> Status of the document. </param>
+        /// <param name="input"></param>
+        /// <param name="status"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="input"/> is null. </exception>
         internal DocumentDetails(DocumentLocation input, OperationState status)
         {
@@ -58,11 +58,11 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentDetails"/>. </summary>
-        /// <param name="id"> Id of the document details. </param>
-        /// <param name="input"> Location for the input. </param>
-        /// <param name="output"> Location for the output. </param>
-        /// <param name="status"> Status of the document. </param>
-        /// <param name="error"> Error when document fails. </param>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <param name="status"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentDetails(string id, DocumentLocation input, DocumentLocation output, OperationState status, ResponseError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,15 +79,15 @@ namespace Azure.Health.Deidentification
         {
         }
 
-        /// <summary> Id of the document details. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Location for the input. </summary>
+        /// <summary> Gets the input. </summary>
         public DocumentLocation Input { get; }
-        /// <summary> Location for the output. </summary>
+        /// <summary> Gets the output. </summary>
         public DocumentLocation Output { get; }
-        /// <summary> Status of the document. </summary>
+        /// <summary> Gets the status. </summary>
         public OperationState Status { get; }
-        /// <summary> Error when document fails. </summary>
+        /// <summary> Gets the error. </summary>
         public ResponseError Error { get; }
     }
 }

@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages
 {
-    /// <summary> The message template's image value information. </summary>
+    /// <summary> The MessageTemplateImage. </summary>
     public partial class MessageTemplateImage : MessageTemplateValue
     {
         /// <summary> Initializes a new instance of <see cref="MessageTemplateImage"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
-        /// <param name="uri"> The (public) URL of the media. </param>
+        /// <param name="name"></param>
+        /// <param name="uri"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> or <paramref name="uri"/> is null. </exception>
         public MessageTemplateImage(string name, Uri uri) : base(name)
         {
@@ -27,12 +27,12 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> Initializes a new instance of <see cref="MessageTemplateImage"/>. </summary>
-        /// <param name="name"> Template binding reference name. </param>
-        /// <param name="kind"> The type discriminator describing a template parameter type. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="uri"> The (public) URL of the media. </param>
-        /// <param name="caption"> The [optional] caption of the media object. </param>
-        /// <param name="fileName"> The [optional] filename of the media file. </param>
+        /// <param name="uri"></param>
+        /// <param name="caption"></param>
+        /// <param name="fileName"></param>
         internal MessageTemplateImage(string name, MessageTemplateValueKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, Uri uri, string caption, string fileName) : base(name, kind, serializedAdditionalRawData)
         {
             Uri = uri;
@@ -45,11 +45,11 @@ namespace Azure.Communication.Messages
         {
         }
 
-        /// <summary> The (public) URL of the media. </summary>
+        /// <summary> Gets the uri. </summary>
         public Uri Uri { get; }
-        /// <summary> The [optional] caption of the media object. </summary>
+        /// <summary> Gets or sets the caption. </summary>
         public string Caption { get; set; }
-        /// <summary> The [optional] filename of the media file. </summary>
+        /// <summary> Gets or sets the file name. </summary>
         public string FileName { get; set; }
     }
 }

@@ -10,15 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// Schema of the Data property of an EventGridEvent for a
-    /// Microsoft.ResourceNotifications.Resources.Deleted event.
-    /// </summary>
+    /// <summary> The ResourceNotificationsResourceManagementDeletedEventData. </summary>
     public partial class ResourceNotificationsResourceManagementDeletedEventData : ResourceNotificationsResourceDeletedEventData
     {
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceManagementDeletedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for delete event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceDetails"/> or <paramref name="operationalDetails"/> is null. </exception>
         internal ResourceNotificationsResourceManagementDeletedEventData(ResourceNotificationsResourceDeletedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails) : base(resourceDetails, operationalDetails)
         {
@@ -27,8 +24,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceManagementDeletedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for delete event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceNotificationsResourceManagementDeletedEventData(ResourceNotificationsResourceDeletedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(resourceDetails, operationalDetails, serializedAdditionalRawData)
         {

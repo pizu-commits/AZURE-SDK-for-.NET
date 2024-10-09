@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeSchedule.Models
 {
-    /// <summary> The schedule details for the user request. </summary>
+    /// <summary> The UserRequestSchedule. </summary>
     public partial class UserRequestSchedule
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="UserRequestSchedule"/>. </summary>
-        /// <param name="deadLine"> The deadline for the operation. </param>
-        /// <param name="timeZone"> The timezone for the operation. </param>
-        /// <param name="deadlineType"> The deadlinetype of the operation, this can either be InitiateAt or CompleteBy. </param>
+        /// <param name="deadLine"></param>
+        /// <param name="timeZone"></param>
+        /// <param name="deadlineType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="timeZone"/> is null. </exception>
         public UserRequestSchedule(DateTimeOffset deadLine, string timeZone, ScheduledActionDeadlineType deadlineType)
         {
@@ -60,9 +60,9 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="UserRequestSchedule"/>. </summary>
-        /// <param name="deadLine"> The deadline for the operation. </param>
-        /// <param name="timeZone"> The timezone for the operation. </param>
-        /// <param name="deadlineType"> The deadlinetype of the operation, this can either be InitiateAt or CompleteBy. </param>
+        /// <param name="deadLine"></param>
+        /// <param name="timeZone"></param>
+        /// <param name="deadlineType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UserRequestSchedule(DateTimeOffset deadLine, string timeZone, ScheduledActionDeadlineType deadlineType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.ResourceManager.ComputeSchedule.Models
         {
         }
 
-        /// <summary> The deadline for the operation. </summary>
+        /// <summary> Gets the dead line. </summary>
         public DateTimeOffset DeadLine { get; }
-        /// <summary> The timezone for the operation. </summary>
+        /// <summary> Gets the time zone. </summary>
         public string TimeZone { get; }
-        /// <summary> The deadlinetype of the operation, this can either be InitiateAt or CompleteBy. </summary>
+        /// <summary> Gets the deadline type. </summary>
         public ScheduledActionDeadlineType DeadlineType { get; }
     }
 }

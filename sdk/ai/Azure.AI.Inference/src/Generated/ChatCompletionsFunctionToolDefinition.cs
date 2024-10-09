@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> The definition information for a chat completions function tool that can call a function in response to a tool call. </summary>
+    /// <summary> The ChatCompletionsFunctionToolDefinition. </summary>
     public partial class ChatCompletionsFunctionToolDefinition : ChatCompletionsToolDefinition
     {
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsFunctionToolDefinition"/>. </summary>
-        /// <param name="function"> The function definition details for the function tool. </param>
+        /// <param name="function"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="function"/> is null. </exception>
         public ChatCompletionsFunctionToolDefinition(FunctionDefinition function)
         {
@@ -25,15 +25,15 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsFunctionToolDefinition"/>. </summary>
-        /// <param name="type"> The object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="function"> The function definition details for the function tool. </param>
+        /// <param name="function"></param>
         internal ChatCompletionsFunctionToolDefinition(string type, IDictionary<string, BinaryData> serializedAdditionalRawData, FunctionDefinition function) : base(type, serializedAdditionalRawData)
         {
             Function = function;
         }
 
-        /// <summary> The function definition details for the function tool. </summary>
+        /// <summary> Gets the function. </summary>
         public FunctionDefinition Function { get; }
     }
 }

@@ -39,7 +39,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="tokenCredential"> The token credential to copy. </param>
         /// <param name="endpoint"> The <see cref="Uri"/> to use. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         internal Lineage(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, TokenCredential tokenCredential, Uri endpoint, string apiVersion)
         {
             ClientDiagnostics = clientDiagnostics;
@@ -50,9 +50,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get lineage info of the entity specified by GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="LineageDirection"/> to use. </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -67,9 +67,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get lineage info of the entity specified by GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="LineageDirection"/> to use. </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -98,9 +98,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="string"/> to use. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="direction"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -141,9 +141,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="string"/> to use. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="direction"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -170,10 +170,10 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Return immediate next page lineage info about entity with pagination. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="LineageDirection"/> to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -188,10 +188,10 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Return immediate next page lineage info about entity with pagination. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="LineageDirection"/> to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -220,10 +220,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="string"/> to use. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="direction"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -264,10 +264,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="string"/> to use. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="direction"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -311,13 +311,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// GET
         /// /v2/lineage/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="LineageDirection"/> to use. </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -349,13 +346,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// GET
         /// /v2/lineage/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="LineageDirection"/> to use. </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -399,13 +393,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="string"/> to use. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="direction"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -461,13 +452,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="direction"> The direction of the lineage, which could be INPUT, OUTPUT or BOTH. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
-        /// <param name="depth"> The number of hops for lineage. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="direction"> The <see cref="string"/> to use. Allowed values: "INPUT" | "OUTPUT" | "BOTH". </param>
+        /// <param name="depth"> The <see cref="int"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="direction"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>

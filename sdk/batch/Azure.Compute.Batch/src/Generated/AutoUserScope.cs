@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> AutoUserScope enums. </summary>
+    /// <summary> The AutoUserScope. </summary>
     public readonly partial struct AutoUserScope : IEquatable<AutoUserScope>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string TaskValue = "task";
         private const string PoolValue = "pool";
 
-        /// <summary> Specifies that the service should create a new user for the Task. </summary>
+        /// <summary> task. </summary>
         public static AutoUserScope Task { get; } = new AutoUserScope(TaskValue);
-        /// <summary> Specifies that the Task runs as the common auto user Account which is created on every Compute Node in a Pool. </summary>
+        /// <summary> pool. </summary>
         public static AutoUserScope Pool { get; } = new AutoUserScope(PoolValue);
         /// <summary> Determines if two <see cref="AutoUserScope"/> values are the same. </summary>
         public static bool operator ==(AutoUserScope left, AutoUserScope right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Document analysis parameters. </summary>
+    /// <summary> The AnalyzeDocumentContent. </summary>
     public partial class AnalyzeDocumentContent
     {
         /// <summary>
@@ -51,11 +51,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeDocumentContent"/>. </summary>
-        /// <param name="urlSource"> Document URL to analyze.  Either urlSource or base64Source must be specified. </param>
-        /// <param name="base64Source">
-        /// Base64 encoding of the document to analyze.  Either urlSource or base64Source
-        /// must be specified.
-        /// </param>
+        /// <param name="urlSource"></param>
+        /// <param name="base64Source"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeDocumentContent(Uri urlSource, BinaryData base64Source, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +61,10 @@ namespace Azure.AI.DocumentIntelligence
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Document URL to analyze.  Either urlSource or base64Source must be specified. </summary>
+        /// <summary> Gets or sets the url source. </summary>
         public Uri UrlSource { get; set; }
         /// <summary>
-        /// Base64 encoding of the document to analyze.  Either urlSource or base64Source
-        /// must be specified.
+        /// Gets or sets the base 64 source
         /// <para>
         /// To assign a byte[] to this property use <see cref="BinaryData.FromBytes(byte[])"/>.
         /// The byte[] will be serialized to a Base64 encoded string.

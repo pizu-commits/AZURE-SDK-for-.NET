@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Translation.Text
 {
-    /// <summary> Dictionary Lookup Element. </summary>
+    /// <summary> The DictionaryLookupItem. </summary>
     public partial class DictionaryLookupItem
     {
         /// <summary>
@@ -47,17 +47,9 @@ namespace Azure.AI.Translation.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DictionaryLookupItem"/>. </summary>
-        /// <param name="normalizedSource">
-        /// A string giving the normalized form of the source term.
-        /// For example, if the request is "JOHN", the normalized form will be "john".
-        /// The content of this field becomes the input to lookup examples.
-        /// </param>
-        /// <param name="displaySource">
-        /// A string giving the source term in a form best suited for end-user display.
-        /// For example, if the input is "JOHN", the display form will reflect the usual
-        /// spelling of the name: "John".
-        /// </param>
-        /// <param name="translations"> A list of translations for the source term. </param>
+        /// <param name="normalizedSource"></param>
+        /// <param name="displaySource"></param>
+        /// <param name="translations"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="normalizedSource"/>, <paramref name="displaySource"/> or <paramref name="translations"/> is null. </exception>
         internal DictionaryLookupItem(string normalizedSource, string displaySource, IEnumerable<DictionaryTranslation> translations)
         {
@@ -71,17 +63,9 @@ namespace Azure.AI.Translation.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="DictionaryLookupItem"/>. </summary>
-        /// <param name="normalizedSource">
-        /// A string giving the normalized form of the source term.
-        /// For example, if the request is "JOHN", the normalized form will be "john".
-        /// The content of this field becomes the input to lookup examples.
-        /// </param>
-        /// <param name="displaySource">
-        /// A string giving the source term in a form best suited for end-user display.
-        /// For example, if the input is "JOHN", the display form will reflect the usual
-        /// spelling of the name: "John".
-        /// </param>
-        /// <param name="translations"> A list of translations for the source term. </param>
+        /// <param name="normalizedSource"></param>
+        /// <param name="displaySource"></param>
+        /// <param name="translations"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DictionaryLookupItem(string normalizedSource, string displaySource, IReadOnlyList<DictionaryTranslation> translations, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -96,19 +80,11 @@ namespace Azure.AI.Translation.Text
         {
         }
 
-        /// <summary>
-        /// A string giving the normalized form of the source term.
-        /// For example, if the request is "JOHN", the normalized form will be "john".
-        /// The content of this field becomes the input to lookup examples.
-        /// </summary>
+        /// <summary> Gets the normalized source. </summary>
         public string NormalizedSource { get; }
-        /// <summary>
-        /// A string giving the source term in a form best suited for end-user display.
-        /// For example, if the input is "JOHN", the display form will reflect the usual
-        /// spelling of the name: "John".
-        /// </summary>
+        /// <summary> Gets the display source. </summary>
         public string DisplaySource { get; }
-        /// <summary> A list of translations for the source term. </summary>
+        /// <summary> Gets the translations. </summary>
         public IReadOnlyList<DictionaryTranslation> Translations { get; }
     }
 }

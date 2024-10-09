@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> class that captures details of an enum-element. </summary>
+    /// <summary> The AtlasEnumElementDef. </summary>
     public partial class AtlasEnumElementDef
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasEnumElementDef"/>. </summary>
-        /// <param name="description"> The description of the enum element definition. </param>
-        /// <param name="ordinal"> The ordinal of the enum element definition. </param>
-        /// <param name="value"> The value of the enum element definition. </param>
+        /// <param name="description"></param>
+        /// <param name="ordinal"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasEnumElementDef(string description, int? ordinal, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The description of the enum element definition. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The ordinal of the enum element definition. </summary>
+        /// <summary> Gets or sets the ordinal. </summary>
         public int? Ordinal { get; set; }
-        /// <summary> The value of the enum element definition. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public string Value { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchTaskExecutionResult enums. </summary>
+    /// <summary> The BatchTaskExecutionResult. </summary>
     public readonly partial struct BatchTaskExecutionResult : IEquatable<BatchTaskExecutionResult>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Compute.Batch
         private const string SuccessValue = "success";
         private const string FailureValue = "failure";
 
-        /// <summary> The Task ran successfully. </summary>
+        /// <summary> success. </summary>
         public static BatchTaskExecutionResult Success { get; } = new BatchTaskExecutionResult(SuccessValue);
-        /// <summary> There was an error during processing of the Task. The failure may have occurred before the Task process was launched, while the Task process was executing, or after the Task process exited. </summary>
+        /// <summary> failure. </summary>
         public static BatchTaskExecutionResult Failure { get; } = new BatchTaskExecutionResult(FailureValue);
         /// <summary> Determines if two <see cref="BatchTaskExecutionResult"/> values are the same. </summary>
         public static bool operator ==(BatchTaskExecutionResult left, BatchTaskExecutionResult right) => left.Equals(right);

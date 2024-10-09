@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Deidentification
 {
-    /// <summary> String index encoding model. </summary>
+    /// <summary> The StringIndex. </summary>
     public partial class StringIndex
     {
         /// <summary>
@@ -46,17 +46,9 @@ namespace Azure.Health.Deidentification
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StringIndex"/>. </summary>
-        /// <param name="utf8"> The offset or length of the substring in UTF-8 encoding. </param>
-        /// <param name="utf16">
-        /// The offset or length of the substring in UTF-16 encoding.
-        ///
-        /// Primary encoding used by .NET, Java, and JavaScript.
-        /// </param>
-        /// <param name="codePoint">
-        /// The offset or length of the substring in CodePoint encoding.
-        ///
-        /// Primary encoding used by Python.
-        /// </param>
+        /// <param name="utf8"></param>
+        /// <param name="utf16"></param>
+        /// <param name="codePoint"></param>
         internal StringIndex(int utf8, int utf16, int codePoint)
         {
             Utf8 = utf8;
@@ -65,17 +57,9 @@ namespace Azure.Health.Deidentification
         }
 
         /// <summary> Initializes a new instance of <see cref="StringIndex"/>. </summary>
-        /// <param name="utf8"> The offset or length of the substring in UTF-8 encoding. </param>
-        /// <param name="utf16">
-        /// The offset or length of the substring in UTF-16 encoding.
-        ///
-        /// Primary encoding used by .NET, Java, and JavaScript.
-        /// </param>
-        /// <param name="codePoint">
-        /// The offset or length of the substring in CodePoint encoding.
-        ///
-        /// Primary encoding used by Python.
-        /// </param>
+        /// <param name="utf8"></param>
+        /// <param name="utf16"></param>
+        /// <param name="codePoint"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StringIndex(int utf8, int utf16, int codePoint, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,19 +74,11 @@ namespace Azure.Health.Deidentification
         {
         }
 
-        /// <summary> The offset or length of the substring in UTF-8 encoding. </summary>
+        /// <summary> Gets the utf 8. </summary>
         public int Utf8 { get; }
-        /// <summary>
-        /// The offset or length of the substring in UTF-16 encoding.
-        ///
-        /// Primary encoding used by .NET, Java, and JavaScript.
-        /// </summary>
+        /// <summary> Gets the utf 16. </summary>
         public int Utf16 { get; }
-        /// <summary>
-        /// The offset or length of the substring in CodePoint encoding.
-        ///
-        /// Primary encoding used by Python.
-        /// </summary>
+        /// <summary> Gets the code point. </summary>
         public int CodePoint { get; }
     }
 }

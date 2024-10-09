@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Communication.Messages.Models.Channels
 {
-    /// <summary> The WhatsApp button sub type. </summary>
+    /// <summary> The WhatsAppMessageButtonSubType. </summary>
     public readonly partial struct WhatsAppMessageButtonSubType : IEquatable<WhatsAppMessageButtonSubType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Communication.Messages.Models.Channels
         private const string QuickReplyValue = "quickReply";
         private const string UrlValue = "url";
 
-        /// <summary> The WhatsApp button sub type is quick reply. </summary>
+        /// <summary> quickReply. </summary>
         public static WhatsAppMessageButtonSubType QuickReply { get; } = new WhatsAppMessageButtonSubType(QuickReplyValue);
-        /// <summary> The WhatsApp button sub type is url. </summary>
+        /// <summary> url. </summary>
         public static WhatsAppMessageButtonSubType Url { get; } = new WhatsAppMessageButtonSubType(UrlValue);
         /// <summary> Determines if two <see cref="WhatsAppMessageButtonSubType"/> values are the same. </summary>
         public static bool operator ==(WhatsAppMessageButtonSubType left, WhatsAppMessageButtonSubType right) => left.Equals(right);

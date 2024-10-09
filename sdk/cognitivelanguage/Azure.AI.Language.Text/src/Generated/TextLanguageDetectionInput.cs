@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the language detection document analysis task input. </summary>
+    /// <summary> The TextLanguageDetectionInput. </summary>
     public partial class TextLanguageDetectionInput : AnalyzeTextInput
     {
         /// <summary> Initializes a new instance of <see cref="TextLanguageDetectionInput"/>. </summary>
@@ -20,19 +20,19 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TextLanguageDetectionInput"/>. </summary>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="textInput"> Documents to be analyzed. </param>
-        /// <param name="actionContent"> task parameters. </param>
+        /// <param name="textInput"></param>
+        /// <param name="actionContent"></param>
         internal TextLanguageDetectionInput(AnalyzeTextInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, LanguageDetectionTextInput textInput, LanguageDetectionActionContent actionContent) : base(kind, serializedAdditionalRawData)
         {
             TextInput = textInput;
             ActionContent = actionContent;
         }
 
-        /// <summary> Documents to be analyzed. </summary>
+        /// <summary> Gets or sets the text input. </summary>
         public LanguageDetectionTextInput TextInput { get; set; }
-        /// <summary> task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public LanguageDetectionActionContent ActionContent { get; set; }
     }
 }

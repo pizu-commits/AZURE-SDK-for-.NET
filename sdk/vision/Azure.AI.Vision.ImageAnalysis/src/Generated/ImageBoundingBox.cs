@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.ImageAnalysis
 {
-    /// <summary> A basic rectangle specifying a sub-region of the image. </summary>
+    /// <summary> The ImageBoundingBox. </summary>
     public partial class ImageBoundingBox
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Vision.ImageAnalysis
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ImageBoundingBox"/>. </summary>
-        /// <param name="x"> X-coordinate of the top left point of the area, in pixels. </param>
-        /// <param name="y"> Y-coordinate of the top left point of the area, in pixels. </param>
-        /// <param name="width"> Width of the area, in pixels. </param>
-        /// <param name="height"> Height of the area, in pixels. </param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         internal ImageBoundingBox(int x, int y, int width, int height)
         {
             X = x;
@@ -59,10 +59,10 @@ namespace Azure.AI.Vision.ImageAnalysis
         }
 
         /// <summary> Initializes a new instance of <see cref="ImageBoundingBox"/>. </summary>
-        /// <param name="x"> X-coordinate of the top left point of the area, in pixels. </param>
-        /// <param name="y"> Y-coordinate of the top left point of the area, in pixels. </param>
-        /// <param name="width"> Width of the area, in pixels. </param>
-        /// <param name="height"> Height of the area, in pixels. </param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ImageBoundingBox(int x, int y, int width, int height, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,13 +78,13 @@ namespace Azure.AI.Vision.ImageAnalysis
         {
         }
 
-        /// <summary> X-coordinate of the top left point of the area, in pixels. </summary>
+        /// <summary> Gets the x. </summary>
         public int X { get; }
-        /// <summary> Y-coordinate of the top left point of the area, in pixels. </summary>
+        /// <summary> Gets the y. </summary>
         public int Y { get; }
-        /// <summary> Width of the area, in pixels. </summary>
+        /// <summary> Gets the width. </summary>
         public int Width { get; }
-        /// <summary> Height of the area, in pixels. </summary>
+        /// <summary> Gets the height. </summary>
         public int Height { get; }
     }
 }

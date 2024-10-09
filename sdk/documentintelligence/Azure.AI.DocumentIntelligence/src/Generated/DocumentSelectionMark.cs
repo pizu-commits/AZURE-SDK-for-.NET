@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// A selection mark object representing check boxes, radio buttons, and other
-    /// elements indicating a selection.
-    /// </summary>
+    /// <summary> The DocumentSelectionMark. </summary>
     public partial class DocumentSelectionMark
     {
         /// <summary>
@@ -49,9 +46,9 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentSelectionMark"/>. </summary>
-        /// <param name="state"> State of the selection mark. </param>
-        /// <param name="span"> Location of the selection mark in the reading order concatenated content. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the selection mark. </param>
+        /// <param name="state"></param>
+        /// <param name="span"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="span"/> is null. </exception>
         internal DocumentSelectionMark(DocumentSelectionMarkState state, DocumentSpan span, float confidence)
         {
@@ -64,15 +61,10 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentSelectionMark"/>. </summary>
-        /// <param name="state"> State of the selection mark. </param>
-        /// <param name="polygon">
-        /// Bounding polygon of the selection mark, with coordinates specified relative
-        /// to the top-left of the page. The numbers represent the x, y values of the
-        /// polygon vertices, clockwise from the left (-180 degrees inclusive) relative
-        /// to the element orientation.
-        /// </param>
-        /// <param name="span"> Location of the selection mark in the reading order concatenated content. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the selection mark. </param>
+        /// <param name="state"></param>
+        /// <param name="polygon"></param>
+        /// <param name="span"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentSelectionMark(DocumentSelectionMarkState state, IReadOnlyList<float> polygon, DocumentSpan span, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -88,18 +80,13 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> State of the selection mark. </summary>
+        /// <summary> Gets the state. </summary>
         public DocumentSelectionMarkState State { get; }
-        /// <summary>
-        /// Bounding polygon of the selection mark, with coordinates specified relative
-        /// to the top-left of the page. The numbers represent the x, y values of the
-        /// polygon vertices, clockwise from the left (-180 degrees inclusive) relative
-        /// to the element orientation.
-        /// </summary>
+        /// <summary> Gets the polygon. </summary>
         public IReadOnlyList<float> Polygon { get; }
-        /// <summary> Location of the selection mark in the reading order concatenated content. </summary>
+        /// <summary> Gets the span. </summary>
         public DocumentSpan Span { get; }
-        /// <summary> Confidence of correctly extracting the selection mark. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

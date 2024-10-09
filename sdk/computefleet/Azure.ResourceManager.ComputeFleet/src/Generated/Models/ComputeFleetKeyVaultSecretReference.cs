@@ -12,7 +12,7 @@ using Azure.ResourceManager.Resources.Models;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a reference to Key Vault Secret. </summary>
+    /// <summary> The ComputeFleetKeyVaultSecretReference. </summary>
     public partial class ComputeFleetKeyVaultSecretReference
     {
         /// <summary>
@@ -48,8 +48,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetKeyVaultSecretReference"/>. </summary>
-        /// <param name="secretUri"> The URL referencing a secret in a Key Vault. </param>
-        /// <param name="sourceVault"> The relative URL of the Key Vault containing the secret. </param>
+        /// <param name="secretUri"></param>
+        /// <param name="sourceVault"> Gets or sets the source vault. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="secretUri"/> or <paramref name="sourceVault"/> is null. </exception>
         public ComputeFleetKeyVaultSecretReference(Uri secretUri, WritableSubResource sourceVault)
         {
@@ -61,8 +61,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetKeyVaultSecretReference"/>. </summary>
-        /// <param name="secretUri"> The URL referencing a secret in a Key Vault. </param>
-        /// <param name="sourceVault"> The relative URL of the Key Vault containing the secret. </param>
+        /// <param name="secretUri"></param>
+        /// <param name="sourceVault"> Gets or sets the source vault. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetKeyVaultSecretReference(Uri secretUri, WritableSubResource sourceVault, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,9 +76,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         {
         }
 
-        /// <summary> The URL referencing a secret in a Key Vault. </summary>
+        /// <summary> Gets or sets the secret uri. </summary>
         public Uri SecretUri { get; set; }
-        /// <summary> The relative URL of the Key Vault containing the secret. </summary>
+        /// <summary> Gets or sets the source vault. </summary>
         internal WritableSubResource SourceVault { get; set; }
         /// <summary> Gets or sets Id. </summary>
         public ResourceIdentifier SourceVaultId

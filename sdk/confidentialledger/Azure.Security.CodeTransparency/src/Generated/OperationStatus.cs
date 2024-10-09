@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Security.CodeTransparency
 {
-    /// <summary> Possible statuses of the operation. </summary>
+    /// <summary> The OperationStatus. </summary>
     public readonly partial struct OperationStatus : IEquatable<OperationStatus>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Security.CodeTransparency
         private const string FailedValue = "failed";
         private const string SucceededValue = "succeeded";
 
-        /// <summary> Operation is still running. </summary>
+        /// <summary> running. </summary>
         public static OperationStatus Running { get; } = new OperationStatus(RunningValue);
-        /// <summary> Operation failed. </summary>
+        /// <summary> failed. </summary>
         public static OperationStatus Failed { get; } = new OperationStatus(FailedValue);
-        /// <summary> Operation succeeded. </summary>
+        /// <summary> succeeded. </summary>
         public static OperationStatus Succeeded { get; } = new OperationStatus(SucceededValue);
         /// <summary> Determines if two <see cref="OperationStatus"/> values are the same. </summary>
         public static bool operator ==(OperationStatus left, OperationStatus right) => left.Equals(right);

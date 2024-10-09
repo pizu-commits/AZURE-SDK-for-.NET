@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> BatchJobState enums. </summary>
+    /// <summary> The BatchJobState. </summary>
     public readonly partial struct BatchJobState : IEquatable<BatchJobState>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.Compute.Batch
         private const string CompletedValue = "completed";
         private const string DeletingValue = "deleting";
 
-        /// <summary> The Job is available to have Tasks scheduled. </summary>
+        /// <summary> active. </summary>
         public static BatchJobState Active { get; } = new BatchJobState(ActiveValue);
-        /// <summary> A user has requested that the Job be disabled, but the disable operation is still in progress (for example, waiting for Tasks to terminate). </summary>
+        /// <summary> disabling. </summary>
         public static BatchJobState Disabling { get; } = new BatchJobState(DisablingValue);
-        /// <summary> A user has disabled the Job. No Tasks are running, and no new Tasks will be scheduled. </summary>
+        /// <summary> disabled. </summary>
         public static BatchJobState Disabled { get; } = new BatchJobState(DisabledValue);
-        /// <summary> A user has requested that the Job be enabled, but the enable operation is still in progress. </summary>
+        /// <summary> enabling. </summary>
         public static BatchJobState Enabling { get; } = new BatchJobState(EnablingValue);
-        /// <summary> The Job is about to complete, either because a Job Manager Task has completed or because the user has terminated the Job, but the terminate operation is still in progress (for example, because Job Release Tasks are running). </summary>
+        /// <summary> terminating. </summary>
         public static BatchJobState Terminating { get; } = new BatchJobState(TerminatingValue);
-        /// <summary> All Tasks have terminated, and the system will not accept any more Tasks or any further changes to the Job. </summary>
+        /// <summary> completed. </summary>
         public static BatchJobState Completed { get; } = new BatchJobState(CompletedValue);
-        /// <summary> A user has requested that the Job be deleted, but the delete operation is still in progress (for example, because the system is still terminating running Tasks). </summary>
+        /// <summary> deleting. </summary>
         public static BatchJobState Deleting { get; } = new BatchJobState(DeletingValue);
         /// <summary> Determines if two <see cref="BatchJobState"/> values are the same. </summary>
         public static bool operator ==(BatchJobState left, BatchJobState right) => left.Equals(right);

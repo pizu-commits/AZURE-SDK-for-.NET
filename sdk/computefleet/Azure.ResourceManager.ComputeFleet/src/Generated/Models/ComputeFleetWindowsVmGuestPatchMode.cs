@@ -10,11 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual
-    /// machines associated to virtual machine scale set with OrchestrationMode as
-    /// Flexible.
-    /// </summary>
+    /// <summary> The ComputeFleetWindowsVMGuestPatchMode. </summary>
     public readonly partial struct ComputeFleetWindowsVmGuestPatchMode : IEquatable<ComputeFleetWindowsVmGuestPatchMode>
     {
         private readonly string _value;
@@ -30,22 +26,11 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string AutomaticByOSValue = "AutomaticByOS";
         private const string AutomaticByPlatformValue = "AutomaticByPlatform";
 
-        /// <summary>
-        /// You control the application of patches to a virtual machine.
-        /// You do this by applying patches manually inside the VM. In this mode,
-        /// automatic updates are disabled; the property WindowsConfiguration.enableAutomaticUpdates
-        /// must be false
-        /// </summary>
+        /// <summary> Manual. </summary>
         public static ComputeFleetWindowsVmGuestPatchMode Manual { get; } = new ComputeFleetWindowsVmGuestPatchMode(ManualValue);
-        /// <summary>
-        /// The virtual machine will automatically be updated by the OS.
-        /// The property WindowsConfiguration.enableAutomaticUpdates must be true.
-        /// </summary>
+        /// <summary> AutomaticByOS. </summary>
         public static ComputeFleetWindowsVmGuestPatchMode AutomaticByOS { get; } = new ComputeFleetWindowsVmGuestPatchMode(AutomaticByOSValue);
-        /// <summary>
-        /// The virtual machine will automatically updated by the platform. The properties
-        /// provisionVMAgent and WindowsConfiguration.enableAutomaticUpdates must be true.
-        /// </summary>
+        /// <summary> AutomaticByPlatform. </summary>
         public static ComputeFleetWindowsVmGuestPatchMode AutomaticByPlatform { get; } = new ComputeFleetWindowsVmGuestPatchMode(AutomaticByPlatformValue);
         /// <summary> Determines if two <see cref="ComputeFleetWindowsVmGuestPatchMode"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetWindowsVmGuestPatchMode left, ComputeFleetWindowsVmGuestPatchMode right) => left.Equals(right);

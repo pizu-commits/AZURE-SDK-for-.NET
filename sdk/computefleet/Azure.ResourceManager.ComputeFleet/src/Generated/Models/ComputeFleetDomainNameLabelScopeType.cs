@@ -10,12 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// The Domain name label scope.The concatenation of the hashed domain name label
-    /// that generated according to the policy from domain name label scope and vm
-    /// index will be the domain name labels of the PublicIPAddress resources that will
-    /// be created
-    /// </summary>
+    /// <summary> The ComputeFleetDomainNameLabelScopeTypes. </summary>
     public readonly partial struct ComputeFleetDomainNameLabelScopeType : IEquatable<ComputeFleetDomainNameLabelScopeType>
     {
         private readonly string _value;
@@ -32,13 +27,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string ResourceGroupReuseValue = "ResourceGroupReuse";
         private const string NoReuseValue = "NoReuse";
 
-        /// <summary> TenantReuse type. </summary>
+        /// <summary> TenantReuse. </summary>
         public static ComputeFleetDomainNameLabelScopeType TenantReuse { get; } = new ComputeFleetDomainNameLabelScopeType(TenantReuseValue);
-        /// <summary> SubscriptionReuse type. </summary>
+        /// <summary> SubscriptionReuse. </summary>
         public static ComputeFleetDomainNameLabelScopeType SubscriptionReuse { get; } = new ComputeFleetDomainNameLabelScopeType(SubscriptionReuseValue);
-        /// <summary> ResourceGroupReuse type. </summary>
+        /// <summary> ResourceGroupReuse. </summary>
         public static ComputeFleetDomainNameLabelScopeType ResourceGroupReuse { get; } = new ComputeFleetDomainNameLabelScopeType(ResourceGroupReuseValue);
-        /// <summary> NoReuse type. </summary>
+        /// <summary> NoReuse. </summary>
         public static ComputeFleetDomainNameLabelScopeType NoReuse { get; } = new ComputeFleetDomainNameLabelScopeType(NoReuseValue);
         /// <summary> Determines if two <see cref="ComputeFleetDomainNameLabelScopeType"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetDomainNameLabelScopeType left, ComputeFleetDomainNameLabelScopeType right) => left.Equals(right);

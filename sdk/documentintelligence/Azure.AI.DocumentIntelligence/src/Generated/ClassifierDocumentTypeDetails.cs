@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Classifier document type info. </summary>
+    /// <summary> The ClassifierDocumentTypeDetails. </summary>
     public partial class ClassifierDocumentTypeDetails
     {
         /// <summary>
@@ -51,17 +51,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="ClassifierDocumentTypeDetails"/>. </summary>
-        /// <param name="sourceKind"> Type of training data source. </param>
-        /// <param name="azureBlobSource">
-        /// Azure Blob Storage location containing the training data for a classifier
-        /// document type.  Either azureBlobSource or azureBlobFileListSource must be
-        /// specified.
-        /// </param>
-        /// <param name="azureBlobFileListSource">
-        /// Azure Blob Storage file list specifying the training data for a classifier
-        /// document type.  Either azureBlobSource or azureBlobFileListSource must be
-        /// specified.
-        /// </param>
+        /// <param name="sourceKind"></param>
+        /// <param name="azureBlobSource"></param>
+        /// <param name="azureBlobFileListSource"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClassifierDocumentTypeDetails(ContentSourceKind? sourceKind, AzureBlobContentSource azureBlobSource, AzureBlobFileListContentSource azureBlobFileListSource, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,19 +63,11 @@ namespace Azure.AI.DocumentIntelligence
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Type of training data source. </summary>
+        /// <summary> Gets or sets the source kind. </summary>
         public ContentSourceKind? SourceKind { get; set; }
-        /// <summary>
-        /// Azure Blob Storage location containing the training data for a classifier
-        /// document type.  Either azureBlobSource or azureBlobFileListSource must be
-        /// specified.
-        /// </summary>
+        /// <summary> Gets or sets the azure blob source. </summary>
         public AzureBlobContentSource AzureBlobSource { get; set; }
-        /// <summary>
-        /// Azure Blob Storage file list specifying the training data for a classifier
-        /// document type.  Either azureBlobSource or azureBlobFileListSource must be
-        /// specified.
-        /// </summary>
+        /// <summary> Gets or sets the azure blob file list source. </summary>
         public AzureBlobFileListContentSource AzureBlobFileListSource { get; set; }
     }
 }

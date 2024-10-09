@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Enumeration of supported conversational task results. </summary>
+    /// <summary> The AnalyzeConversationResultKind. </summary>
     internal readonly partial struct AnalyzeConversationResultKind : IEquatable<AnalyzeConversationResultKind>
     {
         private readonly string _value;
@@ -24,7 +24,7 @@ namespace Azure.AI.Language.Conversations.Models
 
         private const string ConversationResultValue = "ConversationResult";
 
-        /// <summary> Conversation result task kind. </summary>
+        /// <summary> ConversationResult. </summary>
         public static AnalyzeConversationResultKind ConversationResult { get; } = new AnalyzeConversationResultKind(ConversationResultValue);
         /// <summary> Determines if two <see cref="AnalyzeConversationResultKind"/> values are the same. </summary>
         public static bool operator ==(AnalyzeConversationResultKind left, AnalyzeConversationResultKind right) => left.Equals(right);

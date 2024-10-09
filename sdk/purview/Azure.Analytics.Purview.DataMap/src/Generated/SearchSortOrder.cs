@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Search sort order. </summary>
+    /// <summary> The SearchSortOrder. </summary>
     public readonly partial struct SearchSortOrder : IEquatable<SearchSortOrder>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Analytics.Purview.DataMap
         private const string AscendValue = "asc";
         private const string DescendValue = "desc";
 
-        /// <summary> Use ascending order for sorting. </summary>
+        /// <summary> asc. </summary>
         public static SearchSortOrder Ascend { get; } = new SearchSortOrder(AscendValue);
-        /// <summary> Use descending order for sorting. </summary>
+        /// <summary> desc. </summary>
         public static SearchSortOrder Descend { get; } = new SearchSortOrder(DescendValue);
         /// <summary> Determines if two <see cref="SearchSortOrder"/> values are the same. </summary>
         public static bool operator ==(SearchSortOrder left, SearchSortOrder right) => left.Equals(right);

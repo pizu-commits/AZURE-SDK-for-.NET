@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The status of the email. Any value other than Delivered is considered failed. </summary>
+    /// <summary> The AcsEmailDeliveryReportStatus. </summary>
     public readonly partial struct AcsEmailDeliveryReportStatus : IEquatable<AcsEmailDeliveryReportStatus>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string QuarantinedValue = "Quarantined";
         private const string SuppressedValue = "Suppressed";
 
-        /// <summary> Hard bounce detected while sending the email. </summary>
+        /// <summary> Bounced. </summary>
         public static AcsEmailDeliveryReportStatus Bounced { get; } = new AcsEmailDeliveryReportStatus(BouncedValue);
-        /// <summary> The email was delivered. </summary>
+        /// <summary> Delivered. </summary>
         public static AcsEmailDeliveryReportStatus Delivered { get; } = new AcsEmailDeliveryReportStatus(DeliveredValue);
-        /// <summary> The email failed to be delivered. </summary>
+        /// <summary> Failed. </summary>
         public static AcsEmailDeliveryReportStatus Failed { get; } = new AcsEmailDeliveryReportStatus(FailedValue);
-        /// <summary> The message was identified as spam and was rejected or blocked (not quarantined). </summary>
+        /// <summary> FilteredSpam. </summary>
         public static AcsEmailDeliveryReportStatus FilteredSpam { get; } = new AcsEmailDeliveryReportStatus(FilteredSpamValue);
-        /// <summary> The message was quarantined (as spam, bulk mail, or phishing). For more information, see Quarantined email messages in EOP (EXCHANGE ONLINE PROTECTION). </summary>
+        /// <summary> Quarantined. </summary>
         public static AcsEmailDeliveryReportStatus Quarantined { get; } = new AcsEmailDeliveryReportStatus(QuarantinedValue);
-        /// <summary> The email was suppressed. </summary>
+        /// <summary> Suppressed. </summary>
         public static AcsEmailDeliveryReportStatus Suppressed { get; } = new AcsEmailDeliveryReportStatus(SuppressedValue);
         /// <summary> Determines if two <see cref="AcsEmailDeliveryReportStatus"/> values are the same. </summary>
         public static bool operator ==(AcsEmailDeliveryReportStatus left, AcsEmailDeliveryReportStatus right) => left.Equals(right);

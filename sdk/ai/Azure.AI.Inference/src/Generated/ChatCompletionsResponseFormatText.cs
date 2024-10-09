@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Inference
 {
-    /// <summary> A response format for Chat Completions that emits text responses. This is the default response format. </summary>
+    /// <summary> The ChatCompletionsResponseFormatText. </summary>
     public partial class ChatCompletionsResponseFormatText : ChatCompletionsResponseFormat
     {
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsResponseFormatText"/>. </summary>
@@ -20,7 +20,7 @@ namespace Azure.AI.Inference
         }
 
         /// <summary> Initializes a new instance of <see cref="ChatCompletionsResponseFormatText"/>. </summary>
-        /// <param name="type"> The response format type to use for chat completions. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ChatCompletionsResponseFormatText(string type, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(type, serializedAdditionalRawData)
         {

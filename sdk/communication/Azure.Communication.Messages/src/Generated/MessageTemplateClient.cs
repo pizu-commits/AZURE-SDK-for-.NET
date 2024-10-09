@@ -66,8 +66,8 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> List all templates for given Azure Communication Services channel. </summary>
-        /// <param name="channelId"> The registration ID of the channel. </param>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="channelId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/MessageTemplateClient.xml" path="doc/members/member[@name='GetTemplatesAsync(Guid,int?,CancellationToken)']/*" />
         public virtual AsyncPageable<MessageTemplateItem> GetTemplatesAsync(Guid channelId, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -79,8 +79,8 @@ namespace Azure.Communication.Messages
         }
 
         /// <summary> List all templates for given Azure Communication Services channel. </summary>
-        /// <param name="channelId"> The registration ID of the channel. </param>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="channelId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/MessageTemplateClient.xml" path="doc/members/member[@name='GetTemplates(Guid,int?,CancellationToken)']/*" />
         public virtual Pageable<MessageTemplateItem> GetTemplates(Guid channelId, int? maxpagesize = null, CancellationToken cancellationToken = default)
@@ -106,8 +106,8 @@ namespace Azure.Communication.Messages
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="channelId"> The registration ID of the channel. </param>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="channelId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
@@ -134,8 +134,8 @@ namespace Azure.Communication.Messages
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="channelId"> The registration ID of the channel. </param>
-        /// <param name="maxpagesize"> Number of objects to return per page. </param>
+        /// <param name="channelId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="maxpagesize"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>

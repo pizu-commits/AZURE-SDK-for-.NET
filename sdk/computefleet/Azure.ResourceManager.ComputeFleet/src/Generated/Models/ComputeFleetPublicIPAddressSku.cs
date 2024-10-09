@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary>
-    /// Describes the public IP Sku. It can only be set with OrchestrationMode as
-    /// Flexible.
-    /// </summary>
+    /// <summary> The ComputeFleetPublicIPAddressSku. </summary>
     public partial class ComputeFleetPublicIPAddressSku
     {
         /// <summary>
@@ -54,8 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetPublicIPAddressSku"/>. </summary>
-        /// <param name="name"> Specify public IP sku name. </param>
-        /// <param name="tier"> Specify public IP sku tier. </param>
+        /// <param name="name"></param>
+        /// <param name="tier"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetPublicIPAddressSku(ComputeFleetPublicIPAddressSkuName? name, ComputeFleetPublicIPAddressSkuTier? tier, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,9 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Specify public IP sku name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public ComputeFleetPublicIPAddressSkuName? Name { get; set; }
-        /// <summary> Specify public IP sku tier. </summary>
+        /// <summary> Gets or sets the tier. </summary>
         public ComputeFleetPublicIPAddressSkuTier? Tier { get; set; }
     }
 }

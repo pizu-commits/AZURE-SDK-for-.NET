@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the classification result. </summary>
+    /// <summary> The ClassificationResult. </summary>
     public partial class ClassificationResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ClassificationResult"/>. </summary>
-        /// <param name="category"> Classification type. </param>
-        /// <param name="confidenceScore"> Confidence score between 0 and 1 of the recognized class. </param>
+        /// <param name="category"></param>
+        /// <param name="confidenceScore"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="category"/> is null. </exception>
         internal ClassificationResult(string category, double confidenceScore)
         {
@@ -58,8 +58,8 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="ClassificationResult"/>. </summary>
-        /// <param name="category"> Classification type. </param>
-        /// <param name="confidenceScore"> Confidence score between 0 and 1 of the recognized class. </param>
+        /// <param name="category"></param>
+        /// <param name="confidenceScore"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClassificationResult(string category, double confidenceScore, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> Classification type. </summary>
+        /// <summary> Gets the category. </summary>
         public string Category { get; }
-        /// <summary> Confidence score between 0 and 1 of the recognized class. </summary>
+        /// <summary> Gets the confidence score. </summary>
         public double ConfidenceScore { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.AnomalyDetector
 {
-    /// <summary> Manner of aligning multiple variables. </summary>
+    /// <summary> The AlignPolicy. </summary>
     public partial class AlignPolicy
     {
         /// <summary>
@@ -51,12 +51,9 @@ namespace Azure.AI.AnomalyDetector
         }
 
         /// <summary> Initializes a new instance of <see cref="AlignPolicy"/>. </summary>
-        /// <param name="alignMode">
-        /// Field that indicates how to align different variables to the same
-        /// time range.
-        /// </param>
-        /// <param name="fillNAMethod"> Field that indicates how missing values will be filled. </param>
-        /// <param name="paddingValue"> Field that's required when fillNAMethod is Fixed. </param>
+        /// <param name="alignMode"></param>
+        /// <param name="fillNAMethod"></param>
+        /// <param name="paddingValue"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AlignPolicy(AlignMode? alignMode, FillNAMethod? fillNAMethod, float? paddingValue, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,14 +63,11 @@ namespace Azure.AI.AnomalyDetector
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// Field that indicates how to align different variables to the same
-        /// time range.
-        /// </summary>
+        /// <summary> Gets or sets the align mode. </summary>
         public AlignMode? AlignMode { get; set; }
-        /// <summary> Field that indicates how missing values will be filled. </summary>
+        /// <summary> Gets or sets the fill na method. </summary>
         public FillNAMethod? FillNAMethod { get; set; }
-        /// <summary> Field that's required when fillNAMethod is Fixed. </summary>
+        /// <summary> Gets or sets the padding value. </summary>
         public float? PaddingValue { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Compute.Batch
 {
-    /// <summary> The status of the Job Preparation and Job Release Tasks on a Compute Node. </summary>
+    /// <summary> The BatchJobPreparationAndReleaseTaskStatus. </summary>
     public partial class BatchJobPreparationAndReleaseTaskStatus
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Compute.Batch
         }
 
         /// <summary> Initializes a new instance of <see cref="BatchJobPreparationAndReleaseTaskStatus"/>. </summary>
-        /// <param name="poolId"> The ID of the Pool containing the Compute Node to which this entry refers. </param>
-        /// <param name="nodeId"> The ID of the Compute Node to which this entry refers. </param>
-        /// <param name="nodeUrl"> The URL of the Compute Node to which this entry refers. </param>
-        /// <param name="jobPreparationTaskExecutionInfo"> Information about the execution status of the Job Preparation Task on this Compute Node. </param>
-        /// <param name="jobReleaseTaskExecutionInfo"> Information about the execution status of the Job Release Task on this Compute Node. This property is set only if the Job Release Task has run on the Compute Node. </param>
+        /// <param name="poolId"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="nodeUrl"></param>
+        /// <param name="jobPreparationTaskExecutionInfo"></param>
+        /// <param name="jobReleaseTaskExecutionInfo"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BatchJobPreparationAndReleaseTaskStatus(string poolId, string nodeId, string nodeUrl, BatchJobPreparationTaskExecutionInfo jobPreparationTaskExecutionInfo, BatchJobReleaseTaskExecutionInfo jobReleaseTaskExecutionInfo, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Compute.Batch
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the Pool containing the Compute Node to which this entry refers. </summary>
+        /// <summary> Gets the pool id. </summary>
         public string PoolId { get; }
-        /// <summary> The ID of the Compute Node to which this entry refers. </summary>
+        /// <summary> Gets the node id. </summary>
         public string NodeId { get; }
-        /// <summary> The URL of the Compute Node to which this entry refers. </summary>
+        /// <summary> Gets the node url. </summary>
         public string NodeUrl { get; }
-        /// <summary> Information about the execution status of the Job Preparation Task on this Compute Node. </summary>
+        /// <summary> Gets the job preparation task execution info. </summary>
         public BatchJobPreparationTaskExecutionInfo JobPreparationTaskExecutionInfo { get; }
-        /// <summary> Information about the execution status of the Job Release Task on this Compute Node. This property is set only if the Job Release Task has run on the Compute Node. </summary>
+        /// <summary> Gets the job release task execution info. </summary>
         public BatchJobReleaseTaskExecutionInfo JobReleaseTaskExecutionInfo { get; }
     }
 }

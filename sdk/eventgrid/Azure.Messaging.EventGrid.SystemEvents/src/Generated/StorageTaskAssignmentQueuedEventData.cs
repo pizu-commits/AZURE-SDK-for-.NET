@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for an Microsoft.Storage.StorageTaskAssignmentQueued event. </summary>
+    /// <summary> The StorageTaskAssignmentQueuedEventData. </summary>
     public partial class StorageTaskAssignmentQueuedEventData
     {
         /// <summary>
@@ -46,15 +46,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StorageTaskAssignmentQueuedEventData"/>. </summary>
-        /// <param name="queuedOn"> The time at which a storage task was queued. </param>
+        /// <param name="queuedOn"></param>
         internal StorageTaskAssignmentQueuedEventData(DateTimeOffset queuedOn)
         {
             QueuedOn = queuedOn;
         }
 
         /// <summary> Initializes a new instance of <see cref="StorageTaskAssignmentQueuedEventData"/>. </summary>
-        /// <param name="queuedOn"> The time at which a storage task was queued. </param>
-        /// <param name="taskExecutionId"> The execution id for a storage task. </param>
+        /// <param name="queuedOn"></param>
+        /// <param name="taskExecutionId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StorageTaskAssignmentQueuedEventData(DateTimeOffset queuedOn, string taskExecutionId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,9 +68,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which a storage task was queued. </summary>
+        /// <summary> Gets the queued on. </summary>
         public DateTimeOffset QueuedOn { get; }
-        /// <summary> The execution id for a storage task. </summary>
+        /// <summary> Gets the task execution id. </summary>
         public string TaskExecutionId { get; }
     }
 }

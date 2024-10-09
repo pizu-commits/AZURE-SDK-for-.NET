@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. </summary>
+    /// <summary> The CloudEvent. </summary>
     internal partial class CloudEventInternal
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CloudEventInternal"/>. </summary>
-        /// <param name="id"> An identifier for the event. The combination of id and source must be unique for each distinct event. </param>
-        /// <param name="source"> Identifies the context in which an event happened. The combination of id and source must be unique for each distinct event. </param>
-        /// <param name="type"> Type of event related to the originating occurrence. </param>
-        /// <param name="specversion"> The version of the CloudEvents specification which the event uses. </param>
+        /// <param name="id"></param>
+        /// <param name="source"></param>
+        /// <param name="type"></param>
+        /// <param name="specversion"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="source"/>, <paramref name="type"/> or <paramref name="specversion"/> is null. </exception>
         public CloudEventInternal(string id, string source, string type, string specversion)
         {
@@ -65,16 +65,16 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Initializes a new instance of <see cref="CloudEventInternal"/>. </summary>
-        /// <param name="id"> An identifier for the event. The combination of id and source must be unique for each distinct event. </param>
-        /// <param name="source"> Identifies the context in which an event happened. The combination of id and source must be unique for each distinct event. </param>
-        /// <param name="data"> Event data specific to the event type. </param>
-        /// <param name="dataBase64"> Event data specific to the event type, encoded as a base64 string. </param>
-        /// <param name="type"> Type of event related to the originating occurrence. </param>
-        /// <param name="time"> The time (in UTC) the event was generated, in RFC3339 format. </param>
-        /// <param name="specversion"> The version of the CloudEvents specification which the event uses. </param>
-        /// <param name="dataschema"> Identifies the schema that data adheres to. </param>
-        /// <param name="datacontenttype"> Content type of data value. </param>
-        /// <param name="subject"> This describes the subject of the event in the context of the event producer (identified by source). </param>
+        /// <param name="id"></param>
+        /// <param name="source"></param>
+        /// <param name="data"></param>
+        /// <param name="dataBase64"></param>
+        /// <param name="type"></param>
+        /// <param name="time"></param>
+        /// <param name="specversion"></param>
+        /// <param name="dataschema"></param>
+        /// <param name="datacontenttype"></param>
+        /// <param name="subject"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CloudEventInternal(string id, string source, BinaryData data, BinaryData dataBase64, string type, DateTimeOffset? time, string specversion, string dataschema, string datacontenttype, string subject, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -96,12 +96,12 @@ namespace Azure.Messaging.EventGrid.Namespaces
         {
         }
 
-        /// <summary> An identifier for the event. The combination of id and source must be unique for each distinct event. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> Identifies the context in which an event happened. The combination of id and source must be unique for each distinct event. </summary>
+        /// <summary> Gets or sets the source. </summary>
         public string Source { get; set; }
         /// <summary>
-        /// Event data specific to the event type.
+        /// Gets or sets the data
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -132,7 +132,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </summary>
         public BinaryData Data { get; set; }
         /// <summary>
-        /// Event data specific to the event type, encoded as a base64 string.
+        /// Gets or sets the data base 64
         /// <para>
         /// To assign a byte[] to this property use <see cref="BinaryData.FromBytes(byte[])"/>.
         /// The byte[] will be serialized to a Base64 encoded string.
@@ -148,17 +148,17 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </para>
         /// </summary>
         public BinaryData DataBase64 { get; set; }
-        /// <summary> Type of event related to the originating occurrence. </summary>
+        /// <summary> Gets or sets the type. </summary>
         public string Type { get; set; }
-        /// <summary> The time (in UTC) the event was generated, in RFC3339 format. </summary>
+        /// <summary> Gets or sets the time. </summary>
         public DateTimeOffset? Time { get; set; }
-        /// <summary> The version of the CloudEvents specification which the event uses. </summary>
+        /// <summary> Gets or sets the specversion. </summary>
         public string Specversion { get; set; }
-        /// <summary> Identifies the schema that data adheres to. </summary>
+        /// <summary> Gets or sets the dataschema. </summary>
         public string Dataschema { get; set; }
-        /// <summary> Content type of data value. </summary>
+        /// <summary> Gets or sets the datacontenttype. </summary>
         public string Datacontenttype { get; set; }
-        /// <summary> This describes the subject of the event in the context of the event producer (identified by source). </summary>
+        /// <summary> Gets or sets the subject. </summary>
         public string Subject { get; set; }
     }
 }

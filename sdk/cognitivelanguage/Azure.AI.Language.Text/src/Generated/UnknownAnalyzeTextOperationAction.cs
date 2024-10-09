@@ -14,8 +14,8 @@ namespace Azure.AI.Language.Text
     internal partial class UnknownAnalyzeTextOperationAction : AnalyzeTextOperationAction
     {
         /// <summary> Initializes a new instance of <see cref="UnknownAnalyzeTextOperationAction"/>. </summary>
-        /// <param name="name"> task name. </param>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="name"></param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownAnalyzeTextOperationAction(string name, AnalyzeTextOperationActionKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(name, kind, serializedAdditionalRawData)
         {

@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// Describes the schema of the common properties across all ARN system topic
-    /// delete events
-    /// </summary>
+    /// <summary> The ResourceNotificationsResourceDeletedEventData. </summary>
     public partial class ResourceNotificationsResourceDeletedEventData
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceDeletedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for delete event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceDetails"/> or <paramref name="operationalDetails"/> is null. </exception>
         internal ResourceNotificationsResourceDeletedEventData(ResourceNotificationsResourceDeletedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails)
         {
@@ -62,8 +59,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceDeletedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for delete event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceNotificationsResourceDeletedEventData(ResourceNotificationsResourceDeletedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,9 +74,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> resourceInfo details for delete event. </summary>
+        /// <summary> Gets the resource details. </summary>
         public ResourceNotificationsResourceDeletedDetails ResourceDetails { get; }
-        /// <summary> details about operational info. </summary>
+        /// <summary> Gets the operational details. </summary>
         public ResourceNotificationsOperationalDetails OperationalDetails { get; }
     }
 }

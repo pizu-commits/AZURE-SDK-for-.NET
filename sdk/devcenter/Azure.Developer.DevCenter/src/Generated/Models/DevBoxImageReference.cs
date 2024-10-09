@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Developer.DevCenter.Models
 {
-    /// <summary> Specifies information about the image used. </summary>
+    /// <summary> The DevBoxImageReference. </summary>
     public partial class DevBoxImageReference
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Developer.DevCenter.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="DevBoxImageReference"/>. </summary>
-        /// <param name="name"> The name of the image used. </param>
-        /// <param name="version"> The version of the image. </param>
-        /// <param name="operatingSystem"> The operating system of the image. </param>
-        /// <param name="osBuildNumber"> The operating system build number of the image. </param>
-        /// <param name="publishedDate"> The datetime that the backing image version was published. </param>
+        /// <param name="name"></param>
+        /// <param name="version"></param>
+        /// <param name="operatingSystem"></param>
+        /// <param name="osBuildNumber"></param>
+        /// <param name="publishedDate"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DevBoxImageReference(string name, string version, string operatingSystem, string osBuildNumber, DateTimeOffset? publishedDate, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Developer.DevCenter.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the image used. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The version of the image. </summary>
+        /// <summary> Gets the version. </summary>
         public string Version { get; }
-        /// <summary> The operating system of the image. </summary>
+        /// <summary> Gets the operating system. </summary>
         public string OperatingSystem { get; }
-        /// <summary> The operating system build number of the image. </summary>
+        /// <summary> Gets the os build number. </summary>
         public string OSBuildNumber { get; }
-        /// <summary> The datetime that the backing image version was published. </summary>
+        /// <summary> Gets the published date. </summary>
         public DateTimeOffset? PublishedDate { get; }
     }
 }

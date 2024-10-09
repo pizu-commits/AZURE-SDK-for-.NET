@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// Describes the schema of the properties under resource info which are common
-    /// across all ARN system topic events
-    /// </summary>
+    /// <summary> The ResourceNotificationsResourceUpdatedDetails. </summary>
     public partial class ResourceNotificationsResourceUpdatedDetails
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceUpdatedDetails"/>. </summary>
-        /// <param name="tags"> the tags on the resource for which the event is being emitted. </param>
-        /// <param name="properties"> properties in the payload of the resource for which the event is being emitted. </param>
+        /// <param name="tags"></param>
+        /// <param name="properties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="tags"/> or <paramref name="properties"/> is null. </exception>
         internal ResourceNotificationsResourceUpdatedDetails(IReadOnlyDictionary<string, string> tags, IReadOnlyDictionary<string, BinaryData> properties)
         {
@@ -62,12 +59,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceUpdatedDetails"/>. </summary>
-        /// <param name="id"> id of the resource for which the event is being emitted. </param>
-        /// <param name="name"> name of the resource for which the event is being emitted. </param>
-        /// <param name="type"> the type of the resource for which the event is being emitted. </param>
-        /// <param name="location"> the location of the resource for which the event is being emitted. </param>
-        /// <param name="tags"> the tags on the resource for which the event is being emitted. </param>
-        /// <param name="properties"> properties in the payload of the resource for which the event is being emitted. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="location"></param>
+        /// <param name="tags"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceNotificationsResourceUpdatedDetails(string id, string name, string type, string location, IReadOnlyDictionary<string, string> tags, IReadOnlyDictionary<string, BinaryData> properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,18 +82,18 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> id of the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> name of the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> the type of the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the type. </summary>
         public string Type { get; }
-        /// <summary> the location of the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the location. </summary>
         public string Location { get; }
-        /// <summary> the tags on the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the tags. </summary>
         public IReadOnlyDictionary<string, string> Tags { get; }
         /// <summary>
-        /// properties in the payload of the resource for which the event is being emitted
+        /// Gets the properties
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

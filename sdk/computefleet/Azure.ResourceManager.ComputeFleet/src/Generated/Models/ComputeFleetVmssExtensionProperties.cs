@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes the properties of a Virtual Machine Scale Set Extension. </summary>
+    /// <summary> The ComputeFleetVmssExtensionProperties. </summary>
     public partial class ComputeFleetVmssExtensionProperties
     {
         /// <summary>
@@ -54,42 +54,18 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssExtensionProperties"/>. </summary>
-        /// <param name="forceUpdateTag">
-        /// If a value is provided and is different from the previous value, the extension
-        /// handler will be forced to update even if the extension configuration has not
-        /// changed.
-        /// </param>
-        /// <param name="publisher"> The name of the extension handler publisher. </param>
-        /// <param name="extensionType"> Specifies the type of the extension; an example is "CustomScriptExtension". </param>
-        /// <param name="typeHandlerVersion"> Specifies the version of the script handler. </param>
-        /// <param name="shouldAutoUpgradeMinorVersion">
-        /// Indicates whether the extension should use a newer minor version if one is
-        /// available at deployment time. Once deployed, however, the extension will not
-        /// upgrade minor versions unless redeployed, even with this property set to true.
-        /// </param>
-        /// <param name="isAutomaticUpgradeEnabled">
-        /// Indicates whether the extension should be automatically upgraded by the
-        /// platform if there is a newer version of the extension available.
-        /// </param>
-        /// <param name="settings"> Json formatted public settings for the extension. </param>
-        /// <param name="protectedSettings">
-        /// The extension can contain either protectedSettings or
-        /// protectedSettingsFromKeyVault or no protected settings at all.
-        /// </param>
-        /// <param name="provisioningState"> The provisioning state, which only appears in the response. </param>
-        /// <param name="provisionAfterExtensions">
-        /// Collection of extension names after which this extension needs to be
-        /// provisioned.
-        /// </param>
-        /// <param name="isSuppressFailuresEnabled">
-        /// Indicates whether failures stemming from the extension will be suppressed
-        /// (Operational failures such as not connecting to the VM will not be suppressed
-        /// regardless of this value). The default is false.
-        /// </param>
-        /// <param name="protectedSettingsFromKeyVault">
-        /// The extensions protected settings that are passed by reference, and consumed
-        /// from key vault
-        /// </param>
+        /// <param name="forceUpdateTag"></param>
+        /// <param name="publisher"></param>
+        /// <param name="extensionType"></param>
+        /// <param name="typeHandlerVersion"></param>
+        /// <param name="shouldAutoUpgradeMinorVersion"></param>
+        /// <param name="isAutomaticUpgradeEnabled"></param>
+        /// <param name="settings"></param>
+        /// <param name="protectedSettings"></param>
+        /// <param name="provisioningState"></param>
+        /// <param name="provisionAfterExtensions"></param>
+        /// <param name="isSuppressFailuresEnabled"></param>
+        /// <param name="protectedSettingsFromKeyVault"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssExtensionProperties(string forceUpdateTag, string publisher, string extensionType, string typeHandlerVersion, bool? shouldAutoUpgradeMinorVersion, bool? isAutomaticUpgradeEnabled, IDictionary<string, BinaryData> settings, IDictionary<string, BinaryData> protectedSettings, string provisioningState, IList<string> provisionAfterExtensions, bool? isSuppressFailuresEnabled, ComputeFleetKeyVaultSecretReference protectedSettingsFromKeyVault, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -108,31 +84,20 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// If a value is provided and is different from the previous value, the extension
-        /// handler will be forced to update even if the extension configuration has not
-        /// changed.
-        /// </summary>
+        /// <summary> Gets or sets the force update tag. </summary>
         public string ForceUpdateTag { get; set; }
-        /// <summary> The name of the extension handler publisher. </summary>
+        /// <summary> Gets or sets the publisher. </summary>
         public string Publisher { get; set; }
-        /// <summary> Specifies the type of the extension; an example is "CustomScriptExtension". </summary>
+        /// <summary> Gets or sets the extension type. </summary>
         public string ExtensionType { get; set; }
-        /// <summary> Specifies the version of the script handler. </summary>
+        /// <summary> Gets or sets the type handler version. </summary>
         public string TypeHandlerVersion { get; set; }
-        /// <summary>
-        /// Indicates whether the extension should use a newer minor version if one is
-        /// available at deployment time. Once deployed, however, the extension will not
-        /// upgrade minor versions unless redeployed, even with this property set to true.
-        /// </summary>
+        /// <summary> Gets or sets the should auto upgrade minor version. </summary>
         public bool? ShouldAutoUpgradeMinorVersion { get; set; }
-        /// <summary>
-        /// Indicates whether the extension should be automatically upgraded by the
-        /// platform if there is a newer version of the extension available.
-        /// </summary>
+        /// <summary> Gets or sets the is automatic upgrade enabled. </summary>
         public bool? IsAutomaticUpgradeEnabled { get; set; }
         /// <summary>
-        /// Json formatted public settings for the extension.
+        /// Gets the settings
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -163,8 +128,7 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         /// </summary>
         public IDictionary<string, BinaryData> Settings { get; }
         /// <summary>
-        /// The extension can contain either protectedSettings or
-        /// protectedSettingsFromKeyVault or no protected settings at all.
+        /// Gets the protected settings
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -194,23 +158,13 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> ProtectedSettings { get; }
-        /// <summary> The provisioning state, which only appears in the response. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public string ProvisioningState { get; }
-        /// <summary>
-        /// Collection of extension names after which this extension needs to be
-        /// provisioned.
-        /// </summary>
+        /// <summary> Gets the provision after extensions. </summary>
         public IList<string> ProvisionAfterExtensions { get; }
-        /// <summary>
-        /// Indicates whether failures stemming from the extension will be suppressed
-        /// (Operational failures such as not connecting to the VM will not be suppressed
-        /// regardless of this value). The default is false.
-        /// </summary>
+        /// <summary> Gets or sets the is suppress failures enabled. </summary>
         public bool? IsSuppressFailuresEnabled { get; set; }
-        /// <summary>
-        /// The extensions protected settings that are passed by reference, and consumed
-        /// from key vault
-        /// </summary>
+        /// <summary> Gets or sets the protected settings from key vault. </summary>
         public ComputeFleetKeyVaultSecretReference ProtectedSettingsFromKeyVault { get; set; }
     }
 }

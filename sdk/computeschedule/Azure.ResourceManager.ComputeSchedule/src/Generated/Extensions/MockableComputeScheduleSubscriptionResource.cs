@@ -58,8 +58,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -99,8 +99,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -140,8 +140,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -181,8 +181,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -222,8 +222,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -263,8 +263,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="SubmitStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -304,8 +304,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -345,8 +345,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteDeallocateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -386,8 +386,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -427,8 +427,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteHibernateContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -468,8 +468,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -509,8 +509,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="ExecuteStartContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -550,8 +550,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationStatusContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -591,8 +591,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationStatusContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -632,8 +632,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="CancelOperationsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -673,8 +673,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="CancelOperationsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -714,8 +714,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationErrorsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>
@@ -755,8 +755,8 @@ namespace Azure.ResourceManager.ComputeSchedule.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="locationparameter"> The location name. </param>
-        /// <param name="content"> The request body. </param>
+        /// <param name="locationparameter"> The <see cref="string"/> to use. </param>
+        /// <param name="content"> The <see cref="GetOperationErrorsContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="locationparameter"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="locationparameter"/> or <paramref name="content"/> is null. </exception>

@@ -13,10 +13,7 @@ using Azure.ResourceManager.StandbyPool.Models;
 
 namespace Azure.ResourceManager.StandbyPool
 {
-    /// <summary>
-    /// A class representing the StandbyVirtualMachinePoolRuntimeView data model.
-    /// Contains information about a standby virtual machine pool as last known by the StandbyPool resource provider.
-    /// </summary>
+    /// <summary> A class representing the StandbyVirtualMachinePoolRuntimeView data model. </summary>
     public partial class StandbyVirtualMachinePoolRuntimeViewData : ResourceData
     {
         /// <summary>
@@ -61,7 +58,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyVirtualMachinePoolRuntimeViewData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, StandbyVirtualMachinePoolRuntimeViewProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
@@ -69,7 +66,7 @@ namespace Azure.ResourceManager.StandbyPool
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets the properties. </summary>
         public StandbyVirtualMachinePoolRuntimeViewProperties Properties { get; }
     }
 }

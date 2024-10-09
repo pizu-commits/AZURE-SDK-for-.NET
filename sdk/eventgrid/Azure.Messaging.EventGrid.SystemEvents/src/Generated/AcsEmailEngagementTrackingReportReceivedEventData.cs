@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.EmailEngagementTrackingReportReceived event. </summary>
+    /// <summary> The AcsEmailEngagementTrackingReportReceivedEventData. </summary>
     public partial class AcsEmailEngagementTrackingReportReceivedEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsEmailEngagementTrackingReportReceivedEventData"/>. </summary>
-        /// <param name="userActionTimestamp"> The time at which the user interacted with the email. </param>
-        /// <param name="engagement"> The type of engagement user have with email. </param>
+        /// <param name="userActionTimestamp"></param>
+        /// <param name="engagement"></param>
         internal AcsEmailEngagementTrackingReportReceivedEventData(DateTimeOffset userActionTimestamp, AcsUserEngagement engagement)
         {
             UserActionTimestamp = userActionTimestamp;
@@ -55,13 +55,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsEmailEngagementTrackingReportReceivedEventData"/>. </summary>
-        /// <param name="sender"> The Sender Email Address. </param>
-        /// <param name="recipient"> The Recipient Email Address. </param>
-        /// <param name="messageId"> The Id of the email that has been sent. </param>
-        /// <param name="userActionTimestamp"> The time at which the user interacted with the email. </param>
-        /// <param name="engagementContext"> The context of the type of engagement user had with email. </param>
-        /// <param name="userAgent"> The user agent interacting with the email. </param>
-        /// <param name="engagement"> The type of engagement user have with email. </param>
+        /// <param name="sender"></param>
+        /// <param name="recipient"></param>
+        /// <param name="messageId"></param>
+        /// <param name="userActionTimestamp"></param>
+        /// <param name="engagementContext"></param>
+        /// <param name="userAgent"></param>
+        /// <param name="engagement"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsEmailEngagementTrackingReportReceivedEventData(string sender, string recipient, string messageId, DateTimeOffset userActionTimestamp, string engagementContext, string userAgent, AcsUserEngagement engagement, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,19 +80,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The Sender Email Address. </summary>
+        /// <summary> Gets the sender. </summary>
         public string Sender { get; }
-        /// <summary> The Recipient Email Address. </summary>
+        /// <summary> Gets the recipient. </summary>
         public string Recipient { get; }
-        /// <summary> The Id of the email that has been sent. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
-        /// <summary> The time at which the user interacted with the email. </summary>
+        /// <summary> Gets the user action timestamp. </summary>
         public DateTimeOffset UserActionTimestamp { get; }
-        /// <summary> The context of the type of engagement user had with email. </summary>
+        /// <summary> Gets the engagement context. </summary>
         public string EngagementContext { get; }
-        /// <summary> The user agent interacting with the email. </summary>
+        /// <summary> Gets the user agent. </summary>
         public string UserAgent { get; }
-        /// <summary> The type of engagement user have with email. </summary>
+        /// <summary> Gets the engagement. </summary>
         public AcsUserEngagement Engagement { get; }
     }
 }

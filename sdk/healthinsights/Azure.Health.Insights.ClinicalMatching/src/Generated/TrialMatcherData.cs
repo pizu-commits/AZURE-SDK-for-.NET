@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Health.Insights.ClinicalMatching
 {
-    /// <summary> The body of the Trial Matcher request. </summary>
+    /// <summary> The TrialMatcherData. </summary>
     public partial class TrialMatcherData
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Health.Insights.ClinicalMatching
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherData"/>. </summary>
-        /// <param name="patients"> The list of patients, including their clinical information and data. </param>
+        /// <param name="patients"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="patients"/> is null. </exception>
         public TrialMatcherData(IEnumerable<PatientRecord> patients)
         {
@@ -57,8 +57,8 @@ namespace Azure.Health.Insights.ClinicalMatching
         }
 
         /// <summary> Initializes a new instance of <see cref="TrialMatcherData"/>. </summary>
-        /// <param name="patients"> The list of patients, including their clinical information and data. </param>
-        /// <param name="configuration"> Configuration affecting the Trial Matcher model's inference. </param>
+        /// <param name="patients"></param>
+        /// <param name="configuration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TrialMatcherData(IList<PatientRecord> patients, TrialMatcherModelConfiguration configuration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.Health.Insights.ClinicalMatching
         {
         }
 
-        /// <summary> The list of patients, including their clinical information and data. </summary>
+        /// <summary> Gets the patients. </summary>
         public IList<PatientRecord> Patients { get; }
-        /// <summary> Configuration affecting the Trial Matcher model's inference. </summary>
+        /// <summary> Gets or sets the configuration. </summary>
         public TrialMatcherModelConfiguration Configuration { get; set; }
     }
 }

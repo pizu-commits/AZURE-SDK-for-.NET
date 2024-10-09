@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.OpenAI.Assistants
 {
-    /// <summary> A single, existing message within an assistant thread. </summary>
+    /// <summary> The ThreadMessage. </summary>
     public partial class ThreadMessage
     {
         /// <summary>
@@ -47,20 +47,16 @@ namespace Azure.AI.OpenAI.Assistants
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ThreadMessage"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="threadId"> The ID of the thread that this message belongs to. </param>
-        /// <param name="role"> The role associated with the assistant thread message. </param>
+        /// <param name="id"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="threadId"></param>
+        /// <param name="role"></param>
         /// <param name="contentItems">
-        /// The list of content items associated with the assistant thread message.
         /// Please note <see cref="MessageContent"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageImageFileContent"/> and <see cref="MessageTextContent"/>.
         /// </param>
-        /// <param name="fileIds">
-        /// A list of file IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can
-        /// access files.
-        /// </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/>, <paramref name="threadId"/>, <paramref name="contentItems"/> or <paramref name="fileIds"/> is null. </exception>
         internal ThreadMessage(string id, DateTimeOffset createdAt, string threadId, MessageRole role, IEnumerable<MessageContent> contentItems, IEnumerable<string> fileIds, IReadOnlyDictionary<string, string> metadata)
         {
@@ -79,23 +75,19 @@ namespace Azure.AI.OpenAI.Assistants
         }
 
         /// <summary> Initializes a new instance of <see cref="ThreadMessage"/>. </summary>
-        /// <param name="id"> The identifier, which can be referenced in API endpoints. </param>
-        /// <param name="object"> The object type, which is always 'thread.message'. </param>
-        /// <param name="createdAt"> The Unix timestamp, in seconds, representing when this object was created. </param>
-        /// <param name="threadId"> The ID of the thread that this message belongs to. </param>
-        /// <param name="role"> The role associated with the assistant thread message. </param>
+        /// <param name="id"></param>
+        /// <param name="object"></param>
+        /// <param name="createdAt"></param>
+        /// <param name="threadId"></param>
+        /// <param name="role"></param>
         /// <param name="contentItems">
-        /// The list of content items associated with the assistant thread message.
         /// Please note <see cref="MessageContent"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageImageFileContent"/> and <see cref="MessageTextContent"/>.
         /// </param>
-        /// <param name="assistantId"> If applicable, the ID of the assistant that authored this message. </param>
-        /// <param name="runId"> If applicable, the ID of the run associated with the authoring of this message. </param>
-        /// <param name="fileIds">
-        /// A list of file IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can
-        /// access files.
-        /// </param>
-        /// <param name="metadata"> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </param>
+        /// <param name="assistantId"></param>
+        /// <param name="runId"></param>
+        /// <param name="fileIds"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ThreadMessage(string id, string @object, DateTimeOffset createdAt, string threadId, MessageRole role, IReadOnlyList<MessageContent> contentItems, string assistantId, string runId, IReadOnlyList<string> fileIds, IReadOnlyDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -117,31 +109,28 @@ namespace Azure.AI.OpenAI.Assistants
         {
         }
 
-        /// <summary> The identifier, which can be referenced in API endpoints. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
 
-        /// <summary> The Unix timestamp, in seconds, representing when this object was created. </summary>
+        /// <summary> Gets the created at. </summary>
         public DateTimeOffset CreatedAt { get; }
-        /// <summary> The ID of the thread that this message belongs to. </summary>
+        /// <summary> Gets the thread id. </summary>
         public string ThreadId { get; }
-        /// <summary> The role associated with the assistant thread message. </summary>
+        /// <summary> Gets the role. </summary>
         public MessageRole Role { get; }
         /// <summary>
-        /// The list of content items associated with the assistant thread message.
+        /// Gets the content items
         /// Please note <see cref="MessageContent"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="MessageImageFileContent"/> and <see cref="MessageTextContent"/>.
         /// </summary>
         public IReadOnlyList<MessageContent> ContentItems { get; }
-        /// <summary> If applicable, the ID of the assistant that authored this message. </summary>
+        /// <summary> Gets the assistant id. </summary>
         public string AssistantId { get; }
-        /// <summary> If applicable, the ID of the run associated with the authoring of this message. </summary>
+        /// <summary> Gets the run id. </summary>
         public string RunId { get; }
-        /// <summary>
-        /// A list of file IDs that the assistant should use. Useful for tools like retrieval and code_interpreter that can
-        /// access files.
-        /// </summary>
+        /// <summary> Gets the file ids. </summary>
         public IReadOnlyList<string> FileIds { get; }
-        /// <summary> A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
     }
 }

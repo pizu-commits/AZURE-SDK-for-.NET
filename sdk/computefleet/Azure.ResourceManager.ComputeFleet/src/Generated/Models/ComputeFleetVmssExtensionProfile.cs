@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Describes a virtual machine scale set extension profile. </summary>
+    /// <summary> The ComputeFleetVmssExtensionProfile. </summary>
     public partial class ComputeFleetVmssExtensionProfile
     {
         /// <summary>
@@ -52,13 +52,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetVmssExtensionProfile"/>. </summary>
-        /// <param name="extensions"> The virtual machine scale set child extension resources. </param>
-        /// <param name="extensionsTimeBudget">
-        /// Specifies the time alloted for all extensions to start. The time duration
-        /// should be between 15 minutes and 120 minutes (inclusive) and should be
-        /// specified in ISO 8601 format. The default value is 90 minutes (PT1H30M).
-        /// Minimum api-version: 2020-06-01.
-        /// </param>
+        /// <param name="extensions"></param>
+        /// <param name="extensionsTimeBudget"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetVmssExtensionProfile(IList<ComputeFleetVmssExtension> extensions, string extensionsTimeBudget, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,14 +62,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The virtual machine scale set child extension resources. </summary>
+        /// <summary> Gets the extensions. </summary>
         public IList<ComputeFleetVmssExtension> Extensions { get; }
-        /// <summary>
-        /// Specifies the time alloted for all extensions to start. The time duration
-        /// should be between 15 minutes and 120 minutes (inclusive) and should be
-        /// specified in ISO 8601 format. The default value is 90 minutes (PT1H30M).
-        /// Minimum api-version: 2020-06-01.
-        /// </summary>
+        /// <summary> Gets or sets the extensions time budget. </summary>
         public string ExtensionsTimeBudget { get; set; }
     }
 }

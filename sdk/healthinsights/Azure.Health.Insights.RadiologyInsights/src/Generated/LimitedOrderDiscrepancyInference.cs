@@ -10,11 +10,11 @@ using System.Collections.Generic;
 
 namespace Azure.Health.Insights.RadiologyInsights
 {
-    /// <summary> A limited order discrepancy occurs when there is a limited order, but all body parts and measurements that are needed for a complete order are present in the document. </summary>
+    /// <summary> The LimitedOrderDiscrepancyInference. </summary>
     public partial class LimitedOrderDiscrepancyInference : RadiologyInsightsInference
     {
         /// <summary> Initializes a new instance of <see cref="LimitedOrderDiscrepancyInference"/>. </summary>
-        /// <param name="orderType"> Order type : CPT ultrasound complete code for abdomen, retroperitoneal, pelvis or breast. </param>
+        /// <param name="orderType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="orderType"/> is null. </exception>
         internal LimitedOrderDiscrepancyInference(FhirR4CodeableConcept orderType)
         {
@@ -27,12 +27,12 @@ namespace Azure.Health.Insights.RadiologyInsights
         }
 
         /// <summary> Initializes a new instance of <see cref="LimitedOrderDiscrepancyInference"/>. </summary>
-        /// <param name="kind"> Discriminator property for RadiologyInsightsInference. </param>
-        /// <param name="extension"> Additional Content defined by implementations. </param>
+        /// <param name="kind"></param>
+        /// <param name="extension"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="orderType"> Order type : CPT ultrasound complete code for abdomen, retroperitoneal, pelvis or breast. </param>
-        /// <param name="presentBodyParts"> List of body parts found in the document : SNOMED CT codes. </param>
-        /// <param name="presentBodyPartMeasurements"> List of body parts that are measured according to the document : SNOMED CT codes. </param>
+        /// <param name="orderType"></param>
+        /// <param name="presentBodyParts"></param>
+        /// <param name="presentBodyPartMeasurements"></param>
         internal LimitedOrderDiscrepancyInference(RadiologyInsightsInferenceType kind, IReadOnlyList<FhirR4Extension> extension, IDictionary<string, BinaryData> serializedAdditionalRawData, FhirR4CodeableConcept orderType, IReadOnlyList<FhirR4CodeableConcept> presentBodyParts, IReadOnlyList<FhirR4CodeableConcept> presentBodyPartMeasurements) : base(kind, extension, serializedAdditionalRawData)
         {
             OrderType = orderType;
@@ -45,11 +45,11 @@ namespace Azure.Health.Insights.RadiologyInsights
         {
         }
 
-        /// <summary> Order type : CPT ultrasound complete code for abdomen, retroperitoneal, pelvis or breast. </summary>
+        /// <summary> Gets the order type. </summary>
         public FhirR4CodeableConcept OrderType { get; }
-        /// <summary> List of body parts found in the document : SNOMED CT codes. </summary>
+        /// <summary> Gets the present body parts. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> PresentBodyParts { get; }
-        /// <summary> List of body parts that are measured according to the document : SNOMED CT codes. </summary>
+        /// <summary> Gets the present body part measurements. </summary>
         public IReadOnlyList<FhirR4CodeableConcept> PresentBodyPartMeasurements { get; }
     }
 }

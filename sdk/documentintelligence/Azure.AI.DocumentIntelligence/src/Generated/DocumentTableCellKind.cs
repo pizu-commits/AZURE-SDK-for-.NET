@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Table cell kind. </summary>
+    /// <summary> The DocumentTableCellKind. </summary>
     public readonly partial struct DocumentTableCellKind : IEquatable<DocumentTableCellKind>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.AI.DocumentIntelligence
         private const string StubHeadValue = "stubHead";
         private const string DescriptionValue = "description";
 
-        /// <summary> Contains the main content/data. </summary>
+        /// <summary> content. </summary>
         public static DocumentTableCellKind Content { get; } = new DocumentTableCellKind(ContentValue);
-        /// <summary> Describes the content of the row. </summary>
+        /// <summary> rowHeader. </summary>
         public static DocumentTableCellKind RowHeader { get; } = new DocumentTableCellKind(RowHeaderValue);
-        /// <summary> Describes the content of the column. </summary>
+        /// <summary> columnHeader. </summary>
         public static DocumentTableCellKind ColumnHeader { get; } = new DocumentTableCellKind(ColumnHeaderValue);
-        /// <summary> Describes the row headers, usually located at the top left corner of a table. </summary>
+        /// <summary> stubHead. </summary>
         public static DocumentTableCellKind StubHead { get; } = new DocumentTableCellKind(StubHeadValue);
-        /// <summary> Describes the content in (parts of) the table. </summary>
+        /// <summary> description. </summary>
         public static DocumentTableCellKind Description { get; } = new DocumentTableCellKind(DescriptionValue);
         /// <summary> Determines if two <see cref="DocumentTableCellKind"/> values are the same. </summary>
         public static bool operator ==(DocumentTableCellKind left, DocumentTableCellKind right) => left.Equals(right);

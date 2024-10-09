@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.JobRouter
 {
-    /// <summary> Request payload for declining offers. </summary>
+    /// <summary> The DeclineJobOfferOptions. </summary>
     public partial class DeclineJobOfferOptions
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Communication.JobRouter
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeclineJobOfferOptions"/>. </summary>
-        /// <param name="retryOfferAt"> If the RetryOfferAt is not provided, then this job will not be offered again to the worker who declined this job unless the worker is de-registered and re-registered.  If a RetryOfferAt time is provided, then the job will be re-matched to eligible workers at the retry time in UTC.  The worker that declined the job will also be eligible for the job at that time. </param>
+        /// <param name="retryOfferAt"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeclineJobOfferOptions(DateTimeOffset? retryOfferAt, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Contains the analyze text SentimentAnalysis task input. </summary>
+    /// <summary> The TextSentimentAnalysisInput. </summary>
     public partial class TextSentimentAnalysisInput : AnalyzeTextInput
     {
         /// <summary> Initializes a new instance of <see cref="TextSentimentAnalysisInput"/>. </summary>
@@ -20,19 +20,19 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="TextSentimentAnalysisInput"/>. </summary>
-        /// <param name="kind"> The kind of task to perform. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="textInput"> Contains the input documents. </param>
-        /// <param name="actionContent"> Sentiment Analysis task parameters. </param>
+        /// <param name="textInput"></param>
+        /// <param name="actionContent"></param>
         internal TextSentimentAnalysisInput(AnalyzeTextInputKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, MultiLanguageTextInput textInput, SentimentAnalysisActionContent actionContent) : base(kind, serializedAdditionalRawData)
         {
             TextInput = textInput;
             ActionContent = actionContent;
         }
 
-        /// <summary> Contains the input documents. </summary>
+        /// <summary> Gets or sets the text input. </summary>
         public MultiLanguageTextInput TextInput { get; set; }
-        /// <summary> Sentiment Analysis task parameters. </summary>
+        /// <summary> Gets or sets the action content. </summary>
         public SentimentAnalysisActionContent ActionContent { get; set; }
     }
 }

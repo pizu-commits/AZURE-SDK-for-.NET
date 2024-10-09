@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Text
 {
-    /// <summary> Represents an extracted sentences from the input document. </summary>
+    /// <summary> The ExtractedSummarySentence. </summary>
     public partial class ExtractedSummarySentence
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Language.Text
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ExtractedSummarySentence"/>. </summary>
-        /// <param name="text"> The extracted sentence text. </param>
-        /// <param name="rankScore"> A double value representing the relevance of the sentence within the summary. Higher values indicate higher importance. </param>
-        /// <param name="offset"> The sentence offset from the start of the document, based on the value of the parameter StringIndexType. </param>
-        /// <param name="length"> The length of the sentence. </param>
+        /// <param name="text"></param>
+        /// <param name="rankScore"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="text"/> is null. </exception>
         internal ExtractedSummarySentence(string text, double rankScore, int offset, int length)
         {
@@ -62,10 +62,10 @@ namespace Azure.AI.Language.Text
         }
 
         /// <summary> Initializes a new instance of <see cref="ExtractedSummarySentence"/>. </summary>
-        /// <param name="text"> The extracted sentence text. </param>
-        /// <param name="rankScore"> A double value representing the relevance of the sentence within the summary. Higher values indicate higher importance. </param>
-        /// <param name="offset"> The sentence offset from the start of the document, based on the value of the parameter StringIndexType. </param>
-        /// <param name="length"> The length of the sentence. </param>
+        /// <param name="text"></param>
+        /// <param name="rankScore"></param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExtractedSummarySentence(string text, double rankScore, int offset, int length, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,13 +81,13 @@ namespace Azure.AI.Language.Text
         {
         }
 
-        /// <summary> The extracted sentence text. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> A double value representing the relevance of the sentence within the summary. Higher values indicate higher importance. </summary>
+        /// <summary> Gets the rank score. </summary>
         public double RankScore { get; }
-        /// <summary> The sentence offset from the start of the document, based on the value of the parameter StringIndexType. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> The length of the sentence. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> Inner error details. </summary>
+    /// <summary> The ComputeFleetInnerError. </summary>
     public partial class ComputeFleetInnerError
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ComputeFleetInnerError"/>. </summary>
-        /// <param name="exceptionType"> The exception type. </param>
-        /// <param name="errorDetail"> The internal error message or exception dump. </param>
+        /// <param name="exceptionType"></param>
+        /// <param name="errorDetail"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ComputeFleetInnerError(string exceptionType, string errorDetail, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.ResourceManager.ComputeFleet.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The exception type. </summary>
+        /// <summary> Gets the exception type. </summary>
         public string ExceptionType { get; }
-        /// <summary> The internal error message or exception dump. </summary>
+        /// <summary> Gets the error detail. </summary>
         public string ErrorDetail { get; }
     }
 }

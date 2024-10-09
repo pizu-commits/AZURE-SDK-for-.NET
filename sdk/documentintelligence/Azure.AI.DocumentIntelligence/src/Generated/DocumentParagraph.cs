@@ -11,10 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// A paragraph object consisting with contiguous lines generally with common
-    /// alignment and spacing.
-    /// </summary>
+    /// <summary> The DocumentParagraph. </summary>
     public partial class DocumentParagraph
     {
         /// <summary>
@@ -50,8 +47,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentParagraph"/>. </summary>
-        /// <param name="content"> Concatenated content of the paragraph in reading order. </param>
-        /// <param name="spans"> Location of the paragraph in the reading order concatenated content. </param>
+        /// <param name="content"></param>
+        /// <param name="spans"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> or <paramref name="spans"/> is null. </exception>
         internal DocumentParagraph(string content, IEnumerable<DocumentSpan> spans)
         {
@@ -64,10 +61,10 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentParagraph"/>. </summary>
-        /// <param name="role"> Semantic role of the paragraph. </param>
-        /// <param name="content"> Concatenated content of the paragraph in reading order. </param>
-        /// <param name="boundingRegions"> Bounding regions covering the paragraph. </param>
-        /// <param name="spans"> Location of the paragraph in the reading order concatenated content. </param>
+        /// <param name="role"></param>
+        /// <param name="content"></param>
+        /// <param name="boundingRegions"></param>
+        /// <param name="spans"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentParagraph(ParagraphRole? role, string content, IReadOnlyList<BoundingRegion> boundingRegions, IReadOnlyList<DocumentSpan> spans, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,13 +80,13 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Semantic role of the paragraph. </summary>
+        /// <summary> Gets the role. </summary>
         public ParagraphRole? Role { get; }
-        /// <summary> Concatenated content of the paragraph in reading order. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary> Bounding regions covering the paragraph. </summary>
+        /// <summary> Gets the bounding regions. </summary>
         public IReadOnlyList<BoundingRegion> BoundingRegions { get; }
-        /// <summary> Location of the paragraph in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
     }
 }

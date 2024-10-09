@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Language.Conversations.Models
 {
-    /// <summary> Dialog associated with Answer. </summary>
+    /// <summary> The KnowledgeBaseAnswerDialog. </summary>
     public partial class KnowledgeBaseAnswerDialog
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.AI.Language.Conversations.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="KnowledgeBaseAnswerDialog"/>. </summary>
-        /// <param name="isContextOnly"> To mark if a prompt is relevant only with a previous question or not. If true, do not include this QnA as search result for queries without context; otherwise, if false, ignores context and includes this QnA in search result. </param>
-        /// <param name="prompts"> List of prompts associated with the answer. </param>
+        /// <param name="isContextOnly"></param>
+        /// <param name="prompts"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal KnowledgeBaseAnswerDialog(bool? isContextOnly, IReadOnlyList<KnowledgeBaseAnswerPrompt> prompts, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.AI.Language.Conversations.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> To mark if a prompt is relevant only with a previous question or not. If true, do not include this QnA as search result for queries without context; otherwise, if false, ignores context and includes this QnA in search result. </summary>
+        /// <summary> Gets the is context only. </summary>
         public bool? IsContextOnly { get; }
-        /// <summary> List of prompts associated with the answer. </summary>
+        /// <summary> Gets the prompts. </summary>
         public IReadOnlyList<KnowledgeBaseAnswerPrompt> Prompts { get; }
     }
 }

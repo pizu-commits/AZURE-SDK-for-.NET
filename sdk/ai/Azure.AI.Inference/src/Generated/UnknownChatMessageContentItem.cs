@@ -14,7 +14,7 @@ namespace Azure.AI.Inference
     internal partial class UnknownChatMessageContentItem : ChatMessageContentItem
     {
         /// <summary> Initializes a new instance of <see cref="UnknownChatMessageContentItem"/>. </summary>
-        /// <param name="type"> The discriminated object type. </param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownChatMessageContentItem(string type, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(type, serializedAdditionalRawData)
         {

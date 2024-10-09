@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Details of JobOutput errors. </summary>
+    /// <summary> The MediaJobErrorDetail. </summary>
     public partial class MediaJobErrorDetail
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaJobErrorDetail"/>. </summary>
-        /// <param name="code"> Code describing the error detail. </param>
-        /// <param name="message"> A human-readable representation of the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaJobErrorDetail(string code, string message, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Code describing the error detail. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A human-readable representation of the error. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
     }
 }

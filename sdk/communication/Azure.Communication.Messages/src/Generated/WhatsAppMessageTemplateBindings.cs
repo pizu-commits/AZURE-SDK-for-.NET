@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Communication.Messages.Models.Channels
 {
-    /// <summary> The template bindings for WhatsApp. </summary>
+    /// <summary> The WhatsAppMessageTemplateBindings. </summary>
     public partial class WhatsAppMessageTemplateBindings : MessageTemplateBindings
     {
         /// <summary> Initializes a new instance of <see cref="WhatsAppMessageTemplateBindings"/>. </summary>
@@ -24,12 +24,12 @@ namespace Azure.Communication.Messages.Models.Channels
         }
 
         /// <summary> Initializes a new instance of <see cref="WhatsAppMessageTemplateBindings"/>. </summary>
-        /// <param name="kind"> The type discriminator describing a template bindings type. </param>
+        /// <param name="kind"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="header"> The header template bindings. </param>
-        /// <param name="body"> The body template bindings. </param>
-        /// <param name="footer"> The footer template bindings. </param>
-        /// <param name="buttons"> The button template bindings. </param>
+        /// <param name="header"></param>
+        /// <param name="body"></param>
+        /// <param name="footer"></param>
+        /// <param name="buttons"></param>
         internal WhatsAppMessageTemplateBindings(MessageTemplateBindingsKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, IList<WhatsAppMessageTemplateBindingsComponent> header, IList<WhatsAppMessageTemplateBindingsComponent> body, IList<WhatsAppMessageTemplateBindingsComponent> footer, IList<WhatsAppMessageTemplateBindingsButton> buttons) : base(kind, serializedAdditionalRawData)
         {
             Header = header;
@@ -38,13 +38,13 @@ namespace Azure.Communication.Messages.Models.Channels
             Buttons = buttons;
         }
 
-        /// <summary> The header template bindings. </summary>
+        /// <summary> Gets the header. </summary>
         public IList<WhatsAppMessageTemplateBindingsComponent> Header { get; }
-        /// <summary> The body template bindings. </summary>
+        /// <summary> Gets the body. </summary>
         public IList<WhatsAppMessageTemplateBindingsComponent> Body { get; }
-        /// <summary> The footer template bindings. </summary>
+        /// <summary> Gets the footer. </summary>
         public IList<WhatsAppMessageTemplateBindingsComponent> Footer { get; }
-        /// <summary> The button template bindings. </summary>
+        /// <summary> Gets the buttons. </summary>
         public IList<WhatsAppMessageTemplateBindingsButton> Buttons { get; }
     }
 }

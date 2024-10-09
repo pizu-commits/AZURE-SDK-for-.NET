@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.ComputeFleet.Models
 {
-    /// <summary> The status of the current operation. </summary>
+    /// <summary> The ComputeFleetProvisioningState. </summary>
     public readonly partial struct ComputeFleetProvisioningState : IEquatable<ComputeFleetProvisioningState>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.ResourceManager.ComputeFleet.Models
         private const string DeletingValue = "Deleting";
         private const string MigratingValue = "Migrating";
 
-        /// <summary> Resource has been created. </summary>
+        /// <summary> Succeeded. </summary>
         public static ComputeFleetProvisioningState Succeeded { get; } = new ComputeFleetProvisioningState(SucceededValue);
-        /// <summary> Resource creation failed. </summary>
+        /// <summary> Failed. </summary>
         public static ComputeFleetProvisioningState Failed { get; } = new ComputeFleetProvisioningState(FailedValue);
-        /// <summary> Resource creation was canceled. </summary>
+        /// <summary> Canceled. </summary>
         public static ComputeFleetProvisioningState Canceled { get; } = new ComputeFleetProvisioningState(CanceledValue);
-        /// <summary> Initial creation in progress. </summary>
+        /// <summary> Creating. </summary>
         public static ComputeFleetProvisioningState Creating { get; } = new ComputeFleetProvisioningState(CreatingValue);
-        /// <summary> Update in progress. </summary>
+        /// <summary> Updating. </summary>
         public static ComputeFleetProvisioningState Updating { get; } = new ComputeFleetProvisioningState(UpdatingValue);
-        /// <summary> Deletion in progress. </summary>
+        /// <summary> Deleting. </summary>
         public static ComputeFleetProvisioningState Deleting { get; } = new ComputeFleetProvisioningState(DeletingValue);
-        /// <summary> Resource is being migrated from one subscription or resource group to another. </summary>
+        /// <summary> Migrating. </summary>
         public static ComputeFleetProvisioningState Migrating { get; } = new ComputeFleetProvisioningState(MigratingValue);
         /// <summary> Determines if two <see cref="ComputeFleetProvisioningState"/> values are the same. </summary>
         public static bool operator ==(ComputeFleetProvisioningState left, ComputeFleetProvisioningState right) => left.Equals(right);
