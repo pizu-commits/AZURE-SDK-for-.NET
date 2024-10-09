@@ -28,9 +28,9 @@ extends:
   template: /eng/common/pipelines/templates/stages/archetype-typespec-emitter.yaml
   parameters:
     EmitterPackagePath: 
-    BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion) }}
-    UseTypeSpecNext: ${{ parameters.UseTypeSpecNext) }}
-    PublishInternal: ${{ parameters.BuildPrereleaseVersion) }}
+    BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
+    UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
+    PublishInternal: ${{ parameters.BuildPrereleaseVersion }}
     Packages:
       - name: http-client-csharp
         type: npm
