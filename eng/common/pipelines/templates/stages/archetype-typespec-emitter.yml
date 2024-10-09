@@ -285,171 +285,171 @@ stages:
 # Regenerate stage
 # Responsible for regenerating the SDK code using the emitter package and the generation matrix.
 - ${{ if and(parameters.ShouldPublish, parameters.ShouldRegenrate) }}:
-- stage: Regenerate
-  dependsOn:
-  - Build
-  - Publish
-  variables:
-    pullRequestTargetBranch: 'main'
-    buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
-    publishArtifactsPath: $(Pipeline.Workspace)/publish_artifacts
-    branchName: $[stageDependencies.Build.Build.outputs['set_branch_name.branchName']]
-  jobs:
-  - job: Initialize
-    steps:
-    - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
-
-    - download: current
-      artifact: build_artifacts
-      displayName: Download build artifacts
-
-    - download: current
-      artifact: publish_artifacts
-      displayName: Download pubish artifacts
-
-    - pwsh: |
-        Write-Host "Copying emitter-package.json to /eng"
-        Copy-Item $(buildArtifactsPath)/emitter-package.json /eng -Force
-
-        Write-Host "Copying emitter-package-lock.json to $(Build.SourcesDirectory)/eng"
-        Copy-Item $(publishArtifactsPath)/emitter-package-lock.json $(Build.SourcesDirectory)/eng -Force
-      displayName: Copy emitter-package json files
-
-    - ${{ parameters.InitializationSteps }}
-
-    - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
-      parameters:
-        BaseRepoOwner: azure-sdk
-        TargetRepoName: $(Build.Repository.Name)
-        BaseRepoBranch: $(branchName)
-        CommitMsg: Initialize repository for autorest build $(Build.BuildNumber)
-        WorkingDirectory: $(Build.SourcesDirectory)
-        ScriptDirectory: $(Build.SourcesDirectory)/eng/common/scripts
-        # To accomodate scheduled runs and retries, we want to overwrite any existing changes on the branch
-        PushArgs: --force
-
-    - task: PowerShell@2
-      displayName: Get generation job matrix
-      name: generate_matrix
-      inputs:
-        pwsh: true
-        filePath: ./eng/common/scripts/New-RegenerateMatrix.ps1
-        arguments: >
-          -OutputDirectory "$(Build.ArtifactStagingDirectory)"
-          -OutputVariableName matrix
-          -JobCount ${{ parameters.RegenerationJobCount }}
-          -MinimumPerJob ${{ parameters.MinimumPerJob }}
-          -OnlyTypespec ${{ parameters.OnlyGenerateTypespec }}
-        workingDirectory: $(Build.SourcesDirectory)
-
-    - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
-      parameters:
-        artifactName: matrix_artifacts
-        artifactPath: $(Build.ArtifactStagingDirectory)
-
-  - job: Generate
-    dependsOn: Initialize
-    strategy:
-      matrix: $[dependencies.Initialize.outputs['generate_matrix.matrix']]
+  - stage: Regenerate
+    dependsOn:
+    - Build
+    - Publish
     variables:
-      matrixArtifactsPath: $(Pipeline.Workspace)/matrix_artifacts
-    steps:
-    - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+      pullRequestTargetBranch: 'main'
+      buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
+      publishArtifactsPath: $(Pipeline.Workspace)/publish_artifacts
+      branchName: $[stageDependencies.Build.Build.outputs['set_branch_name.branchName']]
+    jobs:
+    - job: Initialize
+      steps:
+      - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
 
-    - download: current
-      displayName: Download pipeline artifacts
+      - download: current
+        artifact: build_artifacts
+        displayName: Download build artifacts
 
-    - ${{ parameters.InitializationSteps }}
+      - download: current
+        artifact: publish_artifacts
+        displayName: Download pubish artifacts
 
-    - task: PowerShell@2
-      displayName: Call regeneration script
-      inputs:
-        pwsh: true
-        filePath: ./eng/common/scripts/Update-GeneratedSdks.ps1
-        arguments: >
-          -PackageDirectoriesFile "$(matrixArtifactsPath)/$(DirectoryList)"
-        workingDirectory: $(Build.SourcesDirectory)
-      continueOnError: true
+      - pwsh: |
+          Write-Host "Copying emitter-package.json to /eng"
+          Copy-Item $(buildArtifactsPath)/emitter-package.json /eng -Force
 
-    - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
-      parameters:
-        BaseRepoOwner: azure-sdk
-        TargetRepoName: $(Build.Repository.Name)
-        BaseRepoBranch: $(branchName)
-        CommitMsg: Update SDK code $(JobKey)
-        WorkingDirectory: $(Build.SourcesDirectory)
-        ScriptDirectory: $(Build.SourcesDirectory)/eng/common/scripts
+          Write-Host "Copying emitter-package-lock.json to $(Build.SourcesDirectory)/eng"
+          Copy-Item $(publishArtifactsPath)/emitter-package-lock.json $(Build.SourcesDirectory)/eng -Force
+        displayName: Copy emitter-package json files
 
-  - job: Create_PR
-    displayName: Create PR
-    dependsOn: 
-    - Generate
-    variables:
-      generateJobResult: $[dependencies.Generate.result]
-      emitterVersion: $[stageDependencies.Build.Build.outputs['ci_build.emitterVersion']]
-    steps:
-    - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+      - ${{ parameters.InitializationSteps }}
 
-    - pwsh: |
-        $generateJobResult = '$(generateJobResult)'
-        $emitterVersion = '$(emitterVersion)'
-        $collectionUri = '$(System.CollectionUri)'
-        $project = '$(System.TeamProject)'
-        $definitionName = '$(Build.DefinitionName)'
-        $repoUrl = '$(Build.Repository.Uri)'
-        $sourceBranch = '$(Build.SourceBranch)'
-        $reason = '$(Build.Reason)'
-        $buildId = '$(Build.BuildId)'
-        $buildNumber = '$(Build.BuildNumber)'
-        $preRelease = '${{ parameters.BuildPrereleaseVersion }}' -eq 'true'
-        
-        $prBody = "Generated by $definitionName build [$buildNumber]($collectionUri/$project/_build/results?buildId=$buildId)<br/>"
+      - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
+        parameters:
+          BaseRepoOwner: azure-sdk
+          TargetRepoName: $(Build.Repository.Name)
+          BaseRepoBranch: $(branchName)
+          CommitMsg: Initialize repository for autorest build $(Build.BuildNumber)
+          WorkingDirectory: $(Build.SourcesDirectory)
+          ScriptDirectory: $(Build.SourcesDirectory)/eng/common/scripts
+          # To accomodate scheduled runs and retries, we want to overwrite any existing changes on the branch
+          PushArgs: --force
 
-        if ($sourceBranch -match "^refs/heads/(.+)$") {
-          $prBody += "Triggered from branch: [$($Matches[1])]($repoUrl/tree/$sourceBranch)"
-        } elseif ($sourceBranch -match "^refs/tags/(.+)$") {
-          $prBody += "Triggered from tag: [$($Matches[1])]($repoUrl/tree/$sourceBranch)"
-        } elseif ($sourceBranch -match "^refs/pull/(\d+)/(head|merge)$") {
-          $prBody += "Triggered from pull request: $repoUrl/pull/$($Matches[1])"
-        } else {
-          $prBody += "Triggered from [$sourceBranch]($repoUrl/tree/$sourceBranch)"
-        }
+      - task: PowerShell@2
+        displayName: Get generation job matrix
+        name: generate_matrix
+        inputs:
+          pwsh: true
+          filePath: ./eng/common/scripts/New-RegenerateMatrix.ps1
+          arguments: >
+            -OutputDirectory "$(Build.ArtifactStagingDirectory)"
+            -OutputVariableName matrix
+            -JobCount ${{ parameters.RegenerationJobCount }}
+            -MinimumPerJob ${{ parameters.MinimumPerJob }}
+            -OnlyTypespec ${{ parameters.OnlyGenerateTypespec }}
+          workingDirectory: $(Build.SourcesDirectory)
 
-        if ($reason -eq 'Schedule') {
-          $prTitle = "Scheduled code regeneration test"
-        } else {
-          if ($preRelease) {
-            $prTitle = "Update typespec emitter version to prerelease $emitterVersion"
+      - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
+        parameters:
+          artifactName: matrix_artifacts
+          artifactPath: $(Build.ArtifactStagingDirectory)
+
+    - job: Generate
+      dependsOn: Initialize
+      strategy:
+        matrix: $[dependencies.Initialize.outputs['generate_matrix.matrix']]
+      variables:
+        matrixArtifactsPath: $(Pipeline.Workspace)/matrix_artifacts
+      steps:
+      - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+
+      - download: current
+        displayName: Download pipeline artifacts
+
+      - ${{ parameters.InitializationSteps }}
+
+      - task: PowerShell@2
+        displayName: Call regeneration script
+        inputs:
+          pwsh: true
+          filePath: ./eng/common/scripts/Update-GeneratedSdks.ps1
+          arguments: >
+            -PackageDirectoriesFile "$(matrixArtifactsPath)/$(DirectoryList)"
+          workingDirectory: $(Build.SourcesDirectory)
+        continueOnError: true
+
+      - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
+        parameters:
+          BaseRepoOwner: azure-sdk
+          TargetRepoName: $(Build.Repository.Name)
+          BaseRepoBranch: $(branchName)
+          CommitMsg: Update SDK code $(JobKey)
+          WorkingDirectory: $(Build.SourcesDirectory)
+          ScriptDirectory: $(Build.SourcesDirectory)/eng/common/scripts
+
+    - job: Create_PR
+      displayName: Create PR
+      dependsOn: 
+      - Generate
+      variables:
+        generateJobResult: $[dependencies.Generate.result]
+        emitterVersion: $[stageDependencies.Build.Build.outputs['ci_build.emitterVersion']]
+      steps:
+      - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+
+      - pwsh: |
+          $generateJobResult = '$(generateJobResult)'
+          $emitterVersion = '$(emitterVersion)'
+          $collectionUri = '$(System.CollectionUri)'
+          $project = '$(System.TeamProject)'
+          $definitionName = '$(Build.DefinitionName)'
+          $repoUrl = '$(Build.Repository.Uri)'
+          $sourceBranch = '$(Build.SourceBranch)'
+          $reason = '$(Build.Reason)'
+          $buildId = '$(Build.BuildId)'
+          $buildNumber = '$(Build.BuildNumber)'
+          $preRelease = '${{ parameters.BuildPrereleaseVersion }}' -eq 'true'
+          
+          $prBody = "Generated by $definitionName build [$buildNumber]($collectionUri/$project/_build/results?buildId=$buildId)<br/>"
+
+          if ($sourceBranch -match "^refs/heads/(.+)$") {
+            $prBody += "Triggered from branch: [$($Matches[1])]($repoUrl/tree/$sourceBranch)"
+          } elseif ($sourceBranch -match "^refs/tags/(.+)$") {
+            $prBody += "Triggered from tag: [$($Matches[1])]($repoUrl/tree/$sourceBranch)"
+          } elseif ($sourceBranch -match "^refs/pull/(\d+)/(head|merge)$") {
+            $prBody += "Triggered from pull request: $repoUrl/pull/$($Matches[1])"
           } else {
-            $prTitle = "Update typespec emitter version to $emitterVersion"
+            $prBody += "Triggered from [$sourceBranch]($repoUrl/tree/$sourceBranch)"
           }
 
-          if ($generateJobResult -ne 'Succeeded') {
-            $prTitle = "Failed: $prTitle"
+          if ($reason -eq 'Schedule') {
+            $prTitle = "Scheduled code regeneration test"
+          } else {
+            if ($preRelease) {
+              $prTitle = "Update typespec emitter version to prerelease $emitterVersion"
+            } else {
+              $prTitle = "Update typespec emitter version to $emitterVersion"
+            }
+
+            if ($generateJobResult -ne 'Succeeded') {
+              $prTitle = "Failed: $prTitle"
+            }
           }
-        }
 
-        Write-Host "Setting variable 'PullRequestTitle' to '$prTitle'"
-        Write-Host "##vso[task.setvariable variable=PullRequestTitle]$prTitle"
+          Write-Host "Setting variable 'PullRequestTitle' to '$prTitle'"
+          Write-Host "##vso[task.setvariable variable=PullRequestTitle]$prTitle"
 
-        Write-Host "Setting variable 'PullRequestBody' to '$prBody'"
-        Write-Host "##vso[task.setvariable variable=PullRequestBody]$prBody"
-      displayName: Get PR title and body
+          Write-Host "Setting variable 'PullRequestBody' to '$prBody'"
+          Write-Host "##vso[task.setvariable variable=PullRequestBody]$prBody"
+        displayName: Get PR title and body
 
-    - task: PowerShell@2
-      displayName: Create pull request
-      inputs:
-        pwsh: true
-        filePath: ./eng/common/scripts/Submit-PullRequest.ps1
-        arguments: >
-          -RepoOwner 'Azure'
-          -RepoName '$(Build.Repository.Name)'
-          -BaseBranch '$(pullRequestTargetBranch)'
-          -PROwner 'azure-sdk'
-          -PRBranch '$(branchName)'
-          -AuthToken '$(azuresdk-github-pat)'
-          -PRTitle '$(PullRequestTitle)'
-          -PRBody '$(PullRequestBody)'
-          -OpenAsDraft $true
-          -PRLabels 'Do Not Merge'
-        workingDirectory: $(Build.SourcesDirectory)
+      - task: PowerShell@2
+        displayName: Create pull request
+        inputs:
+          pwsh: true
+          filePath: ./eng/common/scripts/Submit-PullRequest.ps1
+          arguments: >
+            -RepoOwner 'Azure'
+            -RepoName '$(Build.Repository.Name)'
+            -BaseBranch '$(pullRequestTargetBranch)'
+            -PROwner 'azure-sdk'
+            -PRBranch '$(branchName)'
+            -AuthToken '$(azuresdk-github-pat)'
+            -PRTitle '$(PullRequestTitle)'
+            -PRBody '$(PullRequestBody)'
+            -OpenAsDraft $true
+            -PRLabels 'Do Not Merge'
+          workingDirectory: $(Build.SourcesDirectory)
