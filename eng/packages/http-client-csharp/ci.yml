@@ -40,7 +40,8 @@ extends:
       MinimumPerJob: 10
       OnlyGenerateTypespec: true
     Packages:
-      - name: http-client-csharp
+      - name: emitter
+        file: azure-typespec-http-client-csharp-*.tgz
         type: npm
     TestMatrix:
         All:
