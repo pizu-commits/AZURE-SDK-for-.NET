@@ -27,16 +27,20 @@ variables:
 extends:
   template: /eng/common/pipelines/templates/stages/archetype-typespec-emitter.yml
   parameters:
-    EmitterPackagePath: 
+    EmitterPackagePath: /eng/packages/http-client-csharp
     BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
     UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
-    PublishInternal: ${{ parameters.BuildPrereleaseVersion }}
+    ${{ if eq(variables['Build.ProjectName'], 'internal') }}:
+      ShouldPublish: true
+      PublishInternal: ${{ parameters.PublishInternal }}
+      PublishDependsOnTest: true
+      
+      ShouldRegenrate: true
+      RegenerationJobCount: 5
+      MinimumPerJob: 10
+      OnlyGenerateTypespec: true
     Packages:
       - name: http-client-csharp
         type: npm
-    RegenerationJobCount: 5
-    MinimumPerJob: 10
-    OnlyGenerateTypespec: true
-    PublishDependsOnTest: true
     TestMatrix: {}
  

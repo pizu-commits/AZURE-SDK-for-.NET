@@ -6,14 +6,12 @@ parameters:
 # Whether to build alpha versions of the packages. This is passed as a flag to the build script.
 - name: BuildPrereleaseVersion
   type: boolean
+  default: true
 
 # Whether to use the `next` version of TypeSpec. This is passed as a flag to the initialize script.
 - name: UseTypeSpecNext
   type: boolean
-
-# Whether to publish to the internal feed.
-- name: PublishInternal
-  type: boolean
+  default: false
 
 # Custom steps to run after the sdk repository is cloned but before the generation matrix is created.
 - name: InitializationSteps
@@ -28,6 +26,31 @@ parameters:
   type: object
   default: []
 
+# Indicates the build matrix to use for post-build autorest validation
+- name: TestMatrix
+  type: object
+  default: {}
+
+# Whether to run the publish and regeneration stages. If false, only the build stage will run.
+- name: ShouldPublish
+  type: boolean
+  default: false
+
+# Whether to publish to the internal feed.
+- name: PublishInternal
+  type: boolean
+  default: true
+
+# Indicates if the Publish stage should depend on the Test stage
+- name: PublishDependsOnTest
+  type: boolean
+  default: false
+
+# Whether to publish to the internal feed.
+- name: ShouldRegenrate
+  type: boolean
+  default: false
+
 # Number of jobs to generate. This is the maximum number of jobs that will be generated. The actual number of jobs will be reduced if it would result in fewer than MinimumPerJob packages per job.
 - name: RegenerationJobCount
   type: number
@@ -40,16 +63,6 @@ parameters:
 
 # Indicates if regenration matrix should only contain folders with typespec files
 - name: OnlyGenerateTypespec
-  type: boolean
-  default: false
-
-# Indicates the build matrix to use for post-build autorest validation
-- name: TestMatrix
-  type: object
-  default: {}
-
-# Indicates if the Publish stage should depend on the Test stage
-- name: PublishDependsOnTest
   type: boolean
   default: false
 
@@ -160,73 +173,6 @@ stages:
       condition: failed()
       workingDirectory: $(Build.SourcesDirectory)
 
-# Publish stage
-# Responsible for publishing the packages in `build_artifacts/packages` and producing `emitter-package-lock.json`
-# Produces the artifact `publish_artifacts` which contains the following:
-#   emitter-package-lock.json: Created by calling `npm install` using `build_artifacts/emitter-package.json` and will
-#                              be placed in the `/eng` folder of the sdk repository.
-- stage: Publish
-  dependsOn:
-  - Build
-  - ${{ if and(parameters.PublishDependsOnTest, ne(length(parameters.TestMatrix), 0)) }}:
-    - Test
-  variables:
-    buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
-  jobs:
-  - job: Publish
-    steps:
-    - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
-
-    - download: current
-      artifact: build_artifacts
-      displayName: Download build artifacts
-
-    # Create authenticated .npmrc file for publishing
-    - ${{ if eq(parameters.PublishInternal, 'true') }}:
-      - template: /eng/common/pipelines/templates/steps/create-authenticated-npmrc.yml
-        parameters:
-          npmrcPath: $(buildArtifactsPath)/packages/.npmrc
-          registryUrl: https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js-test-autorest/npm/registry/
-    - ${{ else }}:
-      - pwsh: |
-          "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" | Out-File '.npmrc'
-        displayName: Authenticate .npmrc for npmjs.org
-        workingDirectory: $(buildArtifactsPath)/packages
-
-    # per package, publishing using appropriate tool
-    - ${{ each package in parameters.Packages }}:
-      - ${{ if eq(package.type, 'npm') }}:
-        - pwsh: |
-            $file = Resolve-Path "${{ package.file }}"
-            Write-Host "npm publish $file --verbose --access public --prefix $(buildArtifactsPath)/packages"
-            npm publish $file --verbose --access public --prefix $(buildArtifactsPath)/packages
-          displayName: Publish ${{ package.name }}
-          workingDirectory: $(buildArtifactsPath)/packages
-      - ${{ elseif eq(package.type, 'nuget') }}:
-        - task: NuGetCommand@2
-          displayName: Publish ${{ package.name }}
-          inputs:
-            command: 'push'
-            packagesToPush: $(buildArtifactsPath)/packages/${{ package.file }}
-            # Nuget packages are always published to the same internal feed https://dev.azure.com/azure-sdk/public/_packaging?_a=feed&feed=azure-sdk-for-net
-            nuGetFeedType: 'internal'
-            publishVstsFeed: '29ec6040-b234-4e31-b139-33dc4287b756/fa8c16a3-dbe0-4de2-a297-03065ec1ba3f'
-
-      - task: PowerShell@2
-        displayName: Create emitter-package-lock.json
-        inputs:
-          pwsh: true
-          filePath: ./eng/common/scripts/typespec/New-EmitterPackageLock.ps1
-          arguments: >
-            -EmitterPackageJsonPath "$(buildArtifactsPath)/emitter-package.json"
-            -OutputDirectory "$(Build.ArtifactStagingDirectory)"
-          workingDirectory: $(Build.SourcesDirectory)
-
-    - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
-      parameters:
-        artifactName: publish_artifacts
-        artifactPath: $(Build.ArtifactStagingDirectory)
-
 # Test stage
 # Responsible for running unit and functional tests using a matrix passed in as the parameter `TestMatrix`.
 # Will only run if the parameter `TestMatrix` is not empty.
@@ -268,6 +214,77 @@ stages:
           artifactName: test_artifacts_$(System.JobName)
           artifactPath: $(Build.ArtifactStagingDirectory)
 
+# Publish stage
+# Responsible for publishing the packages in `build_artifacts/packages` and producing `emitter-package-lock.json`
+# Produces the artifact `publish_artifacts` which contains the following:
+#   emitter-package-lock.json: Created by calling `npm install` using `build_artifacts/emitter-package.json` and will
+#                              be placed in the `/eng` folder of the sdk repository.
+- ${{ if parameters.ShouldPublish }}:
+  - stage: Publish
+    dependsOn:
+    - Build
+    - ${{ if and(parameters.PublishDependsOnTest, ne(length(parameters.TestMatrix), 0)) }}:
+      - Test
+    variables:
+      buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
+    jobs:
+    - job: Publish
+      steps:
+      - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+
+      - download: current
+        artifact: build_artifacts
+        displayName: Download build artifacts
+
+      # Create authenticated .npmrc file for publishing
+      - ${{ if eq(parameters.PublishInternal, 'true') }}:
+        - template: /eng/common/pipelines/templates/steps/create-authenticated-npmrc.yml
+          parameters:
+            npmrcPath: $(buildArtifactsPath)/packages/.npmrc
+            registryUrl: https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js-test-autorest/npm/registry/
+      - ${{ else }}:
+        - pwsh: |
+            "//registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)" | Out-File '.npmrc'
+          displayName: Authenticate .npmrc for npmjs.org
+          workingDirectory: $(buildArtifactsPath)/packages
+
+      # per package, publishing using appropriate tool
+      - ${{ each package in parameters.Packages }}:
+        - ${{ if eq(package.type, 'npm') }}:
+          - pwsh: |
+              $file = Resolve-Path "${{ package.file }}"
+              Write-Host "npm publish $file --verbose --access public --prefix $(buildArtifactsPath)/packages"
+              npm publish $file --verbose --access public --prefix $(buildArtifactsPath)/packages
+            displayName: Publish ${{ package.name }}
+            workingDirectory: $(buildArtifactsPath)/packages
+        - ${{ elseif eq(package.type, 'nuget') }}:
+          - task: NuGetCommand@2
+            displayName: Publish ${{ package.name }}
+            inputs:
+              command: 'push'
+              packagesToPush: $(buildArtifactsPath)/packages/${{ package.file }}
+              # Nuget packages are always published to the same internal feed https://dev.azure.com/azure-sdk/public/_packaging?_a=feed&feed=azure-sdk-for-net
+              nuGetFeedType: 'internal'
+              publishVstsFeed: '29ec6040-b234-4e31-b139-33dc4287b756/fa8c16a3-dbe0-4de2-a297-03065ec1ba3f'
+
+        - task: PowerShell@2
+          displayName: Create emitter-package-lock.json
+          inputs:
+            pwsh: true
+            filePath: ./eng/common/scripts/typespec/New-EmitterPackageLock.ps1
+            arguments: >
+              -EmitterPackageJsonPath "$(buildArtifactsPath)/emitter-package.json"
+              -OutputDirectory "$(Build.ArtifactStagingDirectory)"
+            workingDirectory: $(Build.SourcesDirectory)
+
+      - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
+        parameters:
+          artifactName: publish_artifacts
+          artifactPath: $(Build.ArtifactStagingDirectory)
+
+# Regenerate stage
+# Responsible for regenerating the SDK code using the emitter package and the generation matrix.
+- ${{ if and(parameters.ShouldPublish, parameters.ShouldRegenrate) }}:
 - stage: Regenerate
   dependsOn:
   - Build
