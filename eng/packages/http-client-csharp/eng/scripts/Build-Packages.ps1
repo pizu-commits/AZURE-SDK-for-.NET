@@ -14,7 +14,7 @@ Set-ConsoleEncoding
 
 $emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
 $artifactsPath = Join-Path $emitterPackagePath "artifacts"
-$outputPath = $Output ? $Output : (Join-Path $artifactsPath "ci-build")
+$outputPath = $Output ? $Output : (Join-Path $artifactsPath "build")
 
 Push-Location $emitterPackagePath
 try {
@@ -28,13 +28,13 @@ try {
     $artifactsPath = New-Item -ItemType Directory -Force -Path $artifactsPath | Select-Object -ExpandProperty FullName
     $outputPath = New-Item -ItemType Directory -Force -Path $outputPath | Select-Object -ExpandProperty FullName
 
-    $emitterVersion = node -p -e "require('package.json').version"
+    $emitterVersion = (npm pkg get version).Trim('"')
 
     if ($BuildNumber) {
         # set package versions
         $versionTag = $Prerelease ? "-alpha" : "-beta"
 
-        $emitterVersion = "$emitterVersion$versionTag.$BuildNumber"
+        $emitterVersion = "$($emitterVersion.Split('-')[0])$versionTag.$BuildNumber"
         Write-Host "Setting output variable 'emitterVersion' to $emitterVersion"
         Write-Host "##vso[task.setvariable variable=emitterVersion;isoutput=true]$emitterVersion"
     }
@@ -64,7 +64,7 @@ try {
 
     if ($BuildNumber) {
         Write-Host "Updating version package.json to the new emitter version`n"
-        npm pkg set version=$emitterVersion
+        Invoke-LoggedCommand "npm pkg set version=$emitterVersion"
     }
 
     # remove any existing tarballs
@@ -74,6 +74,8 @@ try {
     Invoke-LoggedCommand "npm pack"
     $file = Get-ChildItem -Filter "*.tgz" | Select-Object -ExpandProperty FullName
     Invoke-LoggedCommand "tar --list --file $file"
+    # ensure the packages directory exists
+    New-Item -ItemType Directory -Force -Path "$outputPath/packages" | Out-Null
     Copy-Item $file -Destination "$outputPath/packages"
 
     if ($PublishInternal) {
