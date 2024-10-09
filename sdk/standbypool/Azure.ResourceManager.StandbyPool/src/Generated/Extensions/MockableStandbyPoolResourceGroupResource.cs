@@ -49,7 +49,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -61,7 +61,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -80,7 +80,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -92,7 +92,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -118,7 +118,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -130,7 +130,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyContainerGroupPoolName"> Name of the standby container group pool. </param>
+        /// <param name="standbyContainerGroupPoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyContainerGroupPoolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="standbyContainerGroupPoolName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -149,7 +149,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyContainerGroupPools_Get</description>
+        /// <description>StandbyContainerGroupPoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -161,7 +161,7 @@ namespace Azure.ResourceManager.StandbyPool.Mocking
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyContainerGroupPoolName"> Name of the standby container group pool. </param>
+        /// <param name="standbyContainerGroupPoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyContainerGroupPoolName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="standbyContainerGroupPoolName"/> is an empty string, and was expected to be non-empty. </exception>

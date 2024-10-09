@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Displays the counts of pooled resources in each state, as known by the StandbyPool resource provider. </summary>
+    /// <summary> The PoolResourceStateCount. </summary>
     public partial class PoolResourceStateCount
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PoolResourceStateCount"/>. </summary>
-        /// <param name="state"> The state that the pooled resources count is for. </param>
-        /// <param name="count"> The count of pooled resources in the given state. </param>
+        /// <param name="state"></param>
+        /// <param name="count"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="state"/> is null. </exception>
         internal PoolResourceStateCount(string state, long count)
         {
@@ -58,8 +58,8 @@ namespace Azure.ResourceManager.StandbyPool.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="PoolResourceStateCount"/>. </summary>
-        /// <param name="state"> The state that the pooled resources count is for. </param>
-        /// <param name="count"> The count of pooled resources in the given state. </param>
+        /// <param name="state"></param>
+        /// <param name="count"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PoolResourceStateCount(string state, long count, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
         {
         }
 
-        /// <summary> The state that the pooled resources count is for. </summary>
+        /// <summary> Gets the state. </summary>
         public string State { get; }
-        /// <summary> The count of pooled resources in the given state. </summary>
+        /// <summary> Gets the count. </summary>
         public long Count { get; }
     }
 }

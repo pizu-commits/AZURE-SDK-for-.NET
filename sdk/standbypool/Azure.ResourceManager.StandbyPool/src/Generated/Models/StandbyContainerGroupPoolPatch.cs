@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> The type used for update operations of the StandbyContainerGroupPoolResource. </summary>
+    /// <summary> The StandbyContainerGroupPoolPatch. </summary>
     public partial class StandbyContainerGroupPoolPatch
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.ResourceManager.StandbyPool.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="StandbyContainerGroupPoolPatch"/>. </summary>
-        /// <param name="tags"> Resource tags. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="tags"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyContainerGroupPoolPatch(IDictionary<string, string> tags, StandbyContainerGroupPoolUpdateProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -62,9 +62,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Resource tags. </summary>
+        /// <summary> Gets the tags. </summary>
         public IDictionary<string, string> Tags { get; }
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public StandbyContainerGroupPoolUpdateProperties Properties { get; set; }
     }
 }

@@ -60,7 +60,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachines_Get</description>
+        /// <description>StandbyVirtualMachineResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -72,7 +72,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachineName"> Name of the standby virtual machine. </param>
+        /// <param name="standbyVirtualMachineName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachineName"/> is null. </exception>
@@ -105,7 +105,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachines_Get</description>
+        /// <description>StandbyVirtualMachineResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -117,7 +117,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachineName"> Name of the standby virtual machine. </param>
+        /// <param name="standbyVirtualMachineName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachineName"/> is null. </exception>
@@ -210,7 +210,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachines_Get</description>
+        /// <description>StandbyVirtualMachineResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -222,7 +222,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachineName"> Name of the standby virtual machine. </param>
+        /// <param name="standbyVirtualMachineName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachineName"/> is null. </exception>
@@ -253,7 +253,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachines_Get</description>
+        /// <description>StandbyVirtualMachineResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -265,7 +265,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachineName"> Name of the standby virtual machine. </param>
+        /// <param name="standbyVirtualMachineName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachineName"/> is null. </exception>
@@ -296,7 +296,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachines_Get</description>
+        /// <description>StandbyVirtualMachineResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -308,7 +308,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachineName"> Name of the standby virtual machine. </param>
+        /// <param name="standbyVirtualMachineName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachineName"/> is null. </exception>
@@ -341,7 +341,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachines_Get</description>
+        /// <description>StandbyVirtualMachineResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -353,7 +353,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachineName"> Name of the standby virtual machine. </param>
+        /// <param name="standbyVirtualMachineName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachineName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachineName"/> is null. </exception>

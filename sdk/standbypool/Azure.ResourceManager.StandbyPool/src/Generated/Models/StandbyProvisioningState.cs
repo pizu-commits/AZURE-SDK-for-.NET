@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Provisioning state. </summary>
+    /// <summary> The StandbyProvisioningState. </summary>
     public readonly partial struct StandbyProvisioningState : IEquatable<StandbyProvisioningState>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private const string CanceledValue = "Canceled";
         private const string DeletingValue = "Deleting";
 
-        /// <summary> Resource has been created. </summary>
+        /// <summary> Succeeded. </summary>
         public static StandbyProvisioningState Succeeded { get; } = new StandbyProvisioningState(SucceededValue);
-        /// <summary> Resource creation failed. </summary>
+        /// <summary> Failed. </summary>
         public static StandbyProvisioningState Failed { get; } = new StandbyProvisioningState(FailedValue);
-        /// <summary> Resource creation was canceled. </summary>
+        /// <summary> Canceled. </summary>
         public static StandbyProvisioningState Canceled { get; } = new StandbyProvisioningState(CanceledValue);
-        /// <summary> Resource is being deleted. </summary>
+        /// <summary> Deleting. </summary>
         public static StandbyProvisioningState Deleting { get; } = new StandbyProvisioningState(DeletingValue);
         /// <summary> Determines if two <see cref="StandbyProvisioningState"/> values are the same. </summary>
         public static bool operator ==(StandbyProvisioningState left, StandbyProvisioningState right) => left.Equals(right);

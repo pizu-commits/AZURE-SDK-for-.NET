@@ -13,10 +13,7 @@ using Azure.ResourceManager.StandbyPool.Models;
 
 namespace Azure.ResourceManager.StandbyPool
 {
-    /// <summary>
-    /// A class representing the StandbyVirtualMachinePool data model.
-    /// A StandbyVirtualMachinePoolResource.
-    /// </summary>
+    /// <summary> A class representing the StandbyVirtualMachinePool data model. </summary>
     public partial class StandbyVirtualMachinePoolData : TrackedResourceData
     {
         /// <summary>
@@ -64,7 +61,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyVirtualMachinePoolData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, StandbyVirtualMachinePoolProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
         {
@@ -77,7 +74,7 @@ namespace Azure.ResourceManager.StandbyPool
         {
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public StandbyVirtualMachinePoolProperties Properties { get; set; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> The response of a StandbyVirtualMachinePoolResource list operation. </summary>
+    /// <summary> The StandbyVirtualMachinePoolResourceListResult. </summary>
     internal partial class StandbyVirtualMachinePoolResourceListResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StandbyVirtualMachinePoolResourceListResult"/>. </summary>
-        /// <param name="value"> The StandbyVirtualMachinePoolResource items on this page. </param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal StandbyVirtualMachinePoolResourceListResult(IEnumerable<StandbyVirtualMachinePoolData> value)
         {
@@ -57,8 +57,8 @@ namespace Azure.ResourceManager.StandbyPool.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="StandbyVirtualMachinePoolResourceListResult"/>. </summary>
-        /// <param name="value"> The StandbyVirtualMachinePoolResource items on this page. </param>
-        /// <param name="nextLink"> The link to the next page of items. </param>
+        /// <param name="value"></param>
+        /// <param name="nextLink"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyVirtualMachinePoolResourceListResult(IReadOnlyList<StandbyVirtualMachinePoolData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
         {
         }
 
-        /// <summary> The StandbyVirtualMachinePoolResource items on this page. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<StandbyVirtualMachinePoolData> Value { get; }
-        /// <summary> The link to the next page of items. </summary>
+        /// <summary> Gets the next link. </summary>
         public Uri NextLink { get; }
     }
 }

@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Details of the StandbyVirtualMachine. </summary>
+    /// <summary> The StandbyVirtualMachineProperties. </summary>
     public partial class StandbyVirtualMachineProperties
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StandbyVirtualMachineProperties"/>. </summary>
-        /// <param name="virtualMachineResourceId"> Resource id of the virtual machine. </param>
+        /// <param name="virtualMachineResourceId"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="virtualMachineResourceId"/> is null. </exception>
         internal StandbyVirtualMachineProperties(ResourceIdentifier virtualMachineResourceId)
         {
@@ -57,8 +57,8 @@ namespace Azure.ResourceManager.StandbyPool.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="StandbyVirtualMachineProperties"/>. </summary>
-        /// <param name="virtualMachineResourceId"> Resource id of the virtual machine. </param>
-        /// <param name="provisioningState"> The status of the last operation. </param>
+        /// <param name="virtualMachineResourceId"></param>
+        /// <param name="provisioningState"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyVirtualMachineProperties(ResourceIdentifier virtualMachineResourceId, StandbyProvisioningState? provisioningState, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
         {
         }
 
-        /// <summary> Resource id of the virtual machine. </summary>
+        /// <summary> Gets the virtual machine resource id. </summary>
         public ResourceIdentifier VirtualMachineResourceId { get; }
-        /// <summary> The status of the last operation. </summary>
+        /// <summary> Gets the provisioning state. </summary>
         public StandbyProvisioningState? ProvisioningState { get; }
     }
 }

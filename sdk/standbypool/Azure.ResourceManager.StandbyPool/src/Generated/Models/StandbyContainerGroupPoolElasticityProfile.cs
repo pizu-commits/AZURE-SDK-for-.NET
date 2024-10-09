@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Specifies the elasticity profile of the standby container group pools. </summary>
+    /// <summary> The StandbyContainerGroupPoolElasticityProfile. </summary>
     public partial class StandbyContainerGroupPoolElasticityProfile
     {
         /// <summary>
@@ -46,15 +46,15 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StandbyContainerGroupPoolElasticityProfile"/>. </summary>
-        /// <param name="maxReadyCapacity"> Specifies maximum number of standby container groups in the standby pool. </param>
+        /// <param name="maxReadyCapacity"></param>
         public StandbyContainerGroupPoolElasticityProfile(long maxReadyCapacity)
         {
             MaxReadyCapacity = maxReadyCapacity;
         }
 
         /// <summary> Initializes a new instance of <see cref="StandbyContainerGroupPoolElasticityProfile"/>. </summary>
-        /// <param name="maxReadyCapacity"> Specifies maximum number of standby container groups in the standby pool. </param>
-        /// <param name="refillPolicy"> Specifies refill policy of the pool. </param>
+        /// <param name="maxReadyCapacity"></param>
+        /// <param name="refillPolicy"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyContainerGroupPoolElasticityProfile(long maxReadyCapacity, StandbyRefillPolicy? refillPolicy, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,9 +68,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
         {
         }
 
-        /// <summary> Specifies maximum number of standby container groups in the standby pool. </summary>
+        /// <summary> Gets or sets the max ready capacity. </summary>
         public long MaxReadyCapacity { get; set; }
-        /// <summary> Specifies refill policy of the pool. </summary>
+        /// <summary> Gets or sets the refill policy. </summary>
         public StandbyRefillPolicy? RefillPolicy { get; set; }
     }
 }

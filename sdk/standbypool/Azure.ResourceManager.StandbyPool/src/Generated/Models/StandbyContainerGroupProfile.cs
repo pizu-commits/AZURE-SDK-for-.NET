@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.StandbyPool.Models
 {
-    /// <summary> Details of the ContainerGroupProfile. </summary>
+    /// <summary> The StandbyContainerGroupProfile. </summary>
     public partial class StandbyContainerGroupProfile
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.StandbyPool.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StandbyContainerGroupProfile"/>. </summary>
-        /// <param name="id"> Specifies container group profile id of standby container groups. </param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         public StandbyContainerGroupProfile(ResourceIdentifier id)
         {
@@ -57,8 +57,8 @@ namespace Azure.ResourceManager.StandbyPool.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="StandbyContainerGroupProfile"/>. </summary>
-        /// <param name="id"> Specifies container group profile id of standby container groups. </param>
-        /// <param name="revision"> Specifies revision of container group profile. </param>
+        /// <param name="id"></param>
+        /// <param name="revision"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StandbyContainerGroupProfile(ResourceIdentifier id, long? revision, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.StandbyPool.Models
         {
         }
 
-        /// <summary> Specifies container group profile id of standby container groups. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public ResourceIdentifier Id { get; set; }
-        /// <summary> Specifies revision of container group profile. </summary>
+        /// <summary> Gets or sets the revision. </summary>
         public long? Revision { get; set; }
     }
 }

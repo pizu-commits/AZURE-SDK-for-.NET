@@ -61,7 +61,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_CreateOrUpdate</description>
+        /// <description>StandbyVirtualMachinePoolResource_CreateOrUpdate</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -74,8 +74,8 @@ namespace Azure.ResourceManager.StandbyPool
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
-        /// <param name="data"> Resource create parameters. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
+        /// <param name="data"> The <see cref="StandbyVirtualMachinePoolData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> or <paramref name="data"/> is null. </exception>
@@ -110,7 +110,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_CreateOrUpdate</description>
+        /// <description>StandbyVirtualMachinePoolResource_CreateOrUpdate</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -123,8 +123,8 @@ namespace Azure.ResourceManager.StandbyPool
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
-        /// <param name="data"> Resource create parameters. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
+        /// <param name="data"> The <see cref="StandbyVirtualMachinePoolData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> or <paramref name="data"/> is null. </exception>
@@ -159,7 +159,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -171,7 +171,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
@@ -204,7 +204,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -216,7 +216,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
@@ -309,7 +309,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -321,7 +321,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
@@ -352,7 +352,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -364,7 +364,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
@@ -395,7 +395,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -407,7 +407,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
@@ -440,7 +440,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>StandbyVirtualMachinePools_Get</description>
+        /// <description>StandbyVirtualMachinePoolResource_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -452,7 +452,7 @@ namespace Azure.ResourceManager.StandbyPool
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="standbyVirtualMachinePoolName"> Name of the standby virtual machine pool. </param>
+        /// <param name="standbyVirtualMachinePoolName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentException"> <paramref name="standbyVirtualMachinePoolName"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="standbyVirtualMachinePoolName"/> is null. </exception>
