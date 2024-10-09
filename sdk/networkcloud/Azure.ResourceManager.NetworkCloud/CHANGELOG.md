@@ -4,13 +4,32 @@
 
 ### Features Added
 
+- This SDK version supports 2024-06-01-preview API version.
+- ClusterManager resource supports system-assigned and user-assigned identities.
+- Cluster resource supports system-assigned and user-assigned identities.
+- CommandOutputSettings is added to Cluster configuration for provisioning a storage account used during BareMetalMachine command execution result download.
+- ClusterSecretArchive is added to configure a key vault for Cluster's secrets storage.
+- ClusterUpdateStrategy is added to support a rack pause during Cluster update.
+- KubernetesClusterFeature is added that enables managing addons for the KubernetesCluster.
+- AgentPoolUpgradeSettings is added that configures upgrade setting for the KubernetesCluster agent pool.
+- l2ServiceLoadBalancerConfiguration is added to support an alternative load balancer for the KubernetesCluster.
+- KubernetesCluster configuration is added to support additional upgrade settings drainTimeout and maxUnavailable for initial agent pools. The same configuration is added to the KubernetesCluster agentpool.
+- BareMetalMachine has new properties returned for the machine cluster version, machine roles, runtime protection status, and secret rotation status.
+- StorageAppliance has new properties returned for the appliance manifacturer, model, version, and secret rotation status.
+- KeySetUser has a new property containing a user principal name.
+- RuntimeProtectionEnforcementLevel got a new value "OnDemand".
+- ClusterConnectionStatus got a new value representing "Disconnected" status.
+- ClusterDetailedStatus got a new value "UpdatePaused" to represent Cluster update status being paused.
+- RackSkuProvisioningState got new values "Cancelled" and "Failed" to better represent its state.
 - Enable the new model serialization by using the System.ClientModel, refer this [document](https://aka.ms/azsdk/net/mrw) for more details.
+- NetworkCloudOperationStatusResult now exposes additional properties to get access for BareMetalMachine command execution result, such as, exitCode, outputHead, resultRef, and resultUri.
 
 ### Breaking Changes
 
-### Bugs Fixed
-
 ### Other Changes
+
+- A clarification is added to the descriptions throughout that memory and disk sizes are measured in gibibytes.
+- ServiceLoadBalancerBgpPeer has the following optional fields marked as deprecated: "holdTime" and "keepAliveTime". Of defined, their values will be ignored.
 
 ## 1.0.1 (2023-11-29)
 
