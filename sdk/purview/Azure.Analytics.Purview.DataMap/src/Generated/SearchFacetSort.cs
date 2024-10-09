@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The sorting criteria. </summary>
+    /// <summary> The SearchFacetSort. </summary>
     public partial class SearchFacetSort
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchFacetSort"/>. </summary>
-        /// <param name="count"> Order by count. </param>
-        /// <param name="value"> Order by value. </param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SearchFacetSort(SearchSortOrder? count, SearchSortOrder? value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Order by count. </summary>
+        /// <summary> Gets or sets the count. </summary>
         public SearchSortOrder? Count { get; set; }
-        /// <summary> Order by value. </summary>
+        /// <summary> Gets or sets the value. </summary>
         public SearchSortOrder? Value { get; set; }
     }
 }

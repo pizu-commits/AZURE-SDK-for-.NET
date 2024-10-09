@@ -41,7 +41,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="tokenCredential"> The token credential to copy. </param>
         /// <param name="endpoint"> The <see cref="Uri"/> to use. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         internal Entity(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, TokenCredential tokenCredential, Uri endpoint, string apiVersion)
         {
             ClientDiagnostics = clientDiagnostics;
@@ -60,15 +60,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// int&gt;&gt;.
         /// For each contact type, the maximum number of contacts is 20.
         /// </summary>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities.
-        /// </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
+        /// <param name="body"> The <see cref="AtlasEntityWithExtInfo"/> to use. </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="BusinessAttributeUpdateBehavior"/>? to use. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='CreateOrUpdateAsync(AtlasEntityWithExtInfo,BusinessAttributeUpdateBehavior?,string,CancellationToken)']/*" />
@@ -91,15 +85,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// int&gt;&gt;.
         /// For each contact type, the maximum number of contacts is 20.
         /// </summary>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities.
-        /// </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
+        /// <param name="body"> The <see cref="AtlasEntityWithExtInfo"/> to use. </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="BusinessAttributeUpdateBehavior"/>? to use. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='CreateOrUpdate(AtlasEntityWithExtInfo,BusinessAttributeUpdateBehavior?,string,CancellationToken)']/*" />
@@ -135,14 +123,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities. Allowed values: "ignore" | "replace" | "merge"
-        /// </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="string"/> to use. Allowed values: "ignore" | "replace" | "merge". </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -188,14 +170,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities. Allowed values: "ignore" | "replace" | "merge"
-        /// </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="string"/> to use. Allowed values: "ignore" | "replace" | "merge". </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -220,9 +196,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> List entities in bulk identified by its GUIDs. </summary>
-        /// <param name="guid"> An array of GUIDs of entities to list. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='GetByIdsAsync(IEnumerable{string},bool?,bool?,CancellationToken)']/*" />
@@ -236,9 +212,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> List entities in bulk identified by its GUIDs. </summary>
-        /// <param name="guid"> An array of GUIDs of entities to list. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='GetByIds(IEnumerable{string},bool?,bool?,CancellationToken)']/*" />
@@ -266,9 +242,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> An array of GUIDs of entities to list. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -307,9 +283,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> An array of GUIDs of entities to list. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -343,15 +319,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// For each contact type, the maximum number of contacts
         /// is 20.
         /// </summary>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities.
-        /// </param>
+        /// <param name="body"> The <see cref="AtlasEntitiesWithExtInfo"/> to use. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="BusinessAttributeUpdateBehavior"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='BatchCreateOrUpdateAsync(AtlasEntitiesWithExtInfo,string,BusinessAttributeUpdateBehavior?,CancellationToken)']/*" />
@@ -375,15 +345,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// For each contact type, the maximum number of contacts
         /// is 20.
         /// </summary>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities.
-        /// </param>
+        /// <param name="body"> The <see cref="AtlasEntitiesWithExtInfo"/> to use. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="BusinessAttributeUpdateBehavior"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='BatchCreateOrUpdate(AtlasEntitiesWithExtInfo,string,BusinessAttributeUpdateBehavior?,CancellationToken)']/*" />
@@ -420,14 +384,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities. Allowed values: "ignore" | "replace" | "merge"
-        /// </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="string"/> to use. Allowed values: "ignore" | "replace" | "merge". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -474,14 +432,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="collectionId">
-        /// The collection where entities will be moved to. Only specify a value if you
-        /// need to move an entity to another collection.
-        /// </param>
-        /// <param name="businessAttributeUpdateBehavior">
-        /// Used to define the update behavior for business attributes when updating
-        /// entities. Allowed values: "ignore" | "replace" | "merge"
-        /// </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
+        /// <param name="businessAttributeUpdateBehavior"> The <see cref="string"/> to use. Allowed values: "ignore" | "replace" | "merge". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -509,7 +461,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// Delete a list of entities in bulk identified by their GUIDs or unique
         /// attributes.
         /// </summary>
-        /// <param name="guid"> An array of GUIDs of entities to delete. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='BatchDeleteAsync(IEnumerable{string},CancellationToken)']/*" />
@@ -526,7 +478,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// Delete a list of entities in bulk identified by their GUIDs or unique
         /// attributes.
         /// </summary>
-        /// <param name="guid"> An array of GUIDs of entities to delete. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='BatchDelete(IEnumerable{string},CancellationToken)']/*" />
@@ -555,7 +507,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> An array of GUIDs of entities to delete. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -595,7 +547,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> An array of GUIDs of entities to delete. </param>
+        /// <param name="guid"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -620,7 +572,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Associate a classification to multiple entities in bulk. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="ClassificationAssociateConfig"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='AddClassificationAsync(ClassificationAssociateConfig,CancellationToken)']/*" />
@@ -635,7 +587,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Associate a classification to multiple entities in bulk. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="ClassificationAssociateConfig"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='AddClassification(ClassificationAssociateConfig,CancellationToken)']/*" />
@@ -728,9 +680,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get complete definition of an entity given its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -745,9 +697,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get complete definition of an entity given its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -776,9 +728,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -818,9 +770,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -852,9 +804,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// It does not support updating complex types like arrays, and maps.
         /// Null updates are not possible.
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="name"> The name of the attribute. </param>
-        /// <param name="body"> The value of the attribute. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="BinaryData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="name"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -878,9 +830,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// It does not support updating complex types like arrays, and maps.
         /// Null updates are not possible.
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="name"> The name of the attribute. </param>
-        /// <param name="body"> The value of the attribute. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="BinaryData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="name"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -916,8 +868,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="name"> The name of the attribute. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -964,8 +916,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="name"> The name of the attribute. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="name"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="name"/> or <paramref name="content"/> is null. </exception>
@@ -994,7 +946,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete an entity identified by its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1009,7 +961,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete an entity identified by its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1038,7 +990,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1078,7 +1030,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1104,8 +1056,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get classification for a given entity represented by a GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1121,8 +1073,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get classification for a given entity represented by a GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1152,8 +1104,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1194,8 +1146,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1232,8 +1184,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1270,8 +1222,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1298,7 +1250,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> List classifications for a given entity represented by a GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1313,7 +1265,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> List classifications for a given entity represented by a GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1342,7 +1294,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1382,7 +1334,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1408,8 +1360,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add classifications to an existing entity represented by a GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> An array of classifications to be added. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1426,8 +1378,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add classifications to an existing entity represented by a GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> An array of classifications to be added. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1458,7 +1410,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
@@ -1500,7 +1452,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
@@ -1528,8 +1480,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update classifications to an existing entity represented by a guid. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> An array of classifications to be updated. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1546,8 +1498,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update classifications to an existing entity represented by a guid. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> An array of classifications to be updated. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1578,7 +1530,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
@@ -1620,7 +1572,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
@@ -1663,13 +1615,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// GET
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1699,13 +1648,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// GET
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1747,13 +1693,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1806,13 +1749,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1855,12 +1795,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// PUT
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasEntityWithExtInfo"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1894,12 +1831,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// PUT
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasEntityWithExtInfo"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1945,12 +1879,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2006,12 +1937,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2051,11 +1979,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// DELETE
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2083,11 +2008,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// DELETE
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2127,11 +2049,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2182,11 +2101,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2223,12 +2139,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2266,12 +2179,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="classificationName"> The name of the classification. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="classificationName"> The <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="classificationName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> or <paramref name="classificationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2298,12 +2208,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add classification to the entity identified by its type and unique attributes. </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> An array of classification to be added. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2320,12 +2227,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add classification to the entity identified by its type and unique attributes. </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> An array of classification to be added. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2356,12 +2260,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2402,12 +2303,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2434,12 +2332,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update classification on an entity identified by its type and unique attributes. </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> An array of classification to be updated. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2456,12 +2351,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update classification on an entity identified by its type and unique attributes. </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> An array of classification to be updated. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasClassification"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2492,12 +2384,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2538,12 +2427,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2570,7 +2456,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Set classifications on entities in bulk. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasEntityHeaders"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='BatchSetClassificationsAsync(AtlasEntityHeaders,CancellationToken)']/*" />
@@ -2593,7 +2479,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Set classifications on entities in bulk. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasEntityHeaders"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='BatchSetClassifications(AtlasEntityHeaders,CancellationToken)']/*" />
@@ -2713,14 +2599,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Note:
         /// at least one unique attribute must be provided.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attrNQualifiedName">
-        /// Qualified name of an entity. E.g. to find 2 entities you can set
-        /// attrs_1:qualifiedName=db1@cl1&amp;attrs_2:qualifiedName=db2@cl1. (This is only an
-        /// example. qualifiedName can be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attrNQualifiedName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2754,14 +2636,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Note:
         /// at least one unique attribute must be provided.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attrNQualifiedName">
-        /// Qualified name of an entity. E.g. to find 2 entities you can set
-        /// attrs_1:qualifiedName=db1@cl1&amp;attrs_2:qualifiedName=db2@cl1. (This is only an
-        /// example. qualifiedName can be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attrNQualifiedName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2807,14 +2685,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attrNQualifiedName">
-        /// Qualified name of an entity. E.g. to find 2 entities you can set
-        /// attrs_1:qualifiedName=db1@cl1&amp;attrs_2:qualifiedName=db2@cl1. (This is only an
-        /// example. qualifiedName can be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attrNQualifiedName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2871,14 +2745,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="minExtInfo"> Whether to return minimal information for referred entities. </param>
-        /// <param name="ignoreRelationships"> Whether to ignore relationship attributes. </param>
-        /// <param name="attrNQualifiedName">
-        /// Qualified name of an entity. E.g. to find 2 entities you can set
-        /// attrs_1:qualifiedName=db1@cl1&amp;attrs_2:qualifiedName=db2@cl1. (This is only an
-        /// example. qualifiedName can be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="minExtInfo"> The <see cref="bool"/>? to use. </param>
+        /// <param name="ignoreRelationships"> The <see cref="bool"/>? to use. </param>
+        /// <param name="attrNQualifiedName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2904,7 +2774,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get entity header given its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2919,7 +2789,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get entity header given its GUID. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2948,7 +2818,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2988,7 +2858,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3014,8 +2884,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Remove business metadata from an entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> Business metadata payload. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <c>IDictionary{string,BinaryData}</c> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3032,8 +2902,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Remove business metadata from an entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> Business metadata payload. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <c>IDictionary{string,BinaryData}</c> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3064,7 +2934,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
@@ -3106,7 +2976,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
@@ -3134,12 +3004,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add business metadata to an entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> BusinessMetadata payload. </param>
-        /// <param name="overwrite">
-        /// Whether to overwrite the existing business metadata on the entity or not,
-        /// default is false.
-        /// </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <c>IDictionary{string,BinaryData}</c> to use. </param>
+        /// <param name="overwrite"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3156,12 +3023,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add business metadata to an entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> BusinessMetadata payload. </param>
-        /// <param name="overwrite">
-        /// Whether to overwrite the existing business metadata on the entity or not,
-        /// default is false.
-        /// </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <c>IDictionary{string,BinaryData}</c> to use. </param>
+        /// <param name="overwrite"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3192,12 +3056,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="overwrite">
-        /// Whether to overwrite the existing business metadata on the entity or not,
-        /// default is false.
-        /// </param>
+        /// <param name="overwrite"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3238,12 +3099,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="overwrite">
-        /// Whether to overwrite the existing business metadata on the entity or not,
-        /// default is false.
-        /// </param>
+        /// <param name="overwrite"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3270,9 +3128,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete business metadata attributes from an entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
-        /// <param name="body"> Business metadata attribute payload. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="BinaryData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="businessMetadataName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3290,9 +3148,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete business metadata attributes from an entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
-        /// <param name="body"> Business metadata attribute payload. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="BinaryData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="businessMetadataName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3324,8 +3182,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="content"/> is null. </exception>
@@ -3368,8 +3226,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="content"/> is null. </exception>
@@ -3398,9 +3256,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add or update business metadata attributes. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
-        /// <param name="body"> Business metadata attribute payload. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="BinaryData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="businessMetadataName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3418,9 +3276,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add or update business metadata attributes. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
-        /// <param name="body"> Business metadata attribute payload. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="BinaryData"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> or <paramref name="businessMetadataName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3452,8 +3310,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="content"/> is null. </exception>
@@ -3496,8 +3354,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="businessMetadataName"> BusinessMetadata name. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="businessMetadataName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/>, <paramref name="businessMetadataName"/> or <paramref name="content"/> is null. </exception>
@@ -3616,7 +3474,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Upload the file for creating Business Metadata in BULK. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="BusinessMetadataOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='ImportBusinessMetadataAsync(BusinessMetadataOptions,CancellationToken)']/*" />
@@ -3631,7 +3489,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Upload the file for creating Business Metadata in BULK. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="BusinessMetadataOptions"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='ImportBusinessMetadata(BusinessMetadataOptions,CancellationToken)']/*" />
@@ -3661,7 +3519,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for the operation. Always multipart/form-data for this operation. Allowed values: "multipart/form-data". </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -3701,7 +3559,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for the operation. Always multipart/form-data for this operation. Allowed values: "multipart/form-data". </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -3726,8 +3584,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete given labels to a given entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> set of labels to be deleted. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3743,8 +3601,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete given labels to a given entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> set of labels to be deleted. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3774,7 +3632,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
@@ -3815,7 +3673,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
@@ -3842,8 +3700,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Set labels to a given entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> set of labels to be set to the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3859,8 +3717,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Set labels to a given entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> set of labels to be set to the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3890,7 +3748,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
@@ -3931,7 +3789,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
@@ -3958,8 +3816,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add given labels to a given entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> set of labels to be added. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3975,8 +3833,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Add given labels to a given entity. </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
-        /// <param name="body"> set of labels to be added. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="guid"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4006,7 +3864,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
@@ -4047,7 +3905,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="guid"> The globally unique identifier of the entity. </param>
+        /// <param name="guid"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="guid"/> is null. </exception>
@@ -4088,12 +3946,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// this: DELETE
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> set of labels to be deleted. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4123,12 +3978,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// this: DELETE
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> set of labels to be deleted. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4170,12 +4022,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4227,12 +4076,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4274,12 +4120,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// request would look something like this: POST
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> set of labels to be set. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4311,12 +4154,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// request would look something like this: POST
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> set of labels to be set. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4360,12 +4200,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4419,12 +4256,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4466,12 +4300,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// request would look something like this: PUT
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> set of labels to be added. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4503,12 +4334,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// request would look something like this: PUT
         /// /v2/entity/uniqueAttribute/type/aType?attr:aTypeAttribute=someValue.
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="body"> set of labels to be added. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4552,12 +4380,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4611,12 +4436,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="typeName"> The name of the type. </param>
+        /// <param name="typeName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="attribute">
-        /// The qualified name of the entity. (This is only an example. qualifiedName can
-        /// be changed to other unique attributes)
-        /// </param>
+        /// <param name="attribute"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="typeName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="typeName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -4642,8 +4464,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Move existing entities to the target collection. </summary>
-        /// <param name="collectionId"> The collection where entities will be moved to. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="MoveEntitiesConfig"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="collectionId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='MoveEntitiesToCollectionAsync(string,MoveEntitiesConfig,CancellationToken)']/*" />
@@ -4659,8 +4481,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Move existing entities to the target collection. </summary>
-        /// <param name="collectionId"> The collection where entities will be moved to. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="MoveEntitiesConfig"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="collectionId"/> or <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Entity.xml" path="doc/members/member[@name='MoveEntitiesToCollection(string,MoveEntitiesConfig,CancellationToken)']/*" />
@@ -4690,7 +4512,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="collectionId"> The collection where entities will be moved to. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="collectionId"/> or <paramref name="content"/> is null. </exception>
@@ -4731,7 +4553,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="collectionId"> The collection where entities will be moved to. </param>
+        /// <param name="collectionId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="collectionId"/> or <paramref name="content"/> is null. </exception>

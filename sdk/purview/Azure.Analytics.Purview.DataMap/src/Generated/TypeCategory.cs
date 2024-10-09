@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Type Category. </summary>
+    /// <summary> The TypeCategory. </summary>
     public readonly partial struct TypeCategory : IEquatable<TypeCategory>
     {
         private readonly string _value;
@@ -33,25 +33,25 @@ namespace Azure.Analytics.Purview.DataMap
         private const string RelationshipValue = "RELATIONSHIP";
         private const string TermTemplateValue = "TERM_TEMPLATE";
 
-        /// <summary> primitive. </summary>
+        /// <summary> PRIMITIVE. </summary>
         public static TypeCategory Primitive { get; } = new TypeCategory(PrimitiveValue);
-        /// <summary> object id type. </summary>
+        /// <summary> OBJECT_ID_TYPE. </summary>
         public static TypeCategory ObjectIdType { get; } = new TypeCategory(ObjectIdTypeValue);
-        /// <summary> enum. </summary>
+        /// <summary> ENUM. </summary>
         public static TypeCategory Enum { get; } = new TypeCategory(EnumValue);
-        /// <summary> struct. </summary>
+        /// <summary> STRUCT. </summary>
         public static TypeCategory Struct { get; } = new TypeCategory(StructValue);
-        /// <summary> classification. </summary>
+        /// <summary> CLASSIFICATION. </summary>
         public static TypeCategory Classification { get; } = new TypeCategory(ClassificationValue);
-        /// <summary> entity. </summary>
+        /// <summary> ENTITY. </summary>
         public static TypeCategory Entity { get; } = new TypeCategory(EntityValue);
-        /// <summary> array. </summary>
+        /// <summary> ARRAY. </summary>
         public static TypeCategory Array { get; } = new TypeCategory(ArrayValue);
-        /// <summary> map. </summary>
+        /// <summary> MAP. </summary>
         public static TypeCategory Map { get; } = new TypeCategory(MapValue);
-        /// <summary> relationship. </summary>
+        /// <summary> RELATIONSHIP. </summary>
         public static TypeCategory Relationship { get; } = new TypeCategory(RelationshipValue);
-        /// <summary> term template. </summary>
+        /// <summary> TERM_TEMPLATE. </summary>
         public static TypeCategory TermTemplate { get; } = new TypeCategory(TermTemplateValue);
         /// <summary> Determines if two <see cref="TypeCategory"/> values are the same. </summary>
         public static bool operator ==(TypeCategory left, TypeCategory right) => left.Equals(right);

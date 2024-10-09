@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Status for atlas term relationship. </summary>
+    /// <summary> The AtlasTermRelationshipStatus. </summary>
     public readonly partial struct AtlasTermRelationshipStatus : IEquatable<AtlasTermRelationshipStatus>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Analytics.Purview.DataMap
         private const string ObsoleteValue = "OBSOLETE";
         private const string OtherValue = "OTHER";
 
-        /// <summary> draft. </summary>
+        /// <summary> DRAFT. </summary>
         public static AtlasTermRelationshipStatus Draft { get; } = new AtlasTermRelationshipStatus(DraftValue);
-        /// <summary> active. </summary>
+        /// <summary> ACTIVE. </summary>
         public static AtlasTermRelationshipStatus Active { get; } = new AtlasTermRelationshipStatus(ActiveValue);
-        /// <summary> deprecated. </summary>
+        /// <summary> DEPRECATED. </summary>
         public static AtlasTermRelationshipStatus Deprecated { get; } = new AtlasTermRelationshipStatus(DeprecatedValue);
-        /// <summary> obsolete. </summary>
+        /// <summary> OBSOLETE. </summary>
         public static AtlasTermRelationshipStatus Obsolete { get; } = new AtlasTermRelationshipStatus(ObsoleteValue);
-        /// <summary> other. </summary>
+        /// <summary> OTHER. </summary>
         public static AtlasTermRelationshipStatus Other { get; } = new AtlasTermRelationshipStatus(OtherValue);
         /// <summary> Determines if two <see cref="AtlasTermRelationshipStatus"/> values are the same. </summary>
         public static bool operator ==(AtlasTermRelationshipStatus left, AtlasTermRelationshipStatus right) => left.Equals(right);

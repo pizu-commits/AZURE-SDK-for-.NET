@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The basic information of the type definition. </summary>
+    /// <summary> The AtlasTypeDefHeader. </summary>
     public partial class AtlasTypeDefHeader
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasTypeDefHeader"/>. </summary>
-        /// <param name="category"> The enum of type category. </param>
-        /// <param name="guid"> The GUID of the type definition. </param>
-        /// <param name="name"> The name of the type definition. </param>
+        /// <param name="category"></param>
+        /// <param name="guid"></param>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasTypeDefHeader(TypeCategory? category, string guid, string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The enum of type category. </summary>
+        /// <summary> Gets the category. </summary>
         public TypeCategory? Category { get; }
-        /// <summary> The GUID of the type definition. </summary>
+        /// <summary> Gets the guid. </summary>
         public string Guid { get; }
-        /// <summary> The name of the type definition. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
     }
 }

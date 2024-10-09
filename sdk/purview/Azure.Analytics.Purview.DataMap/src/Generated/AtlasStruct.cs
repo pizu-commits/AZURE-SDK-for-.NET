@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// Captures details of struct contents. Not instantiated directly, used only via
-    /// AtlasEntity, AtlasClassification.
-    /// </summary>
+    /// <summary> The AtlasStruct. </summary>
     public partial class AtlasStruct
     {
         /// <summary>
@@ -55,9 +52,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasStruct"/>. </summary>
-        /// <param name="attributes"> The attributes of the struct. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
+        /// <param name="attributes"></param>
+        /// <param name="typeName"></param>
+        /// <param name="lastModifiedTS"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasStruct(IDictionary<string, BinaryData> attributes, string typeName, string lastModifiedTS, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,7 +65,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary>
-        /// The attributes of the struct.
+        /// Gets the attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -98,9 +95,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> Attributes { get; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
     }
 }

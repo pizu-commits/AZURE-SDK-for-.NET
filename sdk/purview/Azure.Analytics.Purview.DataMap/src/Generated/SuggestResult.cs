@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The result item of the search suggest. </summary>
+    /// <summary> The SuggestResult. </summary>
     public partial class SuggestResult
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SuggestResult"/>. </summary>
-        /// <param name="value"> The result value. </param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SuggestResult(IReadOnlyList<SuggestResultValue> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The result value. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<SuggestResultValue> Value { get; }
     }
 }

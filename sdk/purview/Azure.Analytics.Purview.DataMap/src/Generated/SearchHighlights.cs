@@ -10,12 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// A highlight list that consists of index fields id ,qualifiedName, name,
-    /// description, entityType. When the keyword appears in those fields, the value of
-    /// the field, attached with emphasis mark, is returned as an element of
-    /// @search.highlights.
-    /// </summary>
+    /// <summary> The SearchHighlights. </summary>
     public partial class SearchHighlights
     {
         /// <summary>
@@ -61,11 +56,11 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchHighlights"/>. </summary>
-        /// <param name="id"> Id. </param>
-        /// <param name="qualifiedName"> Qualified name. </param>
-        /// <param name="name"> Name. </param>
-        /// <param name="description"> Description. </param>
-        /// <param name="entityType"> Entity type. </param>
+        /// <param name="id"></param>
+        /// <param name="qualifiedName"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="entityType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SearchHighlights(IReadOnlyList<string> id, IReadOnlyList<string> qualifiedName, IReadOnlyList<string> name, IReadOnlyList<string> description, IReadOnlyList<string> entityType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,15 +72,15 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Id. </summary>
+        /// <summary> Gets the id. </summary>
         public IReadOnlyList<string> Id { get; }
-        /// <summary> Qualified name. </summary>
+        /// <summary> Gets the qualified name. </summary>
         public IReadOnlyList<string> QualifiedName { get; }
-        /// <summary> Name. </summary>
+        /// <summary> Gets the name. </summary>
         public IReadOnlyList<string> Name { get; }
-        /// <summary> Description. </summary>
+        /// <summary> Gets the description. </summary>
         public IReadOnlyList<string> Description { get; }
-        /// <summary> Entity type. </summary>
+        /// <summary> Gets the entity type. </summary>
         public IReadOnlyList<string> EntityType { get; }
     }
 }

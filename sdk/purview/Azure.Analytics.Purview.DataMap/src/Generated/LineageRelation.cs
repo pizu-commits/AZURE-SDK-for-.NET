@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The lineage relation with GUID of the from and to entity. </summary>
+    /// <summary> The LineageRelation. </summary>
     public partial class LineageRelation
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="LineageRelation"/>. </summary>
-        /// <param name="fromEntityId"> The GUID of from-entity. </param>
-        /// <param name="relationshipId"> The GUID of relationship. </param>
-        /// <param name="toEntityId"> The GUID of to-entity. </param>
+        /// <param name="fromEntityId"></param>
+        /// <param name="relationshipId"></param>
+        /// <param name="toEntityId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LineageRelation(string fromEntityId, string relationshipId, string toEntityId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of from-entity. </summary>
+        /// <summary> Gets the from entity id. </summary>
         public string FromEntityId { get; }
-        /// <summary> The GUID of relationship. </summary>
+        /// <summary> Gets the relationship id. </summary>
         public string RelationshipId { get; }
-        /// <summary> The GUID of to-entity. </summary>
+        /// <summary> Gets the to entity id. </summary>
         public string ToEntityId { get; }
     }
 }

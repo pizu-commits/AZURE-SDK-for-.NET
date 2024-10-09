@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// An instance of a classification; it doesn't have an identity, this object
-    /// exists only when associated with an entity.
-    /// </summary>
+    /// <summary> The AtlasClassification. </summary>
     public partial class AtlasClassification
     {
         /// <summary>
@@ -56,16 +53,13 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasClassification"/>. </summary>
-        /// <param name="attributes"> The attributes of the struct. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="entityGuid"> The GUID of the entity. </param>
-        /// <param name="entityStatus">
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </param>
-        /// <param name="removePropagationsOnEntityDelete"> Determines if propagations will be removed on entity deletion. </param>
-        /// <param name="validityPeriods"> An array of time boundaries indicating validity periods. </param>
+        /// <param name="attributes"></param>
+        /// <param name="typeName"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="entityGuid"></param>
+        /// <param name="entityStatus"></param>
+        /// <param name="removePropagationsOnEntityDelete"></param>
+        /// <param name="validityPeriods"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasClassification(IDictionary<string, BinaryData> attributes, string typeName, string lastModifiedTS, string entityGuid, EntityStatus? entityStatus, bool? removePropagationsOnEntityDelete, IList<TimeBoundary> validityPeriods, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,7 +74,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary>
-        /// The attributes of the struct.
+        /// Gets the attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -110,20 +104,17 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> Attributes { get; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
-        /// <summary> The GUID of the entity. </summary>
+        /// <summary> Gets or sets the entity guid. </summary>
         public string EntityGuid { get; set; }
-        /// <summary>
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </summary>
+        /// <summary> Gets or sets the entity status. </summary>
         public EntityStatus? EntityStatus { get; set; }
-        /// <summary> Determines if propagations will be removed on entity deletion. </summary>
+        /// <summary> Gets or sets the remove propagations on entity delete. </summary>
         public bool? RemovePropagationsOnEntityDelete { get; set; }
-        /// <summary> An array of time boundaries indicating validity periods. </summary>
+        /// <summary> Gets the validity periods. </summary>
         public IList<TimeBoundary> ValidityPeriods { get; }
     }
 }

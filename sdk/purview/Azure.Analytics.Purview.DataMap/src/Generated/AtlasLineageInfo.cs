@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The lineage information. </summary>
+    /// <summary> The AtlasLineageInfo. </summary>
     public partial class AtlasLineageInfo
     {
         /// <summary>
@@ -55,15 +55,15 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasLineageInfo"/>. </summary>
-        /// <param name="baseEntityGuid"> The GUID of the base entity. </param>
-        /// <param name="guidEntityMap"> The GUID entity map. </param>
-        /// <param name="widthCounts"> The entity count in specific direction. </param>
-        /// <param name="lineageDepth"> The depth of lineage. </param>
-        /// <param name="lineageWidth"> The width of lineage. </param>
-        /// <param name="childrenCount"> The number of children node. </param>
-        /// <param name="lineageDirection"> The enum of lineage direction. </param>
-        /// <param name="parentRelations"> An array of parentRelations relations. </param>
-        /// <param name="relations"> An array of lineage relations. </param>
+        /// <param name="baseEntityGuid"></param>
+        /// <param name="guidEntityMap"></param>
+        /// <param name="widthCounts"></param>
+        /// <param name="lineageDepth"></param>
+        /// <param name="lineageWidth"></param>
+        /// <param name="childrenCount"></param>
+        /// <param name="lineageDirection"></param>
+        /// <param name="parentRelations"></param>
+        /// <param name="relations"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasLineageInfo(string baseEntityGuid, IReadOnlyDictionary<string, AtlasEntityHeader> guidEntityMap, IReadOnlyDictionary<string, IDictionary<string, BinaryData>> widthCounts, int? lineageDepth, int? lineageWidth, int? childrenCount, LineageDirection? lineageDirection, IReadOnlyList<ParentRelation> parentRelations, IReadOnlyList<LineageRelation> relations, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,12 +79,12 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the base entity. </summary>
+        /// <summary> Gets the base entity guid. </summary>
         public string BaseEntityGuid { get; }
-        /// <summary> The GUID entity map. </summary>
+        /// <summary> Gets the guid entity map. </summary>
         public IReadOnlyDictionary<string, AtlasEntityHeader> GuidEntityMap { get; }
         /// <summary>
-        /// The entity count in specific direction.
+        /// Gets the width counts
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -114,17 +114,17 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IReadOnlyDictionary<string, IDictionary<string, BinaryData>> WidthCounts { get; }
-        /// <summary> The depth of lineage. </summary>
+        /// <summary> Gets the lineage depth. </summary>
         public int? LineageDepth { get; }
-        /// <summary> The width of lineage. </summary>
+        /// <summary> Gets the lineage width. </summary>
         public int? LineageWidth { get; }
-        /// <summary> The number of children node. </summary>
+        /// <summary> Gets the children count. </summary>
         public int? ChildrenCount { get; }
-        /// <summary> The enum of lineage direction. </summary>
+        /// <summary> Gets the lineage direction. </summary>
         public LineageDirection? LineageDirection { get; }
-        /// <summary> An array of parentRelations relations. </summary>
+        /// <summary> Gets the parent relations. </summary>
         public IReadOnlyList<ParentRelation> ParentRelations { get; }
-        /// <summary> An array of lineage relations. </summary>
+        /// <summary> Gets the relations. </summary>
         public IReadOnlyList<LineageRelation> Relations { get; }
     }
 }

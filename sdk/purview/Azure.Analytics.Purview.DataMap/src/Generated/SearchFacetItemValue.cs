@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The content of a search facet result item. </summary>
+    /// <summary> The SearchFacetItemValue. </summary>
     public partial class SearchFacetItemValue
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SearchFacetItemValue"/>. </summary>
-        /// <param name="count"> The count of the facet item. </param>
-        /// <param name="value"> The name of the facet item. </param>
+        /// <param name="count"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SearchFacetItemValue(int? count, string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The count of the facet item. </summary>
+        /// <summary> Gets the count. </summary>
         public int? Count { get; }
-        /// <summary> The name of the facet item. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The payload of suggest request. </summary>
+    /// <summary> The SuggestConfig. </summary>
     public partial class SuggestConfig
     {
         /// <summary>
@@ -51,17 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="SuggestConfig"/>. </summary>
-        /// <param name="keywords">
-        /// The keywords applied to all fields that support suggest operation. It must be
-        /// at least 1 character, and no more than 100 characters. In the index schema we
-        /// defined a default suggester which lists all the supported fields and specifies
-        /// a search mode.
-        /// </param>
-        /// <param name="limit">
-        /// The number of suggestions we hope to return. The default value is 5. The value
-        /// must be a number between 1 and 100.
-        /// </param>
-        /// <param name="filter"> The filter for the search. </param>
+        /// <param name="keywords"></param>
+        /// <param name="limit"></param>
+        /// <param name="filter"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SuggestConfig(string keywords, int? limit, BinaryData filter, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,20 +63,12 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// The keywords applied to all fields that support suggest operation. It must be
-        /// at least 1 character, and no more than 100 characters. In the index schema we
-        /// defined a default suggester which lists all the supported fields and specifies
-        /// a search mode.
-        /// </summary>
+        /// <summary> Gets or sets the keywords. </summary>
         public string Keywords { get; set; }
-        /// <summary>
-        /// The number of suggestions we hope to return. The default value is 5. The value
-        /// must be a number between 1 and 100.
-        /// </summary>
+        /// <summary> Gets or sets the limit. </summary>
         public int? Limit { get; set; }
         /// <summary>
-        /// The filter for the search.
+        /// Gets or sets the filter
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The result of the search result. </summary>
+    /// <summary> The QueryResult. </summary>
     public partial class QueryResult
     {
         /// <summary>
@@ -52,18 +52,11 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="QueryResult"/>. </summary>
-        /// <param name="searchCount">
-        /// The total number of search results (not the number of documents in a single
-        /// page).
-        /// </param>
-        /// <param name="searchCountApproximate"> 'True' if the '@search.count' is an approximate value and vise versa. </param>
-        /// <param name="continuationToken"> The token used to get next batch of data. Absent if there's no more data. </param>
-        /// <param name="searchFacets">
-        /// A facet list that consists of index fields assetType ,classification,
-        /// contactId, and label. When the facet is specified in the request, the value of
-        /// the facet is returned as an element of @search.facets.
-        /// </param>
-        /// <param name="value"> Search result value. </param>
+        /// <param name="searchCount"></param>
+        /// <param name="searchCountApproximate"></param>
+        /// <param name="continuationToken"></param>
+        /// <param name="searchFacets"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal QueryResult(int? searchCount, bool? searchCountApproximate, string continuationToken, SearchFacetResultValue searchFacets, IReadOnlyList<SearchResultValue> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,22 +68,15 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// The total number of search results (not the number of documents in a single
-        /// page).
-        /// </summary>
+        /// <summary> Gets the search count. </summary>
         public int? SearchCount { get; }
-        /// <summary> 'True' if the '@search.count' is an approximate value and vise versa. </summary>
+        /// <summary> Gets the search count approximate. </summary>
         public bool? SearchCountApproximate { get; }
-        /// <summary> The token used to get next batch of data. Absent if there's no more data. </summary>
+        /// <summary> Gets the continuation token. </summary>
         public string ContinuationToken { get; }
-        /// <summary>
-        /// A facet list that consists of index fields assetType ,classification,
-        /// contactId, and label. When the facet is specified in the request, the value of
-        /// the facet is returned as an element of @search.facets.
-        /// </summary>
+        /// <summary> Gets the search facets. </summary>
         public SearchFacetResultValue SearchFacets { get; }
-        /// <summary> Search result value. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<SearchResultValue> Value { get; }
     }
 }

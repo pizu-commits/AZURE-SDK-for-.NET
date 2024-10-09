@@ -10,46 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary>
-    /// AtlasRelationshipDef is a TypeDef that defines a relationship.
-    /// As with other typeDefs the AtlasRelationshipDef has a name. Once created the
-    /// RelationshipDef has a guid.
-    /// The name and the guid are the 2 ways that the
-    /// RelationshipDef is identified.
-    /// RelationshipDefs have 2 ends, each of which
-    /// specify cardinality, an EntityDef type name and name and optionally
-    /// whether the
-    /// end is a container.
-    /// RelationshipDefs can have AttributeDefs - though only
-    /// primitive types are allowed.
-    /// RelationshipDefs have a relationshipCategory
-    /// specifying the UML type of relationship required
-    /// The way EntityDefs and
-    /// RelationshipDefs are intended to be used is that EntityDefs will define
-    /// AttributeDefs these AttributeDefs
-    /// will not specify an EntityDef type name as
-    /// their types.
-    /// RelationshipDefs introduce new attributes to the entity
-    /// instances. For example
-    /// EntityDef A might have attributes attr1,attr2,attr3
-    ///
-    /// EntityDef B might have attributes attr4,attr5,attr6
-    /// RelationshipDef
-    /// AtoB might define 2 ends
-    ///
-    /// end1:  type A, name attr7
-    /// end2:  type B, name attr8
-    ///
-    /// When an instance of EntityDef A is created, it
-    /// will have attributes attr1,attr2,attr3,attr7
-    /// When an instance of EntityDef
-    /// B is created, it will have attributes attr4,attr5,attr6,attr8
-    ///
-    /// In this way
-    /// relationshipDefs can be authored separately from entityDefs and can inject
-    /// relationship attributes into
-    /// the entity instances
-    /// </summary>
+    /// <summary> The AtlasRelationshipDef. </summary>
     public partial class AtlasRelationshipDef
     {
         /// <summary>
@@ -92,44 +53,25 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasRelationshipDef"/>. </summary>
-        /// <param name="category"> The enum of type category. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="dateFormatter"> The date format. </param>
-        /// <param name="description"> The description of the type definition. </param>
-        /// <param name="guid"> The GUID of the type definition. </param>
-        /// <param name="name"> The name of the type definition. </param>
-        /// <param name="options"> The options for the type definition. </param>
-        /// <param name="serviceType"> The service type. </param>
-        /// <param name="typeVersion"> The version of the type. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="version"> The version of the record. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="attributeDefs"> An array of attribute definitions. </param>
-        /// <param name="endDef1">
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </param>
-        /// <param name="endDef2">
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </param>
-        /// <param name="relationshipCategory">
-        /// The Relationship category determines the style of relationship around
-        /// containment and lifecycle.
-        /// UML terminology is used for the values.
-        /// ASSOCIATION is a relationship with no containment.
-        /// COMPOSITION and AGGREGATION are containment relationships.
-        /// The difference being in the lifecycles of the container and its children.
-        /// In the COMPOSITION case, the children cannot exist without the container.
-        /// For AGGREGATION, the life cycles of the container and children are totally independent.
-        /// </param>
-        /// <param name="relationshipLabel"> The label of the relationship. </param>
+        /// <param name="category"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="dateFormatter"></param>
+        /// <param name="description"></param>
+        /// <param name="guid"></param>
+        /// <param name="name"></param>
+        /// <param name="options"></param>
+        /// <param name="serviceType"></param>
+        /// <param name="typeVersion"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="version"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="attributeDefs"></param>
+        /// <param name="endDef1"></param>
+        /// <param name="endDef2"></param>
+        /// <param name="relationshipCategory"></param>
+        /// <param name="relationshipLabel"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasRelationshipDef(TypeCategory? category, long? createTime, string createdBy, AtlasDateFormat dateFormatter, string description, string guid, string name, IDictionary<string, string> options, string serviceType, string typeVersion, long? updateTime, string updatedBy, long? version, string lastModifiedTS, IList<AtlasAttributeDef> attributeDefs, AtlasRelationshipEndDef endDef1, AtlasRelationshipEndDef endDef2, RelationshipCategory? relationshipCategory, string relationshipLabel, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -155,62 +97,43 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The enum of type category. </summary>
+        /// <summary> Gets or sets the category. </summary>
         public TypeCategory? Category { get; set; }
-        /// <summary> The created time of the record. </summary>
+        /// <summary> Gets or sets the create time. </summary>
         public long? CreateTime { get; set; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets or sets the created by. </summary>
         public string CreatedBy { get; set; }
-        /// <summary> The date format. </summary>
+        /// <summary> Gets or sets the date formatter. </summary>
         public AtlasDateFormat DateFormatter { get; set; }
-        /// <summary> The description of the type definition. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> The GUID of the type definition. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> The name of the type definition. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The options for the type definition. </summary>
+        /// <summary> Gets the options. </summary>
         public IDictionary<string, string> Options { get; }
-        /// <summary> The service type. </summary>
+        /// <summary> Gets or sets the service type. </summary>
         public string ServiceType { get; set; }
-        /// <summary> The version of the type. </summary>
+        /// <summary> Gets or sets the type version. </summary>
         public string TypeVersion { get; set; }
-        /// <summary> The update time of the record. </summary>
+        /// <summary> Gets or sets the update time. </summary>
         public long? UpdateTime { get; set; }
-        /// <summary> The user who updated the record. </summary>
+        /// <summary> Gets or sets the updated by. </summary>
         public string UpdatedBy { get; set; }
-        /// <summary> The version of the record. </summary>
+        /// <summary> Gets or sets the version. </summary>
         public long? Version { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
-        /// <summary> An array of attribute definitions. </summary>
+        /// <summary> Gets the attribute defs. </summary>
         public IList<AtlasAttributeDef> AttributeDefs { get; }
-        /// <summary>
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </summary>
+        /// <summary> Gets or sets the end def 1. </summary>
         public AtlasRelationshipEndDef EndDef1 { get; set; }
-        /// <summary>
-        /// The relationshipEndDef represents an end of the relationship. The end of the
-        /// relationship is defined by a type, an
-        /// attribute name, cardinality and whether
-        /// it  is the container end of the relationship.
-        /// </summary>
+        /// <summary> Gets or sets the end def 2. </summary>
         public AtlasRelationshipEndDef EndDef2 { get; set; }
-        /// <summary>
-        /// The Relationship category determines the style of relationship around
-        /// containment and lifecycle.
-        /// UML terminology is used for the values.
-        /// ASSOCIATION is a relationship with no containment.
-        /// COMPOSITION and AGGREGATION are containment relationships.
-        /// The difference being in the lifecycles of the container and its children.
-        /// In the COMPOSITION case, the children cannot exist without the container.
-        /// For AGGREGATION, the life cycles of the container and children are totally independent.
-        /// </summary>
+        /// <summary> Gets or sets the relationship category. </summary>
         public RelationshipCategory? RelationshipCategory { get; set; }
-        /// <summary> The label of the relationship. </summary>
+        /// <summary> Gets or sets the relationship label. </summary>
         public string RelationshipLabel { get; set; }
     }
 }

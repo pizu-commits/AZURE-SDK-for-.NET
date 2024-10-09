@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The payload of autocomplete request. </summary>
+    /// <summary> The AutoCompleteConfig. </summary>
     public partial class AutoCompleteConfig
     {
         /// <summary>
@@ -51,15 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AutoCompleteConfig"/>. </summary>
-        /// <param name="keywords">
-        /// The keywords applied to all fields that support autocomplete operation. It must
-        /// be at least 1 character, and no more than 100 characters.
-        /// </param>
-        /// <param name="limit">
-        /// The number of autocomplete results we hope to return. The default value is 50.
-        /// The value must be a number between 1 and 100.
-        /// </param>
-        /// <param name="filter"> The filter for the autocomplete request. </param>
+        /// <param name="keywords"></param>
+        /// <param name="limit"></param>
+        /// <param name="filter"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AutoCompleteConfig(string keywords, int? limit, BinaryData filter, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,18 +63,12 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// The keywords applied to all fields that support autocomplete operation. It must
-        /// be at least 1 character, and no more than 100 characters.
-        /// </summary>
+        /// <summary> Gets or sets the keywords. </summary>
         public string Keywords { get; set; }
-        /// <summary>
-        /// The number of autocomplete results we hope to return. The default value is 50.
-        /// The value must be a number between 1 and 100.
-        /// </summary>
+        /// <summary> Gets or sets the limit. </summary>
         public int? Limit { get; set; }
         /// <summary>
-        /// The filter for the autocomplete request.
+        /// Gets or sets the filter
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

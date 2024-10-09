@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Type for sorting. </summary>
+    /// <summary> The AtlasSortType. </summary>
     public readonly partial struct AtlasSortType : IEquatable<AtlasSortType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Analytics.Purview.DataMap
         private const string AscendValue = "ASC";
         private const string DescendValue = "DESC";
 
-        /// <summary> No sorting order. </summary>
+        /// <summary> NONE. </summary>
         public static AtlasSortType None { get; } = new AtlasSortType(NoneValue);
-        /// <summary> Use ascending order for sorting. </summary>
+        /// <summary> ASC. </summary>
         public static AtlasSortType Ascend { get; } = new AtlasSortType(AscendValue);
-        /// <summary> Use descending order for sorting. </summary>
+        /// <summary> DESC. </summary>
         public static AtlasSortType Descend { get; } = new AtlasSortType(DescendValue);
         /// <summary> Determines if two <see cref="AtlasSortType"/> values are the same. </summary>
         public static bool operator ==(AtlasSortType left, AtlasSortType right) => left.Equals(right);

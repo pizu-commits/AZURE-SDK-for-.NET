@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The lineage parents relation with GUID of the parent entity and to child entity. </summary>
+    /// <summary> The ParentRelation. </summary>
     public partial class ParentRelation
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="ParentRelation"/>. </summary>
-        /// <param name="childEntityId"> The GUID of child entity. </param>
-        /// <param name="relationshipId"> The GUID of relationship. </param>
-        /// <param name="parentEntityId"> The GUID of parent entity. </param>
+        /// <param name="childEntityId"></param>
+        /// <param name="relationshipId"></param>
+        /// <param name="parentEntityId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ParentRelation(string childEntityId, string relationshipId, string parentEntityId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of child entity. </summary>
+        /// <summary> Gets the child entity id. </summary>
         public string ChildEntityId { get; }
-        /// <summary> The GUID of relationship. </summary>
+        /// <summary> Gets the relationship id. </summary>
         public string RelationshipId { get; }
-        /// <summary> The GUID of parent entity. </summary>
+        /// <summary> Gets the parent entity id. </summary>
         public string ParentEntityId { get; }
     }
 }

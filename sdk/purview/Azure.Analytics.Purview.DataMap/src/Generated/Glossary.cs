@@ -41,7 +41,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// <param name="pipeline"> The HTTP pipeline for sending and receiving REST requests and responses. </param>
         /// <param name="tokenCredential"> The token credential to copy. </param>
         /// <param name="endpoint"> The <see cref="Uri"/> to use. </param>
-        /// <param name="apiVersion"> The API version to use for this operation. </param>
+        /// <param name="apiVersion"> The <see cref="string"/> to use. </param>
         internal Glossary(ClientDiagnostics clientDiagnostics, HttpPipeline pipeline, TokenCredential tokenCredential, Uri endpoint, string apiVersion)
         {
             ClientDiagnostics = clientDiagnostics;
@@ -57,10 +57,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// separately using 'GET /datamap/api/atlas/v2/glossary/{glossaryId}/terms'
         /// and 'GET '/datamap/api/atlas/v2/glossary/{glossaryId}/categories'.
         /// </summary>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='BatchGetAsync(int?,int?,string,bool?,CancellationToken)']/*" />
         public virtual async Task<Response<IReadOnlyList<AtlasGlossary>>> BatchGetAsync(int? limit = null, int? offset = null, string sort = null, bool? ignoreTermsAndCategories = null, CancellationToken cancellationToken = default)
@@ -84,10 +84,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// separately using 'GET /datamap/api/atlas/v2/glossary/{glossaryId}/terms'
         /// and 'GET '/datamap/api/atlas/v2/glossary/{glossaryId}/categories'.
         /// </summary>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='BatchGet(int?,int?,string,bool?,CancellationToken)']/*" />
         public virtual Response<IReadOnlyList<AtlasGlossary>> BatchGet(int? limit = null, int? offset = null, string sort = null, bool? ignoreTermsAndCategories = null, CancellationToken cancellationToken = default)
@@ -123,10 +123,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -165,10 +165,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -190,7 +190,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a glossary. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasGlossary"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateAsync(AtlasGlossary,CancellationToken)']/*" />
@@ -205,7 +205,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a glossary. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasGlossary"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='Create(AtlasGlossary,CancellationToken)']/*" />
@@ -298,7 +298,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create glossary category in bulk. </summary>
-        /// <param name="body"> An array of glossary category definitions to be created. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasGlossaryCategory"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateCategoriesAsync(IEnumerable{AtlasGlossaryCategory},CancellationToken)']/*" />
@@ -321,7 +321,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create glossary category in bulk. </summary>
-        /// <param name="body"> An array of glossary category definitions to be created. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasGlossaryCategory"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateCategories(IEnumerable{AtlasGlossaryCategory},CancellationToken)']/*" />
@@ -422,7 +422,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a glossary category. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryCategory"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateCategoryAsync(AtlasGlossaryCategory,CancellationToken)']/*" />
@@ -437,7 +437,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a glossary category. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryCategory"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateCategory(AtlasGlossaryCategory,CancellationToken)']/*" />
@@ -530,7 +530,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get specific glossary category by its GUID. </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -545,7 +545,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get specific glossary category by its GUID. </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -574,7 +574,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -614,7 +614,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -640,8 +640,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update the given glossary category by its GUID. </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryCategory"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -658,8 +658,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update the given glossary category by its GUID. </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryCategory"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -690,7 +690,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="content"/> is null. </exception>
@@ -732,7 +732,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="content"/> is null. </exception>
@@ -770,7 +770,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -806,7 +806,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -835,11 +835,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// Update the glossary category partially. So far we only supports partial
         /// updating shortDescription and longDescription for category.
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="body">
-        /// A map containing keys as attribute names and values as corresponding attribute
-        /// values for partial update.
-        /// </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -859,11 +856,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// Update the glossary category partially. So far we only supports partial
         /// updating shortDescription and longDescription for category.
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="body">
-        /// A map containing keys as attribute names and values as corresponding attribute
-        /// values for partial update.
-        /// </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -895,7 +889,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="content"/> is null. </exception>
@@ -938,7 +932,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> or <paramref name="content"/> is null. </exception>
@@ -969,10 +963,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get all related categories (parent and children). Limit, offset, and sort
         /// parameters are currently not being enabled and won't work even they are passed.
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1010,10 +1004,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get all related categories (parent and children). Limit, offset, and sort
         /// parameters are currently not being enabled and won't work even they are passed.
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1063,10 +1057,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1107,10 +1101,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1136,10 +1130,10 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get all terms associated with the specific category. </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1162,10 +1156,10 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get all terms associated with the specific category. </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1202,10 +1196,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1245,10 +1239,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="categoryId"> The globally unique identifier of the category. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="categoryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="categoryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="categoryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1274,8 +1268,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a glossary term. </summary>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryTerm"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateTermAsync(AtlasGlossaryTerm,bool?,CancellationToken)']/*" />
@@ -1290,8 +1284,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create a glossary term. </summary>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryTerm"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateTerm(AtlasGlossaryTerm,bool?,CancellationToken)']/*" />
@@ -1321,7 +1315,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -1361,7 +1355,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -1386,7 +1380,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get a specific glossary term by its GUID. </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1401,7 +1395,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get a specific glossary term by its GUID. </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1430,7 +1424,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1470,7 +1464,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1496,9 +1490,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update the given glossary term by its GUID. </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryTerm"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1515,9 +1509,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update the given glossary term by its GUID. </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasGlossaryTerm"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1548,9 +1542,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1591,9 +1585,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1630,7 +1624,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1666,7 +1660,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1695,12 +1689,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// Update the glossary term partially. So far we only supports partial updating
         /// shortDescription, longDescription, abbreviation, usage and status for term.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body">
-        /// A map containing keys as attribute names and values as corresponding attribute
-        /// values to be updated.
-        /// </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1720,12 +1711,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// Update the glossary term partially. So far we only supports partial updating
         /// shortDescription, longDescription, abbreviation, usage and status for term.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body">
-        /// A map containing keys as attribute names and values as corresponding attribute
-        /// values to be updated.
-        /// </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1757,9 +1745,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1801,9 +1789,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1830,8 +1818,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create glossary terms in bulk. </summary>
-        /// <param name="body"> An array of glossary term definitions to be created in bulk. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasGlossaryTerm"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateTermsAsync(IEnumerable{AtlasGlossaryTerm},bool?,CancellationToken)']/*" />
@@ -1854,8 +1842,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Create glossary terms in bulk. </summary>
-        /// <param name="body"> An array of glossary term definitions to be created in bulk. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasGlossaryTerm"/> to use. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <include file="Docs/Glossary.xml" path="doc/members/member[@name='CreateTerms(IEnumerable{AtlasGlossaryTerm},bool?,CancellationToken)']/*" />
@@ -1893,7 +1881,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -1933,7 +1921,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="includeTermHierarchy"> Whether include term hierarchy. </param>
+        /// <param name="includeTermHierarchy"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -1961,10 +1949,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// List all related objects assigned with the specified term. Recommend using
         /// limit/offset to get pagination result.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1990,10 +1978,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// List all related objects assigned with the specified term. Recommend using
         /// limit/offset to get pagination result.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2031,10 +2019,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2075,10 +2063,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2111,8 +2099,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// operation](https://learn.microsoft.com/en-us/rest/api/purview/datamapdataplane/entity/bulk-create-or-update?tabs=HTTP)
         /// is an alternative to assign a term to multiple entities.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body"> An array of related object IDs to which the term has to be associated. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasRelatedObjectId"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2136,8 +2124,8 @@ namespace Azure.Analytics.Purview.DataMap
         /// operation](https://learn.microsoft.com/en-us/rest/api/purview/datamapdataplane/entity/bulk-create-or-update?tabs=HTTP)
         /// is an alternative to assign a term to multiple entities.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body"> An array of related object IDs to which the term has to be associated. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasRelatedObjectId"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2173,7 +2161,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
@@ -2220,7 +2208,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
@@ -2248,8 +2236,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete the term assignment for the given list of related objects. </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body"> An array of related object IDs from which the term has to be dissociated. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasRelatedObjectId"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2266,8 +2254,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Delete the term assignment for the given list of related objects. </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="body"> An array of related object IDs from which the term has to be dissociated. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AtlasRelatedObjectId"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2298,7 +2286,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
@@ -2340,7 +2328,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> or <paramref name="content"/> is null. </exception>
@@ -2371,10 +2359,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get all related terms for a specific term by its GUID. Limit, offset, and sort
         /// parameters are currently not being enabled and won't work even they are passed.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2412,10 +2400,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get all related terms for a specific term by its GUID. Limit, offset, and sort
         /// parameters are currently not being enabled and won't work even they are passed.
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2465,10 +2453,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2509,10 +2497,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="termId"> The globally unique identifier for glossary term. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="termId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="termId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="termId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2538,7 +2526,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get a specific Glossary by its GUID. </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2553,7 +2541,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Get a specific Glossary by its GUID. </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2582,7 +2570,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2622,7 +2610,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2648,9 +2636,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update the given glossary. </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasGlossary"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2667,9 +2655,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Update the given glossary. </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="body"> Body parameter. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="AtlasGlossary"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2700,9 +2688,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2743,9 +2731,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2783,7 +2771,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2820,7 +2808,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2849,10 +2837,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get the categories belonging to a specific glossary. Recommend using
         /// limit/offset to get pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2878,10 +2866,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get the categories belonging to a specific glossary. Recommend using
         /// limit/offset to get pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2919,10 +2907,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2963,10 +2951,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -2995,10 +2983,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get the category headers belonging to a specific glossary. Recommend using
         /// limit/offset to get pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3024,10 +3012,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get the category headers belonging to a specific glossary. Recommend using
         /// limit/offset to get pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3065,10 +3053,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3109,10 +3097,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3147,7 +3135,7 @@ namespace Azure.Analytics.Purview.DataMap
         ///
         /// GET /datamap/api/atlas/v2/glossary/{glossaryId}/categories.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3171,7 +3159,7 @@ namespace Azure.Analytics.Purview.DataMap
         ///
         /// GET /datamap/api/atlas/v2/glossary/{glossaryId}/categories.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3207,7 +3195,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3254,7 +3242,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3289,12 +3277,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// Recommend
         /// using 'ignoreTermsAndCategories=true' to reduce response body size.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="body">
-        /// A map containing keys as attribute names and values as corresponding attribute
-        /// values.
-        /// </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3320,12 +3305,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// Recommend
         /// using 'ignoreTermsAndCategories=true' to reduce response body size.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="body">
-        /// A map containing keys as attribute names and values as corresponding attribute
-        /// values.
-        /// </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="body"> The <see cref="IDictionary{TKey,TValue}"/> where <c>TKey</c> is of type <see cref="string"/>, where <c>TValue</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="body"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3363,9 +3345,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3413,9 +3395,9 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="ignoreTermsAndCategories"> Whether ignore terms and categories. </param>
+        /// <param name="ignoreTermsAndCategories"> The <see cref="bool"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3445,10 +3427,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get terms belonging to a specific glossary. Recommend using limit/offset to get
         /// pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3474,10 +3456,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get terms belonging to a specific glossary. Recommend using limit/offset to get
         /// pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3515,10 +3497,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3559,10 +3541,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3591,10 +3573,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get term headers belonging to a specific glossary. Recommend using limit/offset
         /// to get pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3620,10 +3602,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// Get term headers belonging to a specific glossary. Recommend using limit/offset
         /// to get pagination result.
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3661,10 +3643,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -3705,10 +3687,10 @@ namespace Azure.Analytics.Purview.DataMap
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="glossaryId"> The globally unique identifier for glossary. </param>
-        /// <param name="limit"> The page size - by default there is no paging. </param>
-        /// <param name="offset"> The offset for pagination purpose. </param>
-        /// <param name="sort"> The sort order, ASC (default) or DESC. </param>
+        /// <param name="glossaryId"> The <see cref="string"/> to use. </param>
+        /// <param name="limit"> The <see cref="int"/>? to use. </param>
+        /// <param name="offset"> The <see cref="int"/>? to use. </param>
+        /// <param name="sort"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="glossaryId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="glossaryId"/> is an empty string, and was expected to be non-empty. </exception>

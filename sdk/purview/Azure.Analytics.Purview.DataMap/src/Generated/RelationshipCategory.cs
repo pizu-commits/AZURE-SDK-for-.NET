@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Relationship Category. </summary>
+    /// <summary> The RelationshipCategory. </summary>
     public readonly partial struct RelationshipCategory : IEquatable<RelationshipCategory>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Analytics.Purview.DataMap
         private const string AggregationValue = "AGGREGATION";
         private const string CompositionValue = "COMPOSITION";
 
-        /// <summary> association. </summary>
+        /// <summary> ASSOCIATION. </summary>
         public static RelationshipCategory Association { get; } = new RelationshipCategory(AssociationValue);
-        /// <summary> aggregation. </summary>
+        /// <summary> AGGREGATION. </summary>
         public static RelationshipCategory Aggregation { get; } = new RelationshipCategory(AggregationValue);
-        /// <summary> composition. </summary>
+        /// <summary> COMPOSITION. </summary>
         public static RelationshipCategory Composition { get; } = new RelationshipCategory(CompositionValue);
         /// <summary> Determines if two <see cref="RelationshipCategory"/> values are the same. </summary>
         public static bool operator ==(RelationshipCategory left, RelationshipCategory right) => left.Equals(right);

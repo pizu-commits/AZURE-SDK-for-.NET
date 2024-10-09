@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Business metadata to send to the service. </summary>
+    /// <summary> The BusinessMetadataOptions. </summary>
     public partial class BusinessMetadataOptions
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Analytics.Purview.DataMap
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BusinessMetadataOptions"/>. </summary>
-        /// <param name="file"> InputStream of file. </param>
+        /// <param name="file"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="file"/> is null. </exception>
         public BusinessMetadataOptions(Stream file)
         {
@@ -57,7 +57,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="BusinessMetadataOptions"/>. </summary>
-        /// <param name="file"> InputStream of file. </param>
+        /// <param name="file"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BusinessMetadataOptions(Stream file, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Analytics.Purview.DataMap
         {
         }
 
-        /// <summary> InputStream of file. </summary>
+        /// <summary> Gets the file. </summary>
         public Stream File { get; }
     }
 }

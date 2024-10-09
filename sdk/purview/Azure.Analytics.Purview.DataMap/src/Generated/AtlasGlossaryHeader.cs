@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The glossary header with basic information. </summary>
+    /// <summary> The AtlasGlossaryHeader. </summary>
     public partial class AtlasGlossaryHeader
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasGlossaryHeader"/>. </summary>
-        /// <param name="displayText"> The display text. </param>
-        /// <param name="glossaryGuid"> The GUID of the glossary. </param>
-        /// <param name="relationGuid"> The GUID of the relationship. </param>
+        /// <param name="displayText"></param>
+        /// <param name="glossaryGuid"></param>
+        /// <param name="relationGuid"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasGlossaryHeader(string displayText, string glossaryGuid, string relationGuid, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary> The GUID of the glossary. </summary>
+        /// <summary> Gets or sets the glossary guid. </summary>
         public string GlossaryGuid { get; set; }
-        /// <summary> The GUID of the relationship. </summary>
+        /// <summary> Gets or sets the relation guid. </summary>
         public string RelationGuid { get; set; }
     }
 }

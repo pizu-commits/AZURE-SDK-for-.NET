@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The date format. </summary>
+    /// <summary> The AtlasDateFormat. </summary>
     public partial class AtlasDateFormat
     {
         /// <summary>
@@ -52,15 +52,15 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasDateFormat"/>. </summary>
-        /// <param name="availableLocales"> An array of available locales. </param>
-        /// <param name="calendar"> Calendar. </param>
-        /// <param name="dateInstance"> The date format. </param>
-        /// <param name="dateTimeInstance"> The date format. </param>
-        /// <param name="instance"> The date format. </param>
-        /// <param name="lenient"> Determines the leniency of the date format. </param>
-        /// <param name="numberFormat"> The number format. </param>
-        /// <param name="timeInstance"> The date format. </param>
-        /// <param name="timeZone"> The timezone information. </param>
+        /// <param name="availableLocales"></param>
+        /// <param name="calendar"></param>
+        /// <param name="dateInstance"></param>
+        /// <param name="dateTimeInstance"></param>
+        /// <param name="instance"></param>
+        /// <param name="lenient"></param>
+        /// <param name="numberFormat"></param>
+        /// <param name="timeInstance"></param>
+        /// <param name="timeZone"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasDateFormat(IList<string> availableLocales, float? calendar, AtlasDateFormat dateInstance, AtlasDateFormat dateTimeInstance, AtlasDateFormat instance, bool? lenient, AtlasNumberFormat numberFormat, AtlasDateFormat timeInstance, AtlasTimeZone timeZone, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,23 +76,23 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> An array of available locales. </summary>
+        /// <summary> Gets the available locales. </summary>
         public IList<string> AvailableLocales { get; }
-        /// <summary> Calendar. </summary>
+        /// <summary> Gets or sets the calendar. </summary>
         public float? Calendar { get; set; }
-        /// <summary> The date format. </summary>
+        /// <summary> Gets or sets the date instance. </summary>
         public AtlasDateFormat DateInstance { get; set; }
-        /// <summary> The date format. </summary>
+        /// <summary> Gets or sets the date time instance. </summary>
         public AtlasDateFormat DateTimeInstance { get; set; }
-        /// <summary> The date format. </summary>
+        /// <summary> Gets or sets the instance. </summary>
         public AtlasDateFormat Instance { get; set; }
-        /// <summary> Determines the leniency of the date format. </summary>
+        /// <summary> Gets or sets the lenient. </summary>
         public bool? Lenient { get; set; }
-        /// <summary> The number format. </summary>
+        /// <summary> Gets or sets the number format. </summary>
         public AtlasNumberFormat NumberFormat { get; set; }
-        /// <summary> The date format. </summary>
+        /// <summary> Gets or sets the time instance. </summary>
         public AtlasDateFormat TimeInstance { get; set; }
-        /// <summary> The timezone information. </summary>
+        /// <summary> Gets or sets the time zone. </summary>
         public AtlasTimeZone TimeZone { get; set; }
     }
 }

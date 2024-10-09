@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Reference to an object-instance of a type - like entity. </summary>
+    /// <summary> The AtlasObjectId. </summary>
     public partial class AtlasObjectId
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasObjectId"/>. </summary>
-        /// <param name="guid"> The GUID of the object. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="uniqueAttributes"> The unique attributes of the object. </param>
+        /// <param name="guid"></param>
+        /// <param name="typeName"></param>
+        /// <param name="uniqueAttributes"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasObjectId(string guid, string typeName, IDictionary<string, BinaryData> uniqueAttributes, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,12 +64,12 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the object. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
         /// <summary>
-        /// The unique attributes of the object.
+        /// Gets the unique attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

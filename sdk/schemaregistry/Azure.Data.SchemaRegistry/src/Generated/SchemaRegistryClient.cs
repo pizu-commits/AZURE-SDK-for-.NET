@@ -15,7 +15,7 @@ using Azure.Core.Pipeline;
 namespace Azure.Data.SchemaRegistry
 {
     // Data plane generated client.
-    /// <summary> SchemaRegistryClient is a client for registering and retrieving schemas from the Azure Schema Registry service. </summary>
+    /// <summary> The SchemaRegistry service client. </summary>
     public partial class SchemaRegistryClient
     {
         private static readonly string[] AuthorizationScopes = new string[] { "https://eventhubs.azure.net/.default" };
@@ -31,7 +31,7 @@ namespace Azure.Data.SchemaRegistry
         public virtual HttpPipeline Pipeline => _pipeline;
 
         /// <summary> Get a registered schema by its unique ID reference. </summary>
-        /// <param name="id"> Schema ID that uniquely identifies a schema in the registry namespace. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="accept"/> is null. </exception>
@@ -48,7 +48,7 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> Get a registered schema by its unique ID reference. </summary>
-        /// <param name="id"> Schema ID that uniquely identifies a schema in the registry namespace. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="accept"/> is null. </exception>
@@ -79,7 +79,7 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Schema ID that uniquely identifies a schema in the registry namespace. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="accept"/> is null. </exception>
@@ -120,7 +120,7 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="id"> Schema ID that uniquely identifies a schema in the registry namespace. </param>
+        /// <param name="id"> The <see cref="string"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> or <paramref name="accept"/> is null. </exception>
@@ -147,9 +147,9 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> Get specific schema versions. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaVersion"> Version number of specific schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaVersion"> The <see cref="int"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="accept"/> is null. </exception>
@@ -167,9 +167,9 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> Get specific schema versions. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaVersion"> Version number of specific schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaVersion"> The <see cref="int"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="accept"/> is null. </exception>
@@ -201,9 +201,9 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaVersion"> Version number of specific schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaVersion"> The <see cref="int"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="accept"/> is null. </exception>
@@ -245,9 +245,9 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaVersion"> Version number of specific schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaVersion"> The <see cref="int"/> to use. </param>
         /// <param name="accept"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="accept"/> is null. </exception>
@@ -275,10 +275,10 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> Get properties for existing schema. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaContent"> String representation (UTF-8) of the schema. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaContent"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="schemaContent"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -296,10 +296,10 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> Get properties for existing schema. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaContent"> String representation (UTF-8) of the schema. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaContent"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="schemaContent"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -331,10 +331,10 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -375,10 +375,10 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -405,10 +405,10 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> Register new schema. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaContent"> String representation (UTF-8) of the schema. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaContent"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="schemaContent"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -426,10 +426,10 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> Register new schema. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
-        /// <param name="schemaContent"> String representation (UTF-8) of the schema. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaContent"> The <see cref="BinaryData"/> to use. </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="schemaContent"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -461,10 +461,10 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -505,10 +505,10 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for given schema. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
+        /// <param name="contentType"> The <see cref="ContentType"/> to use. Allowed values: "application/json; serialization=Avro" | "application/json; serialization=Json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/>, <paramref name="schemaName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -607,8 +607,8 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> List schema versions. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -625,8 +625,8 @@ namespace Azure.Data.SchemaRegistry
         }
 
         /// <summary> List schema versions. </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -657,8 +657,8 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -689,8 +689,8 @@ namespace Azure.Data.SchemaRegistry
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="groupName"> Name of schema group. </param>
-        /// <param name="schemaName"> Name of schema. </param>
+        /// <param name="groupName"> The <see cref="string"/> to use. </param>
+        /// <param name="schemaName"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="groupName"/> or <paramref name="schemaName"/> is an empty string, and was expected to be non-empty. </exception>

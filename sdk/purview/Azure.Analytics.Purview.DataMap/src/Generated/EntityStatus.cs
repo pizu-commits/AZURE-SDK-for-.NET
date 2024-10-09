@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Status - can be active or deleted. </summary>
+    /// <summary> The EntityStatus. </summary>
     public readonly partial struct EntityStatus : IEquatable<EntityStatus>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Analytics.Purview.DataMap
         private const string ActiveValue = "ACTIVE";
         private const string DeletedValue = "DELETED";
 
-        /// <summary> The status is active. </summary>
+        /// <summary> ACTIVE. </summary>
         public static EntityStatus Active { get; } = new EntityStatus(ActiveValue);
-        /// <summary> The status is deleted. </summary>
+        /// <summary> DELETED. </summary>
         public static EntityStatus Deleted { get; } = new EntityStatus(DeletedValue);
         /// <summary> Determines if two <see cref="EntityStatus"/> values are the same. </summary>
         public static bool operator ==(EntityStatus left, EntityStatus right) => left.Equals(right);

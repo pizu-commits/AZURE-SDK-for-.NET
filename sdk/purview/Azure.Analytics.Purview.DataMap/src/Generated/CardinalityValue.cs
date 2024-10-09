@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Cardinality. </summary>
+    /// <summary> The CardinalityValue. </summary>
     public readonly partial struct CardinalityValue : IEquatable<CardinalityValue>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Analytics.Purview.DataMap
         private const string ListValue = "LIST";
         private const string SetValue = "SET";
 
-        /// <summary> single. </summary>
+        /// <summary> SINGLE. </summary>
         public static CardinalityValue Single { get; } = new CardinalityValue(SingleValue);
-        /// <summary> list. </summary>
+        /// <summary> LIST. </summary>
         public static CardinalityValue List { get; } = new CardinalityValue(ListValue);
-        /// <summary> set. </summary>
+        /// <summary> SET. </summary>
         public static CardinalityValue Set { get; } = new CardinalityValue(SetValue);
         /// <summary> Determines if two <see cref="CardinalityValue"/> values are the same. </summary>
         public static bool operator ==(CardinalityValue left, CardinalityValue right) => left.Equals(right);

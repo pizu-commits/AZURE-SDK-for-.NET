@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> PurviewObjectId. </summary>
+    /// <summary> The PurviewObjectId. </summary>
     public partial class PurviewObjectId
     {
         /// <summary>
@@ -53,14 +53,14 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="PurviewObjectId"/>. </summary>
-        /// <param name="guid"> The GUID of the object. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="uniqueAttributes"> The unique attributes of the object. </param>
-        /// <param name="name"> Name. </param>
-        /// <param name="displayText"> Display text. </param>
-        /// <param name="itemPath"> Item path. </param>
-        /// <param name="resourceId"> Resource Id. </param>
-        /// <param name="properties"> Dictionary of &lt;any&gt;. </param>
+        /// <param name="guid"></param>
+        /// <param name="typeName"></param>
+        /// <param name="uniqueAttributes"></param>
+        /// <param name="name"></param>
+        /// <param name="displayText"></param>
+        /// <param name="itemPath"></param>
+        /// <param name="resourceId"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PurviewObjectId(string guid, string typeName, IDictionary<string, BinaryData> uniqueAttributes, string name, string displayText, string itemPath, string resourceId, IDictionary<string, BinaryData> properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,12 +75,12 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the object. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
         /// <summary>
-        /// The unique attributes of the object.
+        /// Gets the unique attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -110,16 +110,16 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> UniqueAttributes { get; }
-        /// <summary> Name. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> Display text. </summary>
+        /// <summary> Gets or sets the display text. </summary>
         public string DisplayText { get; set; }
-        /// <summary> Item path. </summary>
+        /// <summary> Gets or sets the item path. </summary>
         public string ItemPath { get; set; }
-        /// <summary> Resource Id. </summary>
+        /// <summary> Gets or sets the resource id. </summary>
         public string ResourceId { get; set; }
         /// <summary>
-        /// Dictionary of &lt;any&gt;
+        /// Gets the properties
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Status for atlas relationship. </summary>
+    /// <summary> The StatusAtlasRelationship. </summary>
     public readonly partial struct StatusAtlasRelationship : IEquatable<StatusAtlasRelationship>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Analytics.Purview.DataMap
         private const string ActiveValue = "ACTIVE";
         private const string DeletedValue = "DELETED";
 
-        /// <summary> active. </summary>
+        /// <summary> ACTIVE. </summary>
         public static StatusAtlasRelationship Active { get; } = new StatusAtlasRelationship(ActiveValue);
-        /// <summary> deleted. </summary>
+        /// <summary> DELETED. </summary>
         public static StatusAtlasRelationship Deleted { get; } = new StatusAtlasRelationship(DeletedValue);
         /// <summary> Determines if two <see cref="StatusAtlasRelationship"/> values are the same. </summary>
         public static bool operator ==(StatusAtlasRelationship left, StatusAtlasRelationship right) => left.Equals(right);

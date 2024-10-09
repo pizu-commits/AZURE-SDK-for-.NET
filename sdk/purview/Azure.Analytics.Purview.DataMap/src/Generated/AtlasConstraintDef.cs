@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> class that captures details of a constraint. </summary>
+    /// <summary> The AtlasConstraintDef. </summary>
     public partial class AtlasConstraintDef
     {
         /// <summary>
@@ -52,8 +52,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasConstraintDef"/>. </summary>
-        /// <param name="params"> The parameters of the constraint definition. </param>
-        /// <param name="type"> The type of the constraint. </param>
+        /// <param name="params"></param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasConstraintDef(IDictionary<string, BinaryData> @params, string type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,7 +63,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary>
-        /// The parameters of the constraint definition.
+        /// Gets the params
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -93,7 +93,7 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> Params { get; }
-        /// <summary> The type of the constraint. </summary>
+        /// <summary> Gets or sets the type. </summary>
         public string Type { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Enum for business attribute update behavior. </summary>
+    /// <summary> The BusinessAttributeUpdateBehavior. </summary>
     public readonly partial struct BusinessAttributeUpdateBehavior : IEquatable<BusinessAttributeUpdateBehavior>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Analytics.Purview.DataMap
         private const string ReplaceValue = "replace";
         private const string MergeValue = "merge";
 
-        /// <summary> Ignore the business attribute payload for update. </summary>
+        /// <summary> ignore. </summary>
         public static BusinessAttributeUpdateBehavior Ignore { get; } = new BusinessAttributeUpdateBehavior(IgnoreValue);
-        /// <summary> Replace all the business attributes using the payload. </summary>
+        /// <summary> replace. </summary>
         public static BusinessAttributeUpdateBehavior Replace { get; } = new BusinessAttributeUpdateBehavior(ReplaceValue);
-        /// <summary> Merge the business attributes. Business attributes will not be updated if not provided. </summary>
+        /// <summary> merge. </summary>
         public static BusinessAttributeUpdateBehavior Merge { get; } = new BusinessAttributeUpdateBehavior(MergeValue);
         /// <summary> Determines if two <see cref="BusinessAttributeUpdateBehavior"/> values are the same. </summary>
         public static bool operator ==(BusinessAttributeUpdateBehavior left, BusinessAttributeUpdateBehavior right) => left.Equals(right);

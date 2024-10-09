@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The request payload for classification association. </summary>
+    /// <summary> The ClassificationAssociateConfig. </summary>
     public partial class ClassificationAssociateConfig
     {
         /// <summary>
@@ -52,11 +52,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="ClassificationAssociateConfig"/>. </summary>
-        /// <param name="classification">
-        /// An instance of a classification; it doesn't have an identity, this object
-        /// exists only when associated with an entity.
-        /// </param>
-        /// <param name="entityGuids"> The GUID of the entity. </param>
+        /// <param name="classification"></param>
+        /// <param name="entityGuids"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClassificationAssociateConfig(AtlasClassification classification, IList<string> entityGuids, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,12 +62,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary>
-        /// An instance of a classification; it doesn't have an identity, this object
-        /// exists only when associated with an entity.
-        /// </summary>
+        /// <summary> Gets or sets the classification. </summary>
         public AtlasClassification Classification { get; set; }
-        /// <summary> The GUID of the entity. </summary>
+        /// <summary> Gets the entity guids. </summary>
         public IList<string> EntityGuids { get; }
     }
 }

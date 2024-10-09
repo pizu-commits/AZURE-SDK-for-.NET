@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Rounding Mode. </summary>
+    /// <summary> The RoundingMode. </summary>
     public readonly partial struct RoundingMode : IEquatable<RoundingMode>
     {
         private readonly string _value;
@@ -31,21 +31,21 @@ namespace Azure.Analytics.Purview.DataMap
         private const string HalfEvenValue = "HALF_EVEN";
         private const string UnnecessaryValue = "UNNECESSARY";
 
-        /// <summary> up. </summary>
+        /// <summary> UP. </summary>
         public static RoundingMode Up { get; } = new RoundingMode(UpValue);
-        /// <summary> down. </summary>
+        /// <summary> DOWN. </summary>
         public static RoundingMode Down { get; } = new RoundingMode(DownValue);
-        /// <summary> ceiling. </summary>
+        /// <summary> CEILING. </summary>
         public static RoundingMode Ceiling { get; } = new RoundingMode(CeilingValue);
-        /// <summary> floor. </summary>
+        /// <summary> FLOOR. </summary>
         public static RoundingMode Floor { get; } = new RoundingMode(FloorValue);
-        /// <summary> half up. </summary>
+        /// <summary> HALF_UP. </summary>
         public static RoundingMode HalfUp { get; } = new RoundingMode(HalfUpValue);
-        /// <summary> half down. </summary>
+        /// <summary> HALF_DOWN. </summary>
         public static RoundingMode HalfDown { get; } = new RoundingMode(HalfDownValue);
-        /// <summary> half even. </summary>
+        /// <summary> HALF_EVEN. </summary>
         public static RoundingMode HalfEven { get; } = new RoundingMode(HalfEvenValue);
-        /// <summary> unnecessary. </summary>
+        /// <summary> UNNECESSARY. </summary>
         public static RoundingMode Unnecessary { get; } = new RoundingMode(UnnecessaryValue);
         /// <summary> Determines if two <see cref="RoundingMode"/> values are the same. </summary>
         public static bool operator ==(RoundingMode left, RoundingMode right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The mutation response result of entity. </summary>
+    /// <summary> The EntityMutationResult. </summary>
     public partial class EntityMutationResult
     {
         /// <summary>
@@ -54,9 +54,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityMutationResult"/>. </summary>
-        /// <param name="guidAssignments"> A map of GUID assignments with entities. </param>
-        /// <param name="mutatedEntities"> The entity headers of mutated entities. </param>
-        /// <param name="partialUpdatedEntities"> An array of entity headers that partially updated. </param>
+        /// <param name="guidAssignments"></param>
+        /// <param name="mutatedEntities"></param>
+        /// <param name="partialUpdatedEntities"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EntityMutationResult(IReadOnlyDictionary<string, string> guidAssignments, IReadOnlyDictionary<string, IList<AtlasEntityHeader>> mutatedEntities, IReadOnlyList<AtlasEntityHeader> partialUpdatedEntities, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,11 +66,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> A map of GUID assignments with entities. </summary>
+        /// <summary> Gets the guid assignments. </summary>
         public IReadOnlyDictionary<string, string> GuidAssignments { get; }
-        /// <summary> The entity headers of mutated entities. </summary>
+        /// <summary> Gets the mutated entities. </summary>
         public IReadOnlyDictionary<string, IList<AtlasEntityHeader>> MutatedEntities { get; }
-        /// <summary> An array of entity headers that partially updated. </summary>
+        /// <summary> Gets the partial updated entities. </summary>
         public IReadOnlyList<AtlasEntityHeader> PartialUpdatedEntities { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The contact in the search and suggest result. </summary>
+    /// <summary> The ContactSearchResultValue. </summary>
     public partial class ContactSearchResultValue
     {
         /// <summary>
@@ -51,12 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="ContactSearchResultValue"/>. </summary>
-        /// <param name="id"> The GUID of the contact. </param>
-        /// <param name="info"> The description of the contact. </param>
-        /// <param name="contactType">
-        /// The type of the contact. It can be Expert or Owner for an entity. It can be
-        /// Expert or Steward for a glossary term.
-        /// </param>
+        /// <param name="id"></param>
+        /// <param name="info"></param>
+        /// <param name="contactType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContactSearchResultValue(string id, string info, string contactType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,14 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The GUID of the contact. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The description of the contact. </summary>
+        /// <summary> Gets the info. </summary>
         public string Info { get; }
-        /// <summary>
-        /// The type of the contact. It can be Expert or Owner for an entity. It can be
-        /// Expert or Steward for a glossary term.
-        /// </summary>
+        /// <summary> Gets the contact type. </summary>
         public string ContactType { get; }
     }
 }

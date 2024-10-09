@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> An instance of an entity - like hive_table, hive_database. </summary>
+    /// <summary> The AtlasEntity. </summary>
     public partial class AtlasEntity
     {
         /// <summary>
@@ -59,31 +59,28 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasEntity"/>. </summary>
-        /// <param name="attributes"> The attributes of the struct. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="businessAttributes"> Business attributes. </param>
-        /// <param name="classifications"> An array of classifications. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="customAttributes"> Custom Attribute. </param>
-        /// <param name="guid"> The GUID of the entity. </param>
-        /// <param name="homeId"> The home ID of the entity. </param>
-        /// <param name="collectionId"> The collection ID of the entity. </param>
-        /// <param name="isIncomplete"> Whether it is a shell entity. </param>
-        /// <param name="labels"> labels. </param>
-        /// <param name="meanings"> An array of term assignment headers indicating the meanings of the entity. </param>
-        /// <param name="provenanceType"> Used to record the provenance of an instance of an entity or relationship. </param>
-        /// <param name="proxy"> Determines if there's a proxy. </param>
-        /// <param name="relationshipAttributes"> The attributes of relationship. </param>
-        /// <param name="status">
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="version"> The version of the entity. </param>
-        /// <param name="contacts"> The dictionary of contacts for entities. Key could be Expert or Owner. </param>
+        /// <param name="attributes"></param>
+        /// <param name="typeName"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="businessAttributes"></param>
+        /// <param name="classifications"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="customAttributes"></param>
+        /// <param name="guid"></param>
+        /// <param name="homeId"></param>
+        /// <param name="collectionId"></param>
+        /// <param name="isIncomplete"></param>
+        /// <param name="labels"></param>
+        /// <param name="meanings"></param>
+        /// <param name="provenanceType"></param>
+        /// <param name="proxy"></param>
+        /// <param name="relationshipAttributes"></param>
+        /// <param name="status"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="version"></param>
+        /// <param name="contacts"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasEntity(IDictionary<string, BinaryData> attributes, string typeName, string lastModifiedTS, IDictionary<string, BinaryData> businessAttributes, IList<AtlasClassification> classifications, long? createTime, string createdBy, IDictionary<string, string> customAttributes, string guid, string homeId, string collectionId, bool? isIncomplete, IList<string> labels, IList<AtlasTermAssignmentHeader> meanings, int? provenanceType, bool? proxy, IDictionary<string, BinaryData> relationshipAttributes, EntityStatus? status, long? updateTime, string updatedBy, long? version, IDictionary<string, IList<ContactInfo>> contacts, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -113,7 +110,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary>
-        /// The attributes of the struct.
+        /// Gets the attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -143,12 +140,12 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> Attributes { get; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
         /// <summary>
-        /// Business attributes
+        /// Gets the business attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -178,32 +175,32 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> BusinessAttributes { get; }
-        /// <summary> An array of classifications. </summary>
+        /// <summary> Gets the classifications. </summary>
         public IList<AtlasClassification> Classifications { get; }
-        /// <summary> The created time of the record. </summary>
+        /// <summary> Gets or sets the create time. </summary>
         public long? CreateTime { get; set; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets or sets the created by. </summary>
         public string CreatedBy { get; set; }
-        /// <summary> Custom Attribute. </summary>
+        /// <summary> Gets the custom attributes. </summary>
         public IDictionary<string, string> CustomAttributes { get; }
-        /// <summary> The GUID of the entity. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> The home ID of the entity. </summary>
+        /// <summary> Gets or sets the home id. </summary>
         public string HomeId { get; set; }
-        /// <summary> The collection ID of the entity. </summary>
+        /// <summary> Gets the collection id. </summary>
         public string CollectionId { get; }
-        /// <summary> Whether it is a shell entity. </summary>
+        /// <summary> Gets or sets the is incomplete. </summary>
         public bool? IsIncomplete { get; set; }
-        /// <summary> labels. </summary>
+        /// <summary> Gets the labels. </summary>
         public IList<string> Labels { get; }
-        /// <summary> An array of term assignment headers indicating the meanings of the entity. </summary>
+        /// <summary> Gets the meanings. </summary>
         public IList<AtlasTermAssignmentHeader> Meanings { get; }
-        /// <summary> Used to record the provenance of an instance of an entity or relationship. </summary>
+        /// <summary> Gets or sets the provenance type. </summary>
         public int? ProvenanceType { get; set; }
-        /// <summary> Determines if there's a proxy. </summary>
+        /// <summary> Gets or sets the proxy. </summary>
         public bool? Proxy { get; set; }
         /// <summary>
-        /// The attributes of relationship.
+        /// Gets the relationship attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -233,18 +230,15 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> RelationshipAttributes { get; }
-        /// <summary>
-        /// Status of the entity - can be active or deleted. Deleted entities are not
-        /// removed.
-        /// </summary>
+        /// <summary> Gets or sets the status. </summary>
         public EntityStatus? Status { get; set; }
-        /// <summary> The update time of the record. </summary>
+        /// <summary> Gets or sets the update time. </summary>
         public long? UpdateTime { get; set; }
-        /// <summary> The user who updated the record. </summary>
+        /// <summary> Gets or sets the updated by. </summary>
         public string UpdatedBy { get; set; }
-        /// <summary> The version of the entity. </summary>
+        /// <summary> Gets or sets the version. </summary>
         public long? Version { get; set; }
-        /// <summary> The dictionary of contacts for entities. Key could be Expert or Owner. </summary>
+        /// <summary> Gets the contacts. </summary>
         public IDictionary<string, IList<ContactInfo>> Contacts { get; }
     }
 }

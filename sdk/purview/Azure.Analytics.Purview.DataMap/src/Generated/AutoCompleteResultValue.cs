@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The value item of the autocomplete suggest. </summary>
+    /// <summary> The AutoCompleteResultValue. </summary>
     public partial class AutoCompleteResultValue
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AutoCompleteResultValue"/>. </summary>
-        /// <param name="text"> The completed term or phrase. </param>
-        /// <param name="queryPlusText"> The completed search query text. </param>
+        /// <param name="text"></param>
+        /// <param name="queryPlusText"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AutoCompleteResultValue(string text, string queryPlusText, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The completed term or phrase. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The completed search query text. </summary>
+        /// <summary> Gets the query plus text. </summary>
         public string QueryPlusText { get; }
     }
 }

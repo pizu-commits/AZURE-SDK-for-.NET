@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Atlas relationship instance. </summary>
+    /// <summary> The AtlasRelationship. </summary>
     public partial class AtlasRelationship
     {
         /// <summary>
@@ -52,21 +52,21 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasRelationship"/>. </summary>
-        /// <param name="attributes"> The attributes of the struct. </param>
-        /// <param name="typeName"> The name of the type. </param>
-        /// <param name="lastModifiedTS"> ETag for concurrency control. </param>
-        /// <param name="createTime"> The created time of the record. </param>
-        /// <param name="createdBy"> The user who created the record. </param>
-        /// <param name="end1"> Reference to an object-instance of a type - like entity. </param>
-        /// <param name="end2"> Reference to an object-instance of a type - like entity. </param>
-        /// <param name="guid"> The GUID of the relationship. </param>
-        /// <param name="homeId"> The home ID of the relationship. </param>
-        /// <param name="label"> The label of the relationship. </param>
-        /// <param name="provenanceType"> Used to record the provenance of an instance of an entity or relationship. </param>
-        /// <param name="status"> The enum of relationship status. </param>
-        /// <param name="updateTime"> The update time of the record. </param>
-        /// <param name="updatedBy"> The user who updated the record. </param>
-        /// <param name="version"> The version of the relationship. </param>
+        /// <param name="attributes"></param>
+        /// <param name="typeName"></param>
+        /// <param name="lastModifiedTS"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdBy"></param>
+        /// <param name="end1"></param>
+        /// <param name="end2"></param>
+        /// <param name="guid"></param>
+        /// <param name="homeId"></param>
+        /// <param name="label"></param>
+        /// <param name="provenanceType"></param>
+        /// <param name="status"></param>
+        /// <param name="updateTime"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="version"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasRelationship(IDictionary<string, BinaryData> attributes, string typeName, string lastModifiedTS, long? createTime, string createdBy, AtlasObjectId end1, AtlasObjectId end2, string guid, string homeId, string label, int? provenanceType, StatusAtlasRelationship? status, long? updateTime, string updatedBy, long? version, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -89,7 +89,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary>
-        /// The attributes of the struct.
+        /// Gets the attributes
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -119,33 +119,33 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IDictionary<string, BinaryData> Attributes { get; }
-        /// <summary> The name of the type. </summary>
+        /// <summary> Gets or sets the type name. </summary>
         public string TypeName { get; set; }
-        /// <summary> ETag for concurrency control. </summary>
+        /// <summary> Gets or sets the last modified ts. </summary>
         public string LastModifiedTS { get; set; }
-        /// <summary> The created time of the record. </summary>
+        /// <summary> Gets or sets the create time. </summary>
         public long? CreateTime { get; set; }
-        /// <summary> The user who created the record. </summary>
+        /// <summary> Gets or sets the created by. </summary>
         public string CreatedBy { get; set; }
-        /// <summary> Reference to an object-instance of a type - like entity. </summary>
+        /// <summary> Gets or sets the end 1. </summary>
         public AtlasObjectId End1 { get; set; }
-        /// <summary> Reference to an object-instance of a type - like entity. </summary>
+        /// <summary> Gets or sets the end 2. </summary>
         public AtlasObjectId End2 { get; set; }
-        /// <summary> The GUID of the relationship. </summary>
+        /// <summary> Gets or sets the guid. </summary>
         public string Guid { get; set; }
-        /// <summary> The home ID of the relationship. </summary>
+        /// <summary> Gets or sets the home id. </summary>
         public string HomeId { get; set; }
-        /// <summary> The label of the relationship. </summary>
+        /// <summary> Gets or sets the label. </summary>
         public string Label { get; set; }
-        /// <summary> Used to record the provenance of an instance of an entity or relationship. </summary>
+        /// <summary> Gets or sets the provenance type. </summary>
         public int? ProvenanceType { get; set; }
-        /// <summary> The enum of relationship status. </summary>
+        /// <summary> Gets or sets the status. </summary>
         public StatusAtlasRelationship? Status { get; set; }
-        /// <summary> The update time of the record. </summary>
+        /// <summary> Gets or sets the update time. </summary>
         public long? UpdateTime { get; set; }
-        /// <summary> The user who updated the record. </summary>
+        /// <summary> Gets or sets the updated by. </summary>
         public string UpdatedBy { get; set; }
-        /// <summary> The version of the relationship. </summary>
+        /// <summary> Gets or sets the version. </summary>
         public long? Version { get; set; }
     }
 }

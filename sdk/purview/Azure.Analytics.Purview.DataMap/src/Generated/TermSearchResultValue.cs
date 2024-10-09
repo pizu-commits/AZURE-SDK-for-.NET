@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The context. </summary>
+    /// <summary> The TermSearchResultValue. </summary>
     public partial class TermSearchResultValue
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="TermSearchResultValue"/>. </summary>
-        /// <param name="name"> The name of the term. </param>
-        /// <param name="glossaryName"> The name of the glossary which contains the term. </param>
-        /// <param name="guid"> The GUID of the term. </param>
+        /// <param name="name"></param>
+        /// <param name="glossaryName"></param>
+        /// <param name="guid"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal TermSearchResultValue(string name, string glossaryName, string guid, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the term. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The name of the glossary which contains the term. </summary>
+        /// <summary> Gets the glossary name. </summary>
         public string GlossaryName { get; }
-        /// <summary> The GUID of the term. </summary>
+        /// <summary> Gets the guid. </summary>
         public string Guid { get; }
     }
 }

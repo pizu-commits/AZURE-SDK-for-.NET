@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> Lineage direction. </summary>
+    /// <summary> The LineageDirection. </summary>
     public readonly partial struct LineageDirection : IEquatable<LineageDirection>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Analytics.Purview.DataMap
         private const string OutputValue = "OUTPUT";
         private const string BothValue = "BOTH";
 
-        /// <summary> input. </summary>
+        /// <summary> INPUT. </summary>
         public static LineageDirection Input { get; } = new LineageDirection(InputValue);
-        /// <summary> output. </summary>
+        /// <summary> OUTPUT. </summary>
         public static LineageDirection Output { get; } = new LineageDirection(OutputValue);
-        /// <summary> both. </summary>
+        /// <summary> BOTH. </summary>
         public static LineageDirection Both { get; } = new LineageDirection(BothValue);
         /// <summary> Determines if two <see cref="LineageDirection"/> values are the same. </summary>
         public static bool operator ==(LineageDirection left, LineageDirection right) => left.Equals(right);

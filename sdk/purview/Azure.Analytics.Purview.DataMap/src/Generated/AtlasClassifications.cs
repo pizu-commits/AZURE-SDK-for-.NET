@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> REST serialization friendly list. </summary>
+    /// <summary> The AtlasClassifications. </summary>
     public partial class AtlasClassifications
     {
         /// <summary>
@@ -52,12 +52,12 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasClassifications"/>. </summary>
-        /// <param name="list"> An array of objects. </param>
-        /// <param name="pageSize"> The size of the page. </param>
-        /// <param name="sortBy"> The sorted by field. </param>
-        /// <param name="sortType"> to specify whether the result should be sorted? If yes, whether asc or desc. </param>
-        /// <param name="startIndex"> The start index of the page. </param>
-        /// <param name="totalCount"> The total count of items. </param>
+        /// <param name="list"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="sortBy"></param>
+        /// <param name="sortType"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="totalCount"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasClassifications(IReadOnlyList<BinaryData> list, int? pageSize, string sortBy, AtlasSortType? sortType, int? startIndex, int? totalCount, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,7 +71,7 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary>
-        /// An array of objects.
+        /// Gets the list
         /// <para>
         /// To assign an object to the element of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -101,15 +101,15 @@ namespace Azure.Analytics.Purview.DataMap
         /// </para>
         /// </summary>
         public IReadOnlyList<BinaryData> List { get; }
-        /// <summary> The size of the page. </summary>
+        /// <summary> Gets the page size. </summary>
         public int? PageSize { get; }
-        /// <summary> The sorted by field. </summary>
+        /// <summary> Gets the sort by. </summary>
         public string SortBy { get; }
-        /// <summary> to specify whether the result should be sorted? If yes, whether asc or desc. </summary>
+        /// <summary> Gets the sort type. </summary>
         public AtlasSortType? SortType { get; }
-        /// <summary> The start index of the page. </summary>
+        /// <summary> Gets the start index. </summary>
         public int? StartIndex { get; }
-        /// <summary> The total count of items. </summary>
+        /// <summary> Gets the total count. </summary>
         public int? TotalCount { get; }
     }
 }

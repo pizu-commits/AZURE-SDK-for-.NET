@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Purview.DataMap
 {
-    /// <summary> The timezone information. </summary>
+    /// <summary> The AtlasTimeZone. </summary>
     public partial class AtlasTimeZone
     {
         /// <summary>
@@ -52,12 +52,12 @@ namespace Azure.Analytics.Purview.DataMap
         }
 
         /// <summary> Initializes a new instance of <see cref="AtlasTimeZone"/>. </summary>
-        /// <param name="dstSavings"> The value of the daylight saving time. </param>
-        /// <param name="id"> The ID of the timezone. </param>
-        /// <param name="availableIds"> An array of available IDs. </param>
-        /// <param name="default"> The timezone information. </param>
-        /// <param name="displayName"> The display name of the timezone. </param>
-        /// <param name="rawOffset"> The raw offset of the timezone. </param>
+        /// <param name="dstSavings"></param>
+        /// <param name="id"></param>
+        /// <param name="availableIds"></param>
+        /// <param name="default"></param>
+        /// <param name="displayName"></param>
+        /// <param name="rawOffset"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AtlasTimeZone(int? dstSavings, string id, IList<string> availableIds, AtlasTimeZone @default, string displayName, int? rawOffset, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,17 +70,17 @@ namespace Azure.Analytics.Purview.DataMap
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The value of the daylight saving time. </summary>
+        /// <summary> Gets or sets the dst savings. </summary>
         public int? DstSavings { get; set; }
-        /// <summary> The ID of the timezone. </summary>
+        /// <summary> Gets or sets the id. </summary>
         public string Id { get; set; }
-        /// <summary> An array of available IDs. </summary>
+        /// <summary> Gets the available ids. </summary>
         public IList<string> AvailableIds { get; }
-        /// <summary> The timezone information. </summary>
+        /// <summary> Gets or sets the default. </summary>
         public AtlasTimeZone Default { get; set; }
-        /// <summary> The display name of the timezone. </summary>
+        /// <summary> Gets or sets the display name. </summary>
         public string DisplayName { get; set; }
-        /// <summary> The raw offset of the timezone. </summary>
+        /// <summary> Gets or sets the raw offset. </summary>
         public int? RawOffset { get; set; }
     }
 }
