@@ -1,5 +1,14 @@
-function Invoke-LoggedCommand($Command, $ExecutePath, [switch]$GroupOutput)
+function Invoke-LoggedCommand
 {
+    [CmdletBinding()]
+    param
+    (
+        [string] $Command,
+        [string] $ExecutePath,
+        [switch] $GroupOutput,
+        [int[]] $AllowedExitCodes = @(0)
+    )
+
     $pipelineBuild = !!$env:TF_BUILD
     $startTime = Get-Date
 
@@ -22,7 +31,7 @@ function Invoke-LoggedCommand($Command, $ExecutePath, [switch]$GroupOutput)
         Write-Host "##[endgroup]"
       }
 
-      if($LastExitCode -ne 0)
+      if($LastExitCode -notin $AllowedExitCodes)
       {
           if($pipelineBuild) {
               Write-Error "##[error]Command failed to execute ($duration): $Command`n"
