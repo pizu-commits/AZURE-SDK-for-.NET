@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> An object representing the detected language for a given text span. </summary>
+    /// <summary> The DocumentLanguage. </summary>
     public partial class DocumentLanguage
     {
         /// <summary>
@@ -47,15 +47,9 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentLanguage"/>. </summary>
-        /// <param name="locale">
-        /// Detected language.  Value may an ISO 639-1 language code (ex. "en", "fr")
-        /// or BCP 47 language tag (ex. "zh-Hans").
-        /// </param>
-        /// <param name="spans">
-        /// Location of the text elements in the concatenated content the language applies
-        /// to.
-        /// </param>
-        /// <param name="confidence"> Confidence of correctly identifying the language. </param>
+        /// <param name="locale"></param>
+        /// <param name="spans"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="locale"/> or <paramref name="spans"/> is null. </exception>
         internal DocumentLanguage(string locale, IEnumerable<DocumentSpan> spans, float confidence)
         {
@@ -68,15 +62,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentLanguage"/>. </summary>
-        /// <param name="locale">
-        /// Detected language.  Value may an ISO 639-1 language code (ex. "en", "fr")
-        /// or BCP 47 language tag (ex. "zh-Hans").
-        /// </param>
-        /// <param name="spans">
-        /// Location of the text elements in the concatenated content the language applies
-        /// to.
-        /// </param>
-        /// <param name="confidence"> Confidence of correctly identifying the language. </param>
+        /// <param name="locale"></param>
+        /// <param name="spans"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentLanguage(string locale, IReadOnlyList<DocumentSpan> spans, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -91,17 +79,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary>
-        /// Detected language.  Value may an ISO 639-1 language code (ex. "en", "fr")
-        /// or BCP 47 language tag (ex. "zh-Hans").
-        /// </summary>
+        /// <summary> Gets the locale. </summary>
         public string Locale { get; }
-        /// <summary>
-        /// Location of the text elements in the concatenated content the language applies
-        /// to.
-        /// </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
-        /// <summary> Confidence of correctly identifying the language. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

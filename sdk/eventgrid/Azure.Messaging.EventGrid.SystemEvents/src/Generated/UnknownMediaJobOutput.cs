@@ -14,11 +14,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
     internal partial class UnknownMediaJobOutput : MediaJobOutput
     {
         /// <summary> Initializes a new instance of <see cref="UnknownMediaJobOutput"/>. </summary>
-        /// <param name="odataType"> The discriminator for derived types. </param>
-        /// <param name="error"> Gets the Job output error. </param>
-        /// <param name="label"> Gets the Job output label. </param>
-        /// <param name="progress"> Gets the Job output progress. </param>
-        /// <param name="state"> Gets the Job output state. </param>
+        /// <param name="odataType"></param>
+        /// <param name="error"></param>
+        /// <param name="label"></param>
+        /// <param name="progress"></param>
+        /// <param name="state"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownMediaJobOutput(string odataType, MediaJobError error, string label, long progress, MediaJobState state, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(odataType, error, label, progress, state, serializedAdditionalRawData)
         {

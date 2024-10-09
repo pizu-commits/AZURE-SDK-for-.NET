@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The rate at which the data connection will receive updates. </summary>
+    /// <summary> The DataConnectionFrequency. </summary>
     public readonly partial struct DataConnectionFrequency : IEquatable<DataConnectionFrequency>
     {
         private readonly string _value;

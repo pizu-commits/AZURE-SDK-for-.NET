@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.RunStatusChanged event. </summary>
+    /// <summary> The MachineLearningServicesRunStatusChangedEventData. </summary>
     public partial class MachineLearningServicesRunStatusChangedEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesRunStatusChangedEventData"/>. </summary>
-        /// <param name="runTags"> The tags of the Machine Learning Run. </param>
-        /// <param name="runProperties"> The properties of the Machine Learning Run. </param>
+        /// <param name="runTags"></param>
+        /// <param name="runProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="runTags"/> or <paramref name="runProperties"/> is null. </exception>
         internal MachineLearningServicesRunStatusChangedEventData(IReadOnlyDictionary<string, BinaryData> runTags, IReadOnlyDictionary<string, BinaryData> runProperties)
         {
@@ -59,13 +59,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesRunStatusChangedEventData"/>. </summary>
-        /// <param name="experimentId"> The ID of the experiment that the Machine Learning Run belongs to. </param>
-        /// <param name="experimentName"> The name of the experiment that the Machine Learning Run belongs to. </param>
-        /// <param name="runId"> The ID of the Machine Learning Run. </param>
-        /// <param name="runType"> The Run Type of the Machine Learning Run. </param>
-        /// <param name="runTags"> The tags of the Machine Learning Run. </param>
-        /// <param name="runProperties"> The properties of the Machine Learning Run. </param>
-        /// <param name="runStatus"> The status of the Machine Learning Run. </param>
+        /// <param name="experimentId"></param>
+        /// <param name="experimentName"></param>
+        /// <param name="runId"></param>
+        /// <param name="runType"></param>
+        /// <param name="runTags"></param>
+        /// <param name="runProperties"></param>
+        /// <param name="runStatus"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MachineLearningServicesRunStatusChangedEventData(string experimentId, string experimentName, string runId, string runType, IReadOnlyDictionary<string, BinaryData> runTags, IReadOnlyDictionary<string, BinaryData> runProperties, string runStatus, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,16 +84,16 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The ID of the experiment that the Machine Learning Run belongs to. </summary>
+        /// <summary> Gets the experiment id. </summary>
         public string ExperimentId { get; }
-        /// <summary> The name of the experiment that the Machine Learning Run belongs to. </summary>
+        /// <summary> Gets the experiment name. </summary>
         public string ExperimentName { get; }
-        /// <summary> The ID of the Machine Learning Run. </summary>
+        /// <summary> Gets the run id. </summary>
         public string RunId { get; }
-        /// <summary> The Run Type of the Machine Learning Run. </summary>
+        /// <summary> Gets the run type. </summary>
         public string RunType { get; }
         /// <summary>
-        /// The tags of the Machine Learning Run.
+        /// Gets the run tags
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -124,7 +124,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> RunTags { get; }
         /// <summary>
-        /// The properties of the Machine Learning Run.
+        /// Gets the run properties
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -154,7 +154,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </para>
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> RunProperties { get; }
-        /// <summary> The status of the Machine Learning Run. </summary>
+        /// <summary> Gets the run status. </summary>
         public string RunStatus { get; }
     }
 }

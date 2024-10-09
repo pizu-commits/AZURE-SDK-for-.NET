@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Indicates quality of image for recognition. </summary>
+    /// <summary> The QualityForRecognition. </summary>
     public readonly partial struct QualityForRecognition : IEquatable<QualityForRecognition>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string MediumValue = "medium";
         private const string HighValue = "high";
 
-        /// <summary> Low quality. </summary>
+        /// <summary> low. </summary>
         public static QualityForRecognition Low { get; } = new QualityForRecognition(LowValue);
-        /// <summary> Medium quality. </summary>
+        /// <summary> medium. </summary>
         public static QualityForRecognition Medium { get; } = new QualityForRecognition(MediumValue);
-        /// <summary> High quality. </summary>
+        /// <summary> high. </summary>
         public static QualityForRecognition High { get; } = new QualityForRecognition(HighValue);
         /// <summary> Determines if two <see cref="QualityForRecognition"/> values are the same. </summary>
         public static bool operator ==(QualityForRecognition left, QualityForRecognition right) => left.Equals(right);

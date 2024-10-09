@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Describes the schema of the common properties across all ARN system topic events. </summary>
+    /// <summary> The ResourceNotificationsResourceUpdatedEventData. </summary>
     public partial class ResourceNotificationsResourceUpdatedEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceUpdatedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for update event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceDetails"/> or <paramref name="operationalDetails"/> is null. </exception>
         internal ResourceNotificationsResourceUpdatedEventData(ResourceNotificationsResourceUpdatedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails)
         {
@@ -59,9 +59,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceUpdatedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for update event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
-        /// <param name="apiVersion"> api version of the resource properties bag. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
+        /// <param name="apiVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceNotificationsResourceUpdatedEventData(ResourceNotificationsResourceUpdatedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails, string apiVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> resourceInfo details for update event. </summary>
+        /// <summary> Gets the resource details. </summary>
         public ResourceNotificationsResourceUpdatedDetails ResourceDetails { get; }
-        /// <summary> details about operational info. </summary>
+        /// <summary> Gets the operational details. </summary>
         public ResourceNotificationsOperationalDetails OperationalDetails { get; }
-        /// <summary> api version of the resource properties bag. </summary>
+        /// <summary> Gets the api version. </summary>
         public string ApiVersion { get; }
     }
 }

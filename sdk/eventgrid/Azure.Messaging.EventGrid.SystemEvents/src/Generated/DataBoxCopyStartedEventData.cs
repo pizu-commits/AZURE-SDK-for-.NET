@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.DataBox.CopyStarted event. </summary>
+    /// <summary> The DataBoxCopyStartedEventData. </summary>
     public partial class DataBoxCopyStartedEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DataBoxCopyStartedEventData"/>. </summary>
-        /// <param name="stageName"> Name of the current Stage. </param>
-        /// <param name="stageTime"> The time at which the stage happened. </param>
+        /// <param name="stageName"></param>
+        /// <param name="stageTime"></param>
         internal DataBoxCopyStartedEventData(DataBoxStageName stageName, DateTimeOffset stageTime)
         {
             StageName = stageName;
@@ -55,9 +55,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="DataBoxCopyStartedEventData"/>. </summary>
-        /// <param name="serialNumber"> Serial Number of the device associated with the event. The list is comma separated if more than one serial number is associated. </param>
-        /// <param name="stageName"> Name of the current Stage. </param>
-        /// <param name="stageTime"> The time at which the stage happened. </param>
+        /// <param name="serialNumber"></param>
+        /// <param name="stageName"></param>
+        /// <param name="stageTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DataBoxCopyStartedEventData(string serialNumber, DataBoxStageName stageName, DateTimeOffset stageTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,11 +72,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Serial Number of the device associated with the event. The list is comma separated if more than one serial number is associated. </summary>
+        /// <summary> Gets the serial number. </summary>
         public string SerialNumber { get; }
-        /// <summary> Name of the current Stage. </summary>
+        /// <summary> Gets the stage name. </summary>
         public DataBoxStageName StageName { get; }
-        /// <summary> The time at which the stage happened. </summary>
+        /// <summary> Gets the stage time. </summary>
         public DateTimeOffset StageTime { get; }
     }
 }

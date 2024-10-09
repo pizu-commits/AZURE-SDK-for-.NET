@@ -10,12 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// To complete an event subscription validation handshake, a subscriber can use
-    /// either the validationCode or the validationUrl received in a
-    /// SubscriptionValidationEvent. When the validationCode is used, the
-    /// SubscriptionValidationResponse can be used to build the response.
-    /// </summary>
+    /// <summary> The SubscriptionValidationResponse. </summary>
     public partial class SubscriptionValidationResponse
     {
         /// <summary>
@@ -56,7 +51,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="SubscriptionValidationResponse"/>. </summary>
-        /// <param name="validationResponse"> The validation response sent by the subscriber to Azure Event Grid to complete the validation of an event subscription. </param>
+        /// <param name="validationResponse"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SubscriptionValidationResponse(string validationResponse, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,7 +59,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The validation response sent by the subscriber to Azure Event Grid to complete the validation of an event subscription. </summary>
+        /// <summary> Gets the validation response. </summary>
         public string ValidationResponse { get; }
     }
 }

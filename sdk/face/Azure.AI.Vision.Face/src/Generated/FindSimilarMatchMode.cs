@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Similar face searching mode. </summary>
+    /// <summary> The FindSimilarMatchMode. </summary>
     public readonly partial struct FindSimilarMatchMode : IEquatable<FindSimilarMatchMode>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.Vision.Face
         private const string MatchPersonValue = "matchPerson";
         private const string MatchFaceValue = "matchFace";
 
-        /// <summary> Match person. </summary>
+        /// <summary> matchPerson. </summary>
         public static FindSimilarMatchMode MatchPerson { get; } = new FindSimilarMatchMode(MatchPersonValue);
-        /// <summary> Match face. </summary>
+        /// <summary> matchFace. </summary>
         public static FindSimilarMatchMode MatchFace { get; } = new FindSimilarMatchMode(MatchFaceValue);
         /// <summary> Determines if two <see cref="FindSimilarMatchMode"/> values are the same. </summary>
         public static bool operator ==(FindSimilarMatchMode left, FindSimilarMatchMode right) => left.Equals(right);

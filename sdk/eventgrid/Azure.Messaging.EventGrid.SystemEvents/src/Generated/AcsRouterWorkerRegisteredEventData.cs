@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterWorkerRegistered event. </summary>
+    /// <summary> The AcsRouterWorkerRegisteredEventData. </summary>
     public partial class AcsRouterWorkerRegisteredEventData
     {
         /// <summary>
@@ -47,10 +47,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerRegisteredEventData"/>. </summary>
-        /// <param name="queueAssignments"> Router Worker Registered Queue Info. </param>
-        /// <param name="channelConfigurations"> Router Worker Registered Channel Configuration. </param>
-        /// <param name="labels"> Router Worker Registered Labels. </param>
-        /// <param name="tags"> Router Worker Registered Tags. </param>
+        /// <param name="queueAssignments"></param>
+        /// <param name="channelConfigurations"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueAssignments"/>, <paramref name="channelConfigurations"/>, <paramref name="labels"/> or <paramref name="tags"/> is null. </exception>
         internal AcsRouterWorkerRegisteredEventData(IEnumerable<AcsRouterQueueDetails> queueAssignments, IEnumerable<AcsRouterChannelConfiguration> channelConfigurations, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags)
         {
@@ -66,12 +66,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerRegisteredEventData"/>. </summary>
-        /// <param name="workerId"> Router Worker Registered Worker Id. </param>
-        /// <param name="queueAssignments"> Router Worker Registered Queue Info. </param>
-        /// <param name="channelConfigurations"> Router Worker Registered Channel Configuration. </param>
-        /// <param name="totalCapacity"> Router Worker Register Total Capacity. </param>
-        /// <param name="labels"> Router Worker Registered Labels. </param>
-        /// <param name="tags"> Router Worker Registered Tags. </param>
+        /// <param name="workerId"></param>
+        /// <param name="queueAssignments"></param>
+        /// <param name="channelConfigurations"></param>
+        /// <param name="totalCapacity"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRouterWorkerRegisteredEventData(string workerId, IReadOnlyList<AcsRouterQueueDetails> queueAssignments, IReadOnlyList<AcsRouterChannelConfiguration> channelConfigurations, int? totalCapacity, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -89,17 +89,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Worker Registered Worker Id. </summary>
+        /// <summary> Gets the worker id. </summary>
         public string WorkerId { get; }
-        /// <summary> Router Worker Registered Queue Info. </summary>
+        /// <summary> Gets the queue assignments. </summary>
         public IReadOnlyList<AcsRouterQueueDetails> QueueAssignments { get; }
-        /// <summary> Router Worker Registered Channel Configuration. </summary>
+        /// <summary> Gets the channel configurations. </summary>
         public IReadOnlyList<AcsRouterChannelConfiguration> ChannelConfigurations { get; }
-        /// <summary> Router Worker Register Total Capacity. </summary>
+        /// <summary> Gets the total capacity. </summary>
         public int? TotalCapacity { get; }
-        /// <summary> Router Worker Registered Labels. </summary>
+        /// <summary> Gets the labels. </summary>
         public IReadOnlyDictionary<string, string> Labels { get; }
-        /// <summary> Router Worker Registered Tags. </summary>
+        /// <summary> Gets the tags. </summary>
         public IReadOnlyDictionary<string, string> Tags { get; }
     }
 }

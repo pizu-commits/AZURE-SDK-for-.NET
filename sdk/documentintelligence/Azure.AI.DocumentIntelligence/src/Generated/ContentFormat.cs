@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Format of the content in analyzed result. </summary>
+    /// <summary> The ContentFormat. </summary>
     public readonly partial struct ContentFormat : IEquatable<ContentFormat>
     {
         private readonly string _value;
@@ -25,12 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string TextValue = "text";
         private const string MarkdownValue = "markdown";
 
-        /// <summary> Plain text representation of the document content without any formatting. </summary>
+        /// <summary> text. </summary>
         public static ContentFormat Text { get; } = new ContentFormat(TextValue);
-        /// <summary>
-        /// Markdown representation of the document content with section headings, tables,
-        /// etc.
-        /// </summary>
+        /// <summary> markdown. </summary>
         public static ContentFormat Markdown { get; } = new ContentFormat(MarkdownValue);
         /// <summary> Determines if two <see cref="ContentFormat"/> values are the same. </summary>
         public static bool operator ==(ContentFormat left, ContentFormat right) => left.Equals(right);

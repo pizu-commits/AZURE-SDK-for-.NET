@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The state to update the asset to. </summary>
+    /// <summary> The AssetUpdateState. </summary>
     public readonly partial struct AssetUpdateState : IEquatable<AssetUpdateState>
     {
         private readonly string _value;

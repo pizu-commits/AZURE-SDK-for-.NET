@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Document splitting mode. </summary>
+    /// <summary> The SplitMode. </summary>
     public readonly partial struct SplitMode : IEquatable<SplitMode>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.DocumentIntelligence
         private const string NoneValue = "none";
         private const string PerPageValue = "perPage";
 
-        /// <summary> Automatically split file into documents. </summary>
+        /// <summary> auto. </summary>
         public static SplitMode Auto { get; } = new SplitMode(AutoValue);
-        /// <summary> Treat the entire file as a single document. </summary>
+        /// <summary> none. </summary>
         public static SplitMode None { get; } = new SplitMode(NoneValue);
-        /// <summary> Treat each page in the file as a separate document. </summary>
+        /// <summary> perPage. </summary>
         public static SplitMode PerPage { get; } = new SplitMode(PerPageValue);
         /// <summary> Determines if two <see cref="SplitMode"/> values are the same. </summary>
         public static bool operator ==(SplitMode left, SplitMode right) => left.Equals(right);

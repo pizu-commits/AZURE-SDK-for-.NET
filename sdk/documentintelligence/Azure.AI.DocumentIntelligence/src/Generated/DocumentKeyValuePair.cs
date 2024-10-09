@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// An object representing a form field with distinct field label (key) and field
-    /// value (may be empty).
-    /// </summary>
+    /// <summary> The DocumentKeyValuePair. </summary>
     public partial class DocumentKeyValuePair
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentKeyValuePair"/>. </summary>
-        /// <param name="key"> Field label of the key-value pair. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the key-value pair. </param>
+        /// <param name="key"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="key"/> is null. </exception>
         internal DocumentKeyValuePair(DocumentKeyValueElement key, float confidence)
         {
@@ -61,9 +58,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentKeyValuePair"/>. </summary>
-        /// <param name="key"> Field label of the key-value pair. </param>
-        /// <param name="value"> Field value of the key-value pair. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the key-value pair. </param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentKeyValuePair(DocumentKeyValueElement key, DocumentKeyValueElement value, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +75,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Field label of the key-value pair. </summary>
+        /// <summary> Gets the key. </summary>
         public DocumentKeyValueElement Key { get; }
-        /// <summary> Field value of the key-value pair. </summary>
+        /// <summary> Gets the value. </summary>
         public DocumentKeyValueElement Value { get; }
-        /// <summary> Confidence of correctly extracting the key-value pair. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

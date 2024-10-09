@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Worker properties that can be updated. </summary>
+    /// <summary> The AcsRouterUpdatedWorkerProperty. </summary>
     public readonly partial struct AcsRouterUpdatedWorkerProperty : IEquatable<AcsRouterUpdatedWorkerProperty>
     {
         private readonly string _value;

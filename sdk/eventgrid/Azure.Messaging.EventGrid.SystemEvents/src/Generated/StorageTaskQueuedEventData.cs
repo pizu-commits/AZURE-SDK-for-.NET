@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for an Microsoft.Storage.StorageTaskQueued event. </summary>
+    /// <summary> The StorageTaskQueuedEventData. </summary>
     public partial class StorageTaskQueuedEventData
     {
         /// <summary>
@@ -46,15 +46,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StorageTaskQueuedEventData"/>. </summary>
-        /// <param name="queuedDateTime"> The time at which a storage task was queued. </param>
+        /// <param name="queuedDateTime"></param>
         internal StorageTaskQueuedEventData(DateTimeOffset queuedDateTime)
         {
             QueuedDateTime = queuedDateTime;
         }
 
         /// <summary> Initializes a new instance of <see cref="StorageTaskQueuedEventData"/>. </summary>
-        /// <param name="queuedDateTime"> The time at which a storage task was queued. </param>
-        /// <param name="taskExecutionId"> The execution id for a storage task. </param>
+        /// <param name="queuedDateTime"></param>
+        /// <param name="taskExecutionId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StorageTaskQueuedEventData(DateTimeOffset queuedDateTime, string taskExecutionId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,9 +68,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which a storage task was queued. </summary>
+        /// <summary> Gets the queued date time. </summary>
         public DateTimeOffset QueuedDateTime { get; }
-        /// <summary> The execution id for a storage task. </summary>
+        /// <summary> Gets the task execution id. </summary>
         public string TaskExecutionId { get; }
     }
 }

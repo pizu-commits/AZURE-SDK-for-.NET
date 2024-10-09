@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> A formula object. </summary>
+    /// <summary> The DocumentFormula. </summary>
     public partial class DocumentFormula
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentFormula"/>. </summary>
-        /// <param name="kind"> Formula kind. </param>
-        /// <param name="value"> LaTex expression describing the formula. </param>
-        /// <param name="span"> Location of the formula in the reading order concatenated content. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the formula. </param>
+        /// <param name="kind"></param>
+        /// <param name="value"></param>
+        /// <param name="span"></param>
+        /// <param name="confidence"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> or <paramref name="span"/> is null. </exception>
         internal DocumentFormula(DocumentFormulaKind kind, string value, DocumentSpan span, float confidence)
         {
@@ -64,16 +64,11 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentFormula"/>. </summary>
-        /// <param name="kind"> Formula kind. </param>
-        /// <param name="value"> LaTex expression describing the formula. </param>
-        /// <param name="polygon">
-        /// Bounding polygon of the formula, with coordinates specified relative to the
-        /// top-left of the page. The numbers represent the x, y values of the polygon
-        /// vertices, clockwise from the left (-180 degrees inclusive) relative to the
-        /// element orientation.
-        /// </param>
-        /// <param name="span"> Location of the formula in the reading order concatenated content. </param>
-        /// <param name="confidence"> Confidence of correctly extracting the formula. </param>
+        /// <param name="kind"></param>
+        /// <param name="value"></param>
+        /// <param name="polygon"></param>
+        /// <param name="span"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentFormula(DocumentFormulaKind kind, string value, IReadOnlyList<float> polygon, DocumentSpan span, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -90,20 +85,15 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Formula kind. </summary>
+        /// <summary> Gets the kind. </summary>
         public DocumentFormulaKind Kind { get; }
-        /// <summary> LaTex expression describing the formula. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
-        /// <summary>
-        /// Bounding polygon of the formula, with coordinates specified relative to the
-        /// top-left of the page. The numbers represent the x, y values of the polygon
-        /// vertices, clockwise from the left (-180 degrees inclusive) relative to the
-        /// element orientation.
-        /// </summary>
+        /// <summary> Gets the polygon. </summary>
         public IReadOnlyList<float> Polygon { get; }
-        /// <summary> Location of the formula in the reading order concatenated content. </summary>
+        /// <summary> Gets the span. </summary>
         public DocumentSpan Span { get; }
-        /// <summary> Confidence of correctly extracting the formula. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

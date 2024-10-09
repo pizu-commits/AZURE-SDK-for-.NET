@@ -11,10 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// A content line object consisting of an adjacent sequence of content elements,
-    /// such as words and selection marks.
-    /// </summary>
+    /// <summary> The DocumentLine. </summary>
     public partial class DocumentLine
     {
         /// <summary>
@@ -50,8 +47,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentLine"/>. </summary>
-        /// <param name="content"> Concatenated content of the contained elements in reading order. </param>
-        /// <param name="spans"> Location of the line in the reading order concatenated content. </param>
+        /// <param name="content"></param>
+        /// <param name="spans"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> or <paramref name="spans"/> is null. </exception>
         internal DocumentLine(string content, IEnumerable<DocumentSpan> spans)
         {
@@ -64,14 +61,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentLine"/>. </summary>
-        /// <param name="content"> Concatenated content of the contained elements in reading order. </param>
-        /// <param name="polygon">
-        /// Bounding polygon of the line, with coordinates specified relative to the
-        /// top-left of the page. The numbers represent the x, y values of the polygon
-        /// vertices, clockwise from the left (-180 degrees inclusive) relative to the
-        /// element orientation.
-        /// </param>
-        /// <param name="spans"> Location of the line in the reading order concatenated content. </param>
+        /// <param name="content"></param>
+        /// <param name="polygon"></param>
+        /// <param name="spans"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentLine(string content, IReadOnlyList<float> polygon, IReadOnlyList<DocumentSpan> spans, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -86,16 +78,11 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Concatenated content of the contained elements in reading order. </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary>
-        /// Bounding polygon of the line, with coordinates specified relative to the
-        /// top-left of the page. The numbers represent the x, y values of the polygon
-        /// vertices, clockwise from the left (-180 degrees inclusive) relative to the
-        /// element orientation.
-        /// </summary>
+        /// <summary> Gets the polygon. </summary>
         public IReadOnlyList<float> Polygon { get; }
-        /// <summary> Location of the line in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
     }
 }

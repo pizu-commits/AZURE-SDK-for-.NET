@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Type of content source. </summary>
+    /// <summary> The ContentSourceKind. </summary>
     public readonly partial struct ContentSourceKind : IEquatable<ContentSourceKind>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.DocumentIntelligence
         private const string AzureBlobValue = "azureBlob";
         private const string AzureBlobFileListValue = "azureBlobFileList";
 
-        /// <summary> Content at a specific URL. </summary>
+        /// <summary> url. </summary>
         public static ContentSourceKind Url { get; } = new ContentSourceKind(UrlValue);
-        /// <summary> Content represented via Base64 encoding. </summary>
+        /// <summary> base64. </summary>
         public static ContentSourceKind Base64 { get; } = new ContentSourceKind(Base64Value);
-        /// <summary> Files in a path within an Azure Blob Storage container. </summary>
+        /// <summary> azureBlob. </summary>
         public static ContentSourceKind AzureBlob { get; } = new ContentSourceKind(AzureBlobValue);
-        /// <summary> A file list specifying individual files in an Azure Blob Storage container. </summary>
+        /// <summary> azureBlobFileList. </summary>
         public static ContentSourceKind AzureBlobFileList { get; } = new ContentSourceKind(AzureBlobFileListValue);
         /// <summary> Determines if two <see cref="ContentSourceKind"/> values are the same. </summary>
         public static bool operator ==(ContentSourceKind left, ContentSourceKind right) => left.Equals(right);

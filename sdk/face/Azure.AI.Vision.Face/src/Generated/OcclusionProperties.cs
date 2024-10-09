@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Properties describing occlusions on a given face. </summary>
+    /// <summary> The OcclusionProperties. </summary>
     public partial class OcclusionProperties
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OcclusionProperties"/>. </summary>
-        /// <param name="foreheadOccluded"> A boolean value indicating whether forehead is occluded. </param>
-        /// <param name="eyeOccluded"> A boolean value indicating whether eyes are occluded. </param>
-        /// <param name="mouthOccluded"> A boolean value indicating whether the mouth is occluded. </param>
+        /// <param name="foreheadOccluded"></param>
+        /// <param name="eyeOccluded"></param>
+        /// <param name="mouthOccluded"></param>
         internal OcclusionProperties(bool foreheadOccluded, bool eyeOccluded, bool mouthOccluded)
         {
             ForeheadOccluded = foreheadOccluded;
@@ -57,9 +57,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="OcclusionProperties"/>. </summary>
-        /// <param name="foreheadOccluded"> A boolean value indicating whether forehead is occluded. </param>
-        /// <param name="eyeOccluded"> A boolean value indicating whether eyes are occluded. </param>
-        /// <param name="mouthOccluded"> A boolean value indicating whether the mouth is occluded. </param>
+        /// <param name="foreheadOccluded"></param>
+        /// <param name="eyeOccluded"></param>
+        /// <param name="mouthOccluded"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal OcclusionProperties(bool foreheadOccluded, bool eyeOccluded, bool mouthOccluded, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> A boolean value indicating whether forehead is occluded. </summary>
+        /// <summary> Gets the forehead occluded. </summary>
         public bool ForeheadOccluded { get; }
-        /// <summary> A boolean value indicating whether eyes are occluded. </summary>
+        /// <summary> Gets the eye occluded. </summary>
         public bool EyeOccluded { get; }
-        /// <summary> A boolean value indicating whether the mouth is occluded. </summary>
+        /// <summary> Gets the mouth occluded. </summary>
         public bool MouthOccluded { get; }
     }
 }

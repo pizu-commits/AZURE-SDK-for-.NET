@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The latest run of this disco group with some limited information, null if the group has never been run. </summary>
+    /// <summary> The DiscoveryRunResult. </summary>
     public partial class DiscoveryRunResult
     {
         /// <summary>
@@ -54,15 +54,15 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="DiscoveryRunResult"/>. </summary>
-        /// <param name="submittedDate"> The date for when the disco run was created in the system. </param>
-        /// <param name="startedDate"> The date for when the disco run was actually started by the system. </param>
-        /// <param name="completedDate"> The date for when the disco run was completed by the system. </param>
-        /// <param name="tier"> The tier which will affect the algorithm used for the disco run. </param>
-        /// <param name="state"> The State of the disco run. </param>
-        /// <param name="totalAssetsFoundCount"> The total count of assets that were found this disco run. </param>
-        /// <param name="seeds"> The list of seeds used for the disco run. </param>
-        /// <param name="excludes"> The list of excludes used for the disco run, aka assets to exclude from the discovery algorithm. </param>
-        /// <param name="names"> The list of names used for the disco run. </param>
+        /// <param name="submittedDate"></param>
+        /// <param name="startedDate"></param>
+        /// <param name="completedDate"></param>
+        /// <param name="tier"></param>
+        /// <param name="state"></param>
+        /// <param name="totalAssetsFoundCount"></param>
+        /// <param name="seeds"></param>
+        /// <param name="excludes"></param>
+        /// <param name="names"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DiscoveryRunResult(DateTimeOffset? submittedDate, DateTimeOffset? startedDate, DateTimeOffset? completedDate, string tier, DiscoRunState? state, long? totalAssetsFoundCount, IReadOnlyList<DiscoverySource> seeds, IReadOnlyList<DiscoverySource> excludes, IReadOnlyList<string> names, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,23 +78,23 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The date for when the disco run was created in the system. </summary>
+        /// <summary> Gets the submitted date. </summary>
         public DateTimeOffset? SubmittedDate { get; }
-        /// <summary> The date for when the disco run was actually started by the system. </summary>
+        /// <summary> Gets the started date. </summary>
         public DateTimeOffset? StartedDate { get; }
-        /// <summary> The date for when the disco run was completed by the system. </summary>
+        /// <summary> Gets the completed date. </summary>
         public DateTimeOffset? CompletedDate { get; }
-        /// <summary> The tier which will affect the algorithm used for the disco run. </summary>
+        /// <summary> Gets the tier. </summary>
         public string Tier { get; }
-        /// <summary> The State of the disco run. </summary>
+        /// <summary> Gets the state. </summary>
         public DiscoRunState? State { get; }
-        /// <summary> The total count of assets that were found this disco run. </summary>
+        /// <summary> Gets the total assets found count. </summary>
         public long? TotalAssetsFoundCount { get; }
-        /// <summary> The list of seeds used for the disco run. </summary>
+        /// <summary> Gets the seeds. </summary>
         public IReadOnlyList<DiscoverySource> Seeds { get; }
-        /// <summary> The list of excludes used for the disco run, aka assets to exclude from the discovery algorithm. </summary>
+        /// <summary> Gets the excludes. </summary>
         public IReadOnlyList<DiscoverySource> Excludes { get; }
-        /// <summary> The list of names used for the disco run. </summary>
+        /// <summary> Gets the names. </summary>
         public IReadOnlyList<string> Names { get; }
     }
 }

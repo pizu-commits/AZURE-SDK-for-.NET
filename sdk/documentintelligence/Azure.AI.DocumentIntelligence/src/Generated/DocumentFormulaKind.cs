@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Formula kind. </summary>
+    /// <summary> The DocumentFormulaKind. </summary>
     public readonly partial struct DocumentFormulaKind : IEquatable<DocumentFormulaKind>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string InlineValue = "inline";
         private const string DisplayValue = "display";
 
-        /// <summary> A formula embedded within the content of a paragraph. </summary>
+        /// <summary> inline. </summary>
         public static DocumentFormulaKind Inline { get; } = new DocumentFormulaKind(InlineValue);
-        /// <summary> A formula in display mode that takes up an entire line. </summary>
+        /// <summary> display. </summary>
         public static DocumentFormulaKind Display { get; } = new DocumentFormulaKind(DisplayValue);
         /// <summary> Determines if two <see cref="DocumentFormulaKind"/> values are the same. </summary>
         public static bool operator ==(DocumentFormulaKind left, DocumentFormulaKind right) => left.Equals(right);

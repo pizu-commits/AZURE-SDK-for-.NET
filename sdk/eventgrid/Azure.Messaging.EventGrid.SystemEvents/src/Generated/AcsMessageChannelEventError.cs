@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message Channel Event Error. </summary>
+    /// <summary> The AcsMessageChannelEventError. </summary>
     public partial class AcsMessageChannelEventError
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageChannelEventError"/>. </summary>
-        /// <param name="channelCode"> The channel error code. </param>
-        /// <param name="channelMessage"> The channel error message. </param>
+        /// <param name="channelCode"></param>
+        /// <param name="channelMessage"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageChannelEventError(string channelCode, string channelMessage, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The channel error code. </summary>
+        /// <summary> Gets the channel code. </summary>
         public string ChannelCode { get; }
-        /// <summary> The channel error message. </summary>
+        /// <summary> Gets the channel message. </summary>
         public string ChannelMessage { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Description of the field semantic schema using a JSON Schema style syntax. </summary>
+    /// <summary> The DocumentFieldSchema. </summary>
     public partial class DocumentFieldSchema
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentFieldSchema"/>. </summary>
-        /// <param name="type"> Semantic data type of the field value. </param>
+        /// <param name="type"></param>
         public DocumentFieldSchema(DocumentFieldType type)
         {
             Type = type;
@@ -54,11 +54,11 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentFieldSchema"/>. </summary>
-        /// <param name="type"> Semantic data type of the field value. </param>
-        /// <param name="description"> Field description. </param>
-        /// <param name="example"> Example field content. </param>
-        /// <param name="items"> Field type schema of each array element. </param>
-        /// <param name="properties"> Named sub-fields of the object field. </param>
+        /// <param name="type"></param>
+        /// <param name="description"></param>
+        /// <param name="example"></param>
+        /// <param name="items"></param>
+        /// <param name="properties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentFieldSchema(DocumentFieldType type, string description, string example, DocumentFieldSchema items, IDictionary<string, DocumentFieldSchema> properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,15 +75,15 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Semantic data type of the field value. </summary>
+        /// <summary> Gets or sets the type. </summary>
         public DocumentFieldType Type { get; set; }
-        /// <summary> Field description. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> Example field content. </summary>
+        /// <summary> Gets or sets the example. </summary>
         public string Example { get; set; }
-        /// <summary> Field type schema of each array element. </summary>
+        /// <summary> Gets or sets the items. </summary>
         public DocumentFieldSchema Items { get; set; }
-        /// <summary> Named sub-fields of the object field. </summary>
+        /// <summary> Gets the properties. </summary>
         public IDictionary<string, DocumentFieldSchema> Properties { get; }
     }
 }

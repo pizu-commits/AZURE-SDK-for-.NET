@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// Contiguous region of the concatenated content property, specified as an offset
-    /// and length.
-    /// </summary>
+    /// <summary> The DocumentSpan. </summary>
     public partial class DocumentSpan
     {
         /// <summary>
@@ -49,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentSpan"/>. </summary>
-        /// <param name="offset"> Zero-based index of the content represented by the span. </param>
-        /// <param name="length"> Number of characters in the content represented by the span. </param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         internal DocumentSpan(int offset, int length)
         {
             Offset = offset;
@@ -58,8 +55,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentSpan"/>. </summary>
-        /// <param name="offset"> Zero-based index of the content represented by the span. </param>
-        /// <param name="length"> Number of characters in the content represented by the span. </param>
+        /// <param name="offset"></param>
+        /// <param name="length"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentSpan(int offset, int length, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +70,9 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Zero-based index of the content represented by the span. </summary>
+        /// <summary> Gets the offset. </summary>
         public int Offset { get; }
-        /// <summary> Number of characters in the content represented by the span. </summary>
+        /// <summary> Gets the length. </summary>
         public int Length { get; }
     }
 }

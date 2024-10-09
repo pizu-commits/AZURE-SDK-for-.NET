@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> The error object. </summary>
+    /// <summary> The DocumentIntelligenceError. </summary>
     public partial class DocumentIntelligenceError
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentIntelligenceError"/>. </summary>
-        /// <param name="code"> One of a server-defined set of error codes. </param>
-        /// <param name="message"> A human-readable representation of the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> or <paramref name="message"/> is null. </exception>
         internal DocumentIntelligenceError(string code, string message)
         {
@@ -60,11 +60,11 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentIntelligenceError"/>. </summary>
-        /// <param name="code"> One of a server-defined set of error codes. </param>
-        /// <param name="message"> A human-readable representation of the error. </param>
-        /// <param name="target"> The target of the error. </param>
-        /// <param name="details"> An array of details about specific errors that led to this reported error. </param>
-        /// <param name="innererror"> An object containing more specific information than the current object about the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="target"></param>
+        /// <param name="details"></param>
+        /// <param name="innererror"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentIntelligenceError(string code, string message, string target, IReadOnlyList<DocumentIntelligenceError> details, InnerError innererror, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,15 +81,15 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> One of a server-defined set of error codes. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A human-readable representation of the error. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> The target of the error. </summary>
+        /// <summary> Gets the target. </summary>
         public string Target { get; }
-        /// <summary> An array of details about specific errors that led to this reported error. </summary>
+        /// <summary> Gets the details. </summary>
         public IReadOnlyList<DocumentIntelligenceError> Details { get; }
-        /// <summary> An object containing more specific information than the current object about the error. </summary>
+        /// <summary> Gets the innererror. </summary>
         public InnerError Innererror { get; }
     }
 }

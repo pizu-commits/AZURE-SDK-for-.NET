@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Document type info. </summary>
+    /// <summary> The DocumentTypeDetails. </summary>
     public partial class DocumentTypeDetails
     {
         /// <summary>
@@ -55,15 +55,15 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentTypeDetails"/>. </summary>
-        /// <param name="description"> Document model description. </param>
-        /// <param name="buildMode"> Custom document model build mode. </param>
-        /// <param name="fieldSchema"> Description of the document semantic schema using a JSON Schema style syntax. </param>
-        /// <param name="fieldConfidence"> Estimated confidence for each field. </param>
-        /// <param name="modelId"> Document model to use for analyzing documents with specified type. </param>
-        /// <param name="confidenceThreshold"> Only perform analysis if docType confidence is above threshold. </param>
-        /// <param name="features"> List of optional analysis features. </param>
-        /// <param name="queryFields"> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </param>
-        /// <param name="maxDocumentsToAnalyze"> Maximum number of documents of specified type to analyze.  Default=all. </param>
+        /// <param name="description"></param>
+        /// <param name="buildMode"></param>
+        /// <param name="fieldSchema"></param>
+        /// <param name="fieldConfidence"></param>
+        /// <param name="modelId"></param>
+        /// <param name="confidenceThreshold"></param>
+        /// <param name="features"></param>
+        /// <param name="queryFields"></param>
+        /// <param name="maxDocumentsToAnalyze"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentTypeDetails(string description, DocumentBuildMode? buildMode, IDictionary<string, DocumentFieldSchema> fieldSchema, IDictionary<string, float> fieldConfidence, string modelId, float? confidenceThreshold, IList<DocumentAnalysisFeature> features, IList<string> queryFields, int? maxDocumentsToAnalyze, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -79,23 +79,23 @@ namespace Azure.AI.DocumentIntelligence
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Document model description. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> Custom document model build mode. </summary>
+        /// <summary> Gets or sets the build mode. </summary>
         public DocumentBuildMode? BuildMode { get; set; }
-        /// <summary> Description of the document semantic schema using a JSON Schema style syntax. </summary>
+        /// <summary> Gets the field schema. </summary>
         public IDictionary<string, DocumentFieldSchema> FieldSchema { get; }
-        /// <summary> Estimated confidence for each field. </summary>
+        /// <summary> Gets the field confidence. </summary>
         public IDictionary<string, float> FieldConfidence { get; }
-        /// <summary> Document model to use for analyzing documents with specified type. </summary>
+        /// <summary> Gets or sets the model id. </summary>
         public string ModelId { get; set; }
-        /// <summary> Only perform analysis if docType confidence is above threshold. </summary>
+        /// <summary> Gets or sets the confidence threshold. </summary>
         public float? ConfidenceThreshold { get; set; }
-        /// <summary> List of optional analysis features. </summary>
+        /// <summary> Gets the features. </summary>
         public IList<DocumentAnalysisFeature> Features { get; }
-        /// <summary> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </summary>
+        /// <summary> Gets the query fields. </summary>
         public IList<string> QueryFields { get; }
-        /// <summary> Maximum number of documents of specified type to analyze.  Default=all. </summary>
+        /// <summary> Gets or sets the max documents to analyze. </summary>
         public int? MaxDocumentsToAnalyze { get; set; }
     }
 }

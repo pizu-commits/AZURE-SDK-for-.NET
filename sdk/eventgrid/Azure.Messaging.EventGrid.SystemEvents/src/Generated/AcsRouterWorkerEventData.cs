@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of common properties of all Router Worker events. </summary>
+    /// <summary> The AcsRouterWorkerEventData. </summary>
     public partial class AcsRouterWorkerEventData : AcsRouterEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerEventData"/>. </summary>
@@ -19,17 +19,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerEventData"/>. </summary>
-        /// <param name="jobId"> Router Event Job ID. </param>
-        /// <param name="channelReference"> Router Event Channel Reference. </param>
-        /// <param name="channelId"> Router Event Channel ID. </param>
+        /// <param name="jobId"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="channelId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="workerId"> Router Worker events Worker Id. </param>
+        /// <param name="workerId"></param>
         internal AcsRouterWorkerEventData(string jobId, string channelReference, string channelId, IDictionary<string, BinaryData> serializedAdditionalRawData, string workerId) : base(jobId, channelReference, channelId, serializedAdditionalRawData)
         {
             WorkerId = workerId;
         }
 
-        /// <summary> Router Worker events Worker Id. </summary>
+        /// <summary> Gets the worker id. </summary>
         public string WorkerId { get; }
     }
 }

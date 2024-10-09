@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message Interactive button reply content for a user to business message. </summary>
+    /// <summary> The AcsMessageInteractiveButtonReplyContent. </summary>
     public partial class AcsMessageInteractiveButtonReplyContent
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageInteractiveButtonReplyContent"/>. </summary>
-        /// <param name="buttonId"> The ID of the button. </param>
-        /// <param name="title"> The title of the button. </param>
+        /// <param name="buttonId"></param>
+        /// <param name="title"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageInteractiveButtonReplyContent(string buttonId, string title, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ID of the button. </summary>
+        /// <summary> Gets the button id. </summary>
         public string ButtonId { get; }
-        /// <summary> The title of the button. </summary>
+        /// <summary> Gets the title. </summary>
         public string Title { get; }
     }
 }

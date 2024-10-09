@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Presence of signature. </summary>
+    /// <summary> The DocumentSignatureType. </summary>
     public readonly partial struct DocumentSignatureType : IEquatable<DocumentSignatureType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string SignedValue = "signed";
         private const string UnsignedValue = "unsigned";
 
-        /// <summary> A signature is detected. </summary>
+        /// <summary> signed. </summary>
         public static DocumentSignatureType Signed { get; } = new DocumentSignatureType(SignedValue);
-        /// <summary> No signatures are detected. </summary>
+        /// <summary> unsigned. </summary>
         public static DocumentSignatureType Unsigned { get; } = new DocumentSignatureType(UnsignedValue);
         /// <summary> Determines if two <see cref="DocumentSignatureType"/> values are the same. </summary>
         public static bool operator ==(DocumentSignatureType left, DocumentSignatureType right) => left.Equals(right);

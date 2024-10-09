@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The updatable properties of the FabricCapacity. </summary>
+    /// <summary> The FabricCapacityUpdateProperties. </summary>
     internal partial class FabricCapacityUpdateProperties
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricCapacityUpdateProperties"/>. </summary>
-        /// <param name="administration"> The capacity administration. </param>
+        /// <param name="administration"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricCapacityUpdateProperties(FabricCapacityAdministration administration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,9 +59,9 @@ namespace Azure.ResourceManager.Fabric.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The capacity administration. </summary>
+        /// <summary> Gets or sets the administration. </summary>
         internal FabricCapacityAdministration Administration { get; set; }
-        /// <summary> An array of administrator user identities. </summary>
+        /// <summary> Gets or sets the administration members. </summary>
         public IList<string> AdministrationMembers
         {
             get => Administration is null ? default : Administration.Members;

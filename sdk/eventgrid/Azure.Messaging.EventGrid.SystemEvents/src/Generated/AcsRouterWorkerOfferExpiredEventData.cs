@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterWorkerOfferExpired event. </summary>
+    /// <summary> The AcsRouterWorkerOfferExpiredEventData. </summary>
     public partial class AcsRouterWorkerOfferExpiredEventData : AcsRouterWorkerEventData
     {
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerOfferExpiredEventData"/>. </summary>
@@ -19,22 +19,22 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerOfferExpiredEventData"/>. </summary>
-        /// <param name="jobId"> Router Event Job ID. </param>
-        /// <param name="channelReference"> Router Event Channel Reference. </param>
-        /// <param name="channelId"> Router Event Channel ID. </param>
+        /// <param name="jobId"></param>
+        /// <param name="channelReference"></param>
+        /// <param name="channelId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="workerId"> Router Worker events Worker Id. </param>
-        /// <param name="queueId"> Router Worker Offer Expired Queue Id. </param>
-        /// <param name="offerId"> Router Worker Offer Expired Offer Id. </param>
+        /// <param name="workerId"></param>
+        /// <param name="queueId"></param>
+        /// <param name="offerId"></param>
         internal AcsRouterWorkerOfferExpiredEventData(string jobId, string channelReference, string channelId, IDictionary<string, BinaryData> serializedAdditionalRawData, string workerId, string queueId, string offerId) : base(jobId, channelReference, channelId, serializedAdditionalRawData, workerId)
         {
             QueueId = queueId;
             OfferId = offerId;
         }
 
-        /// <summary> Router Worker Offer Expired Queue Id. </summary>
+        /// <summary> Gets the queue id. </summary>
         public string QueueId { get; }
-        /// <summary> Router Worker Offer Expired Offer Id. </summary>
+        /// <summary> Gets the offer id. </summary>
         public string OfferId { get; }
     }
 }

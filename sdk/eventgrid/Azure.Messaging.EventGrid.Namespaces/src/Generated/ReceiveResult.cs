@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> Details of the Receive operation response. </summary>
+    /// <summary> The ReceiveResult. </summary>
     public partial class ReceiveResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ReceiveResult"/>. </summary>
-        /// <param name="details"> Array of receive responses, one per cloud event. </param>
+        /// <param name="details"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="details"/> is null. </exception>
         internal ReceiveResult(IEnumerable<ReceiveDetails> details)
         {
@@ -57,7 +57,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Initializes a new instance of <see cref="ReceiveResult"/>. </summary>
-        /// <param name="details"> Array of receive responses, one per cloud event. </param>
+        /// <param name="details"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReceiveResult(IReadOnlyList<ReceiveDetails> details, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         {
         }
 
-        /// <summary> Array of receive responses, one per cloud event. </summary>
+        /// <summary> Gets the details. </summary>
         public IReadOnlyList<ReceiveDetails> Details { get; }
     }
 }

@@ -11,16 +11,16 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatThreadCreatedWithUser event. </summary>
+    /// <summary> The AcsChatThreadCreatedWithUserEventData. </summary>
     public partial class AcsChatThreadCreatedWithUserEventData : AcsChatThreadEventBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadCreatedWithUserEventData"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="createTime"> The original creation time of the thread. </param>
-        /// <param name="createdByCommunicationIdentifier"> The communication identifier of the user who created the thread. </param>
-        /// <param name="properties"> The thread properties. </param>
-        /// <param name="metadata"> The thread metadata. </param>
-        /// <param name="participants"> The list of properties of participants who are part of the thread. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="createTime"></param>
+        /// <param name="createdByCommunicationIdentifier"></param>
+        /// <param name="properties"></param>
+        /// <param name="metadata"></param>
+        /// <param name="participants"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="recipientCommunicationIdentifier"/>, <paramref name="createdByCommunicationIdentifier"/>, <paramref name="properties"/>, <paramref name="metadata"/> or <paramref name="participants"/> is null. </exception>
         internal AcsChatThreadCreatedWithUserEventData(CommunicationIdentifierModel recipientCommunicationIdentifier, DateTimeOffset createTime, CommunicationIdentifierModel createdByCommunicationIdentifier, IReadOnlyDictionary<string, BinaryData> properties, IReadOnlyDictionary<string, string> metadata, IEnumerable<AcsChatThreadParticipantProperties> participants) : base(recipientCommunicationIdentifier, createTime)
         {
@@ -37,16 +37,16 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadCreatedWithUserEventData"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="createTime"> The original creation time of the thread. </param>
-        /// <param name="version"> The version of the thread. </param>
-        /// <param name="createdByCommunicationIdentifier"> The communication identifier of the user who created the thread. </param>
-        /// <param name="properties"> The thread properties. </param>
-        /// <param name="metadata"> The thread metadata. </param>
-        /// <param name="participants"> The list of properties of participants who are part of the thread. </param>
+        /// <param name="createTime"></param>
+        /// <param name="version"></param>
+        /// <param name="createdByCommunicationIdentifier"></param>
+        /// <param name="properties"></param>
+        /// <param name="metadata"></param>
+        /// <param name="participants"></param>
         internal AcsChatThreadCreatedWithUserEventData(CommunicationIdentifierModel recipientCommunicationIdentifier, string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, DateTimeOffset createTime, long? version, CommunicationIdentifierModel createdByCommunicationIdentifier, IReadOnlyDictionary<string, BinaryData> properties, IReadOnlyDictionary<string, string> metadata, IReadOnlyList<AcsChatThreadParticipantProperties> participants) : base(recipientCommunicationIdentifier, transactionId, threadId, serializedAdditionalRawData, createTime, version)
         {
             CreatedByCommunicationIdentifier = createdByCommunicationIdentifier;
@@ -60,10 +60,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The communication identifier of the user who created the thread. </summary>
+        /// <summary> Gets the created by communication identifier. </summary>
         public CommunicationIdentifierModel CreatedByCommunicationIdentifier { get; }
         /// <summary>
-        /// The thread properties
+        /// Gets the properties
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -93,9 +93,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </para>
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> Properties { get; }
-        /// <summary> The thread metadata. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
-        /// <summary> The list of properties of participants who are part of the thread. </summary>
+        /// <summary> Gets the participants. </summary>
         public IReadOnlyList<AcsChatThreadParticipantProperties> Participants { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Landmark coordinates within an image. </summary>
+    /// <summary> The LandmarkCoordinate. </summary>
     public partial class LandmarkCoordinate
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LandmarkCoordinate"/>. </summary>
-        /// <param name="x"> The horizontal component, in pixels. </param>
-        /// <param name="y"> The vertical component, in pixels. </param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         internal LandmarkCoordinate(float x, float y)
         {
             X = x;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="LandmarkCoordinate"/>. </summary>
-        /// <param name="x"> The horizontal component, in pixels. </param>
-        /// <param name="y"> The vertical component, in pixels. </param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LandmarkCoordinate(float x, float y, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The horizontal component, in pixels. </summary>
+        /// <summary> Gets the x. </summary>
         public float X { get; }
-        /// <summary> The vertical component, in pixels. </summary>
+        /// <summary> Gets the y. </summary>
         public float Y { get; }
     }
 }

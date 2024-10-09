@@ -10,14 +10,14 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatMessageDeleted event. </summary>
+    /// <summary> The AcsChatMessageDeletedEventData. </summary>
     public partial class AcsChatMessageDeletedEventData : AcsChatMessageEventBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatMessageDeletedEventData"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="senderCommunicationIdentifier"> The communication identifier of the sender. </param>
-        /// <param name="composeTime"> The original compose time of the message. </param>
-        /// <param name="deleteTime"> The time at which the message was deleted. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="senderCommunicationIdentifier"></param>
+        /// <param name="composeTime"></param>
+        /// <param name="deleteTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="recipientCommunicationIdentifier"/> or <paramref name="senderCommunicationIdentifier"/> is null. </exception>
         internal AcsChatMessageDeletedEventData(CommunicationIdentifierModel recipientCommunicationIdentifier, CommunicationIdentifierModel senderCommunicationIdentifier, DateTimeOffset composeTime, DateTimeOffset deleteTime) : base(recipientCommunicationIdentifier, senderCommunicationIdentifier, composeTime)
         {
@@ -28,17 +28,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatMessageDeletedEventData"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="messageId"> The chat message id. </param>
-        /// <param name="senderCommunicationIdentifier"> The communication identifier of the sender. </param>
-        /// <param name="senderDisplayName"> The display name of the sender. </param>
-        /// <param name="composeTime"> The original compose time of the message. </param>
-        /// <param name="type"> The type of the message. </param>
-        /// <param name="version"> The version of the message. </param>
-        /// <param name="deleteTime"> The time at which the message was deleted. </param>
+        /// <param name="messageId"></param>
+        /// <param name="senderCommunicationIdentifier"></param>
+        /// <param name="senderDisplayName"></param>
+        /// <param name="composeTime"></param>
+        /// <param name="type"></param>
+        /// <param name="version"></param>
+        /// <param name="deleteTime"></param>
         internal AcsChatMessageDeletedEventData(CommunicationIdentifierModel recipientCommunicationIdentifier, string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, string messageId, CommunicationIdentifierModel senderCommunicationIdentifier, string senderDisplayName, DateTimeOffset composeTime, string type, long? version, DateTimeOffset deleteTime) : base(recipientCommunicationIdentifier, transactionId, threadId, serializedAdditionalRawData, messageId, senderCommunicationIdentifier, senderDisplayName, composeTime, type, version)
         {
             DeleteTime = deleteTime;
@@ -49,7 +49,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which the message was deleted. </summary>
+        /// <summary> Gets the delete time. </summary>
         public DateTimeOffset DeleteTime { get; }
     }
 }

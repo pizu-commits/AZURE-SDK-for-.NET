@@ -55,18 +55,18 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="DataConnection"/>. </summary>
-        /// <param name="kind"> Discriminator property for DataConnection. </param>
-        /// <param name="id"> The system generated unique id for the resource. </param>
-        /// <param name="name"> The caller provided unique name for the resource. </param>
-        /// <param name="displayName"> The name that can be used for display purposes. </param>
-        /// <param name="content"> The type of data the data connection will transfer. </param>
-        /// <param name="createdDate"> The date the data connection was created. </param>
-        /// <param name="frequency"> The rate at which the data connection will receive updates. </param>
-        /// <param name="frequencyOffset"> The day to update the data connection on. </param>
-        /// <param name="updatedDate"> The date the data connection was last updated. </param>
-        /// <param name="userUpdatedAt"> The date the data connection was last updated by user. </param>
-        /// <param name="active"> An indicator of whether the data connection is active. </param>
-        /// <param name="inactiveMessage"> A message that specifies details about data connection if inactive. </param>
+        /// <param name="kind"></param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
+        /// <param name="content"></param>
+        /// <param name="createdDate"></param>
+        /// <param name="frequency"></param>
+        /// <param name="frequencyOffset"></param>
+        /// <param name="updatedDate"></param>
+        /// <param name="userUpdatedAt"></param>
+        /// <param name="active"></param>
+        /// <param name="inactiveMessage"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DataConnection(string kind, string id, string name, string displayName, DataConnectionContent? content, DateTimeOffset? createdDate, DataConnectionFrequency? frequency, int? frequencyOffset, DateTimeOffset? updatedDate, DateTimeOffset? userUpdatedAt, bool? active, string inactiveMessage, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,29 +85,29 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Discriminator property for DataConnection. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal string Kind { get; set; }
-        /// <summary> The system generated unique id for the resource. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The caller provided unique name for the resource. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The name that can be used for display purposes. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The type of data the data connection will transfer. </summary>
+        /// <summary> Gets the content. </summary>
         public DataConnectionContent? Content { get; }
-        /// <summary> The date the data connection was created. </summary>
+        /// <summary> Gets the created date. </summary>
         public DateTimeOffset? CreatedDate { get; }
-        /// <summary> The rate at which the data connection will receive updates. </summary>
+        /// <summary> Gets the frequency. </summary>
         public DataConnectionFrequency? Frequency { get; }
-        /// <summary> The day to update the data connection on. </summary>
+        /// <summary> Gets the frequency offset. </summary>
         public int? FrequencyOffset { get; }
-        /// <summary> The date the data connection was last updated. </summary>
+        /// <summary> Gets the updated date. </summary>
         public DateTimeOffset? UpdatedDate { get; }
-        /// <summary> The date the data connection was last updated by user. </summary>
+        /// <summary> Gets the user updated at. </summary>
         public DateTimeOffset? UserUpdatedAt { get; }
-        /// <summary> An indicator of whether the data connection is active. </summary>
+        /// <summary> Gets the active. </summary>
         public bool? Active { get; }
-        /// <summary> A message that specifies details about data connection if inactive. </summary>
+        /// <summary> Gets the inactive message. </summary>
         public string InactiveMessage { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the chat thread participant. </summary>
+    /// <summary> The AcsChatThreadParticipantProperties. </summary>
     public partial class AcsChatThreadParticipantProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadParticipantProperties"/>. </summary>
-        /// <param name="participantCommunicationIdentifier"> The communication identifier of the user. </param>
-        /// <param name="metadata"> The metadata of the user. </param>
+        /// <param name="participantCommunicationIdentifier"></param>
+        /// <param name="metadata"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="participantCommunicationIdentifier"/> or <paramref name="metadata"/> is null. </exception>
         internal AcsChatThreadParticipantProperties(CommunicationIdentifierModel participantCommunicationIdentifier, IReadOnlyDictionary<string, string> metadata)
         {
@@ -59,9 +59,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatThreadParticipantProperties"/>. </summary>
-        /// <param name="displayName"> The name of the user. </param>
-        /// <param name="participantCommunicationIdentifier"> The communication identifier of the user. </param>
-        /// <param name="metadata"> The metadata of the user. </param>
+        /// <param name="displayName"></param>
+        /// <param name="participantCommunicationIdentifier"></param>
+        /// <param name="metadata"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsChatThreadParticipantProperties(string displayName, CommunicationIdentifierModel participantCommunicationIdentifier, IReadOnlyDictionary<string, string> metadata, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -76,11 +76,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The name of the user. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The communication identifier of the user. </summary>
+        /// <summary> Gets the participant communication identifier. </summary>
         public CommunicationIdentifierModel ParticipantCommunicationIdentifier { get; }
-        /// <summary> The metadata of the user. </summary>
+        /// <summary> Gets the metadata. </summary>
         public IReadOnlyDictionary<string, string> Metadata { get; }
     }
 }

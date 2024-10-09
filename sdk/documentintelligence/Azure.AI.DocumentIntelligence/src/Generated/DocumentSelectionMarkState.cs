@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> State of the selection mark. </summary>
+    /// <summary> The DocumentSelectionMarkState. </summary>
     public readonly partial struct DocumentSelectionMarkState : IEquatable<DocumentSelectionMarkState>
     {
         private readonly string _value;
@@ -25,12 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string SelectedValue = "selected";
         private const string UnselectedValue = "unselected";
 
-        /// <summary>
-        /// The selection mark is selected, often indicated by a check ✓ or cross X inside
-        /// the selection mark.
-        /// </summary>
+        /// <summary> selected. </summary>
         public static DocumentSelectionMarkState Selected { get; } = new DocumentSelectionMarkState(SelectedValue);
-        /// <summary> The selection mark is not selected. </summary>
+        /// <summary> unselected. </summary>
         public static DocumentSelectionMarkState Unselected { get; } = new DocumentSelectionMarkState(UnselectedValue);
         /// <summary> Determines if two <see cref="DocumentSelectionMarkState"/> values are the same. </summary>
         public static bool operator ==(DocumentSelectionMarkState left, DocumentSelectionMarkState right) => left.Equals(right);

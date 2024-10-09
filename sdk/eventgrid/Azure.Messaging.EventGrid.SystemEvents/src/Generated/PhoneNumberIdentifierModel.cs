@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> A phone number. </summary>
+    /// <summary> The PhoneNumberIdentifierModel. </summary>
     public partial class PhoneNumberIdentifierModel
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="PhoneNumberIdentifierModel"/>. </summary>
-        /// <param name="value"> The phone number in E.164 format. </param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal PhoneNumberIdentifierModel(string value)
         {
@@ -56,7 +56,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="PhoneNumberIdentifierModel"/>. </summary>
-        /// <param name="value"> The phone number in E.164 format. </param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal PhoneNumberIdentifierModel(string value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The phone number in E.164 format. </summary>
+        /// <summary> Gets the value. </summary>
         public string Value { get; }
     }
 }

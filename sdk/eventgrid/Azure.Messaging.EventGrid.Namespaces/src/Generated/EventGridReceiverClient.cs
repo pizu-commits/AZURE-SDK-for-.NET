@@ -40,10 +40,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Receive a batch of Cloud Events from a subscription. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="maxEvents"> Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. </param>
-        /// <param name="maxWaitTime"> Max wait time value for receive operation in Seconds. It is the time in seconds that the server approximately waits for the availability of an event and responds to the request. If an event is available, the broker responds immediately to the client. Minimum value is 10 seconds, while maximum value is 120 seconds. If not specified, the default value is 60 seconds. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="maxEvents"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxWaitTime"> The <see cref="TimeSpan"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -58,10 +58,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Receive a batch of Cloud Events from a subscription. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="maxEvents"> Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. </param>
-        /// <param name="maxWaitTime"> Max wait time value for receive operation in Seconds. It is the time in seconds that the server approximately waits for the availability of an event and responds to the request. If an event is available, the broker responds immediately to the client. Minimum value is 10 seconds, while maximum value is 120 seconds. If not specified, the default value is 60 seconds. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="maxEvents"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxWaitTime"> The <see cref="TimeSpan"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -90,10 +90,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="maxEvents"> Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. </param>
-        /// <param name="maxWaitTime"> Max wait time value for receive operation in Seconds. It is the time in seconds that the server approximately waits for the availability of an event and responds to the request. If an event is available, the broker responds immediately to the client. Minimum value is 10 seconds, while maximum value is 120 seconds. If not specified, the default value is 60 seconds. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="maxEvents"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxWaitTime"> The <see cref="TimeSpan"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -133,10 +133,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="maxEvents"> Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. </param>
-        /// <param name="maxWaitTime"> Max wait time value for receive operation in Seconds. It is the time in seconds that the server approximately waits for the availability of an event and responds to the request. If an event is available, the broker responds immediately to the client. Minimum value is 10 seconds, while maximum value is 120 seconds. If not specified, the default value is 60 seconds. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="maxEvents"> The <see cref="int"/>? to use. </param>
+        /// <param name="maxWaitTime"> The <see cref="TimeSpan"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -162,9 +162,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens, along with other failed lock tokens with their corresponding error information. Successfully acknowledged events will no longer be available to be received by any consumer. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -181,9 +181,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens, along with other failed lock tokens with their corresponding error information. Successfully acknowledged events will no longer be available to be received by any consumer. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -214,8 +214,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>
@@ -257,8 +257,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>
@@ -286,10 +286,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along with other failed lock tokens with their corresponding error information. Successfully released events can be received by consumers. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
-        /// <param name="releaseDelayInSeconds"> Release cloud events with the specified delay in seconds. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
+        /// <param name="releaseDelayInSeconds"> The <see cref="ReleaseDelay"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -306,10 +306,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along with other failed lock tokens with their corresponding error information. Successfully released events can be received by consumers. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
-        /// <param name="releaseDelayInSeconds"> Release cloud events with the specified delay in seconds. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
+        /// <param name="releaseDelayInSeconds"> The <see cref="ReleaseDelay"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -340,10 +340,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="releaseDelayInSeconds"> Release cloud events with the specified delay in seconds. Allowed values: "0" | "10" | "60" | "600" | "3600". </param>
+        /// <param name="releaseDelayInSeconds"> The <see cref="string"/> to use. Allowed values: "0" | "10" | "60" | "600" | "3600". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -384,10 +384,10 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="releaseDelayInSeconds"> Release cloud events with the specified delay in seconds. Allowed values: "0" | "10" | "60" | "600" | "3600". </param>
+        /// <param name="releaseDelayInSeconds"> The <see cref="string"/> to use. Allowed values: "0" | "10" | "60" | "600" | "3600". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -414,9 +414,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Reject a batch of Cloud Events. The response will include the set of successfully rejected lock tokens, along with other failed lock tokens with their corresponding error information. Successfully rejected events will be dead-lettered and can no longer be received by a consumer. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -433,9 +433,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Reject a batch of Cloud Events. The response will include the set of successfully rejected lock tokens, along with other failed lock tokens with their corresponding error information. Successfully rejected events will be dead-lettered and can no longer be received by a consumer. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -466,8 +466,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>
@@ -509,8 +509,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>
@@ -538,9 +538,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Renew locks for a batch of Cloud Events. The response will include the set of successfully renewed lock tokens, along with other failed lock tokens with their corresponding error information. Successfully renewed locks will ensure that the associated event is only available to the consumer that holds the renewed lock. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -557,9 +557,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Renew locks for a batch of Cloud Events. The response will include the set of successfully renewed lock tokens, along with other failed lock tokens with their corresponding error information. Successfully renewed locks will ensure that the associated event is only available to the consumer that holds the renewed lock. </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
-        /// <param name="lockTokens"> Array of lock tokens. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
+        /// <param name="lockTokens"></param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="lockTokens"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="topicName"/> or <paramref name="eventSubscriptionName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -590,8 +590,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>
@@ -633,8 +633,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="topicName"> Topic Name. </param>
-        /// <param name="eventSubscriptionName"> Event Subscription Name. </param>
+        /// <param name="topicName"> The <see cref="string"/> to use. </param>
+        /// <param name="eventSubscriptionName"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="topicName"/>, <paramref name="eventSubscriptionName"/> or <paramref name="content"/> is null. </exception>

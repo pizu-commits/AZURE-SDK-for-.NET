@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Recording content type. </summary>
+    /// <summary> The recordingContentType. </summary>
     public readonly partial struct RecordingContentType : IEquatable<RecordingContentType>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string AudioVideoValue = "AudioVideo";
         private const string AudioValue = "Audio";
 
-        /// <summary> AudioVideo content type. </summary>
+        /// <summary> AudioVideo. </summary>
         public static RecordingContentType AudioVideo { get; } = new RecordingContentType(AudioVideoValue);
-        /// <summary> Audio content type. </summary>
+        /// <summary> Audio. </summary>
         public static RecordingContentType Audio { get; } = new RecordingContentType(AudioValue);
         /// <summary> Determines if two <see cref="RecordingContentType"/> values are the same. </summary>
         public static bool operator ==(RecordingContentType left, RecordingContentType right) => left.Equals(right);

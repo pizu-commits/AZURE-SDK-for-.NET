@@ -52,9 +52,9 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="ReportBillableAssetSnapshotResult"/>. </summary>
-        /// <param name="date"> The date these assets were billed on. </param>
-        /// <param name="total"> The total number of billable assets for this date. </param>
-        /// <param name="assetBreakdown"> The breakdown of billable asset counts for each asset type. </param>
+        /// <param name="date"></param>
+        /// <param name="total"></param>
+        /// <param name="assetBreakdown"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReportBillableAssetSnapshotResult(DateTimeOffset? date, long? total, IReadOnlyList<ReportBillableAssetBreakdown> assetBreakdown, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The date these assets were billed on. </summary>
+        /// <summary> Gets the date. </summary>
         public DateTimeOffset? Date { get; }
-        /// <summary> The total number of billable assets for this date. </summary>
+        /// <summary> Gets the total. </summary>
         public long? Total { get; }
-        /// <summary> The breakdown of billable asset counts for each asset type. </summary>
+        /// <summary> Gets the asset breakdown. </summary>
         public IReadOnlyList<ReportBillableAssetBreakdown> AssetBreakdown { get; }
     }
 }

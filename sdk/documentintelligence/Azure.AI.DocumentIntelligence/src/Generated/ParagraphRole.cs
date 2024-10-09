@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Semantic role of the paragraph. </summary>
+    /// <summary> The ParagraphRole. </summary>
     public readonly partial struct ParagraphRole : IEquatable<ParagraphRole>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.AI.DocumentIntelligence
         private const string FootnoteValue = "footnote";
         private const string FormulaBlockValue = "formulaBlock";
 
-        /// <summary> Text near the top edge of the page. </summary>
+        /// <summary> pageHeader. </summary>
         public static ParagraphRole PageHeader { get; } = new ParagraphRole(PageHeaderValue);
-        /// <summary> Text near the bottom edge of the page. </summary>
+        /// <summary> pageFooter. </summary>
         public static ParagraphRole PageFooter { get; } = new ParagraphRole(PageFooterValue);
-        /// <summary> Page number. </summary>
+        /// <summary> pageNumber. </summary>
         public static ParagraphRole PageNumber { get; } = new ParagraphRole(PageNumberValue);
-        /// <summary> Top-level title describing the entire document. </summary>
+        /// <summary> title. </summary>
         public static ParagraphRole Title { get; } = new ParagraphRole(TitleValue);
-        /// <summary> Sub heading describing a section of the document. </summary>
+        /// <summary> sectionHeading. </summary>
         public static ParagraphRole SectionHeading { get; } = new ParagraphRole(SectionHeadingValue);
-        /// <summary> A note usually placed after the main content on a page. </summary>
+        /// <summary> footnote. </summary>
         public static ParagraphRole Footnote { get; } = new ParagraphRole(FootnoteValue);
-        /// <summary> A block of formulas, often with shared alignment. </summary>
+        /// <summary> formulaBlock. </summary>
         public static ParagraphRole FormulaBlock { get; } = new ParagraphRole(FormulaBlockValue);
         /// <summary> Determines if two <see cref="ParagraphRole"/> values are the same. </summary>
         public static bool operator ==(ParagraphRole left, ParagraphRole right) => left.Equals(right);

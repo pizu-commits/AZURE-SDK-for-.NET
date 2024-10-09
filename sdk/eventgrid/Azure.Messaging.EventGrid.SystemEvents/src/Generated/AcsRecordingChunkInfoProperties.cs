@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema for all properties of  Recording Chunk Information. </summary>
+    /// <summary> The AcsRecordingChunkInfoProperties. </summary>
     public partial class AcsRecordingChunkInfoProperties
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRecordingChunkInfoProperties"/>. </summary>
-        /// <param name="documentId"> The documentId of the recording chunk. </param>
-        /// <param name="index"> The index of the recording chunk. </param>
-        /// <param name="endReason"> The reason for ending the recording chunk. </param>
-        /// <param name="metadataLocation"> The location of the metadata for this chunk. </param>
-        /// <param name="contentLocation"> The location of the content for this chunk. </param>
-        /// <param name="deleteLocation"> The location to delete all chunk storage. </param>
+        /// <param name="documentId"></param>
+        /// <param name="index"></param>
+        /// <param name="endReason"></param>
+        /// <param name="metadataLocation"></param>
+        /// <param name="contentLocation"></param>
+        /// <param name="deleteLocation"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRecordingChunkInfoProperties(string documentId, long? index, string endReason, string metadataLocation, string contentLocation, string deleteLocation, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The documentId of the recording chunk. </summary>
+        /// <summary> Gets the document id. </summary>
         public string DocumentId { get; }
-        /// <summary> The index of the recording chunk. </summary>
+        /// <summary> Gets the index. </summary>
         public long? Index { get; }
-        /// <summary> The reason for ending the recording chunk. </summary>
+        /// <summary> Gets the end reason. </summary>
         public string EndReason { get; }
-        /// <summary> The location of the metadata for this chunk. </summary>
+        /// <summary> Gets the metadata location. </summary>
         public string MetadataLocation { get; }
-        /// <summary> The location of the content for this chunk. </summary>
+        /// <summary> Gets the content location. </summary>
         public string ContentLocation { get; }
-        /// <summary> The location to delete all chunk storage. </summary>
+        /// <summary> Gets the delete location. </summary>
         public string DeleteLocation { get; }
     }
 }

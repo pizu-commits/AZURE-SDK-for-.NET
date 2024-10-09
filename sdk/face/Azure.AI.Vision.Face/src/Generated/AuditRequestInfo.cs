@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Audit entry for a request in the session. </summary>
+    /// <summary> The AuditRequestInfo. </summary>
     public partial class AuditRequestInfo
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AuditRequestInfo"/>. </summary>
-        /// <param name="url"> The relative URL and query of the liveness request. </param>
-        /// <param name="method"> The HTTP method of the request (i.e., GET, POST, DELETE). </param>
-        /// <param name="contentType"> The content type of the request. </param>
+        /// <param name="url"></param>
+        /// <param name="method"></param>
+        /// <param name="contentType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="url"/>, <paramref name="method"/> or <paramref name="contentType"/> is null. </exception>
         internal AuditRequestInfo(string url, string method, string contentType)
         {
@@ -62,11 +62,11 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="AuditRequestInfo"/>. </summary>
-        /// <param name="url"> The relative URL and query of the liveness request. </param>
-        /// <param name="method"> The HTTP method of the request (i.e., GET, POST, DELETE). </param>
-        /// <param name="contentLength"> The length of the request body in bytes. </param>
-        /// <param name="contentType"> The content type of the request. </param>
-        /// <param name="userAgent"> The user agent used to submit the request. </param>
+        /// <param name="url"></param>
+        /// <param name="method"></param>
+        /// <param name="contentLength"></param>
+        /// <param name="contentType"></param>
+        /// <param name="userAgent"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AuditRequestInfo(string url, string method, long? contentLength, string contentType, string userAgent, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,15 +83,15 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The relative URL and query of the liveness request. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> The HTTP method of the request (i.e., GET, POST, DELETE). </summary>
+        /// <summary> Gets the method. </summary>
         public string Method { get; }
-        /// <summary> The length of the request body in bytes. </summary>
+        /// <summary> Gets the content length. </summary>
         public long? ContentLength { get; }
-        /// <summary> The content type of the request. </summary>
+        /// <summary> Gets the content type. </summary>
         public string ContentType { get; }
-        /// <summary> The user agent used to submit the request. </summary>
+        /// <summary> Gets the user agent. </summary>
         public string UserAgent { get; }
     }
 }

@@ -10,41 +10,24 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Event data for Microsoft.EventGrid.MQTTClientSessionDisconnected event. </summary>
+    /// <summary> The EventGridMQTTClientSessionDisconnectedEventData. </summary>
     public partial class EventGridMQTTClientSessionDisconnectedEventData : EventGridMQTTClientEventData
     {
         /// <summary> Initializes a new instance of <see cref="EventGridMQTTClientSessionDisconnectedEventData"/>. </summary>
-        /// <param name="disconnectionReason">
-        /// Reason for the disconnection of the MQTT client's session. The value could be
-        /// one of the values in the disconnection reasons table.
-        /// </param>
+        /// <param name="disconnectionReason"></param>
         internal EventGridMQTTClientSessionDisconnectedEventData(EventGridMQTTClientDisconnectionReason disconnectionReason)
         {
             DisconnectionReason = disconnectionReason;
         }
 
         /// <summary> Initializes a new instance of <see cref="EventGridMQTTClientSessionDisconnectedEventData"/>. </summary>
-        /// <param name="clientAuthenticationName">
-        /// Unique identifier for the MQTT client that the client presents to the service
-        /// for authentication. This case-sensitive string can be up to 128 characters
-        /// long, and supports UTF-8 characters.
-        /// </param>
-        /// <param name="clientName"> Name of the client resource in the Event Grid namespace. </param>
-        /// <param name="namespaceName"> Name of the Event Grid namespace where the MQTT client was created or updated. </param>
+        /// <param name="clientAuthenticationName"></param>
+        /// <param name="clientName"></param>
+        /// <param name="namespaceName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="clientSessionName">
-        /// Unique identifier for the MQTT client's session. This case-sensitive string can
-        /// be up to 128 characters long, and supports UTF-8 characters.
-        /// </param>
-        /// <param name="sequenceNumber">
-        /// A number that helps indicate order of MQTT client session connected or
-        /// disconnected events. Latest event will have a sequence number that is higher
-        /// than the previous event.
-        /// </param>
-        /// <param name="disconnectionReason">
-        /// Reason for the disconnection of the MQTT client's session. The value could be
-        /// one of the values in the disconnection reasons table.
-        /// </param>
+        /// <param name="clientSessionName"></param>
+        /// <param name="sequenceNumber"></param>
+        /// <param name="disconnectionReason"></param>
         internal EventGridMQTTClientSessionDisconnectedEventData(string clientAuthenticationName, string clientName, string namespaceName, IDictionary<string, BinaryData> serializedAdditionalRawData, string clientSessionName, long? sequenceNumber, EventGridMQTTClientDisconnectionReason disconnectionReason) : base(clientAuthenticationName, clientName, namespaceName, serializedAdditionalRawData)
         {
             ClientSessionName = clientSessionName;
@@ -57,21 +40,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary>
-        /// Unique identifier for the MQTT client's session. This case-sensitive string can
-        /// be up to 128 characters long, and supports UTF-8 characters.
-        /// </summary>
+        /// <summary> Gets the client session name. </summary>
         public string ClientSessionName { get; }
-        /// <summary>
-        /// A number that helps indicate order of MQTT client session connected or
-        /// disconnected events. Latest event will have a sequence number that is higher
-        /// than the previous event.
-        /// </summary>
+        /// <summary> Gets the sequence number. </summary>
         public long? SequenceNumber { get; }
-        /// <summary>
-        /// Reason for the disconnection of the MQTT client's session. The value could be
-        /// one of the values in the disconnection reasons table.
-        /// </summary>
+        /// <summary> Gets the disconnection reason. </summary>
         public EventGridMQTTClientDisconnectionReason DisconnectionReason { get; }
     }
 }

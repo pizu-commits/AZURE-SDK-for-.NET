@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> Validate result for validate action endpoints. </summary>
+    /// <summary> The ValidateResult. </summary>
     public partial class ValidateResult
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="ValidateResult"/>. </summary>
-        /// <param name="error"> This is the top-level error object whose code matches the x-ms-error-code response header. </param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ValidateResult(ErrorDetail error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> This is the top-level error object whose code matches the x-ms-error-code response header. </summary>
+        /// <summary> Gets the error. </summary>
         public ErrorDetail Error { get; }
     }
 }

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Document analysis result. </summary>
+    /// <summary> The AnalyzeResult. </summary>
     public partial class AnalyzeResult
     {
         /// <summary>
@@ -47,14 +47,11 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeResult"/>. </summary>
-        /// <param name="apiVersion"> API version used to produce this result. </param>
-        /// <param name="modelId"> Document model ID used to produce this result. </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="content">
-        /// Concatenate string representation of all textual and visual elements in reading
-        /// order.
-        /// </param>
-        /// <param name="pages"> Analyzed pages. </param>
+        /// <param name="apiVersion"></param>
+        /// <param name="modelId"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="content"></param>
+        /// <param name="pages"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="apiVersion"/>, <paramref name="modelId"/>, <paramref name="content"/> or <paramref name="pages"/> is null. </exception>
         internal AnalyzeResult(string apiVersion, string modelId, StringIndexType stringIndexType, string content, IEnumerable<DocumentPage> pages)
         {
@@ -80,24 +77,21 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AnalyzeResult"/>. </summary>
-        /// <param name="apiVersion"> API version used to produce this result. </param>
-        /// <param name="modelId"> Document model ID used to produce this result. </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="contentFormat"> Format of the analyze result top-level content. </param>
-        /// <param name="content">
-        /// Concatenate string representation of all textual and visual elements in reading
-        /// order.
-        /// </param>
-        /// <param name="pages"> Analyzed pages. </param>
-        /// <param name="paragraphs"> Extracted paragraphs. </param>
-        /// <param name="tables"> Extracted tables. </param>
-        /// <param name="figures"> Extracted figures. </param>
-        /// <param name="sections"> Extracted sections. </param>
-        /// <param name="keyValuePairs"> Extracted key-value pairs. </param>
-        /// <param name="styles"> Extracted font styles. </param>
-        /// <param name="languages"> Detected languages. </param>
-        /// <param name="documents"> Extracted documents. </param>
-        /// <param name="warnings"> List of warnings encountered. </param>
+        /// <param name="apiVersion"></param>
+        /// <param name="modelId"></param>
+        /// <param name="stringIndexType"></param>
+        /// <param name="contentFormat"></param>
+        /// <param name="content"></param>
+        /// <param name="pages"></param>
+        /// <param name="paragraphs"></param>
+        /// <param name="tables"></param>
+        /// <param name="figures"></param>
+        /// <param name="sections"></param>
+        /// <param name="keyValuePairs"></param>
+        /// <param name="styles"></param>
+        /// <param name="languages"></param>
+        /// <param name="documents"></param>
+        /// <param name="warnings"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AnalyzeResult(string apiVersion, string modelId, StringIndexType stringIndexType, ContentFormat? contentFormat, string content, IReadOnlyList<DocumentPage> pages, IReadOnlyList<DocumentParagraph> paragraphs, IReadOnlyList<DocumentTable> tables, IReadOnlyList<DocumentFigure> figures, IReadOnlyList<DocumentSection> sections, IReadOnlyList<DocumentKeyValuePair> keyValuePairs, IReadOnlyList<DocumentStyle> styles, IReadOnlyList<DocumentLanguage> languages, IReadOnlyList<AnalyzedDocument> documents, IReadOnlyList<DocumentIntelligenceWarning> warnings, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -124,38 +118,35 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> API version used to produce this result. </summary>
+        /// <summary> Gets the api version. </summary>
         public string ApiVersion { get; }
-        /// <summary> Document model ID used to produce this result. </summary>
+        /// <summary> Gets the model id. </summary>
         public string ModelId { get; }
-        /// <summary> Method used to compute string offset and length. </summary>
+        /// <summary> Gets the string index type. </summary>
         public StringIndexType StringIndexType { get; }
-        /// <summary> Format of the analyze result top-level content. </summary>
+        /// <summary> Gets the content format. </summary>
         public ContentFormat? ContentFormat { get; }
-        /// <summary>
-        /// Concatenate string representation of all textual and visual elements in reading
-        /// order.
-        /// </summary>
+        /// <summary> Gets the content. </summary>
         public string Content { get; }
-        /// <summary> Analyzed pages. </summary>
+        /// <summary> Gets the pages. </summary>
         public IReadOnlyList<DocumentPage> Pages { get; }
-        /// <summary> Extracted paragraphs. </summary>
+        /// <summary> Gets the paragraphs. </summary>
         public IReadOnlyList<DocumentParagraph> Paragraphs { get; }
-        /// <summary> Extracted tables. </summary>
+        /// <summary> Gets the tables. </summary>
         public IReadOnlyList<DocumentTable> Tables { get; }
-        /// <summary> Extracted figures. </summary>
+        /// <summary> Gets the figures. </summary>
         public IReadOnlyList<DocumentFigure> Figures { get; }
-        /// <summary> Extracted sections. </summary>
+        /// <summary> Gets the sections. </summary>
         public IReadOnlyList<DocumentSection> Sections { get; }
-        /// <summary> Extracted key-value pairs. </summary>
+        /// <summary> Gets the key value pairs. </summary>
         public IReadOnlyList<DocumentKeyValuePair> KeyValuePairs { get; }
-        /// <summary> Extracted font styles. </summary>
+        /// <summary> Gets the styles. </summary>
         public IReadOnlyList<DocumentStyle> Styles { get; }
-        /// <summary> Detected languages. </summary>
+        /// <summary> Gets the languages. </summary>
         public IReadOnlyList<DocumentLanguage> Languages { get; }
-        /// <summary> Extracted documents. </summary>
+        /// <summary> Gets the documents. </summary>
         public IReadOnlyList<AnalyzedDocument> Documents { get; }
-        /// <summary> List of warnings encountered. </summary>
+        /// <summary> Gets the warnings. </summary>
         public IReadOnlyList<DocumentIntelligenceWarning> Warnings { get; }
     }
 }

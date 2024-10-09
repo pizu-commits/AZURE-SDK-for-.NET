@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Encoder connect event data. Schema of the data property of an EventGridEvent for a Microsoft.Media.LiveEventIncomingStreamReceived event. </summary>
+    /// <summary> The MediaLiveEventIncomingStreamReceivedEventData. </summary>
     public partial class MediaLiveEventIncomingStreamReceivedEventData
     {
         /// <summary>
@@ -51,15 +51,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventIncomingStreamReceivedEventData"/>. </summary>
-        /// <param name="ingestUrl"> Gets the ingest URL provided by the live event. </param>
-        /// <param name="trackType"> Gets the type of the track (Audio / Video). </param>
-        /// <param name="trackName"> Gets the track name. </param>
-        /// <param name="bitrate"> Gets the bitrate of the track. </param>
-        /// <param name="encoderIp"> Gets the remote IP. </param>
-        /// <param name="encoderPort"> Gets the remote port. </param>
-        /// <param name="timestamp"> Gets the first timestamp of the data chunk received. </param>
-        /// <param name="duration"> Gets the duration of the first data chunk. </param>
-        /// <param name="timescale"> Gets the timescale in which timestamp is represented. </param>
+        /// <param name="ingestUrl"></param>
+        /// <param name="trackType"></param>
+        /// <param name="trackName"></param>
+        /// <param name="bitrate"></param>
+        /// <param name="encoderIp"></param>
+        /// <param name="encoderPort"></param>
+        /// <param name="timestamp"></param>
+        /// <param name="duration"></param>
+        /// <param name="timescale"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaLiveEventIncomingStreamReceivedEventData(string ingestUrl, string trackType, string trackName, long? bitrate, string encoderIp, string encoderPort, string timestamp, string duration, string timescale, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -75,23 +75,23 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the ingest URL provided by the live event. </summary>
+        /// <summary> Gets the ingest url. </summary>
         public string IngestUrl { get; }
-        /// <summary> Gets the type of the track (Audio / Video). </summary>
+        /// <summary> Gets the track type. </summary>
         public string TrackType { get; }
         /// <summary> Gets the track name. </summary>
         public string TrackName { get; }
-        /// <summary> Gets the bitrate of the track. </summary>
+        /// <summary> Gets the bitrate. </summary>
         public long? Bitrate { get; }
-        /// <summary> Gets the remote IP. </summary>
+        /// <summary> Gets the encoder ip. </summary>
         public string EncoderIp { get; }
-        /// <summary> Gets the remote port. </summary>
+        /// <summary> Gets the encoder port. </summary>
         public string EncoderPort { get; }
-        /// <summary> Gets the first timestamp of the data chunk received. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public string Timestamp { get; }
-        /// <summary> Gets the duration of the first data chunk. </summary>
+        /// <summary> Gets the duration. </summary>
         public string Duration { get; }
-        /// <summary> Gets the timescale in which timestamp is represented. </summary>
+        /// <summary> Gets the timescale. </summary>
         public string Timescale { get; }
     }
 }

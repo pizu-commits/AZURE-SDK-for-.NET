@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatThreadParticipantRemoved event. </summary>
+    /// <summary> The AcsChatParticipantRemovedFromThreadEventData. </summary>
     public partial class AcsChatParticipantRemovedFromThreadEventData : AcsChatEventInThreadBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatParticipantRemovedFromThreadEventData"/>. </summary>
-        /// <param name="time"> The time at which the user was removed to the thread. </param>
-        /// <param name="removedByCommunicationIdentifier"> The communication identifier of the user who removed the user. </param>
-        /// <param name="participantRemoved"> The details of the user who was removed. </param>
+        /// <param name="time"></param>
+        /// <param name="removedByCommunicationIdentifier"></param>
+        /// <param name="participantRemoved"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="removedByCommunicationIdentifier"/> or <paramref name="participantRemoved"/> is null. </exception>
         internal AcsChatParticipantRemovedFromThreadEventData(DateTimeOffset time, CommunicationIdentifierModel removedByCommunicationIdentifier, AcsChatThreadParticipantProperties participantRemoved)
         {
@@ -29,13 +29,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatParticipantRemovedFromThreadEventData"/>. </summary>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="time"> The time at which the user was removed to the thread. </param>
-        /// <param name="removedByCommunicationIdentifier"> The communication identifier of the user who removed the user. </param>
-        /// <param name="participantRemoved"> The details of the user who was removed. </param>
-        /// <param name="version"> The version of the thread. </param>
+        /// <param name="time"></param>
+        /// <param name="removedByCommunicationIdentifier"></param>
+        /// <param name="participantRemoved"></param>
+        /// <param name="version"></param>
         internal AcsChatParticipantRemovedFromThreadEventData(string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, DateTimeOffset time, CommunicationIdentifierModel removedByCommunicationIdentifier, AcsChatThreadParticipantProperties participantRemoved, long? version) : base(transactionId, threadId, serializedAdditionalRawData)
         {
             Time = time;
@@ -49,13 +49,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which the user was removed to the thread. </summary>
+        /// <summary> Gets the time. </summary>
         public DateTimeOffset Time { get; }
-        /// <summary> The communication identifier of the user who removed the user. </summary>
+        /// <summary> Gets the removed by communication identifier. </summary>
         public CommunicationIdentifierModel RemovedByCommunicationIdentifier { get; }
-        /// <summary> The details of the user who was removed. </summary>
+        /// <summary> Gets the participant removed. </summary>
         public AcsChatThreadParticipantProperties ParticipantRemoved { get; }
-        /// <summary> The version of the thread. </summary>
+        /// <summary> Gets the version. </summary>
         public long? Version { get; }
     }
 }

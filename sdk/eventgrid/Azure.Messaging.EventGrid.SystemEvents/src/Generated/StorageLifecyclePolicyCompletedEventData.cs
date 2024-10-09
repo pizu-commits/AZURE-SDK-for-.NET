@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Storage.LifecyclePolicyCompleted event. </summary>
+    /// <summary> The StorageLifecyclePolicyCompletedEventData. </summary>
     public partial class StorageLifecyclePolicyCompletedEventData
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="StorageLifecyclePolicyCompletedEventData"/>. </summary>
-        /// <param name="deleteSummary"> Execution statistics of a specific policy action in a Blob Management cycle. </param>
-        /// <param name="tierToCoolSummary"> Execution statistics of a specific policy action in a Blob Management cycle. </param>
-        /// <param name="tierToArchiveSummary"> Execution statistics of a specific policy action in a Blob Management cycle. </param>
+        /// <param name="deleteSummary"></param>
+        /// <param name="tierToCoolSummary"></param>
+        /// <param name="tierToArchiveSummary"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="deleteSummary"/>, <paramref name="tierToCoolSummary"/> or <paramref name="tierToArchiveSummary"/> is null. </exception>
         internal StorageLifecyclePolicyCompletedEventData(StorageLifecyclePolicyActionSummaryDetail deleteSummary, StorageLifecyclePolicyActionSummaryDetail tierToCoolSummary, StorageLifecyclePolicyActionSummaryDetail tierToArchiveSummary)
         {
@@ -62,10 +62,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="StorageLifecyclePolicyCompletedEventData"/>. </summary>
-        /// <param name="scheduleTime"> The time the policy task was scheduled. </param>
-        /// <param name="deleteSummary"> Execution statistics of a specific policy action in a Blob Management cycle. </param>
-        /// <param name="tierToCoolSummary"> Execution statistics of a specific policy action in a Blob Management cycle. </param>
-        /// <param name="tierToArchiveSummary"> Execution statistics of a specific policy action in a Blob Management cycle. </param>
+        /// <param name="scheduleTime"></param>
+        /// <param name="deleteSummary"></param>
+        /// <param name="tierToCoolSummary"></param>
+        /// <param name="tierToArchiveSummary"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal StorageLifecyclePolicyCompletedEventData(string scheduleTime, StorageLifecyclePolicyActionSummaryDetail deleteSummary, StorageLifecyclePolicyActionSummaryDetail tierToCoolSummary, StorageLifecyclePolicyActionSummaryDetail tierToArchiveSummary, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,13 +81,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time the policy task was scheduled. </summary>
+        /// <summary> Gets the schedule time. </summary>
         public string ScheduleTime { get; }
-        /// <summary> Execution statistics of a specific policy action in a Blob Management cycle. </summary>
+        /// <summary> Gets the delete summary. </summary>
         public StorageLifecyclePolicyActionSummaryDetail DeleteSummary { get; }
-        /// <summary> Execution statistics of a specific policy action in a Blob Management cycle. </summary>
+        /// <summary> Gets the tier to cool summary. </summary>
         public StorageLifecyclePolicyActionSummaryDetail TierToCoolSummary { get; }
-        /// <summary> Execution statistics of a specific policy action in a Blob Management cycle. </summary>
+        /// <summary> Gets the tier to archive summary. </summary>
         public StorageLifecyclePolicyActionSummaryDetail TierToArchiveSummary { get; }
     }
 }

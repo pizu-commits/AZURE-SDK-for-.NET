@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The model version used for liveness classification. </summary>
+    /// <summary> The LivenessModel. </summary>
     public readonly partial struct LivenessModel : IEquatable<LivenessModel>
     {
         private readonly string _value;

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Type of operation. </summary>
+    /// <summary> The OperationKind. </summary>
     internal readonly partial struct OperationKind : IEquatable<OperationKind>
     {
         private readonly string _value;
@@ -28,21 +28,15 @@ namespace Azure.AI.DocumentIntelligence
         private const string DocumentClassifierCopyToValue = "documentClassifierCopyTo";
         private const string DocumentClassifierBuildValue = "documentClassifierBuild";
 
-        /// <summary> Build a new custom document model. </summary>
+        /// <summary> documentModelBuild. </summary>
         public static OperationKind DocumentModelBuild { get; } = new OperationKind(DocumentModelBuildValue);
-        /// <summary> Compose a new custom document model from existing models. </summary>
+        /// <summary> documentModelCompose. </summary>
         public static OperationKind DocumentModelCompose { get; } = new OperationKind(DocumentModelComposeValue);
-        /// <summary>
-        /// Copy an existing document model to potentially a different resource, region, or
-        /// subscription.
-        /// </summary>
+        /// <summary> documentModelCopyTo. </summary>
         public static OperationKind DocumentModelCopyTo { get; } = new OperationKind(DocumentModelCopyToValue);
-        /// <summary>
-        /// Copy an existing document classifier to potentially a different resource, region, or
-        /// subscription.
-        /// </summary>
+        /// <summary> documentClassifierCopyTo. </summary>
         public static OperationKind DocumentClassifierCopyTo { get; } = new OperationKind(DocumentClassifierCopyToValue);
-        /// <summary> Build a new custom classifier model. </summary>
+        /// <summary> documentClassifierBuild. </summary>
         public static OperationKind DocumentClassifierBuild { get; } = new OperationKind(DocumentClassifierBuildValue);
         /// <summary> Determines if two <see cref="OperationKind"/> values are the same. </summary>
         public static bool operator ==(OperationKind left, OperationKind right) => left.Equals(right);

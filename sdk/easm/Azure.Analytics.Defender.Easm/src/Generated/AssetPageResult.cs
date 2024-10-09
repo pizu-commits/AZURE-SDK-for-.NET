@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The page of assets that match the provided metric. </summary>
+    /// <summary> The AssetPageResult. </summary>
     public partial class AssetPageResult
     {
         /// <summary>
@@ -52,11 +52,10 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="AssetPageResult"/>. </summary>
-        /// <param name="totalElements"> The total number of items available in the full result set. </param>
-        /// <param name="mark"> The cursor mark to be used on the next request.  Not set if using paging. </param>
-        /// <param name="nextLink"> The link to access the next page of results.  Not set if at the end of the result set. </param>
+        /// <param name="totalElements"></param>
+        /// <param name="mark"></param>
+        /// <param name="nextLink"></param>
         /// <param name="value">
-        /// The items in the current page of results.
         /// Please note <see cref="AssetResource"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AsAssetResource"/>, <see cref="ContactAssetResource"/>, <see cref="DomainAssetResource"/>, <see cref="HostAssetResource"/>, <see cref="IpAddressAssetResource"/>, <see cref="IpBlockAssetResource"/>, <see cref="PageAssetResource"/> and <see cref="SslCertAssetResource"/>.
         /// </param>
@@ -70,14 +69,14 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The total number of items available in the full result set. </summary>
+        /// <summary> Gets the total elements. </summary>
         public long? TotalElements { get; }
-        /// <summary> The cursor mark to be used on the next request.  Not set if using paging. </summary>
+        /// <summary> Gets the mark. </summary>
         public string Mark { get; }
-        /// <summary> The link to access the next page of results.  Not set if at the end of the result set. </summary>
+        /// <summary> Gets the next link. </summary>
         public string NextLink { get; }
         /// <summary>
-        /// The items in the current page of results.
+        /// Gets the value
         /// Please note <see cref="AssetResource"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="AsAssetResource"/>, <see cref="ContactAssetResource"/>, <see cref="DomainAssetResource"/>, <see cref="HostAssetResource"/>, <see cref="IpAddressAssetResource"/>, <see cref="IpBlockAssetResource"/>, <see cref="PageAssetResource"/> and <see cref="SslCertAssetResource"/>.
         /// </summary>

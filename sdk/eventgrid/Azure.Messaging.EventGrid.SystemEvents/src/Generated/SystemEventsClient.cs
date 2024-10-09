@@ -12,7 +12,7 @@ using Azure.Core.Pipeline;
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
     // Data plane generated client.
-    /// <summary> Azure Messaging EventGrid SystemEvents. </summary>
+    /// <summary> The SystemEvents service client. </summary>
     internal partial class SystemEventsClient
     {
         private readonly HttpPipeline _pipeline;

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The history of how this asset was pulled into the workspace through the discovery process. </summary>
+    /// <summary> The AuditTrailItem. </summary>
     public partial class AuditTrailItem
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="AuditTrailItem"/>. </summary>
-        /// <param name="id"> The system generated unique id for the resource. </param>
-        /// <param name="name"> The caller provided unique name for the resource. </param>
-        /// <param name="displayName"> The name that can be used for display purposes. </param>
-        /// <param name="kind"> The kind of asset. </param>
-        /// <param name="reason"> An explanation of why this audit trail node was discovered from the previous node. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="displayName"></param>
+        /// <param name="kind"></param>
+        /// <param name="reason"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AuditTrailItem(string id, string name, string displayName, AuditTrailItemKind? kind, string reason, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The system generated unique id for the resource. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> The caller provided unique name for the resource. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The name that can be used for display purposes. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The kind of asset. </summary>
+        /// <summary> Gets the kind. </summary>
         public AuditTrailItemKind? Kind { get; }
-        /// <summary> An explanation of why this audit trail node was discovered from the previous node. </summary>
+        /// <summary> Gets the reason. </summary>
         public string Reason { get; }
     }
 }

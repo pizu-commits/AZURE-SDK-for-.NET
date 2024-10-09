@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Bounding polygon on a specific page of the input. </summary>
+    /// <summary> The BoundingRegion. </summary>
     public partial class BoundingRegion
     {
         /// <summary>
@@ -47,13 +47,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BoundingRegion"/>. </summary>
-        /// <param name="pageNumber"> 1-based page number of page containing the bounding region. </param>
-        /// <param name="polygon">
-        /// Bounding polygon on the page, or the entire page if not specified.
-        /// Coordinates specified relative to the top-left of the page. The numbers
-        /// represent the x, y values of the polygon vertices, clockwise from the left
-        /// (-180 degrees inclusive) relative to the element orientation.
-        /// </param>
+        /// <param name="pageNumber"></param>
+        /// <param name="polygon"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="polygon"/> is null. </exception>
         internal BoundingRegion(int pageNumber, IEnumerable<float> polygon)
         {
@@ -64,13 +59,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="BoundingRegion"/>. </summary>
-        /// <param name="pageNumber"> 1-based page number of page containing the bounding region. </param>
-        /// <param name="polygon">
-        /// Bounding polygon on the page, or the entire page if not specified.
-        /// Coordinates specified relative to the top-left of the page. The numbers
-        /// represent the x, y values of the polygon vertices, clockwise from the left
-        /// (-180 degrees inclusive) relative to the element orientation.
-        /// </param>
+        /// <param name="pageNumber"></param>
+        /// <param name="polygon"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BoundingRegion(int pageNumber, IReadOnlyList<float> polygon, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,14 +74,9 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> 1-based page number of page containing the bounding region. </summary>
+        /// <summary> Gets the page number. </summary>
         public int PageNumber { get; }
-        /// <summary>
-        /// Bounding polygon on the page, or the entire page if not specified.
-        /// Coordinates specified relative to the top-left of the page. The numbers
-        /// represent the x, y values of the polygon vertices, clockwise from the left
-        /// (-180 degrees inclusive) relative to the element orientation.
-        /// </summary>
+        /// <summary> Gets the polygon. </summary>
         public IReadOnlyList<float> Polygon { get; }
     }
 }

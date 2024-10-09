@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a device telemetry event (DeviceTelemetry). </summary>
+    /// <summary> The DeviceTelemetryEventProperties. </summary>
     public partial class DeviceTelemetryEventProperties
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DeviceTelemetryEventProperties"/>. </summary>
-        /// <param name="body"> The content of the message from the device. </param>
-        /// <param name="properties"> Application properties are user-defined strings that can be added to the message. These fields are optional. </param>
-        /// <param name="systemProperties"> System properties help identify contents and source of the messages. </param>
+        /// <param name="body"></param>
+        /// <param name="properties"></param>
+        /// <param name="systemProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/>, <paramref name="properties"/> or <paramref name="systemProperties"/> is null. </exception>
         internal DeviceTelemetryEventProperties(IReadOnlyDictionary<string, BinaryData> body, IReadOnlyDictionary<string, string> properties, IReadOnlyDictionary<string, string> systemProperties)
         {
@@ -62,9 +62,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceTelemetryEventProperties"/>. </summary>
-        /// <param name="body"> The content of the message from the device. </param>
-        /// <param name="properties"> Application properties are user-defined strings that can be added to the message. These fields are optional. </param>
-        /// <param name="systemProperties"> System properties help identify contents and source of the messages. </param>
+        /// <param name="body"></param>
+        /// <param name="properties"></param>
+        /// <param name="systemProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceTelemetryEventProperties(IReadOnlyDictionary<string, BinaryData> body, IReadOnlyDictionary<string, string> properties, IReadOnlyDictionary<string, string> systemProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,7 +80,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary>
-        /// The content of the message from the device.
+        /// Gets the body
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -110,9 +110,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </para>
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> Body { get; }
-        /// <summary> Application properties are user-defined strings that can be added to the message. These fields are optional. </summary>
+        /// <summary> Gets the properties. </summary>
         public IReadOnlyDictionary<string, string> Properties { get; }
-        /// <summary> System properties help identify contents and source of the messages. </summary>
+        /// <summary> Gets the system properties. </summary>
         public IReadOnlyDictionary<string, string> SystemProperties { get; }
     }
 }

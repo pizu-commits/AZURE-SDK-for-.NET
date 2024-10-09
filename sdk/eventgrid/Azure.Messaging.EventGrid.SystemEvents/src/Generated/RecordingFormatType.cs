@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Recording format type. </summary>
+    /// <summary> The recordingFormatType. </summary>
     public readonly partial struct RecordingFormatType : IEquatable<RecordingFormatType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string Mp3Value = "Mp3";
         private const string Mp4Value = "Mp4";
 
-        /// <summary> WAV format. </summary>
+        /// <summary> Wav. </summary>
         public static RecordingFormatType Wav { get; } = new RecordingFormatType(WavValue);
-        /// <summary> MP3 format. </summary>
+        /// <summary> Mp3. </summary>
         public static RecordingFormatType Mp3 { get; } = new RecordingFormatType(Mp3Value);
-        /// <summary> MP4 format. </summary>
+        /// <summary> Mp4. </summary>
         public static RecordingFormatType Mp4 { get; } = new RecordingFormatType(Mp4Value);
         /// <summary> Determines if two <see cref="RecordingFormatType"/> values are the same. </summary>
         public static bool operator ==(RecordingFormatType left, RecordingFormatType right) => left.Equals(right);

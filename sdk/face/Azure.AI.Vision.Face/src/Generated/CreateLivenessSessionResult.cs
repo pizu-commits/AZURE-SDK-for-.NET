@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Response of liveness session creation. </summary>
+    /// <summary> The CreateLivenessSessionResult. </summary>
     public partial class CreateLivenessSessionResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CreateLivenessSessionResult"/>. </summary>
-        /// <param name="sessionId"> The unique session ID of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding Session DELETE operation. </param>
-        /// <param name="authToken"> Bearer token to provide authentication for the Vision SDK running on a client application. This Bearer token has limited permissions to perform only the required action and expires after the TTL time. It is also auditable. </param>
+        /// <param name="sessionId"></param>
+        /// <param name="authToken"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> or <paramref name="authToken"/> is null. </exception>
         internal CreateLivenessSessionResult(string sessionId, string authToken)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="CreateLivenessSessionResult"/>. </summary>
-        /// <param name="sessionId"> The unique session ID of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding Session DELETE operation. </param>
-        /// <param name="authToken"> Bearer token to provide authentication for the Vision SDK running on a client application. This Bearer token has limited permissions to perform only the required action and expires after the TTL time. It is also auditable. </param>
+        /// <param name="sessionId"></param>
+        /// <param name="authToken"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CreateLivenessSessionResult(string sessionId, string authToken, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The unique session ID of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding Session DELETE operation. </summary>
+        /// <summary> Gets the session id. </summary>
         public string SessionId { get; }
-        /// <summary> Bearer token to provide authentication for the Vision SDK running on a client application. This Bearer token has limited permissions to perform only the required action and expires after the TTL time. It is also auditable. </summary>
+        /// <summary> Gets the auth token. </summary>
         public string AuthToken { get; }
     }
 }

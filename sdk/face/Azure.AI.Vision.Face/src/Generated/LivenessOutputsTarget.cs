@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The liveness classification for target face. </summary>
+    /// <summary> The LivenessOutputsTarget. </summary>
     public partial class LivenessOutputsTarget
     {
         /// <summary>
@@ -46,10 +46,10 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LivenessOutputsTarget"/>. </summary>
-        /// <param name="faceRectangle"> The face region where the liveness classification was made on. </param>
-        /// <param name="fileName"> The file name which contains the face rectangle where the liveness classification was made on. </param>
-        /// <param name="timeOffsetWithinFile"> The time offset within the file of the frame which contains the face rectangle where the liveness classification was made on. </param>
-        /// <param name="imageType"> The image type which contains the face rectangle where the liveness classification was made on. </param>
+        /// <param name="faceRectangle"></param>
+        /// <param name="fileName"></param>
+        /// <param name="timeOffsetWithinFile"></param>
+        /// <param name="imageType"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceRectangle"/> or <paramref name="fileName"/> is null. </exception>
         internal LivenessOutputsTarget(FaceRectangle faceRectangle, string fileName, int timeOffsetWithinFile, FaceImageType imageType)
         {
@@ -63,10 +63,10 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="LivenessOutputsTarget"/>. </summary>
-        /// <param name="faceRectangle"> The face region where the liveness classification was made on. </param>
-        /// <param name="fileName"> The file name which contains the face rectangle where the liveness classification was made on. </param>
-        /// <param name="timeOffsetWithinFile"> The time offset within the file of the frame which contains the face rectangle where the liveness classification was made on. </param>
-        /// <param name="imageType"> The image type which contains the face rectangle where the liveness classification was made on. </param>
+        /// <param name="faceRectangle"></param>
+        /// <param name="fileName"></param>
+        /// <param name="timeOffsetWithinFile"></param>
+        /// <param name="imageType"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LivenessOutputsTarget(FaceRectangle faceRectangle, string fileName, int timeOffsetWithinFile, FaceImageType imageType, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,13 +82,13 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The face region where the liveness classification was made on. </summary>
+        /// <summary> Gets the face rectangle. </summary>
         public FaceRectangle FaceRectangle { get; }
-        /// <summary> The file name which contains the face rectangle where the liveness classification was made on. </summary>
+        /// <summary> Gets the file name. </summary>
         public string FileName { get; }
-        /// <summary> The time offset within the file of the frame which contains the face rectangle where the liveness classification was made on. </summary>
+        /// <summary> Gets the time offset within file. </summary>
         public int TimeOffsetWithinFile { get; }
-        /// <summary> The image type which contains the face rectangle where the liveness classification was made on. </summary>
+        /// <summary> Gets the image type. </summary>
         public FaceImageType ImageType { get; }
     }
 }

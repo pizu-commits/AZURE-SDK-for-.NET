@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of common properties of all thread-level chat events. </summary>
+    /// <summary> The AcsChatEventInThreadBaseProperties. </summary>
     public partial class AcsChatEventInThreadBaseProperties
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatEventInThreadBaseProperties"/>. </summary>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsChatEventInThreadBaseProperties(string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The transaction id will be used as co-relation vector. </summary>
+        /// <summary> Gets the transaction id. </summary>
         public string TransactionId { get; }
-        /// <summary> The chat thread id. </summary>
+        /// <summary> Gets the thread id. </summary>
         public string ThreadId { get; }
     }
 }

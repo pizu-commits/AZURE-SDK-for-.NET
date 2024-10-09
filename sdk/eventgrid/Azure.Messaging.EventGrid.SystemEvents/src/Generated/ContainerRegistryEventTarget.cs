@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The target of the event. </summary>
+    /// <summary> The ContainerRegistryEventTarget. </summary>
     public partial class ContainerRegistryEventTarget
     {
         /// <summary>
@@ -51,13 +51,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerRegistryEventTarget"/>. </summary>
-        /// <param name="mediaType"> The MIME type of the referenced object. </param>
-        /// <param name="size"> The number of bytes of the content. Same as Length field. </param>
-        /// <param name="digest"> The digest of the content, as defined by the Registry V2 HTTP API Specification. </param>
-        /// <param name="length"> The number of bytes of the content. Same as Size field. </param>
-        /// <param name="repository"> The repository name. </param>
-        /// <param name="url"> The direct URL to the content. </param>
-        /// <param name="tag"> The tag name. </param>
+        /// <param name="mediaType"></param>
+        /// <param name="size"></param>
+        /// <param name="digest"></param>
+        /// <param name="length"></param>
+        /// <param name="repository"></param>
+        /// <param name="url"></param>
+        /// <param name="tag"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerRegistryEventTarget(string mediaType, long? size, string digest, long? length, string repository, string url, string tag, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,19 +71,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The MIME type of the referenced object. </summary>
+        /// <summary> Gets the media type. </summary>
         public string MediaType { get; }
-        /// <summary> The number of bytes of the content. Same as Length field. </summary>
+        /// <summary> Gets the size. </summary>
         public long? Size { get; }
-        /// <summary> The digest of the content, as defined by the Registry V2 HTTP API Specification. </summary>
+        /// <summary> Gets the digest. </summary>
         public string Digest { get; }
-        /// <summary> The number of bytes of the content. Same as Size field. </summary>
+        /// <summary> Gets the length. </summary>
         public long? Length { get; }
-        /// <summary> The repository name. </summary>
+        /// <summary> Gets the repository. </summary>
         public string Repository { get; }
-        /// <summary> The direct URL to the content. </summary>
+        /// <summary> Gets the url. </summary>
         public string Url { get; }
-        /// <summary> The tag name. </summary>
+        /// <summary> Gets the tag. </summary>
         public string Tag { get; }
     }
 }

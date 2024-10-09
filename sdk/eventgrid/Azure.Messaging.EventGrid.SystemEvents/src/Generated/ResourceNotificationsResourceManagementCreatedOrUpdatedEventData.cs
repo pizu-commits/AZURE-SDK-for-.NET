@@ -10,15 +10,12 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// Schema of the Data property of an EventGridEvent for a
-    /// Microsoft.ResourceNotifications.Resources.CreatedOrUpdated event.
-    /// </summary>
+    /// <summary> The ResourceNotificationsResourceManagementCreatedOrUpdatedEventData. </summary>
     public partial class ResourceNotificationsResourceManagementCreatedOrUpdatedEventData : ResourceNotificationsResourceUpdatedEventData
     {
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceManagementCreatedOrUpdatedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for update event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceDetails"/> or <paramref name="operationalDetails"/> is null. </exception>
         internal ResourceNotificationsResourceManagementCreatedOrUpdatedEventData(ResourceNotificationsResourceUpdatedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails) : base(resourceDetails, operationalDetails)
         {
@@ -27,9 +24,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceManagementCreatedOrUpdatedEventData"/>. </summary>
-        /// <param name="resourceDetails"> resourceInfo details for update event. </param>
-        /// <param name="operationalDetails"> details about operational info. </param>
-        /// <param name="apiVersion"> api version of the resource properties bag. </param>
+        /// <param name="resourceDetails"></param>
+        /// <param name="operationalDetails"></param>
+        /// <param name="apiVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceNotificationsResourceManagementCreatedOrUpdatedEventData(ResourceNotificationsResourceUpdatedDetails resourceDetails, ResourceNotificationsOperationalDetails operationalDetails, string apiVersion, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(resourceDetails, operationalDetails, apiVersion, serializedAdditionalRawData)
         {

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Type of action of the operation. </summary>
+    /// <summary> The AppAction. </summary>
     public readonly partial struct AppAction : IEquatable<AppAction>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string CompletedValue = "Completed";
         private const string FailedValue = "Failed";
 
-        /// <summary> Web app was restarted. </summary>
+        /// <summary> Restarted. </summary>
         public static AppAction Restarted { get; } = new AppAction(RestartedValue);
-        /// <summary> Web app was stopped. </summary>
+        /// <summary> Stopped. </summary>
         public static AppAction Stopped { get; } = new AppAction(StoppedValue);
-        /// <summary> There was an operation to change app setting on the web app. </summary>
+        /// <summary> ChangedAppSettings. </summary>
         public static AppAction ChangedAppSettings { get; } = new AppAction(ChangedAppSettingsValue);
-        /// <summary> The job has started. </summary>
+        /// <summary> Started. </summary>
         public static AppAction Started { get; } = new AppAction(StartedValue);
-        /// <summary> The job has completed. </summary>
+        /// <summary> Completed. </summary>
         public static AppAction Completed { get; } = new AppAction(CompletedValue);
-        /// <summary> The job has failed to complete. </summary>
+        /// <summary> Failed. </summary>
         public static AppAction Failed { get; } = new AppAction(FailedValue);
         /// <summary> Determines if two <see cref="AppAction"/> values are the same. </summary>
         public static bool operator ==(AppAction left, AppAction right) => left.Equals(right);

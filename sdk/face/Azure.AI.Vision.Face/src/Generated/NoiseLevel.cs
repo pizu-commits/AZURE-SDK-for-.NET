@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Indicates level of noise. </summary>
+    /// <summary> The NoiseLevel. </summary>
     public readonly partial struct NoiseLevel : IEquatable<NoiseLevel>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string MediumValue = "medium";
         private const string HighValue = "high";
 
-        /// <summary> Low noise level. </summary>
+        /// <summary> low. </summary>
         public static NoiseLevel Low { get; } = new NoiseLevel(LowValue);
-        /// <summary> Medium noise level. </summary>
+        /// <summary> medium. </summary>
         public static NoiseLevel Medium { get; } = new NoiseLevel(MediumValue);
-        /// <summary> High noise level. </summary>
+        /// <summary> high. </summary>
         public static NoiseLevel High { get; } = new NoiseLevel(HighValue);
         /// <summary> Determines if two <see cref="NoiseLevel"/> values are the same. </summary>
         public static bool operator ==(NoiseLevel left, NoiseLevel right) => left.Equals(right);

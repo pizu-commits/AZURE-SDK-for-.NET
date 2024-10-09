@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Type of the mask. </summary>
+    /// <summary> The MaskType. </summary>
     public readonly partial struct MaskType : IEquatable<MaskType>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.AI.Vision.Face
         private const string OtherMaskOrOcclusionValue = "otherMaskOrOcclusion";
         private const string UncertainValue = "uncertain";
 
-        /// <summary> Face mask. </summary>
+        /// <summary> faceMask. </summary>
         public static MaskType FaceMask { get; } = new MaskType(FaceMaskValue);
-        /// <summary> No mask. </summary>
+        /// <summary> noMask. </summary>
         public static MaskType NoMask { get; } = new MaskType(NoMaskValue);
-        /// <summary> Other types of mask or occlusion. </summary>
+        /// <summary> otherMaskOrOcclusion. </summary>
         public static MaskType OtherMaskOrOcclusion { get; } = new MaskType(OtherMaskOrOcclusionValue);
-        /// <summary> Uncertain. </summary>
+        /// <summary> uncertain. </summary>
         public static MaskType Uncertain { get; } = new MaskType(UncertainValue);
         /// <summary> Determines if two <see cref="MaskType"/> values are the same. </summary>
         public static bool operator ==(MaskType left, MaskType right) => left.Equals(right);

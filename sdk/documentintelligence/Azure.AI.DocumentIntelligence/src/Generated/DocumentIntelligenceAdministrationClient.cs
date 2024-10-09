@@ -94,7 +94,7 @@ namespace Azure.AI.DocumentIntelligence
         /// Generates authorization to copy a document model to this location with
         /// specified modelId and optional description.
         /// </summary>
-        /// <param name="authorizeCopyRequest"> Authorize copy request parameters. </param>
+        /// <param name="authorizeCopyRequest"> The <see cref="AuthorizeCopyContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="authorizeCopyRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='AuthorizeModelCopyAsync(AuthorizeCopyContent,CancellationToken)']/*" />
@@ -112,7 +112,7 @@ namespace Azure.AI.DocumentIntelligence
         /// Generates authorization to copy a document model to this location with
         /// specified modelId and optional description.
         /// </summary>
-        /// <param name="authorizeCopyRequest"> Authorize copy request parameters. </param>
+        /// <param name="authorizeCopyRequest"> The <see cref="AuthorizeCopyContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="authorizeCopyRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='AuthorizeModelCopy(AuthorizeCopyContent,CancellationToken)']/*" />
@@ -207,7 +207,7 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets detailed document model information. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -222,7 +222,7 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets detailed document model information. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -251,7 +251,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -291,7 +291,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -327,7 +327,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -363,7 +363,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -479,7 +479,7 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets operation info. </summary>
-        /// <param name="operationId"> Operation ID. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -494,7 +494,7 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets operation info. </summary>
-        /// <param name="operationId"> Operation ID. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -523,7 +523,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="operationId"> Operation ID. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -563,7 +563,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="operationId"> Operation ID. </param>
+        /// <param name="operationId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -592,7 +592,7 @@ namespace Azure.AI.DocumentIntelligence
         /// Generates authorization to copy a document classifier to this location with
         /// specified classifierId and optional description.
         /// </summary>
-        /// <param name="authorizeCopyRequest"> Authorize copy request parameters. </param>
+        /// <param name="authorizeCopyRequest"> The <see cref="AuthorizeClassifierCopyContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="authorizeCopyRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='AuthorizeClassifierCopyAsync(AuthorizeClassifierCopyContent,CancellationToken)']/*" />
@@ -610,7 +610,7 @@ namespace Azure.AI.DocumentIntelligence
         /// Generates authorization to copy a document classifier to this location with
         /// specified classifierId and optional description.
         /// </summary>
-        /// <param name="authorizeCopyRequest"> Authorize copy request parameters. </param>
+        /// <param name="authorizeCopyRequest"> The <see cref="AuthorizeClassifierCopyContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="authorizeCopyRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='AuthorizeClassifierCopy(AuthorizeClassifierCopyContent,CancellationToken)']/*" />
@@ -705,7 +705,7 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets detailed document classifier information. </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -720,7 +720,7 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets detailed document classifier information. </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -749,7 +749,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -789,7 +789,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -825,7 +825,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -861,7 +861,7 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1110,7 +1110,7 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Builds a custom document analysis model. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="buildRequest"> Build request parameters. </param>
+        /// <param name="buildRequest"> The <see cref="BuildDocumentModelContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="buildRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='BuildDocumentModelAsync(WaitUntil,BuildDocumentModelContent,CancellationToken)']/*" />
@@ -1126,7 +1126,7 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Builds a custom document analysis model. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="buildRequest"> Build request parameters. </param>
+        /// <param name="buildRequest"> The <see cref="BuildDocumentModelContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="buildRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='BuildDocumentModel(WaitUntil,BuildDocumentModelContent,CancellationToken)']/*" />
@@ -1142,7 +1142,7 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Creates a new document model from document types of existing document models. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="composeRequest"> Compose request parameters. </param>
+        /// <param name="composeRequest"> The <see cref="ComposeDocumentModelContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="composeRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='ComposeModelAsync(WaitUntil,ComposeDocumentModelContent,CancellationToken)']/*" />
@@ -1158,7 +1158,7 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Creates a new document model from document types of existing document models. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="composeRequest"> Compose request parameters. </param>
+        /// <param name="composeRequest"> The <see cref="ComposeDocumentModelContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="composeRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='ComposeModel(WaitUntil,ComposeDocumentModelContent,CancellationToken)']/*" />
@@ -1174,8 +1174,8 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Copies document model to the target resource, region, and modelId. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="copyToRequest"> Copy to request parameters. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="copyToRequest"> The <see cref="CopyAuthorization"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="copyToRequest"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1193,8 +1193,8 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Copies document model to the target resource, region, and modelId. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="copyToRequest"> Copy to request parameters. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="copyToRequest"> The <see cref="CopyAuthorization"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="copyToRequest"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1212,7 +1212,7 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Builds a custom document classifier. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="buildRequest"> Build request parameters. </param>
+        /// <param name="buildRequest"> The <see cref="BuildDocumentClassifierContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="buildRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='BuildClassifierAsync(WaitUntil,BuildDocumentClassifierContent,CancellationToken)']/*" />
@@ -1228,7 +1228,7 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Builds a custom document classifier. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="buildRequest"> Build request parameters. </param>
+        /// <param name="buildRequest"> The <see cref="BuildDocumentClassifierContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="buildRequest"/> is null. </exception>
         /// <include file="Docs/DocumentIntelligenceAdministrationClient.xml" path="doc/members/member[@name='BuildClassifier(WaitUntil,BuildDocumentClassifierContent,CancellationToken)']/*" />
@@ -1244,8 +1244,8 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Copies document classifier to the target resource, region, and classifierId. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="classifierId"> Unique document classifier name. </param>
-        /// <param name="copyToRequest"> Copy to request parameters. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
+        /// <param name="copyToRequest"> The <see cref="ClassifierCopyAuthorization"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> or <paramref name="copyToRequest"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1263,8 +1263,8 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Copies document classifier to the target resource, region, and classifierId. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="classifierId"> Unique document classifier name. </param>
-        /// <param name="copyToRequest"> Copy to request parameters. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
+        /// <param name="copyToRequest"> The <see cref="ClassifierCopyAuthorization"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> or <paramref name="copyToRequest"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>

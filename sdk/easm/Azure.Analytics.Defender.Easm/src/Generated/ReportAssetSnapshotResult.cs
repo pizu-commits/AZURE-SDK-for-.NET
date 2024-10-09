@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A snapshot of assets captured daily for the provided metric.  Asset details only contain primary properties.  Detailed asset data can be retrieved from the asset endpoints. </summary>
+    /// <summary> The ReportAssetSnapshotResult. </summary>
     public partial class ReportAssetSnapshotResult
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="ReportAssetSnapshotResult"/>. </summary>
-        /// <param name="displayName"> The name of the metric. </param>
-        /// <param name="metric"> The unique metric name. </param>
-        /// <param name="labelName"> The customer label that was filtered on, if one was provided. </param>
-        /// <param name="updatedAt"> The last time this asset data was updated on this metric. </param>
-        /// <param name="description"> A description of what the metric represents. </param>
-        /// <param name="assets"> The page of assets that match the provided metric. </param>
+        /// <param name="displayName"></param>
+        /// <param name="metric"></param>
+        /// <param name="labelName"></param>
+        /// <param name="updatedAt"></param>
+        /// <param name="description"></param>
+        /// <param name="assets"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReportAssetSnapshotResult(string displayName, string metric, string labelName, DateTimeOffset? updatedAt, string description, AssetPageResult assets, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The name of the metric. </summary>
+        /// <summary> Gets the display name. </summary>
         public string DisplayName { get; }
-        /// <summary> The unique metric name. </summary>
+        /// <summary> Gets the metric. </summary>
         public string Metric { get; }
-        /// <summary> The customer label that was filtered on, if one was provided. </summary>
+        /// <summary> Gets the label name. </summary>
         public string LabelName { get; }
-        /// <summary> The last time this asset data was updated on this metric. </summary>
+        /// <summary> Gets the updated at. </summary>
         public DateTimeOffset? UpdatedAt { get; }
-        /// <summary> A description of what the metric represents. </summary>
+        /// <summary> Gets the description. </summary>
         public string Description { get; }
-        /// <summary> The page of assets that match the provided metric. </summary>
+        /// <summary> Gets the assets. </summary>
         public AssetPageResult Assets { get; }
     }
 }

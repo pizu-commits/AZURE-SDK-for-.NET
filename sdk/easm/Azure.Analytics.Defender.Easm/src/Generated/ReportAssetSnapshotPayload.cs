@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A request body used to retrieve an asset report snapshot. </summary>
+    /// <summary> The ReportAssetSnapshotPayload. </summary>
     public partial class ReportAssetSnapshotPayload
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="ReportAssetSnapshotPayload"/>. </summary>
-        /// <param name="metric"> The metric to retrieve a snapshot for. </param>
-        /// <param name="labelName"> The name of the label to retrieve a snapshot for. </param>
-        /// <param name="size"> The number of assets per page. </param>
-        /// <param name="page"> The page to retrieve. </param>
+        /// <param name="metric"></param>
+        /// <param name="labelName"></param>
+        /// <param name="size"></param>
+        /// <param name="page"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReportAssetSnapshotPayload(string metric, string labelName, int? size, int? page, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The metric to retrieve a snapshot for. </summary>
+        /// <summary> Gets or sets the metric. </summary>
         public string Metric { get; set; }
-        /// <summary> The name of the label to retrieve a snapshot for. </summary>
+        /// <summary> Gets or sets the label name. </summary>
         public string LabelName { get; set; }
-        /// <summary> The number of assets per page. </summary>
+        /// <summary> Gets or sets the size. </summary>
         public int? Size { get; set; }
-        /// <summary> The page to retrieve. </summary>
+        /// <summary> Gets or sets the page. </summary>
         public int? Page { get; set; }
     }
 }

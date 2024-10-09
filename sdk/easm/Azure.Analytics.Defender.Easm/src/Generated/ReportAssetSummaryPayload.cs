@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> A request body used to retrieve summary asset information. One and only one collection of summary identifiers must be provided: filters, metrics, or metricCategories. </summary>
+    /// <summary> The ReportAssetSummaryPayload. </summary>
     public partial class ReportAssetSummaryPayload
     {
         /// <summary>
@@ -54,12 +54,12 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="ReportAssetSummaryPayload"/>. </summary>
-        /// <param name="metricCategories"> Categories to retrieve risk reporting data for. </param>
-        /// <param name="metrics"> Metrics to retrieve risk reporting data for. </param>
-        /// <param name="filters"> Query filters to apply to the asset summary. </param>
-        /// <param name="groupBy"> A parameter to group the assets by (first level facet field), only used when the chosen summary identifier is filters. </param>
-        /// <param name="segmentBy"> A parameter to segment the assets by (second level facet field), only used when the chosen summary identifier is filters. </param>
-        /// <param name="labelName"> Currently unused. </param>
+        /// <param name="metricCategories"></param>
+        /// <param name="metrics"></param>
+        /// <param name="filters"></param>
+        /// <param name="groupBy"></param>
+        /// <param name="segmentBy"></param>
+        /// <param name="labelName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReportAssetSummaryPayload(IList<string> metricCategories, IList<string> metrics, IList<string> filters, string groupBy, string segmentBy, string labelName, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,17 +72,17 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Categories to retrieve risk reporting data for. </summary>
+        /// <summary> Gets the metric categories. </summary>
         public IList<string> MetricCategories { get; }
-        /// <summary> Metrics to retrieve risk reporting data for. </summary>
+        /// <summary> Gets the metrics. </summary>
         public IList<string> Metrics { get; }
-        /// <summary> Query filters to apply to the asset summary. </summary>
+        /// <summary> Gets the filters. </summary>
         public IList<string> Filters { get; }
-        /// <summary> A parameter to group the assets by (first level facet field), only used when the chosen summary identifier is filters. </summary>
+        /// <summary> Gets or sets the group by. </summary>
         public string GroupBy { get; set; }
-        /// <summary> A parameter to segment the assets by (second level facet field), only used when the chosen summary identifier is filters. </summary>
+        /// <summary> Gets or sets the segment by. </summary>
         public string SegmentBy { get; set; }
-        /// <summary> Currently unused. </summary>
+        /// <summary> Gets or sets the label name. </summary>
         public string LabelName { get; set; }
     }
 }

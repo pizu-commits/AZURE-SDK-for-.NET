@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The thumbprint is a unique value for the x509 certificate, commonly used to find a particular certificate in a certificate store. The thumbprint is dynamically generated using the SHA1 algorithm, and does not physically exist in the certificate. </summary>
+    /// <summary> The DeviceTwinInfoX509Thumbprint. </summary>
     public partial class DeviceTwinInfoX509Thumbprint
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceTwinInfoX509Thumbprint"/>. </summary>
-        /// <param name="primaryThumbprint"> Primary thumbprint for the x509 certificate. </param>
-        /// <param name="secondaryThumbprint"> Secondary thumbprint for the x509 certificate. </param>
+        /// <param name="primaryThumbprint"></param>
+        /// <param name="secondaryThumbprint"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceTwinInfoX509Thumbprint(string primaryThumbprint, string secondaryThumbprint, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Primary thumbprint for the x509 certificate. </summary>
+        /// <summary> Gets the primary thumbprint. </summary>
         public string PrimaryThumbprint { get; }
-        /// <summary> Secondary thumbprint for the x509 certificate. </summary>
+        /// <summary> Gets the secondary thumbprint. </summary>
         public string SecondaryThumbprint { get; }
     }
 }

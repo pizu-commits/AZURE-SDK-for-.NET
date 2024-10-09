@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> Supported delays for release operation. </summary>
+    /// <summary> The ReleaseDelay. </summary>
     public readonly partial struct ReleaseDelay : IEquatable<ReleaseDelay>
     {
         private readonly string _value;
@@ -28,15 +28,15 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private const string TenMinutesValue = "600";
         private const string OneHourValue = "3600";
 
-        /// <summary> Release the event after 0 seconds. </summary>
+        /// <summary> 0. </summary>
         public static ReleaseDelay NoDelay { get; } = new ReleaseDelay(NoDelayValue);
-        /// <summary> Release the event after 10 seconds. </summary>
+        /// <summary> 10. </summary>
         public static ReleaseDelay TenSeconds { get; } = new ReleaseDelay(TenSecondsValue);
-        /// <summary> Release the event after 60 seconds. </summary>
+        /// <summary> 60. </summary>
         public static ReleaseDelay OneMinute { get; } = new ReleaseDelay(OneMinuteValue);
-        /// <summary> Release the event after 600 seconds. </summary>
+        /// <summary> 600. </summary>
         public static ReleaseDelay TenMinutes { get; } = new ReleaseDelay(TenMinutesValue);
-        /// <summary> Release the event after 3600 seconds. </summary>
+        /// <summary> 3600. </summary>
         public static ReleaseDelay OneHour { get; } = new ReleaseDelay(OneHourValue);
         /// <summary> Determines if two <see cref="ReleaseDelay"/> values are the same. </summary>
         public static bool operator ==(ReleaseDelay left, ReleaseDelay right) => left.Equals(right);

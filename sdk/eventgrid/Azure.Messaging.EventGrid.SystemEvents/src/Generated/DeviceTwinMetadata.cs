@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Metadata information for the properties JSON document. </summary>
+    /// <summary> The DeviceTwinMetadata. </summary>
     public partial class DeviceTwinMetadata
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="DeviceTwinMetadata"/>. </summary>
-        /// <param name="lastUpdated"> The ISO8601 timestamp of the last time the properties were updated. </param>
+        /// <param name="lastUpdated"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DeviceTwinMetadata(string lastUpdated, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The ISO8601 timestamp of the last time the properties were updated. </summary>
+        /// <summary> Gets the last updated. </summary>
         public string LastUpdated { get; }
     }
 }

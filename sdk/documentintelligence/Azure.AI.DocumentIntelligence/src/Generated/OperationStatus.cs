@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Operation status. </summary>
+    /// <summary> The OperationStatus. </summary>
     public readonly partial struct OperationStatus : IEquatable<OperationStatus>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.AI.DocumentIntelligence
         private const string CompletedValue = "completed";
         private const string CanceledValue = "canceled";
 
-        /// <summary> The operation has not started yet. </summary>
+        /// <summary> notStarted. </summary>
         public static OperationStatus NotStarted { get; } = new OperationStatus(NotStartedValue);
-        /// <summary> The operation is in progress. </summary>
+        /// <summary> running. </summary>
         public static OperationStatus Running { get; } = new OperationStatus(RunningValue);
-        /// <summary> The operation has failed. </summary>
+        /// <summary> failed. </summary>
         public static OperationStatus Failed { get; } = new OperationStatus(FailedValue);
-        /// <summary> The operation has succeeded. </summary>
+        /// <summary> succeeded. </summary>
         public static OperationStatus Succeeded { get; } = new OperationStatus(SucceededValue);
-        /// <summary> The operation has completed. </summary>
+        /// <summary> completed. </summary>
         public static OperationStatus Completed { get; } = new OperationStatus(CompletedValue);
-        /// <summary> The operation has been canceled. </summary>
+        /// <summary> canceled. </summary>
         public static OperationStatus Canceled { get; } = new OperationStatus(CanceledValue);
         /// <summary> Determines if two <see cref="OperationStatus"/> values are the same. </summary>
         public static bool operator ==(OperationStatus left, OperationStatus right) => left.Equals(right);

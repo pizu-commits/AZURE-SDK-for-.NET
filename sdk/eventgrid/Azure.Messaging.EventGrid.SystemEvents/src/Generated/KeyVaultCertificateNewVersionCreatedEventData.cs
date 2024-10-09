@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.KeyVault.CertificateNewVersionCreated event. </summary>
+    /// <summary> The KeyVaultCertificateNewVersionCreatedEventData. </summary>
     public partial class KeyVaultCertificateNewVersionCreatedEventData
     {
         /// <summary>
@@ -51,13 +51,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="KeyVaultCertificateNewVersionCreatedEventData"/>. </summary>
-        /// <param name="id"> The id of the object that triggered this event. </param>
-        /// <param name="vaultName"> Key vault name of the object that triggered this event. </param>
-        /// <param name="objectType"> The type of the object that triggered this event. </param>
-        /// <param name="objectName"> The name of the object that triggered this event. </param>
-        /// <param name="version"> The version of the object that triggered this event. </param>
-        /// <param name="nbf"> Not before date of the object that triggered this event. </param>
-        /// <param name="exp"> The expiration date of the object that triggered this event. </param>
+        /// <param name="id"></param>
+        /// <param name="vaultName"></param>
+        /// <param name="objectType"></param>
+        /// <param name="objectName"></param>
+        /// <param name="version"></param>
+        /// <param name="nbf"></param>
+        /// <param name="exp"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal KeyVaultCertificateNewVersionCreatedEventData(string id, string vaultName, string objectType, string objectName, string version, float? nbf, float? exp, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,19 +71,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The id of the object that triggered this event. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Key vault name of the object that triggered this event. </summary>
+        /// <summary> Gets the vault name. </summary>
         public string VaultName { get; }
-        /// <summary> The type of the object that triggered this event. </summary>
+        /// <summary> Gets the object type. </summary>
         public string ObjectType { get; }
-        /// <summary> The name of the object that triggered this event. </summary>
+        /// <summary> Gets the object name. </summary>
         public string ObjectName { get; }
-        /// <summary> The version of the object that triggered this event. </summary>
+        /// <summary> Gets the version. </summary>
         public string Version { get; }
-        /// <summary> Not before date of the object that triggered this event. </summary>
+        /// <summary> Gets the nbf. </summary>
         public float? NBF { get; }
-        /// <summary> The expiration date of the object that triggered this event. </summary>
+        /// <summary> Gets the exp. </summary>
         public float? EXP { get; }
     }
 }

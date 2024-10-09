@@ -14,16 +14,16 @@ namespace Azure.AI.DocumentIntelligence
     internal partial class UnknownOperationDetails : OperationDetails
     {
         /// <summary> Initializes a new instance of <see cref="UnknownOperationDetails"/>. </summary>
-        /// <param name="operationId"> Operation ID. </param>
-        /// <param name="status"> Operation status.  notStarted, running, completed, or failed. </param>
-        /// <param name="percentCompleted"> Operation progress (0-100). </param>
-        /// <param name="createdOn"> Date and time (UTC) when the operation was created. </param>
-        /// <param name="lastUpdatedOn"> Date and time (UTC) when the status was last updated. </param>
-        /// <param name="kind"> Type of operation. </param>
-        /// <param name="resourceLocation"> URL of the resource targeted by this operation. </param>
-        /// <param name="apiVersion"> API version used to create this operation. </param>
-        /// <param name="tags"> List of key-value tag attributes associated with the document model. </param>
-        /// <param name="error"> Encountered error. </param>
+        /// <param name="operationId"></param>
+        /// <param name="status"></param>
+        /// <param name="percentCompleted"></param>
+        /// <param name="createdOn"></param>
+        /// <param name="lastUpdatedOn"></param>
+        /// <param name="kind"></param>
+        /// <param name="resourceLocation"></param>
+        /// <param name="apiVersion"></param>
+        /// <param name="tags"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal UnknownOperationDetails(string operationId, OperationStatus status, int? percentCompleted, DateTimeOffset createdOn, DateTimeOffset lastUpdatedOn, OperationKind kind, Uri resourceLocation, string apiVersion, IReadOnlyDictionary<string, string> tags, DocumentIntelligenceError error, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(operationId, status, percentCompleted, createdOn, lastUpdatedOn, kind, resourceLocation, apiVersion, tags, error, serializedAdditionalRawData)
         {

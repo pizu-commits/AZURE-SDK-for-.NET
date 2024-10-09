@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Communication model identifier kind. </summary>
+    /// <summary> The CommunicationIdentifierModelKind. </summary>
     public readonly partial struct CommunicationIdentifierModelKind : IEquatable<CommunicationIdentifierModelKind>
     {
         private readonly string _value;
@@ -27,13 +27,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string PhoneNumberValue = "phoneNumber";
         private const string MicrosoftTeamsUserValue = "microsoftTeamsUser";
 
-        /// <summary> Unknown. </summary>
+        /// <summary> unknown. </summary>
         public static CommunicationIdentifierModelKind Unknown { get; } = new CommunicationIdentifierModelKind(UnknownValue);
-        /// <summary> Communication User. </summary>
+        /// <summary> communicationUser. </summary>
         public static CommunicationIdentifierModelKind CommunicationUser { get; } = new CommunicationIdentifierModelKind(CommunicationUserValue);
-        /// <summary> Phone Number. </summary>
+        /// <summary> phoneNumber. </summary>
         public static CommunicationIdentifierModelKind PhoneNumber { get; } = new CommunicationIdentifierModelKind(PhoneNumberValue);
-        /// <summary> Microsoft Teams User. </summary>
+        /// <summary> microsoftTeamsUser. </summary>
         public static CommunicationIdentifierModelKind MicrosoftTeamsUser { get; } = new CommunicationIdentifierModelKind(MicrosoftTeamsUserValue);
         /// <summary> Determines if two <see cref="CommunicationIdentifierModelKind"/> values are the same. </summary>
         public static bool operator ==(CommunicationIdentifierModelKind left, CommunicationIdentifierModelKind right) => left.Equals(right);

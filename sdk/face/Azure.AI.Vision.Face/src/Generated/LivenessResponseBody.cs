@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The response body of detect liveness API call. </summary>
+    /// <summary> The LivenessResponseBody. </summary>
     public partial class LivenessResponseBody
     {
         /// <summary> Initializes a new instance of <see cref="LivenessResponseBody"/>. </summary>
@@ -20,10 +20,10 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="LivenessResponseBody"/>. </summary>
-        /// <param name="livenessDecision"> The liveness classification for the target face. </param>
-        /// <param name="target"> Specific targets used for liveness classification. </param>
-        /// <param name="modelVersionUsed"> The model version used for liveness classification. </param>
-        /// <param name="verifyResult"> The face verification output. Only available when the request is liveness with verify. </param>
+        /// <param name="livenessDecision"></param>
+        /// <param name="target"></param>
+        /// <param name="modelVersionUsed"></param>
+        /// <param name="verifyResult"></param>
         /// <param name="additionalProperties"> Additional Properties. </param>
         internal LivenessResponseBody(FaceLivenessDecision? livenessDecision, LivenessOutputsTarget target, LivenessModel? modelVersionUsed, LivenessWithVerifyOutputs verifyResult, IReadOnlyDictionary<string, BinaryData> additionalProperties)
         {
@@ -34,13 +34,13 @@ namespace Azure.AI.Vision.Face
             AdditionalProperties = additionalProperties;
         }
 
-        /// <summary> The liveness classification for the target face. </summary>
+        /// <summary> Gets the liveness decision. </summary>
         public FaceLivenessDecision? LivenessDecision { get; }
-        /// <summary> Specific targets used for liveness classification. </summary>
+        /// <summary> Gets the target. </summary>
         public LivenessOutputsTarget Target { get; }
-        /// <summary> The model version used for liveness classification. </summary>
+        /// <summary> Gets the model version used. </summary>
         public LivenessModel? ModelVersionUsed { get; }
-        /// <summary> The face verification output. Only available when the request is liveness with verify. </summary>
+        /// <summary> Gets the verify result. </summary>
         public LivenessWithVerifyOutputs VerifyResult { get; }
         /// <summary>
         /// Additional Properties

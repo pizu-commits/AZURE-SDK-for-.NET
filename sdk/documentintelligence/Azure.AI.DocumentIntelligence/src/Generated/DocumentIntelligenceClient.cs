@@ -91,8 +91,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets the generated searchable PDF output from document analysis. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -107,8 +107,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets the generated searchable PDF output from document analysis. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -137,8 +137,8 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -178,8 +178,8 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -205,9 +205,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets the generated cropped image of specified figure from document analysis. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
-        /// <param name="figureId"> Figure ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="figureId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="figureId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> or <paramref name="figureId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -223,9 +223,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Gets the generated cropped image of specified figure from document analysis. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
-        /// <param name="figureId"> Figure ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="figureId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="figureId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> or <paramref name="figureId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -255,9 +255,9 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
-        /// <param name="figureId"> Figure ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="figureId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="figureId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> or <paramref name="figureId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -298,9 +298,9 @@ namespace Azure.AI.DocumentIntelligence
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="resultId"> Analyze operation result ID. </param>
-        /// <param name="figureId"> Figure ID. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="resultId"> The <see cref="Guid"/> to use. </param>
+        /// <param name="figureId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> or <paramref name="figureId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> or <paramref name="figureId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -328,18 +328,15 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Analyzes document with document model. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="analyzeRequest"> Analyze request parameters. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
-        /// <param name="locale">
-        /// Locale hint for text recognition and document analysis.  Value may contain only
-        /// the language code (ex. "en", "fr") or BCP 47 language tag (ex. "en-US").
-        /// </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="features"> List of optional analysis features. </param>
-        /// <param name="queryFields"> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </param>
-        /// <param name="outputContentFormat"> Format of the analyze result top-level content. </param>
-        /// <param name="output"> Additional outputs to generate during analysis. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="analyzeRequest"> The <see cref="AnalyzeDocumentContent"/> to use. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
+        /// <param name="locale"> The <see cref="string"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="StringIndexType"/>? to use. </param>
+        /// <param name="features"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="DocumentAnalysisFeature"/> to use. </param>
+        /// <param name="queryFields"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="outputContentFormat"> The <see cref="ContentFormat"/>? to use. </param>
+        /// <param name="output"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AnalyzeOutputOption"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -356,18 +353,15 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Analyzes document with document model. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="analyzeRequest"> Analyze request parameters. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
-        /// <param name="locale">
-        /// Locale hint for text recognition and document analysis.  Value may contain only
-        /// the language code (ex. "en", "fr") or BCP 47 language tag (ex. "en-US").
-        /// </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="features"> List of optional analysis features. </param>
-        /// <param name="queryFields"> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </param>
-        /// <param name="outputContentFormat"> Format of the analyze result top-level content. </param>
-        /// <param name="output"> Additional outputs to generate during analysis. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="analyzeRequest"> The <see cref="AnalyzeDocumentContent"/> to use. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
+        /// <param name="locale"> The <see cref="string"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="StringIndexType"/>? to use. </param>
+        /// <param name="features"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="DocumentAnalysisFeature"/> to use. </param>
+        /// <param name="queryFields"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="outputContentFormat"> The <see cref="ContentFormat"/>? to use. </param>
+        /// <param name="output"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AnalyzeOutputOption"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -384,18 +378,15 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Analyzes batch documents with document model. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="analyzeBatchRequest"> Analyze batch request parameters. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
-        /// <param name="locale">
-        /// Locale hint for text recognition and document analysis.  Value may contain only
-        /// the language code (ex. "en", "fr") or BCP 47 language tag (ex. "en-US").
-        /// </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="features"> List of optional analysis features. </param>
-        /// <param name="queryFields"> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </param>
-        /// <param name="outputContentFormat"> Format of the analyze result top-level content. </param>
-        /// <param name="output"> Additional outputs to generate during analysis. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="analyzeBatchRequest"> The <see cref="AnalyzeBatchDocumentsContent"/> to use. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
+        /// <param name="locale"> The <see cref="string"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="StringIndexType"/>? to use. </param>
+        /// <param name="features"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="DocumentAnalysisFeature"/> to use. </param>
+        /// <param name="queryFields"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="outputContentFormat"> The <see cref="ContentFormat"/>? to use. </param>
+        /// <param name="output"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AnalyzeOutputOption"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -412,18 +403,15 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Analyzes batch documents with document model. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="analyzeBatchRequest"> Analyze batch request parameters. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
-        /// <param name="locale">
-        /// Locale hint for text recognition and document analysis.  Value may contain only
-        /// the language code (ex. "en", "fr") or BCP 47 language tag (ex. "en-US").
-        /// </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="features"> List of optional analysis features. </param>
-        /// <param name="queryFields"> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </param>
-        /// <param name="outputContentFormat"> Format of the analyze result top-level content. </param>
-        /// <param name="output"> Additional outputs to generate during analysis. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
+        /// <param name="analyzeBatchRequest"> The <see cref="AnalyzeBatchDocumentsContent"/> to use. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
+        /// <param name="locale"> The <see cref="string"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="StringIndexType"/>? to use. </param>
+        /// <param name="features"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="DocumentAnalysisFeature"/> to use. </param>
+        /// <param name="queryFields"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="outputContentFormat"> The <see cref="ContentFormat"/>? to use. </param>
+        /// <param name="output"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AnalyzeOutputOption"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -454,18 +442,15 @@ namespace Azure.AI.DocumentIntelligence
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
-        /// <param name="locale">
-        /// Locale hint for text recognition and document analysis.  Value may contain only
-        /// the language code (ex. "en", "fr") or BCP 47 language tag (ex. "en-US").
-        /// </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
-        /// <param name="features"> List of optional analysis features. </param>
-        /// <param name="queryFields"> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </param>
-        /// <param name="outputContentFormat"> Format of the analyze result top-level content. Allowed values: "text" | "markdown". </param>
-        /// <param name="output"> Additional outputs to generate during analysis. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
+        /// <param name="locale"> The <see cref="string"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="string"/> to use. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
+        /// <param name="features"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="DocumentAnalysisFeature"/> to use. </param>
+        /// <param name="queryFields"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="outputContentFormat"> The <see cref="string"/> to use. Allowed values: "text" | "markdown". </param>
+        /// <param name="output"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AnalyzeOutputOption"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -506,18 +491,15 @@ namespace Azure.AI.DocumentIntelligence
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="modelId"> Unique document model name. </param>
+        /// <param name="modelId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
-        /// <param name="locale">
-        /// Locale hint for text recognition and document analysis.  Value may contain only
-        /// the language code (ex. "en", "fr") or BCP 47 language tag (ex. "en-US").
-        /// </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
-        /// <param name="features"> List of optional analysis features. </param>
-        /// <param name="queryFields"> List of additional fields to extract.  Ex. "NumberOfGuests,StoreNumber". </param>
-        /// <param name="outputContentFormat"> Format of the analyze result top-level content. Allowed values: "text" | "markdown". </param>
-        /// <param name="output"> Additional outputs to generate during analysis. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
+        /// <param name="locale"> The <see cref="string"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="string"/> to use. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
+        /// <param name="features"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="DocumentAnalysisFeature"/> to use. </param>
+        /// <param name="queryFields"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="string"/> to use. </param>
+        /// <param name="outputContentFormat"> The <see cref="string"/> to use. Allowed values: "text" | "markdown". </param>
+        /// <param name="output"> The <see cref="IEnumerable{T}"/> where <c>T</c> is of type <see cref="AnalyzeOutputOption"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="modelId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -544,11 +526,11 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Classifies document with document classifier. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="classifierId"> Unique document classifier name. </param>
-        /// <param name="classifyRequest"> Classify request parameters. </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="split"> Document splitting mode. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
+        /// <param name="classifyRequest"> The <see cref="ClassifyDocumentContent"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="StringIndexType"/>? to use. </param>
+        /// <param name="split"> The <see cref="SplitMode"/>? to use. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> or <paramref name="classifyRequest"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -566,11 +548,11 @@ namespace Azure.AI.DocumentIntelligence
 
         /// <summary> Classifies document with document classifier. </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="classifierId"> Unique document classifier name. </param>
-        /// <param name="classifyRequest"> Classify request parameters. </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. </param>
-        /// <param name="split"> Document splitting mode. </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
+        /// <param name="classifyRequest"> The <see cref="ClassifyDocumentContent"/> to use. </param>
+        /// <param name="stringIndexType"> The <see cref="StringIndexType"/>? to use. </param>
+        /// <param name="split"> The <see cref="SplitMode"/>? to use. </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> or <paramref name="classifyRequest"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -602,11 +584,11 @@ namespace Azure.AI.DocumentIntelligence
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
-        /// <param name="split"> Document splitting mode. Allowed values: "auto" | "none" | "perPage". </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
+        /// <param name="stringIndexType"> The <see cref="string"/> to use. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
+        /// <param name="split"> The <see cref="string"/> to use. Allowed values: "auto" | "none" | "perPage". </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -648,11 +630,11 @@ namespace Azure.AI.DocumentIntelligence
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="classifierId"> Unique document classifier name. </param>
+        /// <param name="classifierId"> The <see cref="string"/> to use. </param>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="stringIndexType"> Method used to compute string offset and length. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
-        /// <param name="split"> Document splitting mode. Allowed values: "auto" | "none" | "perPage". </param>
-        /// <param name="pages"> List of 1-based page numbers to analyze.  Ex. "1-3,5,7-9". </param>
+        /// <param name="stringIndexType"> The <see cref="string"/> to use. Allowed values: "textElements" | "unicodeCodePoint" | "utf16CodeUnit". </param>
+        /// <param name="split"> The <see cref="string"/> to use. Allowed values: "auto" | "none" | "perPage". </param>
+        /// <param name="pages"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="classifierId"/> or <paramref name="content"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="classifierId"/> is an empty string, and was expected to be non-empty. </exception>

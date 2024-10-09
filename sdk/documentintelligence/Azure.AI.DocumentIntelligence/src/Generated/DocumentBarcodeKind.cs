@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Barcode kind. </summary>
+    /// <summary> The DocumentBarcodeKind. </summary>
     public readonly partial struct DocumentBarcodeKind : IEquatable<DocumentBarcodeKind>
     {
         private readonly string _value;
@@ -40,39 +40,39 @@ namespace Azure.AI.DocumentIntelligence
         private const string DataMatrixValue = "DataMatrix";
         private const string MaxiCodeValue = "MaxiCode";
 
-        /// <summary> QR code, as defined in ISO/IEC 18004:2015. </summary>
+        /// <summary> QRCode. </summary>
         public static DocumentBarcodeKind QrCode { get; } = new DocumentBarcodeKind(QrCodeValue);
-        /// <summary> PDF417, as defined in ISO 15438. </summary>
+        /// <summary> PDF417. </summary>
         public static DocumentBarcodeKind Pdf417 { get; } = new DocumentBarcodeKind(Pdf417Value);
-        /// <summary> GS1 12-digit Universal Product Code. </summary>
+        /// <summary> UPCA. </summary>
         public static DocumentBarcodeKind Upca { get; } = new DocumentBarcodeKind(UpcaValue);
-        /// <summary> GS1 6-digit Universal Product Code. </summary>
+        /// <summary> UPCE. </summary>
         public static DocumentBarcodeKind Upce { get; } = new DocumentBarcodeKind(UpceValue);
-        /// <summary> Code 39 barcode, as defined in ISO/IEC 16388:2007. </summary>
+        /// <summary> Code39. </summary>
         public static DocumentBarcodeKind Code39 { get; } = new DocumentBarcodeKind(Code39Value);
-        /// <summary> Code 128 barcode, as defined in ISO/IEC 15417:2007. </summary>
+        /// <summary> Code128. </summary>
         public static DocumentBarcodeKind Code128 { get; } = new DocumentBarcodeKind(Code128Value);
-        /// <summary> GS1 8-digit International Article Number (European Article Number). </summary>
+        /// <summary> EAN8. </summary>
         public static DocumentBarcodeKind Ean8 { get; } = new DocumentBarcodeKind(Ean8Value);
-        /// <summary> GS1 13-digit International Article Number (European Article Number). </summary>
+        /// <summary> EAN13. </summary>
         public static DocumentBarcodeKind Ean13 { get; } = new DocumentBarcodeKind(Ean13Value);
-        /// <summary> GS1 DataBar barcode. </summary>
+        /// <summary> DataBar. </summary>
         public static DocumentBarcodeKind DataBar { get; } = new DocumentBarcodeKind(DataBarValue);
-        /// <summary> Code 93 barcode, as defined in ANSI/AIM BC5-1995. </summary>
+        /// <summary> Code93. </summary>
         public static DocumentBarcodeKind Code93 { get; } = new DocumentBarcodeKind(Code93Value);
-        /// <summary> Codabar barcode, as defined in ANSI/AIM BC3-1995. </summary>
+        /// <summary> Codabar. </summary>
         public static DocumentBarcodeKind Codabar { get; } = new DocumentBarcodeKind(CodabarValue);
-        /// <summary> GS1 DataBar Expanded barcode. </summary>
+        /// <summary> DataBarExpanded. </summary>
         public static DocumentBarcodeKind DataBarExpanded { get; } = new DocumentBarcodeKind(DataBarExpandedValue);
-        /// <summary> Interleaved 2 of 5 barcode, as defined in ANSI/AIM BC2-1995. </summary>
+        /// <summary> ITF. </summary>
         public static DocumentBarcodeKind Itf { get; } = new DocumentBarcodeKind(ItfValue);
-        /// <summary> Micro QR code, as defined in ISO/IEC 23941:2022. </summary>
+        /// <summary> MicroQRCode. </summary>
         public static DocumentBarcodeKind MicroQrCode { get; } = new DocumentBarcodeKind(MicroQrCodeValue);
-        /// <summary> Aztec code, as defined in ISO/IEC 24778:2008. </summary>
+        /// <summary> Aztec. </summary>
         public static DocumentBarcodeKind Aztec { get; } = new DocumentBarcodeKind(AztecValue);
-        /// <summary> Data matrix code, as defined in ISO/IEC 16022:2006. </summary>
+        /// <summary> DataMatrix. </summary>
         public static DocumentBarcodeKind DataMatrix { get; } = new DocumentBarcodeKind(DataMatrixValue);
-        /// <summary> MaxiCode, as defined in ISO/IEC 16023:2000. </summary>
+        /// <summary> MaxiCode. </summary>
         public static DocumentBarcodeKind MaxiCode { get; } = new DocumentBarcodeKind(MaxiCodeValue);
         /// <summary> Determines if two <see cref="DocumentBarcodeKind"/> values are the same. </summary>
         public static bool operator ==(DocumentBarcodeKind left, DocumentBarcodeKind right) => left.Equals(right);

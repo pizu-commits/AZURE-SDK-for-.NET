@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Communication cloud environment model. </summary>
+    /// <summary> The CommunicationCloudEnvironmentModel. </summary>
     public readonly partial struct CommunicationCloudEnvironmentModel : IEquatable<CommunicationCloudEnvironmentModel>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string DodValue = "dod";
         private const string GcchValue = "gcch";
 
-        /// <summary> Public. </summary>
+        /// <summary> public. </summary>
         public static CommunicationCloudEnvironmentModel Public { get; } = new CommunicationCloudEnvironmentModel(PublicValue);
-        /// <summary> Dod. </summary>
+        /// <summary> dod. </summary>
         public static CommunicationCloudEnvironmentModel Dod { get; } = new CommunicationCloudEnvironmentModel(DodValue);
-        /// <summary> Gcch. </summary>
+        /// <summary> gcch. </summary>
         public static CommunicationCloudEnvironmentModel Gcch { get; } = new CommunicationCloudEnvironmentModel(GcchValue);
         /// <summary> Determines if two <see cref="CommunicationCloudEnvironmentModel"/> values are the same. </summary>
         public static bool operator ==(CommunicationCloudEnvironmentModel left, CommunicationCloudEnvironmentModel right) => left.Equals(right);

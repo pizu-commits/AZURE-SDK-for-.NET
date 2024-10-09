@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Name of the hair color. </summary>
+    /// <summary> The HairColorType. </summary>
     public readonly partial struct HairColorType : IEquatable<HairColorType>
     {
         private readonly string _value;
@@ -31,21 +31,21 @@ namespace Azure.AI.Vision.Face
         private const string BlackValue = "black";
         private const string OtherValue = "other";
 
-        /// <summary> Unknown. </summary>
+        /// <summary> unknown. </summary>
         public static HairColorType UnknownHairColor { get; } = new HairColorType(UnknownHairColorValue);
-        /// <summary> White. </summary>
+        /// <summary> white. </summary>
         public static HairColorType White { get; } = new HairColorType(WhiteValue);
-        /// <summary> Gray. </summary>
+        /// <summary> gray. </summary>
         public static HairColorType Gray { get; } = new HairColorType(GrayValue);
-        /// <summary> Blond. </summary>
+        /// <summary> blond. </summary>
         public static HairColorType Blond { get; } = new HairColorType(BlondValue);
-        /// <summary> Brown. </summary>
+        /// <summary> brown. </summary>
         public static HairColorType Brown { get; } = new HairColorType(BrownValue);
-        /// <summary> Red. </summary>
+        /// <summary> red. </summary>
         public static HairColorType Red { get; } = new HairColorType(RedValue);
-        /// <summary> Black. </summary>
+        /// <summary> black. </summary>
         public static HairColorType Black { get; } = new HairColorType(BlackValue);
-        /// <summary> Other. </summary>
+        /// <summary> other. </summary>
         public static HairColorType Other { get; } = new HairColorType(OtherValue);
         /// <summary> Determines if two <see cref="HairColorType"/> values are the same. </summary>
         public static bool operator ==(HairColorType left, HairColorType right) => left.Equals(right);

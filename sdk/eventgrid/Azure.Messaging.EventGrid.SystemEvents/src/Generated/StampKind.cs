@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Kind of environment where app service plan is. </summary>
+    /// <summary> The StampKind. </summary>
     public readonly partial struct StampKind : IEquatable<StampKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string AseV1Value = "AseV1";
         private const string AseV2Value = "AseV2";
 
-        /// <summary> App Service Plan is running on a public stamp. </summary>
+        /// <summary> Public. </summary>
         public static StampKind Public { get; } = new StampKind(PublicValue);
-        /// <summary> App Service Plan is running on an App Service Environment V1. </summary>
+        /// <summary> AseV1. </summary>
         public static StampKind AseV1 { get; } = new StampKind(AseV1Value);
-        /// <summary> App Service Plan is running on an App Service Environment V2. </summary>
+        /// <summary> AseV2. </summary>
         public static StampKind AseV2 { get; } = new StampKind(AseV2Value);
         /// <summary> Determines if two <see cref="StampKind"/> values are the same. </summary>
         public static bool operator ==(StampKind left, StampKind right) => left.Equals(right);

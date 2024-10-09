@@ -103,7 +103,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Create a new detect liveness session. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="CreateLivenessSessionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks>
@@ -130,7 +130,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Create a new detect liveness session. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="CreateLivenessSessionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks>
@@ -245,7 +245,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -281,7 +281,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -307,7 +307,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Get session result of detectLiveness/singleModal call. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -322,7 +322,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Get session result of detectLiveness/singleModal call. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -351,7 +351,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -391,7 +391,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -417,8 +417,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Lists sessions for /detectLiveness/SingleModal. </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// List sessions from the last sessionId greater than the 'start'.
@@ -442,8 +442,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Lists sessions for /detectLiveness/SingleModal. </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// List sessions from the last sessionId greater than the 'start'.
@@ -481,8 +481,8 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -518,8 +518,8 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -541,9 +541,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Gets session requests and response body for the session. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -566,9 +566,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Gets session requests and response body for the session. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -605,9 +605,9 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -647,9 +647,9 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -675,7 +675,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Create a new liveness session with verify. Client device submits VerifyImage during the /detectLivenessWithVerify/singleModal call. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="CreateLivenessSessionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks>
@@ -709,7 +709,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Create a new liveness session with verify. Client device submits VerifyImage during the /detectLivenessWithVerify/singleModal call. </summary>
-        /// <param name="body"> Body parameter. </param>
+        /// <param name="body"> The <see cref="CreateLivenessSessionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks>
@@ -819,7 +819,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Create a new liveness session with verify. Provide the verify image during session creation. </summary>
-        /// <param name="body"> Request content of liveness with verify session creation. </param>
+        /// <param name="body"> The <see cref="CreateLivenessWithVerifySessionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks>
@@ -851,7 +851,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Create a new liveness session with verify. Provide the verify image during session creation. </summary>
-        /// <param name="body"> Request content of liveness with verify session creation. </param>
+        /// <param name="body"> The <see cref="CreateLivenessWithVerifySessionContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="body"/> is null. </exception>
         /// <remarks>
@@ -898,7 +898,7 @@ namespace Azure.AI.Vision.Face
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for the operation. Always multipart/form-data for this operation. Allowed values: "multipart/form-data". </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -937,7 +937,7 @@ namespace Azure.AI.Vision.Face
         /// </list>
         /// </summary>
         /// <param name="content"> The content to send as the body of the request. </param>
-        /// <param name="contentType"> The content type for the operation. Always multipart/form-data for this operation. Allowed values: "multipart/form-data". </param>
+        /// <param name="contentType"> The <see cref="string"/> to use. Allowed values: "multipart/form-data". </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
@@ -971,7 +971,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1007,7 +1007,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1033,7 +1033,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Get session result of detectLivenessWithVerify/singleModal call. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1048,7 +1048,7 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Get session result of detectLivenessWithVerify/singleModal call. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1077,7 +1077,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1117,7 +1117,7 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1143,8 +1143,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Lists sessions for /detectLivenessWithVerify/SingleModal. </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// List sessions from the last sessionId greater than the "start".
@@ -1168,8 +1168,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Lists sessions for /detectLivenessWithVerify/SingleModal. </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <remarks>
         /// List sessions from the last sessionId greater than the "start".
@@ -1207,8 +1207,8 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -1244,8 +1244,8 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The response returned from the service. </returns>
@@ -1267,9 +1267,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Gets session requests and response body for the session. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1292,9 +1292,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Gets session requests and response body for the session. </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1331,9 +1331,9 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -1373,9 +1373,9 @@ namespace Azure.AI.Vision.Face
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="sessionId"> The unique ID to reference this session. </param>
-        /// <param name="start"> List resources greater than the "start". It contains no more than 64 characters. Default is empty. </param>
-        /// <param name="top"> The number of items to list, ranging in [1, 1000]. Default is 1000. </param>
+        /// <param name="sessionId"> The <see cref="string"/> to use. </param>
+        /// <param name="start"> The <see cref="string"/> to use. </param>
+        /// <param name="top"> The <see cref="int"/>? to use. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="sessionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="sessionId"/> is an empty string, and was expected to be non-empty. </exception>

@@ -10,16 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// Job canceling event data. Schema of the data property of an EventGridEvent for
-    /// a Microsoft.Media.JobCanceling event.
-    /// </summary>
+    /// <summary> The MediaJobCancelingEventData. </summary>
     public partial class MediaJobCancelingEventData : MediaJobStateChangeEventData
     {
         /// <summary> Initializes a new instance of <see cref="MediaJobCancelingEventData"/>. </summary>
-        /// <param name="previousState"> The previous state of the Job. </param>
-        /// <param name="state"> The new state of the Job. </param>
-        /// <param name="correlationData"> Gets the Job correlation data. </param>
+        /// <param name="previousState"></param>
+        /// <param name="state"></param>
+        /// <param name="correlationData"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="correlationData"/> is null. </exception>
         internal MediaJobCancelingEventData(MediaJobState previousState, MediaJobState state, IReadOnlyDictionary<string, string> correlationData) : base(previousState, state, correlationData)
         {
@@ -27,9 +24,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaJobCancelingEventData"/>. </summary>
-        /// <param name="previousState"> The previous state of the Job. </param>
-        /// <param name="state"> The new state of the Job. </param>
-        /// <param name="correlationData"> Gets the Job correlation data. </param>
+        /// <param name="previousState"></param>
+        /// <param name="state"></param>
+        /// <param name="correlationData"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaJobCancelingEventData(MediaJobState previousState, MediaJobState state, IReadOnlyDictionary<string, string> correlationData, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(previousState, state, correlationData, serializedAdditionalRawData)
         {

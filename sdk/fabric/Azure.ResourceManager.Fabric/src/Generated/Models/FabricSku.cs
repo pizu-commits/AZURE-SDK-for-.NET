@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> Represents the SKU name and Azure pricing tier for Microsoft Fabric capacity resource. </summary>
+    /// <summary> The FabricSku. </summary>
     public partial class FabricSku
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.ResourceManager.Fabric.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FabricSku"/>. </summary>
-        /// <param name="name"> The name of the SKU level. </param>
-        /// <param name="tier"> The name of the Azure pricing tier to which the SKU applies. </param>
+        /// <param name="name"></param>
+        /// <param name="tier"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
         public FabricSku(string name, FabricSkuTier tier)
         {
@@ -58,8 +58,8 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricSku"/>. </summary>
-        /// <param name="name"> The name of the SKU level. </param>
-        /// <param name="tier"> The name of the Azure pricing tier to which the SKU applies. </param>
+        /// <param name="name"></param>
+        /// <param name="tier"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricSku(string name, FabricSkuTier tier, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.ResourceManager.Fabric.Models
         {
         }
 
-        /// <summary> The name of the SKU level. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The name of the Azure pricing tier to which the SKU applies. </summary>
+        /// <summary> Gets or sets the tier. </summary>
         public FabricSkuTier Tier { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message Media Content. </summary>
+    /// <summary> The AcsMessageMediaContent. </summary>
     public partial class AcsMessageMediaContent
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageMediaContent"/>. </summary>
-        /// <param name="mimeType"> The MIME type of the file this media represents. </param>
-        /// <param name="mediaId"> The media identifier. </param>
-        /// <param name="fileName"> The filename of the underlying media file as specified when uploaded. </param>
-        /// <param name="caption"> The caption for the media object, if supported and provided. </param>
+        /// <param name="mimeType"></param>
+        /// <param name="mediaId"></param>
+        /// <param name="fileName"></param>
+        /// <param name="caption"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageMediaContent(string mimeType, string mediaId, string fileName, string caption, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The MIME type of the file this media represents. </summary>
+        /// <summary> Gets the mime type. </summary>
         public string MimeType { get; }
-        /// <summary> The media identifier. </summary>
+        /// <summary> Gets the media id. </summary>
         public string MediaId { get; }
-        /// <summary> The filename of the underlying media file as specified when uploaded. </summary>
+        /// <summary> Gets the file name. </summary>
         public string FileName { get; }
-        /// <summary> The caption for the media object, if supported and provided. </summary>
+        /// <summary> Gets the caption. </summary>
         public string Caption { get; }
     }
 }

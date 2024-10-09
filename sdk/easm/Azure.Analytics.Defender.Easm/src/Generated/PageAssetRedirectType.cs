@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The redirect type of a page. </summary>
+    /// <summary> The PageAssetRedirectType. </summary>
     public readonly partial struct PageAssetRedirectType : IEquatable<PageAssetRedirectType>
     {
         private readonly string _value;

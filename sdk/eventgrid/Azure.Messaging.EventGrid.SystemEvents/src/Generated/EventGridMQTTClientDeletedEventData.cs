@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Event data for Microsoft.EventGrid.MQTTClientDeleted event. </summary>
+    /// <summary> The EventGridMQTTClientDeletedEventData. </summary>
     public partial class EventGridMQTTClientDeletedEventData : EventGridMQTTClientEventData
     {
         /// <summary> Initializes a new instance of <see cref="EventGridMQTTClientDeletedEventData"/>. </summary>
@@ -19,13 +19,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="EventGridMQTTClientDeletedEventData"/>. </summary>
-        /// <param name="clientAuthenticationName">
-        /// Unique identifier for the MQTT client that the client presents to the service
-        /// for authentication. This case-sensitive string can be up to 128 characters
-        /// long, and supports UTF-8 characters.
-        /// </param>
-        /// <param name="clientName"> Name of the client resource in the Event Grid namespace. </param>
-        /// <param name="namespaceName"> Name of the Event Grid namespace where the MQTT client was created or updated. </param>
+        /// <param name="clientAuthenticationName"></param>
+        /// <param name="clientName"></param>
+        /// <param name="namespaceName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EventGridMQTTClientDeletedEventData(string clientAuthenticationName, string clientName, string namespaceName, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(clientAuthenticationName, clientName, namespaceName, serializedAdditionalRawData)
         {

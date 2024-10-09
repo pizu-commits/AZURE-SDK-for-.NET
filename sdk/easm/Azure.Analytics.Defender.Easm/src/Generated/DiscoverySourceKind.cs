@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The kind of disco source. </summary>
+    /// <summary> The DiscoverySourceKind. </summary>
     public readonly partial struct DiscoverySourceKind : IEquatable<DiscoverySourceKind>
     {
         private readonly string _value;

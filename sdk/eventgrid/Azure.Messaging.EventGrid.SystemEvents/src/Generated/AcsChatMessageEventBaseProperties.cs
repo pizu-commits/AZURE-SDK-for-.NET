@@ -10,13 +10,13 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of common properties of all chat message events. </summary>
+    /// <summary> The AcsChatMessageEventBaseProperties. </summary>
     public partial class AcsChatMessageEventBaseProperties : AcsChatEventBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatMessageEventBaseProperties"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="senderCommunicationIdentifier"> The communication identifier of the sender. </param>
-        /// <param name="composeTime"> The original compose time of the message. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="senderCommunicationIdentifier"></param>
+        /// <param name="composeTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="recipientCommunicationIdentifier"/> or <paramref name="senderCommunicationIdentifier"/> is null. </exception>
         internal AcsChatMessageEventBaseProperties(CommunicationIdentifierModel recipientCommunicationIdentifier, CommunicationIdentifierModel senderCommunicationIdentifier, DateTimeOffset composeTime) : base(recipientCommunicationIdentifier)
         {
@@ -28,16 +28,16 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatMessageEventBaseProperties"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="messageId"> The chat message id. </param>
-        /// <param name="senderCommunicationIdentifier"> The communication identifier of the sender. </param>
-        /// <param name="senderDisplayName"> The display name of the sender. </param>
-        /// <param name="composeTime"> The original compose time of the message. </param>
-        /// <param name="type"> The type of the message. </param>
-        /// <param name="version"> The version of the message. </param>
+        /// <param name="messageId"></param>
+        /// <param name="senderCommunicationIdentifier"></param>
+        /// <param name="senderDisplayName"></param>
+        /// <param name="composeTime"></param>
+        /// <param name="type"></param>
+        /// <param name="version"></param>
         internal AcsChatMessageEventBaseProperties(CommunicationIdentifierModel recipientCommunicationIdentifier, string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, string messageId, CommunicationIdentifierModel senderCommunicationIdentifier, string senderDisplayName, DateTimeOffset composeTime, string type, long? version) : base(recipientCommunicationIdentifier, transactionId, threadId, serializedAdditionalRawData)
         {
             MessageId = messageId;
@@ -53,17 +53,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The chat message id. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
-        /// <summary> The communication identifier of the sender. </summary>
+        /// <summary> Gets the sender communication identifier. </summary>
         public CommunicationIdentifierModel SenderCommunicationIdentifier { get; }
-        /// <summary> The display name of the sender. </summary>
+        /// <summary> Gets the sender display name. </summary>
         public string SenderDisplayName { get; }
-        /// <summary> The original compose time of the message. </summary>
+        /// <summary> Gets the compose time. </summary>
         public DateTimeOffset ComposeTime { get; }
-        /// <summary> The type of the message. </summary>
+        /// <summary> Gets the type. </summary>
         public string Type { get; }
-        /// <summary> The version of the message. </summary>
+        /// <summary> Gets the version. </summary>
         public long? Version { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> File list in Azure Blob Storage. </summary>
+    /// <summary> The AzureBlobFileListContentSource. </summary>
     public partial class AzureBlobFileListContentSource
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AzureBlobFileListContentSource"/>. </summary>
-        /// <param name="containerUrl"> Azure Blob Storage container URL. </param>
-        /// <param name="fileList"> Path to a JSONL file within the container specifying a subset of documents. </param>
+        /// <param name="containerUrl"></param>
+        /// <param name="fileList"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="containerUrl"/> or <paramref name="fileList"/> is null. </exception>
         public AzureBlobFileListContentSource(Uri containerUrl, string fileList)
         {
@@ -59,8 +59,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="AzureBlobFileListContentSource"/>. </summary>
-        /// <param name="containerUrl"> Azure Blob Storage container URL. </param>
-        /// <param name="fileList"> Path to a JSONL file within the container specifying a subset of documents. </param>
+        /// <param name="containerUrl"></param>
+        /// <param name="fileList"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AzureBlobFileListContentSource(Uri containerUrl, string fileList, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Azure Blob Storage container URL. </summary>
+        /// <summary> Gets or sets the container url. </summary>
         public Uri ContainerUrl { get; set; }
-        /// <summary> Path to a JSONL file within the container specifying a subset of documents. </summary>
+        /// <summary> Gets or sets the file list. </summary>
         public string FileList { get; set; }
     }
 }

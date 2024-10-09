@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The provisioning state of the Fabric capacity resource. </summary>
+    /// <summary> The FabricProvisioningState. </summary>
     public readonly partial struct FabricProvisioningState : IEquatable<FabricProvisioningState>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.ResourceManager.Fabric.Models
         private const string ProvisioningValue = "Provisioning";
         private const string UpdatingValue = "Updating";
 
-        /// <summary> Resource has been created. </summary>
+        /// <summary> Succeeded. </summary>
         public static FabricProvisioningState Succeeded { get; } = new FabricProvisioningState(SucceededValue);
-        /// <summary> Resource creation failed. </summary>
+        /// <summary> Failed. </summary>
         public static FabricProvisioningState Failed { get; } = new FabricProvisioningState(FailedValue);
-        /// <summary> Resource creation was canceled. </summary>
+        /// <summary> Canceled. </summary>
         public static FabricProvisioningState Canceled { get; } = new FabricProvisioningState(CanceledValue);
-        /// <summary> Resource is deleting. </summary>
+        /// <summary> Deleting. </summary>
         public static FabricProvisioningState Deleting { get; } = new FabricProvisioningState(DeletingValue);
-        /// <summary> Resource is provisioning. </summary>
+        /// <summary> Provisioning. </summary>
         public static FabricProvisioningState Provisioning { get; } = new FabricProvisioningState(ProvisioningValue);
-        /// <summary> Resource is updating. </summary>
+        /// <summary> Updating. </summary>
         public static FabricProvisioningState Updating { get; } = new FabricProvisioningState(UpdatingValue);
         /// <summary> Determines if two <see cref="FabricProvisioningState"/> values are the same. </summary>
         public static bool operator ==(FabricProvisioningState left, FabricProvisioningState right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Incoming streams out of sync event data. Schema of the data property of an EventGridEvent for a Microsoft.Media.LiveEventIncomingStreamsOutOfSync event. </summary>
+    /// <summary> The MediaLiveEventIncomingStreamsOutOfSyncEventData. </summary>
     public partial class MediaLiveEventIncomingStreamsOutOfSyncEventData
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventIncomingStreamsOutOfSyncEventData"/>. </summary>
-        /// <param name="minLastTimestamp"> Gets the minimum last timestamp received. </param>
-        /// <param name="typeOfStreamWithMinLastTimestamp"> Gets the type of stream with minimum last timestamp. </param>
-        /// <param name="maxLastTimestamp"> Gets the maximum timestamp among all the tracks (audio or video). </param>
-        /// <param name="typeOfStreamWithMaxLastTimestamp"> Gets the type of stream with maximum last timestamp. </param>
-        /// <param name="timescaleOfMinLastTimestamp"> Gets the timescale in which \"MinLastTimestamp\" is represented. </param>
-        /// <param name="timescaleOfMaxLastTimestamp"> Gets the timescale in which \"MaxLastTimestamp\" is represented. </param>
+        /// <param name="minLastTimestamp"></param>
+        /// <param name="typeOfStreamWithMinLastTimestamp"></param>
+        /// <param name="maxLastTimestamp"></param>
+        /// <param name="typeOfStreamWithMaxLastTimestamp"></param>
+        /// <param name="timescaleOfMinLastTimestamp"></param>
+        /// <param name="timescaleOfMaxLastTimestamp"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaLiveEventIncomingStreamsOutOfSyncEventData(string minLastTimestamp, string typeOfStreamWithMinLastTimestamp, string maxLastTimestamp, string typeOfStreamWithMaxLastTimestamp, string timescaleOfMinLastTimestamp, string timescaleOfMaxLastTimestamp, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the minimum last timestamp received. </summary>
+        /// <summary> Gets the min last timestamp. </summary>
         public string MinLastTimestamp { get; }
-        /// <summary> Gets the type of stream with minimum last timestamp. </summary>
+        /// <summary> Gets the type of stream with min last timestamp. </summary>
         public string TypeOfStreamWithMinLastTimestamp { get; }
-        /// <summary> Gets the maximum timestamp among all the tracks (audio or video). </summary>
+        /// <summary> Gets the max last timestamp. </summary>
         public string MaxLastTimestamp { get; }
-        /// <summary> Gets the type of stream with maximum last timestamp. </summary>
+        /// <summary> Gets the type of stream with max last timestamp. </summary>
         public string TypeOfStreamWithMaxLastTimestamp { get; }
-        /// <summary> Gets the timescale in which \"MinLastTimestamp\" is represented. </summary>
+        /// <summary> Gets the timescale of min last timestamp. </summary>
         public string TimescaleOfMinLastTimestamp { get; }
-        /// <summary> Gets the timescale in which \"MaxLastTimestamp\" is represented. </summary>
+        /// <summary> Gets the timescale of max last timestamp. </summary>
         public string TimescaleOfMaxLastTimestamp { get; }
     }
 }

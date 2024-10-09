@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Accessory item and corresponding confidence level. </summary>
+    /// <summary> The AccessoryItem. </summary>
     public partial class AccessoryItem
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AccessoryItem"/>. </summary>
-        /// <param name="type"> Type of the accessory. </param>
-        /// <param name="confidence"> Confidence level of the accessory type. Range between [0,1]. </param>
+        /// <param name="type"></param>
+        /// <param name="confidence"></param>
         internal AccessoryItem(AccessoryType type, float confidence)
         {
             Type = type;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="AccessoryItem"/>. </summary>
-        /// <param name="type"> Type of the accessory. </param>
-        /// <param name="confidence"> Confidence level of the accessory type. Range between [0,1]. </param>
+        /// <param name="type"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AccessoryItem(AccessoryType type, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> Type of the accessory. </summary>
+        /// <summary> Gets the type. </summary>
         public AccessoryType Type { get; }
-        /// <summary> Confidence level of the accessory type. Range between [0,1]. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

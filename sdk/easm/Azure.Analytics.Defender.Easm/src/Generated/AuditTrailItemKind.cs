@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The kind of asset. </summary>
+    /// <summary> The AuditTrailItemKind. </summary>
     public readonly partial struct AuditTrailItemKind : IEquatable<AuditTrailItemKind>
     {
         private readonly string _value;

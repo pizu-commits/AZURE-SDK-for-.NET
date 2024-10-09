@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The kind of billable asset. </summary>
+    /// <summary> The ReportBillableAssetBreakdownKind. </summary>
     public readonly partial struct ReportBillableAssetBreakdownKind : IEquatable<ReportBillableAssetBreakdownKind>
     {
         private readonly string _value;

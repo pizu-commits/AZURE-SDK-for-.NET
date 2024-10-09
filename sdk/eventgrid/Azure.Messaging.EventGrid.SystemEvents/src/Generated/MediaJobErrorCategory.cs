@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Error categories for Media Job Errors. </summary>
+    /// <summary> The MediaJobErrorCategory. </summary>
     public readonly partial struct MediaJobErrorCategory : IEquatable<MediaJobErrorCategory>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string ContentValue = "Content";
         private const string AccountValue = "Account";
 
-        /// <summary> The error is service related. </summary>
+        /// <summary> Service. </summary>
         public static MediaJobErrorCategory Service { get; } = new MediaJobErrorCategory(ServiceValue);
-        /// <summary> The error is download related. </summary>
+        /// <summary> Download. </summary>
         public static MediaJobErrorCategory Download { get; } = new MediaJobErrorCategory(DownloadValue);
-        /// <summary> The error is upload related. </summary>
+        /// <summary> Upload. </summary>
         public static MediaJobErrorCategory Upload { get; } = new MediaJobErrorCategory(UploadValue);
-        /// <summary> The error is configuration related. </summary>
+        /// <summary> Configuration. </summary>
         public static MediaJobErrorCategory Configuration { get; } = new MediaJobErrorCategory(ConfigurationValue);
-        /// <summary> The error is related to data in the input files. </summary>
+        /// <summary> Content. </summary>
         public static MediaJobErrorCategory Content { get; } = new MediaJobErrorCategory(ContentValue);
-        /// <summary> The error is related to account information. </summary>
+        /// <summary> Account. </summary>
         public static MediaJobErrorCategory Account { get; } = new MediaJobErrorCategory(AccountValue);
         /// <summary> Determines if two <see cref="MediaJobErrorCategory"/> values are the same. </summary>
         public static bool operator ==(MediaJobErrorCategory left, MediaJobErrorCategory right) => left.Equals(right);

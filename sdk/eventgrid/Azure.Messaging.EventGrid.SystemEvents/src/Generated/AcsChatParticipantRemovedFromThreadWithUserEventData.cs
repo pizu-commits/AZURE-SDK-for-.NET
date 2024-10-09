@@ -10,15 +10,15 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatParticipantRemovedFromThreadWithUser event. </summary>
+    /// <summary> The AcsChatParticipantRemovedFromThreadWithUserEventData. </summary>
     public partial class AcsChatParticipantRemovedFromThreadWithUserEventData : AcsChatThreadEventBaseProperties
     {
         /// <summary> Initializes a new instance of <see cref="AcsChatParticipantRemovedFromThreadWithUserEventData"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="createTime"> The original creation time of the thread. </param>
-        /// <param name="time"> The time at which the user was removed to the thread. </param>
-        /// <param name="removedByCommunicationIdentifier"> The communication identifier of the user who removed the user. </param>
-        /// <param name="participantRemoved"> The details of the user who was removed. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="createTime"></param>
+        /// <param name="time"></param>
+        /// <param name="removedByCommunicationIdentifier"></param>
+        /// <param name="participantRemoved"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="recipientCommunicationIdentifier"/>, <paramref name="removedByCommunicationIdentifier"/> or <paramref name="participantRemoved"/> is null. </exception>
         internal AcsChatParticipantRemovedFromThreadWithUserEventData(CommunicationIdentifierModel recipientCommunicationIdentifier, DateTimeOffset createTime, DateTimeOffset time, CommunicationIdentifierModel removedByCommunicationIdentifier, AcsChatThreadParticipantProperties participantRemoved) : base(recipientCommunicationIdentifier, createTime)
         {
@@ -32,15 +32,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsChatParticipantRemovedFromThreadWithUserEventData"/>. </summary>
-        /// <param name="recipientCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="transactionId"> The transaction id will be used as co-relation vector. </param>
-        /// <param name="threadId"> The chat thread id. </param>
+        /// <param name="recipientCommunicationIdentifier"></param>
+        /// <param name="transactionId"></param>
+        /// <param name="threadId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="createTime"> The original creation time of the thread. </param>
-        /// <param name="version"> The version of the thread. </param>
-        /// <param name="time"> The time at which the user was removed to the thread. </param>
-        /// <param name="removedByCommunicationIdentifier"> The communication identifier of the user who removed the user. </param>
-        /// <param name="participantRemoved"> The details of the user who was removed. </param>
+        /// <param name="createTime"></param>
+        /// <param name="version"></param>
+        /// <param name="time"></param>
+        /// <param name="removedByCommunicationIdentifier"></param>
+        /// <param name="participantRemoved"></param>
         internal AcsChatParticipantRemovedFromThreadWithUserEventData(CommunicationIdentifierModel recipientCommunicationIdentifier, string transactionId, string threadId, IDictionary<string, BinaryData> serializedAdditionalRawData, DateTimeOffset createTime, long? version, DateTimeOffset time, CommunicationIdentifierModel removedByCommunicationIdentifier, AcsChatThreadParticipantProperties participantRemoved) : base(recipientCommunicationIdentifier, transactionId, threadId, serializedAdditionalRawData, createTime, version)
         {
             Time = time;
@@ -53,11 +53,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which the user was removed to the thread. </summary>
+        /// <summary> Gets the time. </summary>
         public DateTimeOffset Time { get; }
-        /// <summary> The communication identifier of the user who removed the user. </summary>
+        /// <summary> Gets the removed by communication identifier. </summary>
         public CommunicationIdentifierModel RemovedByCommunicationIdentifier { get; }
-        /// <summary> The details of the user who was removed. </summary>
+        /// <summary> Gets the participant removed. </summary>
         public AcsChatThreadParticipantProperties ParticipantRemoved { get; }
     }
 }

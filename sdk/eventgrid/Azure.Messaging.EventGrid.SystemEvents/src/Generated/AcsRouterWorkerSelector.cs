@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Router Job Worker Selector. </summary>
+    /// <summary> The AcsRouterWorkerSelector. </summary>
     public partial class AcsRouterWorkerSelector
     {
         /// <summary>
@@ -46,11 +46,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerSelector"/>. </summary>
-        /// <param name="labelOperator"> Router Job Worker Selector Label Operator. </param>
-        /// <param name="labelValue"> Router Job Worker Selector Value. </param>
-        /// <param name="timeToLive"> Router Job Worker Selector Time to Live in Seconds. </param>
-        /// <param name="selectorState"> Router Job Worker Selector State. </param>
-        /// <param name="expirationTime"> Router Job Worker Selector Expiration Time. </param>
+        /// <param name="labelOperator"></param>
+        /// <param name="labelValue"></param>
+        /// <param name="timeToLive"></param>
+        /// <param name="selectorState"></param>
+        /// <param name="expirationTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="labelValue"/> is null. </exception>
         internal AcsRouterWorkerSelector(AcsRouterLabelOperator labelOperator, BinaryData labelValue, double timeToLive, AcsRouterWorkerSelectorState selectorState, DateTimeOffset expirationTime)
         {
@@ -64,12 +64,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerSelector"/>. </summary>
-        /// <param name="key"> Router Job Worker Selector Key. </param>
-        /// <param name="labelOperator"> Router Job Worker Selector Label Operator. </param>
-        /// <param name="labelValue"> Router Job Worker Selector Value. </param>
-        /// <param name="timeToLive"> Router Job Worker Selector Time to Live in Seconds. </param>
-        /// <param name="selectorState"> Router Job Worker Selector State. </param>
-        /// <param name="expirationTime"> Router Job Worker Selector Expiration Time. </param>
+        /// <param name="key"></param>
+        /// <param name="labelOperator"></param>
+        /// <param name="labelValue"></param>
+        /// <param name="timeToLive"></param>
+        /// <param name="selectorState"></param>
+        /// <param name="expirationTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRouterWorkerSelector(string key, AcsRouterLabelOperator labelOperator, BinaryData labelValue, double timeToLive, AcsRouterWorkerSelectorState selectorState, DateTimeOffset expirationTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,12 +87,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Job Worker Selector Key. </summary>
+        /// <summary> Gets the key. </summary>
         public string Key { get; }
-        /// <summary> Router Job Worker Selector Label Operator. </summary>
+        /// <summary> Gets the label operator. </summary>
         public AcsRouterLabelOperator LabelOperator { get; }
         /// <summary>
-        /// Router Job Worker Selector Value
+        /// Gets the label value
         /// <para>
         /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -122,11 +122,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </para>
         /// </summary>
         public BinaryData LabelValue { get; }
-        /// <summary> Router Job Worker Selector Time to Live in Seconds. </summary>
+        /// <summary> Gets the time to live. </summary>
         public double TimeToLive { get; }
-        /// <summary> Router Job Worker Selector State. </summary>
+        /// <summary> Gets the selector state. </summary>
         public AcsRouterWorkerSelectorState SelectorState { get; }
-        /// <summary> Router Job Worker Selector Expiration Time. </summary>
+        /// <summary> Gets the expiration time. </summary>
         public DateTimeOffset ExpirationTime { get; }
     }
 }

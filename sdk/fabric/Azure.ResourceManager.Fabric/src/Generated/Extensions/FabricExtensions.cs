@@ -78,7 +78,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -95,7 +95,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <param name="capacityName"> The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. </param>
+        /// <param name="capacityName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="capacityName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="capacityName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -116,7 +116,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>FabricCapacities_Get</description>
+        /// <description>FabricCapacity_Get</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
@@ -133,7 +133,7 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// </summary>
         /// <param name="resourceGroupResource"> The <see cref="ResourceGroupResource" /> instance the method will execute against. </param>
-        /// <param name="capacityName"> The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. </param>
+        /// <param name="capacityName"> The <see cref="string"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceGroupResource"/> or <paramref name="capacityName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="capacityName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -243,8 +243,8 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> The name of the Azure region. </param>
-        /// <param name="content"> The CheckAvailability request. </param>
+        /// <param name="location"> The <see cref="AzureLocation"/> to use. </param>
+        /// <param name="content"> The <see cref="FabricNameAvailabilityContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         public static async Task<Response<FabricNameAvailabilityResult>> CheckFabricCapacityNameAvailabilityAsync(this SubscriptionResource subscriptionResource, AzureLocation location, FabricNameAvailabilityContent content, CancellationToken cancellationToken = default)
@@ -280,8 +280,8 @@ namespace Azure.ResourceManager.Fabric
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> The name of the Azure region. </param>
-        /// <param name="content"> The CheckAvailability request. </param>
+        /// <param name="location"> The <see cref="AzureLocation"/> to use. </param>
+        /// <param name="content"> The <see cref="FabricNameAvailabilityContent"/> to use. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         public static Response<FabricNameAvailabilityResult> CheckFabricCapacityNameAvailability(this SubscriptionResource subscriptionResource, AzureLocation location, FabricNameAvailabilityContent content, CancellationToken cancellationToken = default)

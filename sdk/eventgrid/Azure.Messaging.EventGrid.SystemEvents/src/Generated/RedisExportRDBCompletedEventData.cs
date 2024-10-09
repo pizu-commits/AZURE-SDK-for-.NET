@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Cache.ExportRDBCompleted event. </summary>
+    /// <summary> The RedisExportRDBCompletedEventData. </summary>
     public partial class RedisExportRDBCompletedEventData
     {
         /// <summary>
@@ -46,16 +46,16 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="RedisExportRDBCompletedEventData"/>. </summary>
-        /// <param name="timestamp"> The time at which the event occurred. </param>
+        /// <param name="timestamp"></param>
         internal RedisExportRDBCompletedEventData(DateTimeOffset timestamp)
         {
             Timestamp = timestamp;
         }
 
         /// <summary> Initializes a new instance of <see cref="RedisExportRDBCompletedEventData"/>. </summary>
-        /// <param name="timestamp"> The time at which the event occurred. </param>
-        /// <param name="name"> The name of this event. </param>
-        /// <param name="status"> The status of this event. Failed or  succeeded. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="name"></param>
+        /// <param name="status"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal RedisExportRDBCompletedEventData(DateTimeOffset timestamp, string name, string status, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,11 +70,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The time at which the event occurred. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public DateTimeOffset Timestamp { get; }
-        /// <summary> The name of this event. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The status of this event. Failed or  succeeded. </summary>
+        /// <summary> Gets the status. </summary>
         public string Status { get; }
     }
 }

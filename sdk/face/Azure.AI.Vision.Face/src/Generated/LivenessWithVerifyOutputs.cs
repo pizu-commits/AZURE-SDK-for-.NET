@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The face verification output. </summary>
+    /// <summary> The LivenessWithVerifyOutputs. </summary>
     public partial class LivenessWithVerifyOutputs
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LivenessWithVerifyOutputs"/>. </summary>
-        /// <param name="verifyImage"> The detail of face for verification. </param>
-        /// <param name="matchConfidence"> The target face liveness face and comparison image face verification confidence. </param>
-        /// <param name="isIdentical"> Whether the target liveness face and comparison image face match. </param>
+        /// <param name="verifyImage"></param>
+        /// <param name="matchConfidence"></param>
+        /// <param name="isIdentical"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="verifyImage"/> is null. </exception>
         internal LivenessWithVerifyOutputs(LivenessWithVerifyImage verifyImage, float matchConfidence, bool isIdentical)
         {
@@ -60,9 +60,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="LivenessWithVerifyOutputs"/>. </summary>
-        /// <param name="verifyImage"> The detail of face for verification. </param>
-        /// <param name="matchConfidence"> The target face liveness face and comparison image face verification confidence. </param>
-        /// <param name="isIdentical"> Whether the target liveness face and comparison image face match. </param>
+        /// <param name="verifyImage"></param>
+        /// <param name="matchConfidence"></param>
+        /// <param name="isIdentical"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LivenessWithVerifyOutputs(LivenessWithVerifyImage verifyImage, float matchConfidence, bool isIdentical, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -77,11 +77,11 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The detail of face for verification. </summary>
+        /// <summary> Gets the verify image. </summary>
         public LivenessWithVerifyImage VerifyImage { get; }
-        /// <summary> The target face liveness face and comparison image face verification confidence. </summary>
+        /// <summary> Gets the match confidence. </summary>
         public float MatchConfidence { get; }
-        /// <summary> Whether the target liveness face and comparison image face match. </summary>
+        /// <summary> Gets the is identical. </summary>
         public bool IsIdentical { get; }
     }
 }

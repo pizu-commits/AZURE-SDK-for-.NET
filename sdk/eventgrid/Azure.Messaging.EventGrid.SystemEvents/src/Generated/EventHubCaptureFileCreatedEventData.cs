@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.EventHub.CaptureFileCreated event. </summary>
+    /// <summary> The EventHubCaptureFileCreatedEventData. </summary>
     public partial class EventHubCaptureFileCreatedEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="EventHubCaptureFileCreatedEventData"/>. </summary>
-        /// <param name="firstEnqueueTime"> The first time from the queue. </param>
-        /// <param name="lastEnqueueTime"> The last time from the queue. </param>
+        /// <param name="firstEnqueueTime"></param>
+        /// <param name="lastEnqueueTime"></param>
         internal EventHubCaptureFileCreatedEventData(DateTimeOffset firstEnqueueTime, DateTimeOffset lastEnqueueTime)
         {
             FirstEnqueueTime = firstEnqueueTime;
@@ -55,15 +55,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="EventHubCaptureFileCreatedEventData"/>. </summary>
-        /// <param name="fileurl"> The path to the capture file. </param>
-        /// <param name="fileType"> The file type of the capture file. </param>
-        /// <param name="partitionId"> The shard ID. </param>
-        /// <param name="sizeInBytes"> The file size. </param>
-        /// <param name="eventCount"> The number of events in the file. </param>
-        /// <param name="firstSequenceNumber"> The smallest sequence number from the queue. </param>
-        /// <param name="lastSequenceNumber"> The last sequence number from the queue. </param>
-        /// <param name="firstEnqueueTime"> The first time from the queue. </param>
-        /// <param name="lastEnqueueTime"> The last time from the queue. </param>
+        /// <param name="fileurl"></param>
+        /// <param name="fileType"></param>
+        /// <param name="partitionId"></param>
+        /// <param name="sizeInBytes"></param>
+        /// <param name="eventCount"></param>
+        /// <param name="firstSequenceNumber"></param>
+        /// <param name="lastSequenceNumber"></param>
+        /// <param name="firstEnqueueTime"></param>
+        /// <param name="lastEnqueueTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal EventHubCaptureFileCreatedEventData(string fileurl, string fileType, string partitionId, int? sizeInBytes, int? eventCount, int? firstSequenceNumber, int? lastSequenceNumber, DateTimeOffset firstEnqueueTime, DateTimeOffset lastEnqueueTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,23 +84,23 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The path to the capture file. </summary>
+        /// <summary> Gets the fileurl. </summary>
         public string Fileurl { get; }
-        /// <summary> The file type of the capture file. </summary>
+        /// <summary> Gets the file type. </summary>
         public string FileType { get; }
-        /// <summary> The shard ID. </summary>
+        /// <summary> Gets the partition id. </summary>
         public string PartitionId { get; }
-        /// <summary> The file size. </summary>
+        /// <summary> Gets the size in bytes. </summary>
         public int? SizeInBytes { get; }
-        /// <summary> The number of events in the file. </summary>
+        /// <summary> Gets the event count. </summary>
         public int? EventCount { get; }
-        /// <summary> The smallest sequence number from the queue. </summary>
+        /// <summary> Gets the first sequence number. </summary>
         public int? FirstSequenceNumber { get; }
-        /// <summary> The last sequence number from the queue. </summary>
+        /// <summary> Gets the last sequence number. </summary>
         public int? LastSequenceNumber { get; }
-        /// <summary> The first time from the queue. </summary>
+        /// <summary> Gets the first enqueue time. </summary>
         public DateTimeOffset FirstEnqueueTime { get; }
-        /// <summary> The last time from the queue. </summary>
+        /// <summary> Gets the last enqueue time. </summary>
         public DateTimeOffset LastEnqueueTime { get; }
     }
 }

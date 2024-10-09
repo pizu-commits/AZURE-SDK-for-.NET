@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> EventGrid MQTT Client State. </summary>
+    /// <summary> The EventGridMQTTClientState. </summary>
     public readonly partial struct EventGridMQTTClientState : IEquatable<EventGridMQTTClientState>
     {
         private readonly string _value;

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> The detail of face for verification. </summary>
+    /// <summary> The LivenessWithVerifyImage. </summary>
     public partial class LivenessWithVerifyImage
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LivenessWithVerifyImage"/>. </summary>
-        /// <param name="faceRectangle"> The face region where the comparison image's classification was made. </param>
-        /// <param name="qualityForRecognition"> Quality of face image for recognition. </param>
+        /// <param name="faceRectangle"></param>
+        /// <param name="qualityForRecognition"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="faceRectangle"/> is null. </exception>
         internal LivenessWithVerifyImage(FaceRectangle faceRectangle, QualityForRecognition qualityForRecognition)
         {
@@ -58,8 +58,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="LivenessWithVerifyImage"/>. </summary>
-        /// <param name="faceRectangle"> The face region where the comparison image's classification was made. </param>
-        /// <param name="qualityForRecognition"> Quality of face image for recognition. </param>
+        /// <param name="faceRectangle"></param>
+        /// <param name="qualityForRecognition"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LivenessWithVerifyImage(FaceRectangle faceRectangle, QualityForRecognition qualityForRecognition, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The face region where the comparison image's classification was made. </summary>
+        /// <summary> Gets the face rectangle. </summary>
         public FaceRectangle FaceRectangle { get; }
-        /// <summary> Quality of face image for recognition. </summary>
+        /// <summary> Gets the quality for recognition. </summary>
         public QualityForRecognition QualityForRecognition { get; }
     }
 }

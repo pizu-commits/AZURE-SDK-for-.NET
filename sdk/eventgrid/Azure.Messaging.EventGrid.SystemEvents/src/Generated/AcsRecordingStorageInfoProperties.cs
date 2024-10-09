@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema for all properties of Recording Storage Information. </summary>
+    /// <summary> The AcsRecordingStorageInfoProperties. </summary>
     public partial class AcsRecordingStorageInfoProperties
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsRecordingStorageInfoProperties"/>. </summary>
-        /// <param name="recordingChunks"> List of details of recording chunks information. </param>
+        /// <param name="recordingChunks"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="recordingChunks"/> is null. </exception>
         internal AcsRecordingStorageInfoProperties(IEnumerable<AcsRecordingChunkInfoProperties> recordingChunks)
         {
@@ -57,7 +57,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRecordingStorageInfoProperties"/>. </summary>
-        /// <param name="recordingChunks"> List of details of recording chunks information. </param>
+        /// <param name="recordingChunks"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRecordingStorageInfoProperties(IReadOnlyList<AcsRecordingChunkInfoProperties> recordingChunks, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,7 +70,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> List of details of recording chunks information. </summary>
+        /// <summary> Gets the recording chunks. </summary>
         public IReadOnlyList<AcsRecordingChunkInfoProperties> RecordingChunks { get; }
     }
 }

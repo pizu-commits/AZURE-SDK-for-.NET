@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> This is the top-level error object whose code matches the x-ms-error-code response header. </summary>
+    /// <summary> The ErrorDetail. </summary>
     public partial class ErrorDetail
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Analytics.Defender.Easm
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ErrorDetail"/>. </summary>
-        /// <param name="code"> This is one of a server-defined set of error codes. </param>
-        /// <param name="message"> This is a human-readable representation of the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="code"/> or <paramref name="message"/> is null. </exception>
         internal ErrorDetail(string code, string message)
         {
@@ -60,11 +60,11 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="ErrorDetail"/>. </summary>
-        /// <param name="code"> This is one of a server-defined set of error codes. </param>
-        /// <param name="message"> This is a human-readable representation of the error. </param>
-        /// <param name="target"> This is the error target. </param>
-        /// <param name="details"> This is an array of details about specific errors that led to this reported error. </param>
-        /// <param name="innererror"> This is an object containing more specific information than the current object about the error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="target"></param>
+        /// <param name="details"></param>
+        /// <param name="innererror"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ErrorDetail(string code, string message, string target, IReadOnlyList<ErrorDetail> details, InnerError innererror, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,15 +81,15 @@ namespace Azure.Analytics.Defender.Easm
         {
         }
 
-        /// <summary> This is one of a server-defined set of error codes. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> This is a human-readable representation of the error. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> This is the error target. </summary>
+        /// <summary> Gets the target. </summary>
         public string Target { get; }
-        /// <summary> This is an array of details about specific errors that led to this reported error. </summary>
+        /// <summary> Gets the details. </summary>
         public IReadOnlyList<ErrorDetail> Details { get; }
-        /// <summary> This is an object containing more specific information than the current object about the error. </summary>
+        /// <summary> Gets the innererror. </summary>
         public InnerError Innererror { get; }
     }
 }

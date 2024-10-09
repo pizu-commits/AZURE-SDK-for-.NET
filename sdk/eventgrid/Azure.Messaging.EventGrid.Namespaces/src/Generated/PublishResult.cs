@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> The result of the Publish operation. </summary>
+    /// <summary> The PublishResult. </summary>
     internal partial class PublishResult
     {
         /// <summary>

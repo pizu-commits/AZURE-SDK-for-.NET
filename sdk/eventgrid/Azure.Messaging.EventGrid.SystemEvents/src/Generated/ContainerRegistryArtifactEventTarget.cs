@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The target of the event. </summary>
+    /// <summary> The ContainerRegistryArtifactEventTarget. </summary>
     public partial class ContainerRegistryArtifactEventTarget
     {
         /// <summary>
@@ -51,13 +51,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerRegistryArtifactEventTarget"/>. </summary>
-        /// <param name="mediaType"> The MIME type of the artifact. </param>
-        /// <param name="size"> The size in bytes of the artifact. </param>
-        /// <param name="digest"> The digest of the artifact. </param>
-        /// <param name="repository"> The repository name of the artifact. </param>
-        /// <param name="tag"> The tag of the artifact. </param>
-        /// <param name="name"> The name of the artifact. </param>
-        /// <param name="version"> The version of the artifact. </param>
+        /// <param name="mediaType"></param>
+        /// <param name="size"></param>
+        /// <param name="digest"></param>
+        /// <param name="repository"></param>
+        /// <param name="tag"></param>
+        /// <param name="name"></param>
+        /// <param name="version"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerRegistryArtifactEventTarget(string mediaType, long? size, string digest, string repository, string tag, string name, string version, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,19 +71,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The MIME type of the artifact. </summary>
+        /// <summary> Gets the media type. </summary>
         public string MediaType { get; }
-        /// <summary> The size in bytes of the artifact. </summary>
+        /// <summary> Gets the size. </summary>
         public long? Size { get; }
-        /// <summary> The digest of the artifact. </summary>
+        /// <summary> Gets the digest. </summary>
         public string Digest { get; }
-        /// <summary> The repository name of the artifact. </summary>
+        /// <summary> Gets the repository. </summary>
         public string Repository { get; }
-        /// <summary> The tag of the artifact. </summary>
+        /// <summary> Gets the tag. </summary>
         public string Tag { get; }
-        /// <summary> The name of the artifact. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The version of the artifact. </summary>
+        /// <summary> Gets the version. </summary>
         public string Version { get; }
     }
 }

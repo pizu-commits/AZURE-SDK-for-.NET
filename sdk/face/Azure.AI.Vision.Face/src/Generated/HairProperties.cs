@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Properties describing hair attributes. </summary>
+    /// <summary> The HairProperties. </summary>
     public partial class HairProperties
     {
         /// <summary>
@@ -47,9 +47,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="HairProperties"/>. </summary>
-        /// <param name="bald"> A number describing confidence level of whether the person is bald. </param>
-        /// <param name="invisible"> A boolean value describing whether the hair is visible in the image. </param>
-        /// <param name="hairColor"> An array of candidate colors and confidence level in the presence of each. </param>
+        /// <param name="bald"></param>
+        /// <param name="invisible"></param>
+        /// <param name="hairColor"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="hairColor"/> is null. </exception>
         internal HairProperties(float bald, bool invisible, IEnumerable<HairColor> hairColor)
         {
@@ -61,9 +61,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="HairProperties"/>. </summary>
-        /// <param name="bald"> A number describing confidence level of whether the person is bald. </param>
-        /// <param name="invisible"> A boolean value describing whether the hair is visible in the image. </param>
-        /// <param name="hairColor"> An array of candidate colors and confidence level in the presence of each. </param>
+        /// <param name="bald"></param>
+        /// <param name="invisible"></param>
+        /// <param name="hairColor"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HairProperties(float bald, bool invisible, IReadOnlyList<HairColor> hairColor, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,11 +78,11 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> A number describing confidence level of whether the person is bald. </summary>
+        /// <summary> Gets the bald. </summary>
         public float Bald { get; }
-        /// <summary> A boolean value describing whether the hair is visible in the image. </summary>
+        /// <summary> Gets the invisible. </summary>
         public bool Invisible { get; }
-        /// <summary> An array of candidate colors and confidence level in the presence of each. </summary>
+        /// <summary> Gets the hair color. </summary>
         public IReadOnlyList<HairColor> HairColor { get; }
     }
 }

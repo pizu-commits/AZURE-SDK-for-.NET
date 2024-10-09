@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for an Microsoft.Communication.UserDisconnected event. </summary>
+    /// <summary> The AcsUserDisconnectedEventData. </summary>
     public partial class AcsUserDisconnectedEventData
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsUserDisconnectedEventData"/>. </summary>
-        /// <param name="userCommunicationIdentifier"> The communication identifier of the user who was disconnected. </param>
+        /// <param name="userCommunicationIdentifier"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="userCommunicationIdentifier"/> is null. </exception>
         internal AcsUserDisconnectedEventData(CommunicationIdentifierModel userCommunicationIdentifier)
         {
@@ -56,7 +56,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsUserDisconnectedEventData"/>. </summary>
-        /// <param name="userCommunicationIdentifier"> The communication identifier of the user who was disconnected. </param>
+        /// <param name="userCommunicationIdentifier"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsUserDisconnectedEventData(CommunicationIdentifierModel userCommunicationIdentifier, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The communication identifier of the user who was disconnected. </summary>
+        /// <summary> Gets the user communication identifier. </summary>
         public CommunicationIdentifierModel UserCommunicationIdentifier { get; }
     }
 }

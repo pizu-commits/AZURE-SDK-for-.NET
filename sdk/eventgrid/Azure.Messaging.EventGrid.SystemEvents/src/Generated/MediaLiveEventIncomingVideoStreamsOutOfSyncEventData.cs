@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Incoming video stream out of sync event data. Schema of the data property of an EventGridEvent for a Microsoft.Media.LiveEventIncomingVideoStreamsOutOfSync event. </summary>
+    /// <summary> The MediaLiveEventIncomingVideoStreamsOutOfSyncEventData. </summary>
     public partial class MediaLiveEventIncomingVideoStreamsOutOfSyncEventData
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventIncomingVideoStreamsOutOfSyncEventData"/>. </summary>
-        /// <param name="firstTimestamp"> Gets the first timestamp received for one of the quality levels. </param>
-        /// <param name="firstDuration"> Gets the duration of the data chunk with first timestamp. </param>
-        /// <param name="secondTimestamp"> Gets the timestamp received for some other quality levels. </param>
-        /// <param name="secondDuration"> Gets the duration of the data chunk with second timestamp. </param>
-        /// <param name="timescale"> Gets the timescale in which both the timestamps and durations are represented. </param>
+        /// <param name="firstTimestamp"></param>
+        /// <param name="firstDuration"></param>
+        /// <param name="secondTimestamp"></param>
+        /// <param name="secondDuration"></param>
+        /// <param name="timescale"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaLiveEventIncomingVideoStreamsOutOfSyncEventData(string firstTimestamp, string firstDuration, string secondTimestamp, string secondDuration, string timescale, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,15 +67,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the first timestamp received for one of the quality levels. </summary>
+        /// <summary> Gets the first timestamp. </summary>
         public string FirstTimestamp { get; }
-        /// <summary> Gets the duration of the data chunk with first timestamp. </summary>
+        /// <summary> Gets the first duration. </summary>
         public string FirstDuration { get; }
-        /// <summary> Gets the timestamp received for some other quality levels. </summary>
+        /// <summary> Gets the second timestamp. </summary>
         public string SecondTimestamp { get; }
-        /// <summary> Gets the duration of the data chunk with second timestamp. </summary>
+        /// <summary> Gets the second duration. </summary>
         public string SecondDuration { get; }
-        /// <summary> Gets the timescale in which both the timestamps and durations are represented. </summary>
+        /// <summary> Gets the timescale. </summary>
         public string Timescale { get; }
     }
 }

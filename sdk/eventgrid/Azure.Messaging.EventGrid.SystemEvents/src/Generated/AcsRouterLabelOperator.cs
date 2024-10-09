@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Router Job Worker Selector Label Operator. </summary>
+    /// <summary> The AcsRouterLabelOperator. </summary>
     public readonly partial struct AcsRouterLabelOperator : IEquatable<AcsRouterLabelOperator>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string GreaterThanOrEqualValue = "GreaterThanOrEqual";
         private const string LessThanOrEqualValue = "LessThanOrEqual";
 
-        /// <summary> Router Label Operator Equal. </summary>
+        /// <summary> Equal. </summary>
         public static AcsRouterLabelOperator Equal { get; } = new AcsRouterLabelOperator(EqualValue);
-        /// <summary> Router Label Operator Not Equal. </summary>
+        /// <summary> NotEqual. </summary>
         public static AcsRouterLabelOperator NotEqual { get; } = new AcsRouterLabelOperator(NotEqualValue);
-        /// <summary> Router Label Operator Greater. </summary>
+        /// <summary> Greater. </summary>
         public static AcsRouterLabelOperator Greater { get; } = new AcsRouterLabelOperator(GreaterValue);
-        /// <summary> Router Label Operator Less. </summary>
+        /// <summary> Less. </summary>
         public static AcsRouterLabelOperator Less { get; } = new AcsRouterLabelOperator(LessValue);
-        /// <summary> Router Label Operator Greater than or equal. </summary>
+        /// <summary> GreaterThanOrEqual. </summary>
         public static AcsRouterLabelOperator GreaterThanOrEqual { get; } = new AcsRouterLabelOperator(GreaterThanOrEqualValue);
-        /// <summary> Router Label Operator Less than or equal. </summary>
+        /// <summary> LessThanOrEqual. </summary>
         public static AcsRouterLabelOperator LessThanOrEqual { get; } = new AcsRouterLabelOperator(LessThanOrEqualValue);
         /// <summary> Determines if two <see cref="AcsRouterLabelOperator"/> values are the same. </summary>
         public static bool operator ==(AcsRouterLabelOperator left, AcsRouterLabelOperator right) => left.Equals(right);

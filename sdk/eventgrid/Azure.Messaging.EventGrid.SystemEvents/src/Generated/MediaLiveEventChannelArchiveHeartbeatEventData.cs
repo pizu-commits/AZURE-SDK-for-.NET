@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Channel Archive heartbeat event data. Schema of the data property of an EventGridEvent for a Microsoft.Media.LiveEventChannelArchiveHeartbeat event. </summary>
+    /// <summary> The MediaLiveEventChannelArchiveHeartbeatEventData. </summary>
     public partial class MediaLiveEventChannelArchiveHeartbeatEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventChannelArchiveHeartbeatEventData"/>. </summary>
-        /// <param name="channelLatencyMs"> Gets the channel latency in ms. </param>
-        /// <param name="latencyResultCode"> Gets the latency result code. </param>
+        /// <param name="channelLatencyMs"></param>
+        /// <param name="latencyResultCode"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="channelLatencyMs"/> or <paramref name="latencyResultCode"/> is null. </exception>
         internal MediaLiveEventChannelArchiveHeartbeatEventData(string channelLatencyMs, string latencyResultCode)
         {
@@ -59,8 +59,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventChannelArchiveHeartbeatEventData"/>. </summary>
-        /// <param name="channelLatencyMs"> Gets the channel latency in ms. </param>
-        /// <param name="latencyResultCode"> Gets the latency result code. </param>
+        /// <param name="channelLatencyMs"></param>
+        /// <param name="latencyResultCode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaLiveEventChannelArchiveHeartbeatEventData(string channelLatencyMs, string latencyResultCode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,7 +74,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Gets the channel latency in ms. </summary>
+        /// <summary> Gets the channel latency ms. </summary>
         public string ChannelLatencyMs { get; }
         /// <summary> Gets the latency result code. </summary>
         public string LatencyResultCode { get; }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The state the task is in. </summary>
+    /// <summary> The TaskResourceState. </summary>
     public readonly partial struct TaskResourceState : IEquatable<TaskResourceState>
     {
         private readonly string _value;

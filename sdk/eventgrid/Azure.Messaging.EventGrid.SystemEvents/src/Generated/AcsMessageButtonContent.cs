@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message Button Content. </summary>
+    /// <summary> The AcsMessageButtonContent. </summary>
     public partial class AcsMessageButtonContent
     {
         /// <summary>
@@ -51,8 +51,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsMessageButtonContent"/>. </summary>
-        /// <param name="text"> The Text of the button. </param>
-        /// <param name="payload"> The Payload of the button which was clicked by the user, setup by the business. </param>
+        /// <param name="text"></param>
+        /// <param name="payload"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsMessageButtonContent(string text, string payload, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,9 +61,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The Text of the button. </summary>
+        /// <summary> Gets the text. </summary>
         public string Text { get; }
-        /// <summary> The Payload of the button which was clicked by the user, setup by the business. </summary>
+        /// <summary> Gets the payload. </summary>
         public string Payload { get; }
     }
 }

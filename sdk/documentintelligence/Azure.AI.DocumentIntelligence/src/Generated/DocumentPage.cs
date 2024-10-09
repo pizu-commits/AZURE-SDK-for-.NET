@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Content and layout elements extracted from a page from the input. </summary>
+    /// <summary> The DocumentPage. </summary>
     public partial class DocumentPage
     {
         /// <summary>
@@ -47,8 +47,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentPage"/>. </summary>
-        /// <param name="pageNumber"> 1-based page number in the input document. </param>
-        /// <param name="spans"> Location of the page in the reading order concatenated content. </param>
+        /// <param name="pageNumber"></param>
+        /// <param name="spans"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="spans"/> is null. </exception>
         internal DocumentPage(int pageNumber, IEnumerable<DocumentSpan> spans)
         {
@@ -64,26 +64,17 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentPage"/>. </summary>
-        /// <param name="pageNumber"> 1-based page number in the input document. </param>
-        /// <param name="angle">
-        /// The general orientation of the content in clockwise direction, measured in
-        /// degrees between (-180, 180].
-        /// </param>
-        /// <param name="width"> The width of the image/PDF in pixels/inches, respectively. </param>
-        /// <param name="height"> The height of the image/PDF in pixels/inches, respectively. </param>
-        /// <param name="unit">
-        /// The unit used by the width, height, and polygon properties. For images, the
-        /// unit is "pixel". For PDF, the unit is "inch".
-        /// </param>
-        /// <param name="spans"> Location of the page in the reading order concatenated content. </param>
-        /// <param name="words"> Extracted words from the page. </param>
-        /// <param name="selectionMarks"> Extracted selection marks from the page. </param>
-        /// <param name="lines">
-        /// Extracted lines from the page, potentially containing both textual and visual
-        /// elements.
-        /// </param>
-        /// <param name="barcodes"> Extracted barcodes from the page. </param>
-        /// <param name="formulas"> Extracted formulas from the page. </param>
+        /// <param name="pageNumber"></param>
+        /// <param name="angle"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="unit"></param>
+        /// <param name="spans"></param>
+        /// <param name="words"></param>
+        /// <param name="selectionMarks"></param>
+        /// <param name="lines"></param>
+        /// <param name="barcodes"></param>
+        /// <param name="formulas"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentPage(int pageNumber, float? angle, float? width, float? height, LengthUnit? unit, IReadOnlyList<DocumentSpan> spans, IReadOnlyList<DocumentWord> words, IReadOnlyList<DocumentSelectionMark> selectionMarks, IReadOnlyList<DocumentLine> lines, IReadOnlyList<DocumentBarcode> barcodes, IReadOnlyList<DocumentFormula> formulas, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -106,36 +97,27 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> 1-based page number in the input document. </summary>
+        /// <summary> Gets the page number. </summary>
         public int PageNumber { get; }
-        /// <summary>
-        /// The general orientation of the content in clockwise direction, measured in
-        /// degrees between (-180, 180].
-        /// </summary>
+        /// <summary> Gets the angle. </summary>
         public float? Angle { get; }
-        /// <summary> The width of the image/PDF in pixels/inches, respectively. </summary>
+        /// <summary> Gets the width. </summary>
         public float? Width { get; }
-        /// <summary> The height of the image/PDF in pixels/inches, respectively. </summary>
+        /// <summary> Gets the height. </summary>
         public float? Height { get; }
-        /// <summary>
-        /// The unit used by the width, height, and polygon properties. For images, the
-        /// unit is "pixel". For PDF, the unit is "inch".
-        /// </summary>
+        /// <summary> Gets the unit. </summary>
         public LengthUnit? Unit { get; }
-        /// <summary> Location of the page in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
-        /// <summary> Extracted words from the page. </summary>
+        /// <summary> Gets the words. </summary>
         public IReadOnlyList<DocumentWord> Words { get; }
-        /// <summary> Extracted selection marks from the page. </summary>
+        /// <summary> Gets the selection marks. </summary>
         public IReadOnlyList<DocumentSelectionMark> SelectionMarks { get; }
-        /// <summary>
-        /// Extracted lines from the page, potentially containing both textual and visual
-        /// elements.
-        /// </summary>
+        /// <summary> Gets the lines. </summary>
         public IReadOnlyList<DocumentLine> Lines { get; }
-        /// <summary> Extracted barcodes from the page. </summary>
+        /// <summary> Gets the barcodes. </summary>
         public IReadOnlyList<DocumentBarcode> Barcodes { get; }
-        /// <summary> Extracted formulas from the page. </summary>
+        /// <summary> Gets the formulas. </summary>
         public IReadOnlyList<DocumentFormula> Formulas { get; }
     }
 }

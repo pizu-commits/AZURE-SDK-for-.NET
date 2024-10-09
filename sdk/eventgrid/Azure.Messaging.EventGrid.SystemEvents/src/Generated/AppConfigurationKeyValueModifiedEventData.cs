@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.AppConfiguration.KeyValueModified event. </summary>
+    /// <summary> The AppConfigurationKeyValueModifiedEventData. </summary>
     public partial class AppConfigurationKeyValueModifiedEventData
     {
         /// <summary>
@@ -51,10 +51,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AppConfigurationKeyValueModifiedEventData"/>. </summary>
-        /// <param name="key"> The key used to identify the key-value that was modified. </param>
-        /// <param name="label"> The label, if any, used to identify the key-value that was modified. </param>
-        /// <param name="etag"> The etag representing the new state of the key-value. </param>
-        /// <param name="syncToken"> The sync token representing the server state after the event. </param>
+        /// <param name="key"></param>
+        /// <param name="label"></param>
+        /// <param name="etag"></param>
+        /// <param name="syncToken"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AppConfigurationKeyValueModifiedEventData(string key, string label, string etag, string syncToken, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,13 +65,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The key used to identify the key-value that was modified. </summary>
+        /// <summary> Gets the key. </summary>
         public string Key { get; }
-        /// <summary> The label, if any, used to identify the key-value that was modified. </summary>
+        /// <summary> Gets the label. </summary>
         public string Label { get; }
-        /// <summary> The etag representing the new state of the key-value. </summary>
+        /// <summary> Gets the etag. </summary>
         public string Etag { get; }
-        /// <summary> The sync token representing the server state after the event. </summary>
+        /// <summary> Gets the sync token. </summary>
         public string SyncToken { get; }
     }
 }

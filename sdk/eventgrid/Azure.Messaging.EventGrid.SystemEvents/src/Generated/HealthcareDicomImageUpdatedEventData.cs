@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.HealthcareApis.DicomImageUpdated event. </summary>
+    /// <summary> The HealthcareDicomImageUpdatedEventData. </summary>
     public partial class HealthcareDicomImageUpdatedEventData
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="HealthcareDicomImageUpdatedEventData"/>. </summary>
-        /// <param name="partitionName"> Data partition name. </param>
-        /// <param name="imageStudyInstanceUid"> Unique identifier for the Study. </param>
-        /// <param name="imageSeriesInstanceUid"> Unique identifier for the Series. </param>
-        /// <param name="imageSopInstanceUid"> Unique identifier for the DICOM Image. </param>
-        /// <param name="serviceHostName"> Domain name of the DICOM account for this image. </param>
-        /// <param name="sequenceNumber"> Sequence number of the DICOM Service within Azure Health Data Services. It is unique for every image creation, updation and deletion within the service. </param>
+        /// <param name="partitionName"></param>
+        /// <param name="imageStudyInstanceUid"></param>
+        /// <param name="imageSeriesInstanceUid"></param>
+        /// <param name="imageSopInstanceUid"></param>
+        /// <param name="serviceHostName"></param>
+        /// <param name="sequenceNumber"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HealthcareDicomImageUpdatedEventData(string partitionName, string imageStudyInstanceUid, string imageSeriesInstanceUid, string imageSopInstanceUid, string serviceHostName, long? sequenceNumber, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Data partition name. </summary>
+        /// <summary> Gets the partition name. </summary>
         public string PartitionName { get; }
-        /// <summary> Unique identifier for the Study. </summary>
+        /// <summary> Gets the image study instance uid. </summary>
         public string ImageStudyInstanceUid { get; }
-        /// <summary> Unique identifier for the Series. </summary>
+        /// <summary> Gets the image series instance uid. </summary>
         public string ImageSeriesInstanceUid { get; }
-        /// <summary> Unique identifier for the DICOM Image. </summary>
+        /// <summary> Gets the image sop instance uid. </summary>
         public string ImageSopInstanceUid { get; }
-        /// <summary> Domain name of the DICOM account for this image. </summary>
+        /// <summary> Gets the service host name. </summary>
         public string ServiceHostName { get; }
-        /// <summary> Sequence number of the DICOM Service within Azure Health Data Services. It is unique for every image creation, updation and deletion within the service. </summary>
+        /// <summary> Gets the sequence number. </summary>
         public long? SequenceNumber { get; }
     }
 }

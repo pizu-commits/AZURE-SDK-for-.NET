@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Message delivery status. </summary>
+    /// <summary> The AcsMessageDeliveryStatus. </summary>
     public readonly partial struct AcsMessageDeliveryStatus : IEquatable<AcsMessageDeliveryStatus>
     {
         private readonly string _value;
@@ -29,17 +29,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string WarningValue = "warning";
         private const string UnknownValue = "unknown";
 
-        /// <summary> Read. </summary>
+        /// <summary> read. </summary>
         public static AcsMessageDeliveryStatus Read { get; } = new AcsMessageDeliveryStatus(ReadValue);
-        /// <summary> Delivered. </summary>
+        /// <summary> delivered. </summary>
         public static AcsMessageDeliveryStatus Delivered { get; } = new AcsMessageDeliveryStatus(DeliveredValue);
-        /// <summary> Failed. </summary>
+        /// <summary> failed. </summary>
         public static AcsMessageDeliveryStatus Failed { get; } = new AcsMessageDeliveryStatus(FailedValue);
-        /// <summary> Sent. </summary>
+        /// <summary> sent. </summary>
         public static AcsMessageDeliveryStatus Sent { get; } = new AcsMessageDeliveryStatus(SentValue);
-        /// <summary> Warning. </summary>
+        /// <summary> warning. </summary>
         public static AcsMessageDeliveryStatus Warning { get; } = new AcsMessageDeliveryStatus(WarningValue);
-        /// <summary> Unknown. </summary>
+        /// <summary> unknown. </summary>
         public static AcsMessageDeliveryStatus Unknown { get; } = new AcsMessageDeliveryStatus(UnknownValue);
         /// <summary> Determines if two <see cref="AcsMessageDeliveryStatus"/> values are the same. </summary>
         public static bool operator ==(AcsMessageDeliveryStatus left, AcsMessageDeliveryStatus right) => left.Equals(right);

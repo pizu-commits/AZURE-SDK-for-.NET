@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> Receive operation details per Cloud Event. </summary>
+    /// <summary> The ReceiveDetails. </summary>
     public partial class ReceiveDetails
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ReceiveDetails"/>. </summary>
-        /// <param name="brokerProperties"> The Event Broker details. </param>
-        /// <param name="event"> Cloud Event details. </param>
+        /// <param name="brokerProperties"></param>
+        /// <param name="event"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="brokerProperties"/> or <paramref name="event"/> is null. </exception>
         internal ReceiveDetails(BrokerProperties brokerProperties, CloudEvent @event)
         {
@@ -59,8 +59,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Initializes a new instance of <see cref="ReceiveDetails"/>. </summary>
-        /// <param name="brokerProperties"> The Event Broker details. </param>
-        /// <param name="event"> Cloud Event details. </param>
+        /// <param name="brokerProperties"></param>
+        /// <param name="event"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReceiveDetails(BrokerProperties brokerProperties, CloudEvent @event, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,7 +74,7 @@ namespace Azure.Messaging.EventGrid.Namespaces
         {
         }
 
-        /// <summary> The Event Broker details. </summary>
+        /// <summary> Gets the broker properties. </summary>
         public BrokerProperties BrokerProperties { get; }
     }
 }

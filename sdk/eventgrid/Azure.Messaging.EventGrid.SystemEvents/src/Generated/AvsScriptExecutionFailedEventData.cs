@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.AVS.ScriptExecutionFailed event. </summary>
+    /// <summary> The AvsScriptExecutionFailedEventData. </summary>
     public partial class AvsScriptExecutionFailedEventData : AvsScriptExecutionEventData
     {
         /// <summary> Initializes a new instance of <see cref="AvsScriptExecutionFailedEventData"/>. </summary>
@@ -19,17 +19,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsScriptExecutionFailedEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
-        /// <param name="cmdletId"> Cmdlet referenced in the execution that caused this event. </param>
-        /// <param name="output"> Stdout outputs from the execution, if any. </param>
+        /// <param name="operationId"></param>
+        /// <param name="cmdletId"></param>
+        /// <param name="output"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="failureMessage"> Failure reason of an event. </param>
+        /// <param name="failureMessage"></param>
         internal AvsScriptExecutionFailedEventData(string operationId, string cmdletId, IReadOnlyList<string> output, IDictionary<string, BinaryData> serializedAdditionalRawData, string failureMessage) : base(operationId, cmdletId, output, serializedAdditionalRawData)
         {
             FailureMessage = failureMessage;
         }
 
-        /// <summary> Failure reason of an event. </summary>
+        /// <summary> Gets the failure message. </summary>
         public string FailureMessage { get; }
     }
 }

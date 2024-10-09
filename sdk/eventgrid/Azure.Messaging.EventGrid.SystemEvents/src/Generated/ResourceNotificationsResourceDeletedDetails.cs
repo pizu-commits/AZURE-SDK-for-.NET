@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary>
-    /// Describes the schema of the properties under resource info which are common
-    /// across all ARN system topic delete events
-    /// </summary>
+    /// <summary> The ResourceNotificationsResourceDeletedDetails. </summary>
     public partial class ResourceNotificationsResourceDeletedDetails
     {
         /// <summary>
@@ -54,9 +51,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsResourceDeletedDetails"/>. </summary>
-        /// <param name="id"> id of the resource for which the event is being emitted. </param>
-        /// <param name="name"> name of the resource for which the event is being emitted. </param>
-        /// <param name="type"> the type of the resource for which the event is being emitted. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceNotificationsResourceDeletedDetails(string id, string name, string type, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,11 +63,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> id of the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> name of the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> the type of the resource for which the event is being emitted. </summary>
+        /// <summary> Gets the type. </summary>
         public string Type { get; }
     }
 }

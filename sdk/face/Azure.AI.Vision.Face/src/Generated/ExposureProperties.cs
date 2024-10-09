@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Properties describing exposure level of the image. </summary>
+    /// <summary> The ExposureProperties. </summary>
     public partial class ExposureProperties
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ExposureProperties"/>. </summary>
-        /// <param name="exposureLevel"> An enum value indicating level of exposure. </param>
-        /// <param name="value"> A number indicating level of exposure level ranging from 0 to 1. [0, 0.25) is under exposure. [0.25, 0.75) is good exposure. [0.75, 1] is over exposure. </param>
+        /// <param name="exposureLevel"></param>
+        /// <param name="value"></param>
         internal ExposureProperties(ExposureLevel exposureLevel, float value)
         {
             ExposureLevel = exposureLevel;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="ExposureProperties"/>. </summary>
-        /// <param name="exposureLevel"> An enum value indicating level of exposure. </param>
-        /// <param name="value"> A number indicating level of exposure level ranging from 0 to 1. [0, 0.25) is under exposure. [0.25, 0.75) is good exposure. [0.75, 1] is over exposure. </param>
+        /// <param name="exposureLevel"></param>
+        /// <param name="value"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ExposureProperties(ExposureLevel exposureLevel, float value, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> An enum value indicating level of exposure. </summary>
+        /// <summary> Gets the exposure level. </summary>
         public ExposureLevel ExposureLevel { get; }
-        /// <summary> A number indicating level of exposure level ranging from 0 to 1. [0, 0.25) is under exposure. [0.25, 0.75) is good exposure. [0.75, 1] is over exposure. </summary>
+        /// <summary> Gets the value. </summary>
         public float Value { get; }
     }
 }

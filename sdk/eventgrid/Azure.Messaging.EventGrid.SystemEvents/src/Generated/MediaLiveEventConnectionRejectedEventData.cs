@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Encoder connection rejected event data. Schema of the data property of an EventGridEvent for a Microsoft.Media.LiveEventConnectionRejected event. </summary>
+    /// <summary> The MediaLiveEventConnectionRejectedEventData. </summary>
     public partial class MediaLiveEventConnectionRejectedEventData
     {
         /// <summary>
@@ -51,11 +51,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventConnectionRejectedEventData"/>. </summary>
-        /// <param name="ingestUrl"> Gets the ingest URL provided by the live event. </param>
-        /// <param name="streamId"> Gets the stream Id. </param>
-        /// <param name="encoderIp"> Gets the remote IP. </param>
-        /// <param name="encoderPort"> Gets the remote port. </param>
-        /// <param name="resultCode"> Gets the result code. </param>
+        /// <param name="ingestUrl"></param>
+        /// <param name="streamId"></param>
+        /// <param name="encoderIp"></param>
+        /// <param name="encoderPort"></param>
+        /// <param name="resultCode"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaLiveEventConnectionRejectedEventData(string ingestUrl, string streamId, string encoderIp, string encoderPort, string resultCode, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -67,13 +67,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the ingest URL provided by the live event. </summary>
+        /// <summary> Gets the ingest url. </summary>
         public string IngestUrl { get; }
-        /// <summary> Gets the stream Id. </summary>
+        /// <summary> Gets the stream id. </summary>
         public string StreamId { get; }
-        /// <summary> Gets the remote IP. </summary>
+        /// <summary> Gets the encoder ip. </summary>
         public string EncoderIp { get; }
-        /// <summary> Gets the remote port. </summary>
+        /// <summary> Gets the encoder port. </summary>
         public string EncoderPort { get; }
         /// <summary> Gets the result code. </summary>
         public string ResultCode { get; }

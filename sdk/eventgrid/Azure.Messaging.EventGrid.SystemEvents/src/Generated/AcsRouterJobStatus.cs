@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Acs Router Job Status. </summary>
+    /// <summary> The AcsRouterJobStatus. </summary>
     public readonly partial struct AcsRouterJobStatus : IEquatable<AcsRouterJobStatus>
     {
         private readonly string _value;
@@ -35,29 +35,29 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string ScheduleFailedValue = "ScheduleFailed";
         private const string WaitingForActivationValue = "WaitingForActivation";
 
-        /// <summary> Router Job Status Pending Classification. </summary>
+        /// <summary> PendingClassification. </summary>
         public static AcsRouterJobStatus PendingClassification { get; } = new AcsRouterJobStatus(PendingClassificationValue);
-        /// <summary> Router Job Status Queued. </summary>
+        /// <summary> Queued. </summary>
         public static AcsRouterJobStatus Queued { get; } = new AcsRouterJobStatus(QueuedValue);
-        /// <summary> Router Job Status Assigned. </summary>
+        /// <summary> Assigned. </summary>
         public static AcsRouterJobStatus Assigned { get; } = new AcsRouterJobStatus(AssignedValue);
-        /// <summary> Router Job Status Completed. </summary>
+        /// <summary> Completed. </summary>
         public static AcsRouterJobStatus Completed { get; } = new AcsRouterJobStatus(CompletedValue);
-        /// <summary> Router Job Status Closed. </summary>
+        /// <summary> Closed. </summary>
         public static AcsRouterJobStatus Closed { get; } = new AcsRouterJobStatus(ClosedValue);
-        /// <summary> Router Job Status Cancelled. </summary>
+        /// <summary> Cancelled. </summary>
         public static AcsRouterJobStatus Cancelled { get; } = new AcsRouterJobStatus(CancelledValue);
-        /// <summary> Router Job Status Classification Failed. </summary>
+        /// <summary> ClassificationFailed. </summary>
         public static AcsRouterJobStatus ClassificationFailed { get; } = new AcsRouterJobStatus(ClassificationFailedValue);
-        /// <summary> Router Job Status Created. </summary>
+        /// <summary> Created. </summary>
         public static AcsRouterJobStatus Created { get; } = new AcsRouterJobStatus(CreatedValue);
-        /// <summary> Router Job Status Pending Schedule. </summary>
+        /// <summary> PendingSchedule. </summary>
         public static AcsRouterJobStatus PendingSchedule { get; } = new AcsRouterJobStatus(PendingScheduleValue);
-        /// <summary> Router Job Status Scheduled. </summary>
+        /// <summary> Scheduled. </summary>
         public static AcsRouterJobStatus Scheduled { get; } = new AcsRouterJobStatus(ScheduledValue);
-        /// <summary> Router Job Status Schedule Failed. </summary>
+        /// <summary> ScheduleFailed. </summary>
         public static AcsRouterJobStatus ScheduleFailed { get; } = new AcsRouterJobStatus(ScheduleFailedValue);
-        /// <summary> Router Job Status Waiting For Activation. </summary>
+        /// <summary> WaitingForActivation. </summary>
         public static AcsRouterJobStatus WaitingForActivation { get; } = new AcsRouterJobStatus(WaitingForActivationValue);
         /// <summary> Determines if two <see cref="AcsRouterJobStatus"/> values are the same. </summary>
         public static bool operator ==(AcsRouterJobStatus left, AcsRouterJobStatus right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> 3-D roll/yaw/pitch angles for face direction. </summary>
+    /// <summary> The HeadPose. </summary>
     public partial class HeadPose
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="HeadPose"/>. </summary>
-        /// <param name="pitch"> Value of angles. </param>
-        /// <param name="roll"> Value of angles. </param>
-        /// <param name="yaw"> Value of angles. </param>
+        /// <param name="pitch"></param>
+        /// <param name="roll"></param>
+        /// <param name="yaw"></param>
         internal HeadPose(float pitch, float roll, float yaw)
         {
             Pitch = pitch;
@@ -57,9 +57,9 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="HeadPose"/>. </summary>
-        /// <param name="pitch"> Value of angles. </param>
-        /// <param name="roll"> Value of angles. </param>
-        /// <param name="yaw"> Value of angles. </param>
+        /// <param name="pitch"></param>
+        /// <param name="roll"></param>
+        /// <param name="yaw"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal HeadPose(float pitch, float roll, float yaw, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,11 +74,11 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> Value of angles. </summary>
+        /// <summary> Gets the pitch. </summary>
         public float Pitch { get; }
-        /// <summary> Value of angles. </summary>
+        /// <summary> Gets the roll. </summary>
         public float Roll { get; }
-        /// <summary> Value of angles. </summary>
+        /// <summary> Gets the yaw. </summary>
         public float Yaw { get; }
     }
 }

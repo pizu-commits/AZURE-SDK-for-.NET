@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// Authorization to copy a document classifier to the specified target resource and
-    /// classifierId.
-    /// </summary>
+    /// <summary> The ClassifierCopyAuthorization. </summary>
     public partial class ClassifierCopyAuthorization
     {
         /// <summary>
@@ -49,15 +46,12 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ClassifierCopyAuthorization"/>. </summary>
-        /// <param name="targetResourceId"> ID of the target Azure resource where the document classifier should be copied to. </param>
-        /// <param name="targetResourceRegion">
-        /// Location of the target Azure resource where the document classifier should be copied
-        /// to.
-        /// </param>
-        /// <param name="targetClassifierId"> Identifier of the target document classifier. </param>
-        /// <param name="targetClassifierLocation"> URL of the copied document classifier in the target account. </param>
-        /// <param name="accessToken"> Token used to authorize the request. </param>
-        /// <param name="expirationDateTime"> Date/time when the access token expires. </param>
+        /// <param name="targetResourceId"></param>
+        /// <param name="targetResourceRegion"></param>
+        /// <param name="targetClassifierId"></param>
+        /// <param name="targetClassifierLocation"></param>
+        /// <param name="accessToken"></param>
+        /// <param name="expirationDateTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetResourceId"/>, <paramref name="targetResourceRegion"/>, <paramref name="targetClassifierId"/>, <paramref name="targetClassifierLocation"/> or <paramref name="accessToken"/> is null. </exception>
         public ClassifierCopyAuthorization(string targetResourceId, string targetResourceRegion, string targetClassifierId, Uri targetClassifierLocation, string accessToken, DateTimeOffset expirationDateTime)
         {
@@ -76,15 +70,12 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="ClassifierCopyAuthorization"/>. </summary>
-        /// <param name="targetResourceId"> ID of the target Azure resource where the document classifier should be copied to. </param>
-        /// <param name="targetResourceRegion">
-        /// Location of the target Azure resource where the document classifier should be copied
-        /// to.
-        /// </param>
-        /// <param name="targetClassifierId"> Identifier of the target document classifier. </param>
-        /// <param name="targetClassifierLocation"> URL of the copied document classifier in the target account. </param>
-        /// <param name="accessToken"> Token used to authorize the request. </param>
-        /// <param name="expirationDateTime"> Date/time when the access token expires. </param>
+        /// <param name="targetResourceId"></param>
+        /// <param name="targetResourceRegion"></param>
+        /// <param name="targetClassifierId"></param>
+        /// <param name="targetClassifierLocation"></param>
+        /// <param name="accessToken"></param>
+        /// <param name="expirationDateTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ClassifierCopyAuthorization(string targetResourceId, string targetResourceRegion, string targetClassifierId, Uri targetClassifierLocation, string accessToken, DateTimeOffset expirationDateTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -102,20 +93,17 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> ID of the target Azure resource where the document classifier should be copied to. </summary>
+        /// <summary> Gets or sets the target resource id. </summary>
         public string TargetResourceId { get; set; }
-        /// <summary>
-        /// Location of the target Azure resource where the document classifier should be copied
-        /// to.
-        /// </summary>
+        /// <summary> Gets or sets the target resource region. </summary>
         public string TargetResourceRegion { get; set; }
-        /// <summary> Identifier of the target document classifier. </summary>
+        /// <summary> Gets or sets the target classifier id. </summary>
         public string TargetClassifierId { get; set; }
-        /// <summary> URL of the copied document classifier in the target account. </summary>
+        /// <summary> Gets or sets the target classifier location. </summary>
         public Uri TargetClassifierLocation { get; set; }
-        /// <summary> Token used to authorize the request. </summary>
+        /// <summary> Gets or sets the access token. </summary>
         public string AccessToken { get; set; }
-        /// <summary> Date/time when the access token expires. </summary>
+        /// <summary> Gets or sets the expiration date time. </summary>
         public DateTimeOffset ExpirationDateTime { get; set; }
     }
 }

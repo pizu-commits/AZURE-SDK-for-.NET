@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Additional output to generate during analysis. </summary>
+    /// <summary> The AnalyzeOutputOption. </summary>
     public readonly partial struct AnalyzeOutputOption : IEquatable<AnalyzeOutputOption>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string PdfValue = "pdf";
         private const string FiguresValue = "figures";
 
-        /// <summary> Generate searchable PDF output. </summary>
+        /// <summary> pdf. </summary>
         public static AnalyzeOutputOption Pdf { get; } = new AnalyzeOutputOption(PdfValue);
-        /// <summary> Generate cropped images of detected figures. </summary>
+        /// <summary> figures. </summary>
         public static AnalyzeOutputOption Figures { get; } = new AnalyzeOutputOption(FiguresValue);
         /// <summary> Determines if two <see cref="AnalyzeOutputOption"/> values are the same. </summary>
         public static bool operator ==(AnalyzeOutputOption left, AnalyzeOutputOption right) => left.Equals(right);

@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The response of a FabricCapacity list operation. </summary>
+    /// <summary> The FabricCapacityListResult. </summary>
     internal partial class FabricCapacityListResult
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.Fabric.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FabricCapacityListResult"/>. </summary>
-        /// <param name="value"> The FabricCapacity items on this page. </param>
+        /// <param name="value"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal FabricCapacityListResult(IEnumerable<FabricCapacityData> value)
         {
@@ -57,8 +57,8 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricCapacityListResult"/>. </summary>
-        /// <param name="value"> The FabricCapacity items on this page. </param>
-        /// <param name="nextLink"> The link to the next page of items. </param>
+        /// <param name="value"></param>
+        /// <param name="nextLink"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricCapacityListResult(IReadOnlyList<FabricCapacityData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.Fabric.Models
         {
         }
 
-        /// <summary> The FabricCapacity items on this page. </summary>
+        /// <summary> Gets the value. </summary>
         public IReadOnlyList<FabricCapacityData> Value { get; }
-        /// <summary> The link to the next page of items. </summary>
+        /// <summary> Gets the next link. </summary>
         public Uri NextLink { get; }
     }
 }

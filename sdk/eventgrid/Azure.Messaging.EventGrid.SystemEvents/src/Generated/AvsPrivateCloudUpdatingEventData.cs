@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.AVS.PrivateCloudUpdating event. </summary>
+    /// <summary> The AvsPrivateCloudUpdatingEventData. </summary>
     public partial class AvsPrivateCloudUpdatingEventData : AvsPrivateCloudEventData
     {
         /// <summary> Initializes a new instance of <see cref="AvsPrivateCloudUpdatingEventData"/>. </summary>
@@ -19,7 +19,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsPrivateCloudUpdatingEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
+        /// <param name="operationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AvsPrivateCloudUpdatingEventData(string operationId, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(operationId, serializedAdditionalRawData)
         {

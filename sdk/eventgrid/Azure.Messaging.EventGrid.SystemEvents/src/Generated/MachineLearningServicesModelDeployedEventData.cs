@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.ModelDeployed event. </summary>
+    /// <summary> The MachineLearningServicesModelDeployedEventData. </summary>
     public partial class MachineLearningServicesModelDeployedEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesModelDeployedEventData"/>. </summary>
-        /// <param name="serviceTags"> The tags of the deployed service. </param>
-        /// <param name="serviceProperties"> The properties of the deployed service. </param>
+        /// <param name="serviceTags"></param>
+        /// <param name="serviceProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="serviceTags"/> or <paramref name="serviceProperties"/> is null. </exception>
         internal MachineLearningServicesModelDeployedEventData(IReadOnlyDictionary<string, BinaryData> serviceTags, IReadOnlyDictionary<string, BinaryData> serviceProperties)
         {
@@ -59,11 +59,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesModelDeployedEventData"/>. </summary>
-        /// <param name="serviceName"> The name of the deployed service. </param>
-        /// <param name="serviceComputeType"> The compute type (e.g. ACI, AKS) of the deployed service. </param>
-        /// <param name="modelIds"> A common separated list of model IDs. The IDs of the models deployed in the service. </param>
-        /// <param name="serviceTags"> The tags of the deployed service. </param>
-        /// <param name="serviceProperties"> The properties of the deployed service. </param>
+        /// <param name="serviceName"></param>
+        /// <param name="serviceComputeType"></param>
+        /// <param name="modelIds"></param>
+        /// <param name="serviceTags"></param>
+        /// <param name="serviceProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MachineLearningServicesModelDeployedEventData(string serviceName, string serviceComputeType, string modelIds, IReadOnlyDictionary<string, BinaryData> serviceTags, IReadOnlyDictionary<string, BinaryData> serviceProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -80,14 +80,14 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The name of the deployed service. </summary>
+        /// <summary> Gets the service name. </summary>
         public string ServiceName { get; }
-        /// <summary> The compute type (e.g. ACI, AKS) of the deployed service. </summary>
+        /// <summary> Gets the service compute type. </summary>
         public string ServiceComputeType { get; }
-        /// <summary> A common separated list of model IDs. The IDs of the models deployed in the service. </summary>
+        /// <summary> Gets the model ids. </summary>
         public string ModelIds { get; }
         /// <summary>
-        /// The tags of the deployed service.
+        /// Gets the service tags
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -118,7 +118,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> ServiceTags { get; }
         /// <summary>
-        /// The properties of the deployed service.
+        /// Gets the service properties
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

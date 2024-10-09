@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> General information regarding the current resource. </summary>
+    /// <summary> The ResourceDetails. </summary>
     public partial class ResourceDetails
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceDetails"/>. </summary>
-        /// <param name="customDocumentModels"> Details regarding custom document models. </param>
+        /// <param name="customDocumentModels"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="customDocumentModels"/> is null. </exception>
         internal ResourceDetails(CustomDocumentModelsDetails customDocumentModels)
         {
@@ -56,7 +56,7 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceDetails"/>. </summary>
-        /// <param name="customDocumentModels"> Details regarding custom document models. </param>
+        /// <param name="customDocumentModels"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceDetails(CustomDocumentModelsDetails customDocumentModels, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Details regarding custom document models. </summary>
+        /// <summary> Gets the custom document models. </summary>
         public CustomDocumentModelsDetails CustomDocumentModels { get; }
     }
 }

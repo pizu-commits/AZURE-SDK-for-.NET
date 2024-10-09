@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Ingest fragment dropped event data. Schema of the data property of an EventGridEvent for a Microsoft.Media.LiveEventIncomingDataChunkDropped event. </summary>
+    /// <summary> The MediaLiveEventIncomingDataChunkDroppedEventData. </summary>
     public partial class MediaLiveEventIncomingDataChunkDroppedEventData
     {
         /// <summary>
@@ -51,12 +51,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaLiveEventIncomingDataChunkDroppedEventData"/>. </summary>
-        /// <param name="timestamp"> Gets the timestamp of the data chunk dropped. </param>
-        /// <param name="trackType"> Gets the type of the track (Audio / Video). </param>
-        /// <param name="bitrate"> Gets the bitrate of the track. </param>
-        /// <param name="timescale"> Gets the timescale of the Timestamp. </param>
-        /// <param name="resultCode"> Gets the result code for fragment drop operation. </param>
-        /// <param name="trackName"> Gets the name of the track for which fragment is dropped. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="trackType"></param>
+        /// <param name="bitrate"></param>
+        /// <param name="timescale"></param>
+        /// <param name="resultCode"></param>
+        /// <param name="trackName"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaLiveEventIncomingDataChunkDroppedEventData(string timestamp, string trackType, long? bitrate, string timescale, string resultCode, string trackName, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,17 +69,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the timestamp of the data chunk dropped. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public string Timestamp { get; }
-        /// <summary> Gets the type of the track (Audio / Video). </summary>
+        /// <summary> Gets the track type. </summary>
         public string TrackType { get; }
-        /// <summary> Gets the bitrate of the track. </summary>
+        /// <summary> Gets the bitrate. </summary>
         public long? Bitrate { get; }
-        /// <summary> Gets the timescale of the Timestamp. </summary>
+        /// <summary> Gets the timescale. </summary>
         public string Timescale { get; }
-        /// <summary> Gets the result code for fragment drop operation. </summary>
+        /// <summary> Gets the result code. </summary>
         public string ResultCode { get; }
-        /// <summary> Gets the name of the track for which fragment is dropped. </summary>
+        /// <summary> Gets the track name. </summary>
         public string TrackName { get; }
     }
 }

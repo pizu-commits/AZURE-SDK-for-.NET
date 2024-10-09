@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> A user that got created with an Azure Communication Services resource. </summary>
+    /// <summary> The CommunicationUserIdentifierModel. </summary>
     public partial class CommunicationUserIdentifierModel
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CommunicationUserIdentifierModel"/>. </summary>
-        /// <param name="id"> The Id of the communication user. </param>
+        /// <param name="id"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="id"/> is null. </exception>
         internal CommunicationUserIdentifierModel(string id)
         {
@@ -56,7 +56,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="CommunicationUserIdentifierModel"/>. </summary>
-        /// <param name="id"> The Id of the communication user. </param>
+        /// <param name="id"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CommunicationUserIdentifierModel(string id, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -69,7 +69,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The Id of the communication user. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
     }
 }

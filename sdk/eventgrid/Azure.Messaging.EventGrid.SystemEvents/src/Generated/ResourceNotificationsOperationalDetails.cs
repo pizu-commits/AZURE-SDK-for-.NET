@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> details of operational info. </summary>
+    /// <summary> The ResourceNotificationsOperationalDetails. </summary>
     public partial class ResourceNotificationsOperationalDetails
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsOperationalDetails"/>. </summary>
-        /// <param name="resourceEventTime"> Date and Time when resource was updated. </param>
+        /// <param name="resourceEventTime"></param>
         internal ResourceNotificationsOperationalDetails(DateTimeOffset resourceEventTime)
         {
             ResourceEventTime = resourceEventTime;
         }
 
         /// <summary> Initializes a new instance of <see cref="ResourceNotificationsOperationalDetails"/>. </summary>
-        /// <param name="resourceEventTime"> Date and Time when resource was updated. </param>
+        /// <param name="resourceEventTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ResourceNotificationsOperationalDetails(DateTimeOffset resourceEventTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Date and Time when resource was updated. </summary>
+        /// <summary> Gets the resource event time. </summary>
         public DateTimeOffset ResourceEventTime { get; }
     }
 }

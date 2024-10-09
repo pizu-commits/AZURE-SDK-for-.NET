@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.EmailDeliveryReportReceived event. </summary>
+    /// <summary> The AcsEmailDeliveryReportReceivedEventData. </summary>
     public partial class AcsEmailDeliveryReportReceivedEventData
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsEmailDeliveryReportReceivedEventData"/>. </summary>
-        /// <param name="status"> The status of the email. Any value other than Delivered is considered failed. </param>
-        /// <param name="deliveryStatusDetails"> Detailed information about the status if any. </param>
-        /// <param name="deliveryAttemptTimestamp"> The time at which the email delivery report received timestamp. </param>
+        /// <param name="status"></param>
+        /// <param name="deliveryStatusDetails"></param>
+        /// <param name="deliveryAttemptTimestamp"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="deliveryStatusDetails"/> is null. </exception>
         internal AcsEmailDeliveryReportReceivedEventData(AcsEmailDeliveryReportStatus status, AcsEmailDeliveryReportStatusDetails deliveryStatusDetails, DateTimeOffset deliveryAttemptTimestamp)
         {
@@ -60,12 +60,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsEmailDeliveryReportReceivedEventData"/>. </summary>
-        /// <param name="sender"> The Sender Email Address. </param>
-        /// <param name="recipient"> The recipient Email Address. </param>
-        /// <param name="messageId"> The Id of the email been sent. </param>
-        /// <param name="status"> The status of the email. Any value other than Delivered is considered failed. </param>
-        /// <param name="deliveryStatusDetails"> Detailed information about the status if any. </param>
-        /// <param name="deliveryAttemptTimestamp"> The time at which the email delivery report received timestamp. </param>
+        /// <param name="sender"></param>
+        /// <param name="recipient"></param>
+        /// <param name="messageId"></param>
+        /// <param name="status"></param>
+        /// <param name="deliveryStatusDetails"></param>
+        /// <param name="deliveryAttemptTimestamp"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsEmailDeliveryReportReceivedEventData(string sender, string recipient, string messageId, AcsEmailDeliveryReportStatus status, AcsEmailDeliveryReportStatusDetails deliveryStatusDetails, DateTimeOffset deliveryAttemptTimestamp, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -83,17 +83,17 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The Sender Email Address. </summary>
+        /// <summary> Gets the sender. </summary>
         public string Sender { get; }
-        /// <summary> The recipient Email Address. </summary>
+        /// <summary> Gets the recipient. </summary>
         public string Recipient { get; }
-        /// <summary> The Id of the email been sent. </summary>
+        /// <summary> Gets the message id. </summary>
         public string MessageId { get; }
-        /// <summary> The status of the email. Any value other than Delivered is considered failed. </summary>
+        /// <summary> Gets the status. </summary>
         public AcsEmailDeliveryReportStatus Status { get; }
-        /// <summary> Detailed information about the status if any. </summary>
+        /// <summary> Gets the delivery status details. </summary>
         public AcsEmailDeliveryReportStatusDetails DeliveryStatusDetails { get; }
-        /// <summary> The time at which the email delivery report received timestamp. </summary>
+        /// <summary> Gets the delivery attempt timestamp. </summary>
         public DateTimeOffset DeliveryAttemptTimestamp { get; }
     }
 }

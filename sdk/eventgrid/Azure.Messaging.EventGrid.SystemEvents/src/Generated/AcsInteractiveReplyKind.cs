@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Interactive reply kind. </summary>
+    /// <summary> The AcsInteractiveReplyKind. </summary>
     public readonly partial struct AcsInteractiveReplyKind : IEquatable<AcsInteractiveReplyKind>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string ListReplyValue = "listReply";
         private const string UnknownValue = "unknown";
 
-        /// <summary> Messaged interactive reply type is ButtonReply. </summary>
+        /// <summary> buttonReply. </summary>
         public static AcsInteractiveReplyKind ButtonReply { get; } = new AcsInteractiveReplyKind(ButtonReplyValue);
-        /// <summary> Messaged interactive reply type is ListReply. </summary>
+        /// <summary> listReply. </summary>
         public static AcsInteractiveReplyKind ListReply { get; } = new AcsInteractiveReplyKind(ListReplyValue);
-        /// <summary> Messaged interactive reply type is Unknown. </summary>
+        /// <summary> unknown. </summary>
         public static AcsInteractiveReplyKind Unknown { get; } = new AcsInteractiveReplyKind(UnknownValue);
         /// <summary> Determines if two <see cref="AcsInteractiveReplyKind"/> values are the same. </summary>
         public static bool operator ==(AcsInteractiveReplyKind left, AcsInteractiveReplyKind right) => left.Equals(right);

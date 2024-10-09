@@ -10,10 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary>
-    /// Authorization to copy a document model to the specified target resource and
-    /// modelId.
-    /// </summary>
+    /// <summary> The CopyAuthorization. </summary>
     public partial class CopyAuthorization
     {
         /// <summary>
@@ -49,15 +46,12 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="CopyAuthorization"/>. </summary>
-        /// <param name="targetResourceId"> ID of the target Azure resource where the document model should be copied to. </param>
-        /// <param name="targetResourceRegion">
-        /// Location of the target Azure resource where the document model should be copied
-        /// to.
-        /// </param>
-        /// <param name="targetModelId"> Identifier of the target document model. </param>
-        /// <param name="targetModelLocation"> URL of the copied document model in the target account. </param>
-        /// <param name="accessToken"> Token used to authorize the request. </param>
-        /// <param name="expirationDateTime"> Date/time when the access token expires. </param>
+        /// <param name="targetResourceId"></param>
+        /// <param name="targetResourceRegion"></param>
+        /// <param name="targetModelId"></param>
+        /// <param name="targetModelLocation"></param>
+        /// <param name="accessToken"></param>
+        /// <param name="expirationDateTime"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="targetResourceId"/>, <paramref name="targetResourceRegion"/>, <paramref name="targetModelId"/>, <paramref name="targetModelLocation"/> or <paramref name="accessToken"/> is null. </exception>
         public CopyAuthorization(string targetResourceId, string targetResourceRegion, string targetModelId, Uri targetModelLocation, string accessToken, DateTimeOffset expirationDateTime)
         {
@@ -76,15 +70,12 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="CopyAuthorization"/>. </summary>
-        /// <param name="targetResourceId"> ID of the target Azure resource where the document model should be copied to. </param>
-        /// <param name="targetResourceRegion">
-        /// Location of the target Azure resource where the document model should be copied
-        /// to.
-        /// </param>
-        /// <param name="targetModelId"> Identifier of the target document model. </param>
-        /// <param name="targetModelLocation"> URL of the copied document model in the target account. </param>
-        /// <param name="accessToken"> Token used to authorize the request. </param>
-        /// <param name="expirationDateTime"> Date/time when the access token expires. </param>
+        /// <param name="targetResourceId"></param>
+        /// <param name="targetResourceRegion"></param>
+        /// <param name="targetModelId"></param>
+        /// <param name="targetModelLocation"></param>
+        /// <param name="accessToken"></param>
+        /// <param name="expirationDateTime"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CopyAuthorization(string targetResourceId, string targetResourceRegion, string targetModelId, Uri targetModelLocation, string accessToken, DateTimeOffset expirationDateTime, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -102,20 +93,17 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> ID of the target Azure resource where the document model should be copied to. </summary>
+        /// <summary> Gets or sets the target resource id. </summary>
         public string TargetResourceId { get; set; }
-        /// <summary>
-        /// Location of the target Azure resource where the document model should be copied
-        /// to.
-        /// </summary>
+        /// <summary> Gets or sets the target resource region. </summary>
         public string TargetResourceRegion { get; set; }
-        /// <summary> Identifier of the target document model. </summary>
+        /// <summary> Gets or sets the target model id. </summary>
         public string TargetModelId { get; set; }
-        /// <summary> URL of the copied document model in the target account. </summary>
+        /// <summary> Gets or sets the target model location. </summary>
         public Uri TargetModelLocation { get; set; }
-        /// <summary> Token used to authorize the request. </summary>
+        /// <summary> Gets or sets the access token. </summary>
         public string AccessToken { get; set; }
-        /// <summary> Date/time when the access token expires. </summary>
+        /// <summary> Gets or sets the expiration date time. </summary>
         public DateTimeOffset ExpirationDateTime { get; set; }
     }
 }

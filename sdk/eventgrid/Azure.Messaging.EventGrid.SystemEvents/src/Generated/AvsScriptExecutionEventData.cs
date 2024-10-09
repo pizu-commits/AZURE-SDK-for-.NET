@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for Microsoft.AVS/scriptExecutions events. </summary>
+    /// <summary> The AvsScriptExecutionEventData. </summary>
     public partial class AvsScriptExecutionEventData
     {
         /// <summary>
@@ -52,9 +52,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AvsScriptExecutionEventData"/>. </summary>
-        /// <param name="operationId"> Id of the operation that caused this event. </param>
-        /// <param name="cmdletId"> Cmdlet referenced in the execution that caused this event. </param>
-        /// <param name="output"> Stdout outputs from the execution, if any. </param>
+        /// <param name="operationId"></param>
+        /// <param name="cmdletId"></param>
+        /// <param name="output"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AvsScriptExecutionEventData(string operationId, string cmdletId, IReadOnlyList<string> output, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -64,11 +64,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Id of the operation that caused this event. </summary>
+        /// <summary> Gets the operation id. </summary>
         public string OperationId { get; }
-        /// <summary> Cmdlet referenced in the execution that caused this event. </summary>
+        /// <summary> Gets the cmdlet id. </summary>
         public string CmdletId { get; }
-        /// <summary> Stdout outputs from the execution, if any. </summary>
+        /// <summary> Gets the output. </summary>
         public IReadOnlyList<string> Output { get; }
     }
 }

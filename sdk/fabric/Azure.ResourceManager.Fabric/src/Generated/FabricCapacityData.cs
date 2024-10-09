@@ -13,10 +13,7 @@ using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.Fabric
 {
-    /// <summary>
-    /// A class representing the FabricCapacity data model.
-    /// Fabric Capacity resource
-    /// </summary>
+    /// <summary> A class representing the FabricCapacity data model. </summary>
     public partial class FabricCapacityData : TrackedResourceData
     {
         /// <summary>
@@ -53,8 +50,8 @@ namespace Azure.ResourceManager.Fabric
 
         /// <summary> Initializes a new instance of <see cref="FabricCapacityData"/>. </summary>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
-        /// <param name="sku"> The SKU details. </param>
+        /// <param name="properties"></param>
+        /// <param name="sku"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="properties"/> or <paramref name="sku"/> is null. </exception>
         public FabricCapacityData(AzureLocation location, FabricCapacityProperties properties, FabricSku sku) : base(location)
         {
@@ -72,8 +69,8 @@ namespace Azure.ResourceManager.Fabric
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="properties"> The resource-specific properties for this resource. </param>
-        /// <param name="sku"> The SKU details. </param>
+        /// <param name="properties"></param>
+        /// <param name="sku"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricCapacityData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, FabricCapacityProperties properties, FabricSku sku, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
         {
@@ -87,9 +84,9 @@ namespace Azure.ResourceManager.Fabric
         {
         }
 
-        /// <summary> The resource-specific properties for this resource. </summary>
+        /// <summary> Gets or sets the properties. </summary>
         public FabricCapacityProperties Properties { get; set; }
-        /// <summary> The SKU details. </summary>
+        /// <summary> Gets or sets the sku. </summary>
         public FabricSku Sku { get; set; }
     }
 }

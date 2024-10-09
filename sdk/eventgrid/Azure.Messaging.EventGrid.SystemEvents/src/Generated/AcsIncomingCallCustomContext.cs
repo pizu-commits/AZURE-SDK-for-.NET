@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Custom Context of Incoming Call. </summary>
+    /// <summary> The AcsIncomingCallCustomContext. </summary>
     public partial class AcsIncomingCallCustomContext
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsIncomingCallCustomContext"/>. </summary>
-        /// <param name="sipHeaders"> Sip Headers for incoming call. </param>
-        /// <param name="voipHeaders"> Voip Headers for incoming call. </param>
+        /// <param name="sipHeaders"></param>
+        /// <param name="voipHeaders"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="sipHeaders"/> or <paramref name="voipHeaders"/> is null. </exception>
         internal AcsIncomingCallCustomContext(IReadOnlyDictionary<string, string> sipHeaders, IReadOnlyDictionary<string, string> voipHeaders)
         {
@@ -59,8 +59,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsIncomingCallCustomContext"/>. </summary>
-        /// <param name="sipHeaders"> Sip Headers for incoming call. </param>
-        /// <param name="voipHeaders"> Voip Headers for incoming call. </param>
+        /// <param name="sipHeaders"></param>
+        /// <param name="voipHeaders"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsIncomingCallCustomContext(IReadOnlyDictionary<string, string> sipHeaders, IReadOnlyDictionary<string, string> voipHeaders, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Sip Headers for incoming call. </summary>
+        /// <summary> Gets the sip headers. </summary>
         public IReadOnlyDictionary<string, string> SipHeaders { get; }
-        /// <summary> Voip Headers for incoming call. </summary>
+        /// <summary> Gets the voip headers. </summary>
         public IReadOnlyDictionary<string, string> VoipHeaders { get; }
     }
 }

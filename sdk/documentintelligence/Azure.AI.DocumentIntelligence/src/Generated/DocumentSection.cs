@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> An object representing a section in the document. </summary>
+    /// <summary> The DocumentSection. </summary>
     public partial class DocumentSection
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentSection"/>. </summary>
-        /// <param name="spans"> Location of the section in the reading order concatenated content. </param>
+        /// <param name="spans"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="spans"/> is null. </exception>
         internal DocumentSection(IEnumerable<DocumentSpan> spans)
         {
@@ -58,8 +58,8 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentSection"/>. </summary>
-        /// <param name="spans"> Location of the section in the reading order concatenated content. </param>
-        /// <param name="elements"> Child elements of the section. </param>
+        /// <param name="spans"></param>
+        /// <param name="elements"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentSection(IReadOnlyList<DocumentSpan> spans, IReadOnlyList<string> elements, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,9 +73,9 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Location of the section in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
-        /// <summary> Child elements of the section. </summary>
+        /// <summary> Gets the elements. </summary>
         public IReadOnlyList<string> Elements { get; }
     }
 }

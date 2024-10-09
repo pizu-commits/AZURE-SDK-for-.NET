@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterWorkerDeregistered event. </summary>
+    /// <summary> The AcsRouterWorkerDeregisteredEventData. </summary>
     public partial class AcsRouterWorkerDeregisteredEventData
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerDeregisteredEventData"/>. </summary>
-        /// <param name="workerId"> Router Worker Deregistered Worker Id. </param>
+        /// <param name="workerId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRouterWorkerDeregisteredEventData(string workerId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Router Worker Deregistered Worker Id. </summary>
+        /// <summary> Gets the worker id. </summary>
         public string WorkerId { get; }
     }
 }

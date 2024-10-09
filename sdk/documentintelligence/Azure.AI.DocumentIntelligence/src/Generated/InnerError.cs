@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> An object containing more specific information about the error. </summary>
+    /// <summary> The InnerError. </summary>
     public partial class InnerError
     {
         /// <summary>
@@ -51,9 +51,9 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="InnerError"/>. </summary>
-        /// <param name="code"> One of a server-defined set of error codes. </param>
-        /// <param name="message"> A human-readable representation of the error. </param>
-        /// <param name="innerErrorObject"> Inner error. </param>
+        /// <param name="code"></param>
+        /// <param name="message"></param>
+        /// <param name="innerErrorObject"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InnerError(string code, string message, InnerError innerErrorObject, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -63,11 +63,11 @@ namespace Azure.AI.DocumentIntelligence
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> One of a server-defined set of error codes. </summary>
+        /// <summary> Gets the code. </summary>
         public string Code { get; }
-        /// <summary> A human-readable representation of the error. </summary>
+        /// <summary> Gets the message. </summary>
         public string Message { get; }
-        /// <summary> Inner error. </summary>
+        /// <summary> Gets the inner error object. </summary>
         public InnerError InnerErrorObject { get; }
     }
 }

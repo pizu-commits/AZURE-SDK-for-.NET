@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Verify result. </summary>
+    /// <summary> The FaceVerificationResult. </summary>
     public partial class FaceVerificationResult
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FaceVerificationResult"/>. </summary>
-        /// <param name="isIdentical"> True if the two faces belong to the same person or the face belongs to the person, otherwise false. </param>
-        /// <param name="confidence"> A number indicates the similarity confidence of whether two faces belong to the same person, or whether the face belongs to the person. By default, isIdentical is set to True if similarity confidence is greater than or equal to 0.5. This is useful for advanced users to override 'isIdentical' and fine-tune the result on their own data. </param>
+        /// <param name="isIdentical"></param>
+        /// <param name="confidence"></param>
         internal FaceVerificationResult(bool isIdentical, float confidence)
         {
             IsIdentical = isIdentical;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="FaceVerificationResult"/>. </summary>
-        /// <param name="isIdentical"> True if the two faces belong to the same person or the face belongs to the person, otherwise false. </param>
-        /// <param name="confidence"> A number indicates the similarity confidence of whether two faces belong to the same person, or whether the face belongs to the person. By default, isIdentical is set to True if similarity confidence is greater than or equal to 0.5. This is useful for advanced users to override 'isIdentical' and fine-tune the result on their own data. </param>
+        /// <param name="isIdentical"></param>
+        /// <param name="confidence"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FaceVerificationResult(bool isIdentical, float confidence, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> True if the two faces belong to the same person or the face belongs to the person, otherwise false. </summary>
+        /// <summary> Gets the is identical. </summary>
         public bool IsIdentical { get; }
-        /// <summary> A number indicates the similarity confidence of whether two faces belong to the same person, or whether the face belongs to the person. By default, isIdentical is set to True if similarity confidence is greater than or equal to 0.5. This is useful for advanced users to override 'isIdentical' and fine-tune the result on their own data. </summary>
+        /// <summary> Gets the confidence. </summary>
         public float Confidence { get; }
     }
 }

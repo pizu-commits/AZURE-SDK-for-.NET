@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Analytics.Defender.Easm
 {
-    /// <summary> The properties required to establish connection to a particular service. </summary>
+    /// <summary> The DataConnectionProperties. </summary>
     public partial class DataConnectionProperties
     {
         /// <summary>

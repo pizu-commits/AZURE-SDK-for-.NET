@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.ModelRegistered event. </summary>
+    /// <summary> The MachineLearningServicesModelRegisteredEventData. </summary>
     public partial class MachineLearningServicesModelRegisteredEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesModelRegisteredEventData"/>. </summary>
-        /// <param name="modelTags"> The tags of the model that was registered. </param>
-        /// <param name="modelProperties"> The properties of the model that was registered. </param>
+        /// <param name="modelTags"></param>
+        /// <param name="modelProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelTags"/> or <paramref name="modelProperties"/> is null. </exception>
         internal MachineLearningServicesModelRegisteredEventData(IReadOnlyDictionary<string, BinaryData> modelTags, IReadOnlyDictionary<string, BinaryData> modelProperties)
         {
@@ -59,10 +59,10 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesModelRegisteredEventData"/>. </summary>
-        /// <param name="modelName"> The name of the model that was registered. </param>
-        /// <param name="modelVersion"> The version of the model that was registered. </param>
-        /// <param name="modelTags"> The tags of the model that was registered. </param>
-        /// <param name="modelProperties"> The properties of the model that was registered. </param>
+        /// <param name="modelName"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="modelTags"></param>
+        /// <param name="modelProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MachineLearningServicesModelRegisteredEventData(string modelName, string modelVersion, IReadOnlyDictionary<string, BinaryData> modelTags, IReadOnlyDictionary<string, BinaryData> modelProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -78,12 +78,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The name of the model that was registered. </summary>
+        /// <summary> Gets the model name. </summary>
         public string ModelName { get; }
-        /// <summary> The version of the model that was registered. </summary>
+        /// <summary> Gets the model version. </summary>
         public string ModelVersion { get; }
         /// <summary>
-        /// The tags of the model that was registered.
+        /// Gets the model tags
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -114,7 +114,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> ModelTags { get; }
         /// <summary>
-        /// The properties of the model that was registered.
+        /// Gets the model properties
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

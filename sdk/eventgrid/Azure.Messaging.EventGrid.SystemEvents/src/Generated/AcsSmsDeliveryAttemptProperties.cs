@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema for details of a delivery attempt. </summary>
+    /// <summary> The AcsSmsDeliveryAttemptProperties. </summary>
     public partial class AcsSmsDeliveryAttemptProperties
     {
         /// <summary>
@@ -46,16 +46,16 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsSmsDeliveryAttemptProperties"/>. </summary>
-        /// <param name="timestamp"> TimeStamp when delivery was attempted. </param>
+        /// <param name="timestamp"></param>
         internal AcsSmsDeliveryAttemptProperties(DateTimeOffset timestamp)
         {
             Timestamp = timestamp;
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsSmsDeliveryAttemptProperties"/>. </summary>
-        /// <param name="timestamp"> TimeStamp when delivery was attempted. </param>
-        /// <param name="segmentsSucceeded"> Number of segments that were successfully delivered. </param>
-        /// <param name="segmentsFailed"> Number of segments whose delivery failed. </param>
+        /// <param name="timestamp"></param>
+        /// <param name="segmentsSucceeded"></param>
+        /// <param name="segmentsFailed"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsSmsDeliveryAttemptProperties(DateTimeOffset timestamp, int? segmentsSucceeded, int? segmentsFailed, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,11 +70,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> TimeStamp when delivery was attempted. </summary>
+        /// <summary> Gets the timestamp. </summary>
         public DateTimeOffset Timestamp { get; }
-        /// <summary> Number of segments that were successfully delivered. </summary>
+        /// <summary> Gets the segments succeeded. </summary>
         public int? SegmentsSucceeded { get; }
-        /// <summary> Number of segments whose delivery failed. </summary>
+        /// <summary> Gets the segments failed. </summary>
         public int? SegmentsFailed { get; }
     }
 }

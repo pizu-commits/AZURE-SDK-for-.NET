@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> State of a Media Job. </summary>
+    /// <summary> The MediaJobState. </summary>
     public readonly partial struct MediaJobState : IEquatable<MediaJobState>
     {
         private readonly string _value;
@@ -30,19 +30,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string QueuedValue = "Queued";
         private const string ScheduledValue = "Scheduled";
 
-        /// <summary> The job was canceled. This is a final state for the job. </summary>
+        /// <summary> Canceled. </summary>
         public static MediaJobState Canceled { get; } = new MediaJobState(CanceledValue);
-        /// <summary> The job is in the process of being canceled. This is a transient state for the job. </summary>
+        /// <summary> Canceling. </summary>
         public static MediaJobState Canceling { get; } = new MediaJobState(CancelingValue);
-        /// <summary> The job has encountered an error. This is a final state for the job. </summary>
+        /// <summary> Error. </summary>
         public static MediaJobState Error { get; } = new MediaJobState(ErrorValue);
-        /// <summary> The job is finished. This is a final state for the job. </summary>
+        /// <summary> Finished. </summary>
         public static MediaJobState Finished { get; } = new MediaJobState(FinishedValue);
-        /// <summary> The job is processing. This is a transient state for the job. </summary>
+        /// <summary> Processing. </summary>
         public static MediaJobState Processing { get; } = new MediaJobState(ProcessingValue);
-        /// <summary> The job is in a queued state, waiting for resources to become available. This is a transient state. </summary>
+        /// <summary> Queued. </summary>
         public static MediaJobState Queued { get; } = new MediaJobState(QueuedValue);
-        /// <summary> The job is being scheduled to run on an available resource. This is a transient state, between queued and processing states. </summary>
+        /// <summary> Scheduled. </summary>
         public static MediaJobState Scheduled { get; } = new MediaJobState(ScheduledValue);
         /// <summary> Determines if two <see cref="MediaJobState"/> values are the same. </summary>
         public static bool operator ==(MediaJobState left, MediaJobState right) => left.Equals(right);

@@ -52,7 +52,7 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="ReportAssetSummaryResult"/>. </summary>
-        /// <param name="assetSummaries"> The collection of asset summaries. </param>
+        /// <param name="assetSummaries"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ReportAssetSummaryResult(IReadOnlyList<AssetSummaryResult> assetSummaries, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -60,7 +60,7 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The collection of asset summaries. </summary>
+        /// <summary> Gets the asset summaries. </summary>
         public IReadOnlyList<AssetSummaryResult> AssetSummaries { get; }
     }
 }

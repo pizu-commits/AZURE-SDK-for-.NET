@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.MachineLearningServices.RunCompleted event. </summary>
+    /// <summary> The MachineLearningServicesRunCompletedEventData. </summary>
     public partial class MachineLearningServicesRunCompletedEventData
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesRunCompletedEventData"/>. </summary>
-        /// <param name="runTags"> The tags of the completed Run. </param>
-        /// <param name="runProperties"> The properties of the completed Run. </param>
+        /// <param name="runTags"></param>
+        /// <param name="runProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="runTags"/> or <paramref name="runProperties"/> is null. </exception>
         internal MachineLearningServicesRunCompletedEventData(IReadOnlyDictionary<string, BinaryData> runTags, IReadOnlyDictionary<string, BinaryData> runProperties)
         {
@@ -59,12 +59,12 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MachineLearningServicesRunCompletedEventData"/>. </summary>
-        /// <param name="experimentId"> The ID of the experiment that the run belongs to. </param>
-        /// <param name="experimentName"> The name of the experiment that the run belongs to. </param>
-        /// <param name="runId"> The ID of the Run that was completed. </param>
-        /// <param name="runType"> The Run Type of the completed Run. </param>
-        /// <param name="runTags"> The tags of the completed Run. </param>
-        /// <param name="runProperties"> The properties of the completed Run. </param>
+        /// <param name="experimentId"></param>
+        /// <param name="experimentName"></param>
+        /// <param name="runId"></param>
+        /// <param name="runType"></param>
+        /// <param name="runTags"></param>
+        /// <param name="runProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MachineLearningServicesRunCompletedEventData(string experimentId, string experimentName, string runId, string runType, IReadOnlyDictionary<string, BinaryData> runTags, IReadOnlyDictionary<string, BinaryData> runProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,16 +82,16 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The ID of the experiment that the run belongs to. </summary>
+        /// <summary> Gets the experiment id. </summary>
         public string ExperimentId { get; }
-        /// <summary> The name of the experiment that the run belongs to. </summary>
+        /// <summary> Gets the experiment name. </summary>
         public string ExperimentName { get; }
-        /// <summary> The ID of the Run that was completed. </summary>
+        /// <summary> Gets the run id. </summary>
         public string RunId { get; }
-        /// <summary> The Run Type of the completed Run. </summary>
+        /// <summary> Gets the run type. </summary>
         public string RunType { get; }
         /// <summary>
-        /// The tags of the completed Run.
+        /// Gets the run tags
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
@@ -122,7 +122,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> RunTags { get; }
         /// <summary>
-        /// The properties of the completed Run.
+        /// Gets the run properties
         /// <para>
         /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>

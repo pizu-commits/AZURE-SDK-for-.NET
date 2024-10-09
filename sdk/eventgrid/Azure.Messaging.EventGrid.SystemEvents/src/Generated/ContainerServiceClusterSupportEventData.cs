@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of common properties of cluster support events. </summary>
+    /// <summary> The ContainerServiceClusterSupportEventData. </summary>
     public partial class ContainerServiceClusterSupportEventData
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerServiceClusterSupportEventData"/>. </summary>
-        /// <param name="kubernetesVersion"> The Kubernetes version of the ManagedCluster resource. </param>
+        /// <param name="kubernetesVersion"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerServiceClusterSupportEventData(string kubernetesVersion, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The Kubernetes version of the ManagedCluster resource. </summary>
+        /// <summary> Gets the kubernetes version. </summary>
         public string KubernetesVersion { get; }
     }
 }

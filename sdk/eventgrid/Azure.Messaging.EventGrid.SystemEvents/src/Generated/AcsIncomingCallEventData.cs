@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for an Microsoft.Communication.IncomingCall event. </summary>
+    /// <summary> The AcsIncomingCallEventData. </summary>
     public partial class AcsIncomingCallEventData
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsIncomingCallEventData"/>. </summary>
-        /// <param name="toCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="fromCommunicationIdentifier"> The communication identifier of the user who initiated the call. </param>
-        /// <param name="customContext"> Custom Context of Incoming Call. </param>
+        /// <param name="toCommunicationIdentifier"></param>
+        /// <param name="fromCommunicationIdentifier"></param>
+        /// <param name="customContext"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="toCommunicationIdentifier"/>, <paramref name="fromCommunicationIdentifier"/> or <paramref name="customContext"/> is null. </exception>
         internal AcsIncomingCallEventData(CommunicationIdentifierModel toCommunicationIdentifier, CommunicationIdentifierModel fromCommunicationIdentifier, AcsIncomingCallCustomContext customContext)
         {
@@ -62,13 +62,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsIncomingCallEventData"/>. </summary>
-        /// <param name="toCommunicationIdentifier"> The communication identifier of the target user. </param>
-        /// <param name="fromCommunicationIdentifier"> The communication identifier of the user who initiated the call. </param>
-        /// <param name="serverCallId"> The Id of the server call. </param>
-        /// <param name="callerDisplayName"> Display name of caller. </param>
-        /// <param name="customContext"> Custom Context of Incoming Call. </param>
-        /// <param name="incomingCallContext"> Signed incoming call context. </param>
-        /// <param name="correlationId"> CorrelationId (CallId). </param>
+        /// <param name="toCommunicationIdentifier"></param>
+        /// <param name="fromCommunicationIdentifier"></param>
+        /// <param name="serverCallId"></param>
+        /// <param name="callerDisplayName"></param>
+        /// <param name="customContext"></param>
+        /// <param name="incomingCallContext"></param>
+        /// <param name="correlationId"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsIncomingCallEventData(CommunicationIdentifierModel toCommunicationIdentifier, CommunicationIdentifierModel fromCommunicationIdentifier, string serverCallId, string callerDisplayName, AcsIncomingCallCustomContext customContext, string incomingCallContext, string correlationId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -87,19 +87,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The communication identifier of the target user. </summary>
+        /// <summary> Gets the to communication identifier. </summary>
         public CommunicationIdentifierModel ToCommunicationIdentifier { get; }
-        /// <summary> The communication identifier of the user who initiated the call. </summary>
+        /// <summary> Gets the from communication identifier. </summary>
         public CommunicationIdentifierModel FromCommunicationIdentifier { get; }
-        /// <summary> The Id of the server call. </summary>
+        /// <summary> Gets the server call id. </summary>
         public string ServerCallId { get; }
-        /// <summary> Display name of caller. </summary>
+        /// <summary> Gets the caller display name. </summary>
         public string CallerDisplayName { get; }
-        /// <summary> Custom Context of Incoming Call. </summary>
+        /// <summary> Gets the custom context. </summary>
         public AcsIncomingCallCustomContext CustomContext { get; }
-        /// <summary> Signed incoming call context. </summary>
+        /// <summary> Gets the incoming call context. </summary>
         public string IncomingCallContext { get; }
-        /// <summary> CorrelationId (CallId). </summary>
+        /// <summary> Gets the correlation id. </summary>
         public string CorrelationId { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Router Queue Details. </summary>
+    /// <summary> The AcsRouterQueueDetails. </summary>
     public partial class AcsRouterQueueDetails
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterQueueDetails"/>. </summary>
-        /// <param name="labels"> Router Queue Labels. </param>
+        /// <param name="labels"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="labels"/> is null. </exception>
         internal AcsRouterQueueDetails(IReadOnlyDictionary<string, string> labels)
         {
@@ -56,9 +56,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterQueueDetails"/>. </summary>
-        /// <param name="id"> Router Queue Id. </param>
-        /// <param name="name"> Router Queue Name. </param>
-        /// <param name="labels"> Router Queue Labels. </param>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="labels"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRouterQueueDetails(string id, string name, IReadOnlyDictionary<string, string> labels, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -73,11 +73,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Queue Id. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> Router Queue Name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> Router Queue Labels. </summary>
+        /// <summary> Gets the labels. </summary>
         public IReadOnlyDictionary<string, string> Labels { get; }
     }
 }

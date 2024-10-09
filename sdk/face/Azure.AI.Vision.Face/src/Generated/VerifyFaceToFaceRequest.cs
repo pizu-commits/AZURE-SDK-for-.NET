@@ -46,8 +46,8 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="VerifyFaceToFaceRequest"/>. </summary>
-        /// <param name="faceId1"> The faceId of one face, come from "Detect". </param>
-        /// <param name="faceId2"> The faceId of another face, come from "Detect". </param>
+        /// <param name="faceId1"></param>
+        /// <param name="faceId2"></param>
         internal VerifyFaceToFaceRequest(Guid faceId1, Guid faceId2)
         {
             FaceId1 = faceId1;
@@ -55,8 +55,8 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="VerifyFaceToFaceRequest"/>. </summary>
-        /// <param name="faceId1"> The faceId of one face, come from "Detect". </param>
-        /// <param name="faceId2"> The faceId of another face, come from "Detect". </param>
+        /// <param name="faceId1"></param>
+        /// <param name="faceId2"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal VerifyFaceToFaceRequest(Guid faceId1, Guid faceId2, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -70,9 +70,9 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The faceId of one face, come from "Detect". </summary>
+        /// <summary> Gets the face id 1. </summary>
         public Guid FaceId1 { get; }
-        /// <summary> The faceId of another face, come from "Detect". </summary>
+        /// <summary> Gets the face id 2. </summary>
         public Guid FaceId2 { get; }
     }
 }

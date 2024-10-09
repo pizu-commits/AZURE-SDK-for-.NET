@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Asynchronous operation status of the operation on the app service plan. </summary>
+    /// <summary> The AsyncStatus. </summary>
     public readonly partial struct AsyncStatus : IEquatable<AsyncStatus>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string CompletedValue = "Completed";
         private const string FailedValue = "Failed";
 
-        /// <summary> Async operation has started. </summary>
+        /// <summary> Started. </summary>
         public static AsyncStatus Started { get; } = new AsyncStatus(StartedValue);
-        /// <summary> Async operation has completed. </summary>
+        /// <summary> Completed. </summary>
         public static AsyncStatus Completed { get; } = new AsyncStatus(CompletedValue);
-        /// <summary> Async operation failed to complete. </summary>
+        /// <summary> Failed. </summary>
         public static AsyncStatus Failed { get; } = new AsyncStatus(FailedValue);
         /// <summary> Determines if two <see cref="AsyncStatus"/> values are the same. </summary>
         public static bool operator ==(AsyncStatus left, AsyncStatus right) => left.Equals(right);

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Indicates level of exposure. </summary>
+    /// <summary> The ExposureLevel. </summary>
     public readonly partial struct ExposureLevel : IEquatable<ExposureLevel>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string GoodExposureValue = "goodExposure";
         private const string OverExposureValue = "overExposure";
 
-        /// <summary> Low exposure level. </summary>
+        /// <summary> underExposure. </summary>
         public static ExposureLevel UnderExposure { get; } = new ExposureLevel(UnderExposureValue);
-        /// <summary> Good exposure level. </summary>
+        /// <summary> goodExposure. </summary>
         public static ExposureLevel GoodExposure { get; } = new ExposureLevel(GoodExposureValue);
-        /// <summary> High exposure level. </summary>
+        /// <summary> overExposure. </summary>
         public static ExposureLevel OverExposure { get; } = new ExposureLevel(OverExposureValue);
         /// <summary> Determines if two <see cref="ExposureLevel"/> values are the same. </summary>
         public static bool operator ==(ExposureLevel left, ExposureLevel right) => left.Equals(right);

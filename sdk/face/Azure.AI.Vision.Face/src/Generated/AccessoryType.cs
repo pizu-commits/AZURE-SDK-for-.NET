@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Type of the accessory. </summary>
+    /// <summary> The AccessoryType. </summary>
     public readonly partial struct AccessoryType : IEquatable<AccessoryType>
     {
         private readonly string _value;
@@ -26,11 +26,11 @@ namespace Azure.AI.Vision.Face
         private const string GlassesValue = "glasses";
         private const string MaskValue = "mask";
 
-        /// <summary> Head wear. </summary>
+        /// <summary> headwear. </summary>
         public static AccessoryType Headwear { get; } = new AccessoryType(HeadwearValue);
-        /// <summary> Glasses. </summary>
+        /// <summary> glasses. </summary>
         public static AccessoryType Glasses { get; } = new AccessoryType(GlassesValue);
-        /// <summary> Mask. </summary>
+        /// <summary> mask. </summary>
         public static AccessoryType Mask { get; } = new AccessoryType(MaskValue);
         /// <summary> Determines if two <see cref="AccessoryType"/> values are the same. </summary>
         public static bool operator ==(AccessoryType left, AccessoryType right) => left.Equals(right);

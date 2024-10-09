@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Schema of the Data property of an EventGridEvent for a Microsoft.Communication.RouterWorkerUpdated event. </summary>
+    /// <summary> The AcsRouterWorkerUpdatedEventData. </summary>
     public partial class AcsRouterWorkerUpdatedEventData
     {
         /// <summary>
@@ -47,11 +47,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerUpdatedEventData"/>. </summary>
-        /// <param name="queueAssignments"> Router Worker Updated Queue Info. </param>
-        /// <param name="channelConfigurations"> Router Worker Updated Channel Configuration. </param>
-        /// <param name="labels"> Router Worker Updated Labels. </param>
-        /// <param name="tags"> Router Worker Updated Tags. </param>
-        /// <param name="updatedWorkerProperties"> Router Worker Properties Updated. </param>
+        /// <param name="queueAssignments"></param>
+        /// <param name="channelConfigurations"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="updatedWorkerProperties"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="queueAssignments"/>, <paramref name="channelConfigurations"/>, <paramref name="labels"/>, <paramref name="tags"/> or <paramref name="updatedWorkerProperties"/> is null. </exception>
         internal AcsRouterWorkerUpdatedEventData(IEnumerable<AcsRouterQueueDetails> queueAssignments, IEnumerable<AcsRouterChannelConfiguration> channelConfigurations, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, IEnumerable<AcsRouterUpdatedWorkerProperty> updatedWorkerProperties)
         {
@@ -69,13 +69,13 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="AcsRouterWorkerUpdatedEventData"/>. </summary>
-        /// <param name="workerId"> Router Worker Updated Worker Id. </param>
-        /// <param name="queueAssignments"> Router Worker Updated Queue Info. </param>
-        /// <param name="channelConfigurations"> Router Worker Updated Channel Configuration. </param>
-        /// <param name="totalCapacity"> Router Worker Updated Total Capacity. </param>
-        /// <param name="labels"> Router Worker Updated Labels. </param>
-        /// <param name="tags"> Router Worker Updated Tags. </param>
-        /// <param name="updatedWorkerProperties"> Router Worker Properties Updated. </param>
+        /// <param name="workerId"></param>
+        /// <param name="queueAssignments"></param>
+        /// <param name="channelConfigurations"></param>
+        /// <param name="totalCapacity"></param>
+        /// <param name="labels"></param>
+        /// <param name="tags"></param>
+        /// <param name="updatedWorkerProperties"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AcsRouterWorkerUpdatedEventData(string workerId, IReadOnlyList<AcsRouterQueueDetails> queueAssignments, IReadOnlyList<AcsRouterChannelConfiguration> channelConfigurations, int? totalCapacity, IReadOnlyDictionary<string, string> labels, IReadOnlyDictionary<string, string> tags, IReadOnlyList<AcsRouterUpdatedWorkerProperty> updatedWorkerProperties, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -94,19 +94,19 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Router Worker Updated Worker Id. </summary>
+        /// <summary> Gets the worker id. </summary>
         public string WorkerId { get; }
-        /// <summary> Router Worker Updated Queue Info. </summary>
+        /// <summary> Gets the queue assignments. </summary>
         public IReadOnlyList<AcsRouterQueueDetails> QueueAssignments { get; }
-        /// <summary> Router Worker Updated Channel Configuration. </summary>
+        /// <summary> Gets the channel configurations. </summary>
         public IReadOnlyList<AcsRouterChannelConfiguration> ChannelConfigurations { get; }
-        /// <summary> Router Worker Updated Total Capacity. </summary>
+        /// <summary> Gets the total capacity. </summary>
         public int? TotalCapacity { get; }
-        /// <summary> Router Worker Updated Labels. </summary>
+        /// <summary> Gets the labels. </summary>
         public IReadOnlyDictionary<string, string> Labels { get; }
-        /// <summary> Router Worker Updated Tags. </summary>
+        /// <summary> Gets the tags. </summary>
         public IReadOnlyDictionary<string, string> Tags { get; }
-        /// <summary> Router Worker Properties Updated. </summary>
+        /// <summary> Gets the updated worker properties. </summary>
         public IReadOnlyList<AcsRouterUpdatedWorkerProperty> UpdatedWorkerProperties { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> The agent that initiated the event. For most situations, this could be from the authorization context of the request. </summary>
+    /// <summary> The ContainerRegistryEventActor. </summary>
     public partial class ContainerRegistryEventActor
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="ContainerRegistryEventActor"/>. </summary>
-        /// <param name="name"> The subject or username associated with the request context that generated the event. </param>
+        /// <param name="name"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal ContainerRegistryEventActor(string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -59,7 +59,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The subject or username associated with the request context that generated the event. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Font weight. </summary>
+    /// <summary> The DocumentFontWeight. </summary>
     public readonly partial struct DocumentFontWeight : IEquatable<DocumentFontWeight>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string NormalValue = "normal";
         private const string BoldValue = "bold";
 
-        /// <summary> Characters are represented normally. </summary>
+        /// <summary> normal. </summary>
         public static DocumentFontWeight Normal { get; } = new DocumentFontWeight(NormalValue);
-        /// <summary> Characters are represented with thicker strokes. </summary>
+        /// <summary> bold. </summary>
         public static DocumentFontWeight Bold { get; } = new DocumentFontWeight(BoldValue);
         /// <summary> Determines if two <see cref="DocumentFontWeight"/> values are the same. </summary>
         public static bool operator ==(DocumentFontWeight left, DocumentFontWeight right) => left.Equals(right);

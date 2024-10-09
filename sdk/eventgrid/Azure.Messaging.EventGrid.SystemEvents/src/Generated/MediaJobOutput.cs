@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
     /// <summary>
-    /// The event data for a Job output.
+    /// The MediaJobOutput.
     /// Please note <see cref="MediaJobOutput"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
     /// The available derived classes include <see cref="MediaJobOutputAsset"/>.
     /// </summary>
@@ -50,9 +50,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="MediaJobOutput"/>. </summary>
-        /// <param name="error"> Gets the Job output error. </param>
-        /// <param name="progress"> Gets the Job output progress. </param>
-        /// <param name="state"> Gets the Job output state. </param>
+        /// <param name="error"></param>
+        /// <param name="progress"></param>
+        /// <param name="state"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="error"/> is null. </exception>
         protected MediaJobOutput(MediaJobError error, long progress, MediaJobState state)
         {
@@ -64,11 +64,11 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         }
 
         /// <summary> Initializes a new instance of <see cref="MediaJobOutput"/>. </summary>
-        /// <param name="odataType"> The discriminator for derived types. </param>
-        /// <param name="error"> Gets the Job output error. </param>
-        /// <param name="label"> Gets the Job output label. </param>
-        /// <param name="progress"> Gets the Job output progress. </param>
-        /// <param name="state"> Gets the Job output state. </param>
+        /// <param name="odataType"></param>
+        /// <param name="error"></param>
+        /// <param name="label"></param>
+        /// <param name="progress"></param>
+        /// <param name="state"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MediaJobOutput(string odataType, MediaJobError error, string label, long progress, MediaJobState state, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -85,15 +85,15 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> The discriminator for derived types. </summary>
+        /// <summary> Gets or sets the odata type. </summary>
         internal string OdataType { get; set; }
-        /// <summary> Gets the Job output error. </summary>
+        /// <summary> Gets the error. </summary>
         public MediaJobError Error { get; }
-        /// <summary> Gets the Job output label. </summary>
+        /// <summary> Gets the label. </summary>
         public string Label { get; }
-        /// <summary> Gets the Job output progress. </summary>
+        /// <summary> Gets the progress. </summary>
         public long Progress { get; }
-        /// <summary> Gets the Job output state. </summary>
+        /// <summary> Gets the state. </summary>
         public MediaJobState State { get; }
     }
 }

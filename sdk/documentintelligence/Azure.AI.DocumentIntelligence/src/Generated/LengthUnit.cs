@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> The unit used by the width, height, and polygon properties. For images, the unit is "pixel". For PDF, the unit is "inch". </summary>
+    /// <summary> The LengthUnit. </summary>
     public readonly partial struct LengthUnit : IEquatable<LengthUnit>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.AI.DocumentIntelligence
         private const string PixelValue = "pixel";
         private const string InchValue = "inch";
 
-        /// <summary> Length unit for image files. </summary>
+        /// <summary> pixel. </summary>
         public static LengthUnit Pixel { get; } = new LengthUnit(PixelValue);
-        /// <summary> Length unit for PDF files. </summary>
+        /// <summary> inch. </summary>
         public static LengthUnit Inch { get; } = new LengthUnit(InchValue);
         /// <summary> Determines if two <see cref="LengthUnit"/> values are the same. </summary>
         public static bool operator ==(LengthUnit left, LengthUnit right) => left.Equals(right);

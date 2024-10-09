@@ -12,7 +12,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.Fabric.Models
 {
-    /// <summary> The SKU details. </summary>
+    /// <summary> The FabricSkuDetailsForNewCapacity. </summary>
     public partial class FabricSkuDetailsForNewCapacity
     {
         /// <summary>
@@ -48,9 +48,9 @@ namespace Azure.ResourceManager.Fabric.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FabricSkuDetailsForNewCapacity"/>. </summary>
-        /// <param name="resourceType"> The resource type. </param>
-        /// <param name="name"> The SKU's name. </param>
-        /// <param name="locations"> The list of available locations for the SKU. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="name"></param>
+        /// <param name="locations"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="resourceType"/>, <paramref name="name"/> or <paramref name="locations"/> is null. </exception>
         internal FabricSkuDetailsForNewCapacity(string resourceType, string name, IEnumerable<AzureLocation> locations)
         {
@@ -64,9 +64,9 @@ namespace Azure.ResourceManager.Fabric.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="FabricSkuDetailsForNewCapacity"/>. </summary>
-        /// <param name="resourceType"> The resource type. </param>
-        /// <param name="name"> The SKU's name. </param>
-        /// <param name="locations"> The list of available locations for the SKU. </param>
+        /// <param name="resourceType"></param>
+        /// <param name="name"></param>
+        /// <param name="locations"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FabricSkuDetailsForNewCapacity(string resourceType, string name, IReadOnlyList<AzureLocation> locations, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -81,11 +81,11 @@ namespace Azure.ResourceManager.Fabric.Models
         {
         }
 
-        /// <summary> The resource type. </summary>
+        /// <summary> Gets the resource type. </summary>
         public string ResourceType { get; }
-        /// <summary> The SKU's name. </summary>
+        /// <summary> Gets the name. </summary>
         public string Name { get; }
-        /// <summary> The list of available locations for the SKU. </summary>
+        /// <summary> Gets the locations. </summary>
         public IReadOnlyList<AzureLocation> Locations { get; }
     }
 }

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.Vision.Face
 {
-    /// <summary> Session result of detect liveness with verify. </summary>
+    /// <summary> The LivenessWithVerifySession. </summary>
     public partial class LivenessWithVerifySession
     {
         /// <summary>
@@ -46,9 +46,9 @@ namespace Azure.AI.Vision.Face
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="LivenessWithVerifySession"/>. </summary>
-        /// <param name="createdDateTime"> DateTime when this session was created. </param>
-        /// <param name="sessionExpired"> Whether or not the session is expired. </param>
-        /// <param name="status"> The current status of the session. </param>
+        /// <param name="createdDateTime"></param>
+        /// <param name="sessionExpired"></param>
+        /// <param name="status"></param>
         internal LivenessWithVerifySession(DateTimeOffset createdDateTime, bool sessionExpired, FaceSessionStatus status)
         {
             CreatedDateTime = createdDateTime;
@@ -57,14 +57,14 @@ namespace Azure.AI.Vision.Face
         }
 
         /// <summary> Initializes a new instance of <see cref="LivenessWithVerifySession"/>. </summary>
-        /// <param name="id"> The unique ID to reference this session. </param>
-        /// <param name="createdDateTime"> DateTime when this session was created. </param>
-        /// <param name="sessionStartDateTime"> DateTime when this session was started by the client. </param>
-        /// <param name="sessionExpired"> Whether or not the session is expired. </param>
-        /// <param name="deviceCorrelationId"> Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null. </param>
-        /// <param name="authTokenTimeToLiveInSeconds"> Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600. </param>
-        /// <param name="status"> The current status of the session. </param>
-        /// <param name="result"> The latest session audit result only populated if status == 'ResultAvailable'. </param>
+        /// <param name="id"></param>
+        /// <param name="createdDateTime"></param>
+        /// <param name="sessionStartDateTime"></param>
+        /// <param name="sessionExpired"></param>
+        /// <param name="deviceCorrelationId"></param>
+        /// <param name="authTokenTimeToLiveInSeconds"></param>
+        /// <param name="status"></param>
+        /// <param name="result"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LivenessWithVerifySession(string id, DateTimeOffset createdDateTime, DateTimeOffset? sessionStartDateTime, bool sessionExpired, string deviceCorrelationId, int? authTokenTimeToLiveInSeconds, FaceSessionStatus status, LivenessSessionAuditEntry result, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -84,21 +84,21 @@ namespace Azure.AI.Vision.Face
         {
         }
 
-        /// <summary> The unique ID to reference this session. </summary>
+        /// <summary> Gets the id. </summary>
         public string Id { get; }
-        /// <summary> DateTime when this session was created. </summary>
+        /// <summary> Gets the created date time. </summary>
         public DateTimeOffset CreatedDateTime { get; }
-        /// <summary> DateTime when this session was started by the client. </summary>
+        /// <summary> Gets the session start date time. </summary>
         public DateTimeOffset? SessionStartDateTime { get; }
-        /// <summary> Whether or not the session is expired. </summary>
+        /// <summary> Gets the session expired. </summary>
         public bool SessionExpired { get; }
-        /// <summary> Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null. </summary>
+        /// <summary> Gets the device correlation id. </summary>
         public string DeviceCorrelationId { get; }
-        /// <summary> Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600. </summary>
+        /// <summary> Gets the auth token time to live in seconds. </summary>
         public int? AuthTokenTimeToLiveInSeconds { get; }
-        /// <summary> The current status of the session. </summary>
+        /// <summary> Gets the status. </summary>
         public FaceSessionStatus Status { get; }
-        /// <summary> The latest session audit result only populated if status == 'ResultAvailable'. </summary>
+        /// <summary> Gets the result. </summary>
         public LivenessSessionAuditEntry Result { get; }
     }
 }

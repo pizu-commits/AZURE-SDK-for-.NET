@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Detail of action on the app. </summary>
+    /// <summary> The AppEventTypeDetail. </summary>
     public partial class AppEventTypeDetail
     {
         /// <summary>
@@ -46,14 +46,14 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AppEventTypeDetail"/>. </summary>
-        /// <param name="action"> Type of action of the operation. </param>
+        /// <param name="action"></param>
         internal AppEventTypeDetail(AppAction action)
         {
             Action = action;
         }
 
         /// <summary> Initializes a new instance of <see cref="AppEventTypeDetail"/>. </summary>
-        /// <param name="action"> Type of action of the operation. </param>
+        /// <param name="action"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal AppEventTypeDetail(AppAction action, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -66,7 +66,7 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         {
         }
 
-        /// <summary> Type of action of the operation. </summary>
+        /// <summary> Gets the action. </summary>
         public AppAction Action { get; }
     }
 }

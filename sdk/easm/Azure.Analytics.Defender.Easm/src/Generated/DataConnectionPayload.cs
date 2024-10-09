@@ -55,11 +55,11 @@ namespace Azure.Analytics.Defender.Easm
         }
 
         /// <summary> Initializes a new instance of <see cref="DataConnectionPayload"/>. </summary>
-        /// <param name="kind"> Discriminator property for DataConnectionPayload. </param>
-        /// <param name="name"> The name of data connection. </param>
-        /// <param name="content"> The type of data the data connection will transfer. </param>
-        /// <param name="frequency"> The rate at which the data connection will receive updates. </param>
-        /// <param name="frequencyOffset"> The day to update the data connection on. (1-7 for weekly, 1-31 for monthly). </param>
+        /// <param name="kind"></param>
+        /// <param name="name"></param>
+        /// <param name="content"></param>
+        /// <param name="frequency"></param>
+        /// <param name="frequencyOffset"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DataConnectionPayload(string kind, string name, DataConnectionContent? content, DataConnectionFrequency? frequency, int? frequencyOffset, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -71,15 +71,15 @@ namespace Azure.Analytics.Defender.Easm
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Discriminator property for DataConnectionPayload. </summary>
+        /// <summary> Gets or sets the kind. </summary>
         internal string Kind { get; set; }
-        /// <summary> The name of data connection. </summary>
+        /// <summary> Gets or sets the name. </summary>
         public string Name { get; set; }
-        /// <summary> The type of data the data connection will transfer. </summary>
+        /// <summary> Gets or sets the content. </summary>
         public DataConnectionContent? Content { get; set; }
-        /// <summary> The rate at which the data connection will receive updates. </summary>
+        /// <summary> Gets or sets the frequency. </summary>
         public DataConnectionFrequency? Frequency { get; set; }
-        /// <summary> The day to update the data connection on. (1-7 for weekly, 1-31 for monthly). </summary>
+        /// <summary> Gets or sets the frequency offset. </summary>
         public int? FrequencyOffset { get; set; }
     }
 }

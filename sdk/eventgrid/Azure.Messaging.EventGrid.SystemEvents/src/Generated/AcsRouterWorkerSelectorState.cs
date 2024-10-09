@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.Messaging.EventGrid.SystemEvents
 {
-    /// <summary> Router Worker Selector State. </summary>
+    /// <summary> The AcsRouterWorkerSelectorState. </summary>
     public readonly partial struct AcsRouterWorkerSelectorState : IEquatable<AcsRouterWorkerSelectorState>
     {
         private readonly string _value;
@@ -25,9 +25,9 @@ namespace Azure.Messaging.EventGrid.SystemEvents
         private const string ActiveValue = "active";
         private const string ExpiredValue = "expired";
 
-        /// <summary> Router Worker Selector State Active. </summary>
+        /// <summary> active. </summary>
         public static AcsRouterWorkerSelectorState Active { get; } = new AcsRouterWorkerSelectorState(ActiveValue);
-        /// <summary> Router Worker Selector State Expired. </summary>
+        /// <summary> expired. </summary>
         public static AcsRouterWorkerSelectorState Expired { get; } = new AcsRouterWorkerSelectorState(ExpiredValue);
         /// <summary> Determines if two <see cref="AcsRouterWorkerSelectorState"/> values are the same. </summary>
         public static bool operator ==(AcsRouterWorkerSelectorState left, AcsRouterWorkerSelectorState right) => left.Equals(right);

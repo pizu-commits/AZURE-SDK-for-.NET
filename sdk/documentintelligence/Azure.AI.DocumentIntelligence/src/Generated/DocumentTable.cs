@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> A table object consisting table cells arranged in a rectangular layout. </summary>
+    /// <summary> The DocumentTable. </summary>
     public partial class DocumentTable
     {
         /// <summary>
@@ -47,10 +47,10 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="DocumentTable"/>. </summary>
-        /// <param name="rowCount"> Number of rows in the table. </param>
-        /// <param name="columnCount"> Number of columns in the table. </param>
-        /// <param name="cells"> Cells contained within the table. </param>
-        /// <param name="spans"> Location of the table in the reading order concatenated content. </param>
+        /// <param name="rowCount"></param>
+        /// <param name="columnCount"></param>
+        /// <param name="cells"></param>
+        /// <param name="spans"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="cells"/> or <paramref name="spans"/> is null. </exception>
         internal DocumentTable(int rowCount, int columnCount, IEnumerable<DocumentTableCell> cells, IEnumerable<DocumentSpan> spans)
         {
@@ -66,13 +66,13 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="DocumentTable"/>. </summary>
-        /// <param name="rowCount"> Number of rows in the table. </param>
-        /// <param name="columnCount"> Number of columns in the table. </param>
-        /// <param name="cells"> Cells contained within the table. </param>
-        /// <param name="boundingRegions"> Bounding regions covering the table. </param>
-        /// <param name="spans"> Location of the table in the reading order concatenated content. </param>
-        /// <param name="caption"> Caption associated with the table. </param>
-        /// <param name="footnotes"> List of footnotes associated with the table. </param>
+        /// <param name="rowCount"></param>
+        /// <param name="columnCount"></param>
+        /// <param name="cells"></param>
+        /// <param name="boundingRegions"></param>
+        /// <param name="spans"></param>
+        /// <param name="caption"></param>
+        /// <param name="footnotes"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal DocumentTable(int rowCount, int columnCount, IReadOnlyList<DocumentTableCell> cells, IReadOnlyList<BoundingRegion> boundingRegions, IReadOnlyList<DocumentSpan> spans, DocumentCaption caption, IReadOnlyList<DocumentFootnote> footnotes, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -91,19 +91,19 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Number of rows in the table. </summary>
+        /// <summary> Gets the row count. </summary>
         public int RowCount { get; }
-        /// <summary> Number of columns in the table. </summary>
+        /// <summary> Gets the column count. </summary>
         public int ColumnCount { get; }
-        /// <summary> Cells contained within the table. </summary>
+        /// <summary> Gets the cells. </summary>
         public IReadOnlyList<DocumentTableCell> Cells { get; }
-        /// <summary> Bounding regions covering the table. </summary>
+        /// <summary> Gets the bounding regions. </summary>
         public IReadOnlyList<BoundingRegion> BoundingRegions { get; }
-        /// <summary> Location of the table in the reading order concatenated content. </summary>
+        /// <summary> Gets the spans. </summary>
         public IReadOnlyList<DocumentSpan> Spans { get; }
-        /// <summary> Caption associated with the table. </summary>
+        /// <summary> Gets the caption. </summary>
         public DocumentCaption Caption { get; }
-        /// <summary> List of footnotes associated with the table. </summary>
+        /// <summary> Gets the footnotes. </summary>
         public IReadOnlyList<DocumentFootnote> Footnotes { get; }
     }
 }

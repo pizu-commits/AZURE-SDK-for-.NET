@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.AI.DocumentIntelligence
 {
-    /// <summary> Request body to build a new custom document model. </summary>
+    /// <summary> The BuildDocumentModelContent. </summary>
     public partial class BuildDocumentModelContent
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.AI.DocumentIntelligence
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="BuildDocumentModelContent"/>. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="buildMode"> Custom document model build mode. </param>
+        /// <param name="modelId"></param>
+        /// <param name="buildMode"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="modelId"/> is null. </exception>
         public BuildDocumentModelContent(string modelId, DocumentBuildMode buildMode)
         {
@@ -59,20 +59,14 @@ namespace Azure.AI.DocumentIntelligence
         }
 
         /// <summary> Initializes a new instance of <see cref="BuildDocumentModelContent"/>. </summary>
-        /// <param name="modelId"> Unique document model name. </param>
-        /// <param name="description"> Document model description. </param>
-        /// <param name="buildMode"> Custom document model build mode. </param>
-        /// <param name="azureBlobSource">
-        /// Azure Blob Storage location containing the training data.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </param>
-        /// <param name="azureBlobFileListSource">
-        /// Azure Blob Storage file list specifying the training data.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </param>
-        /// <param name="tags"> List of key-value tag attributes associated with the document model. </param>
-        /// <param name="maxTrainingHours"> Max number of V100-equivalent GPU hours to use for model training.  Default=0.5. </param>
-        /// <param name="allowOverwrite"> Allow overwriting an existing model with the same name. </param>
+        /// <param name="modelId"></param>
+        /// <param name="description"></param>
+        /// <param name="buildMode"></param>
+        /// <param name="azureBlobSource"></param>
+        /// <param name="azureBlobFileListSource"></param>
+        /// <param name="tags"></param>
+        /// <param name="maxTrainingHours"></param>
+        /// <param name="allowOverwrite"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal BuildDocumentModelContent(string modelId, string description, DocumentBuildMode buildMode, AzureBlobContentSource azureBlobSource, AzureBlobFileListContentSource azureBlobFileListSource, IDictionary<string, string> tags, float? maxTrainingHours, bool? allowOverwrite, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -92,27 +86,21 @@ namespace Azure.AI.DocumentIntelligence
         {
         }
 
-        /// <summary> Unique document model name. </summary>
+        /// <summary> Gets the model id. </summary>
         public string ModelId { get; }
-        /// <summary> Document model description. </summary>
+        /// <summary> Gets or sets the description. </summary>
         public string Description { get; set; }
-        /// <summary> Custom document model build mode. </summary>
+        /// <summary> Gets the build mode. </summary>
         public DocumentBuildMode BuildMode { get; }
-        /// <summary>
-        /// Azure Blob Storage location containing the training data.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </summary>
+        /// <summary> Gets or sets the azure blob source. </summary>
         public AzureBlobContentSource AzureBlobSource { get; set; }
-        /// <summary>
-        /// Azure Blob Storage file list specifying the training data.  Either
-        /// azureBlobSource or azureBlobFileListSource must be specified.
-        /// </summary>
+        /// <summary> Gets or sets the azure blob file list source. </summary>
         public AzureBlobFileListContentSource AzureBlobFileListSource { get; set; }
-        /// <summary> List of key-value tag attributes associated with the document model. </summary>
+        /// <summary> Gets the tags. </summary>
         public IDictionary<string, string> Tags { get; }
-        /// <summary> Max number of V100-equivalent GPU hours to use for model training.  Default=0.5. </summary>
+        /// <summary> Gets or sets the max training hours. </summary>
         public float? MaxTrainingHours { get; set; }
-        /// <summary> Allow overwriting an existing model with the same name. </summary>
+        /// <summary> Gets or sets the allow overwrite. </summary>
         public bool? AllowOverwrite { get; set; }
     }
 }

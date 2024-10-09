@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Azure.Messaging.EventGrid.Namespaces
 {
-    /// <summary> Failed LockToken information. </summary>
+    /// <summary> The FailedLockToken. </summary>
     public partial class FailedLockToken
     {
         /// <summary>
@@ -46,8 +46,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="FailedLockToken"/>. </summary>
-        /// <param name="lockToken"> The lock token of an entry in the request. </param>
-        /// <param name="error"> Error information of the failed operation result for the lock token in the request. </param>
+        /// <param name="lockToken"></param>
+        /// <param name="error"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="lockToken"/> or <paramref name="error"/> is null. </exception>
         internal FailedLockToken(string lockToken, ResponseError error)
         {
@@ -59,8 +59,8 @@ namespace Azure.Messaging.EventGrid.Namespaces
         }
 
         /// <summary> Initializes a new instance of <see cref="FailedLockToken"/>. </summary>
-        /// <param name="lockToken"> The lock token of an entry in the request. </param>
-        /// <param name="error"> Error information of the failed operation result for the lock token in the request. </param>
+        /// <param name="lockToken"></param>
+        /// <param name="error"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal FailedLockToken(string lockToken, ResponseError error, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -74,9 +74,9 @@ namespace Azure.Messaging.EventGrid.Namespaces
         {
         }
 
-        /// <summary> The lock token of an entry in the request. </summary>
+        /// <summary> Gets the lock token. </summary>
         public string LockToken { get; }
-        /// <summary> Error information of the failed operation result for the lock token in the request. </summary>
+        /// <summary> Gets the error. </summary>
         public ResponseError Error { get; }
     }
 }
