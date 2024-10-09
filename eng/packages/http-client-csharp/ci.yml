@@ -25,7 +25,7 @@ variables:
   - template: /eng/pipelines/templates/variables/image.yml
 
 extends:
-  template: /eng/common/pipelines/templates/stages/archetype-typespec-emitter.yaml
+  template: /eng/common/pipelines/templates/stages/archetype-typespec-emitter.yml
   parameters:
     EmitterPackagePath: 
     BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
