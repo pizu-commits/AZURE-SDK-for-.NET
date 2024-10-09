@@ -40,3 +40,16 @@ function Invoke-LoggedCommand($Command, $ExecutePath, [switch]$GroupOutput)
       }
     }
 }
+
+function Set-ConsoleEncoding
+{
+    [CmdletBinding()]
+    param
+    (
+        [string] $Encoding = 'utf-8'
+    )
+
+    $outputEncoding = [System.Text.Encoding]::GetEncoding($Encoding)
+    [Console]::OutputEncoding = $outputEncoding
+    [Console]::InputEncoding = $outputEncoding
+}
