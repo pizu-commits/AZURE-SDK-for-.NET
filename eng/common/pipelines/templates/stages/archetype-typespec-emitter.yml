@@ -241,10 +241,7 @@ stages:
       variables:
         buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
       steps:
-      - checkout: self
-        path: s/autorest # Use a predictable path for the `self` repo
-
-      - checkout: azure-sdk-tools
+      - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
         
       - download: current
         artifact: build_artifacts
@@ -374,8 +371,7 @@ stages:
       generateJobResult: $[dependencies.Generate.result]
       emitterVersion: $[stageDependencies.Build.Build.outputs['ci_build.emitterVersion']]
     steps:
-    - checkout: self
-    - checkout: azure-sdk-tools
+    - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
 
     - pwsh: |
         $generateJobResult = '$(generateJobResult)'
