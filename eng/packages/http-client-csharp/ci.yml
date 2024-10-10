@@ -1,11 +1,14 @@
 parameters:
   - name: BuildPrereleaseVersion
+    displayName: 'Build prerelease version'
     type: boolean
     default: true
   - name: PublishInternal
+    displayName: 'Publish internal'
     type: boolean
     default: true
   - name: UseTypeSpecNext
+    displayName: 'Use TypeSpec Next'
     type: boolean
     default: false
 
@@ -33,7 +36,7 @@ extends:
     ${{ if eq(variables['System.TeamProject'], 'internal') }}:
       ShouldPublish: true
       PublishInternal: ${{ parameters.PublishInternal }}
-      PublishDependsOnTest: true
+      PublishDependsOnTest: ${{ not(parameters.PublishInternal) }}
       
       ShouldRegenrate: true
       RegenerationJobCount: 5
