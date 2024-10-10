@@ -255,8 +255,8 @@ stages:
             pwsh: true
             filePath: ./eng/common/scripts/typespec/New-EmitterPackageLock.ps1
             arguments: >
-              -EmitterPackageJsonPath "$(Build.ArtifactStagingDirectory)/package.json"
-              -OutputDirectory "$(Build.ArtifactStagingDirectory)"
+              -EmitterPackageJsonPath '$(Build.ArtifactStagingDirectory)/emitter-package.json'
+              -OutputDirectory '$(Build.ArtifactStagingDirectory)'
             workingDirectory: $(Build.SourcesDirectory)
 
       - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
