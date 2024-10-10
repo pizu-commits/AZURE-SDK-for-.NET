@@ -34,6 +34,10 @@ extends:
       - template: /eng/common/pipelines/templates/stages/sdk-typespec-emitter.yml
         parameters:
           EmitterPackagePath: $(Build.SourcesDirectory)/eng/packages/http-client-csharp
+          Pool:
+            name: $(LINUXPOOL)
+            image: $(LINUXVMIMAGE)
+            os: linux
           BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
           UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
           ${{ if eq(variables['System.TeamProject'], 'internal') }}:

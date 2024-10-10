@@ -3,6 +3,10 @@ parameters:
 - name: EmitterPackagePath
   type: string
 
+# Pool to use for the pipeline stages
+- name: Pool
+  type: object
+
 # Whether to build alpha versions of the packages. This is passed as a flag to the build script.
 - name: BuildPrereleaseVersion
   type: boolean
@@ -76,6 +80,7 @@ stages:
 #   packages/: Contains the packages to publish
 #   lock-files/: Contains package.json and package-lock.json files for use in the test stage to ensure tests are run against the correct dependency versions
 - stage: Build
+  pool: ${{ parameters.Pool }}
   jobs:
   - job: Build
     steps:
@@ -142,6 +147,7 @@ stages:
 - ${{ if ne(length(parameters.TestMatrix), 0) }}:
   - stage: Test
     dependsOn: Build
+    pool: ${{ parameters.Pool }}
     jobs:
     - job: Test
       strategy:
@@ -191,6 +197,7 @@ stages:
       - Test
     variables:
       buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
+    pool: ${{ parameters.Pool }}
     jobs:
     - job: Publish
       steps:
@@ -269,6 +276,7 @@ stages:
       buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
       publishArtifactsPath: $(Pipeline.Workspace)/publish_artifacts
       branchName: $[stageDependencies.Build.Build.outputs['set_branch_name.branchName']]
+    pool: ${{ parameters.Pool }}
     jobs:
     - job: Initialize
       steps:
