@@ -108,7 +108,7 @@ stages:
         filePath: ${{ parameters.EmitterPackagePath }}/eng/scripts/Build-Packages.ps1
         arguments: >
           -BuildNumber "$(Build.BuildNumber)"
-          -Output "$(Build.ArtifactStagingDirectory)"
+          -OutputDirectory "$(Build.ArtifactStagingDirectory)"
           -PublishInternal:$${{ parameters.PublishInternal }}
           -Prerelease:$${{ parameters.BuildPrereleaseVersion }}
 
@@ -196,7 +196,9 @@ stages:
         inputs:
           pwsh: true
           filePath: ${{ parameters.EmitterPackagePath }}/eng/scripts/Test-Packages.ps1
-          arguments: $(TestArguments)
+          arguments: >
+            $(TestArguments)
+            -OutputDirectory "$(Build.ArtifactStagingDirectory)"
 
       - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
         parameters:

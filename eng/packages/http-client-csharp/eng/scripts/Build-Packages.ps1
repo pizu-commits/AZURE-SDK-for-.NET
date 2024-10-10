@@ -2,7 +2,7 @@
 
 param(
     [string] $BuildNumber,
-    [string] $Output,
+    [string] $OutputDirectory,
     [switch] $Prerelease,
     [switch] $PublishInternal
 )
@@ -13,15 +13,13 @@ Set-StrictMode -Version 3.0
 Set-ConsoleEncoding
 
 $emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
-$artifactsPath = Join-Path $emitterPackagePath "artifacts"
-$outputPath = $Output ? $Output : (Join-Path $artifactsPath "build")
+$outputPath = $OutputDirectory ? $OutputDirectory : (Join-Path $emitterPackagePath "artifacts" "build")
 
 Push-Location $emitterPackagePath
 try {
-
     # try to remove the artifacts folder if it exists
-    if (Test-Path $artifactsPath) {
-        Remove-Item -Recurse -Force $artifactsPath
+    if (Test-Path $outputPath) {
+        Remove-Item -Recurse -Force $outputPath
     }
 
     # create the output folders

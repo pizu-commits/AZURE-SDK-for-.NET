@@ -30,7 +30,7 @@ extends:
     EmitterPackagePath: $(Build.SourcesDirectory)/eng/packages/http-client-csharp
     BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
     UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
-    ${{ if eq(variables['Build.ProjectName'], 'internal') }}:
+    ${{ if eq(variables['System.TeamProject'], 'internal') }}:
       ShouldPublish: true
       PublishInternal: ${{ parameters.PublishInternal }}
       PublishDependsOnTest: true

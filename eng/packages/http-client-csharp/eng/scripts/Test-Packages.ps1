@@ -3,7 +3,8 @@
 param(
     [switch] $UnitTests,
     [switch] $GenerationChecks,
-    [string] $Filter = "."
+    [string] $Filter = ".",
+    [string] $OutputDirectory
 )
 
 $ErrorActionPreference = 'Stop'
@@ -12,8 +13,7 @@ Set-StrictMode -Version 3.0
 Set-ConsoleEncoding
 
 $emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
-$testResultsPath = Join-Path $emitterPackagePath "artifacts" "test-results"
-
+$testResultsPath = $OutputDirectory ? $OutputDirectory : (Join-Path $emitterPackagePath "artifacts" "test")
 $errors = @()
 Push-Location $emitterPackagePath
 try {
