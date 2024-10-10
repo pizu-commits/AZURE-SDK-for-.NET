@@ -244,7 +244,7 @@ stages:
             pwsh: true
             filePath: ./eng/common/scripts/typespec/New-EmitterPackageJson.ps1
             arguments: >
-              -PackageJsonPath '$(buildArtifactsPath)/lock-files/package.json"
+              -PackageJsonPath '$(buildArtifactsPath)/lock-files/package.json'
               -OverridesPath '$(buildArtifactsPath)/overrides.json'
               -OutputDirectory '$(Build.ArtifactStagingDirectory)'
             workingDirectory: $(Build.SourcesDirectory)
