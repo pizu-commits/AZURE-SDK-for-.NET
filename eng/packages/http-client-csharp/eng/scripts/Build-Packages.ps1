@@ -17,13 +17,9 @@ $outputPath = $OutputDirectory ? $OutputDirectory : (Join-Path $emitterPackagePa
 
 Push-Location $emitterPackagePath
 try {
-    # try to remove the artifacts folder if it exists
     if (Test-Path $outputPath) {
         Remove-Item -Recurse -Force $outputPath
     }
-
-    # create the output folders
-    $artifactsPath = New-Item -ItemType Directory -Force -Path $artifactsPath | Select-Object -ExpandProperty FullName
     $outputPath = New-Item -ItemType Directory -Force -Path $outputPath | Select-Object -ExpandProperty FullName
 
     $emitterVersion = (npm pkg get version).Trim('"')
