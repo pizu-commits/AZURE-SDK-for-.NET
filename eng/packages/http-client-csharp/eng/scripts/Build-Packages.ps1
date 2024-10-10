@@ -17,9 +17,8 @@ $outputPath = $OutputDirectory ? $OutputDirectory : (Join-Path $emitterPackagePa
 
 Push-Location $emitterPackagePath
 try {
-    if (Test-Path $outputPath) {
-        Remove-Item -Recurse -Force $outputPath
-    }
+    Write-Host "Working in $PWD"
+    
     $outputPath = New-Item -ItemType Directory -Force -Path $outputPath | Select-Object -ExpandProperty FullName
 
     $emitterVersion = (npm pkg get version).Trim('"')
@@ -33,27 +32,7 @@ try {
         Write-Host "##vso[task.setvariable variable=emitterVersion;isoutput=true]$emitterVersion"
     }
 
-    ## build the nuget package
-    #$versionOption = $BuildNumber ? "/p:Version=$generatorVersion" : ""
-    #Invoke-LoggedCommand "dotnet pack src/AutoRest.CSharp/AutoRest.CSharp.csproj $versionOption -o $outputPath/packages -warnaserror -c Release" -GroupOutput
-
-    # # pack the c# npm package
-    # Push-Location "$artifactsPath/bin/AutoRest.CSharp/Release/net8.0/"
-    # try {
-    #     Write-Host "Working in $PWD"
-    #     if ($BuildNumber) {
-    #         Invoke-LoggedCommand "npm version --no-git-tag-version $generatorVersion" -GroupOutput
-    #     }
-
-    #     $file = Invoke-LoggedCommand "npm pack -q"
-    #     Copy-Item $file -Destination "$outputPath/packages"
-    # }
-    # finally {
-    #     Pop-Location
-    # }
-
     # build and pack the emitter
-    Write-Host "Working in $PWD"
     Invoke-LoggedCommand "npm run build" -GroupOutput
 
     if ($BuildNumber) {

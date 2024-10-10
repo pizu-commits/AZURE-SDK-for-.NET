@@ -13,17 +13,9 @@ parameters:
   type: boolean
   default: false
 
-# Custom steps to run after the sdk repository is cloned but before the generation matrix is created.
+# Custom steps to run after the repository is cloned but before other job steps.
 - name: InitializationSteps
   type: stepList
-  default: []
-
-# List of packages to publish. Each package is an object with the following properties:
-#   name: The name of the package. This is used to determine the name of the file to publish.
-#   type: The type of package. Currently supported values are 'npm' and 'nuget'.
-#   file: The path to the file to publish. This is relative to the packages directory in the build artifacts directory.
-- name: Packages
-  type: object
   default: []
 
 # Indicates the build matrix to use for post-build autorest validation
@@ -35,6 +27,14 @@ parameters:
 - name: ShouldPublish
   type: boolean
   default: false
+
+# List of packages to publish. Each package is an object with the following properties:
+#   name: The name of the package. This is used to determine the name of the file to publish.
+#   type: The type of package. Currently supported values are 'npm' and 'nuget'.
+#   file: The path to the file to publish. This is relative to the packages directory in the build artifacts directory.
+- name: Packages
+  type: object
+  default: []
 
 # Whether to publish to the internal feed.
 - name: PublishInternal
@@ -113,17 +113,6 @@ stages:
           -Prerelease:$${{ parameters.BuildPrereleaseVersion }}
 
     - pwsh: |
-        Write-Host "Build.ArtifactStagingDirectory: $(Build.ArtifactStagingDirectory)"
-        Write-Host "Contents of $(Build.ArtifactStagingDirectory)"
-        Get-ChildItem '$(Build.ArtifactStagingDirectory)' -Recurse -File
-      displayName: Show artifact staging contents
-
-    - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
-      parameters:
-        artifactName: build_artifacts
-        artifactPath: $(Build.ArtifactStagingDirectory)
-
-    - pwsh: |
         $sourceBranch = '$(Build.SourceBranch)'
         $buildReason = '$(Build.Reason)'
         $buildNumber = '$(Build.BuildNumber)'
@@ -140,6 +129,11 @@ stages:
         Write-Host "##vso[task.setvariable variable=branchName;isOutput=true]$branchName"
       displayName: Set branch name
       name: set_branch_name
+
+    - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
+      parameters:
+        artifactName: build_artifacts
+        artifactPath: $(Build.ArtifactStagingDirectory)
 
 # Test stage
 # Responsible for running unit and functional tests using a matrix passed in as the parameter `TestMatrix`.
@@ -179,7 +173,7 @@ stages:
             $(TestArguments)
             -OutputDirectory "$(Build.ArtifactStagingDirectory)"
 
-      - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
+      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
         parameters:
           artifactName: test_artifacts_$(System.JobName)
           artifactPath: $(Build.ArtifactStagingDirectory)
@@ -258,7 +252,7 @@ stages:
               -OutputDirectory "$(Build.ArtifactStagingDirectory)"
             workingDirectory: $(Build.SourcesDirectory)
 
-      - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
+      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
         parameters:
           artifactName: publish_artifacts
           artifactPath: $(Build.ArtifactStagingDirectory)
@@ -323,7 +317,7 @@ stages:
             -OnlyTypespec ${{ parameters.OnlyGenerateTypespec }}
           workingDirectory: $(Build.SourcesDirectory)
 
-      - template: /eng/common/pipelines/templates/steps/publish-artifact.yml
+      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
         parameters:
           artifactName: matrix_artifacts
           artifactPath: $(Build.ArtifactStagingDirectory)

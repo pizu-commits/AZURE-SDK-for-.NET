@@ -1,3 +1,15 @@
+trigger: none
+pr:
+  branches:
+    include:
+    - main
+    - feature/*
+    - hotfix/*
+    - release/*
+  paths:
+    include:
+    - eng/packages/http-client-csharp
+
 parameters:
   - name: BuildPrereleaseVersion
     displayName: 'Build prerelease version'
@@ -12,40 +24,31 @@ parameters:
     type: boolean
     default: false
 
-trigger: none
-pr:
-  branches:
-    include:
-    - main
-    - feature/*
-    - hotfix/*
-    - release/*
-  paths:
-    include:
-    - eng/packages/http-client-csharp
-
 variables:
   - template: /eng/pipelines/templates/variables/image.yml
 
 extends:
-  template: /eng/common/pipelines/templates/stages/archetype-typespec-emitter.yml
+  template: /eng/pipelines/templates/stages/1es-redirect.yml
   parameters:
-    EmitterPackagePath: $(Build.SourcesDirectory)/eng/packages/http-client-csharp
-    BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
-    UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
-    ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-      ShouldPublish: true
-      PublishInternal: ${{ parameters.PublishInternal }}
-      PublishDependsOnTest: ${{ not(parameters.PublishInternal) }}
-      
-      ShouldRegenrate: true
-      RegenerationJobCount: 5
-      MinimumPerJob: 10
-      OnlyGenerateTypespec: true
-    Packages:
-      - name: emitter
-        file: azure-typespec-http-client-csharp-*.tgz
-        type: npm
-    TestMatrix:
-        All:
-          TestArguments: -UnitTests -GenerationChecks -Filter .
+    stages:
+      - template: /eng/common/pipelines/templates/stages/sdk-typespec-emitter.yml
+        parameters:
+          EmitterPackagePath: $(Build.SourcesDirectory)/eng/packages/http-client-csharp
+          BuildPrereleaseVersion: ${{ parameters.BuildPrereleaseVersion }}
+          UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
+          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+            ShouldPublish: true
+            PublishInternal: ${{ parameters.PublishInternal }}
+            PublishDependsOnTest: ${{ not(parameters.PublishInternal) }}
+            
+            ShouldRegenrate: true
+            RegenerationJobCount: 5
+            MinimumPerJob: 10
+            OnlyGenerateTypespec: true
+          Packages:
+            - name: emitter
+              file: azure-typespec-http-client-csharp-*.tgz
+              type: npm
+          TestMatrix:
+              All:
+                TestArguments: -UnitTests -GenerationChecks -Filter .NET
