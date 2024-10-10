@@ -33,8 +33,8 @@ try {
         Invoke-LoggedCommand "npm ci"
     }
     elseif ($UseTypeSpecNext) {
-        if (Test-Path "$root/package-lock.json") {
-            Remove-Item -Force "$root/package-lock.json"
+        if (Test-Path "./package-lock.json") {
+            Remove-Item -Force "./package-lock.json"
         }
 
         Write-Host "Using TypeSpec.Next"
@@ -55,6 +55,9 @@ try {
         Write-Host "Copying package.json and package-lock.json to $lockFilesPath"
         Copy-Item './package.json'  "$lockFilesPath/package.json" -Force
         Copy-Item './package-lock.json' "$lockFilesPath/package-lock.json" -Force
+
+        Write-Host "Contents of $lockFilesPath`:"
+        Get-ChildItem -Path $lockFilesPath
     }
 }
 finally {

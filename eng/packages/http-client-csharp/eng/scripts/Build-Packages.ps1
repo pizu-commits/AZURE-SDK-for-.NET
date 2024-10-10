@@ -67,9 +67,11 @@ try {
     #pack the emitter
     Invoke-LoggedCommand "npm pack"
     $file = Get-ChildItem -Filter "*.tgz" | Select-Object -ExpandProperty FullName
-    Invoke-LoggedCommand "tar --list --file $file"
+
     # ensure the packages directory exists
     New-Item -ItemType Directory -Force -Path "$outputPath/packages" | Out-Null
+
+    Write-Host "Copying $file to $outputPath/packages"
     Copy-Item $file -Destination "$outputPath/packages"
 
     if ($PublishInternal) {
