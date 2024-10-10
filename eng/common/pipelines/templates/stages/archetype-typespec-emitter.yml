@@ -135,33 +135,6 @@ stages:
       displayName: Set branch name
       name: set_branch_name
 
-    - pwsh: |
-        $repositoryName = '$(Build.Repository.Name)'
-        $branchName = '$(set_branch_name.branchName)'
-
-        . $(toolsRepositoryPath)/eng/common/scripts/git-branch-push.ps1 `
-          -PRBranchName $branchName `
-          -CommitMsg 'Update repo on failing build`n`nBuild url: $(System.CollectionUri)_build/results?buildId=$(Build.BuildId)' `
-          -GitUrl "https://$(azuresdk-github-pat)@github.com/azure-sdk/$repositoryName.git"
-
-        Write-Host ""
-        Write-Host @"
-          ##vso[task.logissue type=error]Created branch $branchName for build failure repro
-
-          To clone the repo:
-            git clone https://github.com/azure-sdk/$repositoryName
-            
-          To add the remote to an existing clone:
-            git remote add azure-sdk https://github.com/azure-sdk/$repositoryName
-            git fetch azure-sdk
-
-          To checkout the branch:
-            git checkout $branchName
-        "@
-      displayName: If failed, push changes
-      condition: failed()
-      workingDirectory: $(Build.SourcesDirectory)
-
 # Test stage
 # Responsible for running unit and functional tests using a matrix passed in as the parameter `TestMatrix`.
 # Will only run if the parameter `TestMatrix` is not empty.
