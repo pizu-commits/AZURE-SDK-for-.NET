@@ -193,6 +193,7 @@ trigger:
     - sdk/subscription/Azure.ResourceManager.Subscription
     - sdk/support/Azure.ResourceManager.Support
     - sdk/synapse/Azure.ResourceManager.Synapse
+    - sdk/terraform/Azure.ResourceManager.Terraform
     - sdk/trafficmanager/Azure.ResourceManager.TrafficManager
     - sdk/trustedsigning/Azure.ResourceManager.TrustedSigning
     - sdk/voiceservices/Azure.ResourceManager.VoiceServices
@@ -395,6 +396,7 @@ pr:
     - sdk/subscription/Azure.ResourceManager.Subscription
     - sdk/support/Azure.ResourceManager.Support
     - sdk/synapse/Azure.ResourceManager.Synapse
+    - sdk/terraform/Azure.ResourceManager.Terraform
     - sdk/trafficmanager/Azure.ResourceManager.TrafficManager
     - sdk/trustedsigning/Azure.ResourceManager.TrustedSigning
     - sdk/voiceservices/Azure.ResourceManager.VoiceServices
