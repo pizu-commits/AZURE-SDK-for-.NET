@@ -273,7 +273,6 @@ stages:
     - Publish
     variables:
       pullRequestTargetBranch: 'main'
-      buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
       publishArtifactsPath: $(Pipeline.Workspace)/publish_artifacts
       branchName: $[stageDependencies.Build.Build.outputs['set_branch_name.branchName']]
     pool: ${{ parameters.Pool }}
@@ -292,7 +291,7 @@ stages:
 
       - pwsh: |
           Write-Host "Copying emitter-package.json to /eng"
-          Copy-Item $(buildArtifactsPath)/emitter-package.json /eng -Force
+          Copy-Item $(publishArtifactsPath)/emitter-package.json /eng -Force
 
           Write-Host "Copying emitter-package-lock.json to $(Build.SourcesDirectory)/eng"
           Copy-Item $(publishArtifactsPath)/emitter-package-lock.json $(Build.SourcesDirectory)/eng -Force
