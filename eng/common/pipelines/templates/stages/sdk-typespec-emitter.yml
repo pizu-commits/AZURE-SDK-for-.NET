@@ -382,6 +382,7 @@ stages:
           $project = '$(System.TeamProject)'
           $definitionName = '$(Build.DefinitionName)'
           $repoUrl = '$(Build.Repository.Uri)'
+          $repoName = '$(Build.Repository.Name)'
           $sourceBranch = '$(Build.SourceBranch)'
           $reason = '$(Build.Reason)'
           $buildId = '$(Build.BuildId)'
@@ -419,6 +420,17 @@ stages:
 
           Write-Host "Setting variable 'PullRequestBody' to '$prBody'"
           Write-Host "##vso[task.setvariable variable=PullRequestBody]$prBody"
+
+          $repoNameParts = $repoName.Split('/')
+          if ($repoNameParts.Length -eq 2) {
+            Write-Host "Setting variable 'RepoOwner' to '$($repoNameParts[0])'"
+            Write-Host "##vso[task.setvariable variable=RepoOwner]$($repoNameParts[0])"
+
+            Write-Host "Setting variable 'RepoName' to '$($repoNameParts[1])'"
+            Write-Host "##vso[task.setvariable variable=RepoName]$($repoNameParts[1])"
+          } else {
+            Write-Error "Build.Repository.Name not in the expected {Owner}/{Name} format"
+          }
         displayName: Get PR title and body
 
       - task: PowerShell@2
@@ -427,8 +439,8 @@ stages:
           pwsh: true
           filePath: ./eng/common/scripts/Submit-PullRequest.ps1
           arguments: >
-            -RepoOwner 'Azure'
-            -RepoName '$(Build.Repository.Name)'
+            -RepoOwner '$(RepoOwner)'
+            -RepoName '$(RepoName)'
             -BaseBranch '$(pullRequestTargetBranch)'
             -PROwner 'azure-sdk'
             -PRBranch '$(branchName)'
