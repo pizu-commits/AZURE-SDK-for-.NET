@@ -290,11 +290,11 @@ stages:
         displayName: Download pubish artifacts
 
       - pwsh: |
-          Write-Host "Copying emitter-package.json to /eng"
-          Copy-Item $(publishArtifactsPath)/emitter-package.json /eng -Force
+          Write-Host "Copying emitter-package.json to $(Build.SourcesDirectory)/eng"
+          Copy-Item $(publishArtifactsPath)/emitter-package.json $(Build.SourcesDirectory)/eng/ -Force
 
           Write-Host "Copying emitter-package-lock.json to $(Build.SourcesDirectory)/eng"
-          Copy-Item $(publishArtifactsPath)/emitter-package-lock.json $(Build.SourcesDirectory)/eng -Force
+          Copy-Item $(publishArtifactsPath)/emitter-package-lock.json $(Build.SourcesDirectory)/eng/ -Force
         displayName: Copy emitter-package json files
 
       - ${{ parameters.InitializationSteps }}
