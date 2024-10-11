@@ -140,50 +140,6 @@ stages:
         artifactName: build_artifacts
         artifactPath: $(Build.ArtifactStagingDirectory)
 
-# Test stage
-# Responsible for running unit and functional tests using a matrix passed in as the parameter `TestMatrix`.
-# Will only run if the parameter `TestMatrix` is not empty.
-# The contents of the artficact `build_artifacts` are available under the path `$(buildArtifactsPath)`.
-- ${{ if ne(length(parameters.TestMatrix), 0) }}:
-  - stage: Test
-    dependsOn: Build
-    pool: ${{ parameters.Pool }}
-    jobs:
-    - job: Test
-      strategy:
-        matrix: ${{ parameters.TestMatrix }}
-      variables:
-        buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
-      steps:
-      - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
-        
-      - download: current
-        artifact: build_artifacts
-        displayName: Download build artifacts
-
-      - ${{ parameters.InitializationSteps }}
-
-      - task: PowerShell@2
-        displayName: 'Run initialize script'
-        inputs:
-          pwsh: true
-          filePath: ${{ parameters.EmitterPackagePath }}/eng/scripts/Initialize.ps1
-          arguments: -BuildArtifactsPath '$(buildArtifactsPath)'
-
-      - task: PowerShell@2
-        displayName: 'Run test script'
-        inputs:
-          pwsh: true
-          filePath: ${{ parameters.EmitterPackagePath }}/eng/scripts/Test-Packages.ps1
-          arguments: >
-            $(TestArguments)
-            -OutputDirectory "$(Build.ArtifactStagingDirectory)"
-
-      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
-        parameters:
-          artifactName: test_artifacts_$(System.JobName)
-          artifactPath: $(Build.ArtifactStagingDirectory)
-
 # Publish stage
 # Responsible for publishing the packages in `build_artifacts/packages` and producing `emitter-package-lock.json`
 # Produces the artifact `publish_artifacts` which contains the following:
@@ -450,3 +406,47 @@ stages:
             -OpenAsDraft $true
             -PRLabels 'Do Not Merge'
           workingDirectory: $(Build.SourcesDirectory)
+
+# Test stage
+# Responsible for running unit and functional tests using a matrix passed in as the parameter `TestMatrix`.
+# Will only run if the parameter `TestMatrix` is not empty.
+# The contents of the artficact `build_artifacts` are available under the path `$(buildArtifactsPath)`.
+- ${{ if ne(length(parameters.TestMatrix), 0) }}:
+  - stage: Test
+    dependsOn: Build
+    pool: ${{ parameters.Pool }}
+    jobs:
+    - job: Test
+      strategy:
+        matrix: ${{ parameters.TestMatrix }}
+      variables:
+        buildArtifactsPath: $(Pipeline.Workspace)/build_artifacts
+      steps:
+      - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+        
+      - download: current
+        artifact: build_artifacts
+        displayName: Download build artifacts
+
+      - ${{ parameters.InitializationSteps }}
+
+      - task: PowerShell@2
+        displayName: 'Run initialize script'
+        inputs:
+          pwsh: true
+          filePath: ${{ parameters.EmitterPackagePath }}/eng/scripts/Initialize.ps1
+          arguments: -BuildArtifactsPath '$(buildArtifactsPath)'
+
+      - task: PowerShell@2
+        displayName: 'Run test script'
+        inputs:
+          pwsh: true
+          filePath: ${{ parameters.EmitterPackagePath }}/eng/scripts/Test-Packages.ps1
+          arguments: >
+            $(TestArguments)
+            -OutputDirectory "$(Build.ArtifactStagingDirectory)"
+
+      - template: /eng/common/pipelines/templates/steps/publish-1es-artifact.yml
+        parameters:
+          artifactName: test_artifacts_$(System.JobName)
+          artifactPath: $(Build.ArtifactStagingDirectory)
