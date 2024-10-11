@@ -1,11 +1,9 @@
-#Requires -Version 6.0
+#Requires -Version 7.0
 
 $ErrorActionPreference = 'Stop'
-Set-StrictMode -Version 1
+Set-StrictMode -Version 3.0
 
-Write-Host "Generating test projects ..."
-& (Join-Path $PSScriptRoot 'Generate.ps1') -reset
-Write-Host 'Code generation is completed.'
+& "$PSScriptRoot/Generate.ps1"
 
 Write-Host 'Checking generated files difference...'
 git -c core.safecrlf=false diff --ignore-space-at-eol --exit-code

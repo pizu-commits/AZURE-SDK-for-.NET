@@ -1,0 +1,26 @@
+trigger: none
+pr:
+  branches:
+    include:
+    - main
+    - feature/*
+    - hotfix/*
+    - release/*
+  paths:
+    include:
+    - eng/packages/http-client-csharp
+
+variables:
+  - template: /eng/pipelines/templates/variables/image.yml
+
+extends:
+  template: /eng/pipelines/templates/stages/1es-redirect.yml
+  parameters:
+    stages:
+      - template: /eng/common/pipelines/templates/stages/sdk-typespec-emitter.yml
+        parameters:
+          EmitterPackagePath: $(Build.SourcesDirectory)/eng/packages/http-client-csharp
+          BuildPrereleaseVersion: true
+          TestMatrix:
+              All:
+                TestArguments: -UnitTests -GenerationChecks -Filter .NET
