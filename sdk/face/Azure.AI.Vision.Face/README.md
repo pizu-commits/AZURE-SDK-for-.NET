@@ -6,6 +6,7 @@ The Azure AI Face service provides AI algorithms that detect, recognize, and ana
 - Liveness detection
 - Face recognition
   - Face verification ("one-to-one" matching)
+  - Face identification ("one-to-many" matching)
 - Find similar faces
 - Group faces
 
@@ -97,6 +98,21 @@ AzureKeyCredential credential = new AzureKeyCredential("<your apiKey>");
 var client = new FaceClient(endpoint, credential);
 ```
 
+### Specifiy the service version
+
+The Azure Face service has multiple versions available, and the client library supports the following versions:
+
+- v1.1-preivew.1
+- v1.2-preview.1
+
+The service version can be specified when creating the client:
+
+```C# Snippet:CreateFaceClientWithVersion
+Uri endpoint = new Uri("<your endpoint>");
+DefaultAzureCredential credential = new DefaultAzureCredential();
+var client = new FaceClient(endpoint, credential, new AzureAIVisionFaceClientOptions(AzureAIVisionFaceClientOptions.ServiceVersion.V1_2_Preview_1));
+```
+
 ## Key concepts
 
 ### FaceClient
@@ -104,10 +120,17 @@ var client = new FaceClient(endpoint, credential);
 `FaceClient` provides operations for:
 
 - Face detection and analysis: Detect human faces in an image and return the rectangle coordinates of their locations, and optionally with landmarks, and face-related attributes. This operation is required as a first step in all the other face recognition scenarios.
-- Face recognition: Confirm that a user is who they claim to be based on how closely their face data matches the target face.
-   Support Face verification ("one-to-one" matching).
+- Face recognition: Confirm that a user is who they claim to be based on how closely their face data matches the target face. It includes Face verification ("one-to-one" matching) and Face identification ("one-to-many" matching).
 - Finding similar faces from a smaller set of faces that look similar to the target face.
 - Grouping faces into several smaller groups based on similarity.
+
+### FaceAdministrationClient
+
+`FaceAdministrationClient` is provided to interact with the following data structures that hold data on faces and
+persons for Face recognition:
+
+- LargeFaceList
+- LargePersonGroup
 
 ### FaceSessionClient
 
@@ -163,7 +186,7 @@ foreach (var detectedFace in detectedFaces)
 {
     Console.WriteLine($"Face Rectangle: left={detectedFace.FaceRectangle.Left}, top={detectedFace.FaceRectangle.Top}, width={detectedFace.FaceRectangle.Width}, height={detectedFace.FaceRectangle.Height}");
     Console.WriteLine($"Head pose: pitch={detectedFace.FaceAttributes.HeadPose.Pitch}, roll={detectedFace.FaceAttributes.HeadPose.Roll}, yaw={detectedFace.FaceAttributes.HeadPose.Yaw}");
-    Console.WriteLine($"Mask: {detectedFace.FaceAttributes.Mask}");
+    Console.WriteLine($"Mask: NoseAndMouthCovered={detectedFace.FaceAttributes.Mask.NoseAndMouthCovered}, Type={detectedFace.FaceAttributes.Mask.Type}");
     Console.WriteLine($"Quality: {detectedFace.FaceAttributes.QualityForRecognition}");
     Console.WriteLine($"Recognition model: {detectedFace.RecognitionModel}");
     Console.WriteLine($"Landmarks: ");
