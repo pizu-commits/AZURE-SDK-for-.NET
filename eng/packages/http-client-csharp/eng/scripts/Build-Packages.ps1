@@ -12,10 +12,10 @@ Set-StrictMode -Version 3.0
 . "$PSScriptRoot/../../../../common/scripts/common.ps1"
 Set-ConsoleEncoding
 
-$emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
-$outputPath = $OutputDirectory ? $OutputDirectory : (Join-Path $emitterPackagePath "artifacts" "build")
+$packageRoot = Resolve-Path "$PSScriptRoot/../.."
+$outputPath = $OutputDirectory ? $OutputDirectory : (Join-Path $packageRoot "artifacts" "build")
 
-Push-Location $emitterPackagePath
+Push-Location $packageRoot
 try {
     Write-Host "Working in $PWD"
     

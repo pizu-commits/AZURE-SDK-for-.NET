@@ -12,10 +12,10 @@ Set-StrictMode -Version 3.0
 . "$PSScriptRoot/../../../../common/scripts/common.ps1"
 Set-ConsoleEncoding
 
-$emitterPackagePath = Resolve-Path "$PSScriptRoot/../.."
-$testResultsPath = $OutputDirectory ? $OutputDirectory : (Join-Path $emitterPackagePath "artifacts" "test")
+$packageRoot = Resolve-Path "$PSScriptRoot/../.."
+$testResultsPath = $OutputDirectory ? $OutputDirectory : (Join-Path $packageRoot "artifacts" "test")
 $errors = @()
-Push-Location $emitterPackagePath
+Push-Location $packageRoot
 try {
     if ($UnitTests) {
         # test the emitter
@@ -45,7 +45,7 @@ try {
             $errors += "Emitter tests failed"
         }
 
-        $testResultsFile = "$emitterPackagePath/generator/Azure.Generator/test/TestResults/debug.trx"
+        $testResultsFile = "$packageRoot/generator/Azure.Generator/test/TestResults/debug.trx"
 
         # copy test results to the artifacts directory
         if(Test-Path $testResultsFile)

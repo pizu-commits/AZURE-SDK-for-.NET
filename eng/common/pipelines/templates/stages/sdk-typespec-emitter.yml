@@ -280,14 +280,13 @@ stages:
     - job: Initialize
       steps:
       - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
+        parameters:
+          Paths:
+          - "/*"
+          - "!SessionRecords"
 
       - download: current
-        artifact: build_artifacts
-        displayName: Download build artifacts
-
-      - download: current
-        artifact: publish_artifacts
-        displayName: Download pubish artifacts
+        displayName: Download pipeline artifacts
 
       - pwsh: |
           Write-Host "Copying emitter-package.json to $(Build.SourcesDirectory)/eng"
@@ -337,7 +336,11 @@ stages:
         matrixArtifactsPath: $(Pipeline.Workspace)/matrix_artifacts
       steps:
       - template: /eng/common/pipelines/templates/steps/sparse-checkout.yml
-
+        parameters:
+          Paths:
+          - "/*"
+          - "!SessionRecords"
+          
       - download: current
         displayName: Download pipeline artifacts
 
