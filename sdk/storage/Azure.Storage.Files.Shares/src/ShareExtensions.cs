@@ -16,11 +16,6 @@ namespace Azure.Storage.Files.Shares
     {
         internal static void AssertValidFilePermissionAndKey(string filePermission, string filePermissionKey)
         {
-            if (filePermission != null && filePermissionKey != null)
-            {
-                throw Errors.CannotBothBeNotNull(nameof(filePermission), nameof(filePermissionKey));
-            }
-
             if (filePermission != null && Encoding.UTF8.GetByteCount(filePermission) > Constants.File.MaxFilePermissionHeaderSize)
             {
                 throw Errors.MustBeLessThanOrEqualTo(nameof(filePermission), Constants.File.MaxFilePermissionHeaderSize);
@@ -279,7 +274,7 @@ namespace Azure.Storage.Files.Shares
                 return null;
             }
 
-            return new ShareFileInfo
+            ShareFileInfo shareFileInfo = new ShareFileInfo
             {
                 ETag = response.GetRawResponse().Headers.TryGetValue(Constants.HeaderNames.ETag, out string value) ? new ETag(value) : default,
                 LastModified = response.Headers.LastModified.GetValueOrDefault(),
@@ -293,8 +288,17 @@ namespace Azure.Storage.Files.Shares
                     FileChangedOn = response.Headers.FileChangeTime,
                     FileId = response.Headers.FileId,
                     ParentId = response.Headers.FileParentId
+                },
+                NfsProperties = new FileNfsProperties()
+                {
+                    FileMode = NfsFileMode.ParseOctalFileMode(response.Headers.FileMode),
+                    Owner = Convert.ToUInt32(response.Headers.Owner),
+                    Group = Convert.ToUInt32(response.Headers.Group),
+                    FileType = response.Headers.NfsFileType,
                 }
             };
+
+            return shareFileInfo;
         }
 
         internal static ShareFileCopyInfo ToShareFileCopyInfo(this ResponseWithHeaders<FileStartCopyHeaders> response)
@@ -347,7 +351,15 @@ namespace Azure.Storage.Files.Shares
                 },
                 LeaseDuration = response.Headers.LeaseDuration.GetValueOrDefault(),
                 LeaseState = response.Headers.LeaseState.GetValueOrDefault(),
-                LeaseStatus = response.Headers.LeaseStatus.GetValueOrDefault()
+                LeaseStatus = response.Headers.LeaseStatus.GetValueOrDefault(),
+                NfsProperties = new FileNfsProperties()
+                {
+                    FileMode = NfsFileMode.ParseOctalFileMode(response.Headers.FileMode),
+                    Owner = Convert.ToUInt32(response.Headers.Owner),
+                    Group = Convert.ToUInt32(response.Headers.Group),
+                    FileType = response.Headers.NfsFileType,
+                    LinkCount = response.Headers.LinkCount
+                }
             };
 
             if (response.Headers.ContentEncoding != null)
@@ -383,6 +395,13 @@ namespace Azure.Storage.Files.Shares
                     FileChangedOn = response.Headers.FileChangeTime,
                     FileId = response.Headers.FileId,
                     ParentId = response.Headers.FileParentId
+                },
+                NfsProperties = new FileNfsProperties()
+                {
+                    FileMode = NfsFileMode.ParseOctalFileMode(response.Headers.FileMode),
+                    Owner = Convert.ToUInt32(response.Headers.Owner),
+                    Group = Convert.ToUInt32(response.Headers.Group),
+                    LinkCount = response.Headers.LinkCount
                 }
             };
         }
@@ -883,6 +902,13 @@ namespace Azure.Storage.Files.Shares
                         FileChangedOn = response.Headers.FileChangeTime,
                         FileId = response.Headers.FileId,
                         ParentId = response.Headers.FileParentId
+                    },
+                    NfsProperties = new FileNfsProperties
+                    {
+                        FileMode = NfsFileMode.ParseOctalFileMode(response.Headers.FileMode),
+                        Owner = Convert.ToUInt32(response.Headers.Owner),
+                        Group = Convert.ToUInt32(response.Headers.Group),
+                        LinkCount = response.Headers.LinkCount,
                     }
                 }
             };
