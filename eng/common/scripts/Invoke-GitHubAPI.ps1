@@ -60,6 +60,8 @@ function Get-GitHubPullRequests {
   if ($Sort) { $uri += "sort=$Sort&" }
   if ($Direction){ $uri += "direction=$Direction&" }
 
+  Write-Host $uri
+
   return Invoke-RestMethod `
           -Method GET `
           -Uri $uri `
