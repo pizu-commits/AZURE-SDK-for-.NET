@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace BasicTypeSpec.Models
 {
-    /// <summary> this is a model with a projected name. </summary>
+    /// <summary> The ProjectedModel. </summary>
     public partial class ProjectedModel
     {
         /// <summary> Keeps track of any properties unknown to the library. </summary>
@@ -27,7 +27,7 @@ namespace BasicTypeSpec.Models
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
-        /// <summary> name of the ModelWithProjectedName. </summary>
+        /// <summary> Gets or sets the Name. </summary>
         public string Name { get; set; }
     }
 }

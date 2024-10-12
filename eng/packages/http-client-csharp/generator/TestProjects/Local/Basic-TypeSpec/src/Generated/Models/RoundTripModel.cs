@@ -13,22 +13,22 @@ using BasicTypeSpec;
 
 namespace BasicTypeSpec.Models
 {
-    /// <summary> this is a roundtrip model. </summary>
+    /// <summary> The RoundTripModel. </summary>
     public partial class RoundTripModel
     {
         /// <summary> Keeps track of any properties unknown to the library. </summary>
         private protected IDictionary<string, BinaryData> _additionalBinaryDataProperties;
 
         /// <summary> Initializes a new instance of <see cref="RoundTripModel"/>. </summary>
-        /// <param name="requiredString"> Required string, illustrating a reference type property. </param>
-        /// <param name="requiredInt"> Required int, illustrating a value type property. </param>
-        /// <param name="requiredCollection"> Required collection of enums. </param>
-        /// <param name="requiredDictionary"> Required dictionary of enums. </param>
-        /// <param name="requiredModel"> Required model. </param>
-        /// <param name="requiredUnknown"> required unknown. </param>
-        /// <param name="requiredRecordUnknown"> required record of unknown. </param>
-        /// <param name="modelWithRequiredNullable"> this is a model with required nullable properties. </param>
-        /// <param name="requiredBytes"> Required bytes. </param>
+        /// <param name="requiredString"></param>
+        /// <param name="requiredInt"></param>
+        /// <param name="requiredCollection"></param>
+        /// <param name="requiredDictionary"></param>
+        /// <param name="requiredModel"></param>
+        /// <param name="requiredUnknown"></param>
+        /// <param name="requiredRecordUnknown"></param>
+        /// <param name="modelWithRequiredNullable"></param>
+        /// <param name="requiredBytes"></param>
         /// <exception cref="ArgumentNullException"> <paramref name="requiredString"/>, <paramref name="requiredCollection"/>, <paramref name="requiredDictionary"/>, <paramref name="requiredModel"/>, <paramref name="requiredUnknown"/>, <paramref name="requiredRecordUnknown"/>, <paramref name="modelWithRequiredNullable"/> or <paramref name="requiredBytes"/> is null. </exception>
         public RoundTripModel(string requiredString, int requiredInt, IEnumerable<StringFixedEnum> requiredCollection, IDictionary<string, StringExtensibleEnum> requiredDictionary, Thing requiredModel, BinaryData requiredUnknown, IDictionary<string, BinaryData> requiredRecordUnknown, ModelWithRequiredNullableProperties modelWithRequiredNullable, BinaryData requiredBytes)
         {
@@ -88,56 +88,56 @@ namespace BasicTypeSpec.Models
             _additionalBinaryDataProperties = additionalBinaryDataProperties;
         }
 
-        /// <summary> Required string, illustrating a reference type property. </summary>
+        /// <summary> Gets or sets the RequiredString. </summary>
         public string RequiredString { get; set; }
 
-        /// <summary> Required int, illustrating a value type property. </summary>
+        /// <summary> Gets or sets the RequiredInt. </summary>
         public int RequiredInt { get; set; }
 
-        /// <summary> Required collection of enums. </summary>
+        /// <summary> Gets the RequiredCollection. </summary>
         public IList<StringFixedEnum> RequiredCollection { get; }
 
-        /// <summary> Required dictionary of enums. </summary>
+        /// <summary> Gets the RequiredDictionary. </summary>
         public IDictionary<string, StringExtensibleEnum> RequiredDictionary { get; }
 
-        /// <summary> Required model. </summary>
+        /// <summary> Gets or sets the RequiredModel. </summary>
         public Thing RequiredModel { get; set; }
 
-        /// <summary> this is an int based extensible enum. </summary>
+        /// <summary> Gets or sets the IntExtensibleEnum. </summary>
         public IntExtensibleEnum? IntExtensibleEnum { get; set; }
 
-        /// <summary> this is a collection of int based extensible enum. </summary>
+        /// <summary> Gets the IntExtensibleEnumCollection. </summary>
         public IList<IntExtensibleEnum> IntExtensibleEnumCollection { get; }
 
-        /// <summary> this is a float based extensible enum. </summary>
+        /// <summary> Gets or sets the FloatExtensibleEnum. </summary>
         public FloatExtensibleEnum? FloatExtensibleEnum { get; set; }
 
-        /// <summary> this is a float based extensible enum. </summary>
+        /// <summary> Gets or sets the FloatExtensibleEnumWithIntValue. </summary>
         public FloatExtensibleEnumWithIntValue? FloatExtensibleEnumWithIntValue { get; set; }
 
-        /// <summary> this is a collection of float based extensible enum. </summary>
+        /// <summary> Gets the FloatExtensibleEnumCollection. </summary>
         public IList<FloatExtensibleEnum> FloatExtensibleEnumCollection { get; }
 
-        /// <summary> this is a float based fixed enum. </summary>
+        /// <summary> Gets or sets the FloatFixedEnum. </summary>
         public FloatFixedEnum? FloatFixedEnum { get; set; }
 
-        /// <summary> this is a float based fixed enum. </summary>
+        /// <summary> Gets or sets the FloatFixedEnumWithIntValue. </summary>
         public FloatFixedEnumWithIntValue? FloatFixedEnumWithIntValue { get; set; }
 
-        /// <summary> this is a collection of float based fixed enum. </summary>
+        /// <summary> Gets the FloatFixedEnumCollection. </summary>
         public IList<FloatFixedEnum> FloatFixedEnumCollection { get; }
 
-        /// <summary> this is a int based fixed enum. </summary>
+        /// <summary> Gets or sets the IntFixedEnum. </summary>
         public IntFixedEnum? IntFixedEnum { get; set; }
 
-        /// <summary> this is a collection of int based fixed enum. </summary>
+        /// <summary> Gets the IntFixedEnumCollection. </summary>
         public IList<IntFixedEnum> IntFixedEnumCollection { get; }
 
-        /// <summary> this is a string based fixed enum. </summary>
+        /// <summary> Gets or sets the StringFixedEnum. </summary>
         public StringFixedEnum? StringFixedEnum { get; set; }
 
         /// <summary>
-        /// required unknown
+        /// Gets or sets the RequiredUnknown.
         /// <para> To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
         /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
         /// <para>
@@ -165,7 +165,7 @@ namespace BasicTypeSpec.Models
         public BinaryData RequiredUnknown { get; set; }
 
         /// <summary>
-        /// optional unknown
+        /// Gets or sets the OptionalUnknown.
         /// <para> To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
         /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
         /// <para>
@@ -193,7 +193,7 @@ namespace BasicTypeSpec.Models
         public BinaryData OptionalUnknown { get; set; }
 
         /// <summary>
-        /// required record of unknown
+        /// Gets the RequiredRecordUnknown.
         /// <para> To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
         /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
         /// <para>
@@ -221,7 +221,7 @@ namespace BasicTypeSpec.Models
         public IDictionary<string, BinaryData> RequiredRecordUnknown { get; }
 
         /// <summary>
-        /// optional record of unknown
+        /// Gets the OptionalRecordUnknown.
         /// <para> To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
         /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
         /// <para>
@@ -249,7 +249,7 @@ namespace BasicTypeSpec.Models
         public IDictionary<string, BinaryData> OptionalRecordUnknown { get; }
 
         /// <summary>
-        /// required readonly record of unknown
+        /// Gets the ReadOnlyRequiredRecordUnknown.
         /// <para> To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
         /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
         /// <para>
@@ -277,7 +277,7 @@ namespace BasicTypeSpec.Models
         public IReadOnlyDictionary<string, BinaryData> ReadOnlyRequiredRecordUnknown { get; }
 
         /// <summary>
-        /// optional readonly record of unknown
+        /// Gets the ReadOnlyOptionalRecordUnknown.
         /// <para> To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, JsonSerializerOptions?)"/>. </para>
         /// <para> To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>. </para>
         /// <para>
@@ -304,11 +304,11 @@ namespace BasicTypeSpec.Models
         /// </summary>
         public IReadOnlyDictionary<string, BinaryData> ReadOnlyOptionalRecordUnknown { get; }
 
-        /// <summary> this is a model with required nullable properties. </summary>
+        /// <summary> Gets or sets the ModelWithRequiredNullable. </summary>
         public ModelWithRequiredNullableProperties ModelWithRequiredNullable { get; set; }
 
         /// <summary>
-        /// Required bytes
+        /// Gets or sets the RequiredBytes.
         /// <para>
         /// To assign a byte[] to this property use <see cref="BinaryData.FromBytes(byte[])"/>.
         /// The byte[] will be serialized to a Base64 encoded string.
